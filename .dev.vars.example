@@ -1,2 +1,0 @@
-ADMIN_PASSWORD_SALT=configure-salt-aleatorio
-ADMIN_PASSWORD_HASH=configure-hash-pbkdf2-sha256-100000
