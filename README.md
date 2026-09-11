@@ -36,3 +36,5 @@ Os dados medem interesse, não vendas. Não há integração de pedidos/Prax/GA4
 ## Validação
 
 `node --test tests/*.test.mjs` cobre D1/R2, uploads, publicação, agendamento, métricas, CSRF, login, expiração, logout e bloqueio por tentativas. `node scripts/build.mjs` gera o pacote Pages em `dist`. A prévia desktop/mobile foi verificada em navegador.
+
+Publicação inicial concluída em https://bufalo.pages.dev, por upload direto via Wrangler. O GitHub contém o código, mas a republicação automática não está configurada. D1 e senha estão configurados. Uploads aguardam ativação do R2 na conta.

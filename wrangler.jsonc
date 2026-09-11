@@ -1,0 +1,1 @@
+{"name":"bufalo","pages_build_output_dir":"dist","compatibility_date":"2026-09-11","compatibility_flags":["nodejs_compat"],"d1_databases":[{"binding":"DB","database_name":"bufalo-site","database_id":"3859946b-33f4-4dde-9a5f-8264a38a557b","migrations_dir":"migrations"}]}
