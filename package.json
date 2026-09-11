@@ -1,0 +1,19 @@
+{
+  "name": "bufalo-painel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/preview.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "node --check src/worker.mjs",
+    "db:local": "wrangler d1 migrations apply bufalo-site --local --config wrangler.worker.jsonc",
+    "db:remote": "wrangler d1 migrations apply bufalo-site --remote --config wrangler.worker.jsonc",
+    "deploy": "node scripts/build.mjs && wrangler pages deploy dist --project-name bufalo",
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260910.1",
+    "wrangler": "^4.131.0"
+  }
+}
