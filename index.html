@@ -33,7 +33,53 @@
 .collection-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:24px}.collection-tile{display:block;text-align:center;min-width:0}.collection-photo{display:block;position:relative;overflow:hidden;aspect-ratio:.9;border-radius:24px;background:#f3f3f1;border:1px solid #e4e8e3;transition:box-shadow .2s}.collection-photo img{position:absolute;right:0;top:50%;width:205%;max-width:none;height:auto;transform:translateY(-50%)}.collection-name{display:block;margin-top:12px;font-size:16px;font-weight:700;line-height:1.3}.collection-tile:hover .collection-photo{box-shadow:0 6px 18px #142e3220}.collection-tile:hover .collection-name{color:#b9531b}@media(max-width:760px){.categories{padding:28px 20px}.categories .section-heading{margin-bottom:20px}.categories .section-heading h2{font-size:24px}.collection-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 12px}.collection-photo{border-radius:18px}.collection-name{font-size:12px;margin-top:8px}}
 /* Acabamento uniforme das fotos de coleção, preservando os produtos originais. */
 .collection-photo{background:#e9ede7;border:1px solid #dfe5dc;box-shadow:inset 0 0 0 6px #e9ede7;isolation:isolate}.collection-photo img{mix-blend-mode:multiply;filter:brightness(1.07);right:3%;width:199%;-webkit-mask-image:linear-gradient(to right,transparent 48%,#000 53%,#000 94%,transparent 100%);mask-image:linear-gradient(to right,transparent 48%,#000 53%,#000 94%,transparent 100%)}.collection-photo::after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 12px 5px #e9ede7;border-radius:inherit}.collection-name{color:#142e32}
-</style></head>
+</style>
+<script id="bufalo-analytics">
+(() => {
+  // Track only the published landing page; previews and local tests stay out of GA4.
+  if (location.hostname !== 'bufalo.pages.dev') return;
+  const measurementId = 'G-FPEC1ZGMJQ';
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+  const gtag = window.gtag;
+  gtag('js', new Date());
+  gtag('config', measurementId, {
+    page_location: location.origin + location.pathname,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+  const tag = document.createElement('script');
+  tag.async = true;
+  tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+  document.head.appendChild(tag);
+
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest && event.target.closest('a[href]');
+    if (!link) return;
+    const url = new URL(link.href, location.href);
+    let name;
+    if (url.hostname === 'wa.me' || url.hostname === 'api.whatsapp.com') {
+      name = 'bufalo_whatsapp_click';
+    } else if (url.hostname === 'www.bufalogrowler.com.br' || url.hostname === 'bufalogrowler.com.br') {
+      name = 'bufalo_store_click';
+    } else if (url.hostname === 'www.instagram.com' || url.hostname === 'instagram.com') {
+      name = 'bufalo_instagram_click';
+    } else {
+      return;
+    }
+    const section = link.closest('section,header,footer,nav,dialog');
+    gtag('event', name, {
+      send_to: measurementId,
+      content_group: 'bufalo_landing',
+      link_domain: url.hostname,
+      // Do not send WhatsApp numbers, message text, search terms or URL queries.
+      link_path: name === 'bufalo_store_click' ? url.pathname : '/',
+      link_position: section ? (section.id || section.tagName.toLowerCase()) : 'page'
+    });
+  });
+})();
+</script>
+</head>
 <body>
 <svg style="display:none" aria-hidden="true"><symbol id="search-icon" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></symbol><symbol id="bag-icon" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z M8 8V6a4 4 0 0 1 8 0v2"/></symbol><symbol id="menu-icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="arrow-icon" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol></svg>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
