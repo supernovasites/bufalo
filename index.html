@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+<script id="start-at-top">
+(() => {
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  if (location.hash) history.replaceState(history.state, '', location.pathname + location.search);
+  const startAtTop = () => window.scrollTo({top: 0, left: 0, behavior: 'instant'});
+  document.addEventListener('DOMContentLoaded', startAtTop, {once: true});
+  window.addEventListener('pageshow', startAtTop);
+})();
+</script>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Búfalo Growler — Feita para acompanhar você</title>
 <meta name="description" content="Explore garrafas, copos, growlers e acessórios Búfalo Growler.">
