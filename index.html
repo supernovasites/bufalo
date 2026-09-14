@@ -10,6 +10,7 @@
   window.addEventListener('pageshow', startAtTop);
 })();
 </script>
+
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Búfalo Growler — Feita para acompanhar você</title>
 <meta name="description" content="Explore garrafas, copos, growlers e acessórios Búfalo Growler.">
@@ -222,6 +223,16 @@ body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
 .banner-caption{background:#fff;opacity:.9;animation:banner-caption-fade .72s ease-in-out 1s both}
 @keyframes banner-caption-fade{from{opacity:0;transform:translateY(8px)}to{opacity:.9;transform:translateY(0)}}
 @media(prefers-reduced-motion:reduce){.banner-caption{animation:none}}
+</style><style id="dock-offers-preview">@media(max-width:760px){.mobile-dock{grid-template-columns:repeat(5,minmax(0,1fr))}.mobile-dock .dock-offers{color:#142e32}}</style><style id="products-no-scrollbars">
+#product-rail{scrollbar-width:none;-ms-overflow-style:none}
+#product-rail::-webkit-scrollbar{display:none;width:0;height:0}
+#product-rail .color-options{flex-wrap:wrap;overflow:visible;height:auto;scrollbar-width:none}
+#product-rail .color-options::-webkit-scrollbar{display:none}
+@media(max-width:760px){
+ #product-rail .color-options{gap:2px;margin:0 0 8px;padding:3px 2px;min-height:82px;align-content:flex-start}
+ #product-rail .color-swatch{flex:0 0 36px}
+}
+@media(max-width:380px){#product-rail .color-options{min-height:120px}}
 </style></head>
 <body>
 <svg style="display:none" aria-hidden="true"><symbol id="search-icon" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></symbol><symbol id="bag-icon" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z M8 8V6a4 4 0 0 1 8 0v2"/></symbol><symbol id="menu-icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="arrow-icon" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol></svg>
@@ -358,6 +369,7 @@ document.querySelectorAll("form.search").forEach(form=>form.addEventListener("su
 <a class="dock-whatsapp" href="https://wa.me/559184973370?text=Ol%C3%A1%2C%20preciso%20de%20ajuda%20no%20site." target="_blank" rel="noopener" aria-label="WhatsApp: preciso de ajuda no site"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.5L3 21l1.6-4.8A8.5 8.5 0 1 1 20.5 11.8Z"/><path d="M8.1 7.2c-.6.2-1 1-.8 2 .6 3 3 5.5 6 6.1 1.1.2 2-.3 2.3-1l.3-1-2.5-1.2-.9 1c-1.4-.5-2.5-1.6-3-3l.9-.9-1.2-2.2Z"/></svg><span>WhatsApp</span></a>
 <a href="https://www.instagram.com/bufalogrowler/" target="_blank" rel="noopener" aria-label="Instagram da Búfalo Growler"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
 <a class="dock-cash" href="https://www.bufalogrowler.com.br/?utm_source=fidelizar" target="_blank" rel="noopener" aria-label="ManadaCash"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M2 7h20M12 7v14M3 12h18M12 7C6 7 5 5 6.5 3.5 8 2 11 4 12 7Zm0 0c6 0 7-2 5.5-3.5C16 2 13 4 12 7Z"/></svg><span>ManadaCash</span></a>
+<a class="dock-offers" href="https://www.bufalogrowler.com.br/ofertas" target="_blank" rel="noopener" aria-label="Ver ofertas na loja"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h8l10 10-8 8L3 11Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg><span>Ofertas</span></a>
 <a href="#categorias" aria-label="Ver categorias de produtos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Categorias</span></a>
 </nav>
 <script id="scroll-reveal-script">
