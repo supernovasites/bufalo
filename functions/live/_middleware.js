@@ -88,7 +88,7 @@ async function handle(context) {
   if (['/live','/live/index','/live/index.html','/live/admin','/live/admin.html'].includes(path)) {
     for(const [key,value] of Object.entries(noCache)) headers.set(key,value);
   }
-  if (path.startsWith('/live/admin')) headers.set('X-Robots-Tag','noindex, nofollow');
+  if (path.startsWith('/live/admin')) { headers.set('X-Robots-Tag','noindex, nofollow'); headers.set('Cache-Control','no-store, max-age=0'); }
   if (['/live','/live/index','/live/index.html'].includes(path) && result.status===200 && headers.get('Content-Type')?.includes('text/html')) {
     const config=await content(env.LIVE_DB);
     let html=await result.text();
