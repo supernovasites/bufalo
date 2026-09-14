@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS live_settings (id INTEGER PRIMARY KEY CHECK (id = 1), enabled INTEGER NOT NULL CHECK (enabled IN (0,1)));
+INSERT OR IGNORE INTO live_settings (id, enabled) VALUES (1,1);
+CREATE TABLE IF NOT EXISTS live_sessions (token TEXT PRIMARY KEY, expires INTEGER NOT NULL);
+CREATE TABLE IF NOT EXISTS live_attempts (client TEXT PRIMARY KEY, attempts INTEGER NOT NULL, expires INTEGER NOT NULL);

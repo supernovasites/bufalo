@@ -1,1 +1,9 @@
-{"name":"bufalo","pages_build_output_dir":"dist","compatibility_date":"2026-09-11","d1_databases":[],"r2_buckets":[]}
+{
+  "name": "bufalo",
+  "pages_build_output_dir": "dist",
+  "compatibility_date": "2026-09-11",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [{"binding":"LIVE_DB","database_name":"bufalo-live-admin","database_id":"9c070dca-a2f5-4a22-947a-0637995bb16a"}],
+  "r2_buckets": [],
+  "env": {"preview": {"d1_databases": [], "r2_buckets": []}}
+}
