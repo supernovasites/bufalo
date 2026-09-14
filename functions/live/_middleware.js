@@ -1,3 +1,4 @@
+import {content, validDate, photoResponse, savePhoto, readLimited} from '../../lib/live-content.js';
 const encoder = new TextEncoder();
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
@@ -11,7 +12,7 @@ async function passwordMatches(password, setting) {
   let diff = 0; for (let i=0;i<actual.length;i++) diff |= actual.charCodeAt(i) ^ expected.charCodeAt(i);
   return diff === 0;
 }
-async function state(db) { const row = await db.prepare('SELECT enabled FROM live_settings WHERE id = 1').first(); return {enabled: row ? !!row.enabled : true}; }
+async function state(db) { const row = await db.prepare('SELECT enabled FROM live_settings WHERE id = 1').first(); return {enabled: row ? !!row.enabled : true,...await content(db)}; }
 async function authenticated(request, db) {
   const token = request.headers.get('Cookie')?.match(/(?:^|;\s*)live_session=([a-f0-9]{64})(?:;|$)/)?.[1];
   if (!token) return false;
@@ -24,13 +25,19 @@ async function handle(context) {
   if (path.startsWith('/live/api/')) {
     if (!env.LIVE_DB || !env.LIVE_PASSWORD_HASH) return json({error:'O painel ainda não foi configurado no servidor.'},503);
     const db = env.LIVE_DB;
+    if(path==='/live/api/photo' && ['GET','HEAD'].includes(request.method)) return photoResponse(db,request,noCache);
     if (!['GET','POST'].includes(request.method)) return json({error:'Método não permitido.'},405);
     if (request.method === 'POST' && request.headers.get('Origin') !== url.origin) return json({error:'Origem não permitida.'},403);
+    if(path==='/live/api/photo' && request.method==='POST') {
+      if(!await authenticated(request,db))return json({error:'Entre no painel para continuar.'},401);
+      const result=await savePhoto(db,request);return result.error?json({error:result.error},result.status):json(await state(db));
+    }
     let body = {};
     if (request.method === 'POST') {
       if (!request.headers.get('Content-Type')?.startsWith('application/json')) return json({error:'Formato inválido.'},415);
-      const raw = await request.text(); if (raw.length > 2048) return json({error:'Pedido muito grande.'},413);
+      let raw; try{raw=new TextDecoder().decode(await readLimited(request,2048));}catch{return json({error:'Pedido muito grande.'},413);}
       try { body = JSON.parse(raw); } catch { return json({error:'Pedido inválido.'},400); }
+      if(!body||typeof body!=='object'||Array.isArray(body))return json({error:'Pedido inválido.'},400);
     }
     if (path === '/live/api/login' && request.method === 'POST') {
       const now = Date.now(), bucket = Math.floor(now / 900000);
@@ -47,6 +54,13 @@ async function handle(context) {
       return json({ok:true},200,{'Set-Cookie':cookie(request,token,14400)});
     }
     if (!await authenticated(request,db)) return json({error:'Entre no painel para continuar.'},401);
+    if(path==='/live/api/content' && request.method==='POST') {
+      const coupon=typeof body.coupon==='string'?body.coupon.trim().toUpperCase():'';
+      if(!/^[A-Z0-9_-]{3,24}$/.test(coupon))return json({error:'Use de 3 a 24 letras, números, hífen ou sublinhado no cupom.'},400);
+      if(!validDate(body.live_date))return json({error:'Informe uma data válida no formato DD/MM.'},400);
+      await db.prepare('UPDATE live_content SET coupon=?,live_date=? WHERE id=1').bind(coupon,body.live_date).run();
+      return json(await state(db));
+    }
     if (path === '/live/api/logout' && request.method === 'POST') {
       const token = request.headers.get('Cookie').match(/(?:^|;\s*)live_session=([a-f0-9]{64})/)?.[1];
       await db.prepare('DELETE FROM live_sessions WHERE token = ?').bind(await sha(token)).run();
@@ -75,6 +89,14 @@ async function handle(context) {
     for(const [key,value] of Object.entries(noCache)) headers.set(key,value);
   }
   if (path.startsWith('/live/admin')) headers.set('X-Robots-Tag','noindex, nofollow');
+  if (['/live','/live/index','/live/index.html'].includes(path) && result.status===200 && headers.get('Content-Type')?.includes('text/html')) {
+    const config=await content(env.LIVE_DB);
+    let html=await result.text();
+    html=html.replaceAll('LIVEBG1609',config.coupon).replaceAll('16/09',config.live_date).replaceAll('16.09',config.live_date.replace('/','.'));
+    if(config.photo_version)html=html.replace(/<img id="momento-image"[^>]*>/,tag=>tag.replace(/src="[^"]*"/,'src="/live/api/photo?v='+encodeURIComponent(config.photo_version)+'"').replace(/alt="[^"]*"/,'alt="Foto da manada no Momento BG"'));
+    headers.delete('Content-Length');headers.delete('ETag');
+    return new Response(request.method==='HEAD'?null:html,{status:200,headers});
+  }
   return new Response(result.body,{status:result.status,headers});
 }
 export async function onRequest(context) {

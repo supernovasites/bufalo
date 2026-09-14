@@ -58,3 +58,7 @@ body{padding-bottom:154px}
  .purchase-bar .buy-actions .button{min-width:140px;padding:12px 14px}
  .purchase-bar .coupon-stock{display:none}
 }
+
+
+.live-mark{display:flex;align-items:center;flex-wrap:wrap;gap:10px}.live-mark::before{margin-right:0}.live-date{background:#ff9b52;color:#142e32;font-size:24px;letter-spacing:.5px;padding:5px 12px;line-height:1.1;border-radius:2px}.hero-art .hero-slide-link{display:grid;place-items:center;width:100%;height:100%;padding:65px 15px 110px;z-index:1}.hero-art .hero-slide-link img{height:270px;width:80%;max-width:360px;transition:opacity .2s;transform:rotate(-7deg)}.hero-art .hero-caption{bottom:58px;max-width:70%;font-size:13px;letter-spacing:.2px}.carousel-controls{position:absolute;left:32px;bottom:20px;display:flex;align-items:center;gap:8px;z-index:2}.carousel-dot{width:9px;height:9px;padding:0;min-height:0;border:0;border-radius:50%;background:#a3afa4}.carousel-dot[aria-pressed=true]{background:#142e32}.carousel-pause{margin-left:10px;border:0;background:transparent;font-size:11px;color:#142e32;text-decoration:underline}.hero-edition{z-index:2}@media(max-width:740px){.live-date{font-size:20px}.hero-art .hero-slide-link{min-height:335px;padding:40px 15px 90px}.hero-art .hero-slide-link img{height:205px}.hero-art .hero-caption{left:24px}.carousel-controls{left:24px}}@media(prefers-reduced-motion:reduce){.hero-art .hero-slide-link img{transition:none}}
+.hero-art .hero-slide-link{mix-blend-mode:multiply}

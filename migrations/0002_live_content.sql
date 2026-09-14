@@ -1,0 +1,2 @@
+CREATE TABLE IF NOT EXISTS live_content (id INTEGER PRIMARY KEY CHECK(id=1), coupon TEXT NOT NULL DEFAULT 'LIVEBG1609', live_date TEXT NOT NULL DEFAULT '16/09', photo TEXT, photo_type TEXT, photo_version TEXT);
+INSERT OR IGNORE INTO live_content (id) VALUES (1);
