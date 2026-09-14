@@ -103,7 +103,112 @@
 #product-rail .card-body{flex:1;display:flex;flex-direction:column}
 #product-rail .card-body>.button{margin-top:auto}
 </style>
-</head>
+<style id="aesthetic-refinement">
+/* Escala tipográfica e ritmo comuns a todas as seções. */
+body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+#mais-vendidos,.shop-categories{max-width:1280px;margin-inline:auto;padding:52px 32px 60px}
+.section-heading h2,.shop-category-heading h2,.expert h2,.newsletter h2{font-family:inherit;font-size:34px;font-weight:700;line-height:1.16;letter-spacing:-1px;text-wrap:balance}
+.section-heading,.shop-category-heading{margin-bottom:26px}
+.section-heading .eyebrow{font-size:10px!important;letter-spacing:1.7px;margin-bottom:10px}
+.shop-category-card h3{font-size:23px;font-weight:700;line-height:1.2;letter-spacing:-.45px;margin:16px 0 7px}
+.shop-category-card p{font-size:15px;line-height:1.5;color:#526567}
+.shop-category-grid{gap:32px 24px}
+#product-rail{grid-auto-columns:calc((100% - 64px)/5);gap:16px}
+#product-rail .photo{padding:28px 16px 16px;border-radius:12px}
+#product-rail .badge{top:10px;left:10px;font-size:10px;padding:5px 7px;border-radius:4px}
+#product-rail .card-body{padding:12px 0 2px}
+#product-rail .volume{font-size:11px;margin-bottom:6px}
+#product-rail h3{font-size:15px;line-height:1.3;letter-spacing:-.2px;min-height:39px;margin-bottom:6px}
+#product-rail .color-options{flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;gap:0;margin:0 0 5px;height:46px;min-height:46px;flex-shrink:0;padding:1px 3px}
+#product-rail .color-swatch{flex:0 0 36px}
+#product-rail .color-swatch span{width:19px;height:19px}
+#product-rail .selected-color{font-size:11px;margin-bottom:11px}
+#product-rail .price{font-size:16px;margin-bottom:5px}
+#product-rail .installments{font-size:11px;line-height:1.4;margin-bottom:14px}
+#product-rail .button{min-height:44px;padding:10px 12px;font-size:12px;border-radius:7px}
+@media(min-width:761px){
+ #mais-vendidos{max-width:none;padding:58px 4%}
+ #product-rail{grid-auto-columns:calc((100% - 60px)/4);gap:20px;scrollbar-width:none}
+ #product-rail::-webkit-scrollbar{display:none}
+ #product-rail .photo{padding:25px 15px 15px;border-radius:0}
+ #product-rail .badge{top:13px;left:13px;font-size:12px;padding:7px 9px;border-radius:0}
+ #product-rail .card-body{padding:18px 2px 3px}
+ #product-rail .volume{font-size:12px;margin-bottom:9px}
+ #product-rail h3{font-size:16px;line-height:1.4;letter-spacing:normal;min-height:44px;margin-bottom:10px}
+ #product-rail .color-options{flex-wrap:wrap;overflow:visible;gap:2px;margin:0 -6px 8px;height:auto;min-height:36px;padding:0}
+ #product-rail .color-swatch span{width:22px;height:22px}
+ #product-rail .selected-color{font-size:12px;margin-bottom:14px}
+ #product-rail .price{margin-bottom:7px}
+ #product-rail .installments{font-size:12px;margin-bottom:16px}
+ #product-rail .button{min-height:42px;padding:12px;font-size:14px;border-radius:2px}
+}
+@media(min-width:1600px){#mais-vendidos{padding-inline:7%}}
+@media(max-width:760px){
+ #mais-vendidos,.shop-categories{padding:34px 20px 40px}
+ #mais-vendidos{padding-bottom:10px}
+ #mais-vendidos+.shop-categories{padding-top:14px}
+ .section-heading h2,.shop-category-heading h2,.expert h2,.newsletter h2{font-size:27px;line-height:1.18;letter-spacing:-.65px;font-weight:700;max-width:none}
+ #mais-vendidos .section-heading{align-items:flex-end;gap:16px}
+ #mais-vendidos .section-heading>div:first-child{min-width:0;flex:1}
+ #mais-vendidos .heading-actions{flex-shrink:0;padding-bottom:3px}
+ #mais-vendidos .underlink{font-size:12px}
+ .section-heading,.shop-category-heading{margin-bottom:22px}
+ #product-rail{grid-auto-columns:64%;gap:12px;margin-right:-20px;padding-right:20px;scroll-padding-left:0}
+ #product-rail .photo{padding:28px 14px 14px}
+ #product-rail h3{font-size:15px;min-height:39px}
+ .shop-category-grid{gap:26px 16px}
+ .shop-category-card h3{font-size:19px;line-height:1.22;letter-spacing:-.3px;margin:12px 0 6px}
+ .shop-category-card p{font-size:14px;line-height:1.45}
+ .expert{padding:38px 20px;gap:26px}
+ .expert h2{margin-bottom:22px}
+ .expert-name{font-size:19px}
+ .expert .eyebrow{font-size:10px!important;letter-spacing:1.7px;margin-bottom:12px}
+ .expert-description{font-size:15px;line-height:1.6}
+ .newsletter{padding:32px 20px}
+}
+@media(max-width:360px){.section-heading h2,.shop-category-heading h2,.expert h2,.newsletter h2{font-size:25px}.shop-category-card h3{font-size:18px}}
+</style><style id="mobile-banner-products">
+.banner-products{display:none}
+ .hero .slide{position:relative}
+ .banner-products:not([hidden]){display:block}
+ .banner-product{position:absolute;left:var(--x);top:var(--y);z-index:3;text-decoration:none;color:#163237;outline-offset:5px}
+ .banner-pin{display:grid;place-items:center;width:20px;height:20px;border:6px solid #ffffff70;background:white;background-clip:padding-box;border-radius:50%;font:600 18px Arial;box-sizing:content-box;transform:translate(-50%,-50%);box-shadow:0 2px 10px #0002}
+ .banner-caption{position:absolute;right:50px;top:-18px;width:160px;padding:11px 12px;background:#fffffff5;border-radius:9px;box-shadow:0 3px 16px #0002;display:grid;gap:4px;text-align:left;animation:banner-label-in .2s ease-out}
+ .banner-caption strong{font:700 13px/1.2 Arial;letter-spacing:-.2px}
+ .banner-caption span{font:400 12px/1.3 Arial}
+ .banner-caption b{font:700 11px/1.3 Arial;text-decoration:underline;text-underline-offset:3px}
+ .banner-product.left:first-child .banner-caption{top:-82px}.banner-product.below .banner-caption{right:0;top:28px}.banner-product.right .banner-caption{right:auto;left:28px;top:20px}
+ .banner-product:focus-visible{outline:3px solid #ffed78}
+ @keyframes banner-label-in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+@media(min-width:761px){
+ .banner-product{left:var(--desktop-x);top:var(--desktop-y)}
+ .hero .slide:nth-child(1) .banner-product:first-child{--desktop-x:71.5%;--desktop-y:48%}
+ .hero .slide:nth-child(1) .banner-product:nth-child(2){--desktop-x:73%;--desktop-y:63%}
+ .hero .slide:nth-child(2) .banner-product{--desktop-x:65%;--desktop-y:23%}
+ .hero .slide:nth-child(3) .banner-product{--desktop-x:82%;--desktop-y:44%}
+ .banner-caption{width:clamp(150px,15vw,210px);padding:12px 14px;gap:5px}
+ .banner-caption strong{font-size:14px}
+ .banner-caption span{font-size:13px}
+ .banner-caption b{font-size:12px}
+ .banner-product.left:first-child .banner-caption{left:-80px;right:auto;top:-108px}
+ .banner-product.left:nth-child(2) .banner-caption{left:28px;right:auto;top:-20px}
+ .banner-product.right .banner-caption{left:28px;top:38px}
+ .banner-product.below .banner-caption{right:0;top:36px}
+}
+@media(min-width:761px) and (max-width:1000px){
+ .banner-caption{padding:9px 10px}
+ .banner-caption strong{font-size:12px}.banner-caption span{font-size:12px}.banner-caption b{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.banner-caption{animation:none}}
+</style><style id="scroll-reveal-style">
+.scroll-reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1);transition-delay:var(--reveal-delay,0ms)}
+.scroll-reveal.is-visible,.scroll-reveal:focus-within{opacity:1;transform:none}
+@media(max-width:760px){.scroll-reveal{transform:translateY(18px);transition-duration:.55s}.scroll-reveal.is-visible,.scroll-reveal:focus-within{transform:none}}
+@media(prefers-reduced-motion:reduce){.scroll-reveal{opacity:1;transform:none;transition:none!important}}
+@media print{.scroll-reveal{opacity:1;transform:none;transition:none}}
+</style><style id="floating-menu-refinement">
+@media(max-width:760px){.mobile-dock{transform:scale(.9);transform-origin:center bottom;bottom:calc(12px + 5vh + env(safe-area-inset-bottom,0px))}}
+</style></head>
 <body>
 <svg style="display:none" aria-hidden="true"><symbol id="search-icon" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></symbol><symbol id="bag-icon" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z M8 8V6a4 4 0 0 1 8 0v2"/></symbol><symbol id="menu-icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="arrow-icon" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol></svg>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -120,15 +225,15 @@
 <div class="hero-stage"><div class="slide" role="group" aria-roledescription="slide" aria-label="1 de 3">
 <a class="banner-link" href="https://www.bufalogrowler.com.br/camping-" target="_blank" rel="noopener">
 <picture><source media="(max-width:760px)" srcset="assets/banners/natureza-mobile-padronizado.jpg" width="1080" height="1920"><img src="assets/banners/natureza-desktop-padronizado.jpg" width="1920" height="800" alt="Descubra a natureza. Hidratação para cada descoberta. Comprar agora." decoding="async" fetchpriority="high"></picture>
-</a></div>
+</a><div class="banner-products" hidden><a class="banner-product left" href="https://www.bufalogrowler.com.br/dry-bag-20litros" target="_blank" rel="noopener" style="--x:60%;--y:50%" aria-label="Dry Bag 20L: Proteção para suas aventuras. Ver produto na loja"><span class="banner-pin" aria-hidden="true">+</span><span class="banner-caption"><strong>Dry Bag 20L</strong><span>Proteção para suas aventuras.</span><b>Ver produto ↗</b></span></a><a class="banner-product left" href="https://www.bufalogrowler.com.br/garrafa-jafarabadi-1l-" target="_blank" rel="noopener" style="--x:65%;--y:61%" aria-label="Garrafa Jafarabadi 1L: Hidratação para ir mais longe. Ver produto na loja"><span class="banner-pin" aria-hidden="true">+</span><span class="banner-caption"><strong>Garrafa Jafarabadi 1L</strong><span>Hidratação para ir mais longe.</span><b>Ver produto ↗</b></span></a></div></div>
 <div class="slide" role="group" aria-roledescription="slide" aria-label="2 de 3" hidden>
 <a class="banner-link" href="https://www.bufalogrowler.com.br/copos-e-bowls" target="_blank" rel="noopener">
 <picture><source media="(max-width:760px)" srcset="assets/banners/cafe-mobile-padronizado.jpg" width="1080" height="1920"><img src="assets/banners/cafe-desktop-padronizado.jpg" width="1920" height="800" alt="Seu café. Seu ritmo. Sabor que acompanha você. Comprar agora." decoding="async"></picture>
-</a></div>
+</a><div class="banner-products" hidden><a class="banner-product right" href="https://www.bufalogrowler.com.br/garrafa-murrah-540ml" target="_blank" rel="noopener" style="--x:35%;--y:34%" aria-label="Garrafa Murrah 540 ml: Seu café acompanha você. Ver produto na loja"><span class="banner-pin" aria-hidden="true">+</span><span class="banner-caption"><strong>Garrafa Murrah 540 ml</strong><span>Seu café acompanha você.</span><b>Ver produto ↗</b></span></a></div></div>
 <div class="slide" role="group" aria-roledescription="slide" aria-label="3 de 3" hidden>
 <a class="banner-link" href="https://www.bufalogrowler.com.br/garrafas" target="_blank" rel="noopener">
 <picture><source media="(max-width:760px)" srcset="assets/banners/skate-mobile-padronizado.jpg" width="1080" height="1920"><img src="assets/banners/skate-desktop-padronizado.jpg" width="1920" height="800" alt="Hidrate seu dia. Comprar agora." decoding="async"></picture>
-</a></div></div>
+</a><div class="banner-products" hidden><a class="banner-product below" href="https://www.bufalogrowler.com.br/growler-silo128" target="_blank" rel="noopener" style="--x:76%;--y:27%" aria-label="Growler Silo 128 · 3,8L: Mais hidratação no seu ritmo. Ver produto na loja"><span class="banner-pin" aria-hidden="true">+</span><span class="banner-caption"><strong>Growler Silo 128 · 3,8L</strong><span>Mais hidratação no seu ritmo.</span><b>Ver produto ↗</b></span></a></div></div></div>
 <div class="hero-toolbar"><button class="hero-arrow prev" aria-label="Campanha anterior">‹</button><div class="dots"><button aria-label="Mostrar campanha Natureza" aria-current="true"><i></i></button><button aria-label="Mostrar campanha Café" aria-current="false"><i></i></button><button aria-label="Mostrar campanha Hidratação" aria-current="false"><i></i></button></div><button class="hero-arrow next" aria-label="Próxima campanha">›</button><button class="hero-pause" aria-label="Pausar troca" title="Pausar troca" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="pause-bars" d="M6 4h4v16H6zM14 4h4v16h-4z"/><path class="play-triangle" d="M7 4v16l13-8z"/></svg></button></div>
 </section>
 <h1 class="brand-line"><strong>MÊS DO CLIENTE</strong> — Um mês de vantagens para quem faz parte da manada. <a href="https://www.bufalogrowler.com.br/ofertas" target="_blank" rel="noopener" style="display:inline-block;text-decoration:underline;text-underline-offset:4px;font-weight:700">Confira as ofertas →</a></h1>
@@ -147,7 +252,7 @@
 
 
 <section class="newsletter"><div><h2>Faça parte da manada.</h2><p>Acompanhe produtos, histórias e novidades da Búfalo.</p></div><a class="button" href="https://www.instagram.com/bufalogrowler" target="_blank" rel="noopener">Encontrar a Búfalo no Instagram</a></section>
-</main><footer class="footer"><div class="footer-grid"><div><p class="wordmark">BÚFALO GROWLER</p><p>Seu companheiro no dia a dia.<br>Sua companhia na próxima aventura.</p><a href="https://www.instagram.com/bufalogrowler" target="_blank" rel="noopener">Instagram ↗</a></div><div><h3>Explore</h3><a href="https://www.bufalogrowler.com.br/garrafas" target="_blank">Garrafas e growlers</a><a href="https://www.bufalogrowler.com.br/copos-e-bowls" target="_blank">Copos e bowls</a><a href="https://www.bufalogrowler.com.br/acessorios" target="_blank">Acessórios</a><a href="https://www.bufalogrowler.com.br/camping-" target="_blank">Camping</a></div><div><h3>Precisa de ajuda?</h3><a href="https://www.bufalogrowler.com.br/pagina/prazos-e-entregas.html" target="_blank">Prazos e entregas</a><a href="https://www.bufalogrowler.com.br/pagina/troca-e-devolucao.html" target="_blank">Trocas e devoluções</a><a href="https://www.bufalogrowler.com.br/pagina/formas-de-pagamento.html" target="_blank">Formas de pagamento</a></div><div><h3>Fale com a Búfalo</h3><a href="https://wa.me/5591984973370" target="_blank">(91) 98497-3370</a><a href="mailto:contato@bufalogrowler.com.br">contato@bufalogrowler.com.br</a><p>Segunda a sexta<br>8h às 18h</p></div></div><div class="footer-bottom"><span>© 2026 Búfalo Growler. Todos os direitos reservados.</span><span>Prévia visual • Compras realizadas na loja oficial.</span></div></footer>
+</main><footer class="footer"><div class="footer-grid"><div><p class="wordmark">BÚFALO GROWLER</p><p>Seu companheiro no dia a dia.<br>Sua companhia na próxima aventura.</p><a href="https://www.instagram.com/bufalogrowler" target="_blank" rel="noopener">Instagram ↗</a></div><div><h3>Explore</h3><a href="https://www.bufalogrowler.com.br/garrafas" target="_blank">Garrafas e growlers</a><a href="https://www.bufalogrowler.com.br/copos-e-bowls" target="_blank">Copos e bowls</a><a href="https://www.bufalogrowler.com.br/acessorios" target="_blank">Acessórios</a><a href="https://www.bufalogrowler.com.br/camping-" target="_blank">Camping</a></div><div><h3>Precisa de ajuda?</h3><a href="https://www.bufalogrowler.com.br/pagina/prazos-e-entregas.html" target="_blank">Prazos e entregas</a><a href="https://www.bufalogrowler.com.br/pagina/troca-e-devolucao.html" target="_blank">Trocas e devoluções</a><a href="https://www.bufalogrowler.com.br/pagina/formas-de-pagamento.html" target="_blank">Formas de pagamento</a></div><div><h3>Fale com a Búfalo</h3><a href="https://wa.me/5591984973370" target="_blank">(91) 98497-3370</a><a href="mailto:contato@bufalogrowler.com.br">contato@bufalogrowler.com.br</a><p>Segunda a sexta<br>8h às 18h</p></div></div><div class="footer-bottom"><span>© 2026 Búfalo Growler. Todos os direitos reservados.</span><span>Compras realizadas na loja oficial.</span></div></footer>
 <dialog class="mobile-menu" id="mobile-menu"><header><strong>Explore a Búfalo</strong><button class="icon-button" id="close-menu" aria-label="Fechar menu">✕</button></header><form class="search" role="search" action="https://www.bufalogrowler.com.br/buscar" method="get" target="_blank" rel="noopener"><input type="search" name="q" required placeholder="Buscar produtos" aria-label="Buscar produtos no menu"><button class="icon-button" aria-label="Pesquisar"><svg><use href="#search-icon"/></svg></button></form><nav><a href="#mais-vendidos">Mais vendidos</a><a href="#categorias">Categorias</a><a href="https://www.bufalogrowler.com.br/garrafas" target="_blank">Garrafas e growlers</a><a href="https://www.bufalogrowler.com.br/copos-e-bowls" target="_blank">Copos e bowls</a><a href="https://www.bufalogrowler.com.br/ofertas" target="_blank">Ofertas</a><a href="https://www.bufalogrowler.com.br/conta/login" target="_blank">Minha conta</a></nav></dialog>
 <script>
 const base='https://cdn.awsli.com.br/400x400/1237/1237589/produto/';
@@ -191,23 +296,37 @@ document.querySelectorAll("form.search").forEach(form=>form.addEventListener("su
  const dots = [...hero.querySelectorAll('.dots button')];
  const pause = hero.querySelector('.hero-pause');
  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
- let current = 0, timer, paused = reducedMotion.matches;
+ const mobileBanner=matchMedia('(max-width:760px)');
+ const order=slides.map((_,i)=>i);
+ for(let i=order.length-1;i>0;i--){
+   const j=Math.floor(Math.random()*(i+1));
+   [order[i],order[j]]=[order[j],order[i]];
+ }
+ slides.forEach((slide,i)=>slide.setAttribute('aria-label',(order.indexOf(i)+1)+' de '+slides.length));
+ let current = 0, timer, revealTimer, paused = reducedMotion.matches;
+ function revealProducts(){
+   clearTimeout(revealTimer);
+   slides.forEach(s=>s.querySelector('.banner-products').hidden=true);
+   if(!document.hidden) revealTimer=setTimeout(()=>{slides[order[current]].querySelector('.banner-products').hidden=false;},1000);
+ }
+ mobileBanner.addEventListener('change',revealProducts);
  function schedule() {
    clearTimeout(timer);
    pause.setAttribute('aria-label', paused ? 'Retomar troca' : 'Pausar troca');
    pause.title = paused ? 'Retomar troca' : 'Pausar troca';
    pause.setAttribute('aria-pressed', String(paused));
-   if (!paused && !document.hidden && !hero.contains(document.activeElement)) timer = setTimeout(() => show(current + 1), 2000);
+   if (!paused && !document.hidden && !hero.contains(document.activeElement)) timer = setTimeout(() => show(current + 1), 5000);
  }
  function show(index) {
    current = (index + slides.length) % slides.length;
-   slides.forEach((s,i) => s.hidden = i !== current);
-   dots.forEach((d,i) => d.setAttribute('aria-current', String(i === current)));
+   slides.forEach((s,i) => s.hidden = i !== order[current]);
+   revealProducts();
+   dots.forEach((d,i) => d.setAttribute('aria-current', String(i === order[current])));
    schedule();
  }
  hero.querySelector('.prev').onclick = () => show(current - 1);
  hero.querySelector('.next').onclick = () => show(current + 1);
- dots.forEach((d,i) => d.onclick = () => show(i));
+ dots.forEach((d,i) => d.onclick = () => show(order.indexOf(i)));
  pause.onclick = () => { paused = !paused; schedule(); };
  hero.addEventListener('focusin', schedule);
  hero.addEventListener('focusout', () => setTimeout(schedule, 0));
@@ -217,7 +336,7 @@ document.querySelectorAll("form.search").forEach(form=>form.addEventListener("su
  stage.addEventListener('touchstart', e => { touchStart = e.touches.length === 1 ? {x:e.touches[0].clientX,y:e.touches[0].clientY} : null; }, {passive:true});
  stage.addEventListener('touchend', e => { if (!touchStart) return; const dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y; touchStart=null; if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)) { e.preventDefault(); show(current+(dx<0?1:-1)); } }, {passive:false});
  stage.addEventListener('touchcancel', () => { touchStart=null; });
- document.addEventListener('visibilitychange', schedule);
+ document.addEventListener('visibilitychange', () => {schedule(); revealProducts();});
  reducedMotion.addEventListener('change', e => { paused=e.matches; schedule(); });
  show(0);
 })();
@@ -227,5 +346,30 @@ document.querySelectorAll("form.search").forEach(form=>form.addEventListener("su
 <a class="dock-cash" href="https://www.bufalogrowler.com.br/?utm_source=fidelizar" target="_blank" rel="noopener" aria-label="ManadaCash"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M2 7h20M12 7v14M3 12h18M12 7C6 7 5 5 6.5 3.5 8 2 11 4 12 7Zm0 0c6 0 7-2 5.5-3.5C16 2 13 4 12 7Z"/></svg><span>ManadaCash</span></a>
 <a href="#categorias" aria-label="Ver categorias de produtos"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Categorias</span></a>
 </nav>
-</body></html>
+<script id="scroll-reveal-script">
+(() => {
+ const motion=matchMedia('(prefers-reduced-motion: reduce)');
+ if(motion.matches || !('IntersectionObserver' in window)) return;
+ const targets=[...document.querySelectorAll('.brand-line,#mais-vendidos .section-heading,#product-rail,.shop-category-heading,.shop-category-card,.expert-copy,.expert figure,.newsletter,.footer-grid > div,.footer-bottom')];
+ const observer=new IntersectionObserver(entries=>{
+   entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}});
+ },{threshold:0,rootMargin:'0px 0px -32px 0px'});
+ const reveal=el=>{el.classList.add('is-visible');observer.unobserve(el);};
+ targets.forEach(el=>{
+   if(el.classList.contains('shop-category-card')){
+     const col=[...el.parentElement.children].indexOf(el) % (matchMedia('(max-width:760px)').matches?2:3);
+     el.style.setProperty('--reveal-delay',col*70+'ms');
+   }
+   el.classList.add('scroll-reveal');observer.observe(el);
+ });
+ document.addEventListener('focusin',event=>{const item=event.target.closest('.scroll-reveal');if(item)reveal(item);});
+ const revealHash=()=>{
+   let id;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}
+   const target=document.getElementById(id);if(!target)return;
+   const item=target.closest('.scroll-reveal');if(item)reveal(item);
+ };
+ addEventListener('hashchange',revealHash);revealHash();
+ motion.addEventListener('change',event=>{if(event.matches){targets.forEach(reveal);observer.disconnect();}});
+})();
+</script></body></html>
 
