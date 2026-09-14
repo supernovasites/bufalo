@@ -217,6 +217,11 @@ body{font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
 @media print{.scroll-reveal{opacity:1;transform:none;transition:none}}
 </style><style id="floating-menu-refinement">
 @media(max-width:760px){.mobile-dock{transform:scale(.9);transform-origin:center bottom;bottom:calc(12px + env(safe-area-inset-bottom,0px))}}
+</style><style id="banner-soft-fade">
+.banner-product{animation:none}
+.banner-caption{background:#fff;opacity:.9;animation:banner-caption-fade .72s ease-in-out 1s both}
+@keyframes banner-caption-fade{from{opacity:0;transform:translateY(8px)}to{opacity:.9;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){.banner-caption{animation:none}}
 </style></head>
 <body>
 <svg style="display:none" aria-hidden="true"><symbol id="search-icon" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></symbol><symbol id="bag-icon" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z M8 8V6a4 4 0 0 1 8 0v2"/></symbol><symbol id="menu-icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="arrow-icon" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol></svg>
@@ -316,7 +321,7 @@ document.querySelectorAll("form.search").forEach(form=>form.addEventListener("su
  function revealProducts(){
    clearTimeout(revealTimer);
    slides.forEach(s=>s.querySelector('.banner-products').hidden=true);
-   if(!document.hidden) revealTimer=setTimeout(()=>{slides[order[current]].querySelector('.banner-products').hidden=false;},1000);
+   if(!document.hidden) slides[order[current]].querySelector('.banner-products').hidden=false;
  }
  mobileBanner.addEventListener('change',revealProducts);
  function schedule() {
