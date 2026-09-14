@@ -7,10 +7,10 @@ async function api(path, body) {
   if (!response.ok) { if (response.status === 401) showLogin(); throw new Error(data.error || 'Não foi possível concluir. Tente novamente.'); }
   return data;
 }
-function showLogin() { $('login').hidden = false; $('dashboard').hidden = true; $('content-editor').hidden=true; $('logout').hidden = true; }
+function showLogin() { $('login').hidden = false; $('dashboard').hidden = true; $('content-editor').hidden=true; $('gallery-editor').hidden=true; $('logout').hidden = true; }
 function render(data) {
   enabled = data.enabled; $('login').hidden = true; $('dashboard').hidden = false; $('logout').hidden = false;
-  $('content-editor').hidden=false;
+  $('content-editor').hidden=false; $('gallery-editor').hidden=false; window.liveGalleryState=data.gallery||[]; window.dispatchEvent(new CustomEvent('live-gallery-state',{detail:window.liveGalleryState}));
   if(document.activeElement!==$('daily-coupon'))$('daily-coupon').value=data.coupon||'LIVEBG1609';
   if(document.activeElement!==$('live-date'))$('live-date').value=data.live_date||'16/09';
   if(data.photo_version&&!selectedPhoto){$('photo-preview').src='/live/api/photo?v='+encodeURIComponent(data.photo_version);$('photo-preview').hidden=false;$('photo-empty').hidden=true;}

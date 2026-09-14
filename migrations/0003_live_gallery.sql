@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS live_gallery (slot INTEGER PRIMARY KEY CHECK(slot BETWEEN 1 AND 5), photo TEXT NOT NULL, photo_type TEXT NOT NULL, photo_version TEXT NOT NULL);

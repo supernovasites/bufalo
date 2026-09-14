@@ -1,4 +1,4 @@
-import {content, validDate, photoResponse, savePhoto, readLimited} from '../../lib/live-content.js';
+import {content, gallery, validDate, photoResponse, savePhoto, readLimited} from '../../lib/live-content.js';
 const encoder = new TextEncoder();
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
@@ -25,9 +25,16 @@ async function handle(context) {
   if (path.startsWith('/live/api/')) {
     if (!env.LIVE_DB || !env.LIVE_PASSWORD_HASH) return json({error:'O painel ainda não foi configurado no servidor.'},503);
     const db = env.LIVE_DB;
+    const gallerySlot=path.match(/^\/live\/api\/gallery\/([1-5])$/)?.[1];
+    if(path==='/live/api/gallery' && request.method==='GET')return json({photos:await gallery(db)});
+    if(gallerySlot && ['GET','HEAD'].includes(request.method))return photoResponse(db,request,noCache,Number(gallerySlot));
     if(path==='/live/api/photo' && ['GET','HEAD'].includes(request.method)) return photoResponse(db,request,noCache);
     if (!['GET','POST'].includes(request.method)) return json({error:'Método não permitido.'},405);
     if (request.method === 'POST' && request.headers.get('Origin') !== url.origin) return json({error:'Origem não permitida.'},403);
+    if(gallerySlot && request.method==='POST') {
+      if(!await authenticated(request,db))return json({error:'Entre no painel para continuar.'},401);
+      const result=await savePhoto(db,request,Number(gallerySlot));return result.error?json({error:result.error},result.status):json(await state(db));
+    }
     if(path==='/live/api/photo' && request.method==='POST') {
       if(!await authenticated(request,db))return json({error:'Entre no painel para continuar.'},401);
       const result=await savePhoto(db,request);return result.error?json({error:result.error},result.status):json(await state(db));
