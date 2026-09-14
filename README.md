@@ -1,19 +1,19 @@
 # Búfalo Growler
 
-Site estático publicado em https://bufalo.pages.dev/.
+Site estático: https://bufalo.pages.dev/
 
-Edite index.html: CSS, produtos, cabeçalho e comportamento do carrossel estão no próprio HTML. O cabeçalho tem logo centralizada, menu à esquerda e busca e sacola à direita.
+- `index.html`: página inicial com banners interativos e link Ver todos para o catálogo.
+- `catalogo.html`: 149 produtos em dez categorias, com busca, filtros e ordenação. Preços e disponibilidade consultados em 14/09/2026; o catálogo é uma fotografia dessa consulta e não sincroniza automaticamente com a loja.
+- `assets/`: imagens e vídeos do site.
 
-O banner inclui uma foto vertical e dois vídeos MP4 com áudio na pasta assets/. A troca ocorre a cada 5 segundos; use “Pausar troca” para assistir ao vídeo inteiro. O navegador pode exigir um clique para iniciar áudio. As mídias mantêm as proporções, sem cortes.
+## Publicação automática
 
-Sem painel administrativo, login, banco de dados ou coleta própria de acessos/cliques. Os links de compra e as imagens dos produtos apontam para a loja oficial.
+O Cloudflare Pages está conectado à branch main deste repositório. Novos commits disparam o deploy automaticamente.
 
-## Publicação
-
-Não há build nem dependências de execução. Prepare dist/ com index.html, 404.html, _redirects e a pasta assets/ completa. Publique com:
+Comando de build configurado no Cloudflare:
 
 ```sh
-npx wrangler pages deploy dist --project-name bufalo --branch main
+mkdir -p dist && cp index.html catalogo.html 404.html _redirects dist/ && cp -R assets dist/assets
 ```
 
-O envio ao GitHub não publica automaticamente na Cloudflare. A pasta dist/ não é versionada.
+Diretório publicado: `dist`. Não há dependências de execução. Os links de compra direcionam à loja oficial.
