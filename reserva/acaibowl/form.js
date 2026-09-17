@@ -9,7 +9,7 @@ form.addEventListener('submit',async event=>{
   const button=form.querySelector('button[type=submit]');
   button.disabled=true;button.textContent='Enviando...';
   try{
-    const response=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome:form.nome.value.trim(),telefone:digits,email:form.email.value.trim(),website:form.website.value,consent:form.consent.checked}),signal:AbortSignal.timeout(25000)});
+    const response=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome:form.nome.value.trim(),telefone:digits,email:form.email.value.trim(),cidade:form.cidade.value.trim(),website:form.website.value,consent:form.consent.checked}),signal:AbortSignal.timeout(25000)});
     const result=await response.json();
     if(!response.ok||result.ok!==true)throw new Error('Falha no cadastro');
     form.hidden=true;const success=document.getElementById('success');success.hidden=false;success.focus();

@@ -6,3 +6,7 @@
 /login.html / 302
 /admin.js /404.html 302
 /admin.css /404.html 302
+
+/landingpage /reserva/acaibowl/ 301
+/landingpage/ /reserva/acaibowl/ 301
+/landingpage/* /reserva/acaibowl/:splat 307

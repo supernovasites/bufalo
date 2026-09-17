@@ -17,3 +17,6 @@ mkdir -p dist && cp index.html catalogo.html 404.html _redirects dist/ && cp -R 
 ```
 
 Diretório publicado: `dist`. Não há dependências de execução. Os links de compra direcionam à loja oficial.
+
+
+A página de pré-reserva do Açaí Bowl está em `reserva/acaibowl/`, com formulário integrado ao Google Sheets (Nome, Telefone, Email e Cidade). Consulte o README dessa pasta para editar a página. O endereço anterior `/landingpage/` redireciona para `/reserva/acaibowl/`.
