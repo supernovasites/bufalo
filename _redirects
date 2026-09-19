@@ -10,3 +10,19 @@
 /landingpage /reserva/acaibowl/ 301
 /landingpage/ /reserva/acaibowl/ 301
 /landingpage/* /reserva/acaibowl/:splat 307
+
+/marca/bufalo-growler.html https://bufalogrowler.com.br/ 301
+/copos https://loja.bufalogrowler.com.br/copos-e-bowls 301
+/copos/ https://loja.bufalogrowler.com.br/copos-e-bowls 301
+/copos-e-bowls https://loja.bufalogrowler.com.br/copos-e-bowls 301
+/garrafas https://loja.bufalogrowler.com.br/garrafas 301
+/garrafas/ https://loja.bufalogrowler.com.br/garrafas 301
+/garrafas-e-growlers https://loja.bufalogrowler.com.br/garrafas 301
+/chopeira https://loja.bufalogrowler.com.br/chopeira 301
+/chopeira/ https://loja.bufalogrowler.com.br/chopeira 301
+/tampas https://loja.bufalogrowler.com.br/acessorios 301
+/tampas/ https://loja.bufalogrowler.com.br/acessorios 301
+/acessorios https://loja.bufalogrowler.com.br/acessorios 301
+/acessorios/ https://loja.bufalogrowler.com.br/acessorios 301
+/garrafa-jafarabadi-1litro https://loja.bufalogrowler.com.br/garrafa-jafarabadi-1l- 301
+/growler-mediterraneo-19l-amarelo https://loja.bufalogrowler.com.br/growler-mediterraneo-2l 301
