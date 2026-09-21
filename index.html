@@ -623,9 +623,49 @@ function updateArrows(){root.querySelector('#camping-prev').disabled=rail.scroll
 function select(tab){tabs.forEach(t=>{const active=t===tab;t.setAttribute('aria-selected',String(active));t.tabIndex=active?0:-1});root.querySelector('#camping-panel').setAttribute('aria-labelledby',tab.id);root.querySelector('#camping-caption').textContent=captions[tab.dataset.camping];rail.setAttribute('aria-label',tab.textContent);rail.innerHTML=groups[tab.dataset.camping].map(p=>{const url='https://loja.bufalogrowler.com.br/'+p.url;return `<article class="card"><a class="photo" href="${url}" target="_blank" rel="noopener"><img src="https://cdn.awsli.com.br/800x800/1237/1237589/produto/${p.img}" alt="${p.name}" loading="lazy" width="800" height="800"></a><div class="card-body"><p class="volume">${p.size}</p><h3><a href="${url}" target="_blank" rel="noopener">${p.name}</a></h3><p class="price">${money(p.price)}</p><p class="installments">até 6x de R$ ${p.pay} sem juros</p><a class="button" href="${url}" target="_blank" rel="noopener">Ver na loja</a></div></article>`}).join('');rail.scrollLeft=0;updateArrows()}
 tabs.forEach((tab,index)=>{tab.addEventListener('click',()=>select(tab));tab.addEventListener('keydown',e=>{let next=index;if(e.key==='ArrowRight')next=(index+1)%tabs.length;else if(e.key==='ArrowLeft')next=(index-1+tabs.length)%tabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabs.length-1;else return;e.preventDefault();select(tabs[next]);tabs[next].focus()})});
 root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.clientWidth*.85,behavior:'smooth'});root.querySelector('#camping-next').onclick=()=>rail.scrollBy({left:rail.clientWidth*.85,behavior:'smooth'});rail.addEventListener('scroll',updateArrows);window.addEventListener('resize',updateArrows);select(tabs[0]);
-})();</script></body></html>
-
-
-
-
+})();</script>
+<style id="manadacash-integration">
+.mc-launcher{display:none;position:fixed;z-index:40;right:0;top:50%;transform:translateY(-50%);width:58px;min-height:150px;padding:12px 9px;border:0;border-radius:10px 0 0 10px;background:#050505;color:#fff;box-shadow:0 8px 26px #0004;cursor:pointer;align-items:center;justify-content:space-between;flex-direction:column}.mc-launcher svg,.mc-dock-icon{width:31px;height:31px;fill:currentColor;stroke:#fff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}.mc-launcher span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:700;letter-spacing:-.15px}.mc-launcher:hover,.mc-launcher:focus-visible{background:#142e32;outline:2px solid #a7b58d;outline-offset:2px}.mc-popup{width:min(450px,calc(100vw - 24px));height:min(800px,calc(100vh - 24px));padding:0;overflow:hidden;border:0;border-radius:5px;background:#fff;box-shadow:0 20px 70px #0006}.mc-popup::backdrop{background:#10282b9c;backdrop-filter:blur(3px)}.mc-popup-head{height:43px;display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 16px;color:#fff;background:#050505}.mc-popup-head strong{font-size:16px;font-weight:400}.mc-popup-close{display:grid;place-items:center;width:31px;height:31px;border:0;border-radius:4px;color:#fff;background:#ed3434;font-size:24px;line-height:1;cursor:pointer}.mc-popup-close:hover,.mc-popup-close:focus-visible{background:#ff5252;outline:2px solid #fff;outline-offset:1px}.mc-popup iframe{display:block;width:100%;height:calc(100% - 43px);border:0;background:#fff}.mc-dock-icon{stroke:currentColor;fill:currentColor;stroke-width:1}.mobile-dock .dock-cash{color:#142e32}.mobile-dock .dock-cash svg{display:none}.mobile-dock .dock-cash .mc-dock-icon{display:block}.mobile-dock .dock-cash span{font-size:10px;font-weight:600}@media(min-width:761px){.mc-launcher{display:flex}}@media(max-width:760px){.mc-popup{width:calc(100vw - 24px);height:calc(100vh - 24px);border-radius:8px}}
+</style>
+<button class="mc-launcher" type="button" data-open-mc aria-label="Abrir ManadaCash" title="Abrir ManadaCash"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 27c2-8 5-16 11-22 4-4 9-5 15-1-3 0-6 1-8 2 4 0 8 1 10 3 1 1 1 3 0 5-1 2-3 3-6 4l-1 4-4 3-4-4-3 1-5 5-2-5-3 5Z"/><path fill="none" d="M19 7c1 2 3 3 6 3 3 0 5-1 6-3M20 18c2 0 4-1 6-2M8 25l5-5m-2 7 4-6"/></svg><span>ManadaCash</span></button>
+<dialog class="mc-popup" id="mc-popup" aria-labelledby="mc-popup-title"><div class="mc-popup-head"><strong id="mc-popup-title">ManadaCash</strong><button class="mc-popup-close" type="button" data-close-mc aria-label="Fechar ManadaCash">×</button></div><iframe title="ManadaCash — consulta de pontos e benefícios" src="https://cdn.fidelizarmais.com/files/production/f19e27a4-5299-46c7-9f7e-09251feab0a7/fidelidade/v2/6f0f0d3a-6b1c-4896-af28-f6d7aeb4312f/f19e27a4-5299-46c7-9f7e-09251feab0a7.html?storeid=f19e27a4-5299-46c7-9f7e-09251feab0a7&amp;ver=1426"></iframe></dialog>
+<script>
+(()=>{const bull='<svg class="mc-dock-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 27c2-8 5-16 11-22 4-4 9-5 15-1-3 0-6 1-8 2 4 0 8 1 10 3 1 1 1 3 0 5-1 2-3 3-6 4l-1 4-4 3-4-4-3 1-5 5-2-5-3 5Z"/><path fill="none" d="M19 7c1 2 3 3 6 3 3 0 5-1 6-3M20 18c2 0 4-1 6-2M8 25l5-5m-2 7 4-6"/></svg>';const dock=document.querySelector('.dock-cash'),popup=document.querySelector('#mc-popup');if(!dock||!popup)return;dock.href='#mc-popup';dock.removeAttribute('target');dock.innerHTML=bull+'<span>ManadaCash</span>';const open=()=>{popup.showModal();document.body.style.overflow='hidden'};const close=()=>{if(popup.open)popup.close()};document.querySelectorAll('[data-open-mc],.dock-cash').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();open()}));document.querySelector('[data-close-mc]').addEventListener('click',close);popup.addEventListener('close',()=>document.body.style.overflow='');popup.addEventListener('click',e=>{if(e.target===popup)close()})})();
+</script>
+<style id="manadacash-icon-only">
+.mc-launcher{justify-content:center}
+.mc-launcher span,.mobile-dock .dock-cash span{display:none!important}
+.mc-popup{position:relative}
+.mc-popup .mc-popup-head{display:contents}
+.mc-popup .mc-popup-close{position:absolute;z-index:3;top:10px;right:48px}
+.mc-popup iframe{height:100%}
+</style>
+<script>
+(()=>{const dock=document.querySelector('.dock-cash'),launcher=document.querySelector('.mc-launcher'),popup=document.querySelector('#mc-popup');if(!popup)return;dock?.querySelector('span')?.remove();launcher?.querySelector('span')?.remove();const head=popup.querySelector('.mc-popup-head'),close=popup.querySelector('[data-close-mc]');if(head&&close){popup.prepend(close);head.remove()}})();
+</script>
+<style id="manadacash-final-layout">
+.mc-popup{overflow:visible}
+.mc-popup .mc-popup-close{top:-42px;right:0}
+@media(min-width:761px){.mc-launcher svg{display:none}.mc-launcher::after{content:"ManadaCash";writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:700;letter-spacing:-.15px}}
+@media(max-width:760px){.mobile-dock .dock-cash svg{display:block!important}.mobile-dock .dock-cash .mc-dock-icon{display:none!important}}
+</style>
+<script>
+(()=>{const dock=document.querySelector('.dock-cash');if(!dock)return;dock.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M2 7h20M12 7v14M3 12h18M12 7C6 7 5 5 6.5 3.5 8 2 11 4 12 7Zm0 0c6 0 7-2 5.5-3.5C16 2 13 4 12 7Z"/></svg><span>ManadaCash</span>'})()
+</script>
+<style id="manadacash-responsive-label">
+@media(min-width:761px){.mc-launcher{width:64px;min-height:174px;padding:14px 10px}.mc-launcher::after{font-size:15px;font-weight:700;letter-spacing:-.2px}}
+@media(max-width:760px){.mobile-dock .dock-cash span{display:block!important;font-size:10px!important;font-weight:600!important;line-height:1.2}.mobile-dock .dock-cash{gap:5px}.mobile-dock .dock-cash svg{width:25px;height:25px}}
+</style>
+<style id="manadacash-product-pattern">
+.mc-popup{overflow:visible}
+.mc-popup .mc-popup-close{top:10px;right:48px}
+@media(min-width:761px){.mc-launcher{width:44px;min-height:172px;padding:12px 7px;justify-content:space-between}.mc-launcher::after{display:none}.mc-launcher span{display:block!important;writing-mode:vertical-rl;transform:rotate(180deg);font-size:13px;font-weight:700;letter-spacing:-.2px}.mc-launcher svg{display:block;width:27px;height:27px;fill:#fff;stroke:#fff}}
+</style>
+<script>
+(()=>{const launcher=document.querySelector('.mc-launcher');if(!launcher)return;launcher.innerHTML='<span>ManadaCash</span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M2 7h20M12 7v14M3 12h18M12 7C6 7 5 5 6.5 3.5 8 2 11 4 12 7Zm0 0c6 0 7-2 5.5-3.5C16 2 13 4 12 7Z"/></svg>'})()
+</script>
+<style id="manadacash-close-above">
+.mc-popup{overflow:visible;margin-top:42px}
+.mc-popup .mc-popup-close{top:-42px;right:0}
+</style></body></html>
 
