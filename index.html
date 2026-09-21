@@ -675,5 +675,28 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 </style>
 <script id="manadacash-scroll-top">
 (()=>{const dock=document.querySelector('.dock-cash');dock?.addEventListener('click',()=>window.scrollTo({top:0,left:0,behavior:'smooth'}),{capture:true})})();
+</script>
+<nav class="desktop-floating-menu" aria-label="Atalhos rápidos">
+<a href="https://wa.me/5591984973370" target="_blank" rel="noopener" aria-label="Falar pelo WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.6-4A8 8 0 1 1 20 11.5Z"/><path d="M8.7 8.5c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.6 1.4c.1.3.1.5-.1.7l-.5.6c.7 1.1 1.4 1.7 2.6 2.2l.5-.6c.2-.2.4-.2.7-.1l1.4.6c.3.1.4.3.4.5v.5c0 .3-.1.5-.4.7-.4.3-1 .4-1.5.2-2.8-.7-5.1-2.3-6.5-5-.3-.6-.3-1.1 0-1.7Z"/></svg><span>WhatsApp</span></a>
+<a href="https://www.instagram.com/bufalogrowler/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.3" cy="6.8" r=".8" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a>
+<a class="desktop-cash-link" href="#mc-popup" data-open-mc aria-label="Abrir ManadaCash"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M2 7h20M12 7v14M3 12h18M12 7C6 7 5 5 6.5 3.5 8 2 11 4 12 7Zm0 0c6 0 7-2 5.5-3.5C16 2 13 4 12 7Z"/></svg><span>ManadaCash</span></a>
+<a href="#ofertas-do-mes" aria-label="Ofertas"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg><span>Ofertas</span></a>
+<a href="#categorias" aria-label="Categorias"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="6" height="6" rx="1"/><rect x="14" y="4" width="6" height="6" rx="1"/><rect x="4" y="14" width="6" height="6" rx="1"/><rect x="14" y="14" width="6" height="6" rx="1"/></svg><span>Categorias</span></a>
+</nav>
+<style id="desktop-floating-menu-style">
+.desktop-floating-menu{display:none}
+@media(min-width:761px){.desktop-floating-menu{position:fixed;z-index:950;right:18px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:3px;padding:8px 5px;background:rgba(255,255,255,.94);border:1px solid #dce5e1;border-radius:18px;box-shadow:0 10px 30px #10282b2b;backdrop-filter:blur(12px)}.desktop-floating-menu a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:68px;min-height:58px;padding:7px 4px;color:#142e32;border-radius:12px;font-size:9px;font-weight:700;line-height:1.1;text-align:center}.desktop-floating-menu svg{width:23px;height:23px;stroke:currentColor;stroke-width:1.7;fill:none}.desktop-floating-menu a:hover,.desktop-floating-menu a:focus-visible{background:#eef2ed;outline:0}.desktop-floating-menu .desktop-cash-link{color:#fff;background:#050505}.desktop-floating-menu .desktop-cash-link:hover,.desktop-floating-menu .desktop-cash-link:focus-visible{background:#142e32;outline:2px solid #a7b58d;outline-offset:1px}}
+</style>
+<style id="desktop-floating-menu-no-duplicate">
+@media(min-width:761px){.mc-launcher{display:none!important}}
+</style>
+<style id="desktop-floating-menu-left">
+@media(min-width:761px){.desktop-floating-menu{left:18px;right:auto;background:rgba(255,255,255,.7)}}
+</style>
+<script id="desktop-floating-menu-mobile-icons">
+(()=>{const mobile=[...document.querySelectorAll('.mobile-dock>a')],desktop=[...document.querySelectorAll('.desktop-floating-menu>a')];desktop.forEach((item,index)=>{const source=mobile[index];if(!source)return;item.innerHTML=source.querySelector('svg').outerHTML+source.querySelector('span').outerHTML});const cash=document.querySelector('.desktop-cash-link'),popup=document.querySelector('#mc-popup');cash?.addEventListener('click',event=>{event.preventDefault();if(popup&&!popup.open){popup.showModal();document.body.style.overflow='hidden'}})})();
+</script>
+<script id="mobile-manadacash-achados">
+(()=>{const dock=document.querySelector('.mobile-dock .dock-cash'),target=document.querySelector('#ofertas-do-mes');if(!dock||!target)return;dock.href='#ofertas-do-mes';dock.addEventListener('click',event=>{if(!matchMedia('(max-width:760px)').matches)return;event.preventDefault();event.stopImmediatePropagation();target.scrollIntoView({behavior:'smooth',block:'start'});},{capture:true})})();
 </script></body></html>
 
