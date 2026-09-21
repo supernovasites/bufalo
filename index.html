@@ -672,5 +672,8 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 .mc-launcher{z-index:1000}
 .mc-popup{position:fixed;top:50%;left:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);margin:42px 0 0;z-index:1001}
 .mc-popup::backdrop{z-index:1000}
-</style></body></html>
+</style>
+<script id="manadacash-scroll-top">
+(()=>{const dock=document.querySelector('.dock-cash');dock?.addEventListener('click',()=>window.scrollTo({top:0,left:0,behavior:'smooth'}),{capture:true})})();
+</script></body></html>
 
