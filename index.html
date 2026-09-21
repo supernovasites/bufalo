@@ -667,5 +667,10 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 <style id="manadacash-close-above">
 .mc-popup{overflow:visible;margin-top:42px}
 .mc-popup .mc-popup-close{top:-42px;right:0}
+</style>
+<style id="manadacash-scroll-safe">
+.mc-launcher{z-index:1000}
+.mc-popup{position:fixed;top:50%;left:50%;right:auto;bottom:auto;transform:translate(-50%,-50%);margin:42px 0 0;z-index:1001}
+.mc-popup::backdrop{z-index:1000}
 </style></body></html>
 
