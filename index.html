@@ -696,7 +696,7 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 <script id="desktop-floating-menu-mobile-icons">
 (()=>{const mobile=[...document.querySelectorAll('.mobile-dock>a')],desktop=[...document.querySelectorAll('.desktop-floating-menu>a')];desktop.forEach((item,index)=>{const source=mobile[index];if(!source)return;item.innerHTML=source.querySelector('svg').outerHTML+source.querySelector('span').outerHTML});const cash=document.querySelector('.desktop-cash-link'),popup=document.querySelector('#mc-popup');cash?.addEventListener('click',event=>{event.preventDefault();if(popup&&!popup.open){popup.showModal();document.body.style.overflow='hidden'}})})();
 </script>
-<script id="mobile-manadacash-achados">
-(()=>{const dock=document.querySelector('.mobile-dock .dock-cash'),target=document.querySelector('#ofertas-do-mes');if(!dock||!target)return;dock.href='#ofertas-do-mes';dock.addEventListener('click',event=>{if(!matchMedia('(max-width:760px)').matches)return;event.preventDefault();event.stopImmediatePropagation();target.scrollIntoView({behavior:'smooth',block:'start'});},{capture:true})})();
+<script id="mobile-manadacash-popup">
+(()=>{const dock=document.querySelector('.mobile-dock .dock-cash');if(!dock)return;dock.href='#mc-popup';dock.removeAttribute('target');})();
 </script></body></html>
 
