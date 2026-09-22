@@ -13,7 +13,7 @@
     if (registration) {
       registration.querySelector('h2').textContent = 'Sua presença vale 500 pontos';
       const copy = registration.querySelector('.lead-capture-copy > p:not(.eyebrow):not(.lead-capture-note)');
-      if (copy) copy.textContent = 'Escolha como participar do ManadaCash. O formulário aparece após selecionar uma opção.';
+      if (copy && registration.querySelector('#registration-success')?.hidden !== false) copy.textContent = 'Escolha como participar do ManadaCash. O formulário aparece após selecionar uma opção.';
     }
 
     const format = value => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
