@@ -50,13 +50,15 @@ async function handle(context) {
       if (!env.LIVE_SHEET_WEBHOOK_URL || !env.LIVE_SUBMISSION_TOKEN) return json({error:'Cadastro indisponível no momento. Tente novamente mais tarde.'},503);
       if ((request.headers.get('Cookie')||'').split(';').some(part=>part.trim()==='live_manadacash_registered=1')) return json({error:'Cadastro já realizado nesta sessão.',alreadyRegistered:true},409);
       const field = (value, limit, required = true) => typeof value === 'string' && value.trim().length <= limit && (!required || value.trim()) ? value.trim() : null;
-      const nome=field(body.nome,120), nascimento=field(body.data_nascimento,10), cpf=field(body.cpf,18), email=field(body.email,254), instagram=field(body.instagram,80,false) ?? '', cidade=field(body.cidade,100), whatsapp=field(body.whatsapp,22);
-      if (!nome || !/^\d{4}-\d{2}-\d{2}$/.test(nascimento || '') || !cpf || cpf.replace(/\D/g,'').length!==11 || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !cidade || !whatsapp || !/^\d{10,13}$/.test(whatsapp.replace(/\D/g,''))) return json({error:'Confira os dados informados e tente novamente.'},400);
+      const member=body.tipo_cadastro==='member';
+      if (body.tipo_cadastro && !['first','member'].includes(body.tipo_cadastro)) return json({error:'Tipo de cadastro inválido.'},400);
+      const nome=member?'':field(body.nome,120), nascimento=member?'':field(body.data_nascimento,10), cpf=field(body.cpf,18), email=member?'':field(body.email,254), instagram=field(body.instagram,80,member)??'', cidade=field(body.cidade,100), whatsapp=member?'':field(body.whatsapp,22);
+      if (!cpf || cpf.replace(/\D/g,'').length!==11 || !cidade || (member ? !instagram : (!nome || !/^\d{4}-\d{2}-\d{2}$/.test(nascimento || '') || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !whatsapp || !/^\d{10,13}$/.test(whatsapp.replace(/\D/g,''))))) return json({error:'Confira os dados informados e tente novamente.'},400);
       const now=Date.now(), bucket=Math.floor(now/900000);
       const client=await sha('register:'+(request.headers.get('CF-Connecting-IP')||'local')+':'+bucket);
       const attempt=await db.prepare('INSERT INTO live_attempts (client,attempts,expires) VALUES (?,1,?) ON CONFLICT(client) DO UPDATE SET attempts=attempts+1 RETURNING attempts').bind(client,(bucket+1)*900000).first();
       if (attempt.attempts>10) return json({error:'Muitas tentativas de cadastro. Aguarde alguns minutos.'},429,{'Retry-After':'900'});
-      const payload={nome,data_nascimento:nascimento,cpf,email,instagram,cidade,whatsapp,token:env.LIVE_SUBMISSION_TOKEN};
+      const payload={nome,data_nascimento:nascimento,cpf,email,instagram,cidade,whatsapp,tipo_cadastro:member?'member':'first',token:env.LIVE_SUBMISSION_TOKEN};
       let result;
       try {
         const upstream=await fetch(env.LIVE_SHEET_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'text/plain; charset=utf-8'},body:JSON.stringify(payload),redirect:'follow',signal:AbortSignal.timeout(15000)});

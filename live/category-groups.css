@@ -1,0 +1,68 @@
+.lead-capture-form[hidden] { display: none !important; }
+.registration-choice { font-family: inherit; font-weight: 700; line-height: 1.2; }
+
+.live-category-group {
+  margin: 30px 0 54px;
+  padding: 28px 0 8px;
+  border-top: 1px solid #d9e1dc;
+  scroll-margin-top: 24px;
+}
+.live-category-header { margin-bottom: 18px; }
+.live-category-header .eyebrow { margin: 0 0 8px; }
+.live-category-header h2 {
+  margin: 0;
+  color: #193239;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.06;
+  letter-spacing: -0.04em;
+}
+.live-category-header p:last-child { margin: 10px 0 0; color: #647577; }
+.live-subcategory-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 32px;
+}
+.live-subcategory-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 7px 15px;
+  border: 1px solid #cbd8d1;
+  border-radius: 999px;
+  color: #193239;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.live-subcategory-nav a:hover,
+.live-subcategory-nav a:focus-visible { color: #fff; background: #193239; border-color: #193239; }
+.live-category-group .product-row, .selection > .product-row { margin-bottom: 34px; scroll-margin-top: 20px; }
+.selection .product-row-heading { justify-content: space-between; align-items: end; margin-bottom: 13px; }
+.selection .product-row-heading > div:first-child {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
+.selection .product-row-heading .category-title {
+  margin: 0;
+  color: #193239;
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1.15;
+}
+.featured-product-row { padding-top: 24px; border-top: 1px solid #d9e1dc; }
+.featured-product-row:first-of-type { border-top: 0; padding-top: 0; }
+@media (max-width: 740px) {
+  .live-category-group { margin: 22px 0 42px; padding-top: 22px; }
+  .live-subcategory-nav { gap: 7px; margin: 18px 0 26px; }
+  .live-subcategory-nav a { min-height: 35px; padding: 6px 12px; font-size: 12px; }
+  .selection .product-row-heading { align-items: center; flex-wrap: nowrap; }
+  .selection .product-row-heading .category-title { font-size: 23px; }
+  .selection .row-navigation { width: auto; }
+  .selection .drag-hint { display: none; }
+}
