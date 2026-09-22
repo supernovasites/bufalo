@@ -18,6 +18,51 @@
 .manadacash-hero-cta:focus-visible { background: #e9eee9; color: #142e32; }
 .manadacash-hero-cta:focus-visible { outline: 3px solid #e77939; outline-offset: 3px; }
 #cadastro-live .lead-capture-form[hidden] { display: none !important; }
+#cadastro-live .registration-choices[hidden],
+#cadastro-live .registration-success[hidden] { display: none !important; }
+.registration-success {
+  align-self: start;
+  padding: 30px;
+  border-top: 5px solid #e77939;
+  border-radius: 8px;
+  background: #142e32;
+  color: #fff;
+  box-shadow: 0 18px 38px #142e3233;
+}
+.registration-success-eyebrow {
+  margin: 0 0 12px;
+  color: #ffb47f;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .16em;
+}
+.registration-success h3 {
+  margin: 0 0 20px;
+  font-size: clamp(27px, 3vw, 36px);
+  line-height: 1.1;
+}
+.registration-success p:not(.registration-success-eyebrow) {
+  margin: 0 0 16px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.registration-success-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 8px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  background: #fff;
+  color: #142e32;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+}
+.registration-success-link:hover { background: #e9eee9; }
+.registration-success-link:focus-visible { outline: 3px solid #e77939; outline-offset: 3px; }
 
 @media (max-width: 760px) {
   #cadastro-live {
@@ -47,6 +92,8 @@
   }
   #cadastro-live .lead-capture-form .button { min-height: 50px; font-size: 15px; }
   #cadastro-live .lead-capture-check { align-items: start; }
+  #cadastro-live .registration-success { padding: 24px 20px; }
+  #cadastro-live .registration-success-link { display: flex; width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   .manadacash-hero-cta { transition: none; }
