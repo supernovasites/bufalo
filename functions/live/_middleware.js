@@ -50,7 +50,7 @@ async function handle(context) {
       if (!env.LIVE_SHEET_WEBHOOK_URL || !env.LIVE_SUBMISSION_TOKEN) return json({error:'Cadastro indisponível no momento. Tente novamente mais tarde.'},503);
       const field = (value, limit, required = true) => typeof value === 'string' && value.trim().length <= limit && (!required || value.trim()) ? value.trim() : null;
       const nome=field(body.nome,120), nascimento=field(body.data_nascimento,10), cpf=field(body.cpf,18), email=field(body.email,254), instagram=field(body.instagram,80,false) ?? '', cidade=field(body.cidade,100), whatsapp=field(body.whatsapp,22);
-      if (!nome || !/^\\d{4}-\\d{2}-\\d{2}$/.test(nascimento || '') || !cpf || cpf.replace(/\\D/g,'').length!==11 || !email || !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email) || !cidade || !whatsapp || !/^\\d{10,13}$/.test(whatsapp.replace(/\\D/g,''))) return json({error:'Confira os dados informados e tente novamente.'},400);
+      if (!nome || !/^\d{4}-\d{2}-\d{2}$/.test(nascimento || '') || !cpf || cpf.replace(/\D/g,'').length!==11 || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !cidade || !whatsapp || !/^\d{10,13}$/.test(whatsapp.replace(/\D/g,''))) return json({error:'Confira os dados informados e tente novamente.'},400);
       const now=Date.now(), bucket=Math.floor(now/900000);
       const client=await sha('register:'+(request.headers.get('CF-Connecting-IP')||'local')+':'+bucket);
       const attempt=await db.prepare('INSERT INTO live_attempts (client,attempts,expires) VALUES (?,1,?) ON CONFLICT(client) DO UPDATE SET attempts=attempts+1 RETURNING attempts').bind(client,(bucket+1)*900000).first();
