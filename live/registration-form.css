@@ -1,0 +1,53 @@
+.manadacash-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 11px 22px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  background: #fff;
+  color: #142e32;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.manadacash-hero-cta:hover,
+.manadacash-hero-cta:focus-visible { background: #e9eee9; color: #142e32; }
+.manadacash-hero-cta:focus-visible { outline: 3px solid #e77939; outline-offset: 3px; }
+#cadastro-live .lead-capture-form[hidden] { display: none !important; }
+
+@media (max-width: 760px) {
+  #cadastro-live {
+    display: block;
+    padding: 38px 16px 160px;
+  }
+  #cadastro-live .lead-capture-copy { max-width: none; }
+  #cadastro-live h2 { font-size: clamp(30px, 9vw, 38px); margin: 10px 0 14px; }
+  #cadastro-live .registration-choices { gap: 8px; margin-top: 20px; }
+  #cadastro-live .registration-choice { min-width: 0; min-height: 50px; padding: 10px 7px; font-size: 12px; }
+  #cadastro-live .lead-capture-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 18px 16px;
+    border-radius: 8px;
+  }
+  #cadastro-live .lead-capture-form label { min-width: 0; gap: 6px; }
+  #cadastro-live .lead-capture-form input:not([type=checkbox]) {
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  #cadastro-live .lead-capture-form .button { min-height: 50px; font-size: 15px; }
+  #cadastro-live .lead-capture-check { align-items: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .manadacash-hero-cta { transition: none; }
+}
