@@ -48,6 +48,7 @@ async function handle(context) {
     }
     if (path === '/live/api/register' && request.method === 'POST') {
       if (!env.LIVE_SHEET_WEBHOOK_URL || !env.LIVE_SUBMISSION_TOKEN) return json({error:'Cadastro indisponível no momento. Tente novamente mais tarde.'},503);
+      if ((request.headers.get('Cookie')||'').split(';').some(part=>part.trim()==='live_manadacash_registered=1')) return json({error:'Cadastro já realizado nesta sessão.',alreadyRegistered:true},409);
       const field = (value, limit, required = true) => typeof value === 'string' && value.trim().length <= limit && (!required || value.trim()) ? value.trim() : null;
       const nome=field(body.nome,120), nascimento=field(body.data_nascimento,10), cpf=field(body.cpf,18), email=field(body.email,254), instagram=field(body.instagram,80,false) ?? '', cidade=field(body.cidade,100), whatsapp=field(body.whatsapp,22);
       if (!nome || !/^\d{4}-\d{2}-\d{2}$/.test(nascimento || '') || !cpf || cpf.replace(/\D/g,'').length!==11 || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !cidade || !whatsapp || !/^\d{10,13}$/.test(whatsapp.replace(/\D/g,''))) return json({error:'Confira os dados informados e tente novamente.'},400);
@@ -63,7 +64,7 @@ async function handle(context) {
         result=JSON.parse(new TextDecoder().decode(await readLimited(upstream,2048)));
       } catch { return json({error:'Não foi possível salvar o cadastro agora. Tente novamente.'},502); }
       if (result?.ok!==true) return json({error:result?.error==='invalid_fields'?'Confira os dados informados e tente novamente.':'Não foi possível salvar o cadastro agora. Tente novamente.'},result?.error==='invalid_fields'?400:502);
-      return json({ok:true});
+      return json({ok:true},200,{'Set-Cookie':`live_manadacash_registered=1; Path=/live/; SameSite=Lax${url.protocol==='https:'?'; Secure':''}`});
     }
     if (path === '/live/api/login' && request.method === 'POST') {
       const now = Date.now(), bucket = Math.floor(now / 900000);
