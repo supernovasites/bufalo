@@ -59,11 +59,18 @@ async function handle(context) {
       if (attempt.attempts>10) return json({error:'Muitas tentativas de cadastro. Aguarde alguns minutos.'},429,{'Retry-After':'900'});
       const payload={nome,data_nascimento:nascimento,cpf,email,instagram,cidade,whatsapp,tipo_cadastro:member?'member':'first',token:env.LIVE_SUBMISSION_TOKEN};
       let result;
-      try {
-        const upstream=await fetch(env.LIVE_SHEET_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'text/plain; charset=utf-8'},body:JSON.stringify(payload),redirect:'follow',signal:AbortSignal.timeout(15000)});
-        if (!upstream.ok) throw new Error('upstream_status');
-        result=JSON.parse(new TextDecoder().decode(await readLimited(upstream,2048)));
-      } catch { return json({error:'Não foi possível salvar o cadastro agora. Tente novamente.'},502); }
+      // O Apps Script pode gravar antes de a resposta chegar. A consulta de CPF
+      // sob lock no webhook torna esta repetição segura contra linhas duplicadas.
+      for(let attempt=0;attempt<2;attempt++){
+        try {
+          const upstream=await fetch(env.LIVE_SHEET_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'text/plain; charset=utf-8'},body:JSON.stringify(payload),redirect:'follow',signal:AbortSignal.timeout(25000)});
+          if (!upstream.ok) throw new Error('upstream_status');
+          result=JSON.parse(new TextDecoder().decode(await readLimited(upstream,2048)));
+          if(result?.ok===true || result?.error==='invalid_fields')break;
+        } catch { /* Reconsulta o mesmo CPF antes de retornar uma resposta incerta. */ }
+        if(attempt===0)await new Promise(resolve=>setTimeout(resolve,1000));
+      }
+      if(result?.ok!==true && result?.error!=='invalid_fields')return json({error:'Não conseguimos confirmar a resposta da planilha. Seu cadastro pode ter sido recebido. Aguarde um momento e tente novamente com o mesmo CPF.',code:'confirmation_pending'},502);
       if (result?.ok!==true) return json({error:result?.error==='invalid_fields'?'Confira os dados informados e tente novamente.':'Não foi possível salvar o cadastro agora. Tente novamente.'},result?.error==='invalid_fields'?400:502);
       return json({ok:true,alreadyRegistered:result.alreadyRegistered===true});
     }
