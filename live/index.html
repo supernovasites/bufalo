@@ -200,7 +200,9 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
   const choices=[...document.querySelectorAll('[data-registration-mode]')];
   const fullFields=[...document.querySelectorAll('[data-registration-field="full"]')];
   if(!form||!status)return;
-  const complete=()=>{
+  const complete=(alreadyRegistered=false)=>{
+    const title=success?.querySelector('h3');
+    if(title)title.textContent=alreadyRegistered?'Presença já confirmada!':'Presença confirmada!';
     form.hidden=true;
     choices.forEach(button=>{button.disabled=true;button.setAttribute('aria-pressed','false')});
     if(choiceGroup)choiceGroup.hidden=true;
@@ -256,12 +258,12 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
       const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
       const result=await response.json();
       if(response.status===409&&result.alreadyRegistered===true){
-        complete();
+        complete(true);
         return;
       }
       if(!response.ok||result.ok!==true)throw new Error(result.error||'Não foi possível salvar seu cadastro.');
       form.reset();
-      complete();
+      complete(result.alreadyRegistered===true);
     }catch{
       status.textContent='Não foi possível enviar agora. Tente novamente.';
       status.classList.add('error');
