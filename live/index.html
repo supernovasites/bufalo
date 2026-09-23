@@ -261,11 +261,11 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
         complete(true);
         return;
       }
-      if(!response.ok||result.ok!==true)throw new Error(result.error||'Não foi possível salvar seu cadastro.');
+      if(!response.ok||result.ok!==true)throw Object.assign(new Error('registration_failed'),{userMessage:result.error||'Não conseguimos confirmar seu cadastro. Tente novamente com o mesmo CPF.'});
       form.reset();
       complete(result.alreadyRegistered===true);
-    }catch{
-      status.textContent='Não foi possível enviar agora. Tente novamente.';
+    }catch(error){
+      status.textContent=error.userMessage||'Não recebemos a confirmação do envio. Seu cadastro pode ter sido recebido. Aguarde um momento e tente novamente com o mesmo CPF.';
       status.classList.add('error');
     }finally{
       submit.disabled=false;
