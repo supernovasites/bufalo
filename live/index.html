@@ -209,10 +209,8 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
     if(success)success.hidden=false;
     status.textContent='';
   };
-  if(sessionStorage.getItem('live-manadacash-registered')==='1')complete();
 
   const setMode=mode=>{
-    if(sessionStorage.getItem('live-manadacash-registered')==='1')return;
     const member=mode==='member';
     form.hidden=false;
     form.dataset.registrationMode=mode;
@@ -237,6 +235,7 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
   choices.forEach(button=>button.addEventListener('click',()=>setMode(button.dataset.registrationMode)));
   form.addEventListener('submit',async event=>{
     event.preventDefault();
+    if(submit.disabled)return;
     status.className='lead-capture-status';
     if(!form.checkValidity()){
       status.textContent='Confira os campos obrigatórios antes de enviar.';
@@ -257,12 +256,10 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
       const response=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
       const result=await response.json();
       if(response.status===409&&result.alreadyRegistered===true){
-        sessionStorage.setItem('live-manadacash-registered','1');
         complete();
         return;
       }
       if(!response.ok||result.ok!==true)throw new Error(result.error||'Não foi possível salvar seu cadastro.');
-      sessionStorage.setItem('live-manadacash-registered','1');
       form.reset();
       complete();
     }catch{
