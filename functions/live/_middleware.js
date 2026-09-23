@@ -48,7 +48,6 @@ async function handle(context) {
     }
     if (path === '/live/api/register' && request.method === 'POST') {
       if (!env.LIVE_SHEET_WEBHOOK_URL || !env.LIVE_SUBMISSION_TOKEN) return json({error:'Cadastro indisponível no momento. Tente novamente mais tarde.'},503);
-      if ((request.headers.get('Cookie')||'').split(';').some(part=>part.trim()==='live_manadacash_registered=1')) return json({error:'Cadastro já realizado nesta sessão.',alreadyRegistered:true},409);
       const field = (value, limit, required = true) => typeof value === 'string' && value.trim().length <= limit && (!required || value.trim()) ? value.trim() : null;
       const member=body.tipo_cadastro==='member';
       if (body.tipo_cadastro && !['first','member'].includes(body.tipo_cadastro)) return json({error:'Tipo de cadastro inválido.'},400);
@@ -66,7 +65,7 @@ async function handle(context) {
         result=JSON.parse(new TextDecoder().decode(await readLimited(upstream,2048)));
       } catch { return json({error:'Não foi possível salvar o cadastro agora. Tente novamente.'},502); }
       if (result?.ok!==true) return json({error:result?.error==='invalid_fields'?'Confira os dados informados e tente novamente.':'Não foi possível salvar o cadastro agora. Tente novamente.'},result?.error==='invalid_fields'?400:502);
-      return json({ok:true},200,{'Set-Cookie':`live_manadacash_registered=1; Path=/live/; SameSite=Lax${url.protocol==='https:'?'; Secure':''}`});
+      return json({ok:true});
     }
     if (path === '/live/api/login' && request.method === 'POST') {
       const now = Date.now(), bucket = Math.floor(now / 900000);
