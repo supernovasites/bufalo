@@ -65,7 +65,7 @@ async function handle(context) {
         result=JSON.parse(new TextDecoder().decode(await readLimited(upstream,2048)));
       } catch { return json({error:'Não foi possível salvar o cadastro agora. Tente novamente.'},502); }
       if (result?.ok!==true) return json({error:result?.error==='invalid_fields'?'Confira os dados informados e tente novamente.':'Não foi possível salvar o cadastro agora. Tente novamente.'},result?.error==='invalid_fields'?400:502);
-      return json({ok:true});
+      return json({ok:true,alreadyRegistered:result.alreadyRegistered===true});
     }
     if (path === '/live/api/login' && request.method === 'POST') {
       const now = Date.now(), bucket = Math.floor(now / 900000);
