@@ -295,6 +295,11 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
   .purchase-bar .buy-actions .button { white-space:normal; }
 }
 </style>
+<style id="product-coupon-copy-style">
+.selection .with-coupon { cursor:pointer; width:fit-content; border-radius:4px; }
+.selection .with-coupon:hover { text-decoration:underline; text-underline-offset:3px; }
+.selection .with-coupon:focus-visible { outline:2px solid #142e32; outline-offset:4px; }
+</style>
 <script id="product-coupon-navigation">
 (() => {
   const shop = document.querySelector('.purchase-bar .shop');
@@ -321,24 +326,37 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
     }
   };
 
-  document.addEventListener('click', async event => {
-    const cta = event.target.closest('.selection .product-cta');
-    if (!cta) return;
-    const link = cta.closest('a[href]');
-    const coupon = cta.closest('.product')?.querySelector('.with-coupon strong')?.textContent.trim()
-      || document.querySelector('#code')?.textContent.trim();
-    if (!link || !coupon) return;
-    event.preventDefault();
-    if (cta.dataset.copying === 'true') return;
-    cta.dataset.copying = 'true';
-    if (await copyCoupon(coupon)) {
-      window.location.assign(link.href);
+  const enableCoupon = element => {
+    if (element.dataset.couponEnabled) return;
+    element.dataset.couponEnabled = 'true';
+    element.setAttribute('role', 'button');
+    element.setAttribute('tabindex', '0');
+    element.setAttribute('aria-label', 'Copiar cupom ' + element.querySelector('strong').textContent.trim());
+  };
+  document.querySelectorAll('.selection .with-coupon:has(strong)').forEach(enableCoupon);
+
+  async function handleCoupon(event) {
+    const element = event.target.closest('.selection .with-coupon:has(strong)');
+    if (!element) return;
+    if (event.type === 'keydown' && event.key !== 'Enter' && event.key !== ' ') return;
+    if (event.type === 'keydown') event.preventDefault();
+    enableCoupon(element);
+    const code = element.querySelector('strong').textContent.trim();
+    if (element.dataset.copying === 'true') return;
+    element.dataset.copying = 'true';
+    const copied = await copyCoupon(code);
+    element.dataset.copying = 'false';
+    if (copied) {
+      const prefix = element.firstChild;
+      if (prefix && prefix.nodeType === Node.TEXT_NODE) prefix.textContent = 'Cupom copiado: ';
+      else element.insertBefore(document.createTextNode('Cupom copiado: '), element.firstChild);
+      element.setAttribute('aria-label', 'Cupom copiado: ' + code);
     } else {
-      cta.dataset.copying = 'false';
-      const feedback = document.querySelector('#feedback');
-      if (feedback) feedback.textContent = 'Não foi possível copiar o cupom automaticamente. Use “Copiar cupom” antes de comprar.';
+      element.setAttribute('aria-label', 'Não foi possível copiar. Tentar copiar cupom ' + code);
     }
-  });
+  }
+  document.addEventListener('click', handleCoupon);
+  document.addEventListener('keydown', handleCoupon);
 })();
 </script>
 <link rel="stylesheet" href="/live/registration-form.css?v=20260922-registration-success">
