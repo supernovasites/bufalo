@@ -63,37 +63,4 @@
       }
     });
   }
-  const city = form.elements.namedItem('cidade');
-  if (city instanceof HTMLInputElement) {
-    const states = new Set('AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO'.split(' '));
-    const normalizeCity = value => {
-      const text = value.trim().replace(/\s+/g, ' ').replace(/[–—]/g, '-');
-      const match = /^(.*?)\s*-\s*([a-zA-Z]{2})$/.exec(text)
-        || /^(.*?)\s+([a-zA-Z]{2})$/.exec(text);
-      if (!match || !states.has(match[2].toUpperCase())) return text;
-      return `${match[1].trim()} - ${match[2].toUpperCase()}`;
-    };
-    const validateCity = () => {
-      const match = /^(.+) - ([A-Z]{2})$/.exec(city.value);
-      const valid = match && /[A-Za-zÀ-ÖØ-öø-ÿ]/.test(match[1]) && states.has(match[2]);
-      city.setCustomValidity(!city.value || valid ? '' : 'Informe a cidade e a UF. Exemplo: Belém - PA.');
-    };
-    city.placeholder = 'Sua Cidade - UF';
-    city.title = 'Informe a cidade seguida da sigla do estado. Exemplo: Belém - PA.';
-    city.maxLength = 100;
-    city.addEventListener('input', () => {
-      const start = city.selectionStart;
-      const end = city.selectionEnd;
-      city.value = city.value.replace(/([\-–—]\s*)([a-zA-Z]{1,2})$/, (_, separator, uf) => separator + uf.toUpperCase());
-      if (start !== null && end !== null) city.setSelectionRange(start, end);
-      city.setCustomValidity('');
-    });
-    const finishCity = () => {
-      city.value = normalizeCity(city.value);
-      validateCity();
-    };
-    city.addEventListener('blur', finishCity);
-    form.addEventListener('submit', finishCity, true);
-  }
-
 })();
