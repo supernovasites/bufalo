@@ -159,7 +159,7 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
 <section class="lead-capture" id="cadastro-live" aria-labelledby="cadastro-live-title">
 <div class="lead-capture-copy"><p class="eyebrow">MANADACASH</p><h2 id="cadastro-live-title">Marque sua presença</h2><p>Escolha a opção que combina com você e participe do ManadaCash.</p><div class="registration-choices" role="group" aria-label="Tipo de cadastro"><button class="registration-choice" type="button" data-registration-mode="first" aria-pressed="false" aria-controls="lead-capture-form">Primeiro Cadastro</button><button class="registration-choice" type="button" data-registration-mode="member" aria-pressed="false" aria-controls="lead-capture-form">Já sou da Manada</button></div><p class="lead-capture-note" id="lead-capture-note">Selecione uma opção para abrir o formulário.</p></div>
 <form class="lead-capture-form" id="lead-capture-form" novalidate data-sheet-endpoint="/live/api/register" hidden>
-<label data-registration-field="full">Nome completo *<input name="nome" type="text" autocomplete="name" required placeholder="Seu nome"></label>
+<label>Nome completo *<input name="nome" type="text" autocomplete="name" required placeholder="Seu nome"></label>
 <label data-registration-field="full">Data de nascimento *<input name="data_nascimento" type="text" inputmode="numeric" autocomplete="bday" required placeholder="DD/MM/AAAA" maxlength="10" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}"></label>
 <label>CPF *<input name="cpf" type="text" inputmode="numeric" autocomplete="off" required placeholder="000.000.000-00" maxlength="14" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}"></label>
 <label data-registration-field="full">E-mail *<input name="email" type="email" autocomplete="email" required placeholder="voce@email.com"></label>
@@ -229,7 +229,7 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
         input.required=!member&&input.dataset.wasRequired==='true';
       });
     });
-    if(note)note.textContent=member?'Informe CPF, Instagram e cidade para marcar sua presença.':'Preencha seus dados para participar. Campos com * são obrigatórios.';
+    if(note)note.textContent=member?'Informe nome, CPF, Instagram e cidade para marcar sua presença.':'Preencha seus dados para participar. Campos com * são obrigatórios.';
     if(submit)submit.textContent=member?'Confirmar minha presença':'Quero fazer parte';
     status.textContent='';
     // Evita abrir o teclado e ampliar a página ao revelar o formulário no celular.
