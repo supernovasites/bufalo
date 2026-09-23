@@ -52,8 +52,8 @@ async function handle(context) {
       const field = (value, limit, required = true) => typeof value === 'string' && value.trim().length <= limit && (!required || value.trim()) ? value.trim() : null;
       const member=body.tipo_cadastro==='member';
       if (body.tipo_cadastro && !['first','member'].includes(body.tipo_cadastro)) return json({error:'Tipo de cadastro inválido.'},400);
-      const nome=member?'':field(body.nome,120), nascimento=member?'':field(body.data_nascimento,10), cpf=field(body.cpf,18), email=member?'':field(body.email,254), instagram=field(body.instagram,80,member)??'', cidade=field(body.cidade,100), whatsapp=member?'':field(body.whatsapp,22);
-      if (!cpf || cpf.replace(/\D/g,'').length!==11 || !cidade || (member ? !instagram : (!nome || !/^\d{4}-\d{2}-\d{2}$/.test(nascimento || '') || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !whatsapp || !/^\d{10,13}$/.test(whatsapp.replace(/\D/g,''))))) return json({error:'Confira os dados informados e tente novamente.'},400);
+      const nome=field(body.nome,120), nascimento=member?'':field(body.data_nascimento,10), cpf=field(body.cpf,18), email=member?'':field(body.email,254), instagram=field(body.instagram,80,member)??'', cidade=field(body.cidade,100), whatsapp=member?'':field(body.whatsapp,22);
+      if (!nome || !cpf || cpf.replace(/\D/g,'').length!==11 || !cidade || (member ? !instagram : (!nome || !/^\d{4}-\d{2}-\d{2}$/.test(nascimento || '') || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !whatsapp || !/^\d{10,13}$/.test(whatsapp.replace(/\D/g,''))))) return json({error:'Confira os dados informados e tente novamente.'},400);
       const now=Date.now(), bucket=Math.floor(now/900000);
       const client=await sha('register:'+(request.headers.get('CF-Connecting-IP')||'local')+':'+bucket);
       const attempt=await db.prepare('INSERT INTO live_attempts (client,attempts,expires) VALUES (?,1,?) ON CONFLICT(client) DO UPDATE SET attempts=attempts+1 RETURNING attempts').bind(client,(bucket+1)*900000).first();
