@@ -458,11 +458,11 @@ rail.addEventListener('click',async event=>{
  button.setAttribute('aria-label',copied?'Cupom '+code+' copiado':'Não foi possível copiar o cupom '+code);
  button.copyTimer=setTimeout(()=>{button.textContent='Copiar cupom';button.setAttribute('aria-label','Copiar cupom '+code)},2500);
 });
+renderThermal('chopeira');
 const thermalCaptions={chopeira:'Para servir bons momentos.',copos:'Seu drink, café ou açaí vai junto.',garrafas:'Hidratação para ir com você.',kids:'Companhia para as pequenas aventuras.'};
 const thermalTabs=[...document.querySelectorAll('.thermal-tabs [role="tab"]')];
 function selectThermal(tab){thermalTabs.forEach(item=>{const active=item===tab;item.setAttribute('aria-selected',String(active));item.tabIndex=active?0:-1});document.getElementById('thermal-panel').setAttribute('aria-labelledby',tab.id);document.getElementById('thermal-caption').textContent=thermalCaptions[tab.dataset.thermal];rail.setAttribute('aria-label',tab.textContent);renderThermal(tab.dataset.thermal)}
 thermalTabs.forEach((tab,index)=>{tab.addEventListener('click',()=>selectThermal(tab));tab.addEventListener('keydown',event=>{let next=index;if(event.key==='ArrowRight')next=(index+1)%thermalTabs.length;else if(event.key==='ArrowLeft')next=(index-1+thermalTabs.length)%thermalTabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=thermalTabs.length-1;else return;event.preventDefault();selectThermal(thermalTabs[next]);thermalTabs[next].focus()})});
-selectThermal(thermalTabs[Math.floor(Math.random()*thermalTabs.length)]);
 rail.addEventListener('click',event=>{
  const button=event.target.closest('.color-swatch');if(!button)return;
  const card=button.closest('.card'),p=visibleProducts[Number(card.dataset.product)],color=(productColors[p.url]||[]).find(c=>c.id===button.dataset.color);
