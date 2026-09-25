@@ -26,3 +26,22 @@
 <script>document.querySelectorAll('.arrow').forEach(el=>el.remove());document.querySelectorAll('a').forEach(a=>a.childNodes.forEach(n=>{if(n.nodeType===3)n.textContent=n.textContent.replaceAll('↗','')}));</script>
 <script>(()=>{const originals=['chopeiras-categoria.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/312196614/3-a7ig3sbmvb.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/348363232/-----editar---camping--15--finwdzqnt5.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/341482470/-----editar---camping-p8635djpyl.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/302674999/pack-camping---viagem--3--ukn5pudtv6.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/346620227/al-a-nili-1-zbqs4popt2.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/344413208/1-lej5a1hjk6.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/117902604/growler-vidro-1--1--fkypaifs89.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/361534760/mochila-estanque-verde_laranja-l9uwbvqkeh-ba5yf37rl8.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/398773705/canivete-cimo-tomahawk-zgutg6wnhe.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/186946123/ravi-2-as6u67ab6a.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/359881205/cadeira-dobr-vel-g-laranja-pq3nrgg9nm.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/166521784/-----editar---shorts--1--rfplhog1jc.png','https://cdn.awsli.com.br/400x400/1237/1237589/produto/389904879/g-caraibinho-lil-s-7sflv2flvz.png'];document.querySelectorAll('.tile').forEach((tile,i)=>{const img=tile.querySelector('img');if(!img||!originals[i])return;img.src=originals[i];tile.classList.remove('product')});document.querySelectorAll('.arrow').forEach(el=>el.remove());document.querySelectorAll('a').forEach(a=>{a.childNodes.forEach(n=>{if(n.nodeType===3)n.textContent=n.textContent.replaceAll('↗','')})})})()</script>
 <script>document.querySelectorAll('.tile').forEach((tile,i)=>{if(i===2)return;const img=tile.querySelector('img');if(!img)return;const visual=document.createElement('div');visual.className='visual';tile.classList.add('scene-'+['chopeiras','garrafas','nagpro','pandhar','adesivos','alcas','tampas','souvenir','mochilas','cutelaria','copos','cadeiras','camisas','kids'][i]);img.replaceWith(visual);visual.appendChild(img)});</script>
+
+
+<style id="homepage-shell-sync">
+/* Cabeçalho e rodapé alinhados à homepage principal. */
+.header{box-shadow:0 1px 0 rgba(20,46,50,.02)}
+.footer{padding-top:48px}
+.footer-grid{max-width:1440px}
+.footer a:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+</style>
+<script id="homepage-shell-sync-script">
+(()=>{
+ const logo=document.querySelector('.logo');
+ if(logo) logo.href='../';
+ const menu=document.querySelector('#menu');
+ if(menu) menu.innerHTML='<small>Explore a manada</small><a href="../">Início</a><a href="#categorias">Categorias</a><a href="https://loja.bufalogrowler.com.br/ofertas">Ofertas</a>';
+ const footer=document.querySelector('.footer');
+ if(footer) footer.innerHTML='<div class="footer-grid"><div><strong>BÚFALO<br>GROWLER</strong><p>Seu companheiro no dia a dia.<br>Sua companhia na próxima aventura.</p></div><div><h4>Explore a Búfalo</h4><a href="https://loja.bufalogrowler.com.br/garrafas">Garrafas e growlers</a><a href="https://loja.bufalogrowler.com.br/copos-e-bowls">Copos e bowls</a><a href="https://loja.bufalogrowler.com.br/acessorios">Tampas e acessórios</a><a href="https://loja.bufalogrowler.com.br/camping-">Praia e camping</a><a href="https://loja.bufalogrowler.com.br/cutelaria">Cutelaria</a><a href="https://bufalogrowler.com.br/blog/">Blog Búfalo</a></div><div><h4>Ajuda com suas compras</h4><a href="https://loja.bufalogrowler.com.br/pagina/prazos-e-entregas.html">Prazos e entregas</a><a href="https://loja.bufalogrowler.com.br/pagina/troca-e-devolucao.html">Trocas e devoluções</a><a href="https://loja.bufalogrowler.com.br/pagina/formas-de-pagamento.html">Formas de pagamento</a></div><div><h4>Uma boa conversa começa aqui</h4><a href="https://wa.me/5591984973370">Fale com a Búfalo</a><a href="tel:+5591984973370">(91) 98497-3370</a><a href="mailto:contato@bufalogrowler.com.br">contato@bufalogrowler.com.br</a><p>Segunda a sexta · 8h às 18h</p></div></div><div class="bottom">© 2026 Búfalo Growler. Feita para acompanhar você. Compras na loja oficial.</div>';
+})();
+</script>
