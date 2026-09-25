@@ -12,8 +12,9 @@ async function verify(password,setting){
   return diff===0;
 }
 async function setup(db){
-  await db.prepare('CREATE TABLE IF NOT EXISTS manadaone_settings (id INTEGER PRIMARY KEY CHECK (id=1), enabled INTEGER NOT NULL DEFAULT 0, coupon TEXT NOT NULL DEFAULT \'\')').run();
+  await db.prepare('CREATE TABLE IF NOT EXISTS manadaone_settings (id INTEGER PRIMARY KEY CHECK (id=1), enabled INTEGER NOT NULL DEFAULT 1, coupon TEXT NOT NULL DEFAULT \'\')').run();
   await db.prepare('INSERT OR IGNORE INTO manadaone_settings (id,enabled,coupon) VALUES (1,0,\'\')').run();
+  await db.prepare("UPDATE manadaone_settings SET enabled=1 WHERE id=1 AND enabled=0 AND coupon=''").run();
   await db.prepare('CREATE TABLE IF NOT EXISTS manadaone_sessions (token TEXT PRIMARY KEY, expires INTEGER NOT NULL)').run();
   await db.prepare('CREATE TABLE IF NOT EXISTS manadaone_attempts (client TEXT PRIMARY KEY, attempts INTEGER NOT NULL, expires INTEGER NOT NULL)').run();
 }
@@ -68,7 +69,7 @@ async function handle(context){
    const assetPath=state.enabled?'/manadaone/index.html':'/manadaone/encerrada.html';
    const response=await env.ASSETS.fetch(new Request(new URL(assetPath,url),request));
    let page=await response.text();
-   if(state.enabled)page=page.replaceAll('CUPOM A DEFINIR',state.coupon);
+   if(state.enabled)page=page.replaceAll('CUPOM A DEFINIR',state.coupon||'CUPOM EM BREVE');
    return new Response(request.method==='HEAD'?null:page,{status:200,headers:{...headers,'Content-Type':'text/html; charset=utf-8','X-Robots-Tag':'noindex,nofollow'}});
  }
  const response=await context.next();const h=new Headers(response.headers);
