@@ -14,9 +14,14 @@ async function passwordMatches(password, setting) {
 }
 async function state(db) { const row = await db.prepare('SELECT enabled FROM live_settings WHERE id = 1').first(); return {enabled: row ? !!row.enabled : true,...await content(db)}; }
 async function authenticated(request, db) {
-  const token = request.headers.get('Cookie')?.match(/(?:^|;\s*)live_session=([a-f0-9]{64})(?:;|$)/)?.[1];
+  const cookieHeader = request.headers.get('Cookie') || '';
+  const shared = cookieHeader.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];
+  try {
+    if (shared && await db.prepare('SELECT token FROM admin_sessions WHERE token = ? AND expires > ?').bind(shared, Date.now()).first()) return true;
+  } catch {}
+  const token = cookieHeader.match(/(?:^|;\s*)live_session=([a-f0-9]{64})(?:;|$)/)?.[1];
   if (!token) return false;
-  return !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
+  return !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token), Date.now()).first();
 }
 function cookie(request, token, maxAge) { return `live_session=${token}; Path=/live; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`; }
 async function handle(context) {
