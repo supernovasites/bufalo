@@ -14,7 +14,7 @@ const sessionCookie = (request, token, maxAge) =>
   `manadaone_session=${token}; Path=/manadaone; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`;
 
 const sessionToken = request =>
-  request.headers.get('Cookie')?.match(/(?:^|;\\s*)manadaone_session=([a-f0-9]{64})(?:;|$)/)?.[1];
+  request.headers.get('Cookie')?.match(/(?:^|;\s*)manadaone_session=([a-f0-9]{64})(?:;|$)/)?.[1];
 
 async function authenticated(request, db) {
   const token = sessionToken(request);
@@ -41,7 +41,7 @@ async function body(request) {
 async function handler(context) {
   const { request, env } = context;
   const url = new URL(request.url);
-  const path = url.pathname.replace(/\\/$/, '');
+  const path = url.pathname.replace(/\/$/, '');
 
   if (path.startsWith('/manadaone/api/')) {
     if (!env.LIVE_DB) return json({ error: 'Painel temporariamente indisponível.' }, 503);
