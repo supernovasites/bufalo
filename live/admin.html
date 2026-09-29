@@ -4,22 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
+  <meta name="build" content="20260929-live-admin-v2">
   <title>Administração da Live · Búfalo Growler</title>
-  <link rel="stylesheet" href="/live/admin.css?v=20260929-admin-full">
-  <script src="/live/admin.js?v=20260929-admin-full" defer></script>
-  <script src="/live/gallery-admin.js?v=20260929-admin-full" defer></script>
+  <link rel="stylesheet" href="/live/admin.css?v=20260929-live-admin-v2">
+  <script src="/live/admin.js?v=20260929-live-admin-v2" defer></script>
 </head>
 <body>
   <header class="top">
     <a class="wordmark" href="https://bufalogrowler.com.br/">BÚFALO<small>GROWLER</small></a>
-    <a class="btn light back-link" href="https://www.bufalogrowler.com.br/painel/">← Voltar ao painel</a>
     <span class="tag">Administração · Live</span>
   </header>
 
   <main class="shell">
     <div class="eyebrow">NO CONTROLE DO SEU ENCONTRO</div>
     <h1>Live Búfalo.</h1>
-    <p class="intro">Um espaço para receber a manada. Ative as ofertas ou prepare o convite para o próximo encontro.</p>
+    <p class="intro">Prepare cada encontro, atualize as informações da live e escolha quando a experiência estará disponível para a manada.</p>
 
     <section id="content-editor" class="dashboard">
       <article class="card">
@@ -30,7 +29,7 @@
           <input id="daily-coupon" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required placeholder="Ex.: LIVEBG1609">
           <label for="live-date">Data da live · dia/mês</label>
           <input id="live-date" inputmode="numeric" maxlength="5" pattern="[0-9]{2}/[0-9]{2}" required placeholder="DD/MM">
-          <p>O cupom e a data serão atualizados em toda a página da live.</p>
+          <p>O cupom aparece somente enquanto a live estiver ativa. A página de agradecimento não exibe cupom.</p>
           <button class="btn orange" type="submit">Salvar cupom e data</button>
           <p id="content-feedback" role="status" aria-live="polite"></p>
         </form>
@@ -39,10 +38,10 @@
       <article class="card">
         <div class="eyebrow">MOMENTO BG</div>
         <h2>A foto da manada</h2>
-        <p>Escolha uma foto vertical, de preferência 1080 × 1920 px (stories 9:16), para o Momento BG. JPG, PNG ou WebP, até 10 MB.</p>
+        <p>Escolha uma foto vertical, de preferência 1080 × 1920 px (stories 9:16). JPG, PNG ou WebP, até 10 MB.</p>
         <form id="photo-form">
           <img id="photo-preview" class="photo-preview" alt="Prévia da foto da live" hidden>
-          <div id="photo-empty" class="gallery-empty" style="aspect-ratio:9/16;max-width:220px;margin:20px 0">Sem foto</div>
+          <div id="photo-empty" class="photo-empty">Sem foto</div>
           <label class="photo-label" for="live-photo">Escolher foto</label>
           <input id="live-photo" type="file" accept="image/jpeg,image/png,image/webp">
           <button id="upload-photo" class="btn orange" type="submit" disabled>Publicar foto</button>
@@ -51,30 +50,24 @@
       </article>
     </section>
 
-    <section id="gallery-editor" class="card gallery-editor">
-      <div class="eyebrow">GALERIA DA MANADA</div>
-      <h2>Fotos em destaque</h2>
-      <p>Selecione até cinco fotos quadradas para aparecerem na página da live.</p>
-      <div id="gallery-slots" class="gallery-slots"></div>
-    </section>
-
     <section id="dashboard" class="dashboard">
-      <article class="card">
+      <article class="card status-card">
         <span id="status" class="status">Live ativa</span>
         <h2 id="status-title">A manada pode aproveitar.</h2>
         <p id="status-description">Os visitantes estão vendo os produtos, o cupom e as ofertas da live.</p>
         <div class="controls">
           <button id="toggle" class="btn orange" type="button">Desativar live</button>
-          <a class="btn light" href="https://www.bufalogrowler.com.br/live/" target="_blank" rel="noopener">Ver página da live ↗</a>
+          <a class="btn light" href="https://www.bufalogrowler.com.br/live/" target="_blank" rel="noopener">Ver página da live</a>
         </div>
         <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+        <p class="status-note">Ao desativar, a página de agradecimento substitui as ofertas e não apresenta o cupom.</p>
       </article>
 
-      <article class="mini">
-        <div class="eyebrow">PRÓXIMA LIVE</div>
-        <h2>Quarta-feira, às 15h.</h2>
-        <p>Use o cupom definido acima durante o encontro.</p>
-        <strong id="coupon-preview">LIVEBG1609</strong>
+      <article class="card closed-preview-card">
+        <div class="eyebrow">QUANDO A LIVE ESTIVER DESATIVADA</div>
+        <h2>Mensagem de agradecimento</h2>
+        <iframe class="closed-preview" src="/live/encerrada?v=20260929-live-admin-v2" title="Prévia da página de agradecimento da live"></iframe>
+        <p><a href="/live/encerrada" target="_blank" rel="noopener">Abrir prévia em outra aba</a></p>
       </article>
     </section>
 
@@ -83,7 +76,8 @@
       <button id="logout" class="signout" type="button">Sair do painel</button>
     </footer>
   </main>
+
+  <a class="panel-return-direct" href="/painel/">Voltar ao Painel</a>
 </body>
 </html>
-
 
