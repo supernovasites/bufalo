@@ -15,6 +15,7 @@ if(path==='/manadaone/api/logout'&&request.method==='POST')return json({ok:true}
 if(path==='/manadaone/api/state'&&request.method==='POST'){if(!await authenticated(request,db))return json({error:'Entre no Painel para continuar.'},401);const payload=await body(request);if(!payload||typeof payload.enabled!=='boolean')return json({error:'Estado inválido.'},400);await db.prepare('INSERT INTO manadaone_settings (id,enabled) VALUES (1,?) ON CONFLICT(id) DO UPDATE SET enabled=excluded.enabled').bind(payload.enabled?1:0).run();return json(await setting(db));}
 return json({error:'Página não encontrada.'},404);}
 if(['/manadaone','/manadaone/index','/manadaone/index.html'].includes(path)){if(!env.LIVE_DB)return new Response('Manada One temporariamente indisponível.',{status:503,headers:noCache});if(!(await setting(env.LIVE_DB)).enabled){const assetUrl=new URL('/manadaone/encerrada.html',url);const result=await env.ASSETS.fetch(new Request(assetUrl,request));return new Response(request.method==='HEAD'?null:result.body,{status:200,headers:{...noCache,'Content-Type':'text/html; charset=utf-8'}});}}
-if(path.startsWith('/manadaone/admin')){if(!env.LIVE_DB||!(await authenticated(request,env.LIVE_DB)))return Response.redirect(new URL('/painel/',url),302);}
+
 const result=await context.next();const headers=new Headers(result.headers);if(path.startsWith('/manadaone')){headers.set('X-Robots-Tag','noindex, nofollow');headers.set('Cache-Control','no-store, max-age=0');}return new Response(result.body,{status:result.status,headers});}
 export async function onRequest(context){try{return await handler(context);}catch{return json({error:'Não foi possível acessar o painel agora.'},503);}}
+
