@@ -698,5 +698,26 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 </script>
 <script id="mobile-manadacash-popup">
 (()=>{const dock=document.querySelector('.mobile-dock .dock-cash');if(!dock)return;dock.href='#mc-popup';dock.removeAttribute('target');})();
+</script><script id="randomize-product-colors">
+(()=>{
+  const seen=new WeakSet();
+  const apply=()=>{
+    document.querySelectorAll('.card').forEach(card=>{
+      if(seen.has(card))return;
+      const swatches=[...card.querySelectorAll('.color-swatch')];
+      if(swatches.length<2)return;
+      seen.add(card);
+      const productKey=card.dataset.product||card.querySelector('a[href*="loja.bufalogrowler.com.br"]')?.getAttribute('href')||Math.random();
+      const key='bufalo-color-rotation:'+location.pathname+':'+productKey;
+      const previous=Number(localStorage.getItem(key));
+      const last=Number.isInteger(previous)?previous:-1;
+      const next=(last+1)%swatches.length;
+      localStorage.setItem(key,String(next));
+      swatches[next]?.click();
+    });
+  };
+  apply();
+  new MutationObserver(apply).observe(document.body,{childList:true,subtree:true});
+})();
 </script></body></html>
 
