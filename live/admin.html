@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="build" content="20260929-live-admin-v2">
   <title>Administração da Live · Búfalo Growler</title>
-  <link rel="stylesheet" href="/live/admin.css?v=20260929-live-admin-v2">
-  <script src="/live/admin.js?v=20260929-live-admin-v2" defer></script>
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js" defer></script>
+  <script src="puzzle-admin.js" defer></script>
 </head>
 <body>
   <header class="top">
@@ -50,6 +50,28 @@
       </article>
     </section>
 
+    <section class="puzzle-editor card" aria-labelledby="puzzle-editor-title">
+      <div class="puzzle-editor-copy">
+        <div class="eyebrow">DESAFIO DA MANADA</div>
+        <h2 id="puzzle-editor-title">Foto e cupom do puzzle</h2>
+        <p>Configure a imagem usada no quebra-cabeça e o cupom revelado quando o cliente concluir o desafio dentro do limite de movimentos.</p>
+        <form id="puzzle-form" class="content-form">
+          <label for="puzzle-photo">Foto do puzzle</label>
+          <input id="puzzle-photo" type="file" accept="image/jpeg,image/png,image/webp">
+          <p class="field-help">Use uma imagem horizontal em JPG, PNG ou WebP, com até 10 MB.</p>
+          <label for="puzzle-coupon">Cupom da recompensa</label>
+          <input id="puzzle-coupon" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required value="TOTE50">
+          <button id="save-puzzle" class="btn orange" type="submit">Salvar configurações do puzzle</button>
+          <p id="puzzle-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="puzzle-preview-panel">
+        <span class="preview-label">PRÉVIA DA IMAGEM</span>
+        <img id="puzzle-photo-preview" src="../live/desafio-manada.jpg" alt="Prévia da foto usada no puzzle">
+        <div class="puzzle-coupon-preview"><small>CUPOM REVELADO APÓS A CONCLUSÃO</small><strong id="puzzle-coupon-preview">TOTE50</strong><span>50% OFF · recompensa do desafio</span></div>
+      </div>
+    </section>
+
     <section id="dashboard" class="dashboard">
       <article class="card status-card">
         <span id="status" class="status">Live ativa</span>
@@ -66,18 +88,17 @@
       <article class="card closed-preview-card">
         <div class="eyebrow">QUANDO A LIVE ESTIVER DESATIVADA</div>
         <h2>Mensagem de agradecimento</h2>
-        <iframe class="closed-preview" src="/live/encerrada?v=20260929-live-admin-v2" title="Prévia da página de agradecimento da live"></iframe>
-        <p><a href="/live/encerrada" target="_blank" rel="noopener">Abrir prévia em outra aba</a></p>
+        <iframe class="closed-preview" src="encerrada.html" title="Prévia da página de agradecimento da live"></iframe>
+        <p><a href="encerrada.html" target="_blank" rel="noopener">Abrir prévia em outra aba</a></p>
       </article>
     </section>
 
     <footer class="admin-foot">
-      <span>Área administrativa · Live Búfalo.</span>
+      <span>Prévia local · alterações não são publicadas.</span>
       <button id="logout" class="signout" type="button">Sair do painel</button>
     </footer>
   </main>
 
-  <a class="panel-return-direct" href="/painel/">Voltar ao Painel</a>
+  <a class="panel-return-direct" href="https://www.bufalogrowler.com.br/painel/">Voltar ao Painel</a>
 </body>
 </html>
-
