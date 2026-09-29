@@ -1,3 +1,4 @@
+const ownLogin=document.getElementById("login-form");if(ownLogin)ownLogin.remove();const ownLoginPanel=document.getElementById("login");if(ownLoginPanel)ownLoginPanel.hidden=true;
 const $ = id => document.getElementById(id);
 let enabled = true;
 function message(text, error = false) { $('feedback').textContent = text; $('feedback').classList.toggle('error', error); }
@@ -7,7 +8,7 @@ async function api(path, body) {
   if (!response.ok) { if (response.status === 401) showLogin(); throw new Error(data.error || 'Não foi possível concluir. Tente novamente.'); }
   return data;
 }
-function showLogin() { $('login').hidden = false; $('dashboard').hidden = true; $('content-editor').hidden=true; $('gallery-editor').hidden=true; $('logout').hidden = true; }
+function showLogin() { $('login').hidden = true; $('dashboard').hidden = true; $('content-editor').hidden=true; $('gallery-editor').hidden=true; $('logout').hidden = true; }
 function render(data) {
   enabled = data.enabled; $('login').hidden = true; $('dashboard').hidden = false; $('logout').hidden = false;
   $('content-editor').hidden=false; $('gallery-editor').hidden=false; window.liveGalleryState=data.gallery||[]; window.dispatchEvent(new CustomEvent('live-gallery-state',{detail:window.liveGalleryState}));
@@ -19,7 +20,7 @@ function render(data) {
   $('status-description').textContent = enabled ? 'Os visitantes estão vendo os produtos, o cupom e as ofertas da live.' : 'Os visitantes estão vendo o agradecimento e o convite para quarta-feira, às 15h.';
   $('toggle').textContent = enabled ? 'Desativar live' : 'Ativar live';
 }
-$('login-form').addEventListener('submit', async event => { event.preventDefault(); const button = event.submitter; button.disabled = true; message(''); try { await api('login', {password:$('password').value}); $('password').value = ''; render(await api('state')); } catch(error) { message(error.message, true); } finally { button.disabled = false; } });
+$('login-form')?.addEventListener('submit', async event => { event.preventDefault(); const button = event.submitter; button.disabled = true; message(''); try { await api('login', {password:$('password').value}); $('password').value = ''; render(await api('state')); } catch(error) { message(error.message, true); } finally { button.disabled = false; } });
 $('toggle').addEventListener('click', async () => { $('toggle').disabled = true; message('Salvando alteração…'); try { render(await api('state', {enabled:!enabled})); message(enabled ? 'Live ativada. As ofertas já estão disponíveis.' : 'Live desativada. O convite já está no ar.'); } catch(error) { message(error.message, true); } finally { $('toggle').disabled = false; } });
 $('logout').addEventListener('click', async () => { try { await api('logout', {}); showLogin(); message('Você saiu do painel.'); } catch(error) { message(error.message, true); } });
 let selectedPhoto=null, objectUrl=null;
@@ -37,3 +38,31 @@ $('live-photo').addEventListener('change',async()=>{
 });
 $('photo-form').addEventListener('submit',async event=>{event.preventDefault();if(!selectedPhoto)return;$('upload-photo').disabled=true;$('photo-feedback').textContent='Publicando foto…';try{const response=await fetch('/live/api/photo',{method:'POST',headers:{'Content-Type':selectedPhoto.type},body:selectedPhoto});const data=await response.json();if(!response.ok){if(response.status===401)showLogin();throw new Error(data.error||'Não foi possível publicar a foto.');}selectedPhoto=null;$('live-photo').value='';render(data);$('photo-feedback').textContent='Foto publicada no Momento BG.';}catch(error){$('photo-feedback').textContent=error.message;}finally{$('upload-photo').disabled=!selectedPhoto;}});
 api('state').then(render).catch(error => { if (!error.message.includes('Entre')) message(error.message, true); });
++			196 container Symbols
++				197 heading Symbols, Value: 2, ID: symbols-pane-header
++					198 text Symbols
++				199 button Close symbols
++				200 text Find definitions and references for functions and other symbols in this file by clicking a symbol below or in the code.
++				201 combo box (expanded, settable) Description: Filter symbols, Secondary Actions: Collapse
++				202 outline Code navigation
++					203 row (selectable) func $, ID: 0$
++						204 container
++							205 text func
++							206 text $
++					207 row (selectable) func message, ID: 1message
++						208 container
++							209 text func
++							210 text message
++					211 row (selectable) func api, ID: 2api
++						212 container
++							213 text func
++							214 text api
++					215 row (selectable) func showLogin, ID: 3showLogin
++						216 container
++							217 text func
++							218 text showLogin
++					219 row (selectable) func render, ID: 4render
++						220 container
++							221 text func
++							222 text render
+The focused UI element is 1 AXWebArea bufalo/live/admin.js at main · supernovasites/bufalo, URL: github.com/supernovasites/bufalo/blob/main/live/admin.js
