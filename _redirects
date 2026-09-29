@@ -1,22 +1,14 @@
 /manadacash /manadacash/index.html 200
 /manadacash/ /manadacash/index.html 200
-/manadaone/admin /manadaone/admin/index.html 200
-/manadaone/admin/ /manadaone/admin/index.html 200
+/manadaone/admin /manadaone/admin/index.html?v=20260929-nav1 200
+/manadaone/admin/ /manadaone/admin/index.html?v=20260929-nav1 200
 /painel /painel/index.html 200
 /admin / 302
 /painel/ /painel/index.html 200
 /admin/ / 302
-
-
-
-
-
-
-
 /landingpage /reserva/acaibowl/ 301
 /landingpage/ /reserva/acaibowl/ 301
 /landingpage/* /reserva/acaibowl/:splat 307
-
 /marca/bufalo-growler.html https://bufalogrowler.com.br/ 301
 /copos https://loja.bufalogrowler.com.br/copos-e-bowls 301
 /copos/ https://loja.bufalogrowler.com.br/copos-e-bowls 301
