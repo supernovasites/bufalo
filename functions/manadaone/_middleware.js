@@ -19,11 +19,15 @@ const sessionToken = request =>
   request.headers.get('Cookie')?.match(/(?:^|;\s*)manadaone_session=([a-f0-9]{64})(?:;|$)/)?.[1];
 
 async function authenticated(request, db) {
-  const token = sessionToken(request);
+  const cookieHeader = request.headers.get('Cookie') || '';
+  const shared = cookieHeader.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];
+  try {
+    if (shared && await db.prepare('SELECT token FROM admin_sessions WHERE token = ? AND expires > ?').bind(shared, Date.now()).first()) return true;
+  } catch {}
+  const token = cookieHeader.match(/(?:^|;\s*)manadaone_session=([a-f0-9]{64})(?:;|$)/)?.[1];
   if (!token) return false;
   return !!await db.prepare('SELECT token FROM manadaone_sessions WHERE token = ? AND expires > ?').bind(token, Date.now()).first();
 }
-
 async function setting(db) {
   const row = await db.prepare('SELECT enabled FROM manadaone_settings WHERE id = 1').first();
   return { enabled: row ? !!row.enabled : true };
