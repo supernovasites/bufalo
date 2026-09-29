@@ -23,7 +23,7 @@ async function authenticated(request, db) {
   if (!token) return false;
   return !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token), Date.now()).first();
 }
-function cookie(request, token, maxAge) { return `live_session=${token}; Path=/live; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`; }
+function cookie(request, token, maxAge) { return `live_session=${token}; Path=/live; HttpOnly; SameSite=Strict${maxAge === 0 ? '; Max-Age=0' : ''}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`; }
 async function handle(context) {
   const {request,env} = context;
   const url = new URL(request.url), path = url.pathname.replace(/\/$/,'');
