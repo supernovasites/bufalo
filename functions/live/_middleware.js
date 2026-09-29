@@ -4,31 +4,13 @@ const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
 const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2,'0')).join('');
 async function sha(value) { return hex(await crypto.subtle.digest('SHA-256', encoder.encode(value))); }
-async function passwordMatches(password, setting) {
-  const [salt, expected] = setting.split(':');
-  if (!salt || !/^[a-f0-9]{64}$/.test(expected || '')) return false;
-  const key = await crypto.subtle.importKey('raw', encoder.encode(password), 'PBKDF2', false, ['deriveBits']);
-  const actual = hex(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:encoder.encode(salt),iterations:100000},key,256));
-  let diff = 0; for (let i=0;i<actual.length;i++) diff |= actual.charCodeAt(i) ^ expected.charCodeAt(i);
-  return diff === 0;
-}
 async function state(db) { const row = await db.prepare('SELECT enabled FROM live_settings WHERE id = 1').first(); return {enabled: row ? !!row.enabled : true,...await content(db)}; }
-async function authenticated(request, db) {
-  const cookieHeader = request.headers.get('Cookie') || '';
-  const shared = cookieHeader.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];
-  try {
-    if (shared && await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(shared), Date.now()).first()) return true;
-  } catch {}
-  const token = cookieHeader.match(/(?:^|;\s*)live_session=([a-f0-9]{64})(?:;|$)/)?.[1];
-  if (!token) return false;
-  return !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token), Date.now()).first();
-}
-function cookie(request, token, maxAge) { return `live_session=${token}; Path=/live; HttpOnly; SameSite=Strict${maxAge === 0 ? '; Max-Age=0' : ''}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`; }
+async function authenticated(request,db){const token=request.headers.get('Cookie')?.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];if(!token)return false;return !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();}
 async function handle(context) {
   const {request,env} = context;
   const url = new URL(request.url), path = url.pathname.replace(/\/$/,'');
   if (path.startsWith('/live/api/')) {
-    if (!env.LIVE_DB || !env.LIVE_PASSWORD_HASH) return json({error:'O painel ainda não foi configurado no servidor.'},503);
+    if (!env.LIVE_DB) return json({error:'O painel ainda não foi configurado no servidor.'},503);
     const db = env.LIVE_DB;
     const gallerySlot=path.match(/^\/live\/api\/gallery\/([1-5])$/)?.[1];
     if(path==='/live/api/gallery' && request.method==='GET')return json({photos:await gallery(db)});
@@ -79,22 +61,7 @@ async function handle(context) {
       if (result?.ok!==true) return json({error:result?.error==='invalid_fields'?'Confira os dados informados e tente novamente.':'Não foi possível salvar o cadastro agora. Tente novamente.'},result?.error==='invalid_fields'?400:502);
       return json({ok:true,alreadyRegistered:result.alreadyRegistered===true});
     }
-    if (path === '/live/api/login' && request.method === 'POST') {
-      const now = Date.now(), bucket = Math.floor(now / 900000);
-      const client = await sha((request.headers.get('CF-Connecting-IP') || 'local') + ':' + bucket);
-      const attempt = await db.prepare('INSERT INTO live_attempts (client, attempts, expires) VALUES (?,1,?) ON CONFLICT(client) DO UPDATE SET attempts=attempts+1 RETURNING attempts').bind(client,(bucket+1)*900000).first();
-      if (attempt.attempts > 8) return json({error:'Muitas tentativas. Aguarde 15 minutos e tente novamente.'},429,{'Retry-After':'900'});
-      const sharedPassword = env.MANADAONE_PASSWORD || 'As285546';
-      const validPassword = typeof body.password === 'string' && body.password.length <= 128 && (body.password === sharedPassword || await passwordMatches(body.password,env.LIVE_PASSWORD_HASH));
-      if (!validPassword) return json({error:'Senha incorreta. Tente novamente.'},401);
-      const token = hex(crypto.getRandomValues(new Uint8Array(32)));
-      await db.batch([
-        db.prepare('DELETE FROM live_sessions WHERE expires <= ?').bind(now),
-        db.prepare('DELETE FROM live_attempts WHERE expires <= ? OR client = ?').bind(now,client),
-        db.prepare('INSERT INTO live_sessions (token, expires) VALUES (?, ?)').bind(await sha(token),now+30*24*60*60*1000)
-      ]);
-      return json({ok:true},200,{'Set-Cookie':cookie(request,token,14400)});
-    }
+    if (path === '/live/api/login' && request.method === 'POST') return json({error:'Acesse pelo Painel administrativo.'},401);
     if (!await authenticated(request,db)) return json({error:'Entre no painel para continuar.'},401);
     if(path==='/live/api/content' && request.method==='POST') {
       const coupon=typeof body.coupon==='string'?body.coupon.trim().toUpperCase():'';
@@ -103,11 +70,7 @@ async function handle(context) {
       await db.prepare('UPDATE live_content SET coupon=?,live_date=? WHERE id=1').bind(coupon,body.live_date).run();
       return json(await state(db));
     }
-    if (path === '/live/api/logout' && request.method === 'POST') {
-      const token = request.headers.get('Cookie').match(/(?:^|;\s*)live_session=([a-f0-9]{64})/)?.[1];
-      await db.prepare('DELETE FROM live_sessions WHERE token = ?').bind(await sha(token)).run();
-      return json({ok:true},200,{'Set-Cookie':cookie(request,'',0)});
-    }
+    if (path === '/live/api/logout' && request.method === 'POST') return json({ok:true});
     if (path === '/live/api/state') {
       if (request.method === 'POST') {
         if (typeof body.enabled !== 'boolean') return json({error:'Estado inválido.'},400);
@@ -125,6 +88,7 @@ async function handle(context) {
       return new Response(request.method === 'HEAD'?null:result.body,{status:200,headers:{...noCache,'Content-Type':'text/html; charset=utf-8'}});
     }
   }
+  if (path.startsWith('/live/admin')) { if (!env.LIVE_DB || !(await authenticated(request,env.LIVE_DB))) return Response.redirect(new URL('/painel/',url),302); }
   const result = await context.next();
   const headers = new Headers(result.headers);
   if (['/live','/live/index','/live/index.html','/live/admin','/live/admin.html'].includes(path)) {
