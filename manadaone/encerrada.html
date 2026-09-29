@@ -4,32 +4,37 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<meta name="description" content="Uma mensagem especial para quem pertence à Manada One.">
-<title>Manada One · Até o próximo encontro</title>
+<meta name="description" content="Você conquistou o mais alto nível de reconhecimento da Búfalo. Obrigado por fazer parte da Manada One.">
+<title>Manada One · Sua conquista merece reconhecimento</title>
 <style>
-:root{color-scheme:light;--ink:#142e32;--orange:#ff9b52;--paper:#f3f4f2}
-*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.6}
-.top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px clamp(22px,6vw,80px);background:#fff;border-bottom:1px solid #dce0df}
-.brand{font-size:22px;line-height:1.4;font-weight:800;letter-spacing:3px;color:inherit;text-decoration:none}.brand small{display:block;font-size:9px;letter-spacing:4px}.tag{font-size:10px;letter-spacing:2px;font-weight:700}
-main{max-width:1120px;margin:auto;padding:clamp(28px,6vw,72px) 24px}
-.message{background:var(--ink);color:#fff;padding:clamp(28px,5vw,64px);border-radius:2px}
-.eyebrow{color:var(--orange);font-size:12px;letter-spacing:2px;font-weight:700;margin:0 0 24px}
-h1{max-width:780px;font-size:clamp(28px,4.2vw,52px);line-height:1.15;letter-spacing:-1px;margin:0 0 28px}
-.copy{font-size:clamp(15px,1.8vw,19px);color:#d3dedd;margin:0 0 30px;max-width:720px}
-.farewell{display:block;color:var(--orange);font-size:clamp(22px,2.6vw,30px);line-height:1.3}
-footer{max-width:1120px;margin:auto;padding:0 24px 32px;font-size:12px;color:#617273}
+:root{color-scheme:dark;--ink:#142e32;--orange:#ffad70}
+html{min-height:100%;background:var(--ink)}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:var(--ink);color:#fff;font-family:Arial,Helvetica,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px clamp(24px,6vw,80px);border-bottom:1px solid #d3dedd1f}
+.brand{font-size:21px;line-height:1.3;font-weight:800;letter-spacing:3px;color:inherit;text-decoration:none;min-height:44px;display:flex;flex-direction:column;justify-content:center}.brand small{display:block;font-size:8px;letter-spacing:4px}.tag{font-size:10px;letter-spacing:2px;font-weight:700;border:1px solid #142e3229;border-radius:99px;padding:7px 12px;white-space:nowrap}
+main{width:100%;max-width:1040px;margin:auto;padding:56px 32px}
+.message{color:#fff;padding:clamp(32px,6vw,72px)}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--orange);font-size:11px;letter-spacing:1.7px;font-weight:700;margin:0 0 28px}.eyebrow:before{content:'';display:block;flex:none;width:24px;height:2px;background:var(--orange)}
+h1{max-width:740px;font-size:clamp(32px,4.2vw,52px);line-height:1.13;letter-spacing:-1.3px;margin:0 0 24px;text-wrap:balance}
+.copy{font-size:17px;line-height:1.7;color:#c9d7d6;margin:0;max-width:460px;text-wrap:pretty}
+.farewell{display:block;color:var(--orange);font-size:24px;line-height:1.35;font-weight:600;margin-top:32px;padding-top:26px;border-top:1px solid #d3dedd26;text-wrap:balance}
+footer{width:100%;text-align:center;padding:0 24px max(28px,env(safe-area-inset-bottom));font-size:12px;line-height:1.7;color:#a8bcba;text-wrap:balance}footer span{display:block;font-size:9px;font-weight:700;letter-spacing:2px;margin-bottom:5px;color:#e1eae9}
+.tag{border-color:#d3dedd40;color:#d3dedd}
 a:focus-visible{outline:3px solid var(--orange);outline-offset:5px}
-@media(max-width:480px){.top{padding:16px 20px}.tag{font-size:9px;letter-spacing:1px}main{padding:24px 16px}.message{padding:28px 24px}.eyebrow{font-size:10px;letter-spacing:1.5px}h1{font-size:28px}.copy{font-size:15px}footer{padding:0 16px 24px}}
+@media(min-width:900px){main{max-width:1120px;padding:48px 40px}.message{padding:64px 72px;border-radius:24px}.eyebrow{margin-bottom:30px}h1{max-width:760px;font-size:50px;line-height:1.14;margin-bottom:26px}.copy{max-width:560px;font-size:18px}.farewell{max-width:560px;font-size:26px;margin-top:36px;padding-top:28px}footer{padding-bottom:30px}}
+@media(max-width:600px){.top{padding:18px 24px}.brand{font-size:19px}.tag{font-size:9px;letter-spacing:1.3px;padding:6px 10px}main{padding:32px 20px}.message{padding:36px 28px;border-radius:16px}.eyebrow{font-size:9px;letter-spacing:1.2px;gap:9px;margin-bottom:24px}.eyebrow:before{width:18px}h1{font-size:clamp(29px,8vw,38px);letter-spacing:-.9px;line-height:1.15;margin-bottom:22px}.copy{font-size:15px;line-height:1.75}.farewell{font-size:21px;margin-top:28px;padding-top:24px}footer{font-size:11px}}
+@media(max-width:350px){.top{padding-inline:18px}main{padding:24px 14px}.message{padding:30px 22px}.eyebrow{letter-spacing:.7px;font-size:8px}.farewell{font-size:19px}}
 </style>
 </head>
 <body>
 <header class="top"><a class="brand" href="https://bufalogrowler.com.br/" target="_blank" rel="noopener">BÚFALO<small>GROWLER</small></a><span class="tag">MANADA ONE</span></header>
 <main><section class="message" aria-labelledby="recognition-title">
-<p class="eyebrow">GRUPO SELETO DE CLIENTES</p>
-<h1 id="recognition-title">O mais alto nível de reconhecimento da Búfalo.</h1>
-<p class="copy">Uma mensagem especial para quem pertence à Manada One.</p>
-<strong class="farewell">Até o próximo encontro.</strong>
+<p class="eyebrow">MANADA ONE · VOCÊ CHEGOU AO TOPO</p>
+<h1 id="recognition-title">Sua história com a Búfalo merece esse reconhecimento.</h1>
+<p class="copy">Você conquistou o mais alto nível da nossa manada. Obrigado pela confiança e por escolher a Búfalo para acompanhar seus momentos.</p>
+<p class="copy" style="margin-top:18px">Nossa seleção de benefícios está em pausa. Seu lugar na Manada One continua sendo especial.</p>
+<strong class="farewell">Essa conquista é sua. A gratidão é nossa.</strong>
 </section></main>
-<footer>BÚFALO GROWLER · Uma companhia para cada aventura.</footer>
+<footer><span>BÚFALO GROWLER</span>Uma companhia para cada aventura.</footer>
 </body>
 </html>
