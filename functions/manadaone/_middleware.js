@@ -1,3 +1,7 @@
+const encoder = new TextEncoder();
+const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2,'0')).join('');
+const sha = value => crypto.subtle.digest('SHA-256', encoder.encode(value)).then(hex);
+
 const noCache = {
   'Cache-Control': 'no-store, max-age=0',
   'X-Content-Type-Options': 'nosniff',
@@ -22,7 +26,7 @@ async function authenticated(request, db) {
   const cookieHeader = request.headers.get('Cookie') || '';
   const shared = cookieHeader.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];
   try {
-    if (shared && await db.prepare('SELECT token FROM admin_sessions WHERE token = ? AND expires > ?').bind(shared, Date.now()).first()) return true;
+    if (shared && await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(shared), Date.now()).first()) return true;
   } catch {}
   const token = cookieHeader.match(/(?:^|;\s*)manadaone_session=([a-f0-9]{64})(?:;|$)/)?.[1];
   if (!token) return false;
