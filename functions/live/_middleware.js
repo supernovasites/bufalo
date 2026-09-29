@@ -17,7 +17,7 @@ async function authenticated(request, db) {
   const cookieHeader = request.headers.get('Cookie') || '';
   const shared = cookieHeader.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];
   try {
-    if (shared && await db.prepare('SELECT token FROM admin_sessions WHERE token = ? AND expires > ?').bind(shared, Date.now()).first()) return true;
+    if (shared && await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(shared), Date.now()).first()) return true;
   } catch {}
   const token = cookieHeader.match(/(?:^|;\s*)live_session=([a-f0-9]{64})(?:;|$)/)?.[1];
   if (!token) return false;
