@@ -1,24 +1,230 @@
-const ownLogin=document.getElementById("login-form");if(ownLogin)ownLogin.remove();if(document.getElementById("login-panel"))document.getElementById("login-panel").classList.add("hidden");
-const local=['localhost','127.0.0.1'].includes(location.hostname);
-const loginPanel=document.getElementById('login-panel'),editorPanel=document.getElementById('editor-panel'),form=document.getElementById('post-form');
-const loginStatus=document.getElementById('login-status'),saveStatus=document.getElementById('save-status'),list=document.getElementById('admin-posts');
-const coverFile=document.getElementById('cover-file'),coverPreview=document.getElementById('cover-preview');
-let posts=[];
-const slugify=text=>text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,90);
-async function request(path,method='GET',data){const response=await fetch('/blog/api/'+path,{method,credentials:'same-origin',headers:data?{'Content-Type':'application/json'}:{},body:data?JSON.stringify(data):undefined});const json=await response.json();if(!response.ok)throw Error(json.error||'Não foi possível concluir.');return json;}
-function showCover(src){coverPreview.src=src||'';coverPreview.classList.toggle('hidden',!src);}
-async function prepareCover(file){if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw Error('Escolha uma imagem JPG, PNG ou WebP.');const bitmap=await createImageBitmap(file);try{let scale=Math.min(1,1600/Math.max(bitmap.width,bitmap.height));for(let attempt=0;attempt<5;attempt++){const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(bitmap.width*scale));canvas.height=Math.max(1,Math.round(bitmap.height*scale));canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);const blob=await new Promise(resolve=>canvas.toBlob(resolve,'image/webp',.82-attempt*.08));if(blob&&blob.size<=1400000)return blob;scale*=.8;}throw Error('A imagem ficou grande demais. Escolha outra imagem.');}finally{bitmap.close();}}
-async function localImage(blob){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(Error('Não foi possível ler a imagem.'));reader.readAsDataURL(blob);});}
-async function uploadImage(blob){const response=await fetch('/blog/api/admin/images',{method:'POST',credentials:'same-origin',headers:{'Content-Type':blob.type},body:blob});const data=await response.json();if(!response.ok)throw Error(data.error||'Não foi possível enviar a imagem.');return data.url;}
-coverFile.onchange=async()=>{const file=coverFile.files[0];if(!file)return;saveStatus.textContent='Preparando imagem...';coverFile.disabled=true;try{const blob=await prepareCover(file);saveStatus.textContent='Enviando imagem...';const url=local?await localImage(blob):await uploadImage(blob);form.elements.namedItem('image').value=url;showCover(url);saveStatus.textContent='Imagem pronta para o post.';}catch(error){saveStatus.textContent=error.message;}finally{coverFile.disabled=false;coverFile.value='';}};
-async function demoLogin(password){const config=await fetch('/blog/preview-config.json').then(r=>r.json());const bytes=new TextEncoder().encode(config.salt+password);const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',bytes)),b=>b.toString(16).padStart(2,'0')).join('');return hash===config.hash;}
-async function load(){if(local){const seed=await fetch('/blog/posts.json').then(r=>r.json());const edited=JSON.parse(localStorage.getItem('bufalo_blog_preview_v2')||'{}');posts=[...seed.filter(p=>!(p.slug in edited)),...Object.values(edited)].filter(p=>!p.deleted).map(p=>({...p,status:p.status||'published'}));}else posts=(await request('admin/posts')).posts;render();}
-function render(){list.replaceChildren();posts.sort((a,b)=>b.date.localeCompare(a.date));for(const post of posts){const li=document.createElement('li'),media=document.createElement('img'),strong=document.createElement('strong'),small=document.createElement('small'),actions=document.createElement('span'),edit=document.createElement('button'),remove=document.createElement('button');media.className='post-thumb';media.src=post.image||'';media.alt=post.imageAlt||'';media.loading='lazy';if(!post.image)media.classList.add('empty');strong.textContent=post.title;small.textContent=(post.status==='published'?'Publicado':'Rascunho')+' · '+post.date;edit.type='button';edit.textContent='Editar';edit.onclick=()=>editPost(post);remove.type='button';remove.textContent='Excluir';remove.onclick=()=>deletePost(post);actions.className='post-actions';actions.append(edit,remove);li.append(media,strong,small,actions);list.append(li)}if(!posts.length)list.textContent='Nenhum post cadastrado.';}
-function editPost(post){for(const key of ['id','title','category','date','excerpt','image','imageAlt','body','sourceUrl','status'])form.elements.namedItem(key).value=post[key]??(key==='id'?post.slug:'');showCover(post.image);document.getElementById('editor-title').textContent='Editar post';saveStatus.textContent='';form.scrollIntoView({behavior:'smooth'});}
-function resetForm(){form.reset();showCover('');form.elements.id.value='';form.elements.date.value=new Date().toISOString().slice(0,10);document.getElementById('editor-title').textContent='Novo post';saveStatus.textContent='';}
-async function deletePost(post){if(!confirm('Excluir “'+post.title+'”?'))return;try{if(local){const edited=JSON.parse(localStorage.getItem('bufalo_blog_preview_v2')||'{}');edited[post.slug]={...post,status:'draft',deleted:true};localStorage.setItem('bufalo_blog_preview_v2',JSON.stringify(edited));}else await request('admin/posts/'+encodeURIComponent(post.slug),'DELETE');await load();resetForm();saveStatus.textContent='Post excluído.';}catch(e){saveStatus.textContent=e.message;}}
-form.onsubmit=async e=>{e.preventDefault();saveStatus.textContent='Salvando...';const data=Object.fromEntries(new FormData(form));data.slug=data.id||slugify(data.title);delete data.id;if(!data.slug){saveStatus.textContent='Informe um título válido.';return;}if(!data.image){saveStatus.textContent='Carregue uma imagem de capa antes de salvar.';return;}try{if(local){const edited=JSON.parse(localStorage.getItem('bufalo_blog_preview_v2')||'{}');edited[data.slug]=data;localStorage.setItem('bufalo_blog_preview_v2',JSON.stringify(edited));}else await request('admin/posts','POST',data);await load();saveStatus.textContent=data.status==='published'?'Post publicado.':'Rascunho salvo.';form.elements.id.value=data.slug;}catch(err){saveStatus.textContent=err.message;}};
-document.getElementById('new-post').onclick=resetForm;
-document.getElementById('logout').onclick=async()=>{if(local)sessionStorage.removeItem('bufalo_blog_preview_v2_auth_v2');else await request('logout','POST');editorPanel.classList.add('hidden');loginPanel.classList.remove('hidden');loginStatus.textContent='';};
-if(local&&sessionStorage.getItem('bufalo_blog_preview_v2_auth_v2')==='1'){loginPanel.classList.add('hidden');editorPanel.classList.remove('hidden');document.getElementById('preview-note').classList.remove('hidden');load().then(resetForm);}
-if(!local){request('admin/posts').then(data=>{loginPanel.classList.add('hidden');editorPanel.classList.remove('hidden');posts=data.posts;render();resetForm();}).catch(()=>{window.location.replace('/painel/');});}
+const $ = id => document.getElementById(id);
+const form = $('post-form');
+const list = $('admin-posts');
+const saveStatus = $('save-status');
+const coverFile = $('cover-file');
+const coverPreview = $('cover-preview');
+let posts = [];
+
+const slugify = value => value.normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '')
+  .slice(0, 90);
+
+function redirectToLogin() {
+  window.location.replace('/painel/');
+}
+
+async function request(path, method = 'GET', data) {
+  const response = await fetch('/blog/api/' + path, {
+    method,
+    credentials: 'same-origin',
+    cache: 'no-store',
+    headers: data ? {'Content-Type': 'application/json'} : {},
+    body: data ? JSON.stringify(data) : undefined
+  });
+  let result = {};
+  try { result = await response.json(); } catch {}
+  if (!response.ok) {
+    if (response.status === 401) redirectToLogin();
+    throw new Error(result.error || 'Não foi possível concluir.');
+  }
+  return result;
+}
+
+function showCover(src) {
+  if (!coverPreview) return;
+  coverPreview.src = src || '';
+  coverPreview.classList.toggle('hidden', !src);
+}
+
+async function prepareCover(file) {
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+    throw new Error('Escolha uma imagem JPG, PNG ou WebP.');
+  }
+  const bitmap = await createImageBitmap(file);
+  try {
+    let scale = Math.min(1, 1600 / Math.max(bitmap.width, bitmap.height));
+    for (let attempt = 0; attempt < 5; attempt++) {
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+      canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+      canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/webp', .82 - attempt * .08));
+      if (blob && blob.size <= 1400000) return blob;
+      scale *= .8;
+    }
+    throw new Error('A imagem ficou grande demais. Escolha outra imagem.');
+  } finally {
+    bitmap.close();
+  }
+}
+
+async function uploadImage(blob) {
+  const response = await fetch('/blog/api/admin/images', {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: {'Content-Type': blob.type},
+    body: blob
+  });
+  let data = {};
+  try { data = await response.json(); } catch {}
+  if (!response.ok) {
+    if (response.status === 401) redirectToLogin();
+    throw new Error(data.error || 'Não foi possível enviar a imagem.');
+  }
+  return data.url;
+}
+
+function render() {
+  list.replaceChildren();
+  posts.sort((a, b) => b.date.localeCompare(a.date));
+
+  for (const post of posts) {
+    const item = document.createElement('li');
+    const image = document.createElement('img');
+    image.className = 'post-thumb';
+    image.src = post.image || '';
+    image.alt = post.imageAlt || '';
+    image.loading = 'lazy';
+    if (!post.image) image.classList.add('empty');
+
+    const title = document.createElement('strong');
+    title.textContent = post.title;
+    const meta = document.createElement('small');
+    meta.textContent = (post.status === 'published' ? 'Publicado' : 'Rascunho') + ' · ' + post.date;
+
+    const actions = document.createElement('span');
+    actions.className = 'post-actions';
+    const edit = document.createElement('button');
+    edit.type = 'button';
+    edit.textContent = 'Editar';
+    edit.addEventListener('click', () => editPost(post));
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.textContent = 'Excluir';
+    remove.addEventListener('click', () => deletePost(post));
+
+    actions.append(edit, remove);
+    item.append(image, title, meta, actions);
+    list.append(item);
+  }
+
+  if (!posts.length) list.textContent = 'Nenhum post cadastrado.';
+}
+
+function editPost(post) {
+  for (const key of ['title', 'category', 'date', 'excerpt', 'image', 'imageAlt', 'body', 'sourceUrl', 'status']) {
+    const field = form.elements.namedItem(key);
+    if (field) field.value = post[key] ?? '';
+  }
+  form.elements.id.value = post.slug;
+  showCover(post.image);
+  $('editor-title').textContent = 'Editar post';
+  saveStatus.textContent = '';
+  form.scrollIntoView({behavior: 'smooth'});
+}
+
+function resetForm() {
+  form.reset();
+  showCover('');
+  form.elements.id.value = '';
+  form.elements.date.value = new Date().toISOString().slice(0, 10);
+  $('editor-title').textContent = 'Novo post';
+  saveStatus.textContent = '';
+}
+
+async function load() {
+  const data = await request('admin/posts');
+  posts = data.posts || [];
+  render();
+}
+
+async function deletePost(post) {
+  if (!confirm('Excluir “' + post.title + '”?')) return;
+  saveStatus.textContent = 'Excluindo post…';
+  try {
+    await request('admin/posts/' + encodeURIComponent(post.slug), 'DELETE');
+    await load();
+    resetForm();
+    saveStatus.textContent = 'Post excluído.';
+  } catch (error) {
+    saveStatus.textContent = error.message;
+  }
+}
+
+coverFile?.addEventListener('change', async () => {
+  const file = coverFile.files?.[0];
+  if (!file) return;
+  saveStatus.textContent = 'Preparando imagem…';
+  coverFile.disabled = true;
+  try {
+    const blob = await prepareCover(file);
+    saveStatus.textContent = 'Enviando imagem…';
+    const url = await uploadImage(blob);
+    form.elements.image.value = url;
+    showCover(url);
+    saveStatus.textContent = 'Imagem pronta para o post.';
+  } catch (error) {
+    saveStatus.textContent = error.message;
+  } finally {
+    coverFile.disabled = false;
+    coverFile.value = '';
+  }
+});
+
+form?.addEventListener('submit', async event => {
+  event.preventDefault();
+  const button = event.submitter;
+  if (button) button.disabled = true;
+  saveStatus.textContent = 'Salvando…';
+
+  const data = Object.fromEntries(new FormData(form));
+  data.slug = data.id || slugify(data.title);
+  delete data.id;
+
+  if (!data.slug) {
+    saveStatus.textContent = 'Informe um título válido.';
+    if (button) button.disabled = false;
+    return;
+  }
+  if (!data.image) {
+    saveStatus.textContent = 'Carregue uma imagem de capa antes de salvar.';
+    if (button) button.disabled = false;
+    return;
+  }
+
+  try {
+    await request('admin/posts', 'POST', data);
+    await load();
+    form.elements.id.value = data.slug;
+    saveStatus.textContent = data.status === 'published' ? 'Post publicado.' : 'Rascunho salvo.';
+  } catch (error) {
+    saveStatus.textContent = error.message;
+  } finally {
+    if (button) button.disabled = false;
+  }
+});
+
+$('new-post')?.addEventListener('click', resetForm);
+
+$('logout')?.addEventListener('click', async event => {
+  event.currentTarget.disabled = true;
+  try {
+    await fetch('/painel/api/logout', {method: 'POST', credentials: 'same-origin', cache: 'no-store'});
+  } finally {
+    redirectToLogin();
+  }
+});
+
+request('admin/posts')
+  .then(data => {
+    posts = data.posts || [];
+    render();
+    resetForm();
+  })
+  .catch(error => {
+    if (!error.message.includes('Entre')) saveStatus.textContent = error.message;
+  });
