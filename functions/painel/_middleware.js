@@ -34,3 +34,14 @@ async function handler(context) {
       const token = tokenFrom(request);
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       return json({authenticated:active});
+    return json({error:'Página não encontrada.'},404);
+  }
+  const result = await context.next();
+  const headers = new Headers(result.headers);
+  if (path.startsWith('/painel')) { headers.set('X-Robots-Tag','noindex, nofollow'); headers.set('Cache-Control','no-store, max-age=0'); }
+  return new Response(result.body,{status:result.status,headers});
+}
+export async function onRequest(context) {
+  try { return await handler(context); }
+  catch { return json({error:'Não foi possível acessar o painel agora.'},503); }
+}
