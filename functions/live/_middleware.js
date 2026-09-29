@@ -91,7 +91,7 @@ async function handle(context) {
       await db.batch([
         db.prepare('DELETE FROM live_sessions WHERE expires <= ?').bind(now),
         db.prepare('DELETE FROM live_attempts WHERE expires <= ? OR client = ?').bind(now,client),
-        db.prepare('INSERT INTO live_sessions (token, expires) VALUES (?, ?)').bind(await sha(token),now+14400000)
+        db.prepare('INSERT INTO live_sessions (token, expires) VALUES (?, ?)').bind(await sha(token),now+30*24*60*60*1000)
       ]);
       return json({ok:true},200,{'Set-Cookie':cookie(request,token,14400)});
     }
