@@ -2,8 +2,10 @@
 /manadacash/ /manadacash/index.html 200
 /manadaone/admin /manadaone/admin/index.html 200
 /manadaone/admin/ /manadaone/admin/index.html 200
-/admin /admin/index.html 200
-/admin/ /admin/index.html 200
+/painel /painel/index.html 200
+/admin /painel 301
+/painel/ /painel/index.html 200
+/admin/ /painel 301
 
 
 
