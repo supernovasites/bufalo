@@ -37,31 +37,3 @@ $('live-photo').addEventListener('change',async()=>{
 });
 $('photo-form').addEventListener('submit',async event=>{event.preventDefault();if(!selectedPhoto)return;$('upload-photo').disabled=true;$('photo-feedback').textContent='Publicando foto…';try{const response=await fetch('/live/api/photo',{method:'POST',headers:{'Content-Type':selectedPhoto.type},body:selectedPhoto});const data=await response.json();if(!response.ok){if(response.status===401)showLogin();throw new Error(data.error||'Não foi possível publicar a foto.');}selectedPhoto=null;$('live-photo').value='';render(data);$('photo-feedback').textContent='Foto publicada no Momento BG.';}catch(error){$('photo-feedback').textContent=error.message;}finally{$('upload-photo').disabled=!selectedPhoto;}});
 api('state').then(render).catch(error => { if (!error.message.includes('Entre')) message(error.message, true); });
-+			196 container Symbols
-+				197 heading Symbols, Value: 2, ID: symbols-pane-header
-+					198 text Symbols
-+				199 button Close symbols
-+				200 text Find definitions and references for functions and other symbols in this file by clicking a symbol below or in the code.
-+				201 combo box (expanded, settable) Description: Filter symbols, Secondary Actions: Collapse
-+				202 outline Code navigation
-+					203 row (selectable) func $, ID: 0$
-+						204 container
-+							205 text func
-+							206 text $
-+					207 row (selectable) func message, ID: 1message
-+						208 container
-+							209 text func
-+							210 text message
-+					211 row (selectable) func api, ID: 2api
-+						212 container
-+							213 text func
-+							214 text api
-+					215 row (selectable) func showLogin, ID: 3showLogin
-+						216 container
-+							217 text func
-+							218 text showLogin
-+					219 row (selectable) func render, ID: 4render
-+						220 container
-+							221 text func
-+							222 text render
-The focused UI element is 1 AXWebArea bufalo/live/admin.js at main · supernovasites/bufalo, URL: github.com/supernovasites/bufalo/blob/main/live/admin.js
