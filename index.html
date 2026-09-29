@@ -367,7 +367,7 @@ html{scroll-padding-top:100px}@media(max-width:760px){html{scroll-padding-top:76
 </div><div class="mega" id="products-menu" hidden><div><strong>Seu térmico</strong><a href="https://loja.bufalogrowler.com.br/garrafas" target="_blank">Garrafas e growlers</a><a href="https://loja.bufalogrowler.com.br/copos-e-bowls" target="_blank">Copos e bowls</a><a href="https://loja.bufalogrowler.com.br/chopeira" target="_blank">Chopeiras</a></div><div><strong>Para acompanhar</strong><a href="https://loja.bufalogrowler.com.br/acessorios" target="_blank">Acessórios</a><a href="https://loja.bufalogrowler.com.br/cooler" target="_blank">Coolers</a><a href="https://loja.bufalogrowler.com.br/vestuario" target="_blank">Vestuário</a></div><div><strong>Explore a Búfalo</strong><a href="#mais-vendidos">Mais vendidos</a><a href="https://loja.bufalogrowler.com.br/ofertas" target="_blank">Ofertas da loja</a></div></div><div class="mega" id="occasions-menu" hidden><div><strong>No dia a dia</strong><a href="https://loja.bufalogrowler.com.br/garrafas" target="_blank">Trabalho e treino</a></div><div><strong>Ao ar livre</strong><a href="https://loja.bufalogrowler.com.br/camping-" target="_blank">Camping</a><a href="https://loja.bufalogrowler.com.br/cooler" target="_blank">Praia e piscina</a></div><div><strong>Entre amigos</strong><a href="https://loja.bufalogrowler.com.br/cutelaria" target="_blank">Churrasco</a><a href="https://loja.bufalogrowler.com.br/chopeira" target="_blank">Hora do chope</a></div></div></header>
 <main id="conteudo">
 <section class="adventure-film" id="aventura" aria-labelledby="adventure-title">
-<video id="adventure-video" autoplay muted loop playsinline preload="metadata" poster="assets/videos/cachoeira-poster.jpg" aria-label="Cenas de uma aventura Búfalo junto à cachoeira"></video>
+<video id="adventure-video" autoplay muted loop playsinline preload="metadata" poster="assets/videos/home-skate-desktop-poster.jpg" aria-label="Cenas de uma aventura Búfalo"></video>
 <div class="adventure-copy"><p class="eyebrow">BÚFALO AO AR LIVRE</p><h2 id="adventure-title">Sinta o ritmo<br>da natureza.</h2></div>
 <button class="film-toggle hero-pause" type="button" aria-label="Reproduzir vídeo" title="Reproduzir vídeo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="pause-bars" d="M6 4h4v16H6zM14 4h4v16h-4z"/><path class="play-triangle" d="M7 4v16l13-8z"/></svg></button></section>
 <section class="launch-section" id="lancamentos" aria-labelledby="launch-title">
@@ -519,7 +519,26 @@ window.addEventListener('scroll',updateTopButton,{passive:true});updateTopButton
 topButton.addEventListener('click',()=>{window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});
 const v=document.getElementById('adventure-video'),btn=document.querySelector('.film-toggle'),section=document.getElementById('aventura');
 let manualPause=false;
-function load(){if(v.getAttribute('src'))return;const mobile=matchMedia('(max-width:760px)').matches;if(mobile)v.poster=new URL('assets/videos/cachoeira-stories-poster.jpg',location.href).href;v.src=mobile?new URL('assets/videos/cachoeira-stories.mp4',location.href).href:'https://bufalogrowler.com.br/assets/videos/cachoeira-desktop.mp4';}
+const videos={
+ desktop:[
+  {src:'assets/videos/cachoeira-desktop.mp4',poster:'assets/videos/cachoeira-poster.jpg'},
+  {src:'assets/videos/home-skate-desktop.mp4',poster:'assets/videos/home-skate-desktop-poster.jpg'},
+  {src:'assets/videos/home-pilula-desktop.mp4',poster:'assets/videos/home-pilula-desktop-poster.jpg'}
+ ],
+ mobile:[
+  {src:'assets/videos/cachoeira-stories.mp4',poster:'assets/videos/cachoeira-stories-poster.jpg'},
+  {src:'assets/videos/home-skate-mobile.mp4',poster:'assets/videos/home-skate-mobile-poster.jpg'},
+  {src:'assets/videos/home-pilula-mobile.mp4',poster:'assets/videos/home-pilula-mobile-poster.jpg'}
+ ]
+};
+let selectedVideo;
+function load(){
+ if(v.getAttribute('src'))return;
+ const pool=matchMedia('(max-width:760px)').matches?videos.mobile:videos.desktop;
+ selectedVideo=pool[Math.floor(Math.random()*pool.length)];
+ v.poster=new URL(selectedVideo.poster,location.href).href;
+ v.src=new URL(selectedVideo.src,location.href).href;
+}
 function play(){load();v.play().catch(()=>{});}
 function sync(){const label=v.paused?'Reproduzir vídeo':'Pausar vídeo';btn.setAttribute('aria-label',label);btn.title=label;btn.setAttribute('aria-pressed',String(v.paused));}
 v.addEventListener('play',sync);v.addEventListener('pause',sync);
