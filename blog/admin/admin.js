@@ -21,4 +21,4 @@ form.onsubmit=async e=>{e.preventDefault();saveStatus.textContent='Salvando...';
 document.getElementById('new-post').onclick=resetForm;
 document.getElementById('logout').onclick=async()=>{if(local)sessionStorage.removeItem('bufalo_blog_preview_v2_auth_v2');else await request('logout','POST');editorPanel.classList.add('hidden');loginPanel.classList.remove('hidden');loginStatus.textContent='';};
 if(local&&sessionStorage.getItem('bufalo_blog_preview_v2_auth_v2')==='1'){loginPanel.classList.add('hidden');editorPanel.classList.remove('hidden');document.getElementById('preview-note').classList.remove('hidden');load().then(resetForm);}
-if(!local){request('admin/posts').then(data=>{loginPanel.classList.add('hidden');editorPanel.classList.remove('hidden');posts=data.posts;render();resetForm();}).catch(()=>{});}
+if(!local){request('admin/posts').then(data=>{loginPanel.classList.add('hidden');editorPanel.classList.remove('hidden');posts=data.posts;render();resetForm();}).catch(()=>{window.location.replace('/painel/');});}
