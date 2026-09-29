@@ -4,7 +4,7 @@ const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padSt
 const sha = value => crypto.subtle.digest('SHA-256', encoder.encode(value)).then(hex);
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
 const tokenFrom = request => request.headers.get('Cookie')?.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];
-const cookie = (request, token, maxAge) => `admin_session=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`;
+const cookie = (request, token, maxAge) => `admin_session=${token}; Path=/; HttpOnly; SameSite=Strict${maxAge === 0 ? '; Max-Age=0' : ''}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`;
 async function body(request) { try { const raw = await request.text(); if (raw.length > 2048) return null; return JSON.parse(raw); } catch { return null; } }
 async function handler(context) {
   const {request,env} = context;
