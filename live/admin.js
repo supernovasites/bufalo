@@ -7,8 +7,7 @@ async function api(path, body) {
   const data = await response.json();
   if (!response.ok) { if (response.status === 401) showLogin(); throw new Error(data.error || 'Não foi possível concluir. Tente novamente.'); }
   return data;
-}
-function showLogin() { $('login').hidden = true; $('dashboard').hidden = true; $('content-editor').hidden=true; $('gallery-editor').hidden=true; $('logout').hidden = true; }
+}function showLogin() { window.location.replace('/painel/'); }
 function render(data) {
   enabled = data.enabled; $('login').hidden = true; $('dashboard').hidden = false; $('logout').hidden = false;
   $('content-editor').hidden=false; $('gallery-editor').hidden=false; window.liveGalleryState=data.gallery||[]; window.dispatchEvent(new CustomEvent('live-gallery-state',{detail:window.liveGalleryState}));
