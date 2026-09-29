@@ -15,8 +15,7 @@ function syncPanelReturn() {
   if (!link) { link = document.createElement('a'); link.className = 'panel-return-direct'; link.href = '/painel/'; link.textContent = 'Voltar ao Painel'; document.body.append(link); }
   link.hidden = !login || !login.hidden;
   if (!document.getElementById('panel-return-style')) { const style = document.createElement('style'); style.id = 'panel-return-style'; style.textContent = '.panel-return-direct{position:fixed;left:20px;bottom:20px;z-index:9999;display:inline-flex;align-items:center;padding:12px 16px;border:1px solid #142e32;border-radius:999px;background:#fff;color:#142e32;box-shadow:0 8px 20px #142e3230;text-decoration:none;font-weight:700;opacity:.3;transition:opacity .2s ease}.panel-return-direct:hover,.panel-return-direct:focus-visible{opacity:.95}.panel-return-direct:focus-visible{outline:3px solid #e77939;outline-offset:3px}'; document.head.append(style); }
-}
-function showLogin() { $('login').hidden = true; $('dashboard').hidden = true; $('logout').hidden = true; syncPanelReturn(); }
+}function showLogin() { window.location.replace('/painel/'); }
 function render(data) {
   enabled = data.enabled; $('login').hidden = true; $('dashboard').hidden = false; $('logout').hidden = false;
   $('status').textContent = enabled ? 'Página ativa' : 'Página desativada'; $('status').classList.toggle('off', !enabled);
