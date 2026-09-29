@@ -34,6 +34,7 @@ async function handler(context) {
       const token = tokenFrom(request);
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       return json({authenticated:active});
+    }
     return json({error:'Página não encontrada.'},404);
   }
   const result = await context.next();
