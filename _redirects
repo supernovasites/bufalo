@@ -2,14 +2,14 @@
 /manadacash/ /manadacash/index.html 200
 /manadaone/admin /manadaone/admin/index.html 200
 /manadaone/admin/ /manadaone/admin/index.html 200
-/admin / 302
-/admin/ / 302
-/admin/* / 302
-/admin.html / 302
-/login / 302
-/login.html / 302
-/admin.js /404.html 302
-/admin.css /404.html 302
+/admin /admin/index.html 200
+/admin/ /admin/index.html 200
+
+
+
+
+
+
 
 /landingpage /reserva/acaibowl/ 301
 /landingpage/ /reserva/acaibowl/ 301
