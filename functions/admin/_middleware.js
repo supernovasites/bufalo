@@ -1,4 +1,7 @@
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
+const encoder = new TextEncoder();
+const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2,'0')).join('');
+const sha = value => crypto.subtle.digest('SHA-256', encoder.encode(value)).then(hex);
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
 const tokenFrom = request => request.headers.get('Cookie')?.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];
 const cookie = (request, token, maxAge) => `admin_session=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`;
@@ -17,19 +20,19 @@ async function handler(context) {
       const token = Array.from(crypto.getRandomValues(new Uint8Array(32)), b => b.toString(16).padStart(2,'0')).join('');
       const expires = Date.now() + 4 * 60 * 60 * 1000;
       await db.batch([
-        db.prepare('DELETE FROM admin_sessions WHERE expires <= ?').bind(Date.now()),
-        db.prepare('INSERT INTO admin_sessions (token, expires) VALUES (?, ?)').bind(token, expires)
+        db.prepare('DELETE FROM live_sessions WHERE expires <= ?').bind(Date.now()),
+        db.prepare('INSERT INTO live_sessions (token, expires) VALUES (?, ?)').bind(await sha(token), expires)
       ]);
       return json({ok:true},200,{'Set-Cookie':cookie(request,token,14400)});
     }
     if (path === '/admin/api/logout' && request.method === 'POST') {
       const token = tokenFrom(request);
-      if (token) await db.prepare('DELETE FROM admin_sessions WHERE token = ?').bind(token).run();
+      if (token) await db.prepare('DELETE FROM live_sessions WHERE token = ?').bind(await sha(token)).run();
       return json({ok:true},200,{'Set-Cookie':cookie(request,'',0)});
     }
     if (path === '/admin/api/session' && request.method === 'GET') {
       const token = tokenFrom(request);
-      const active = !!token && !!await db.prepare('SELECT token FROM admin_sessions WHERE token = ? AND expires > ?').bind(token,Date.now()).first();
+      const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       return json({authenticated:active});
     }
     return json({error:'Página não encontrada.'},404);
