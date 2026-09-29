@@ -250,8 +250,11 @@ html{scroll-padding-top:100px}@media(max-width:760px){html{scroll-padding-top:76
 .adventure-copy .button{background:#ff9c38;border-color:#ff9c38;color:#142e32;border-radius:4px}
 .film-toggle{z-index:3}
 @media(max-width:760px){#categorias .shop-category-photo{aspect-ratio:3/4}.adventure-film{aspect-ratio:4/3;margin:30px 0}.adventure-film video{height:100%;object-fit:cover}.adventure-film::after{background:linear-gradient(0deg,rgba(4,20,15,.8),rgba(4,20,15,.05) 85%)}.adventure-copy{left:20px;bottom:20px;max-width:calc(100% - 40px);padding:0}.adventure-copy h2{font-size:28px;letter-spacing:-.7px;margin-bottom:14px}.adventure-copy .eyebrow{font-size:9px!important;letter-spacing:1.4px;margin-bottom:9px}.adventure-copy>p:not(.eyebrow){display:none}.adventure-copy .button{font-size:12px;min-height:42px;padding:10px 15px}}
-</style><style id='launch-section-style'>.launch-section{display:grid;grid-template-columns:170px minmax(0,430px);justify-content:center;align-items:center;gap:28px;padding:8px 24px;background:#edf1ef;color:#173538;overflow:hidden;border-bottom:1px solid #d8e1dc}
+</style><style id='launch-section-style'>.launch-section{position:relative;display:grid;grid-template-columns:170px minmax(0,430px);justify-content:center;align-items:center;gap:28px;padding:8px 24px;background:#edf1ef;color:#173538;overflow:hidden;border-bottom:1px solid #d8e1dc}
 .launch-copy{grid-column:2;grid-row:1;padding:0}
+.launch-overlay{position:absolute;inset:0;z-index:2;border-radius:inherit}
+.launch-overlay:focus-visible{outline:3px solid #ff9c38;outline-offset:-4px}
+.launch-copy,.launch-visual{position:relative;z-index:1;pointer-events:none}
 .launch-kicker{font-size:12px;font-weight:700;letter-spacing:1.5px;margin:0 0 6px;color:#46635a}
 .launch-copy h1{font-size:30px;font-weight:800;line-height:1.12;letter-spacing:-.8px;margin:0 0 7px;color:#173538}
 .launch-description{font-size:16px;line-height:1.4;margin:0 0 9px;color:#46635a}
@@ -371,8 +374,9 @@ html{scroll-padding-top:100px}@media(max-width:760px){html{scroll-padding-top:76
 <div class="adventure-copy"><p class="eyebrow">BÚFALO AO AR LIVRE</p><h2 id="adventure-title">Sinta o ritmo<br>da natureza.</h2></div>
 <button class="film-toggle hero-pause" type="button" aria-label="Reproduzir vídeo" title="Reproduzir vídeo" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path class="pause-bars" d="M6 4h4v16H6zM14 4h4v16h-4z"/><path class="play-triangle" d="M7 4v16l13-8z"/></svg></button></section>
 <section class="launch-section" id="lancamentos" aria-labelledby="launch-title">
-<div class="launch-copy"><p class="launch-kicker">Pré-lançamentos e reservas</p><h1 id="launch-title">Açaí Bowl 500 ml</h1><p class="launch-description">Seu açaí vai com você.</p><a class="launch-button" href="/reserva/acaibowl/">Reserve agora</a></div>
-<a class="launch-visual" href="/reserva/acaibowl/" aria-label="Conhecer o Açaí Bowl 500 ml"><img src="https://cdn.awsli.com.br/1237/1237589/produto/400513057/3-zp4kcvw3i5.png" alt="Açaí Bowl Búfalo 500 ml preto com tampa clara" width="1000" height="1000" decoding="async"></a>
+<a class="launch-overlay" href="/reserva/acaibowl/" aria-label="Conhecer e reservar o Açaí Bowl 500 ml"></a>
+<div class="launch-copy"><p class="launch-kicker">Pré-lançamentos e reservas</p><h1 id="launch-title">Açaí Bowl 500 ml</h1><p class="launch-description">Seu açaí vai com você.</p></div>
+<div class="launch-visual"><img src="https://cdn.awsli.com.br/1237/1237589/produto/400513057/3-zp4kcvw3i5.png" alt="Açaí Bowl Búfalo 500 ml preto com tampa clara" width="1000" height="1000" decoding="async"></div>
 </section>
 
 
