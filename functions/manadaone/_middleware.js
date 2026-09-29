@@ -58,7 +58,7 @@ async function handler(context) {
       const expected = env.MANADAONE_PASSWORD || 'As285546';
       if (!payload || typeof payload.password !== 'string' || payload.password !== expected) return json({ error: 'Senha incorreta. Tente novamente.' }, 401);
       const token = Array.from(crypto.getRandomValues(new Uint8Array(32)), b => b.toString(16).padStart(2, '0')).join('');
-      const expires = Date.now() + 4 * 60 * 60 * 1000;
+      const expires = Date.now() + 30 * 24 * 60 * 60 * 1000;
       await db.batch([
         db.prepare('DELETE FROM manadaone_sessions WHERE expires <= ?').bind(Date.now()),
         db.prepare('INSERT INTO manadaone_sessions (token, expires) VALUES (?, ?)').bind(token, expires)
