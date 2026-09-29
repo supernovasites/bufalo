@@ -39,8 +39,8 @@
 </style>
 <script id="bufalo-analytics">
 (() => {
-  // Track only the published landing page; previews and local tests stay out of GA4.
-  if (location.hostname !== 'bufalo.pages.dev') return;
+  // Track only production hosts; previews and local tests stay out of GA4.
+  if (!['bufalo.pages.dev', 'bufalogrowler.com.br', 'www.bufalogrowler.com.br'].includes(location.hostname)) return;
   const measurementId = 'G-FPEC1ZGMJQ';
   window.dataLayer = window.dataLayer || [];
   window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
