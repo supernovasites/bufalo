@@ -68,3 +68,9 @@ const observer=new IntersectionObserver(entries=>{
   }
 },{rootMargin:'-27% 0px -65% 0px'});
 document.querySelectorAll('.catalog-section').forEach(section=>observer.observe(section));
+
+
+// Move Buba Kids to the children's category.
+const bubaKidsCard=[...document.querySelectorAll('#rail-garrafas .catalog-card')].find(card=>card.querySelector('h3')?.textContent.trim()==='Garrafa Buba Kids 355ml');
+const kidsRail=document.querySelector('#rail-carabinho-kids');
+if(bubaKidsCard&&kidsRail)kidsRail.appendChild(bubaKidsCard);
