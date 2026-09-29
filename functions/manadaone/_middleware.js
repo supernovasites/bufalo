@@ -17,7 +17,7 @@ const json = (body, status = 200, headers = {}) =>
   });
 
 const sessionCookie = (request, token, maxAge) =>
-  `manadaone_session=${token}; Path=/manadaone; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`;
+  `manadaone_session=${token}; Path=/manadaone; HttpOnly; SameSite=Strict${maxAge === 0 ? '; Max-Age=0' : ''}${new URL(request.url).protocol === 'https:' ? '; Secure' : ''}`;
 
 const sessionToken = request =>
   request.headers.get('Cookie')?.match(/(?:^|;\s*)manadaone_session=([a-f0-9]{64})(?:;|$)/)?.[1];
