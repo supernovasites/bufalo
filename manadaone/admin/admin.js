@@ -26,5 +26,19 @@ function render(data) {
 $('login-form')?.addEventListener('submit', async event => { event.preventDefault(); const button = event.submitter; button.disabled = true; message(''); try { await api('login', {password:$('password').value}); $('password').value = ''; render(await api('state')); } catch(error) { message(error.message, true); } finally { button.disabled = false; } });
 $('toggle').addEventListener('click', async () => { $('toggle').disabled = true; message('Salvando alteração…'); try { render(await api('state', {enabled:!enabled})); message(enabled ? 'Página ativada. Os benefícios já estão disponíveis.' : 'Página desativada. A mensagem de agradecimento já está no ar.'); } catch(error) { message(error.message, true); } finally { $('toggle').disabled = false; } });
 $('logout').addEventListener('click', async () => { try { await api('logout', {}); showLogin(); message('Você saiu do painel.'); } catch(error) { message(error.message, true); } });
-showLogin();
-api('state').then(render).catch(error => { if (!error.message.includes('Entre')) message(error.message, true); });
+// Validate the shared session before loading the administrative controls.
+async function initializePanel() {
+  $('dashboard').hidden = true;
+  $('toggle').disabled = true;
+  try {
+    const response = await fetch('/painel/api/session', {cache:'no-store'});
+    if (!response.ok) throw new Error('Não foi possível verificar seu acesso. Recarregue a página.');
+    const session = await response.json();
+    if (!session.authenticated) { showLogin(); return; }
+    render(await api('state'));
+    $('toggle').disabled = false;
+  } catch (error) {
+    message(error.message, true);
+  }
+}
+initializePanel();
