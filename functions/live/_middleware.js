@@ -9,6 +9,7 @@ async function authenticated(request,db){const token=request.headers.get('Cookie
 async function handle(context) {
   const {request,env} = context;
   const url = new URL(request.url), path = url.pathname.replace(/\/$/,'');
+  const adminPage = path === '/live/admin' || path === '/live/admin.html' || path.startsWith('/live/admin/');
   if (path.startsWith('/live/api/')) {
     if (!env.LIVE_DB) return json({error:'O painel ainda não foi configurado no servidor.'},503);
     const db = env.LIVE_DB;
@@ -88,13 +89,13 @@ async function handle(context) {
       return new Response(request.method === 'HEAD'?null:result.body,{status:200,headers:{...noCache,'Content-Type':'text/html; charset=utf-8'}});
     }
   }
-  if (path.startsWith('/live/admin')) { if (!env.LIVE_DB || !(await authenticated(request,env.LIVE_DB))) return Response.redirect(new URL('/painel/',url),302); }
+  if (adminPage) { if (!env.LIVE_DB || !(await authenticated(request,env.LIVE_DB))) return Response.redirect(new URL('/painel/',url),302); }
   const result = await context.next();
   const headers = new Headers(result.headers);
   if (['/live','/live/index','/live/index.html','/live/admin','/live/admin.html'].includes(path)) {
     for(const [key,value] of Object.entries(noCache)) headers.set(key,value);
   }
-  if (path.startsWith('/live/admin')) { headers.set('X-Robots-Tag','noindex, nofollow'); headers.set('Cache-Control','no-store, max-age=0'); }
+  if (adminPage) { headers.set('X-Robots-Tag','noindex, nofollow'); headers.set('Cache-Control','no-store, max-age=0'); }
   if (['/live','/live/index','/live/index.html'].includes(path) && result.status===200 && headers.get('Content-Type')?.includes('text/html')) {
     const config=await content(env.LIVE_DB);
     let html=await result.text();
@@ -109,3 +110,4 @@ export async function onRequest(context) {
   try { return await handle(context); }
   catch { return json({error:'Não foi possível acessar o controle da live. Tente novamente em instantes.'},503); }
 }
+
