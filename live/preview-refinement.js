@@ -26,9 +26,10 @@
       const base = selected?.dataset.price ? Number(selected.dataset.price) : readPrice(regular.textContent);
       if (!Number.isFinite(base) || base <= 0) return;
       regular.textContent = format(base);
-      offer.textContent = format(Math.round(base * 80) / 100);
+      const discount = Number(card.dataset.discount || 20);
+      offer.textContent = format(Math.round(base * (100 - discount)) / 100);
       const badge = card.querySelector('.badge');
-      if (badge) badge.textContent = '−20%';
+      if (badge) badge.textContent = '−' + discount + '%';
     });
 
     const topButton = document.createElement('button');
