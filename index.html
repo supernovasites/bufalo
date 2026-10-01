@@ -769,7 +769,7 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
   input.addEventListener('input',()=>{
     const digits=input.value.replace(/\D/g,'').slice(0,9);
     input.value=digits?integer.format(Number(digits)):'';
-    value.textContent=currency.format(Number(digits)*0.03);
+    value.textContent=currency.format(Math.min(Number(digits)*0.03,100));
   });
 })();
 </script>
