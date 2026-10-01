@@ -647,7 +647,7 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 .mc-launcher{display:none;position:fixed;z-index:40;right:0;top:50%;transform:translateY(-50%);width:58px;min-height:150px;padding:12px 9px;border:0;border-radius:10px 0 0 10px;background:#050505;color:#fff;box-shadow:0 8px 26px #0004;cursor:pointer;align-items:center;justify-content:space-between;flex-direction:column}.mc-launcher svg,.mc-dock-icon{width:31px;height:31px;fill:currentColor;stroke:#fff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}.mc-launcher span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:11px;font-weight:700;letter-spacing:-.15px}.mc-launcher:hover,.mc-launcher:focus-visible{background:#142e32;outline:2px solid #a7b58d;outline-offset:2px}.mc-popup{width:min(450px,calc(100vw - 24px));height:min(800px,calc(100vh - 24px));padding:0;overflow:hidden;border:0;border-radius:5px;background:#fff;box-shadow:0 20px 70px #0006}.mc-popup::backdrop{background:#10282b9c;backdrop-filter:blur(3px)}.mc-popup-head{height:43px;display:flex;align-items:center;justify-content:space-between;padding:0 10px 0 16px;color:#fff;background:#050505}.mc-popup-head strong{font-size:16px;font-weight:400}.mc-popup-close{display:grid;place-items:center;width:31px;height:31px;border:0;border-radius:4px;color:#fff;background:#ed3434;font-size:24px;line-height:1;cursor:pointer}.mc-popup-close:hover,.mc-popup-close:focus-visible{background:#ff5252;outline:2px solid #fff;outline-offset:1px}.mc-popup iframe{display:block;width:100%;height:calc(100% - 43px);border:0;background:#fff}.mc-dock-icon{stroke:currentColor;fill:currentColor;stroke-width:1}.mobile-dock .dock-cash{color:#142e32}.mobile-dock .dock-cash svg{display:none}.mobile-dock .dock-cash .mc-dock-icon{display:block}.mobile-dock .dock-cash span{font-size:10px;font-weight:600}@media(min-width:761px){.mc-launcher{display:flex}}@media(max-width:760px){.mc-popup{width:calc(100vw - 24px);height:calc(100vh - 24px);border-radius:8px}}
 </style>
 <button class="mc-launcher" type="button" data-open-mc aria-label="Abrir ManadaCash" title="Abrir ManadaCash"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 27c2-8 5-16 11-22 4-4 9-5 15-1-3 0-6 1-8 2 4 0 8 1 10 3 1 1 1 3 0 5-1 2-3 3-6 4l-1 4-4 3-4-4-3 1-5 5-2-5-3 5Z"/><path fill="none" d="M19 7c1 2 3 3 6 3 3 0 5-1 6-3M20 18c2 0 4-1 6-2M8 25l5-5m-2 7 4-6"/></svg><span>ManadaCash</span></button>
-<dialog class="mc-popup" id="mc-popup" aria-labelledby="mc-popup-title"><div class="mc-popup-head"><strong id="mc-popup-title">ManadaCash</strong><button class="mc-popup-close" type="button" data-close-mc aria-label="Fechar ManadaCash">×</button></div><iframe title="ManadaCash — consulta de pontos e benefícios" src="https://cdn.fidelizarmais.com/files/production/f19e27a4-5299-46c7-9f7e-09251feab0a7/fidelidade/v2/6f0f0d3a-6b1c-4896-af28-f6d7aeb4312f/f19e27a4-5299-46c7-9f7e-09251feab0a7.html?storeid=f19e27a4-5299-46c7-9f7e-09251feab0a7&amp;ver=1426"></iframe></dialog>
+<dialog class="mc-popup" id="mc-popup" aria-labelledby="mc-popup-title"><div class="mc-popup-head"><strong id="mc-popup-title">ManadaCash</strong><button class="mc-popup-close" type="button" data-close-mc aria-label="Fechar ManadaCash">×</button></div><div class="mc-embed"><iframe title="ManadaCash — consulta de pontos e benefícios" src="https://cdn.fidelizarmais.com/files/production/f19e27a4-5299-46c7-9f7e-09251feab0a7/fidelidade/v2/6f0f0d3a-6b1c-4896-af28-f6d7aeb4312f/f19e27a4-5299-46c7-9f7e-09251feab0a7.html?storeid=f19e27a4-5299-46c7-9f7e-09251feab0a7&amp;ver=1426"></iframe><span class="mc-menu-label" aria-hidden="true">Meus Cupons</span></div><div class="mc-divider" aria-hidden="true"></div><section class="mc-converter" aria-labelledby="mc-converter-title"><h2 id="mc-converter-title">Saiba quanto seus pontos valem em desconto</h2><label for="mc-points">Consulte seu CPF acima e digite seus pontos</label><div class="mc-converter-row"><input id="mc-points" type="text" inputmode="numeric" autocomplete="off" placeholder="Ex.: 1000"><output id="mc-value" for="mc-points" aria-live="polite">R$ 0,00</output></div><p class="mc-discount-note">Após escolher o produto, aplique o desconto no carrinho.</p></section><div class="mc-credit" aria-label="Desenvolvido por Búfalo Growler"><span>desenvolvido por:</span><a class="mc-credit-brand" href="https://bufalogrowler.com.br/" target="_blank" rel="noopener" aria-label="Ir para a homepage Búfalo Growler"><img src="https://cdn.awsli.com.br/400x300/1237/1237589/logo/21547a1296.png" alt="" width="25" height="25">Búfalo Growler</a></div></dialog>
 <script>
 (()=>{const bull='<svg class="mc-dock-icon" viewBox="0 0 32 32" aria-hidden="true"><path d="M3 27c2-8 5-16 11-22 4-4 9-5 15-1-3 0-6 1-8 2 4 0 8 1 10 3 1 1 1 3 0 5-1 2-3 3-6 4l-1 4-4 3-4-4-3 1-5 5-2-5-3 5Z"/><path fill="none" d="M19 7c1 2 3 3 6 3 3 0 5-1 6-3M20 18c2 0 4-1 6-2M8 25l5-5m-2 7 4-6"/></svg>';const dock=document.querySelector('.dock-cash'),popup=document.querySelector('#mc-popup');if(!dock||!popup)return;dock.href='#mc-popup';dock.removeAttribute('target');dock.innerHTML=bull+'<span>ManadaCash</span>';const open=()=>{popup.showModal();document.body.style.overflow='hidden'};const close=()=>{if(popup.open)popup.close()};document.querySelectorAll('[data-open-mc],.dock-cash').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();open()}));document.querySelector('[data-close-mc]').addEventListener('click',close);popup.addEventListener('close',()=>document.body.style.overflow='');popup.addEventListener('click',e=>{if(e.target===popup)close()})})();
 </script>
@@ -738,5 +738,40 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
   apply();
   new MutationObserver(apply).observe(document.body,{childList:true,subtree:true});
 })();
-</script></body></html>
+</script>
+<style id="manadacash-converter-style">
+.mc-popup{height:min(800px,calc(100dvh - 68px));margin:0;top:calc(50% + 16px);overflow:hidden}
+.mc-popup[open]{display:flex;flex-direction:column}
+.mc-embed{position:relative;min-height:0;flex:1 1 auto;overflow:hidden}
+.mc-popup .mc-embed iframe{width:100%;height:calc(100% + 36px);min-height:0}
+.mc-menu-label{position:absolute;z-index:2;top:52px;right:10px;padding:2px 5px;border-radius:0 0 4px 4px;background:#050505;color:#fff;font-size:10px;font-weight:700;line-height:1.1;pointer-events:none}
+.mc-divider{flex:0 0 6px;background:#f4f4f4;border-top:2px solid #111;border-bottom:1px solid #d6d6d6}
+.mc-credit{flex:0 0 32px;display:flex;align-items:center;justify-content:center;gap:4px;background:#050505;color:#fff;font-size:11px}
+.mc-credit-brand{display:inline-flex;align-items:center;gap:5px;padding:2px 11px 2px 5px;border-radius:20px;background:#fff;color:#111;font-weight:600}
+.mc-credit-brand:hover,.mc-credit-brand:focus-visible{background:#eee;outline:2px solid #fff;outline-offset:1px}
+.mc-credit-brand img{width:22px;height:22px;object-fit:contain}
+.mc-converter{flex:0 0 auto;padding:10px 16px 12px;background:#f0f1f2;color:#34445a}
+.mc-converter h2{font-size:17px;line-height:1.2;margin:0 0 7px}
+.mc-converter label{display:block;font-size:12px;font-weight:600;line-height:1.25;margin-bottom:6px}
+.mc-converter-row{display:flex;gap:8px;align-items:stretch}
+.mc-converter input{min-width:0;width:50%;height:38px;padding:8px 10px;border:1px solid #c9cdd1;border-radius:4px;background:#fff;color:#34445a;font-size:15px}
+.mc-converter output{flex:1;display:flex;align-items:center;justify-content:center;border-radius:4px;background:#080808;color:white;font-size:19px;font-weight:700;white-space:nowrap}
+.mc-discount-note{margin:8px 0 0;color:#34445a;font-size:11px;font-weight:600;line-height:1.3;text-align:center}
+@media(max-width:760px){.mc-popup{width:calc(100vw - 24px);height:calc(100dvh - 68px)}.mc-converter{padding:9px 13px 11px}.mc-converter h2{font-size:16px}.mc-converter label{font-size:11px}.mc-converter output{font-size:18px}}
+</style>
+<script id="manadacash-converter-script">
+(()=>{
+  const input=document.getElementById('mc-points');
+  const value=document.getElementById('mc-value');
+  if(!input||!value)return;
+  const currency=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+  const integer=new Intl.NumberFormat('pt-BR');
+  input.addEventListener('input',()=>{
+    const digits=input.value.replace(/\D/g,'').slice(0,9);
+    input.value=digits?integer.format(Number(digits)):'';
+    value.textContent=currency.format(Number(digits)*0.03);
+  });
+})();
+</script>
+</body></html>
 
