@@ -815,8 +815,10 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 .mc-popup,.mc-popup.mc-products{height:min(800px,calc(100dvh - 88px));max-height:calc(100dvh - 88px)}
 .mc-popup .mc-embed,.mc-popup.mc-products .mc-embed{flex:1 1 0;min-height:0;height:auto;overflow:hidden}
 .mc-popup .mc-embed iframe,.mc-popup.mc-products .mc-embed iframe{height:100%;min-height:0}
-.mc-popup .mc-converter,.mc-popup.mc-products .mc-converter{display:block;flex:0 0 auto}
-.mc-popup .mc-divider,.mc-popup.mc-products .mc-divider{display:block;flex:0 0 14px}
+.mc-popup .mc-converter{display:block;flex:0 0 auto}
+.mc-popup.mc-products .mc-converter{display:none}
+.mc-popup .mc-divider{display:block;flex:0 0 14px}
+.mc-popup.mc-products .mc-divider{display:none}
 .mc-popup .mc-credit{flex:0 0 32px}
 .mc-popup .mc-menu-label{display:none}
 </style>
