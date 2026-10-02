@@ -778,7 +778,7 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 <style id="mc-cpf-crop">
 .mc-popup{height:auto;max-height:calc(100dvh - 72px);overflow:visible;top:50%;margin:0}.mc-popup .mc-popup-close{position:absolute;top:-48px;right:14px;width:40px;height:40px;z-index:10;background:#050505;color:#fff;font-size:28px;border:1px solid #fff;border-radius:5px}.mc-embed{flex:none;height:300px;overflow:hidden;background:#f8f9fa}.mc-popup .mc-embed iframe{height:800px;width:100%;display:block}.mc-divider{flex:none;height:6px}.mc-converter,.mc-credit{position:relative;z-index:3}.mc-credit{min-height:32px;border-radius:0 0 5px 5px}@media(max-width:760px){.mc-popup{height:auto;width:calc(100vw - 24px)}.mc-embed{height:258px}.mc-popup .mc-popup-close{right:14px}}
 </style>
-<style id="mc-white-divider">.mc-popup .mc-divider{flex:0 0 24px;height:24px;background:#fff;border:0;position:relative;z-index:3}</style><style>.mc-popup.mc-products{height:min(800px,calc(100dvh - 72px))}.mc-popup.mc-products .mc-embed{flex:1 1 auto;height:auto;min-height:260px}.mc-popup.mc-products .mc-embed iframe{height:100%}.mc-popup.mc-products .mc-converter,.mc-popup.mc-products .mc-divider{display:none}</style><script>window.addEventListener('message',e=>{const popup=document.getElementById('mc-popup'),frame=popup.querySelector('iframe');if(e.origin!==location.origin||e.source!==frame.contentWindow||e.data?.type!=='mc-view')return;popup.classList.toggle('mc-products',e.data.products===true)});</script><style>.mc-popup .mc-embed{overflow:clip}</style>
+<style id="mc-white-divider">.mc-popup .mc-divider{flex:0 0 24px;height:24px;background:#fff;border:0;position:relative;z-index:3}</style><style>.mc-popup.mc-products{height:min(800px,calc(100dvh - 72px))}.mc-popup.mc-products .mc-embed{flex:1 1 auto;height:auto;min-height:260px}.mc-popup.mc-products .mc-embed iframe{height:100%}.mc-popup.mc-products .mc-converter,.mc-popup.mc-products .mc-divider{display:none}</style><script>window.addEventListener('message',e=>{const popup=document.getElementById('mc-popup'),frame=popup.querySelector('iframe');if(e.origin!==location.origin||e.source!==frame.contentWindow||e.data?.type!=='mc-view')return;popup.classList.toggle('mc-products',e.data.expanded===true||e.data.products===true)});</script><style>.mc-popup .mc-embed{overflow:clip}</style>
 <style>.mc-popup.mc-products{height:min(760px,calc(100dvh - 120px))}.mc-popup.mc-products .mc-credit{display:flex;flex:0 0 32px}</style>
 <style id="mc-converter-identity">
 .mc-popup .mc-converter{background:#fff;color:#111;padding:0 16px 18px;font-family:Arial,Helvetica,sans-serif}
@@ -802,3 +802,36 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 .mc-popup .mc-divider{flex-basis:14px;height:14px}
 @media(max-width:760px){.mc-popup .mc-converter{padding:0 15px 12px}}
 </style>
+
+<style id="mc-full-menu-content">
+.mc-popup.mc-products{height:min(800px,calc(100dvh - 88px));max-height:calc(100dvh - 88px)}
+.mc-popup.mc-products .mc-embed{flex:1 1 0;min-height:0;height:auto;overflow:hidden}
+.mc-popup.mc-products .mc-embed iframe{height:100%;min-height:0}
+.mc-popup.mc-products .mc-menu-label{display:none}
+.mc-popup.mc-products .mc-credit{flex:0 0 32px}
+</style>
+
+<style id="mc-scrollable-content">
+.mc-popup,.mc-popup.mc-products{height:min(800px,calc(100dvh - 88px));max-height:calc(100dvh - 88px)}
+.mc-popup .mc-embed,.mc-popup.mc-products .mc-embed{flex:1 1 0;min-height:0;height:auto;overflow:hidden}
+.mc-popup .mc-embed iframe,.mc-popup.mc-products .mc-embed iframe{height:100%;min-height:0}
+.mc-popup .mc-converter,.mc-popup.mc-products .mc-converter{display:block;flex:0 0 auto}
+.mc-popup .mc-divider,.mc-popup.mc-products .mc-divider{display:block;flex:0 0 14px}
+.mc-popup .mc-credit{flex:0 0 32px}
+.mc-popup .mc-menu-label{display:none}
+</style>
+<style id="mc-menu-label-restored">
+.mc-popup .mc-menu-label,.mc-popup.mc-products .mc-menu-label{display:block}
+</style>
+<script id="mc-opening-reset">
+(()=>{const popup=document.getElementById('mc-popup'),frame=popup?.querySelector('iframe');if(!popup||!frame)return;new MutationObserver(()=>{if(popup.open)frame.contentWindow.postMessage({type:'mc-reset'},location.origin)}).observe(popup,{attributes:true,attributeFilter:['open']});})();
+</script>
+<style id="mc-compact-opening">
+.mc-popup:not(.mc-products){height:auto}
+.mc-popup:not(.mc-products) .mc-embed{flex:0 0 300px;height:300px}
+@media(max-width:760px){.mc-popup:not(.mc-products) .mc-embed{flex-basis:258px;height:258px}}
+</style>
+<style id="mc-mobile-input-no-zoom">
+@media(max-width:760px){.mc-popup .mc-converter input{font-size:16px}}
+</style>
+
