@@ -790,9 +790,9 @@ popup.querySelectorAll('[data-bw-close]').forEach(button=>button.addEventListene
 popup.addEventListener('click',event=>{const r=popup.getBoundingClientRect();if(event.target===popup&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))popup.close()});
 popup.addEventListener('close',()=>{document.body.style.overflow=previousOverflow||'';try{sessionStorage.setItem(weekendState().key,'1')}catch{}});
 document.getElementById('bw-copy').addEventListener('click',async()=>{const status=document.getElementById('bw-status');try{await navigator.clipboard.writeText('Fretegratis');status.textContent='Cupom copiado!';document.getElementById('bw-copy').textContent='Copiado ✓'}catch{const selection=getSelection(),range=document.createRange();range.selectNodeContents(document.getElementById('bw-code'));selection.removeAllRanges();selection.addRange(range);status.textContent='Selecione e copie o cupom.'}});
-const opener=document.createElement('button');opener.className='bw-open';opener.type='button';opener.textContent='Bufalo Weekend · Frete grátis';opener.addEventListener('click',open);document.querySelector('#aventura,.hero')?.after(opener);
+
 let wasActive=false;
-const sync=()=>{const state=weekendState();opener.hidden=!state.active;if(!state.active&&popup.open)popup.close();if(state.active&&!wasActive){let dismissed=false;try{dismissed=sessionStorage.getItem(state.key)==='1'}catch{}const local=['localhost','127.0.0.1'].includes(location.hostname);if(!dismissed||(local&&new URLSearchParams(location.search).get('popup')==='weekend'))setTimeout(open,600)}wasActive=state.active};
+const sync=()=>{const state=weekendState();if(!state.active&&popup.open)popup.close();if(state.active&&!wasActive){let dismissed=false;try{dismissed=sessionStorage.getItem(state.key)==='1'}catch{}const local=['localhost','127.0.0.1'].includes(location.hostname);if(!dismissed||(local&&new URLSearchParams(location.search).get('popup')==='weekend'))setTimeout(open,600)}wasActive=state.active};
 sync();setInterval(sync,1000);document.addEventListener('visibilitychange',sync);
 })();
 </script>
