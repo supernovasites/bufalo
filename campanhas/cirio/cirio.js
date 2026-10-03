@@ -19,11 +19,10 @@ document.addEventListener('click',event=>{if(!event.target.closest('.nav-button,
 document.addEventListener('keydown',event=>{if(event.key==='Escape'){document.querySelectorAll('.mega').forEach(item=>item.hidden=true);document.querySelectorAll('.nav-button').forEach(item=>item.setAttribute('aria-expanded','false'));}});
 
 
-const video=document.getElementById('cirio-video'),play=document.getElementById('video-play'),sound=document.getElementById('video-sound');
+const video=document.getElementById('cirio-video'),play=document.getElementById('video-play');
 const motion=matchMedia('(prefers-reduced-motion: reduce)');
-function syncVideo(){const paused=video.paused;play.setAttribute('aria-pressed',String(paused));play.setAttribute('aria-label',paused?'Reproduzir vídeo':'Pausar vídeo');play.innerHTML=paused?'Reproduzir <span aria-hidden="true">▶</span>':'Pausar <span aria-hidden="true">Ⅱ</span>';}
+function syncVideo(){const paused=video.paused;play.setAttribute('aria-pressed',String(paused));play.setAttribute('aria-label',paused?'Reproduzir vídeo':'Pausar vídeo');play.title=paused?'Reproduzir vídeo':'Pausar vídeo';}
 play.addEventListener('click',()=>{if(video.paused)video.play().catch(syncVideo);else video.pause();});
-sound.addEventListener('click',()=>{video.muted=!video.muted;sound.setAttribute('aria-pressed',String(!video.muted));sound.setAttribute('aria-label',video.muted?'Ativar som do vídeo':'Desativar som do vídeo');sound.innerHTML=video.muted?'Ativar som <span aria-hidden="true">♫</span>':'Sem som <span aria-hidden="true">♫</span>';});
 video.addEventListener('pause',syncVideo);video.addEventListener('play',syncVideo);
 if(motion.matches){video.autoplay=false;video.pause();}else video.play().catch(syncVideo);
 motion.addEventListener('change',()=>{if(motion.matches)video.pause();});
