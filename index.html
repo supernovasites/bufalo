@@ -775,38 +775,39 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 </script>
 <style id="bufalo-weekend-style">
 .bw-popup{padding:0;border:0;border-radius:8px;background:#fff;color:#142e32;width:min(294px,57.4vw,calc(50.4dvh - 91px));max-width:none;max-height:78dvh;overflow:visible;box-shadow:0 24px 90px #0005}
-.bw-popup::backdrop{background:#071b2099}
-.bw-grid{display:block;overflow:hidden;border-radius:8px}
-.bw-art{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}
-.bw-copy{font-family:Arial,Helvetica,sans-serif;background:#fff;padding:10px;display:flex;flex-direction:column;gap:7px;text-align:center}
-.bw-offer-title{margin:0;font-size:14px;font-weight:800}
-.bw-offer-price{margin:0;font-size:12px;font-weight:400}
-.bw-offer-price strong{font-weight:800}
-.bw-cta{display:flex;justify-content:center;align-items:center;min-height:38px;background:#142e32;color:#fff;border-radius:4px;font-size:12px;font-weight:700;padding:7px 5px;text-align:center}
-.bw-cta:hover{background:#315354}
-.bw-close{position:absolute;right:0;top:-46px;min-height:38px;padding:7px 11px;background:#fff;color:#142e32;border:1px solid #dce0df;border-radius:999px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;display:flex;gap:9px;align-items:center;box-shadow:0 2px 8px #0002}
-.bw-close span{font-size:22px;line-height:1}
-.bw-open[hidden]{display:none}
+.bw-popup::backdrop{background:#071b2099}.bw-grid{display:block;overflow:hidden;border-radius:8px}.bw-art-wrap{position:relative;aspect-ratio:1;overflow:hidden}.bw-art{display:block;width:100%;height:100%;object-fit:cover}.bw-art-title{position:absolute;top:18px;right:18px;left:18px;margin:0;color:#fff7ed;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:.92;text-align:right;text-shadow:0 2px 12px #0009}.bw-copy{font-family:Arial,Helvetica,sans-serif;background:#fff;padding:10px;display:flex;flex-direction:column;gap:7px;text-align:center}.bw-offer-title{margin:0;font-size:14px;font-weight:800}.bw-offer-price,.bw-offer-copy{margin:0;font-size:12px;font-weight:400;line-height:1.3}.bw-offer-price strong{font-weight:800}.bw-cta{display:flex;justify-content:center;align-items:center;min-height:38px;background:#142e32;color:#fff;border-radius:4px;font-size:12px;font-weight:700;padding:7px 5px;text-align:center}.bw-cta:hover{background:#315354}.bw-close{position:absolute;right:0;top:-46px;min-height:38px;padding:7px 11px;background:#fff;color:#142e32;border:1px solid #dce0df;border-radius:999px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;display:flex;gap:9px;align-items:center;box-shadow:0 2px 8px #0002}.bw-close span{font-size:22px;line-height:1}.bw-open[hidden]{display:none}
 </style>
 <dialog id="bufalo-weekend" class="bw-popup" aria-label="Búfalo Weekend — Chopeira Búfalo 2L">
-<button class="bw-close" type="button" data-bw-close autofocus aria-label="Fechar oferta e continuar na homepage">Fechar oferta <span aria-hidden="true">×</span></button>
-<div class="bw-grid"><img class="bw-art" src="assets/campaigns/bufalo-weekend.jpg?v=drink-corrected" alt="Búfalo Weekend. Chopeira Búfalo 2L à beira da piscina." width="1254" height="1254">
+<button class="bw-close" type="button" data-bw-close autofocus>Fechar oferta <span aria-hidden="true">×</span></button>
+<div class="bw-grid"><div class="bw-art-wrap"><img class="bw-art" src="assets/campaigns/bufalo-weekend.jpg?v=drink-corrected" alt="Búfalo Weekend. Chopeira Búfalo 2L à beira da piscina." width="1254" height="1254"></div>
 <div class="bw-copy"><p class="bw-offer-title">Chopeira Búfalo 2L</p><p class="bw-offer-price">De <s>R$ 1250</s> por <strong>R$ 995</strong> até 04/10</p><a class="bw-cta" href="https://loja.bufalogrowler.com.br/chopeira">Compre agora</a></div></div>
 </dialog>
+<dialog id="marajo-dry-popup" class="bw-popup" aria-label="Mochila Marajó Dry">
+<button class="bw-close" type="button" data-bw-close autofocus>Fechar oferta <span aria-hidden="true">×</span></button>
+<div class="bw-grid"><div class="bw-art-wrap"><img class="bw-art" src="https://cdn.awsli.com.br/800x800/1237/1237589/produto/361534760/mochila-estanque-verde_laranja-l9uwbvqkeh-ba5yf37rl8.png" alt="Mochila Marajó Dry 25L verde" width="1254" height="1254"><p class="bw-art-title">Mochila<br>Marajó Dry</p></div>
+<div class="bw-copy"><p class="bw-offer-copy">Veja nossa coleção de mochilas e bolsas impermeáveis</p><a class="bw-cta" href="https://loja.bufalogrowler.com.br/mochilas">Ver coleção</a></div></div>
+</dialog>
 <script id="bufalo-weekend-script">
-(()=>{
-const popup=document.getElementById('bufalo-weekend');
+(async()=>{
+const weekend=document.getElementById('bufalo-weekend'),marajo=document.getElementById('marajo-dry-popup');
 const calendar=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Fortaleza',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'});
-const weekendState=(date=new Date())=>{const parts=Object.fromEntries(calendar.formatToParts(date).map(p=>[p.type,p.value]));return {active:parts.weekday==='Sat'||parts.weekday==='Sun',key:'bufalo-weekend-dismissed-v2:'+parts.year+'-'+parts.month+'-'+parts.day}};
+const dayState=(date=new Date())=>{const p=Object.fromEntries(calendar.formatToParts(date).map(x=>[x.type,x.value]));return {weekend:p.weekday==='Sat'||p.weekday==='Sun',key:p.year+'-'+p.month+'-'+p.day}};
+let region='';
+try{const r=await fetch('/api/geo',{cache:'no-store'});if(r.ok)region=String((await r.json()).region||'').toUpperCase()}catch{}
+const isPara=region==='PA';
+const popup=isPara?marajo:weekend;
+const state=dayState();
+const active=isPara||state.weekend;
+if(!active)return;
+const dismissKey=(isPara?'marajo-dry-dismissed-v1:':'bufalo-weekend-dismissed-v3:')+state.key;
+let dismissed=false;try{dismissed=sessionStorage.getItem(dismissKey)==='1'}catch{}
+if(dismissed)return;
 let previousOverflow;
-const open=()=>{if(!weekendState().active||document.querySelector('dialog[open]'))return;previousOverflow=document.body.style.overflow;popup.showModal();document.body.style.overflow='hidden'};
+const open=()=>{if(document.querySelector('dialog[open]'))return;previousOverflow=document.body.style.overflow;popup.showModal();document.body.style.overflow='hidden'};
 popup.querySelectorAll('[data-bw-close]').forEach(button=>button.addEventListener('click',()=>popup.close()));
 popup.addEventListener('click',event=>{const r=popup.getBoundingClientRect();if(event.target===popup&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))popup.close()});
-popup.addEventListener('close',()=>{document.body.style.overflow=previousOverflow||'';try{sessionStorage.setItem(weekendState().key,'1')}catch{}});
-
-let wasActive=false;
-const sync=()=>{const state=weekendState();if(!state.active&&popup.open)popup.close();if(state.active&&!wasActive){let dismissed=false;try{dismissed=sessionStorage.getItem(state.key)==='1'}catch{}const local=['localhost','127.0.0.1'].includes(location.hostname);if(!dismissed||(local&&new URLSearchParams(location.search).get('popup')==='weekend'))setTimeout(open,600)}wasActive=state.active};
-sync();setInterval(sync,1000);document.addEventListener('visibilitychange',sync);
+popup.addEventListener('close',()=>{document.body.style.overflow=previousOverflow||'';try{sessionStorage.setItem(dismissKey,'1')}catch{}});
+setTimeout(open,600);
 })();
 </script>
 </body></html>
