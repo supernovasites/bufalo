@@ -797,7 +797,7 @@ try{const r=await fetch('/api/geo',{cache:'no-store'});if(r.ok)region=String((aw
 const isPara=region==='PA';
 const popup=isPara?marajo:weekend;
 const state=dayState();
-const active=isPara||state.weekend;
+const active=isPara?!state.weekend:state.weekend;
 if(!active)return;
 const dismissKey=(isPara?'marajo-dry-dismissed-v1:':'bufalo-weekend-dismissed-v3:')+state.key;
 let dismissed=false;try{dismissed=sessionStorage.getItem(dismissKey)==='1'}catch{}
