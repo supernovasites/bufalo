@@ -36,7 +36,8 @@ Medição compartilhada em 12 documentos públicos: homepage, catálogo, live e 
 
 ## Validação e limites
 
-- 34 verificações automatizadas de hosts, administração, atribuição, parâmetros, cobertura, duplicação de inicialização, impressões, cliques e popups.
+- 37 verificações automatizadas de hosts, administração, atribuição, parâmetros, cobertura, duplicação de inicialização, impressões, cliques e popups.
+- Versão gerada no servidor da reserva de Açaí Bowl sincronizada com HTML e formulário; paridade coberta pelos testes.
 - Sintaxe verificada em 36 blocos JavaScript inline, no novo script compartilhado e no formulário alterado; diff revisado.
 - Testes de comportamento usam DOM simulado. O navegador Chromium não pôde ser instalado neste ambiente, portanto não houve teste visual nem inspeção das requisições reais ao coletor GA4.
 - Configurações da propriedade GA4 não foram alteradas: marcar `generate_lead` como evento principal e cadastrar dimensões personalizadas de escopo evento (`page_type`, `link_position`, `form_id`, `lead_type`, `category_id`, `coupon`) é trabalho no painel do Analytics. `content_group` e dimensões padrão de e-commerce já têm significado próprio no GA4.

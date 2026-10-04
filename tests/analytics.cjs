@@ -75,4 +75,9 @@ for (const path of publicPages) {
   assert.doesNotMatch(html, /id="bufalo-analytics"/); checks++;
 }
 for (const path of ['live/admin.html','manadaone/admin/index.html','blog/admin/index.html','painel/index.html','assets/manadacash-widget.html']) assert.doesNotMatch(fs.readFileSync(path, 'utf8'), /analytics\.js/);
+for (const [key, file] of [['html','index.html'],['css','styles.css'],['js','form.js']]) {
+  const line = fs.readFileSync('reserva/acaibowl/content.js','utf8').split('\n').find(line => line.startsWith('export const ' + key + '='));
+  const generated = JSON.parse(line.slice(line.indexOf('=') + 1, -1));
+  assert.equal(generated, fs.readFileSync('reserva/acaibowl/' + file,'utf8')); checks++;
+}
 console.log(`${checks} checks passed: hosts, attribution, privacy, coverage, initialization, impressions, clicks and promotions.`);
