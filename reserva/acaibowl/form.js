@@ -12,8 +12,9 @@ form.addEventListener('submit',async event=>{
     const response=await fetch(form.action,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome:form.nome.value.trim(),telefone:digits,email:form.email.value.trim(),cidade:form.cidade.value.trim(),website:form.website.value,consent:form.consent.checked}),signal:AbortSignal.timeout(25000)});
     const result=await response.json();
     if(!response.ok||result.ok!==true)throw new Error('Falha no cadastro');
+    window.bufaloAnalytics?.track('generate_lead',{form_id:'reservation-form',lead_type:'reserva_acai'});
     form.hidden=true;const success=document.getElementById('success');success.hidden=false;success.focus();
-  }catch{error.textContent='Não foi possível confirmar sua reserva agora. Tente novamente em instantes. Seus dados continuam preenchidos.';error.hidden=false;}
+  }catch{window.bufaloAnalytics?.track('form_error',{form_id:'reservation-form',error_type:'confirmation_failed'});error.textContent='Não foi possível confirmar sua reserva agora. Tente novamente em instantes. Seus dados continuam preenchidos.';error.hidden=false;}
   finally{button.disabled=false;button.textContent='Reserve agora';}
 });
 

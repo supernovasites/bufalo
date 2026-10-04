@@ -37,51 +37,7 @@
 .color-options{display:flex;flex-wrap:wrap;gap:2px;margin:0 -6px 8px;min-height:36px}.color-swatch{width:36px;height:36px;display:grid;place-items:center;border:0;background:transparent;border-radius:50%;padding:6px}.color-swatch span{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--c1) 50%,var(--c2) 50%);box-shadow:inset 0 0 0 1px #0002;transition:transform .16s}.color-swatch:hover span{transform:scale(1.12)}.color-swatch[aria-pressed="true"] span{outline:1.5px solid #142e32;outline-offset:3px}.color-swatch:focus-visible{outline:2px solid #eb6f32;outline-offset:0}.selected-color{font-size:12px;color:#596e6d;margin:0 0 14px;min-height:16px}.selected-color strong{color:#142e32;font-weight:600}.card h3{margin-bottom:10px}.card-body{display:flex;flex-direction:column}.photo img{transition:opacity .15s,transform .3s}.photo.is-loading img{opacity:.45}.color-error{font-size:12px;color:#a13e1f}.color-error:empty{display:none}@media(prefers-reduced-motion:reduce){.color-swatch span,.photo img{transition:none}}
 .color-swatch.is-photo span{background-image:var(--swatch-image);background-size:cover;background-position:center}
 </style>
-<script id="bufalo-analytics">
-(() => {
-  // Track only production hosts; previews and local tests stay out of GA4.
-  if (!['bufalo.pages.dev', 'bufalogrowler.com.br', 'www.bufalogrowler.com.br'].includes(location.hostname)) return;
-  const measurementId = 'G-FPEC1ZGMJQ';
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-  const gtag = window.gtag;
-  gtag('js', new Date());
-  gtag('config', measurementId, {
-    page_location: location.origin + location.pathname,
-    allow_google_signals: false,
-    allow_ad_personalization_signals: false
-  });
-  const tag = document.createElement('script');
-  tag.async = true;
-  tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
-  document.head.appendChild(tag);
 
-  document.addEventListener('click', (event) => {
-    const link = event.target.closest && event.target.closest('a[href]');
-    if (!link) return;
-    const url = new URL(link.href, location.href);
-    let name;
-    if (url.hostname === 'wa.me' || url.hostname === 'api.whatsapp.com') {
-      name = 'bufalo_whatsapp_click';
-    } else if (url.hostname === 'loja.bufalogrowler.com.br') {
-      name = 'bufalo_store_click';
-    } else if (url.hostname === 'www.instagram.com' || url.hostname === 'instagram.com') {
-      name = 'bufalo_instagram_click';
-    } else {
-      return;
-    }
-    const section = link.closest('section,header,footer,nav,dialog');
-    gtag('event', name, {
-      send_to: measurementId,
-      content_group: 'bufalo_landing',
-      link_domain: url.hostname,
-      // Do not send WhatsApp numbers, message text, search terms or URL queries.
-      link_path: name === 'bufalo_store_click' ? url.pathname : '/',
-      link_position: section ? (section.id || section.tagName.toLowerCase()) : 'page'
-    });
-  });
-})();
-</script>
 <style id="approved-category-styles">
 .shop-categories{--cat-ink:#142e32;max-width:1320px;margin:auto;padding:64px 40px 76px;background:#fff;color:var(--cat-ink);font-family:Arial,Helvetica,sans-serif}
 .shop-categories *{box-sizing:border-box}.shop-categories a{text-decoration:none;color:inherit}.shop-categories a:focus-visible{outline:3px solid #eb6f32;outline-offset:5px}
@@ -353,7 +309,7 @@ html{scroll-padding-top:100px}@media(max-width:760px){html{scroll-padding-top:76
 .combo-coupon button{flex:none;background:#142e32;border:0;border-radius:3px;color:white;font-size:12px;font-weight:700;padding:10px 11px;min-height:40px}
 .combo-coupon button:hover{background:#315354}
 .combo-note{font-size:11px;color:#526265;margin:-4px 0 12px;line-height:1.4}
-</style></head>
+</style><script defer src="/assets/analytics.js?v=20261004"></script></head>
 <body>
 <svg style="display:none" aria-hidden="true"><symbol id="search-icon" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></symbol><symbol id="bag-icon" viewBox="0 0 24 24"><path d="M5 7h14l1 14H4L5 7Z M8 8V6a4 4 0 0 1 8 0v2"/></symbol><symbol id="menu-icon" viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></symbol><symbol id="arrow-icon" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol></svg>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -451,6 +407,7 @@ rail.addEventListener('click',async event=>{
   const field=document.createElement('textarea');field.value=code;field.style.position='fixed';field.style.opacity='0';document.body.append(field);field.select();
   try{copied=document.execCommand('copy')}finally{field.remove()}
  }
+ if(copied)window.bufaloAnalytics?.track('coupon_copy',{coupon:code});
  clearTimeout(button.copyTimer);
  button.textContent=copied?'Copiado':'Não foi possível copiar';
  button.setAttribute('aria-label',copied?'Cupom '+code+' copiado':'Não foi possível copiar o cupom '+code);

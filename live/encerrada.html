@@ -6,51 +6,7 @@
   <title>Nosso próximo encontro · Búfalo Growler</title>
   <meta name="description" content="Obrigado por fazer parte da manada. Nosso próximo encontro é quarta-feira, às 15h.">
   <link rel="stylesheet" href="/live/admin.css?v=20260929-live-admin-v2">
-<script id="bufalo-analytics">
-(() => {
-  // Track only production hosts; previews and local tests stay out of GA4.
-  if (!['bufalo.pages.dev', 'bufalogrowler.com.br', 'www.bufalogrowler.com.br'].includes(location.hostname)) return;
-  const measurementId = 'G-FPEC1ZGMJQ';
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-  const gtag = window.gtag;
-  gtag('js', new Date());
-  gtag('config', measurementId, {
-    page_location: location.origin + location.pathname,
-    allow_google_signals: false,
-    allow_ad_personalization_signals: false
-  });
-  const tag = document.createElement('script');
-  tag.async = true;
-  tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
-  document.head.appendChild(tag);
-
-  document.addEventListener('click', (event) => {
-    const link = event.target.closest && event.target.closest('a[href]');
-    if (!link) return;
-    const url = new URL(link.href, location.href);
-    let name;
-    if (url.hostname === 'wa.me' || url.hostname === 'api.whatsapp.com') {
-      name = 'bufalo_whatsapp_click';
-    } else if (url.hostname === 'loja.bufalogrowler.com.br') {
-      name = 'bufalo_store_click';
-    } else if (url.hostname === 'www.instagram.com' || url.hostname === 'instagram.com') {
-      name = 'bufalo_instagram_click';
-    } else {
-      return;
-    }
-    const section = link.closest('section,header,footer,nav,dialog');
-    gtag('event', name, {
-      send_to: measurementId,
-      content_group: 'bufalo_landing',
-      link_domain: url.hostname,
-      // Do not send WhatsApp numbers, message text, search terms or URL queries.
-      link_path: name === 'bufalo_store_click' ? url.pathname : '/',
-      link_position: section ? (section.id || section.tagName.toLowerCase()) : 'page'
-    });
-  });
-})();
-</script></head>
+<script defer src="/assets/analytics.js?v=20261004"></script></head>
 <body class="closed-page">
   <header class="top closed-top">
     <a class="wordmark" href="https://bufalogrowler.com.br/">BÚFALO<small>GROWLER</small></a>
