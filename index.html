@@ -795,11 +795,11 @@ const dayState=(date=new Date())=>{const p=Object.fromEntries(calendar.formatToP
 let region='';
 try{const r=await fetch('/api/geo',{cache:'no-store'});if(r.ok)region=String((await r.json()).region||'').toUpperCase()}catch{}
 const isPara=region==='PA';
-const popup=isPara?marajo:weekend;
 const state=dayState();
-const active=isPara?!state.weekend:state.weekend;
+const popup=state.weekend?weekend:marajo;
+const active=state.weekend||isPara;
 if(!active)return;
-const dismissKey=(isPara?'marajo-dry-dismissed-v1:':'bufalo-weekend-dismissed-v3:')+state.key;
+const dismissKey=(popup===marajo?'marajo-dry-dismissed-v1:':'bufalo-weekend-dismissed-v3:')+state.key;
 let dismissed=false;try{dismissed=sessionStorage.getItem(dismissKey)==='1'}catch{}
 if(dismissed)return;
 let previousOverflow;
