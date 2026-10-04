@@ -88,6 +88,8 @@
   }
   document.addEventListener('click', event => {
     const target = event.target instanceof Element ? event.target : event.target.parentElement;
+    const cash = target?.closest('[data-open-mc], .dock-cash, .desktop-cash-link, .mc-launcher');
+    if (cash) track('bufalo_manadacash_click', {link_position: position(cash)});
     const link = target?.closest('a[href]');
     if (link) {
       let url;
