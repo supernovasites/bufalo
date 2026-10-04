@@ -81,3 +81,27 @@ for (const [key, file] of [['html','index.html'],['css','styles.css'],['js','for
   assert.equal(generated, fs.readFileSync('reserva/acaibowl/' + file,'utf8')); checks++;
 }
 console.log(`${checks} checks passed: hosts, attribution, privacy, coverage, initialization, impressions, clicks and promotions.`);
+
+// ManadaCash: mobile, desktop, launcher, and clicks on nested icons.
+for (const label of ['mobile-dock', 'desktop-floating-menu', 'page']) {
+  const c = setup();
+  const button = {closest: () => label === 'page' ? null : {id: '', tagName: 'NAV'}};
+  const icon = new c.env.Element();
+  icon.closest = selector => selector.startsWith('[data-open-mc]') ? button : null;
+  c.listeners.click({target: icon});
+  assert.equal(c.events().length, 1);
+  assert.equal(c.events()[0][1], 'bufalo_manadacash_click');
+  assert.equal(c.events()[0][2].send_to, 'G-FPEC1ZGMJQ');
+}
+// Each WhatsApp click emits once even when the SVG receives the click.
+for (const host of ['wa.me', 'api.whatsapp.com', 'web.whatsapp.com']) {
+  const c = setup();
+  const link = {href: 'https://' + host + '/5591984973370?text=private', closest: () => null};
+  const icon = new c.env.Element();
+  icon.closest = selector => selector === 'a[href]' ? link : null;
+  c.listeners.click({target: icon});
+  assert.equal(c.events().length, 1);
+  assert.equal(c.events()[0][1], 'bufalo_whatsapp_click');
+  assert.doesNotMatch(JSON.stringify(c.events()), /private|5591984973370/);
+}
+console.log('ManadaCash and WhatsApp click checks passed.');
