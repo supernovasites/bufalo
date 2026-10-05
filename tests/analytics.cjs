@@ -62,23 +62,26 @@ p.listeners.click({target}); assert.equal(JSON.stringify(p.events().slice(-2).ma
 assert.equal(p.events().at(-1)[2].items.length, 1); checks++;
 fixture.link.href = 'https://wa.me/5591984973370?text=nome'; fixture.link.closest = () => null;
 p.listeners.click({target}); assert.equal(p.events().at(-1)[1], 'bufalo_whatsapp_click'); assert.equal(p.events().at(-1)[2].link_path, '/'); checks++;
-const dialog = {id: 'marajo-dry-popup', open: true, classList: {contains: () => false}, closest: () => dialog};
+const dialog = {id: 'marajo-dry-popup', dataset: {promotionId: 'popup_cirio'}, open: true, classList: {contains: () => false}, closest: () => dialog};
 const d = setup('https://bufalogrowler.com.br/', [], {'marajo-dry-popup': dialog});
 assert.equal(d.events()[0][1], 'view_promotion');
+assert.equal(d.events()[0][2].promotion_id, 'popup_cirio');
 d.mutations[0]([{type: 'attributes', attributeName: 'open'}]); assert.equal(d.events().length, 1);
+const promoTarget = new d.env.Element(); promoTarget.closest = selector => selector === 'a[href]' ? {href: 'https://loja.bufalogrowler.com.br/mochilas', closest: s => s.startsWith('dialog') ? dialog : null} : null;
+d.listeners.click({target: promoTarget}); assert.equal(d.events().at(-1)[1], 'select_promotion'); assert.equal(d.events().at(-1)[2].promotion_id, 'popup_cirio');
 dialog.open = false; d.mutations[0]([{type: 'attributes', attributeName: 'open'}]); assert.equal(d.events().at(-1)[1], 'promotion_close'); checks++;
 // Public coverage and admin isolation, including deployment copies.
 const publicPages = ['index.html','404.html','catalogo/index.html','live/index.html','live/encerrada.html','manadaone/index.html','manadaone/encerrada.html','manadacash/index.html','campanhas/cirio/index.html','blog/index.html','blog/artigo.html','reserva/acaibowl/index.html'];
 for (const path of publicPages) {
   const html = fs.readFileSync(path, 'utf8');
-  assert.equal((html.match(/src="\/assets\/analytics\.js\?v=20261004"/g) || []).length, 1, path);
+  assert.equal((html.match(/src="\/assets\/analytics\.js\?v=20261004(?:-cirio)?"/g) || []).length, 1, path);
   assert.doesNotMatch(html, /id="bufalo-analytics"/); checks++;
 }
 for (const path of ['live/admin.html','manadaone/admin/index.html','blog/admin/index.html','painel/index.html','assets/manadacash-widget.html']) assert.doesNotMatch(fs.readFileSync(path, 'utf8'), /analytics\.js/);
 for (const [key, file] of [['html','index.html'],['css','styles.css'],['js','form.js']]) {
   const line = fs.readFileSync('reserva/acaibowl/content.js','utf8').split('\n').find(line => line.startsWith('export const ' + key + '='));
-  const generated = JSON.parse(line.slice(line.indexOf('=') + 1, -1));
-  assert.equal(generated, fs.readFileSync('reserva/acaibowl/' + file,'utf8')); checks++;
+  const generated = JSON.parse(line.trimEnd().slice(line.indexOf('=') + 1, -1));
+  assert.equal(generated.replace(/\r\n/g, '\n'), fs.readFileSync('reserva/acaibowl/' + file,'utf8').replace(/\r\n/g, '\n')); checks++;
 }
 console.log(`${checks} checks passed: hosts, attribution, privacy, coverage, initialization, impressions, clicks and promotions.`);
 

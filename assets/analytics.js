@@ -77,14 +77,14 @@
   }
   const promotions = {
     'bufalo-weekend': 'Chopeira Búfalo 2L',
-    'marajo-dry-popup': 'Mochila Marajó Dry',
+    'marajo-dry-popup': 'É Círio outra vez',
     'mc-popup': 'ManadaCash',
     'preview-modal': 'ManadaCash'
   };
   function promoFor(element) {
     const dialog = element.closest('dialog, [role="dialog"]');
     if (!dialog || !promotions[dialog.id]) return null;
-    return {promotion_id: dialog.id, promotion_name: promotions[dialog.id], creative_slot: ['bufalo-weekend', 'marajo-dry-popup'].includes(dialog.id) ? 'popup_abertura' : 'popup_fidelidade'};
+    return {promotion_id: dialog.dataset?.promotionId || dialog.id, promotion_name: promotions[dialog.id], creative_slot: ['bufalo-weekend', 'marajo-dry-popup'].includes(dialog.id) ? 'popup_abertura' : 'popup_fidelidade'};
   }
   document.addEventListener('click', event => {
     const target = event.target instanceof Element ? event.target : event.target.parentElement;
@@ -150,7 +150,7 @@
         if (opened && !openPromos.has(dialog)) {
           openPromos.add(dialog); track('view_promotion', promoFor(dialog));
         } else if (!opened && openPromos.has(dialog)) {
-          openPromos.delete(dialog); track('promotion_close', {promotion_id: id});
+          openPromos.delete(dialog); track('promotion_close', {promotion_id: dialog.dataset?.promotionId || id});
         }
       }
     }
