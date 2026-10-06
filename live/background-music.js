@@ -10,7 +10,7 @@
   } catch { /* Usa seleção aleatória quando o armazenamento não está disponível. */ }
   audio.src = tracks[index];
   let starting = false;
-  audio.volume = 0.18;
+  audio.volume = 0.40;
   const gestures = ['pointerdown', 'keydown', 'touchend'];
   const clearGestures = () => gestures.forEach(event => document.removeEventListener(event, start));
   async function start() {
