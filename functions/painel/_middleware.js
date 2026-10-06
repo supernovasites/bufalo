@@ -1,3 +1,4 @@
+import { campaignSchema, campaignEnabled } from '../_lib/campaigns.js';
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const encoder = new TextEncoder();
 const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2,'0')).join('');
@@ -34,6 +35,22 @@ async function handler(context) {
       const token = tokenFrom(request);
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       return json({authenticated:active});
+    }
+    if (path === '/painel/api/campaigns') {
+      const token = tokenFrom(request);
+      const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
+      if (!active) return json({error:'Entre no painel para gerenciar campanhas.'},401);
+      if (!['GET','POST'].includes(request.method)) return json({error:'Método não permitido.'},405,{Allow:'GET, POST'});
+      if (request.method === 'POST') {
+        if (request.headers.get('Origin') !== url.origin) return json({error:'Origem não permitida.'},403);
+        const payload = await body(request);
+        if (!payload || payload.slug !== 'cirio' || typeof payload.enabled !== 'boolean') return json({error:'Informe uma campanha e um status válidos.'},400);
+        await db.prepare(campaignSchema).run();
+        await db.prepare('INSERT INTO campaign_settings (slug, enabled) VALUES (?, ?) ON CONFLICT(slug) DO UPDATE SET enabled=excluded.enabled').bind(payload.slug,payload.enabled?1:0).run();
+      } else {
+        await db.prepare(campaignSchema).run();
+      }
+      return json({campaigns:[{slug:'cirio',name:'Círio',path:'/campanhas/cirio/',enabled:await campaignEnabled(db,'cirio')}]});
     }
     return json({error:'Página não encontrada.'},404);
   }
