@@ -49,7 +49,7 @@
       <div class="home-footer-inner">
         <div class="home-footer-signature">
           <a class="home-footer-brand" href="https://www.bufalogrowler.com.br/" aria-label="Búfalo Growler — voltar ao início"><img src="https://cdn.awsli.com.br/400x300/1237/1237589/logo/21547a1296.png" alt="Búfalo Growler" width="120" height="90" loading="lazy"></a>
-          <div><p class="home-footer-kicker">COM VOCÊ, LÁ FORA.</p><h2>Feito pra<br>ser livre<span>.</span></h2><p>Da primeira dose de café ao último brinde.<br>A Búfalo vai junto.</p></div>
+          <div><p class="home-footer-kicker">COM VOCÊ, LÁ FORA.</p><h2 style="white-space:nowrap;font-size:clamp(22px,3vw,38px)">Feito pra ser livre<span>.</span></h2><p>Da primeira dose de café ao último brinde.<br>A Búfalo vai junto.</p></div>
           <a class="home-footer-instagram" href="https://www.instagram.com/bufalogrowler" target="_blank" rel="noopener">Encontre a manada no Instagram <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
         </div>
         <div class="home-footer-links">
