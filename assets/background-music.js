@@ -1,16 +1,16 @@
 (() => {
-  const audio = document.getElementById('live-background-music');
+  const audio = document.getElementById('homepage-background-music');
   if (!audio) return;
-  const tracks = ['/assets/music/bama-country.mp3', '/assets/music/guts-and-bourbon.mp3'];
+  const tracks = ['/assets/music/cattails.mp3', '/assets/music/porch-blues.mp3', '/assets/music/niles-blues.mp3'];
   let index = Math.floor(Math.random() * tracks.length);
   try {
-    const previous = localStorage.getItem('bufalo-live-last-start-track');
-    if (previous !== null && /^[01]$/.test(previous)) index = (Number(previous) + 1) % tracks.length;
-    localStorage.setItem('bufalo-live-last-start-track', String(index));
+    const previous = localStorage.getItem('bufalo-homepage-last-start-track');
+    if (previous !== null && /^[0-2]$/.test(previous)) index = (Number(previous) + 1) % tracks.length;
+    localStorage.setItem('bufalo-homepage-last-start-track', String(index));
   } catch { /* Usa seleção aleatória quando o armazenamento não está disponível. */ }
   audio.src = tracks[index];
   let starting = false;
-  audio.volume = 0.40;
+  audio.volume = 0.10;
   const gestures = ['pointerdown', 'keydown', 'touchend'];
   const clearGestures = () => gestures.forEach(event => document.removeEventListener(event, start));
   async function start() {
