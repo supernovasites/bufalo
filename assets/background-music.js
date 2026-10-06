@@ -10,7 +10,7 @@
   } catch { /* Usa seleção aleatória quando o armazenamento não está disponível. */ }
   audio.src = tracks[index];
   let starting = false;
-  // 30% de volume percebido: a escala de amplitude do HTMLAudio não é linear para a audição.\n  // 0.09 de amplitude equivale aproximadamente a -20.9 dB, evitando que masters altos soem próximos do máximo.\n  const playbackVolume = 0.09;\n  const enforceVolume = () => { if (audio.volume !== playbackVolume) audio.volume = playbackVolume; };\n  enforceVolume();\n  audio.addEventListener('volumechange', enforceVolume);
+  // 10% do volume máximo: a escala de amplitude do HTMLAudio não é linear para a audição.\n  // Volume fixado em 10% da escala máxima do elemento de áudio.\n  const playbackVolume = 0.10;\n  const enforceVolume = () => { if (audio.volume !== playbackVolume) audio.volume = playbackVolume; };\n  enforceVolume();\n  audio.addEventListener('volumechange', enforceVolume);
   const gestures = ['pointerdown', 'keydown', 'touchend'];
   const clearGestures = () => gestures.forEach(event => document.removeEventListener(event, start));
   async function start() {
