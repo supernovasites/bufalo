@@ -744,20 +744,26 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 <div class="bw-grid"><div class="bw-art-wrap"><img class="bw-art" src="assets/campaigns/popup-cirio-20261006.png" alt="É Círio outra vez. Bolsas Búfalo para garrafas com ofertas de 20% e 30% OFF." width="1254" height="1254"></div>
 <div class="bw-copy"><p class="bw-offer-copy">Sua garrafa merece uma bolsa Búfalo!</p><p class="bw-offer-copy"><strong>Aproveite as ofertas até 11/10/2026.</strong></p><a class="bw-cta" href="https://www.bufalogrowler.com.br/campanhas/cirio/">Ver coleção</a></div></div>
 </dialog>
+<style>#trilha-popup .bw-art-wrap{aspect-ratio:949/1091}</style>
+<dialog id="trilha-popup" class="bw-popup" aria-label="Para sua trilha — Bolsas Búfalo" data-promotion-id="popup_trilha">
+<button class="bw-close" type="button" data-bw-close autofocus>Fechar oferta <span aria-hidden="true">×</span></button>
+<div class="bw-grid"><div class="bw-art-wrap"><img class="bw-art" src="assets/campaigns/popup-trilha-20261006.png" alt="Para sua trilha. Bolsas Búfalo na Chapada dos Veadeiros com ofertas de 20% e 30% OFF." width="949" height="1091"></div>
+<div class="bw-copy"><p class="bw-offer-copy">Sua trilha merece uma bolsa Búfalo!</p><p class="bw-offer-copy"><strong>Aproveite as ofertas até 11/10/2026.</strong></p><a class="bw-cta" href="https://www.bufalogrowler.com.br/campanhas/cirio/">Ver coleção</a></div></div>
+</dialog>
 <script id="bufalo-weekend-script">
 (async()=>{
-const weekend=document.getElementById('bufalo-weekend'),marajo=document.getElementById('marajo-dry-popup');
+const weekend=document.getElementById('bufalo-weekend'),marajo=document.getElementById('marajo-dry-popup'),trilha=document.getElementById('trilha-popup');
 const calendar=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Fortaleza',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'});
 const dayState=(date=new Date())=>{const p=Object.fromEntries(calendar.formatToParts(date).map(x=>[x.type,x.value]));return {weekend:p.weekday==='Sat'||p.weekday==='Sun',key:p.year+'-'+p.month+'-'+p.day}};
 let region='';
 try{const r=await fetch('/api/geo',{cache:'no-store'});if(r.ok)region=String((await r.json()).region||'').toUpperCase()}catch{}
 const isPara=region==='PA';
 const state=dayState();
-const cirioActive=isPara&&state.key<='2026-10-11';
-const popup=cirioActive?marajo:weekend;
-const active=cirioActive||state.weekend;
+const campaignActive=state.key<='2026-10-11';
+const popup=campaignActive?(isPara?marajo:trilha):weekend;
+const active=campaignActive||state.weekend;
 if(!active)return;
-const dismissKey=(popup===marajo?'marajo-dry-dismissed-v1:':'bufalo-weekend-dismissed-v3:')+state.key;
+const dismissKey=(popup===marajo?'marajo-dry-dismissed-v1:':popup===trilha?'trilha-dismissed-v1:':'bufalo-weekend-dismissed-v3:')+state.key;
 let dismissed=false;try{dismissed=sessionStorage.getItem(dismissKey)==='1'}catch{}
 if(dismissed)return;
 let previousOverflow;
