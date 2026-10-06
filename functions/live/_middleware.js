@@ -68,7 +68,7 @@ async function handle(context) {
       const coupon=typeof body.coupon==='string'?body.coupon.trim().toUpperCase():'';
       if(!/^[A-Z0-9_-]{3,24}$/.test(coupon))return json({error:'Use de 3 a 24 letras, números, hífen ou sublinhado no cupom.'},400);
       if(!validDate(body.live_date))return json({error:'Informe uma data válida no formato DD/MM.'},400);
-      await db.prepare('UPDATE live_content SET coupon=?,live_date=? WHERE id=1').bind(coupon,body.live_date).run();
+      await db.prepare('INSERT INTO live_content (id,coupon,live_date) VALUES (1,?,?) ON CONFLICT(id) DO UPDATE SET coupon=excluded.coupon,live_date=excluded.live_date').bind(coupon,body.live_date).run();
       return json(await state(db));
     }
     if (path === '/live/api/logout' && request.method === 'POST') return json({ok:true});
@@ -99,7 +99,7 @@ async function handle(context) {
   if (['/live','/live/index','/live/index.html'].includes(path) && result.status===200 && headers.get('Content-Type')?.includes('text/html')) {
     const config=await content(env.LIVE_DB);
     let html=await result.text();
-    html=html.replaceAll('LIVEBG1609',config.coupon).replaceAll('16/09',config.live_date).replaceAll('16.09',config.live_date.replace('/','.'));
+    html=html.replaceAll('__LIVE_COUPON__',config.coupon).replaceAll('__LIVE_DATE__',config.live_date).replaceAll('__LIVE_DATE_DOTTED__',config.live_date.replace('/','.'));
     if(config.photo_version)html=html.replace(/<img id="momento-image"[^>]*>/,tag=>tag.replace(/src="[^"]*"/,'src="/live/api/photo?v='+encodeURIComponent(config.photo_version)+'"').replace(/alt="[^"]*"/,'alt="Foto da manada no Momento BG"'));
     headers.delete('Content-Length');headers.delete('ETag');
     return new Response(request.method==='HEAD'?null:html,{status:200,headers});
