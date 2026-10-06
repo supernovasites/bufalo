@@ -24,3 +24,11 @@
 /acessorios/ https://loja.bufalogrowler.com.br/acessorios 301
 /garrafa-jafarabadi-1litro https://loja.bufalogrowler.com.br/garrafa-jafarabadi-1l- 301
 /growler-mediterraneo-19l-amarelo https://loja.bufalogrowler.com.br/growler-mediterraneo-2l 301
+/assets/pages/copos /produtos/copos/ 301
+/assets/pages/copos/ /produtos/copos/ 301
+/assets/pages/copos/* /produtos/copos/:splat 301
+/produtos/copos/index /produtos/copos/ 301
+/assets/pages/garrafas /produtos/garrafas/ 301
+/assets/pages/garrafas/ /produtos/garrafas/ 301
+/assets/pages/garrafas/* /produtos/garrafas/:splat 301
+/produtos/garrafas/index /produtos/garrafas/ 301
