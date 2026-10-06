@@ -49,6 +49,9 @@ function render(data) {
   const liveDate = $('live-date');
   if (coupon && document.activeElement !== coupon) coupon.value = data.coupon || 'LIVEBG1609';
   if (liveDate && document.activeElement !== liveDate) liveDate.value = data.live_date || '16/09';
+  for (const [id,key] of [['whatsapp-number','whatsapp_number'],['whatsapp-message','whatsapp_message']]) {
+    const input=$(id);if(input && document.activeElement!==input)input.value=data[key] || '';
+  }
 
   if (data.photo_version && !selectedPhoto) {
     const preview = $('photo-preview');
@@ -120,6 +123,16 @@ $('content-form')?.addEventListener('submit', async event => {
   } finally {
     if (button) button.disabled = false;
   }
+});
+
+$('whatsapp-form')?.addEventListener('submit', async event => {
+  event.preventDefault();const button=event.submitter;if(button)button.disabled=true;
+  text('whatsapp-feedback','Salvando…');
+  try {
+    const data=await api('contact',{whatsapp_number:$('whatsapp-number').value,whatsapp_message:$('whatsapp-message').value});
+    render(data);text('whatsapp-feedback','Número e mensagem atualizados no botão Comprar no WhatsApp da live.');
+  } catch(error) {text('whatsapp-feedback',error.message);}
+  finally {if(button)button.disabled=false;}
 });
 
 $('live-photo')?.addEventListener('change', async event => {

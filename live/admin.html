@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Administração da Live · Búfalo Growler</title>
   <link rel="stylesheet" href="admin.css">
-  <script src="admin.js" defer></script>
+  <script src="admin.js?v=20261006-whatsapp" defer></script>
   <script src="puzzle-admin.js" defer></script>
 </head>
 <body>
@@ -32,6 +32,20 @@
           <p>O cupom aparece somente enquanto a live estiver ativa. A página de agradecimento não exibe cupom.</p>
           <button class="btn orange" type="submit">Salvar cupom e data</button>
           <p id="content-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="card">
+        <div class="eyebrow">COMPRAR NO WHATSAPP</div>
+        <h2>Contato da live</h2>
+        <form id="whatsapp-form" class="content-form">
+          <label for="whatsapp-number">Número do WhatsApp</label>
+          <input id="whatsapp-number" type="tel" inputmode="numeric" autocomplete="tel" maxlength="15" pattern="[1-9][0-9]{9,14}" placeholder="Ex.: 5591991855455" aria-describedby="whatsapp-help" required>
+          <p id="whatsapp-help">Digite código do país + DDD + número, sem espaços ou símbolos. Exemplo: 55 (Brasil) + 91 (DDD) + 991855455.</p>
+          <label for="whatsapp-message">Mensagem ao abrir o WhatsApp</label>
+          <textarea id="whatsapp-message" rows="4" maxlength="1000" placeholder="Ex.: Olá! Quero comprar na live com desconto." style="width:100%;padding:14px;font:inherit" required></textarea>
+          <button class="btn orange" type="submit">Salvar WhatsApp da live</button>
+          <p id="whatsapp-feedback" role="status" aria-live="polite"></p>
         </form>
       </article>
 

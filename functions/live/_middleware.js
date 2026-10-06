@@ -64,6 +64,15 @@ async function handle(context) {
     }
     if (path === '/live/api/login' && request.method === 'POST') return json({error:'Acesse pelo Painel administrativo.'},401);
     if (!await authenticated(request,db)) return json({error:'Entre no painel para continuar.'},401);
+    if(path==='/live/api/contact' && request.method==='POST') {
+      const number=typeof body.whatsapp_number==='string'?body.whatsapp_number.trim():'';
+      const message=typeof body.whatsapp_message==='string'?body.whatsapp_message.trim():'';
+      if(!/^[1-9][0-9]{9,14}$/.test(number))return json({error:'Digite somente números, com código do país e DDD. Ex.: 5591991855455.'},400);
+      if(!message || message.length>1000)return json({error:'Digite uma mensagem de até 1.000 caracteres.'},400);
+      await db.prepare('CREATE TABLE IF NOT EXISTS live_contact (id INTEGER PRIMARY KEY CHECK(id=1), whatsapp_number TEXT NOT NULL, whatsapp_message TEXT NOT NULL)').run();
+      await db.prepare('INSERT INTO live_contact (id,whatsapp_number,whatsapp_message) VALUES (1,?,?) ON CONFLICT(id) DO UPDATE SET whatsapp_number=excluded.whatsapp_number,whatsapp_message=excluded.whatsapp_message').bind(number,message).run();
+      return json(await state(db));
+    }
     if(path==='/live/api/content' && request.method==='POST') {
       const coupon=typeof body.coupon==='string'?body.coupon.trim().toUpperCase():'';
       if(!/^[A-Z0-9_-]{3,24}$/.test(coupon))return json({error:'Use de 3 a 24 letras, números, hífen ou sublinhado no cupom.'},400);
@@ -100,6 +109,10 @@ async function handle(context) {
     const config=await content(env.LIVE_DB);
     let html=await result.text();
     html=html.replaceAll('__LIVE_COUPON__',config.coupon).replaceAll('__LIVE_DATE__',config.live_date).replaceAll('__LIVE_DATE_DOTTED__',config.live_date.replace('/','.'));
+    const whatsapp=new URL('https://wa.me/'+config.whatsapp_number);
+    whatsapp.searchParams.set('text',config.whatsapp_message);
+    whatsapp.searchParams.set('utm_source','pagina_live');whatsapp.searchParams.set('utm_medium','referral');whatsapp.searchParams.set('utm_campaign','LiveshopBG');whatsapp.searchParams.set('utm_content','comprar_whatsapp');
+    html=html.replace(/(<a\b[^>]*class="button whatsapp"[^>]*\bhref=")[^"]*(")/,(_,before,after)=>before+whatsapp.href.replaceAll('&','&amp;')+after);
     if(config.photo_version)html=html.replace(/<img id="momento-image"[^>]*>/,tag=>tag.replace(/src="[^"]*"/,'src="/live/api/photo?v='+encodeURIComponent(config.photo_version)+'"').replace(/alt="[^"]*"/,'alt="Foto da manada no Momento BG"'));
     headers.delete('Content-Length');headers.delete('ETag');
     return new Response(request.method==='HEAD'?null:html,{status:200,headers});
