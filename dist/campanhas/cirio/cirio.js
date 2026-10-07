@@ -33,7 +33,7 @@ document.querySelectorAll('.bottle-model,.product-model').forEach(model=>{
  const rail=model.querySelector('.bottle-rail');
  const prev=model.querySelector('[data-bottle-prev]'),next=model.querySelector('[data-bottle-next]');
  const update=()=>{prev.disabled=rail.scrollLeft<=2;next.disabled=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-2;};
- const move=direction=>rail.scrollBy({left:direction*(rail.querySelector('.catalog-card').offsetWidth+parseFloat(getComputedStyle(rail).columnGap)),behavior:motion.matches?'instant':'smooth'});
+ const move=direction=>rail.scrollBy({left:direction*(model.classList.contains('product-model')?rail.clientWidth*.85:rail.querySelector('.catalog-card').offsetWidth+parseFloat(getComputedStyle(rail).columnGap)),behavior:motion.matches?'instant':'smooth'});
  prev.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));
  rail.addEventListener('scroll',update,{passive:true});
  new ResizeObserver(update).observe(rail);update();
