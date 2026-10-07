@@ -124,7 +124,7 @@ function editPost(post) {
   showCover(post.image);
   $('editor-title').textContent = 'Editar post';
   saveStatus.textContent = '';
-  form.scrollIntoView({behavior: 'smooth'});
+  form.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});
 }
 
 function resetForm() {

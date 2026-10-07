@@ -125,7 +125,7 @@
       status.textContent = 'Imagem completa em ' + moves + (moves === 1 ? ' movimento. ' : ' movimentos. ') + 'Sua recompensa foi desbloqueada.';
       reward.hidden = false;
       render();
-      reward.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      reward.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth', block: 'nearest'});
       return;
     }
 

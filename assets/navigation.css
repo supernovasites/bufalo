@@ -1,0 +1,10 @@
+/* Keep wheel, touch and trackpad scrolling native; animate only navigation to anchors. */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

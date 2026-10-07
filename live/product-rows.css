@@ -9,7 +9,7 @@
 .row-arrow{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:white;color:var(--ink);font-size:22px;display:grid;place-items:center}
 .row-arrow:hover:not(:disabled){background:var(--ink);color:white}
 .row-arrow:disabled{opacity:.35;cursor:default}
-.product-track{display:flex;gap:22px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:2px;scrollbar-width:thin;scrollbar-color:var(--ink) var(--soft);padding:4px 2px 22px;cursor:grab;touch-action:pan-x pan-y pinch-zoom}
+.product-track{display:flex;gap:22px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scroll-padding:2px;scrollbar-width:thin;scrollbar-color:var(--ink) var(--soft);padding:4px 2px 22px;cursor:grab;touch-action:pan-x pan-y pinch-zoom}
 .product-track:focus-visible{outline:2px solid var(--ink);outline-offset:5px}
 .product-track :is(.banni-card,.growler-card){flex:0 0 calc((100% - 66px)/3.35);scroll-snap-align:start;min-width:230px}
 .product-track :is(.banni-card,.growler-card):last-child{scroll-snap-align:end}

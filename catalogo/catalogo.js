@@ -23,8 +23,8 @@ document.querySelectorAll('.catalog-section').forEach(section=>{
   const prev=section.querySelector('[data-prev]');
   const next=section.querySelector('[data-next]');
   const update=()=>{prev.disabled=rail.scrollLeft<=2;next.disabled=rail.scrollLeft+rail.clientWidth>=rail.scrollWidth-2;};
-  prev.addEventListener('click',()=>rail.scrollBy({left:-rail.clientWidth*.9,behavior:'smooth'}));
-  next.addEventListener('click',()=>rail.scrollBy({left:rail.clientWidth*.9,behavior:'smooth'}));
+  prev.addEventListener('click',()=>rail.scrollBy({left:-rail.clientWidth*.9,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
+  next.addEventListener('click',()=>rail.scrollBy({left:rail.clientWidth*.9,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
   rail.addEventListener('scroll',update,{passive:true});
   addEventListener('resize',update);
   update();
