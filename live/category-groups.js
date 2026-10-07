@@ -18,10 +18,13 @@
       title: 'Garrafas',
       models: [
         ['garrafa-garca-500ml', 'Garça'],
+        ['garrafa-carabinho-500ml', 'Carabinho'],
         ['buba-kids-355ml', 'Buba Kids'],
         ['surti-duo-flow-900ml', 'Duo Flow'],
         ['garrafa-murrah-540ml', 'Murrah'],
         ['garrafa-jafarabadi-1l-', 'Jafarabadi'],
+        ['growler-silo128', 'Silo'],
+        ['growler-mediterraneo', 'Mediterrâneo'],
       ],
     },
   ];
@@ -33,6 +36,12 @@
     { id: 'facas-churrasco', title: 'Cutelaria BG', merge: ['canivetes'] },
     { id: 'bolsas-mochilas', title: 'Mochilas e Bolsas Estanque' },
     { id: 'cadeiras', title: 'Camping', merge: ['rede-hidrapuri'] },
+    { id: 'adesivos', title: 'Adesivos' },
+    { id: 'acessorios', title: 'Acessórios' },
+    { id: 'acessorios-copos', title: 'Acessórios para copos e garrafas' },
+    { id: 'bermudas', title: 'Bermudas' },
+    { id: 'camisetas', title: 'Camisetas' },
+    { id: 'bones-chapeu', title: 'Chapéu e bonés' },
   ];
 
   const render = () => {
