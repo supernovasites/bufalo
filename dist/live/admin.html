@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Administração da Live · Búfalo Growler</title>
+  <link rel="stylesheet" href="admin.css">
+  <script src="admin.js?v=20261006-whatsapp" defer></script>
+  <script src="puzzle-admin.js" defer></script>
+</head>
+<body>
+  <header class="top">
+    <a class="wordmark" href="https://bufalogrowler.com.br/">BÚFALO<small>GROWLER</small></a>
+    <span class="tag">Administração · Live</span>
+  </header>
+
+  <main class="shell">
+    <div class="eyebrow">NO CONTROLE DO SEU ENCONTRO</div>
+    <h1>Live Búfalo.</h1>
+    <p class="intro">Prepare cada encontro, atualize as informações da live e escolha quando a experiência estará disponível para a manada.</p>
+
+    <section id="content-editor" class="dashboard">
+      <article class="card">
+        <div class="eyebrow">CONFIGURE O ENCONTRO</div>
+        <h2>Cupom e data da live</h2>
+        <form id="content-form" class="content-form">
+          <label for="daily-coupon">Cupom do dia</label>
+          <input id="daily-coupon" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required placeholder="Ex.: LIVEBG1609">
+          <label for="live-date">Data da live · dia/mês</label>
+          <input id="live-date" inputmode="numeric" maxlength="5" pattern="[0-9]{2}/[0-9]{2}" required placeholder="DD/MM">
+          <p>O cupom aparece somente enquanto a live estiver ativa. A página de agradecimento não exibe cupom.</p>
+          <button class="btn orange" type="submit">Salvar cupom e data</button>
+          <p id="content-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="card">
+        <div class="eyebrow">COMPRAR NO WHATSAPP</div>
+        <h2>Contato da live</h2>
+        <form id="whatsapp-form" class="content-form">
+          <label for="whatsapp-number">Número do WhatsApp</label>
+          <input id="whatsapp-number" type="tel" inputmode="numeric" autocomplete="tel" maxlength="15" pattern="[1-9][0-9]{9,14}" placeholder="Ex.: 5591991855455" aria-describedby="whatsapp-help" required>
+          <p id="whatsapp-help">Digite código do país + DDD + número, sem espaços ou símbolos. Exemplo: 55 (Brasil) + 91 (DDD) + 991855455.</p>
+          <label for="whatsapp-message">Mensagem ao abrir o WhatsApp</label>
+          <textarea id="whatsapp-message" rows="4" maxlength="1000" placeholder="Ex.: Olá! Quero comprar na live com desconto." style="width:100%;padding:14px;font:inherit" required></textarea>
+          <button class="btn orange" type="submit">Salvar WhatsApp da live</button>
+          <p id="whatsapp-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </article>
+
+      <article class="card">
+        <div class="eyebrow">MOMENTO BG</div>
+        <h2>A foto da manada</h2>
+        <p>Escolha uma foto vertical, de preferência 1080 × 1920 px (stories 9:16). JPG, PNG ou WebP, até 10 MB.</p>
+        <form id="photo-form">
+          <img id="photo-preview" class="photo-preview" alt="Prévia da foto da live" hidden>
+          <div id="photo-empty" class="photo-empty">Sem foto</div>
+          <label class="photo-label" for="live-photo">Escolher foto</label>
+          <input id="live-photo" type="file" accept="image/jpeg,image/png,image/webp">
+          <button id="upload-photo" class="btn orange" type="submit" disabled>Publicar foto</button>
+          <p id="photo-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </article>
+    </section>
+
+    <section class="puzzle-editor card" aria-labelledby="puzzle-editor-title">
+      <div class="puzzle-editor-copy">
+        <div class="eyebrow">DESAFIO DA MANADA</div>
+        <h2 id="puzzle-editor-title">Foto e cupom do puzzle</h2>
+        <p>Configure a imagem usada no quebra-cabeça e o cupom revelado quando o cliente concluir o desafio dentro do limite de movimentos.</p>
+        <form id="puzzle-form" class="content-form">
+          <label for="puzzle-photo">Foto do puzzle</label>
+          <input id="puzzle-photo" type="file" accept="image/jpeg,image/png,image/webp">
+          <p class="field-help">Use uma imagem horizontal em JPG, PNG ou WebP, com até 10 MB.</p>
+          <label for="puzzle-coupon">Cupom da recompensa</label>
+          <input id="puzzle-coupon" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required value="TOTE50">
+          <button id="save-puzzle" class="btn orange" type="submit">Salvar configurações do puzzle</button>
+          <p id="puzzle-feedback" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="puzzle-preview-panel">
+        <span class="preview-label">PRÉVIA DA IMAGEM</span>
+        <img id="puzzle-photo-preview" src="../live/desafio-manada.jpg" alt="Prévia da foto usada no puzzle">
+        <div class="puzzle-coupon-preview"><small>CUPOM REVELADO APÓS A CONCLUSÃO</small><strong id="puzzle-coupon-preview">TOTE50</strong><span>50% OFF · recompensa do desafio</span></div>
+      </div>
+    </section>
+
+    <section id="dashboard" class="dashboard">
+      <article class="card status-card">
+        <span id="status" class="status">Live ativa</span>
+        <h2 id="status-title">A manada pode aproveitar.</h2>
+        <p id="status-description">Os visitantes estão vendo os produtos, o cupom e as ofertas da live.</p>
+        <div class="controls">
+          <button id="toggle" class="btn orange" type="button">Desativar live</button>
+          <a class="btn light" href="https://www.bufalogrowler.com.br/live/" target="_blank" rel="noopener">Ver página da live</a>
+        </div>
+        <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+        <p class="status-note">Ao desativar, a página de agradecimento substitui as ofertas e não apresenta o cupom.</p>
+      </article>
+
+      <article class="card closed-preview-card">
+        <div class="eyebrow">QUANDO A LIVE ESTIVER DESATIVADA</div>
+        <h2>Mensagem de agradecimento</h2>
+        <iframe class="closed-preview" src="encerrada.html" title="Prévia da página de agradecimento da live"></iframe>
+        <p><a href="encerrada.html" target="_blank" rel="noopener">Abrir prévia em outra aba</a></p>
+      </article>
+    </section>
+
+    <footer class="admin-foot">
+      <span>Prévia local · alterações não são publicadas.</span>
+      <button id="logout" class="signout" type="button">Sair do painel</button>
+    </footer>
+  </main>
+
+  <a class="panel-return-direct" href="https://www.bufalogrowler.com.br/painel/">Voltar ao Painel</a>
+</body>
+</html>
