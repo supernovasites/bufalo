@@ -5,7 +5,7 @@
   const path = location.pathname;
   if (!hosts.includes(location.hostname) || /\/(admin|painel)(?:[/.]|$)/.test(path) || /\/assets\//.test(path) || window.bufaloAnalytics) return;
   const measurementId = 'G-FPEC1ZGMJQ';
-  const groups = [['/produtos/copos', 'copos'], ['/produtos/garrafas', 'garrafas'], ['/catalogo', 'catalogo'], ['/live', 'live'], ['/manadaone', 'manadaone'], ['/manadacash', 'manadacash'], ['/campanhas/cirio', 'cirio'], ['/reserva/acaibowl', 'reserva_acai'], ['/blog', 'blog']];
+  const groups = [['/produtos/copos', 'todos_copos'], ['/produtos/garrafas', 'todas_garrafas'], ['/catalogo', 'catalogo'], ['/live', 'live'], ['/manadaone', 'manadaone'], ['/manadacash', 'manadacash'], ['/campanhas/cirio', 'cirio'], ['/reserva/acaibowl', 'reserva_acai'], ['/blog', 'blog']];
   const group = groups.find(([prefix]) => path.startsWith(prefix))?.[1] || (path === '/' || path === '/index.html' ? 'home' : 'outras');
   const safeValue = value => String(value || '').replace(/[^a-zA-Z0-9_\- .]/g, '').slice(0, 100);
   // Keep attribution identifiers, never form fields, search queries or WhatsApp text.
