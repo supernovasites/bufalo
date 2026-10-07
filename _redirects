@@ -32,3 +32,9 @@
 /assets/pages/garrafas/ /produtos/garrafas/ 301
 /assets/pages/garrafas/* /produtos/garrafas/:splat 301
 /produtos/garrafas/index /produtos/garrafas/ 301
+
+/assets/pages/cirio /campanhas/cirio/ 301
+/assets/pages/cirio/ /campanhas/cirio/ 301
+/assets/pages/cirio/index /campanhas/cirio/ 301
+/assets/pages/cirio/index.html /campanhas/cirio/ 301
+/assets/pages/cirio/* /campanhas/cirio/:splat 301
