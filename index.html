@@ -464,7 +464,8 @@ document.querySelectorAll("form.search").forEach(form=>form.addEventListener("su
  ].join(',');
  const targets=new Set();
  const reveal=el=>{el.classList.add('is-visible');observer.unobserve(el);};
- const triggerInset=()=>0;
+ const mobile=matchMedia('(max-width:760px)');
+ const triggerInset=()=>mobile.matches?0:24;
  const makeObserver=()=>new IntersectionObserver(entries=>{
   entries.forEach(entry=>{if(entry.isIntersecting)reveal(entry.target);});
  },{threshold:0,rootMargin:'0px 0px -'+triggerInset()+'px 0px'});
