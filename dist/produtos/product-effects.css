@@ -1,14 +1,3 @@
-.bottle-card.product-card-pending {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 500ms ease var(--product-reveal-delay, 0ms),
-    transform 500ms ease var(--product-reveal-delay, 0ms);
-}
-.bottle-card.product-card-visible,
-.bottle-card.product-card-pending:focus-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
 .product-scroll-hint [data-bottle-next]:not(:disabled) {
   animation: product-arrow-blink 1.5s ease-in-out 4;
 }
@@ -17,10 +6,5 @@
   50% { background: #142e32; color: #fff; box-shadow: 0 0 0 5px rgb(20 46 50 / 12%); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .bottle-card.product-card-pending {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
   .product-scroll-hint [data-bottle-next]:not(:disabled) { animation: none; }
 }
