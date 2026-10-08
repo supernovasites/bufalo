@@ -108,6 +108,6 @@
 
 @media(max-width:760px){.mc-popup .mc-converter input{font-size:16px}}
 
-.live-cash-floating{position:fixed;right:20px;bottom:162px;z-index:120;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:68px;height:58px;padding:6px;border:0;border-radius:13px;background:#142e32;color:#fff;cursor:pointer;opacity:0;visibility:hidden;font:700 10px Arial,sans-serif}
-.live-cash-floating.is-visible{opacity:.4;visibility:visible}.live-cash-floating.is-visible:hover,.live-cash-floating.is-visible:focus-visible{opacity:.85}.live-cash-floating svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.7}.live-cash-floating:focus-visible{outline:3px solid #e77939;outline-offset:3px}
+.live-cash-floating{position:fixed;right:20px;bottom:162px;z-index:120;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:68px;height:58px;padding:6px;border:0;border-radius:13px;background:#142e32;color:#fff;cursor:pointer;opacity:1;visibility:hidden;font:700 10px Arial,sans-serif}
+.live-cash-floating.is-visible{opacity:1;visibility:visible}.live-cash-floating.is-visible:hover,.live-cash-floating.is-visible:focus-visible{opacity:1}.live-cash-floating svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.7}.live-cash-floating:focus-visible{outline:3px solid #e77939;outline-offset:3px}
 @media(max-width:740px){.live-cash-floating{right:16px;bottom:238px}}
