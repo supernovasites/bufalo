@@ -38,7 +38,21 @@
     topButton.setAttribute('aria-label', 'Voltar ao início da página');
     topButton.innerHTML = '<span aria-hidden="true">↑</span>';
     document.body.append(topButton);
-    const toggle = () => topButton.classList.toggle('is-visible', window.scrollY > 400);
+    let previousScroll = window.scrollY;
+    let pulseTimeout;
+    const toggle = () => {
+      const currentScroll = window.scrollY;
+      topButton.classList.toggle('is-visible', currentScroll > 400);
+      if (currentScroll > previousScroll && currentScroll > 400) {
+        topButton.classList.add('is-scrolling-down');
+        clearTimeout(pulseTimeout);
+        pulseTimeout = setTimeout(() => topButton.classList.remove('is-scrolling-down'), 700);
+      } else {
+        clearTimeout(pulseTimeout);
+        topButton.classList.remove('is-scrolling-down');
+      }
+      previousScroll = currentScroll;
+    };
     window.addEventListener('scroll', toggle, { passive: true });
     toggle();
     topButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' }));
