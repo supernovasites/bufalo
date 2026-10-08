@@ -2,10 +2,10 @@
   const root = document.querySelector('.photo-gallery');
   if (!root) return;
   const challenges = [
-    {id:'tote',label:'Desafio 1',coupon:'TOTE50',discount:50,price:950,name:'Wine Tote 14L Soft Cooler',photo:'desafio-tote-vinho.png',url:'https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l',productImage:'wine-tote-product.png'},
-    {id:'nag',label:'Desafio 2',coupon:'nag35',discount:35,price:2950,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-praia.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
-    {id:'outdoor',label:'Desafio 3',photo:'desafio3-aventureiro.png',coupon:'cutelo25',discount:25,price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/kit-cimo-trio-de-forca-ax',productImage:'trio-cimo-product.png'},
-    {id:'mestre',label:'Desafio 4',photo:'desafio4-mestre-piscina.png',coupon:'mestre25',discount:25,price:1830,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/mestrebufaloontap7l',productImage:'mestre-product.png'}
+    {id:'tote',label:'Desafio 1',price:950,name:'Wine Tote 14L Soft Cooler',photo:'desafio-tote-vinho.png',url:'https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l',productImage:'wine-tote-product.png'},
+    {id:'nag',label:'Desafio 2',price:2950,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-praia.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
+    {id:'outdoor',label:'Desafio 3',photo:'desafio3-aventureiro.png',price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/kit-cimo-trio-de-forca-ax',productImage:'trio-cimo-product.png'},
+    {id:'mestre',label:'Desafio 4',photo:'desafio4-mestre-piscina.png',price:1830,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/mestrebufaloontap7l',productImage:'mestre-product.png'}
   ];
   root.classList.add('manada-challenge');
   root.innerHTML = '<div class="challenge-tabs" role="tablist" aria-label="Escolha seu desafio">'+challenges.map((c,i)=>'<button type="button" role="tab" id="tab-'+c.id+'" aria-controls="puzzle-'+c.id+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'">'+c.label+'</button>').join('')+'</div>'+challenges.map((c,i)=>'<div role="tabpanel" id="puzzle-'+c.id+'" aria-labelledby="tab-'+c.id+'"'+(i?' hidden':'')+'></div>').join('');
@@ -24,7 +24,8 @@
     activeBoard.after(tablist);
   };
   tabs.forEach((button,i)=>{button.addEventListener('click',()=>select(i));button.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=(i+1)%tabs.length;else if(event.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();select(next);tabs[next].focus();});});
-  challenges.forEach(config=>mount(root.querySelector('#puzzle-'+config.id),config));
+  const liveCoupon = document.getElementById('code')?.textContent.trim();
+  challenges.forEach(config=>mount(root.querySelector('#puzzle-'+config.id),{...config,coupon:liveCoupon,discount:20}));
   select(0);
   function mount(host,config){
   const coupon = config.coupon;
@@ -66,7 +67,7 @@
           <a class="product-cta growler-cta reward-buy" href="${config.url}" target="_blank" rel="noopener noreferrer">Comprar agora</a>
         </div>
       </article>
-      <small>Só durante a live · 3 cupons disponíveis!</small>`}
+      <small>Só durante a live · 10 cupons disponíveis!</small>`}
     </div>
   `;
 
