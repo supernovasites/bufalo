@@ -1,6 +1,15 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
+ <script id="bufalo-instagram-origin">
+(function(){
+var source=(new URLSearchParams(location.search).get('utm_source')||'').trim().toLowerCase(),host='';
+try{host=new URL(document.referrer).hostname.toLowerCase();}catch(e){}
+var instagram=source==='instagram'||host==='instagram.com'||host.endsWith('.instagram.com');
+if(instagram){try{sessionStorage.setItem('bg-instagram-origin','1');}catch(e){}document.cookie='bg_instagram_origin=1; Path=/; Domain=bufalogrowler.com.br; SameSite=Lax; Secure';}
+})();
+</script>
+
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <script>if(location.hash==="#ofertas-do-mes"){history.replaceState(null,"",location.pathname+location.search);}</script>
 <title>Búfalo Growler - Compre Online e receba em poucos dias</title>
