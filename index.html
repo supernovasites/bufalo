@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
- <script id="bufalo-instagram-origin">
+  <script id="bufalo-sales-origin">
 (function(){
-var source=(new URLSearchParams(location.search).get('utm_source')||'').trim().toLowerCase(),host='';
-try{host=new URL(document.referrer).hostname.toLowerCase();}catch(e){}
-var instagram=source==='instagram'||host==='instagram.com'||host.endsWith('.instagram.com');
-if(instagram){try{sessionStorage.setItem('bg-instagram-origin','1');}catch(e){}document.cookie='bg_instagram_origin=1; Path=/; Domain=bufalogrowler.com.br; SameSite=Lax; Secure';}
+var params=new URLSearchParams(location.search),source=(params.get('utm_source')||'').trim().toLowerCase(),medium=(params.get('utm_medium')||'').trim().toLowerCase();
+var sales=source==='facebook_ads'&&medium.indexOf('cpc_')===0&&medium.length>4;
+if(sales){try{sessionStorage.setItem('bg-sales-origin','1');}catch(e){}document.cookie='bg_sales_origin=1; Path=/; Domain=bufalogrowler.com.br; SameSite=Lax; Secure';}
 })();
 </script>
 
