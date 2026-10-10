@@ -324,7 +324,7 @@ html{scroll-padding-top:100px}@media(max-width:760px){html{scroll-padding-top:76
 .combo-coupon button{flex:none;background:#142e32;border:0;border-radius:3px;color:white;font-size:12px;font-weight:700;padding:10px 11px;min-height:40px}
 .combo-coupon button:hover{background:#315354}
 .combo-note{font-size:11px;color:#526265;margin:-4px 0 12px;line-height:1.4}
-</style><script defer src="/assets/analytics.js?v=20261004-cirio"></script><meta name="promotion_id" content="popup_cirio">
+</style><script defer src="/assets/analytics.js?v=20261004-cirio"></script><meta name="promotion_id" content="bufalo_weekend">
 
 </head>
 <body>
@@ -731,31 +731,15 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 <div class="bw-grid"><div class="bw-art-wrap"><img class="bw-art" src="assets/campaigns/bufalo-weekend.jpg?v=drink-corrected" alt="Búfalo Weekend. Chopeira Búfalo 2L à beira da piscina." width="1254" height="1254"></div>
 <div class="bw-copy"><p class="bw-offer-title">Chopeira Búfalo 2L</p><p class="bw-offer-price">De <s>R$ 1250</s> por <strong>R$ 995</strong> até 04/10</p><a class="bw-cta" href="https://loja.bufalogrowler.com.br/chopeira">Compre agora</a></div></div>
 </dialog>
-<dialog id="marajo-dry-popup" class="bw-popup" aria-label="É Círio outra vez — Bolsas Búfalo" data-promotion-id="popup_cirio">
-<button class="bw-close" type="button" data-bw-close autofocus>Fechar oferta <span aria-hidden="true">×</span></button>
-<div class="bw-grid"><div class="bw-art-wrap"><img class="bw-art" src="assets/campaigns/popup-cirio-20261006.png" alt="É Círio outra vez. Bolsas Búfalo para garrafas com ofertas de 20% e 30% OFF." width="1254" height="1254"></div>
-<div class="bw-copy"><p class="bw-offer-copy">Sua garrafa merece uma bolsa Búfalo!</p><p class="bw-offer-copy"><strong>Aproveite as ofertas até 11/10/2026.</strong></p><a class="bw-cta" href="https://www.bufalogrowler.com.br/campanhas/cirio/">Ver coleção</a></div></div>
-</dialog>
-<style>#trilha-popup .bw-art-wrap{aspect-ratio:949/1091}</style>
-<dialog id="trilha-popup" class="bw-popup" aria-label="Para sua trilha — Bolsas Búfalo" data-promotion-id="popup_trilha">
-<button class="bw-close" type="button" data-bw-close autofocus>Fechar oferta <span aria-hidden="true">×</span></button>
-<div class="bw-grid"><div class="bw-art-wrap"><img class="bw-art" src="assets/campaigns/popup-trilha-20261006.png" alt="Para sua trilha. Bolsas Búfalo na Chapada dos Veadeiros com ofertas de 20% e 30% OFF." width="949" height="1091"></div>
-<div class="bw-copy"><p class="bw-offer-copy">Sua trilha merece uma bolsa Búfalo!</p><p class="bw-offer-copy"><strong>Aproveite as ofertas até 11/10/2026.</strong></p><a class="bw-cta" href="https://www.bufalogrowler.com.br/campanhas/cirio/">Ver coleção</a></div></div>
-</dialog>
 <script id="bufalo-weekend-script">
 (async()=>{
-const weekend=document.getElementById('bufalo-weekend'),marajo=document.getElementById('marajo-dry-popup'),trilha=document.getElementById('trilha-popup');
+const popup=document.getElementById('bufalo-weekend');
 const calendar=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Fortaleza',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'});
 const dayState=(date=new Date())=>{const p=Object.fromEntries(calendar.formatToParts(date).map(x=>[x.type,x.value]));return {weekend:p.weekday==='Sat'||p.weekday==='Sun',key:p.year+'-'+p.month+'-'+p.day}};
-let region='';
-try{const r=await fetch('/api/geo',{cache:'no-store'});if(r.ok)region=String((await r.json()).region||'').toUpperCase()}catch{}
-const isPara=region==='PA';
 const state=dayState();
-const campaignActive=state.key<='2026-10-11';
-const popup=campaignActive?(isPara?marajo:trilha):weekend;
-const active=campaignActive||state.weekend;
+const active=state.weekend;
 if(!active)return;
-const dismissKey=(popup===marajo?'marajo-dry-dismissed-v1:':popup===trilha?'trilha-dismissed-v1:':'bufalo-weekend-dismissed-v3:')+state.key;
+const dismissKey='bufalo-weekend-dismissed-v3:'+state.key;
 let dismissed=false;try{dismissed=sessionStorage.getItem(dismissKey)==='1'}catch{}
 if(dismissed)return;
 let previousOverflow;
