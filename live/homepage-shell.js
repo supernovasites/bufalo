@@ -30,14 +30,7 @@
         <a class="home-logo" href="https://www.bufalogrowler.com.br/" aria-label="Búfalo Growler — início">
           <img src="https://cdn.awsli.com.br/400x300/1237/1237589/logo/21547a1296.png" alt="Búfalo Growler" width="64" height="64">
         </a>
-        <div class="home-actions">
-          <a class="home-icon-button" href="https://loja.bufalogrowler.com.br/buscar" target="_blank" rel="noopener" aria-label="Buscar produtos">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 6 6"/></svg>
-          </a>
-          <a class="home-icon-button" href="https://loja.bufalogrowler.com.br/carrinho/index" target="_blank" rel="noopener" aria-label="Abrir carrinho na loja oficial">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z M8 8V6a4 4 0 0 1 8 0v2"/></svg>
-          </a>
-        </div>
+        <div class="home-actions"><button class="icon-button mobile-only" id="mobile-search" aria-label="Compre com IA" aria-haspopup="dialog" aria-controls="bg-assistant" title="Compre com IA"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 3 2.5 6.5L23 12l-6.5 2.5L14 21l-2.5-6.5L5 12l6.5-2.5L14 3Z M4 2l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3Z"/></svg><span class="bg-ai-label">Compre<br>com IA</span></button><a class="home-icon-button" href="https://loja.bufalogrowler.com.br/carrinho/index" target="_blank" rel="noopener" aria-label="Abrir carrinho na loja oficial"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z M8 8V6a4 4 0 0 1 8 0v2"/></svg></a></div>
       </div>`;
     oldHeader.replaceWith(header);
   }
@@ -61,4 +54,6 @@
   document.querySelector('#home-open-menu')?.addEventListener('click', () => dialog.showModal());
   dialog.querySelector('#home-close-menu')?.addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+
+const assistant=document.createElement('script');assistant.src='/assets/shop-assistant.js?v=20261012-header';document.body.append(assistant);
 })();
