@@ -1,0 +1,2310 @@
+{
+  "version": "2026-10-12",
+  "products": [
+    {
+      "id": "1",
+      "name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portatil",
+      "category": "chopeiras",
+      "references": [
+        "Búfalo Growler On TAP 2L - Chopeira Térmica Portatil",
+        "chopeira",
+        "chopeiras",
+        "chopera",
+        "choppeira",
+        "chopp",
+        "chope",
+        "cerveja",
+        "cervejeira",
+        "barril",
+        "torneira",
+        "ontap",
+        "on tap",
+        "tirar chope"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Mestre Búfalo Growler On TAP - Combo 7L Chopeira térmica portátil",
+      "category": "chopeiras",
+      "references": [
+        "Mestre Búfalo Growler On TAP - Combo 7L Chopeira térmica portátil",
+        "chopeira",
+        "chopeiras",
+        "chopera",
+        "choppeira",
+        "chopp",
+        "chope",
+        "cerveja",
+        "cervejeira",
+        "barril",
+        "torneira",
+        "ontap",
+        "on tap",
+        "tirar chope"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Growler Kundi 2L",
+      "category": "chopeiras",
+      "references": [
+        "Growler Kundi 2L",
+        "chopeira",
+        "chopeiras",
+        "chopera",
+        "choppeira",
+        "chopp",
+        "chope",
+        "cerveja",
+        "cervejeira",
+        "barril",
+        "torneira",
+        "ontap",
+        "on tap",
+        "tirar chope"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Búfalo Growler On TAP 3,5L - Chopeira Térmica Portatil",
+      "category": "chopeiras",
+      "references": [
+        "Búfalo Growler On TAP 3,5L - Chopeira Térmica Portatil",
+        "chopeira",
+        "chopeiras",
+        "chopera",
+        "choppeira",
+        "chopp",
+        "chope",
+        "cerveja",
+        "cervejeira",
+        "barril",
+        "torneira",
+        "ontap",
+        "on tap",
+        "tirar chope"
+      ]
+    },
+    {
+      "id": "5",
+      "name": "Mestre Búfalo Growler On TAP - Combo 5,5L Chopeira térmica portátil",
+      "category": "chopeiras",
+      "references": [
+        "Mestre Búfalo Growler On TAP - Combo 5,5L Chopeira térmica portátil",
+        "chopeira",
+        "chopeiras",
+        "chopera",
+        "choppeira",
+        "chopp",
+        "chope",
+        "cerveja",
+        "cervejeira",
+        "barril",
+        "torneira",
+        "ontap",
+        "on tap",
+        "tirar chope"
+      ]
+    },
+    {
+      "id": "6",
+      "name": "Growler Kundi 3,5L",
+      "category": "chopeiras",
+      "references": [
+        "Growler Kundi 3,5L",
+        "chopeira",
+        "chopeiras",
+        "chopera",
+        "choppeira",
+        "chopp",
+        "chope",
+        "cerveja",
+        "cervejeira",
+        "barril",
+        "torneira",
+        "ontap",
+        "on tap",
+        "tirar chope"
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Garrafa Jafarabadi 1L",
+      "category": "garrafas",
+      "references": [
+        "Garrafa Jafarabadi 1L",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica",
+        "jafarabadi",
+        "jafa",
+        "jafarabady",
+        "jafarabadi"
+      ]
+    },
+    {
+      "id": "8",
+      "name": "Garrafa Harpuri 750ml",
+      "category": "garrafas",
+      "references": [
+        "Garrafa Harpuri 750ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica",
+        "harpuri",
+        "harpure",
+        "harpury"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Growler Palitano 1,350L",
+      "category": "garrafas",
+      "references": [
+        "Growler Palitano 1,350L",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Garrafa Buba 355ml",
+      "category": "garrafas",
+      "references": [
+        "Garrafa Buba 355ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "11",
+      "name": "Garrafa Buba Kids 355ml",
+      "category": "carabinho-kids",
+      "references": [
+        "Garrafa Buba Kids 355ml",
+        "escola",
+        "escolar",
+        "crianca",
+        "criancas",
+        "infantil",
+        "kids",
+        "filho",
+        "filha",
+        "colegio",
+        "lancheira",
+        "garrafa infantil"
+      ]
+    },
+    {
+      "id": "12",
+      "name": "Growler Mediterrâneo 1,9L",
+      "category": "garrafas",
+      "references": [
+        "Growler Mediterrâneo 1,9L",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica",
+        "mediterraneo",
+        "med",
+        "mediterraneo"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Surti Duo Flow 900ml",
+      "category": "garrafas",
+      "references": [
+        "Surti Duo Flow 900ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica",
+        "surti",
+        "surty"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Garrafa Carabinho 500ml",
+      "category": "garrafas",
+      "references": [
+        "Garrafa Carabinho 500ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica",
+        "carabinho",
+        "carabim",
+        "carabinho teen"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Garrafa Garça 500ml",
+      "category": "garrafas",
+      "references": [
+        "Garrafa Garça 500ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica",
+        "garca",
+        "garsa"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Garrafa Murrah 540ml",
+      "category": "garrafas",
+      "references": [
+        "Garrafa Murrah 540ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica",
+        "murrah",
+        "mura",
+        "murra"
+      ]
+    },
+    {
+      "id": "17",
+      "name": "Nagneck 355ml",
+      "category": "garrafas",
+      "references": [
+        "Nagneck 355ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica",
+        "nagneck",
+        "nag neck",
+        "long neck",
+        "longneck"
+      ]
+    },
+    {
+      "id": "18",
+      "name": "Growler Silo 128 3,8L",
+      "category": "garrafas",
+      "references": [
+        "Growler Silo 128 3,8L",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "19",
+      "name": "Growler Kundi 2L",
+      "category": "garrafas",
+      "references": [
+        "Growler Kundi 2L",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "20",
+      "name": "Copo Guará 1L",
+      "category": "copos-bg",
+      "references": [
+        "Copo Guará 1L",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja",
+        "guara",
+        "guarra"
+      ]
+    },
+    {
+      "id": "21",
+      "name": "Growler Kundi 3,5L",
+      "category": "garrafas",
+      "references": [
+        "Growler Kundi 3,5L",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "22",
+      "name": "Copo Ravi 483ml",
+      "category": "copos-bg",
+      "references": [
+        "Copo Ravi 483ml",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja"
+      ]
+    },
+    {
+      "id": "23",
+      "name": "Copo Pand Torcida 600ml",
+      "category": "copos-bg",
+      "references": [
+        "Copo Pand Torcida 600ml",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja"
+      ]
+    },
+    {
+      "id": "24",
+      "name": "Caneca Bhadwari 710ml com Abridor na Base",
+      "category": "copos-bg",
+      "references": [
+        "Caneca Bhadwari 710ml com Abridor na Base",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja",
+        "bhadwari",
+        "bhadawari",
+        "badwari",
+        "badawari"
+      ]
+    },
+    {
+      "id": "25",
+      "name": "Caneca Bhadawari 710ml",
+      "category": "copos-bg",
+      "references": [
+        "Caneca Bhadawari 710ml",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja",
+        "bhadwari",
+        "bhadawari",
+        "badwari",
+        "badawari"
+      ]
+    },
+    {
+      "id": "26",
+      "name": "Copo Pand 750ml",
+      "category": "copos-bg",
+      "references": [
+        "Copo Pand 750ml",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja"
+      ]
+    },
+    {
+      "id": "27",
+      "name": "Caneca Banni 350ml",
+      "category": "copos-bg",
+      "references": [
+        "Caneca Banni 350ml",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja",
+        "banni",
+        "bani",
+        "banny"
+      ]
+    },
+    {
+      "id": "28",
+      "name": "Copo Niliravi 900ml com alça",
+      "category": "copos-bg",
+      "references": [
+        "Copo Niliravi 900ml com alça",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja",
+        "niliravi",
+        "nili",
+        "nili ravi",
+        "niliravy",
+        "nilirave"
+      ]
+    },
+    {
+      "id": "29",
+      "name": "Copo Surti 600ml",
+      "category": "copos-bg",
+      "references": [
+        "Copo Surti 600ml",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja",
+        "surti",
+        "surty"
+      ]
+    },
+    {
+      "id": "30",
+      "name": "Garrafa Carabinho 500ml",
+      "category": "carabinho-kids",
+      "references": [
+        "Garrafa Carabinho 500ml",
+        "escola",
+        "escolar",
+        "crianca",
+        "criancas",
+        "infantil",
+        "kids",
+        "filho",
+        "filha",
+        "colegio",
+        "lancheira",
+        "garrafa infantil",
+        "carabinho",
+        "carabim",
+        "carabinho teen"
+      ]
+    },
+    {
+      "id": "31",
+      "name": "Copo Carabinho 350ml",
+      "category": "carabinho-kids",
+      "references": [
+        "Copo Carabinho 350ml",
+        "escola",
+        "escolar",
+        "crianca",
+        "criancas",
+        "infantil",
+        "kids",
+        "filho",
+        "filha",
+        "colegio",
+        "lancheira",
+        "garrafa infantil",
+        "carabinho",
+        "carabim",
+        "carabinho teen"
+      ]
+    },
+    {
+      "id": "32",
+      "name": "Super Nag PRO 8 Cooler 71,5L com Rodinhas",
+      "category": "nagpro",
+      "references": [
+        "Super Nag PRO 8 Cooler 71,5L com Rodinhas",
+        "cooler",
+        "caixa termica",
+        "caixa de gelo",
+        "geleira",
+        "isopor",
+        "cooler rigido"
+      ]
+    },
+    {
+      "id": "33",
+      "name": "Nag PRO 4 Cooler 18,9L",
+      "category": "nagpro",
+      "references": [
+        "Nag PRO 4 Cooler 18,9L",
+        "cooler",
+        "caixa termica",
+        "caixa de gelo",
+        "geleira",
+        "isopor",
+        "cooler rigido"
+      ]
+    },
+    {
+      "id": "34",
+      "name": "Nag PRO 6 Cooler 42L com Rodinhas",
+      "category": "nagpro",
+      "references": [
+        "Nag PRO 6 Cooler 42L com Rodinhas",
+        "cooler",
+        "caixa termica",
+        "caixa de gelo",
+        "geleira",
+        "isopor",
+        "cooler rigido"
+      ]
+    },
+    {
+      "id": "35",
+      "name": "Pandhar 20L Soft Cooler Petróleo",
+      "category": "pandhar",
+      "references": [
+        "Pandhar 20L Soft Cooler Petróleo",
+        "bolsa termica",
+        "soft cooler",
+        "sacola termica",
+        "wine tote"
+      ]
+    },
+    {
+      "id": "36",
+      "name": "Wine Tote 14L Soft Cooler",
+      "category": "pandhar",
+      "references": [
+        "Wine Tote 14L Soft Cooler",
+        "bolsa termica",
+        "soft cooler",
+        "sacola termica",
+        "wine tote"
+      ]
+    },
+    {
+      "id": "37",
+      "name": "Canivete E-Cimo Tool Inox",
+      "category": "cutelaria",
+      "references": [
+        "Canivete E-Cimo Tool Inox",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "38",
+      "name": "Faca Para Churrasco BM Búfalo",
+      "category": "cutelaria",
+      "references": [
+        "Faca Para Churrasco BM Búfalo",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "39",
+      "name": "Kit Black BBQ Personalizada grátis",
+      "category": "cutelaria",
+      "references": [
+        "Kit Black BBQ Personalizada grátis",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "40",
+      "name": "Faca Cimo Ax Borba Carbono 5 CB Madeira",
+      "category": "cutelaria",
+      "references": [
+        "Faca Cimo Ax Borba Carbono 5 CB Madeira",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "41",
+      "name": "Kit Pratos de Madeira",
+      "category": "cutelaria",
+      "references": [
+        "Kit Pratos de Madeira",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "42",
+      "name": "Abridor de Garrafa de Madeira Artesanal",
+      "category": "cutelaria",
+      "references": [
+        "Abridor de Garrafa de Madeira Artesanal",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "43",
+      "name": "Canivete Cimo Tomahawk",
+      "category": "cutelaria",
+      "references": [
+        "Canivete Cimo Tomahawk",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "44",
+      "name": "Copo Stout 473ml",
+      "category": "copos-bg",
+      "references": [
+        "Copo Stout 473ml",
+        "copo",
+        "copos",
+        "caneca",
+        "canecas",
+        "tumbler",
+        "mug",
+        "cafe",
+        "cafezinho",
+        "copo termico",
+        "copo de cerveja"
+      ]
+    },
+    {
+      "id": "45",
+      "name": "Growler de Vidro 1100ml",
+      "category": "garrafas",
+      "references": [
+        "Growler de Vidro 1100ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "46",
+      "name": "Growler de Vidro 1.900ml",
+      "category": "garrafas",
+      "references": [
+        "Growler de Vidro 1.900ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "47",
+      "name": "Kit Bowl de Madeira",
+      "category": "cutelaria",
+      "references": [
+        "Kit Bowl de Madeira",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "48",
+      "name": "Tábua de Corte Premium",
+      "category": "cutelaria",
+      "references": [
+        "Tábua de Corte Premium",
+        "faca",
+        "facas",
+        "canivete",
+        "churrasco",
+        "churrasqueira",
+        "tabua",
+        "cortar carne",
+        "cutelaria",
+        "bbq"
+      ]
+    },
+    {
+      "id": "49",
+      "name": "Mochila Marajó Dry 25L - Verde",
+      "category": "mochilas",
+      "references": [
+        "Mochila Marajó Dry 25L - Verde",
+        "mochila",
+        "mochilas",
+        "estanque",
+        "dry bag",
+        "drybag",
+        "bolsa impermeavel",
+        "saco impermeavel",
+        "trilha",
+        "chuva",
+        "remar",
+        "canoagem",
+        "guardar celular",
+        "marajo",
+        "marajo dry"
+      ]
+    },
+    {
+      "id": "50",
+      "name": "Saco Estanque Búfalo 2L - Dry Bag",
+      "category": "mochilas",
+      "references": [
+        "Saco Estanque Búfalo 2L - Dry Bag",
+        "mochila",
+        "mochilas",
+        "estanque",
+        "dry bag",
+        "drybag",
+        "bolsa impermeavel",
+        "saco impermeavel",
+        "trilha",
+        "chuva",
+        "remar",
+        "canoagem",
+        "guardar celular"
+      ]
+    },
+    {
+      "id": "51",
+      "name": "Mochila Marajó Dry 25L - Azul",
+      "category": "mochilas",
+      "references": [
+        "Mochila Marajó Dry 25L - Azul",
+        "mochila",
+        "mochilas",
+        "estanque",
+        "dry bag",
+        "drybag",
+        "bolsa impermeavel",
+        "saco impermeavel",
+        "trilha",
+        "chuva",
+        "remar",
+        "canoagem",
+        "guardar celular",
+        "marajo",
+        "marajo dry"
+      ]
+    },
+    {
+      "id": "52",
+      "name": "Mochila Marajó Dry 25L - Celeste",
+      "category": "mochilas",
+      "references": [
+        "Mochila Marajó Dry 25L - Celeste",
+        "mochila",
+        "mochilas",
+        "estanque",
+        "dry bag",
+        "drybag",
+        "bolsa impermeavel",
+        "saco impermeavel",
+        "trilha",
+        "chuva",
+        "remar",
+        "canoagem",
+        "guardar celular",
+        "marajo",
+        "marajo dry"
+      ]
+    },
+    {
+      "id": "53",
+      "name": "Saco Estanque Búfalo 20L - Dry Bag",
+      "category": "mochilas",
+      "references": [
+        "Saco Estanque Búfalo 20L - Dry Bag",
+        "mochila",
+        "mochilas",
+        "estanque",
+        "dry bag",
+        "drybag",
+        "bolsa impermeavel",
+        "saco impermeavel",
+        "trilha",
+        "chuva",
+        "remar",
+        "canoagem",
+        "guardar celular"
+      ]
+    },
+    {
+      "id": "54",
+      "name": "Cadeira Portátil Búfalo Pena G",
+      "category": "cadeiras",
+      "references": [
+        "Cadeira Portátil Búfalo Pena G",
+        "cadeira",
+        "cadeiras",
+        "sentar",
+        "cadeira de praia"
+      ]
+    },
+    {
+      "id": "55",
+      "name": "Cadeira Portátil Búfalo Pena P",
+      "category": "cadeiras",
+      "references": [
+        "Cadeira Portátil Búfalo Pena P",
+        "cadeira",
+        "cadeiras",
+        "sentar",
+        "cadeira de praia"
+      ]
+    },
+    {
+      "id": "56",
+      "name": "Bermuda Pirarucu",
+      "category": "camisas-shorts",
+      "references": [
+        "Bermuda Pirarucu",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "57",
+      "name": "Bermuda Selva",
+      "category": "camisas-shorts",
+      "references": [
+        "Bermuda Selva",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "58",
+      "name": "Bermuda listrada",
+      "category": "camisas-shorts",
+      "references": [
+        "Bermuda listrada",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "59",
+      "name": "Bermuda Aloha",
+      "category": "camisas-shorts",
+      "references": [
+        "Bermuda Aloha",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "60",
+      "name": "Camiseta Viva a Natureza Coqueiro",
+      "category": "camisas-shorts",
+      "references": [
+        "Camiseta Viva a Natureza Coqueiro",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "61",
+      "name": "Chinelo Estampa Marajó Art Feminina",
+      "category": "camisas-shorts",
+      "references": [
+        "Chinelo Estampa Marajó Art Feminina",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo",
+        "marajo",
+        "marajo dry"
+      ]
+    },
+    {
+      "id": "62",
+      "name": "Camiseta Feminina Marajó Art",
+      "category": "camisas-shorts",
+      "references": [
+        "Camiseta Feminina Marajó Art",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo",
+        "marajo",
+        "marajo dry"
+      ]
+    },
+    {
+      "id": "63",
+      "name": "Camiseta Viva a Natureza Cowboy",
+      "category": "camisas-shorts",
+      "references": [
+        "Camiseta Viva a Natureza Cowboy",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "64",
+      "name": "Camiseta Viva a Natureza Tucunaré",
+      "category": "camisas-shorts",
+      "references": [
+        "Camiseta Viva a Natureza Tucunaré",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "65",
+      "name": "Camiseta Steak e Beer",
+      "category": "camisas-shorts",
+      "references": [
+        "Camiseta Steak e Beer",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "66",
+      "name": "Camiseta Selva",
+      "category": "camisas-shorts",
+      "references": [
+        "Camiseta Selva",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "67",
+      "name": "Camiseta Marajo Art",
+      "category": "camisas-shorts",
+      "references": [
+        "Camiseta Marajo Art",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo",
+        "marajo",
+        "marajo dry"
+      ]
+    },
+    {
+      "id": "68",
+      "name": "Chinelo Slide Búfalo Unissex",
+      "category": "camisas-shorts",
+      "references": [
+        "Chinelo Slide Búfalo Unissex",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "69",
+      "name": "Chinelo Estampa Listrada Feminina",
+      "category": "camisas-shorts",
+      "references": [
+        "Chinelo Estampa Listrada Feminina",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "70",
+      "name": "Chinelo Estampa Listrada Masculino",
+      "category": "camisas-shorts",
+      "references": [
+        "Chinelo Estampa Listrada Masculino",
+        "camisa",
+        "camiseta",
+        "bermuda",
+        "short",
+        "shorts",
+        "roupa",
+        "chinelo"
+      ]
+    },
+    {
+      "id": "71",
+      "name": "Kit Pratos de Madeira",
+      "category": "souvenir-e-jogos",
+      "references": [
+        "Kit Pratos de Madeira",
+        "frescobol",
+        "jogo",
+        "souvenir"
+      ]
+    },
+    {
+      "id": "72",
+      "name": "Growler de Vidro 1100ml",
+      "category": "garrafas",
+      "references": [
+        "Growler de Vidro 1100ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "73",
+      "name": "Growler de Vidro 1.900ml",
+      "category": "garrafas",
+      "references": [
+        "Growler de Vidro 1.900ml",
+        "garrafa",
+        "garrafas",
+        "squeeze",
+        "cantil",
+        "termo",
+        "bottle",
+        "hidratar",
+        "hidratacao",
+        "academia",
+        "treino",
+        "agua",
+        "beber agua",
+        "garrafa termica"
+      ]
+    },
+    {
+      "id": "74",
+      "name": "Kit Frescobol MD",
+      "category": "souvenir-e-jogos",
+      "references": [
+        "Kit Frescobol MD",
+        "frescobol",
+        "jogo",
+        "souvenir"
+      ]
+    },
+    {
+      "id": "75",
+      "name": "Tábua de Corte Premium",
+      "category": "souvenir-e-jogos",
+      "references": [
+        "Tábua de Corte Premium",
+        "frescobol",
+        "jogo",
+        "souvenir"
+      ]
+    },
+    {
+      "id": "76",
+      "name": "Alça Copo Niliravi",
+      "category": "alcas-e-bags",
+      "references": [
+        "Alça Copo Niliravi",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido",
+        "niliravi",
+        "nili",
+        "nili ravi",
+        "niliravy",
+        "nilirave"
+      ]
+    },
+    {
+      "id": "77",
+      "name": "Bag Neoprene Copo Niliravi e Pand",
+      "category": "alcas-e-bags",
+      "references": [
+        "Bag Neoprene Copo Niliravi e Pand",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido",
+        "niliravi",
+        "nili",
+        "nili ravi",
+        "niliravy",
+        "nilirave"
+      ]
+    },
+    {
+      "id": "78",
+      "name": "Alça Silicone Para Garrafa Garça",
+      "category": "alcas-e-bags",
+      "references": [
+        "Alça Silicone Para Garrafa Garça",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido",
+        "garca",
+        "garsa"
+      ]
+    },
+    {
+      "id": "79",
+      "name": "Unibag - Bolsa universal Búfalo Growler",
+      "category": "alcas-e-bags",
+      "references": [
+        "Unibag - Bolsa universal Búfalo Growler",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido"
+      ]
+    },
+    {
+      "id": "80",
+      "name": "Bag Neoprene Garrafa Harpuri",
+      "category": "alcas-e-bags",
+      "references": [
+        "Bag Neoprene Garrafa Harpuri",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido",
+        "harpuri",
+        "harpure",
+        "harpury"
+      ]
+    },
+    {
+      "id": "81",
+      "name": "Bag Neoprene Garrafa Jafarabadi 1L",
+      "category": "alcas-e-bags",
+      "references": [
+        "Bag Neoprene Garrafa Jafarabadi 1L",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido",
+        "jafarabadi",
+        "jafa",
+        "jafarabady",
+        "jafarabadi"
+      ]
+    },
+    {
+      "id": "82",
+      "name": "Alça para garrafa com argola em Metal",
+      "category": "alcas-e-bags",
+      "references": [
+        "Alça para garrafa com argola em Metal",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido"
+      ]
+    },
+    {
+      "id": "83",
+      "name": "Argola Mosquetão",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Argola Mosquetão",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "84",
+      "name": "Alça antiderrapante de silicone",
+      "category": "alcas-e-bags",
+      "references": [
+        "Alça antiderrapante de silicone",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido"
+      ]
+    },
+    {
+      "id": "85",
+      "name": "Bag Neoprene Copo Surti",
+      "category": "alcas-e-bags",
+      "references": [
+        "Bag Neoprene Copo Surti",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido",
+        "surti",
+        "surty"
+      ]
+    },
+    {
+      "id": "86",
+      "name": "Bag Neoprene Garrafa Buba e Copo Ravi",
+      "category": "alcas-e-bags",
+      "references": [
+        "Bag Neoprene Garrafa Buba e Copo Ravi",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido"
+      ]
+    },
+    {
+      "id": "87",
+      "name": "Alça Premium para Copos Surtí",
+      "category": "alcas-e-bags",
+      "references": [
+        "Alça Premium para Copos Surtí",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido",
+        "surti",
+        "surty"
+      ]
+    },
+    {
+      "id": "88",
+      "name": "Bag Neoprene Garrafa Murrah",
+      "category": "alcas-e-bags",
+      "references": [
+        "Bag Neoprene Garrafa Murrah",
+        "alca",
+        "bag",
+        "neoprene",
+        "unibag",
+        "bolsa para copo",
+        "bolsa para garrafa",
+        "capa de tecido",
+        "murrah",
+        "mura",
+        "murra"
+      ]
+    },
+    {
+      "id": "89",
+      "name": "Tampa Esporte com Bico",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Esporte com Bico",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "90",
+      "name": "Tirante com Abridor - OpenNeck",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tirante com Abridor - OpenNeck",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "91",
+      "name": "Tirante com Elástico",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tirante com Elástico",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "92",
+      "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "bhadwari",
+        "bhadawari",
+        "badwari",
+        "badawari",
+        "banni",
+        "bani",
+        "banny",
+        "surti",
+        "surty"
+      ]
+    },
+    {
+      "id": "93",
+      "name": "Tampa EasyDrink",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa EasyDrink",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "easy drink",
+        "easydrink"
+      ]
+    },
+    {
+      "id": "94",
+      "name": "Capa Murrah 540ml e Buba 355ml",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Capa Murrah 540ml e Buba 355ml",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "murrah",
+        "mura",
+        "murra"
+      ]
+    },
+    {
+      "id": "95",
+      "name": "Capa Jafarabadi 1L",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Capa Jafarabadi 1L",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "jafarabadi",
+        "jafa",
+        "jafarabady",
+        "jafarabadi"
+      ]
+    },
+    {
+      "id": "96",
+      "name": "Tampa Original Garrafas",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Original Garrafas",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "97",
+      "name": "Canudo de plástico para tampa Esporte com Bico",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Canudo de plástico para tampa Esporte com Bico",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "98",
+      "name": "Base de Silicone P",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Base de Silicone P",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "99",
+      "name": "Capa Harpuri 750ml",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Capa Harpuri 750ml",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "harpuri",
+        "harpure",
+        "harpury"
+      ]
+    },
+    {
+      "id": "100",
+      "name": "Escovinha Para Limpeza de Canudos",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Escovinha Para Limpeza de Canudos",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "101",
+      "name": "Tampa Garrafa Carabinho",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Garrafa Carabinho",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "carabinho",
+        "carabim",
+        "carabinho teen"
+      ]
+    },
+    {
+      "id": "102",
+      "name": "Tampa Surti Duo Flow",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Surti Duo Flow",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "surti",
+        "surty"
+      ]
+    },
+    {
+      "id": "103",
+      "name": "Capa de Silicone Bhadawari",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Capa de Silicone Bhadawari",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "bhadwari",
+        "bhadawari",
+        "badwari",
+        "badawari"
+      ]
+    },
+    {
+      "id": "104",
+      "name": "Tampa HotDrink",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa HotDrink",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "hotdrink",
+        "hot drink"
+      ]
+    },
+    {
+      "id": "105",
+      "name": "Tampa Magnética Copo Niliravi e Pand760",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Magnética Copo Niliravi e Pand760",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "niliravi",
+        "nili",
+        "nili ravi",
+        "niliravy",
+        "nilirave"
+      ]
+    },
+    {
+      "id": "106",
+      "name": "Tampa Magnética Copos: Surtí, Tulipa, Banni e Ravi",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Magnética Copos: Surtí, Tulipa, Banni e Ravi",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "banni",
+        "bani",
+        "banny",
+        "surti",
+        "surty"
+      ]
+    },
+    {
+      "id": "107",
+      "name": "Tampa Copo Niliravi e Pand 760",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Copo Niliravi e Pand 760",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "niliravi",
+        "nili",
+        "nili ravi",
+        "niliravy",
+        "nilirave"
+      ]
+    },
+    {
+      "id": "108",
+      "name": "Capa de Silicone Base G - Jafarabadi",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Capa de Silicone Base G - Jafarabadi",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "jafarabadi",
+        "jafa",
+        "jafarabady",
+        "jafarabadi"
+      ]
+    },
+    {
+      "id": "109",
+      "name": "Extrator De Borracha Espátula BG",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Extrator De Borracha Espátula BG",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "110",
+      "name": "Kit Canudo Ecológico em Inox",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Kit Canudo Ecológico em Inox",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "111",
+      "name": "Canudo interno para copo Carabinho",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Canudo interno para copo Carabinho",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "carabinho",
+        "carabim",
+        "carabinho teen"
+      ]
+    },
+    {
+      "id": "112",
+      "name": "Canudo de plástico para tampa Garrafa Carabinho",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Canudo de plástico para tampa Garrafa Carabinho",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "carabinho",
+        "carabim",
+        "carabinho teen"
+      ]
+    },
+    {
+      "id": "113",
+      "name": "Tampa Garrafa Garça",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Garrafa Garça",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "garca",
+        "garsa"
+      ]
+    },
+    {
+      "id": "114",
+      "name": "Tampa Copo Guará 1L",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Copo Guará 1L",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "guara",
+        "guarra"
+      ]
+    },
+    {
+      "id": "115",
+      "name": "Tampa Copo Guará 850ml",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Copo Guará 850ml",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "guara",
+        "guarra"
+      ]
+    },
+    {
+      "id": "116",
+      "name": "Argola de silicone para NagNeck",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Argola de silicone para NagNeck",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio",
+        "nagneck",
+        "nag neck",
+        "long neck",
+        "longneck"
+      ]
+    },
+    {
+      "id": "117",
+      "name": "Bomba de Tereré Inox",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Bomba de Tereré Inox",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "118",
+      "name": "Chaveiro Mosquetão",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Chaveiro Mosquetão",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "119",
+      "name": "Tampa com bocal Growler Palitano",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa com bocal Growler Palitano",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "120",
+      "name": "Tampa Padrão Copo Pand 750ml",
+      "category": "tampas-e-acessorios",
+      "references": [
+        "Tampa Padrão Copo Pand 750ml",
+        "tampa",
+        "tampas",
+        "canudo",
+        "bico",
+        "borracha",
+        "vedacao",
+        "base de silicone",
+        "tirante",
+        "acessorio"
+      ]
+    },
+    {
+      "id": "121",
+      "name": "Adesivos Camping",
+      "category": "adesivos",
+      "references": [
+        "Adesivos Camping",
+        "adesivo",
+        "adesivos",
+        "sticker"
+      ]
+    },
+    {
+      "id": "122",
+      "name": "Adesivos Cringe-smile",
+      "category": "adesivos",
+      "references": [
+        "Adesivos Cringe-smile",
+        "adesivo",
+        "adesivos",
+        "sticker"
+      ]
+    },
+    {
+      "id": "123",
+      "name": "Adesivos Caveira",
+      "category": "adesivos",
+      "references": [
+        "Adesivos Caveira",
+        "adesivo",
+        "adesivos",
+        "sticker"
+      ]
+    },
+    {
+      "id": "124",
+      "name": "Adesivos Explorador",
+      "category": "adesivos",
+      "references": [
+        "Adesivos Explorador",
+        "adesivo",
+        "adesivos",
+        "sticker"
+      ]
+    },
+    {
+      "id": "125",
+      "name": "Adesivos Girl Power",
+      "category": "adesivos",
+      "references": [
+        "Adesivos Girl Power",
+        "adesivo",
+        "adesivos",
+        "sticker"
+      ]
+    },
+    {
+      "id": "126",
+      "name": "Adesivos Infantis",
+      "category": "adesivos",
+      "references": [
+        "Adesivos Infantis",
+        "adesivo",
+        "adesivos",
+        "sticker"
+      ]
+    },
+    {
+      "id": "127",
+      "name": "Adesivos Tattoo",
+      "category": "adesivos",
+      "references": [
+        "Adesivos Tattoo",
+        "adesivo",
+        "adesivos",
+        "sticker"
+      ]
+    },
+    {
+      "id": "128",
+      "name": "Adesivos Vibes",
+      "category": "adesivos",
+      "references": [
+        "Adesivos Vibes",
+        "adesivo",
+        "adesivos",
+        "sticker"
+      ]
+    }
+  ]
+}

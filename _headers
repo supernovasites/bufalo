@@ -4,3 +4,8 @@
   Cache-Control: public, max-age=0, must-revalidate
 /assets/shop-assistant.js
   Cache-Control: public, max-age=0, must-revalidate
+
+/assets/product-search.js
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/product-references.json
+  Cache-Control: public, max-age=0, must-revalidate
