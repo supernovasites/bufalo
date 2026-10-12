@@ -1,0 +1,6 @@
+/assets/site-shell.js
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/site-shell.css
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/shop-assistant.js
+  Cache-Control: public, max-age=0, must-revalidate
