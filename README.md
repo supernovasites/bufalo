@@ -30,7 +30,7 @@ As páginas de copos e garrafas, incluindo HTML, CSS, vídeos e posters, ficam e
 
 ## Assistente de compras
 
-A homepage abre um diálogo pelo botão de conversa com IA. O endpoint `POST /api/shop-assistant` usa o binding Cloudflare Workers AI `AI`, declarado no `wrangler.jsonc`, e o modelo `@cf/meta/llama-3.1-8b-instruct`. As recomendações retornam somente IDs existentes; imagens e links de compra vêm do catálogo, nunca do modelo. Sem o binding ou durante falhas, a interface identifica o modo de busca local no catálogo. Não há armazenamento de conversas.
+A homepage abre um diálogo pelo botão de conversa com IA. O endpoint `POST /api/shop-assistant` usa o binding Cloudflare Workers AI `AI`, declarado no `wrangler.jsonc`, e o modelo `@cf/meta/llama-3.3-70b-instruct-fp8-fast`. As recomendações retornam somente IDs existentes; imagens e links de compra vêm do catálogo, nunca do modelo. Sem o binding ou durante falhas, a interface identifica o modo de busca local no catálogo. Não há armazenamento de conversas.
 
 A base de 128 produtos foi extraída de `catalogo/index.html`; atualizar `functions/_lib/shop-products.js` e a constante `products` no script `bg-assistant-script` da homepage quando o catálogo mudar. Não há consulta em tempo real de preço ou estoque. A interface pede confirmação na loja e não exibe preços do catálogo.
 
