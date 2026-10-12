@@ -1,5 +1,11 @@
 export const referenceVersion='2026-10-12';
 export const normalize=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9.,\s]/g,' ').replace(/\s+/g,' ').trim();
+export function wantsHuman(text){
+ const q=normalize(text);
+ if(/\b(whatsapp|whats|zap|wpp|atendente|atendimento|vendedor|vendedora|consultor|consultora|suporte|humano|humana|pessoa real|gente de verdade)\b/.test(q))return true;
+ if(/\b(falar|conversar|chamar|contato|telefone|numero)\b/.test(q)&&/\b(alguem|pessoa|equipe|loja|bufalo|voces|funcionario|funcionaria|representante)\b/.test(q))return true;
+ return /\b(nao quero|cansei de|pare de)\b.*\b(robo|bot|ia)\b/.test(q);
+}
 // Referências de intenção e nomes alternativos; não representam especificações.
 export const references={
  'garrafas':['garrafa','garrafas','squeeze','cantil','termo','bottle','hidratar','hidratacao','academia','treino','agua','beber agua','garrafa termica'],
@@ -26,7 +32,7 @@ function phrase(q,s){return (' '+q+' ').includes(' '+normalize(s)+' ');}
 function family(p){const n=normalize(p.name);if(p.category==='carabinho-kids')return p.category;if(/^(tampa|canudo|capa|base|tirante|escovinha|extrator|argola|bomba|chaveiro)/.test(n))return 'tampas-e-acessorios';if(/^(alca|bag|unibag)/.test(n))return 'alcas-e-bags';if(/^(copo|caneca)/.test(n))return 'copos-bg';if(/growler de vidro/.test(n))return 'garrafas';return p.category;}
 export function buildReferenceIndex(products){return products.map(p=>({id:p.id,name:p.name,category:family(p),references:[p.name,...(references[family(p)]||[]),...Object.entries(modelAliases).filter(([m])=>normalize(p.name).includes(m)||modelAliases[m].some(a=>normalize(p.name).includes(a))).flatMap(([m,a])=>[m,...a])]}));}
 export function searchProducts(products,messages,rejected=[]){
- const users=messages.filter(m=>m.role==='user');const q=normalize(users.at(-1)?.content||'');const terms=q.split(/\s+/).filter(t=>t.length>2&&!ignored.has(t));
+ const users=messages.filter(m=>m.role==='user');const q=normalize(users.at(-1)?.content||'');if(wantsHuman(q))return {message:'Claro! Toque abaixo para falar com a equipe Búfalo no WhatsApp.',productIds:[],category:null,model:null,matchType:'human',needsHuman:true};const terms=q.split(/\s+/).filter(t=>t.length>2&&!ignored.has(t));
  const colorNames=[...new Set([...products.flatMap(p=>p.colors).map(normalize),'azul','verde','preto','branco','rosa','vermelho','creme','magenta','chocolate','pistache','petroleo','mirtilo','nuvem','pitaya','areia','celeste'])];
  const colors=colorNames.filter(c=>phrase(q,c));
  const cap=q.match(/(\d+(?:[.,]\d+)?)\s*(ml|l|litros?|litre)\b/);const capacity=cap?Number(cap[1].replace(',','.'))*(cap[2]==='ml'?1:1000):null;
