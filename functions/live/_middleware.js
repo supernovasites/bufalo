@@ -1,4 +1,4 @@
-import {content, gallery, validDate, photoResponse, savePhoto, readLimited} from '../../lib/live-content.js';
+import {content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable} from '../../lib/live-content.js';
 const encoder = new TextEncoder();
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
@@ -64,6 +64,13 @@ async function handle(context) {
     }
     if (path === '/live/api/login' && request.method === 'POST') return json({error:'Acesse pelo Painel administrativo.'},401);
     if (!await authenticated(request,db)) return json({error:'Entre no painel para continuar.'},401);
+    if(path==='/live/api/challenges' && request.method==='POST') {
+      const coupons = challengeIds.map(id => typeof body[id] === 'string' ? body[id].trim().toUpperCase() : '');
+      if(coupons.some(coupon => !/^[A-Z0-9_-]{3,24}$/.test(coupon)))return json({error:'Informe os quatro cupons com 3 a 24 letras, números, hífen ou sublinhado.'},400);
+      await db.prepare(challengeTable).run();
+      await db.prepare('INSERT INTO live_challenge_coupons (id,tote,nag,outdoor,mestre) VALUES (1,?,?,?,?) ON CONFLICT(id) DO UPDATE SET tote=excluded.tote,nag=excluded.nag,outdoor=excluded.outdoor,mestre=excluded.mestre').bind(...coupons).run();
+      return json(await state(db));
+    }
     if(path==='/live/api/contact' && request.method==='POST') {
       const number=typeof body.whatsapp_number==='string'?body.whatsapp_number.trim():'';
       const message=typeof body.whatsapp_message==='string'?body.whatsapp_message.trim():'';
@@ -109,6 +116,11 @@ async function handle(context) {
     const config=await content(env.LIVE_DB);
     let html=await result.text();
     html=html.replaceAll('__LIVE_COUPON__',config.coupon).replaceAll('__LIVE_DATE__',config.live_date).replaceAll('__LIVE_DATE_DOTTED__',config.live_date.replace('/','.'));
+    for(const id of challengeIds) {
+      const coupon = config.challenge_coupons[id] || config.coupon;
+      const escaped = coupon.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll("'",'&#39;');
+      html=html.replaceAll('__LIVE_CHALLENGE_'+id.toUpperCase()+'_COUPON__',escaped);
+    }
     const whatsapp=new URL('https://wa.me/'+config.whatsapp_number);
     whatsapp.searchParams.set('text',config.whatsapp_message);
     whatsapp.searchParams.set('utm_source','pagina_live');whatsapp.searchParams.set('utm_medium','referral');whatsapp.searchParams.set('utm_campaign','LiveshopBG');whatsapp.searchParams.set('utm_content','comprar_whatsapp');

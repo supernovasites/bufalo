@@ -7,7 +7,7 @@
   <title>Administração da Live · Búfalo Growler</title>
   <link rel="stylesheet" href="admin.css">
   <script src="admin.js?v=20261006-whatsapp" defer></script>
-  <script src="puzzle-admin.js" defer></script>
+  <script src="puzzle-admin.js?v=20261013-challenge-coupons" defer></script>
 </head>
 <body>
   <header class="top">
@@ -67,22 +67,28 @@
     <section class="puzzle-editor card" aria-labelledby="puzzle-editor-title">
       <div class="puzzle-editor-copy">
         <div class="eyebrow">DESAFIO DA MANADA</div>
-        <h2 id="puzzle-editor-title">Foto e cupom do puzzle</h2>
-        <p>Configure a imagem usada no quebra-cabeça e o cupom revelado quando o cliente concluir o desafio dentro do limite de movimentos.</p>
+        <h2 id="puzzle-editor-title">Cupons dos desafios</h2>
+        <p>Digite o cupom de cada desafio. Ele será revelado na página da live quando o cliente concluir o quebra-cabeça dentro do limite de movimentos.</p>
         <form id="puzzle-form" class="content-form">
-          <label for="puzzle-photo">Foto do puzzle</label>
-          <input id="puzzle-photo" type="file" accept="image/jpeg,image/png,image/webp">
-          <p class="field-help">Use uma imagem horizontal em JPG, PNG ou WebP, com até 10 MB.</p>
-          <label for="puzzle-coupon">Cupom da recompensa</label>
-          <input id="puzzle-coupon" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required value="TOTE50">
-          <button id="save-puzzle" class="btn orange" type="submit">Salvar configurações do puzzle</button>
+          <label for="puzzle-coupon-tote">Desafio 1 · Wine Tote 14L</label>
+          <input id="puzzle-coupon-tote" name="tote" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+          <label for="puzzle-coupon-nag">Desafio 2 · Nag PRO 6</label>
+          <input id="puzzle-coupon-nag" name="nag" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+          <label for="puzzle-coupon-outdoor">Desafio 3 · Kit Cimo Trio de Força AX</label>
+          <input id="puzzle-coupon-outdoor" name="outdoor" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+          <label for="puzzle-coupon-mestre">Desafio 4 · Kit Mestre Búfalo On TAP 7L</label>
+          <input id="puzzle-coupon-mestre" name="mestre" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+          <p class="field-help">Use de 3 a 24 letras, números, hífen ou sublinhado. Os desafios mantêm o desconto de 20%. Até você salvar, eles usam o cupom do dia.</p>
+          <button id="save-puzzle" class="btn orange" type="submit" disabled>Salvar cupons dos desafios</button>
           <p id="puzzle-feedback" role="status" aria-live="polite"></p>
         </form>
       </div>
       <div class="puzzle-preview-panel">
-        <span class="preview-label">PRÉVIA DA IMAGEM</span>
-        <img id="puzzle-photo-preview" src="../live/desafio-manada.jpg" alt="Prévia da foto usada no puzzle">
-        <div class="puzzle-coupon-preview"><small>CUPOM REVELADO APÓS A CONCLUSÃO</small><strong id="puzzle-coupon-preview">TOTE50</strong><span>50% OFF · recompensa do desafio</span></div>
+        <span class="preview-label">CUPONS REVELADOS APÓS A CONCLUSÃO</span>
+        <div class="puzzle-coupon-preview"><small>DESAFIO 1 · WINE TOTE</small><strong id="puzzle-coupon-preview-tote">—</strong></div>
+        <div class="puzzle-coupon-preview"><small>DESAFIO 2 · NAG PRO 6</small><strong id="puzzle-coupon-preview-nag">—</strong></div>
+        <div class="puzzle-coupon-preview"><small>DESAFIO 3 · KIT CIMO</small><strong id="puzzle-coupon-preview-outdoor">—</strong></div>
+        <div class="puzzle-coupon-preview"><small>DESAFIO 4 · KIT MESTRE BÚFALO</small><strong id="puzzle-coupon-preview-mestre">—</strong></div>
       </div>
     </section>
 
@@ -108,7 +114,7 @@
     </section>
 
     <footer class="admin-foot">
-      <span>Prévia local · alterações não são publicadas.</span>
+      <span>Administração da live · alterações salvas são publicadas.</span>
       <button id="logout" class="signout" type="button">Sair do painel</button>
     </footer>
   </main>

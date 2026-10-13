@@ -41,3 +41,11 @@ O assistente oferece o WhatsApp do menu flutuante quando a IA falha, não encont
 ## Cabeçalho e rodapé compartilhados
 
 `assets/site-shell.js` é a fonte única dos modelos de cabeçalho, menu, faixa superior e rodapé. `assets/site-shell.css` é a fonte única dos estilos desses componentes. As páginas usam os marcadores `data-bg-header`, `data-bg-footer` e `data-bg-announcement`; os componentes são aplicados automaticamente ao carregar a página. Os HTMLs existentes permanecem como fallback sem JavaScript. Altere os arquivos compartilhados para atualizar homepage, catálogo, Círio, Manada ONE, copos, garrafas e live na mesma publicação. Não edite os fallbacks para mudanças de componentes. Para novas páginas, inclua esses marcadores e os mesmos links para CSS/JS absolutos. O assistente usa `assets/shop-assistant.js` em todas as páginas. Mantenha as cópias de `dist/assets` sincronizadas na publicação.
+
+## Cupons do Desafio da Manada
+
+Em `/live/admin`, a seção **Desafio da Manada** permite salvar um cupom para cada um dos quatro desafios. Os códigos são persistidos no D1 e revelados, com opção de copiar, após a conclusão do respectivo quebra-cabeça. O desconto visual dos desafios continua em 20%.
+
+Até a primeira configuração, os quatro desafios usam o cupom do dia. Depois de salvar os cupons dos desafios, alterar o cupom do dia não os substitui. Páginas da live já abertas precisam ser recarregadas para receber os novos códigos.
+
+A tabela `live_challenge_coupons` é criada no primeiro salvamento autenticado; a migração idempotente `0011_live_challenge_coupons.sql` também pode ser aplicada pelo fluxo de migrations do projeto. Verificação: `node --test tests/live-challenge-coupons.test.mjs`.
