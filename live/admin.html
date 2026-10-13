@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>Administração da Live · Búfalo Growler</title>
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="admin.css?v=20261013-compact-fields">
   <script src="admin.js?v=20261006-whatsapp" defer></script>
   <script src="puzzle-admin.js?v=20261013-challenge-discounts" defer></script>
 </head>
@@ -70,22 +70,46 @@
         <h2 id="puzzle-editor-title">Cupons e descontos dos desafios</h2>
         <p>Digite o cupom e o percentual de desconto de cada desafio. Ele será revelado na página da live quando o cliente concluir o quebra-cabeça dentro do limite de movimentos.</p>
         <form id="puzzle-form" class="content-form">
-          <label for="puzzle-coupon-tote">Desafio 1 · Wine Tote 14L</label>
-          <input id="puzzle-coupon-tote" name="tote" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
-          <label for="puzzle-discount-tote">Desconto do desafio 1 (%)</label>
-          <input id="puzzle-discount-tote" name="discount_tote" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
-          <label for="puzzle-coupon-nag">Desafio 2 · Nag PRO 6</label>
-          <input id="puzzle-coupon-nag" name="nag" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
-          <label for="puzzle-discount-nag">Desconto do desafio 2 (%)</label>
-          <input id="puzzle-discount-nag" name="discount_nag" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
-          <label for="puzzle-coupon-outdoor">Desafio 3 · Kit Cimo Trio de Força AX</label>
-          <input id="puzzle-coupon-outdoor" name="outdoor" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
-          <label for="puzzle-discount-outdoor">Desconto do desafio 3 (%)</label>
-          <input id="puzzle-discount-outdoor" name="discount_outdoor" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
-          <label for="puzzle-coupon-mestre">Desafio 4 · Kit Mestre Búfalo On TAP 7L</label>
-          <input id="puzzle-coupon-mestre" name="mestre" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
-          <label for="puzzle-discount-mestre">Desconto do desafio 4 (%)</label>
-          <input id="puzzle-discount-mestre" name="discount_mestre" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
+          <div class="challenge-fields">
+            <div class="challenge-coupon-field">
+              <label for="puzzle-coupon-tote">Desafio 1 · Wine Tote 14L</label>
+              <input id="puzzle-coupon-tote" name="tote" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+            </div>
+            <div class="challenge-discount-field">
+              <label for="puzzle-discount-tote">Desconto (%)<span class="sr-only"> do desafio 1</span></label>
+              <input id="puzzle-discount-tote" name="discount_tote" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
+            </div>
+          </div>
+          <div class="challenge-fields">
+            <div class="challenge-coupon-field">
+              <label for="puzzle-coupon-nag">Desafio 2 · Nag PRO 6</label>
+              <input id="puzzle-coupon-nag" name="nag" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+            </div>
+            <div class="challenge-discount-field">
+              <label for="puzzle-discount-nag">Desconto (%)<span class="sr-only"> do desafio 2</span></label>
+              <input id="puzzle-discount-nag" name="discount_nag" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
+            </div>
+          </div>
+          <div class="challenge-fields">
+            <div class="challenge-coupon-field">
+              <label for="puzzle-coupon-outdoor">Desafio 3 · Kit Cimo Trio de Força AX</label>
+              <input id="puzzle-coupon-outdoor" name="outdoor" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+            </div>
+            <div class="challenge-discount-field">
+              <label for="puzzle-discount-outdoor">Desconto (%)<span class="sr-only"> do desafio 3</span></label>
+              <input id="puzzle-discount-outdoor" name="discount_outdoor" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
+            </div>
+          </div>
+          <div class="challenge-fields">
+            <div class="challenge-coupon-field">
+              <label for="puzzle-coupon-mestre">Desafio 4 · Kit Mestre Búfalo On TAP 7L</label>
+              <input id="puzzle-coupon-mestre" name="mestre" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+            </div>
+            <div class="challenge-discount-field">
+              <label for="puzzle-discount-mestre">Desconto (%)<span class="sr-only"> do desafio 4</span></label>
+              <input id="puzzle-discount-mestre" name="discount_mestre" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
+            </div>
+          </div>
           <p class="field-help">Use de 3 a 24 letras, números, hífen ou sublinhado. Informe o desconto em número inteiro, de 1 a 100. Exemplo: 25 para 25% OFF.</p>
           <button id="save-puzzle" class="btn orange" type="submit" disabled>Salvar cupons e descontos</button>
           <p id="puzzle-feedback" role="status" aria-live="polite"></p>
