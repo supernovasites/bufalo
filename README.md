@@ -44,8 +44,8 @@ O assistente oferece o WhatsApp do menu flutuante quando a IA falha, não encont
 
 ## Cupons do Desafio da Manada
 
-Em `/live/admin`, a seção **Desafio da Manada** permite salvar um cupom para cada um dos quatro desafios. Os códigos são persistidos no D1 e revelados, com opção de copiar, após a conclusão do respectivo quebra-cabeça. O desconto visual dos desafios continua em 20%.
+Em `/live/admin`, a seção **Desafio da Manada** permite salvar um cupom para cada um dos quatro desafios. Os códigos são persistidos no D1 e revelados, com opção de copiar, após a conclusão do respectivo quebra-cabeça. Cada desafio possui um campo de desconto inteiro de 1% a 100%, usado na porcentagem, no preço e na economia exibidos. A recompensa informa 3 cupons disponíveis.
 
 Até a primeira configuração, os quatro desafios usam o cupom do dia. Depois de salvar os cupons dos desafios, alterar o cupom do dia não os substitui. Páginas da live já abertas precisam ser recarregadas para receber os novos códigos.
 
-A tabela `live_challenge_coupons` é criada no primeiro salvamento autenticado; a migração idempotente `0011_live_challenge_coupons.sql` também pode ser aplicada pelo fluxo de migrations do projeto. Verificação: `node --test tests/live-challenge-coupons.test.mjs`.
+As tabelas `live_challenge_coupons` e `live_challenge_discounts` são criadas no primeiro salvamento autenticado; as migrações idempotentes `0011_live_challenge_coupons.sql` e `0012_live_challenge_discounts.sql` também podem ser aplicadas pelo fluxo de migrations do projeto. Os descontos existentes permanecem em 20% até nova configuração. Cupom e percentual são salvos juntos em uma transação. Verificação: `node --test tests/live-challenge-coupons.test.mjs`.

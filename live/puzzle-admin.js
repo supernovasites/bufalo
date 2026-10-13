@@ -5,8 +5,10 @@
   const feedback = document.getElementById('puzzle-feedback');
   const save = document.getElementById('save-puzzle');
   const input = id => document.getElementById('puzzle-coupon-' + id);
+  const discountInput = id => document.getElementById('puzzle-discount-' + id);
   const preview = id => {
     document.getElementById('puzzle-coupon-preview-' + id).textContent = input(id).value || '—';
+    document.getElementById('puzzle-discount-preview-' + id).textContent = (discountInput(id).value || '—') + '% OFF';
   };
   async function api(path, body) {
     const response = await fetch('/live/api/' + path, {
@@ -25,29 +27,39 @@
     ids.forEach(id => {
       input(id).value = data.challenge_coupons?.[id] || data.coupon || '';
       input(id).disabled = false;
+      discountInput(id).value = data.challenge_discounts?.[id] ?? 20;
+      discountInput(id).disabled = false;
       preview(id);
     });
     save.disabled = false;
   }
-  ids.forEach(id => input(id).addEventListener('input', () => preview(id)));
+  ids.forEach(id => {
+    input(id).addEventListener('input', () => preview(id));
+    discountInput(id).addEventListener('input', () => preview(id));
+  });
   form.addEventListener('submit', async event => {
     event.preventDefault();
     const coupons = Object.fromEntries(ids.map(id => [id, input(id).value.trim().toUpperCase()]));
+    const discounts = Object.fromEntries(ids.map(id => [id, Number(discountInput(id).value)]));
     if (Object.values(coupons).some(coupon => !/^[A-Z0-9_-]{3,24}$/.test(coupon))) {
       feedback.textContent = 'Informe os quatro cupons com 3 a 24 letras, números, hífen ou sublinhado.';
       return;
     }
+    if (Object.values(discounts).some(discount => !Number.isInteger(discount) || discount < 1 || discount > 100)) {
+      feedback.textContent = 'Informe um desconto inteiro de 1% a 100% para cada desafio.';
+      return;
+    }
     save.disabled = true;
-    ids.forEach(id => { input(id).disabled = true; });
+    ids.forEach(id => { input(id).disabled = true; discountInput(id).disabled = true; });
     feedback.textContent = 'Salvando cupons…';
     try {
-      render(await api('challenges', coupons));
-      feedback.textContent = 'Cupons publicados. Eles serão revelados ao concluir cada desafio na live. Recarregue a página da live para conferir.';
+      render(await api('challenges', {...coupons, discounts}));
+      feedback.textContent = 'Cupons e descontos publicados. Recarregue a página da live para conferir as recompensas.';
     } catch (error) {
       feedback.textContent = error.message;
     } finally {
       save.disabled = false;
-      ids.forEach(id => { input(id).disabled = false; });
+      ids.forEach(id => { input(id).disabled = false; discountInput(id).disabled = false; });
     }
   });
   api('state').then(render).catch(error => { feedback.textContent = error.message; });
