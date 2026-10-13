@@ -25,7 +25,11 @@
   };
   tabs.forEach((button,i)=>{button.addEventListener('click',()=>select(i));button.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=(i+1)%tabs.length;else if(event.key==='ArrowLeft')next=(i+tabs.length-1)%tabs.length;else if(event.key==='Home')next=0;else if(event.key==='End')next=tabs.length-1;else return;event.preventDefault();select(next);tabs[next].focus();});});
   const liveCoupon = document.getElementById('code')?.textContent.trim();
-  challenges.forEach(config=>mount(root.querySelector('#puzzle-'+config.id),{...config,coupon:liveCoupon,discount:20}));
+  challenges.forEach(config=>{
+    const configured = document.documentElement.getAttribute('data-challenge-'+config.id+'-coupon');
+    const coupon = /^[A-Za-z0-9_-]{3,24}$/.test(configured || '') ? configured : liveCoupon;
+    mount(root.querySelector('#puzzle-'+config.id),{...config,coupon,discount:20});
+  });
   select(0);
   function mount(host,config){
   const coupon = config.coupon;
