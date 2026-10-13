@@ -1,4 +1,4 @@
-import {content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable} from '../../lib/live-content.js';
+import {content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable, challengeDiscountTable} from '../../lib/live-content.js';
 const encoder = new TextEncoder();
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
@@ -67,8 +67,15 @@ async function handle(context) {
     if(path==='/live/api/challenges' && request.method==='POST') {
       const coupons = challengeIds.map(id => typeof body[id] === 'string' ? body[id].trim().toUpperCase() : '');
       if(coupons.some(coupon => !/^[A-Z0-9_-]{3,24}$/.test(coupon)))return json({error:'Informe os quatro cupons com 3 a 24 letras, números, hífen ou sublinhado.'},400);
+      const hasDiscounts = body.discounts !== undefined;
+      if(hasDiscounts && (!body.discounts || typeof body.discounts !== 'object' || Array.isArray(body.discounts) || challengeIds.some(id => !Number.isInteger(body.discounts[id]) || body.discounts[id] < 1 || body.discounts[id] > 100)))return json({error:'Informe um desconto inteiro de 1% a 100% para cada desafio.'},400);
       await db.prepare(challengeTable).run();
-      await db.prepare('INSERT INTO live_challenge_coupons (id,tote,nag,outdoor,mestre) VALUES (1,?,?,?,?) ON CONFLICT(id) DO UPDATE SET tote=excluded.tote,nag=excluded.nag,outdoor=excluded.outdoor,mestre=excluded.mestre').bind(...coupons).run();
+      const couponStatement = db.prepare('INSERT INTO live_challenge_coupons (id,tote,nag,outdoor,mestre) VALUES (1,?,?,?,?) ON CONFLICT(id) DO UPDATE SET tote=excluded.tote,nag=excluded.nag,outdoor=excluded.outdoor,mestre=excluded.mestre').bind(...coupons);
+      if(hasDiscounts) {
+        await db.prepare(challengeDiscountTable).run();
+        const discountStatement = db.prepare('INSERT INTO live_challenge_discounts (id,tote,nag,outdoor,mestre) VALUES (1,?,?,?,?) ON CONFLICT(id) DO UPDATE SET tote=excluded.tote,nag=excluded.nag,outdoor=excluded.outdoor,mestre=excluded.mestre').bind(...challengeIds.map(id => body.discounts[id]));
+        await db.batch([couponStatement, discountStatement]);
+      } else await couponStatement.run();
       return json(await state(db));
     }
     if(path==='/live/api/contact' && request.method==='POST') {
@@ -120,6 +127,8 @@ async function handle(context) {
       const coupon = config.challenge_coupons[id] || config.coupon;
       const escaped = coupon.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll("'",'&#39;');
       html=html.replaceAll('__LIVE_CHALLENGE_'+id.toUpperCase()+'_COUPON__',escaped);
+      const discount = config.challenge_discounts[id] ?? 20;
+      html=html.replaceAll('__LIVE_CHALLENGE_'+id.toUpperCase()+'_DISCOUNT__',String(discount));
     }
     const whatsapp=new URL('https://wa.me/'+config.whatsapp_number);
     whatsapp.searchParams.set('text',config.whatsapp_message);

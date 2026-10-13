@@ -28,7 +28,9 @@
   challenges.forEach(config=>{
     const configured = document.documentElement.getAttribute('data-challenge-'+config.id+'-coupon');
     const coupon = /^[A-Za-z0-9_-]{3,24}$/.test(configured || '') ? configured : liveCoupon;
-    mount(root.querySelector('#puzzle-'+config.id),{...config,coupon,discount:20});
+    const configuredDiscount = Number(document.documentElement.getAttribute('data-challenge-'+config.id+'-discount'));
+    const discount = Number.isInteger(configuredDiscount) && configuredDiscount >= 1 && configuredDiscount <= 100 ? configuredDiscount : 20;
+    mount(root.querySelector('#puzzle-'+config.id),{...config,coupon,discount});
   });
   select(0);
   function mount(host,config){
@@ -71,7 +73,7 @@
           <a class="product-cta growler-cta reward-buy" href="${config.url}" target="_blank" rel="noopener noreferrer">Comprar agora</a>
         </div>
       </article>
-      <small>Só durante a live · 10 cupons disponíveis!</small>`}
+      <small>Só durante a live · 3 cupons disponíveis!</small>`}
     </div>
   `;
 
