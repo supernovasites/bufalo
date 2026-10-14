@@ -5,9 +5,24 @@
     if (!track) return;
     let drag=null, blockClick=false;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)');
+    const nextButton=buttons.find(b=>Number(b.dataset.direction)>0);
+    let hintShown=false, nextVisible=false;
+    const showHint=()=>{
+      if(hintShown||!nextVisible||!nextButton||nextButton.disabled||reduced.matches)return;
+      hintShown=true;
+      nextButton.classList.add('row-arrow-hint');
+      hintObserver?.disconnect();
+    };
+    const hintObserver=nextButton&&typeof IntersectionObserver==='function'?new IntersectionObserver(entries=>{
+      nextVisible=entries.some(entry=>entry.isIntersecting);
+      showHint();
+    },{threshold:1,rootMargin:'-90px 0px -150px 0px'}):null;
+    nextButton?.addEventListener('animationend',()=>nextButton.classList.remove('row-arrow-hint'));
     const update=()=>{
       const max=Math.max(0,track.scrollWidth-track.clientWidth);
       buttons.forEach(b=>{b.disabled=Number(b.dataset.direction)<0?track.scrollLeft<=2:track.scrollLeft>=max-2;});
+      if(nextButton?.disabled)nextButton.classList.remove('row-arrow-hint');
+      showHint();
     };
     function step(direction){
       const card=track.querySelector('.product');
@@ -52,6 +67,7 @@
     // Category grouping moves cards between tracks after this script initializes.
     new MutationObserver(update).observe(track,{childList:true});
     update();
+    if(hintObserver)hintObserver.observe(nextButton);
   });
   document.querySelectorAll('.growler-card').forEach(card=>{
     const image=card.querySelector('img');

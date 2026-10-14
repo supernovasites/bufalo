@@ -20,7 +20,7 @@ test('every catalog card has separate image and purchase links with coupons outs
  assert.ok(!html.includes('href="https://loja.bufalogrowler.com.br/bone-trucker-manada-bg?'));
 });
 test('carousel arrows recalculate when category grouping moves cards into the track',()=>{
- const buttons=[{dataset:{direction:'-1'},addEventListener(){}},{dataset:{direction:'1'},addEventListener(){}}];
+ const buttons=[{dataset:{direction:'-1'},addEventListener(){}},{dataset:{direction:'1'},addEventListener(){},classList:{remove(){}}}];
  const track={scrollWidth:200,clientWidth:500,scrollLeft:0,addEventListener(){}};
  const row={querySelector:()=>track,querySelectorAll:()=>buttons};
  let onMutation;
