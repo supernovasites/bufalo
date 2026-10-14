@@ -40,3 +40,6 @@
 /assets/pages/cirio/index /campanhas/cirio/ 301
 /assets/pages/cirio/index.html /campanhas/cirio/ 301
 /assets/pages/cirio/* /campanhas/cirio/:splat 301
+
+/live/games /live/games/index.html 200
+/live/games/ /live/games/index.html 200
