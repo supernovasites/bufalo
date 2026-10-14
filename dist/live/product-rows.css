@@ -31,6 +31,14 @@
 .product-track .growler-photo-link{height:auto;display:block}
 .product-track .growler-card .sr{font-size:inherit;margin:0}
 .growler-color-picker{display:flex;justify-content:center;gap:6px;margin-top:10px}
+@keyframes row-arrow-hint {
+  0%, 100% { background-color: #fff; color: var(--ink); }
+  50% { background-color: #eb6f32; color: #fff; border-color: #eb6f32; }
+}
+.row-arrow.row-arrow-hint:not(:disabled) { animation: row-arrow-hint 700ms ease-in-out 2; }
+@media (prefers-reduced-motion: reduce) {
+  .row-arrow.row-arrow-hint { animation: none; }
+}
 .growler-swatch{width:28px;height:28px;padding:5px;border:1px solid transparent;border-radius:50%;background:transparent;display:grid;place-items:center}
 .growler-swatch span{width:16px;height:16px;border:1px solid #142e3240;border-radius:50%;background:var(--color-fill)}
 .growler-swatch[aria-pressed=true]{border-color:var(--ink)}

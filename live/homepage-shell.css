@@ -1,5 +1,5 @@
 .home-announcement{min-height:36px;padding:10px 20px;display:flex;align-items:center;justify-content:center;background:#142e32;color:#fff;font-size:12px;font-weight:700;letter-spacing:.2px;text-align:center}
-.home-header{position:sticky;top:0;z-index:30;display:block;grid-template-columns:none;align-items:initial;gap:0;min-height:0;padding:0;background:#fff;border-bottom:1px solid #dce0df}
+.home-header{position:static;top:auto;z-index:30;display:block;grid-template-columns:none;align-items:initial;gap:0;min-height:0;padding:0;background:#fff;border-bottom:1px solid #dce0df}
 .home-header-row{position:relative;min-height:88px;padding:12px 5%;display:flex;align-items:center;justify-content:space-between}
 .home-logo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center}
 .home-logo img{display:block;width:64px;height:64px;object-fit:contain}
@@ -39,3 +39,6 @@
 
 #mobile-search.icon-button{position:relative;display:flex;align-items:center;justify-content:center;gap:4px;width:86px;min-width:86px;padding:6px 2px;color:var(--ink)}#mobile-search svg{flex-shrink:0;width:22px;height:22px}#mobile-search .bg-ai-label{position:static;font-size:11px;line-height:1.15;font-weight:700;text-align:left;white-space:nowrap}@media(max-width:760px){#mobile-search.icon-button{width:72px;min-width:72px;gap:3px}#mobile-search svg{width:20px;height:20px}#mobile-search .bg-ai-label{font-size:10px}}
 #mobile-search{border:0;background:transparent;min-height:44px}#mobile-search svg{fill:none;stroke:currentColor;stroke-width:1.6}
+
+/* The live header stays at the start of the document. */
+body #bg-site-header{position:static;top:auto}
