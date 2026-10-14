@@ -78,6 +78,42 @@
       ]
     },
     {
+      "id": "live-garrafas",
+      "title": "Garrafas",
+      "url": "https://loja.bufalogrowler.com.br/garrafas",
+      "products": [
+        "https://loja.bufalogrowler.com.br/garrafa-jafarabadi-1l-",
+        "https://loja.bufalogrowler.com.br/garrafa-harpuri-750ml-",
+        "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+        "https://loja.bufalogrowler.com.br/growler-palitano-14l",
+        "https://loja.bufalogrowler.com.br/buba-kids-355ml",
+        "https://loja.bufalogrowler.com.br/growler-mediterraneo-2l",
+        "https://loja.bufalogrowler.com.br/surti-duo-flow-900ml",
+        "https://loja.bufalogrowler.com.br/garrafa-garca-500ml",
+        "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
+        "https://loja.bufalogrowler.com.br/copo-guara-1l",
+        "https://loja.bufalogrowler.com.br/garrafa-murrah-540ml",
+        "https://loja.bufalogrowler.com.br/nagneck",
+        "https://loja.bufalogrowler.com.br/growler-silo128",
+        "https://loja.bufalogrowler.com.br/growler-kundi-2l",
+        "https://loja.bufalogrowler.com.br/growler-kundi-35l"
+      ]
+    },
+    {
+      "id": "live-copos-bg",
+      "title": "Copos BG",
+      "url": "https://loja.bufalogrowler.com.br/copos-bg",
+      "products": [
+        "https://loja.bufalogrowler.com.br/copo-ravi-483ml",
+        "https://loja.bufalogrowler.com.br/copo-pand-torcida",
+        "https://loja.bufalogrowler.com.br/caneca-bhadawari-710ml-open",
+        "https://loja.bufalogrowler.com.br/caneca-bhadawari-710ml",
+        "https://loja.bufalogrowler.com.br/copo-pand-750ml",
+        "https://loja.bufalogrowler.com.br/caneca-banni-350ml",
+        "https://loja.bufalogrowler.com.br/niliravi_com_alca"
+      ]
+    },
+    {
       "id": "live-camisas-shorts",
       "title": "Camisas e Shorts",
       "url": "https://loja.bufalogrowler.com.br/camisas-shorts",
@@ -182,42 +218,6 @@
         "https://loja.bufalogrowler.com.br/adesivos-kids",
         "https://loja.bufalogrowler.com.br/adesivos-tattoo",
         "https://loja.bufalogrowler.com.br/adesivos-vibes"
-      ]
-    },
-    {
-      "id": "live-garrafas",
-      "title": "Garrafas",
-      "url": "https://loja.bufalogrowler.com.br/garrafas",
-      "products": [
-        "https://loja.bufalogrowler.com.br/garrafa-jafarabadi-1l-",
-        "https://loja.bufalogrowler.com.br/garrafa-harpuri-750ml-",
-        "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
-        "https://loja.bufalogrowler.com.br/growler-palitano-14l",
-        "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-        "https://loja.bufalogrowler.com.br/growler-mediterraneo-2l",
-        "https://loja.bufalogrowler.com.br/surti-duo-flow-900ml",
-        "https://loja.bufalogrowler.com.br/garrafa-garca-500ml",
-        "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
-        "https://loja.bufalogrowler.com.br/copo-guara-1l",
-        "https://loja.bufalogrowler.com.br/garrafa-murrah-540ml",
-        "https://loja.bufalogrowler.com.br/nagneck",
-        "https://loja.bufalogrowler.com.br/growler-silo128",
-        "https://loja.bufalogrowler.com.br/growler-kundi-2l",
-        "https://loja.bufalogrowler.com.br/growler-kundi-35l"
-      ]
-    },
-    {
-      "id": "live-copos-bg",
-      "title": "Copos BG",
-      "url": "https://loja.bufalogrowler.com.br/copos-bg",
-      "products": [
-        "https://loja.bufalogrowler.com.br/copo-ravi-483ml",
-        "https://loja.bufalogrowler.com.br/copo-pand-torcida",
-        "https://loja.bufalogrowler.com.br/caneca-bhadawari-710ml-open",
-        "https://loja.bufalogrowler.com.br/caneca-bhadawari-710ml",
-        "https://loja.bufalogrowler.com.br/copo-pand-750ml",
-        "https://loja.bufalogrowler.com.br/caneca-banni-350ml",
-        "https://loja.bufalogrowler.com.br/niliravi_com_alca"
       ]
     },
     {
