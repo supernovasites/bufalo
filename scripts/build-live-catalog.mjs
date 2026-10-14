@@ -6,7 +6,7 @@ const data=JSON.parse(readFileSync(path.join(root,'live/catalog-data.json'),'utf
 const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
 const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const slugify=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const byUrl=new Map(data.products.map(p=>[p.url,p]));
+const byUrl=new Map(data.products.map(p=>[p.url,{...p,cards:p.cards.filter(option=>option.stock==='in_stock')}]));
 let rowCount=0,cardCount=0;
 function card(product,option){
   cardCount++;
@@ -39,7 +39,7 @@ const groups=data.categories.map(category=>{
  const nav=rows.length>1?`<nav class="live-subcategory-nav" aria-label="Modelos de ${escape(category.title)}">${rows.map(r=>`<a href="#${r.id}">${escape(r.name)}</a>`).join('')}</nav>`:'';
  return `<section class="live-category-group" id="${category.id}" data-category-source="${escape(category.url)}" aria-labelledby="${category.id}-title"><header class="live-category-header"><p class="eyebrow">${count} opções</p><h2 id="${category.id}-title">${escape(category.title)}</h2><p><a href="${escape(category.url)}" target="_blank" rel="noopener noreferrer" aria-label="Ver ${escape(category.title)} na loja">Ver na loja ↗</a></p></header>${nav}${rows.map(rowHtml).join('\n')}</section>`;
 }).join('\n');
-const catalog=`<section class="selection" aria-labelledby="products-title"><div class="selection-head"><div><p class="eyebrow">FAVORITOS DA MANADA</p><h2 id="products-title">Escolha sua próxima companhia.</h2></div><p class="selection-note">Seleção da live · 20% com o cupom</p></div>${navigation}\n${groups}<p class="selection-disclaimer">Aplique __LIVE_COUPON__ no carrinho. Preços e disponibilidade conferidos em 13/10/2026. Desconto de 20% calculado sobre o valor de venda da loja. Confirme a disponibilidade no momento da compra.</p></section>`;
+const catalog=`<section class="selection" aria-labelledby="products-title"><div class="selection-head"><div><p class="eyebrow">FAVORITOS DA MANADA</p><h2 id="products-title">Escolha sua próxima companhia.</h2></div><p class="selection-note">Seleção da live · 20% com o cupom</p></div>${navigation}\n${groups}</section>`;
 const target=path.join(root,'live/index.html');
 let html=readFileSync(target,'utf8');
 const start=html.indexOf('<section class="selection"');
