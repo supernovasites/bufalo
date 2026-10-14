@@ -15,7 +15,7 @@
       description.innerHTML = '<strong>Uma condição especial para os 10 primeiros.</strong><br>Use o cupom <span class="live-coupon-code"></span> durante a live e escolha a Búfalo que vai acompanhar seus próximos momentos.';
       description.querySelector('.live-coupon-code').textContent = coupon || '';
     }
-    if (actions) actions.innerHTML = '<a class="button hero-link" href="#products-title">Comprar agora</a><a class="manadacash-hero-cta" href="#cadastro-live">ManadaCash</a>';
+    if (actions) actions.innerHTML = '<a class="button hero-link" href="#products-title">Comprar agora</a><a class="manadacash-hero-cta" href="#cadastro-live">ManadaCash</a><a class="manadacash-hero-cta auction-hero-link" href="#live-auction">Ir para o Leilão</a>';
   }
 
   document.querySelector('.category-nav')?.remove();
