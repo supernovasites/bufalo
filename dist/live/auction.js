@@ -13,14 +13,14 @@
     photo.alt=next.title;
     $('auction-current').textContent=money(next.amount_cents);
     $('auction-next').textContent=money(next.next_amount_cents);
-    $('auction-status').textContent=next.enabled?'Lances abertos':'Lances pausados';
+    $('auction-status').textContent=next.enabled?'Propostas abertas':'Propostas pausadas';
     $('auction-open').disabled=!next.enabled;
     if(!panel.hidden&&!busy)$('auction-submit').disabled=!next.enabled;
     root.classList.toggle('is-open',next.enabled);
     const list=$('auction-recent');list.replaceChildren();
     next.bids.forEach((bid,index)=>{
       const item=document.createElement('li');item.className=index===0?'auction-leader':'auction-previous';
-      const label=document.createElement('span');label.textContent=index===0?'Último lance':'Lance anterior';
+      const label=document.createElement('span');label.textContent=index===0?'Última proposta':'Proposta anterior';
       const name=document.createElement('strong');name.textContent=bid.name;
       const city=document.createElement('small');city.className='auction-bid-city';city.textContent=bid.city;
       const value=document.createElement('b');value.textContent=money(bid.amount_cents);
@@ -30,7 +30,7 @@
     const revision=next.round_id+':'+(next.bids[0]?.id||0);
     if(previous!==null&&revision!==previous){
       root.classList.remove('auction-new-bid');void root.offsetWidth;root.classList.add('auction-new-bid');
-      $('auction-announcement').textContent=next.bids.length?`Novo lance: ${next.bids[0].name}, ${money(next.amount_cents)}.`:'Leilão reiniciado em '+money(next.amount_cents)+'.';
+      $('auction-announcement').textContent=next.bids.length?`Nova proposta: ${next.bids[0].name}, ${money(next.amount_cents)}.`:'Oferta reiniciada em '+money(next.amount_cents)+'.';
     }
     previous=revision;
   }
@@ -48,15 +48,15 @@
   form.addEventListener('submit',async e=>{
     e.preventDefault();if(busy||!pending)return;busy=true;
     const submit=$('auction-submit');submit.disabled=true;$('auction-form-cancel').disabled=true;
-    $('auction-bid-feedback').textContent='Registrando seu lance…';
+    $('auction-bid-feedback').textContent='Registrando sua proposta…';
     try{
       const response=await fetch('/live/api/auction/bid',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({...pending,name:$('auction-name').value,phone:$('auction-phone').value,city:$('auction-city').value})});
       const data=await response.json();
-      if(!response.ok){if(data.auction){render(data.auction);proposal();}throw new Error(data.error||'Não foi possível registrar o lance.');}
+      if(!response.ok){if(data.auction){render(data.auction);proposal();}throw new Error(data.error||'Não foi possível registrar a proposta.');}
       render(data);form.reset();panel.hidden=true;$('auction-open').setAttribute('aria-expanded','false');pending=null;
-      $('auction-announcement').textContent='Seu lance foi registrado: '+money(data.bids.find(b=>b.id===data.accepted_id)?.amount_cents||data.amount_cents)+'.';
-      $('auction-connection').textContent='Lance registrado com sucesso!';
-    }catch(error){$('auction-bid-feedback').textContent=error.message==='Failed to fetch'?'Conexão interrompida. Tente novamente para confirmar o mesmo lance.':error.message;}
+      $('auction-announcement').textContent='Sua proposta foi registrada: '+money(data.bids.find(b=>b.id===data.accepted_id)?.amount_cents||data.amount_cents)+'.';
+      $('auction-connection').textContent='Proposta registrada com sucesso!';
+    }catch(error){$('auction-bid-feedback').textContent=error.message==='Failed to fetch'?'Conexão interrompida. Tente novamente para confirmar a mesma proposta.':error.message;}
     finally{busy=false;submit.disabled=!state?.enabled;$('auction-form-cancel').disabled=false;}
   });
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)refresh();});

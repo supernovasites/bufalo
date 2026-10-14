@@ -5,11 +5,11 @@
   async function api(path='',body,photo=false){
     const response=await fetch('/live/api/auction'+path,{method:body===undefined?'GET':'POST',cache:'no-store',credentials:'same-origin',headers:body===undefined?{}:{'Content-Type':photo?body.type:'application/json'},body:body===undefined?undefined:photo?body:JSON.stringify(body)});
     const data=await response.json();if(response.status===401)location.replace('/painel/');
-    if(!response.ok)throw new Error(data.error||'Não foi possível consultar o leilão.');return data;
+    if(!response.ok)throw new Error(data.error||'Não foi possível consultar a oferta.');return data;
   }
   function render(data){
     current=data;
-    $('auction-admin-round').textContent='Rodada '+data.round_id+' · '+(data.enabled?'Lances abertos':'Lances pausados');
+    $('auction-admin-round').textContent='Rodada '+data.round_id+' · '+(data.enabled?'Propostas abertas':'Propostas pausadas');
     $('auction-admin-value').textContent=money(data.amount_cents);
     $('auction-admin-photo-preview').src=data.photo_url;
     if(!editing){$('auction-admin-title').value=data.title;$('auction-admin-description').value=data.description;$('auction-admin-enabled').checked=data.enabled;$('auction-admin-start').value=(data.start_cents/100).toFixed(2);}
@@ -28,7 +28,7 @@
       }rows.append(row);
     }
     const total=data.total||0;
-    $('auction-history-count').textContent=total?`${offset+1}–${Math.min(offset+100,total)} de ${total} lances · todas as rodadas`:'Nenhum lance registrado.';
+    $('auction-history-count').textContent=total?`${offset+1}–${Math.min(offset+100,total)} de ${total} propostas · todas as rodadas`:'Nenhuma proposta registrada.';
     $('auction-history-prev').disabled=offset===0;$('auction-history-next').disabled=offset+100>=total;
   }
   async function load(){try{render(await api('/admin?offset='+offset));}catch(error){$('auction-admin-feedback').textContent=error.message;}}
@@ -55,9 +55,9 @@
     finally{$('auction-admin-photo').disabled=false;e.target.value='';}
   });
   $('auction-admin-reset').addEventListener('click',async()=>{
-    if(!current||working||!confirm('Reiniciar o leilão em '+money(current.start_cents)+' e pausar os lances? O histórico será preservado.'))return;
+    if(!current||working||!confirm('Reiniciar a oferta em '+money(current.start_cents)+' e pausar as propostas? O histórico será preservado.'))return;
     working=true;$('auction-admin-reset').disabled=true;
-    try{const data=await api('/reset',{round_id:current.round_id});offset=0;editing=false;await load();$('auction-admin-feedback').textContent='Leilão reiniciado em '+money(data.start_cents)+'. Marque “Receber lances” e salve para abrir a nova rodada.';}
+    try{const data=await api('/reset',{round_id:current.round_id});offset=0;editing=false;await load();$('auction-admin-feedback').textContent='Oferta reiniciada em '+money(data.start_cents)+'. Marque “Receber propostas” e salve para abrir a nova rodada.';}
     catch(error){$('auction-admin-feedback').textContent=error.message;}
     finally{working=false;$('auction-admin-reset').disabled=false;}
   });
