@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS live_auction (id INTEGER PRIMARY KEY CHECK(id=1), round_id INTEGER NOT NULL DEFAULT 1, enabled INTEGER NOT NULL DEFAULT 0, title TEXT NOT NULL DEFAULT 'Cooler Búfalo Growler', description TEXT NOT NULL DEFAULT 'Dê seu lance e leve a aventura com você.', photo TEXT, photo_type TEXT, photo_version TEXT, updated_at INTEGER NOT NULL DEFAULT 0);
+CREATE TABLE IF NOT EXISTS live_auction_bids (id INTEGER PRIMARY KEY AUTOINCREMENT, round_id INTEGER NOT NULL, request_id TEXT NOT NULL UNIQUE, name TEXT NOT NULL, phone TEXT NOT NULL, city TEXT NOT NULL, product_title TEXT NOT NULL, amount_cents INTEGER NOT NULL, created_at INTEGER NOT NULL);
+CREATE INDEX IF NOT EXISTS live_auction_round_bids ON live_auction_bids(round_id,id DESC);
+INSERT OR IGNORE INTO live_auction(id) VALUES(1);
