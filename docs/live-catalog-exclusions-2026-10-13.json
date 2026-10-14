@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-13",
+  "excluded": [
+    {
+      "url": "https://loja.bufalogrowler.com.br/tabua-de-corte-premium",
+      "name": "Tábua de Corte Premium",
+      "variant": "Único",
+      "sku": "117902137",
+      "availability": "http://schema.org/OutOfStock"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/kit-frescobol",
+      "name": "Kit Frescobol MD",
+      "variant": "Único",
+      "sku": "117902975",
+      "availability": "http://schema.org/OutOfStock"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/tampa-padrao-copos",
+      "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
+      "variant": "Jordy Blue",
+      "sku": "331139402",
+      "availability": "http://schema.org/OutOfStock"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/adesivos-camping",
+      "name": "Adesivos Camping",
+      "variant": "Pack Camping 8",
+      "sku": "302726872",
+      "availability": "http://schema.org/OutOfStock"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/pack-caveira",
+      "name": "Adesivos Caveira",
+      "variant": "Pack Caveira",
+      "sku": "302763101",
+      "availability": "http://schema.org/OutOfStock"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/adesivos-explorador",
+      "name": "Adesivos Explorador",
+      "variant": "Pack Explorador 6",
+      "sku": "302747847",
+      "availability": "http://schema.org/OutOfStock"
+    }
+  ]
+}
