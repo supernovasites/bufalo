@@ -12,12 +12,20 @@
     $('auction-admin-round').textContent='Rodada '+data.round_id+' · '+(data.enabled?'Lances abertos':'Lances pausados');
     $('auction-admin-value').textContent=money(data.amount_cents);
     $('auction-admin-photo-preview').src=data.photo_url;
-    if(!editing){$('auction-admin-title').value=data.title;$('auction-admin-description').value=data.description;$('auction-admin-enabled').checked=data.enabled;}
+    if(!editing){$('auction-admin-title').value=data.title;$('auction-admin-description').value=data.description;$('auction-admin-enabled').checked=data.enabled;$('auction-admin-start').value=(data.start_cents/100).toFixed(2);}
     const rows=$('auction-history');rows.replaceChildren();
     for(const bid of data.history||[]){
       const row=document.createElement('tr');if(bid.id===data.bids[0]?.id)row.className='auction-history-latest';
       const date=new Date(bid.created_at).toLocaleString('pt-BR',{timeZone:'America/Fortaleza'});
-      for(const value of [bid.id,bid.round_id,bid.product_title,bid.name,bid.phone,bid.city,money(bid.amount_cents),date]){const cell=document.createElement('td');cell.textContent=value;row.append(cell);}rows.append(row);
+      for(const [index,value] of [bid.id,bid.round_id,bid.product_title,bid.name,bid.phone,bid.city,money(bid.amount_cents),date].entries()){
+        const cell=document.createElement('td');
+        if(index===4){
+          const phone=String(bid.phone).replace(/\D/g,'');
+          const number=phone.length===10||phone.length===11?'55'+phone:phone;
+          const link=document.createElement('a');link.href='https://wa.me/'+number;link.target='_blank';link.rel='noopener noreferrer';link.textContent=value;link.setAttribute('aria-label','Conversar com '+bid.name+' no WhatsApp');cell.append(link);
+        }else cell.textContent=value;
+        row.append(cell);
+      }rows.append(row);
     }
     const total=data.total||0;
     $('auction-history-count').textContent=total?`${offset+1}–${Math.min(offset+100,total)} de ${total} lances · todas as rodadas`:'Nenhum lance registrado.';
@@ -27,7 +35,7 @@
   $('auction-config-form').addEventListener('input',()=>editing=true);
   $('auction-config-form').addEventListener('submit',async e=>{
     e.preventDefault();if(working)return;working=true;$('auction-admin-save').disabled=true;
-    try{await api('/admin',{title:$('auction-admin-title').value,description:$('auction-admin-description').value,enabled:$('auction-admin-enabled').checked});editing=false;await load();$('auction-admin-feedback').textContent='Produto e status do leilão publicados.';}
+    try{await api('/admin',{title:$('auction-admin-title').value,description:$('auction-admin-description').value,enabled:$('auction-admin-enabled').checked,start_cents:Math.round($('auction-admin-start').valueAsNumber*100)});editing=false;await load();$('auction-admin-feedback').textContent='Produto, valor inicial e status publicados.';}
     catch(error){$('auction-admin-feedback').textContent=error.message;}
     finally{working=false;$('auction-admin-save').disabled=false;}
   });
@@ -47,9 +55,9 @@
     finally{$('auction-admin-photo').disabled=false;e.target.value='';}
   });
   $('auction-admin-reset').addEventListener('click',async()=>{
-    if(!current||working||!confirm('Reiniciar o leilão em R$ 0,00 e pausar os lances? O histórico será preservado.'))return;
+    if(!current||working||!confirm('Reiniciar o leilão em '+money(current.start_cents)+' e pausar os lances? O histórico será preservado.'))return;
     working=true;$('auction-admin-reset').disabled=true;
-    try{await api('/reset',{round_id:current.round_id});offset=0;editing=false;await load();$('auction-admin-feedback').textContent='Leilão reiniciado em R$ 0,00. Marque “Receber lances” e salve para abrir a nova rodada.';}
+    try{const data=await api('/reset',{round_id:current.round_id});offset=0;editing=false;await load();$('auction-admin-feedback').textContent='Leilão reiniciado em '+money(data.start_cents)+'. Marque “Receber lances” e salve para abrir a nova rodada.';}
     catch(error){$('auction-admin-feedback').textContent=error.message;}
     finally{working=false;$('auction-admin-reset').disabled=false;}
   });
