@@ -1,4 +1,5 @@
 import {content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable, challengeDiscountTable} from '../../lib/live-content.js';
+import {handleAuction} from '../../lib/live-auction.js';
 const encoder = new TextEncoder();
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
@@ -13,6 +14,7 @@ async function handle(context) {
   if (path.startsWith('/live/api/')) {
     if (!env.LIVE_DB) return json({error:'O painel ainda não foi configurado no servidor.'},503);
     const db = env.LIVE_DB;
+    if(path==='/live/api/auction'||path.startsWith('/live/api/auction/'))return handleAuction(request,db,()=>authenticated(request,db));
     const gallerySlot=path.match(/^\/live\/api\/gallery\/([1-5])$/)?.[1];
     if(path==='/live/api/gallery' && request.method==='GET')return json({photos:await gallery(db)});
     if(gallerySlot && ['GET','HEAD'].includes(request.method))return photoResponse(db,request,noCache,Number(gallerySlot));
