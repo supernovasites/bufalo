@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const data=JSON.parse(readFileSync(new URL('../live/catalog-data.json',import.meta.url),'utf8'));
 const html=readFileSync(new URL('../live/index.html',import.meta.url),'utf8');
-const required=['chopeiras','nagpro','pandhar','cutelaria','mochilas','cadeiras','camisas-shorts','souvenir-e-jogos','alcas-e-bags','tampas-e-acessorios','adesivos','garrafas','copos-bg','carabinho-kids'];
+const required=['chopeiras','nagpro','pandhar','cutelaria','mochilas','cadeiras','garrafas','copos-bg','camisas-shorts','souvenir-e-jogos','alcas-e-bags','tampas-e-acessorios','adesivos','carabinho-kids'];
 test('all 14 requested source categories render with valid unique anchor IDs',()=>{
  assert.deepEqual(data.categories.map(c=>new URL(c.url).pathname.slice(1)),required);
  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
