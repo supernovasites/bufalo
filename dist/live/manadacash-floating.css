@@ -6,6 +6,8 @@
 .mc-launcher span,.mobile-dock .dock-cash span{display:none!important}
 .mc-popup{position:relative}
 .mc-popup .mc-popup-head{display:contents}
+/* Keep the dialog name accessible without adding a blank row above the widget. */
+.mc-popup #mc-popup-title{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
 .mc-popup .mc-popup-close{position:absolute;z-index:3;top:10px;right:48px}
 .mc-popup iframe{height:100%}
 
