@@ -100,6 +100,16 @@
       ]
     },
     {
+      "id": "live-carabinho-kids",
+      "title": "Carabinho Kids",
+      "url": "https://loja.bufalogrowler.com.br/carabinho-kids",
+      "products": [
+        "https://loja.bufalogrowler.com.br/buba-kids-355ml",
+        "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
+        "https://loja.bufalogrowler.com.br/copo-carabinho-350ml"
+      ]
+    },
+    {
       "id": "live-copos-bg",
       "title": "Copos BG",
       "url": "https://loja.bufalogrowler.com.br/copos-bg",
@@ -218,16 +228,6 @@
         "https://loja.bufalogrowler.com.br/adesivos-kids",
         "https://loja.bufalogrowler.com.br/adesivos-tattoo",
         "https://loja.bufalogrowler.com.br/adesivos-vibes"
-      ]
-    },
-    {
-      "id": "live-carabinho-kids",
-      "title": "Carabinho Kids",
-      "url": "https://loja.bufalogrowler.com.br/carabinho-kids",
-      "products": [
-        "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-        "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
-        "https://loja.bufalogrowler.com.br/copo-carabinho-350ml"
       ]
     }
   ],
