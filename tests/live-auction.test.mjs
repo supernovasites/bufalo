@@ -94,12 +94,12 @@ test('auction form is inline at the end, description follows photo, and admin ac
  assert.ok(!html.includes('id="auction-dialog"'));assert.ok(html.includes('id="auction-bid-panel"'));assert.ok(html.indexOf('id="live-auction"')>html.indexOf('id="cadastro-live"'));
  assert.ok(html.indexOf('id="auction-description"')>html.indexOf('id="auction-photo"'));assert.ok(html.indexOf('id="auction-description"')<html.indexOf('class="auction-content"'));
  assert.ok(adminHtml.indexOf('id="dashboard"')>adminHtml.indexOf('id="auction-admin"'));assert.ok(adminHtml.includes('id="auction-admin-start"'));
- const script=readFileSync(new URL('../live/homepage-shell.js',import.meta.url),'utf8');assert.ok(script.includes('Ir para o Leilão'));
+ const script=readFileSync(new URL('../live/homepage-shell.js',import.meta.url),'utf8');assert.ok(script.includes('Ir para a Oferta da Manada'));
 });
 test('history keeps the product name for each bid after the product and round change',async()=>{
  const db=database(),cookie=await admin(db);let state=await open(db,cookie);
  await call(db,'/bid',proposal(state));await call(db,'/reset',{round_id:state.round_id},cookie);
  state=await(await call(db,'/admin',{title:'Segundo produto',description:'',enabled:true},cookie)).json();await call(db,'/bid',proposal(state));
  const history=await(await call(db,'/admin',undefined,cookie)).json();assert.deepEqual(history.history.map(b=>b.product_title),['Segundo produto','Cooler Búfalo']);
- const html=readFileSync(new URL('../live/admin.html',import.meta.url),'utf8');assert.ok(html.includes('<th>Produto do lance</th>'));db.sql.close();
+ const html=readFileSync(new URL('../live/admin.html',import.meta.url),'utf8');assert.ok(html.includes('<th>Produto da proposta</th>'));db.sql.close();
 });
