@@ -6,13 +6,16 @@ import vm from 'node:vm';
 test('every catalog card has separate image and purchase links with coupons outside links',()=>{
  const html=readFileSync(new URL('../live/index.html',import.meta.url),'utf8');
  const cards=[...html.matchAll(/<article\b[^>]*class="[^"]*\bproduct\b[^"]*"[\s\S]*?<\/article>/g)].map(m=>m[0]);
- assert.equal(cards.length,150);
+ const catalog=JSON.parse(readFileSync(new URL('../live/catalog-data.json',import.meta.url),'utf8'));
+ const byUrl=new Map(catalog.products.map(p=>[p.url,p]));
+ assert.equal(cards.length,catalog.categories.reduce((n,c)=>n+c.products.reduce((sum,url)=>sum+(byUrl.get(url)?.cards.length||0),0),0));
  for(const card of cards){
    assert.match(card,/<a\b[^>]*class="[^"]*product-cta/);
    for(const link of card.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/g))assert.ok(!link[1].includes('with-coupon'));
    if(card.includes('data-availability="unavailable"')){assert.ok(!card.includes('class="with-coupon"'));assert.ok(card.includes('card-stock-status'));}
  }
- assert.equal(cards.filter(c=>c.includes('data-availability="unavailable"')).length,9);
+ assert.equal(cards.filter(c=>c.includes('data-availability="unavailable"')).length,0);
+ assert.ok(cards.every(c=>c.includes('data-stock="in_stock"')));
  assert.ok(!html.includes('href="https://loja.bufalogrowler.com.br/copo-surti-600ml?'));
  assert.ok(!html.includes('href="https://loja.bufalogrowler.com.br/bone-trucker-manada-bg?'));
 });
