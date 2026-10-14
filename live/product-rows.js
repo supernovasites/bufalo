@@ -2,6 +2,7 @@
   document.querySelectorAll('.product-row').forEach(row => {
     const track=row.querySelector('.product-track');
     const buttons=[...row.querySelectorAll('.row-arrow')];
+    if (!track) return;
     let drag=null, blockClick=false;
     const reduced=matchMedia('(prefers-reduced-motion: reduce)');
     const update=()=>{
@@ -10,6 +11,7 @@
     };
     function step(direction){
       const card=track.querySelector('.product');
+      if (!card) return;
       const gap=parseFloat(getComputedStyle(track).gap)||0;
       track.scrollBy({left:direction*(card.getBoundingClientRect().width+gap),behavior:reduced.matches?'instant':'smooth'});
     }
@@ -47,6 +49,8 @@
     track.addEventListener('click',e=>{if(blockClick){e.preventDefault();e.stopPropagation();}},true);
     track.addEventListener('scroll',update,{passive:true});
     new ResizeObserver(update).observe(track);
+    // Category grouping moves cards between tracks after this script initializes.
+    new MutationObserver(update).observe(track,{childList:true});
     update();
   });
   document.querySelectorAll('.growler-card').forEach(card=>{
@@ -70,7 +74,8 @@
           const price=Number(button.dataset.price);
           const format=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
           card.querySelector('.old s').textContent=format(price);
-          card.querySelector('.price').textContent=format(price*.8);
+          const discount=Number(card.dataset.discount || 20);
+          card.querySelector('.price').textContent=format(Math.round(price*(100-discount))/100);
         }
         label.textContent=button.dataset.colorName;
         swatches.forEach(s=>s.setAttribute('aria-pressed',String(s===button)));
