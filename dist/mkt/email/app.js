@@ -55,6 +55,8 @@ function renderCampaign(){
 }
 for(const key of fields)$(key).addEventListener('input',preview);
 $('preview-width').addEventListener('change',()=>{$('email-preview').classList.toggle('mobile',$('preview-width').value==='mobile');$('preview-label').textContent=$('preview-width').value==='mobile'?'Celular':'Desktop';});
+$('open-email-preview').addEventListener('click',()=>{$('full-email-preview').srcdoc=$('email-preview').srcdoc;$('full-email-preview').classList.toggle('mobile',$('preview-width').value==='mobile');$('full-preview-dialog').showModal();});
+$('close-email-preview').addEventListener('click',()=>$('full-preview-dialog').close());
 action('new-message',async()=>{templateId=null;campaign=null;setContent({...starter,name:'Nova mensagem'});renderCampaign();feedback('Nova mensagem criada.');});
 action('load-template',async()=>{const value=state.templates.find(t=>t.id===$('template-picker').value);if(!value)throw new Error('Escolha um template salvo.');templateId=value.id;setContent(value.content);feedback('Template carregado.');});
 $('template-picker').addEventListener('change',updateButtons);
