@@ -6,6 +6,8 @@
 
 - Editor por campos de texto, imagem e botão; três modelos (produto, editorial e carta), personalização `{{nome}}`, prévia em desktop/celular e exportação de HTML.
 - Templates reutilizáveis e campanhas em rascunho persistidos no D1. Não aceita HTML arbitrário; texto e nomes são escapados no HTML gerado.
+- Exclusão recuperável de templates, com confirmação e restauração em “Templates excluídos”. A exclusão não modifica cópias usadas em campanhas.
+- Aba Resultados: dashboards gerais e por campanha, comparação das 100 campanhas mais recentes, funil, evolução diária, links, filtros, paginação, histórico por destinatário e exportação CSV dos resultados filtrados. Atualização a cada 30 segundos enquanto visível, sem iniciar envios.
 - Importação local de CSV, XLSX e XLS, seleção da aba e mapeamento das colunas. Cabeçalho na primeira linha. Até 2 MB e 5.000 contatos por arquivo. CSV aceita vírgula, ponto e vírgula, tabulação, BOM e campos entre aspas; há fallback Windows-1252 para arquivos legados.
 - Validação sintática conservadora de emails, normalização para minúsculas, deduplicação e relatório de linhas inválidas. Não há comprovação de existência da caixa postal.
 - Importação em blocos de 250 registros, com retomada e deduplicação no servidor. Apenas nome, email, origem e registro da autorização são armazenados; a planilha original não é enviada nem conservada.
@@ -28,7 +30,7 @@ O cadastro no Resend pelo GitHub identifica a conta, mas não configura o envio 
 
 1. Adicione um domínio de envio no Resend e publique no DNS os registros fornecidos por ele. Aguarde a verificação de SPF/DKIM. Configure DMARC de acordo com os demais serviços de email do domínio. Use remetente compatível com o domínio ou subdomínio efetivamente verificado.
 2. Crie uma chave de envio e cadastre-a como segredo `RESEND_API_KEY` no Cloudflare Pages.
-3. No Resend, crie um webhook HTTPS para `https://www.bufalogrowler.com.br/mkt/email/webhook`, com os eventos `email.delivered`, `email.bounced`, `email.complained` e `email.failed`. Cadastre o segredo de assinatura no Cloudflare.
+3. No Resend, crie um webhook HTTPS para `https://www.bufalogrowler.com.br/mkt/email/webhook`, com os eventos `email.sent`, `email.delivered`, `email.delivery_delayed`, `email.bounced`, `email.complained`, `email.failed`, `email.suppressed`, `email.opened` e `email.clicked`. Cadastre o segredo de assinatura no Cloudflare. Para métricas de interação, habilite também o rastreamento de abertura e clique no domínio de envio. O código não altera essas preferências da conta Resend.
 4. Preencha os demais valores e publique um novo deployment para as configurações entrarem em vigor. Não coloque os segredos no ambiente de preview. O código também bloqueia envio fora do domínio canônico e em branches de preview.
 5. Acesse pelo painel, salve um template, importe uma lista de teste autorizada e envie um email de teste. Confira assunto, links, caixa de spam, remetente e aparência em aplicativos reais.
 6. Faça a primeira campanha para uma lista pequena da equipe, confirme as entregas pelo webhook e valide o descadastro. Só então aumente os volumes respeitando os limites do plano Resend e a reputação do domínio.
@@ -70,3 +72,13 @@ git diff --check
 Os testes usam SQLite em memória e um provedor simulado: autenticação, origem, conteúdo, importação CSV/Excel real, supressões, persistência, congelamento, lotes, travas, idempotência e verificação de assinatura. Não enviam emails reais. A biblioteca SheetJS 0.20.3 é vendorizada em `assets/vendor/`, com licença Apache 2.0; não é carregada de CDN durante o uso do painel.
 
 Referências de integração: [SheetJS no navegador](https://docs.sheetjs.com/docs/getting-started/installation/standalone/), [Resend: envio em lote](https://resend.com/docs/api-reference/emails/send-batch-emails), [idempotência](https://resend.com/docs/dashboard/emails/idempotency-keys), [assinaturas de webhook](https://resend.com/docs/webhooks/verify-webhooks-requests) e [descadastro](https://resend.com/docs/dashboard/emails/add-unsubscribe-to-transactional-emails).
+
+## Leitura dos resultados
+
+Os dados de `mkt_recipients` preservam os status das campanhas existentes. A migração aditiva `0016_email_results.sql` cria o histórico `mkt_activity` e a exclusão recuperável `mkt_archived_templates`, sem modificar registros antigos. O middleware garante a criação idempotente dessas tabelas também no primeiro acesso.
+
+O histórico registra aceitação de novos lotes e eventos assinados, deduplicados pelo ID Svix. Aberturas/cliques únicos contam destinatários com pelo menos um evento; totais contam eventos distintos. O gráfico diário conta pessoas únicas por dia e usa UTC−3. A taxa de entrega, rejeição e reclamação usa aceitos como denominador; abertura/clique usa entregues. A taxa de clique entre aberturas usa cliques únicos/aberturas únicas. Eventos independentes ou faltantes podem produzir taxas acima de 100%; não são artificialmente limitadas.
+
+Entrega é aceitação pelo servidor, sem comprovar caixa de entrada ou leitura. Privacidade e robôs afetam métricas de interação. Histórico detalhado anterior à atualização não pode ser reconstruído; datas desconhecidas aparecem como travessão. Descadastros mostram a situação atual na base sem atribuição causal à campanha. Não há integração de vendas, receita, conversões ou respostas.
+
+Os eventos conservam somente tipo, campanha, destinatário, horário e detalhe necessário. IP e user-agent não são armazenados; URLs de cliques perdem query e fragmento. O CSV usa os filtros atuais e neutraliza fórmulas em células. Relatórios, exportações e exclusões continuam protegidos pela sessão do painel; mutações exigem mesma origem. Excluir um template apenas o arquiva; restauração não afeta campanhas.
