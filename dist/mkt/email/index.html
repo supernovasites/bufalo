@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow"><title>Email marketing · Painel Búfalo</title>
+  <link rel="stylesheet" href="/live/admin.css"><link rel="stylesheet" href="/mkt/email/styles.css">
+  <script src="/assets/vendor/xlsx-0.20.3.full.min.js" defer></script>
+  <script type="module" src="/mkt/email/app.js"></script>
+</head>
+<body>
+<header class="top"><a class="wordmark" href="/painel/">BÚFALO<small>GROWLER</small></a><a class="back" href="/painel/">← Voltar ao painel</a></header>
+<main class="shell email-shell">
+  <div class="page-heading"><div><div class="eyebrow">RELACIONAMENTO COM A MANADA</div><h1>Email marketing.</h1><p class="intro">Crie uma boa mensagem. Escolha quem vai recebê-la.</p></div><span class="status off" id="connection">Verificando envio…</span></div>
+  <section id="setup" class="notice" aria-label="Configuração de envio" hidden><strong>Prepare suas campanhas enquanto conecta o envio.</strong><p id="setup-message"></p><p>Templates e listas podem ser salvos. O disparo só será liberado após a configuração do Resend.</p></section>
+  <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+  <nav class="email-tabs" aria-label="Área de email marketing"><button type="button" class="active" data-panel="create" aria-current="page">01 · Criar mensagem</button><button type="button" data-panel="contacts">02 · Contatos</button><button type="button" data-panel="campaigns">03 · Campanhas</button></nav>
+
+  <section id="create" class="workspace" aria-labelledby="create-title">
+    <div class="card editor-card">
+      <div class="section-heading"><div><div class="eyebrow">ESTÚDIO DE MENSAGENS</div><h2 id="create-title">Sua mensagem, do seu jeito.</h2></div><button type="button" id="new-message" class="text-button">Nova mensagem</button></div>
+      <label for="template-picker">Templates salvos</label><div class="inline-controls"><select id="template-picker"><option value="">Escolha um template</option></select><button type="button" id="load-template" class="btn light">Carregar</button></div>
+      <form id="editor-form">
+        <label for="name">Nome interno</label><input id="name" maxlength="120" required placeholder="Ex.: Açaí Bowl · pré-lançamento">
+        <div class="field-pair"><div><label for="layout">Modelo</label><select id="layout"><option value="product">Destaque de produto</option><option value="editorial">Editorial</option><option value="letter">Carta da Búfalo</option></select></div><div><label for="preview-width">Prévia</label><select id="preview-width"><option value="desktop">Desktop</option><option value="mobile">Celular</option></select></div></div>
+        <label for="subject">Assunto do email</label><input id="subject" maxlength="150" required><small class="field-note">Use um assunto claro, sem promessas exageradas.</small>
+        <label for="preheader">Texto de prévia</label><input id="preheader" maxlength="180" placeholder="Complemento que aparece ao lado do assunto">
+        <label for="heading">Título da mensagem</label><input id="heading" maxlength="160" required>
+        <label for="body">Texto da mensagem</label><textarea id="body" rows="9" maxlength="12000" required></textarea><small class="field-note">Use {{nome}} para personalizar. Se o contato não tiver nome, aparecerá “pessoa da manada”. Linhas em branco separam parágrafos.</small>
+        <details class="image-options" open><summary>Imagem e botão</summary><label for="imageUrl">Endereço da imagem (HTTPS)</label><input type="url" id="imageUrl" maxlength="1500" placeholder="https://…"><label for="imageAlt">Descrição da imagem</label><input id="imageAlt" maxlength="180"><div class="field-pair"><div><label for="buttonText">Texto do botão</label><input id="buttonText" maxlength="60"></div><div><label for="buttonUrl">Destino do botão (HTTPS)</label><input type="url" id="buttonUrl" maxlength="1500"></div></div><small class="field-note">A imagem precisa ter um endereço público. O modelo Carta usa somente texto e botão.</small></details>
+        <div class="controls editor-actions"><button class="btn orange" type="submit">Salvar template</button><button class="btn light" type="button" id="download-html">Baixar HTML</button></div>
+      </form>
+      <div class="test-box"><h3>Confira antes de enviar.</h3><label for="test-email">Email para teste</label><div class="inline-controls"><input id="test-email" type="email" placeholder="voce@empresa.com.br" autocomplete="email"><button type="button" class="btn light" id="send-test" disabled>Enviar teste</button></div><small class="field-note">Envia somente para o endereço acima, com [TESTE] no assunto.</small></div>
+    </div>
+    <aside class="preview-card" aria-label="Prévia do email"><div class="preview-top"><span class="eyebrow">PRÉVIA DO EMAIL</span><span id="preview-label">Desktop</span></div><div class="mail-envelope"><strong id="preview-subject"></strong><small id="preview-preheader"></small></div><iframe id="email-preview" title="Prévia da mensagem" sandbox="" referrerpolicy="no-referrer"></iframe><p class="field-note">A aparência pode variar entre os aplicativos de email. Envie um teste antes de disparar.</p></aside>
+  </section>
+
+  <section id="contacts" hidden aria-labelledby="contacts-title">
+    <div class="contacts-layout"><article class="card">
+      <div class="eyebrow">CONVERSAS COM PERMISSÃO</div><h2 id="contacts-title">Traga sua lista.</h2><p class="intro">Importe contatos que autorizaram comunicações da Búfalo. Descadastros anteriores continuam protegidos.</p>
+      <label for="contact-file" class="file-drop">Escolher arquivo CSV ou Excel<span>CSV, XLSX ou XLS · até 2 MB e 5.000 contatos</span><input type="file" id="contact-file" accept=".csv,.xlsx,.xls"></label><a class="text-button" href="/mkt/email/modelo-contatos.csv" download>Baixar modelo de planilha</a>
+      <div id="mapping" hidden>
+        <label for="sheet-picker">Aba da planilha</label><select id="sheet-picker"></select><p class="field-note">A primeira linha deve conter os nomes das colunas.</p>
+        <div class="field-pair"><div><label for="email-column">Coluna de email</label><select id="email-column"></select></div><div><label for="name-column">Coluna de nome</label><select id="name-column"></select></div></div>
+        <div class="import-stats" id="import-stats" role="status"></div><p id="invalid-rows" class="field-note"></p><div class="table-scroll"><table><thead><tr><th>Email</th><th>Nome</th></tr></thead><tbody id="contact-sample"></tbody></table></div>
+        <label for="list-name">Nome da lista</label><input id="list-name" maxlength="120" placeholder="Ex.: Clientes que autorizaram novidades">
+        <label for="list-source">Como estes contatos autorizaram o recebimento?</label><input id="list-source" maxlength="300" placeholder="Ex.: Formulário de novidades da loja, outubro de 2026">
+        <label class="check"><input id="import-consent" type="checkbox"><span>Confirmo que esta lista tem autorização para receber email marketing. Não contém contatos comprados ou coletados sem permissão.</span></label>
+        <button type="button" class="btn orange" id="import-contacts" disabled>Importar contatos válidos</button><p id="import-progress" role="status" class="field-note"></p>
+      </div>
+    </article><article class="card"><div class="eyebrow">DESTINATÁRIOS</div><h2>Listas disponíveis.</h2><div id="lists" class="saved-items"><p class="empty">Nenhuma lista importada.</p></div><p class="field-note">Ativos são os contatos aptos a receber novas campanhas. Inválidos, duplicados, descadastros e bloqueios não entram no disparo.</p></article></div>
+  </section>
+
+  <section id="campaigns" hidden aria-labelledby="campaigns-title"><div class="contacts-layout"><article class="card">
+    <div class="eyebrow">DA MENSAGEM À CAIXA DE ENTRADA</div><h2 id="campaigns-title">Prepare a campanha.</h2><p>Use a mensagem aberta no editor e selecione uma lista. Ao iniciar, uma cópia do conteúdo e dos destinatários será preservada.</p>
+    <label for="campaign-list">Lista de destinatários</label><select id="campaign-list"><option value="">Selecione uma lista</option></select><div id="campaign-message" class="message-summary"></div>
+    <button type="button" id="save-campaign" class="btn orange">Salvar campanha como rascunho</button><p class="field-note">Salvar não envia emails. O disparo exige uma confirmação separada.</p>
+    <div id="campaign-detail" hidden>
+      <hr><div class="section-heading"><h3 id="campaign-name"></h3><span id="campaign-status" class="pill"></span></div><div id="campaign-counts" class="import-stats"></div>
+      <div class="controls"><button type="button" class="btn orange" id="start-campaign" disabled>Revisar e disparar</button><button type="button" class="btn" id="continue-campaign" hidden>Continuar envio</button><button type="button" class="btn light" id="pause-campaign" hidden>Pausar</button><button type="button" class="btn light" id="refresh-campaign">Atualizar resultados</button></div>
+      <p id="delivery-progress" class="field-note" role="status"></p><p class="field-note">Mantenha esta aba aberta durante o envio. Ao fechar, os próximos lotes aguardam sua retomada. Um lote já em processamento pode terminar após a pausa.</p><p class="field-note">“Aceitos” indica recebimento pelo provedor. Entregas e rejeições são atualizadas pelas confirmações do Resend.</p>
+    </div>
+  </article><article class="card"><div class="eyebrow">HISTÓRICO</div><h2>Suas campanhas.</h2><div id="campaign-history" class="saved-items"><p class="empty">Nenhuma campanha criada.</p></div></article></div></section>
+  <footer class="admin-foot"><span>BÚFALO GROWLER · Uma boa conversa começa com respeito.</span><a href="/painel/">Voltar ao painel</a></footer>
+</main>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title"><form id="confirm-form"><div class="eyebrow">REVISÃO FINAL</div><h2 id="confirm-title">Tudo pronto para enviar?</h2><p id="confirm-summary"></p><p>Confira o assunto, os links e o email de teste. Depois de aceito pelo provedor, o email não pode ser recolhido.</p><label class="check"><input id="send-consent" type="checkbox" required><span>Confirmei a mensagem e a autorização dos destinatários.</span></label><label for="confirm-word">Digite ENVIAR para confirmar</label><input id="confirm-word" autocomplete="off" required pattern="ENVIAR"><div class="controls"><button type="button" class="btn light" id="cancel-send">Voltar e revisar</button><button type="submit" class="btn orange">Confirmar disparo</button></div></form></dialog>
+</body></html>

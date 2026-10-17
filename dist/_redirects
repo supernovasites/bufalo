@@ -9,6 +9,7 @@
 /painel /painel/index.html 200
 /admin / 302
 /painel/ /painel/index.html 200
+/mkt/email /mkt/email/ 301
 /admin/ / 302
 /landingpage /reserva/acaibowl/ 301
 /landingpage/ /reserva/acaibowl/ 301
