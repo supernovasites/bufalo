@@ -5,6 +5,7 @@ Site estático: https://bufalo.pages.dev/
 - `index.html`: página inicial com banners interativos e link Ver todos para o catálogo.
 - `catalogo.html`: 149 produtos em dez categorias, com busca, filtros e ordenação. Preços e disponibilidade consultados em 14/09/2026; o catálogo é uma fotografia dessa consulta e não sincroniza automaticamente com a loja.
 - `assets/`: imagens e vídeos do site.
+- `midia/`: biblioteca de imagens e PDFs com upload, links públicos, busca e lixeira; gerenciamento protegido pelo painel. Consulte o [guia da biblioteca](midia/README.md).
 - `mkt/email/`: editor de templates, importação de contatos CSV/Excel e campanhas de email, protegido pela sessão de `/painel/`. A configuração do Resend e os limites de operação estão no [guia da área](mkt/email/README.md). O envio permanece bloqueado até configurar o provedor e ativá-lo explicitamente.
 
 ## Publicação automática
@@ -14,7 +15,7 @@ O Cloudflare Pages está conectado à branch main deste repositório. Novos comm
 Comando de build com as áreas administrativas e de email incluídas:
 
 ```sh
-mkdir -p dist && cp index.html catalogo.html 404.html _redirects dist/ && cp -R assets dist/assets && cp -R produtos dist/produtos && cp -R mkt painel dist/
+mkdir -p dist && cp index.html catalogo.html 404.html _redirects dist/ && cp -R assets dist/assets && cp -R produtos dist/produtos && cp -R mkt painel midia dist/
 ```
 
 Diretório publicado: `dist`. Não há dependências de execução. Os links de compra direcionam à loja oficial.
