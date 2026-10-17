@@ -150,6 +150,7 @@ test('report pagination, zero results and legacy statuses are preserved',async()
   db.sql.prepare("UPDATE mkt_recipients SET status='delivered',provider_id='old-provider' WHERE email='p00@example.com'").run();
   let r=await (await call('/api/reports/'+id)).json();assert.equal(r.pages,2);assert.equal(r.recipients.length,50);assert.equal(r.totals.delivered,1);assert.equal(r.recipients[0].delivered_at,null);
   r=await (await call('/api/reports/'+id+'?page=2')).json();assert.equal(r.recipients.length,5);assert.equal(r.daily.length,0);
+  r=await (await call('/api/reports/'+id+'?export=1')).json();assert.equal(r.recipients.length,55);assert.equal(r.page,1);
   r=await (await call('/api/reports/'+id+'?status=clicked')).json();assert.equal(r.matched,0);
   const empty=await draft(call,db.sql.prepare('SELECT list_id FROM mkt_campaigns LIMIT 1').get().list_id);r=await (await call('/api/reports/'+empty)).json();assert.equal(r.totals.total,0);db.sql.close();
 });

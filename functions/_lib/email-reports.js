@@ -47,7 +47,7 @@ export async function report(db,id,params) {
   const totals=cleanMetrics(await db.prepare(`SELECT ${metrics} FROM (${recipients}) WHERE campaign_id=?`).bind(id).first());
   const filters={pending:"status='pending'",accepted:"status='accepted'",delivered:"(delivered_at IS NOT NULL OR status='delivered')",bounced:"status='bounced'",failed:"status='failed'",complained:"status='complained'",skipped:"status='skipped'",opened:'opened_at IS NOT NULL',clicked:'clicked_at IS NOT NULL',unsubscribed:"contact_status='unsubscribed'"};
   const filter=params.get('status')||'',search=(params.get('search')||'').trim().slice(0,150);
-  const page=Math.max(1,Math.min(100,parseInt(params.get('page'),10)||1)),size=50;
+  const exporting=params.get('export')==='1',page=exporting?1:Math.max(1,Math.min(100,parseInt(params.get('page'),10)||1)),size=exporting?5000:50;
   let where='campaign_id=?',values=[id];
   if(filters[filter])where+=' AND '+filters[filter];
   if(search){where+=" AND (instr(lower(email),lower(?))>0 OR instr(lower(name),lower(?))>0)";values.push(search,search);}

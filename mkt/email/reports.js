@@ -71,8 +71,8 @@ export function mountReports(api,showPanel){
   $('results-events-close').addEventListener('click',()=>{$('results-events').hidden=true;});
   $('results-export').addEventListener('click',async()=>{
     const button=$('results-export'),id=selected;if(!id)return;button.disabled=true;
-    try{let all=[],p=1,data;do{data=await api('reports/'+id+'?'+new URLSearchParams({page:String(p),status:$('results-filter').value,search:$('results-search').value.trim()}));all.push(...data.recipients);p++;}while(p<=data.pages&&p<=100);
-      download('resultados-campanha.csv',[['Campanha','Email','Nome','Status de envio','Status na base','ID Resend','Aceito em','Entregue em','Primeira abertura','Primeiro clique','Aberturas','Cliques','Último evento','Detalhe'],...all.map(r=>[data.campaign.name,r.email,r.name,statuses[r.status]||r.status,r.contact_status,r.provider_id,date(r.accepted_at),date(r.delivered_at),date(r.opened_at),date(r.clicked_at),r.opens,r.clicks,date(r.last_event_at),r.detail])]);message('Relatório CSV exportado com os filtros selecionados.');
+    try{const data=await api('reports/'+id+'?'+new URLSearchParams({export:'1',status:$('results-filter').value,search:$('results-search').value.trim()}));
+      download('resultados-campanha.csv',[['Campanha','Email','Nome','Status de envio','Status na base','ID Resend','Aceito em','Entregue em','Primeira abertura','Primeiro clique','Aberturas','Cliques','Último evento','Detalhe'],...data.recipients.map(r=>[data.campaign.name,r.email,r.name,statuses[r.status]||r.status,r.contact_status,r.provider_id,date(r.accepted_at),date(r.delivered_at),date(r.opened_at),date(r.clicked_at),r.opens,r.clicks,date(r.last_event_at),r.detail])]);message('Relatório CSV exportado com os filtros selecionados.');
     }catch(error){message(error.message,true);}finally{button.disabled=false;}
   });
   setInterval(()=>{if(!document.hidden&&!$('results').hidden&&!loading)load();},30000);
