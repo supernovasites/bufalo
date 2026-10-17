@@ -1,4 +1,5 @@
 import {LIMITS,starter,escapeHtml as e,validateContent,renderEmail,contactsFromRows,parseCsv} from './core.js';
+import {mountReports} from './reports.js';
 const $=id=>document.getElementById(id);
 const fields=['name','subject','preheader','heading','body','layout','imageUrl','imageAlt','buttonText','buttonUrl'];
 const statusNames={draft:'Rascunho',queued:'Na fila',paused:'Pausada',completed:'Processamento concluído'};
@@ -19,7 +20,7 @@ function preview(){
   $('email-preview').srcdoc=renderEmail(value,{address:state.config.address||'Endereço da empresa · configure antes do envio'}).html;
   $('campaign-message').innerHTML=`<strong>${e(value.name||'Sua mensagem')}</strong><small>Assunto: ${e(value.subject||'Preencha no editor')}</small>`;
 }
-function showPanel(id){for(const name of ['create','contacts','campaigns'])$(name).hidden=name!==id;document.querySelectorAll('[data-panel]').forEach(button=>{const active=button.dataset.panel===id;button.classList.toggle('active',active);if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});}
+function showPanel(id){for(const name of ['create','contacts','campaigns','results'])$(name).hidden=name!==id;document.querySelectorAll('[data-panel]').forEach(button=>{const active=button.dataset.panel===id;button.classList.toggle('active',active);if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});}
 document.querySelectorAll('[data-panel]').forEach(button=>button.addEventListener('click',()=>showPanel(button.dataset.panel)));
 function updateButtons(){
   $('send-test').disabled=!state.config.ready;
@@ -27,6 +28,7 @@ function updateButtons(){
   $('continue-campaign').disabled=!state.config.ready||running;
   $('save-campaign').disabled=running;
   $('new-message').disabled=running;$('load-template').disabled=running;
+  $('delete-template').disabled=running||!state.templates.some(t=>t.id===$('template-picker').value);
   $('import-contacts').disabled=!parsed?.contacts.length||!$('import-consent').checked;
 }
 async function refresh(){state=await api('state');renderState();}
@@ -35,6 +37,7 @@ function renderState(){
   $('setup').hidden=state.config.ready;$('setup-message').textContent=state.config.missing?.length?'Falta configurar: '+state.config.missing.join(' · ')+'.':'';
   const selectedTemplate=$('template-picker').value,selectedList=$('campaign-list').value;
   $('template-picker').innerHTML='<option value="">Escolha um template</option>'+state.templates.map(t=>`<option value="${e(t.id)}">${e(t.name)}</option>`).join('');$('template-picker').value=selectedTemplate;
+  $('archived-templates').innerHTML=state.archivedTemplates?.length?state.archivedTemplates.map(t=>`<div class="saved-item"><strong>${e(t.name)}</strong><button type="button" class="text-button" data-restore-template="${e(t.id)}">Restaurar template</button></div>`).join(''):'<p class="field-note">Nenhum template excluído.</p>';
   $('campaign-list').innerHTML='<option value="">Selecione uma lista</option>'+state.lists.map(l=>`<option value="${e(l.id)}">${e(l.name)} · ${l.active} ativos</option>`).join('');$('campaign-list').value=selectedList;
   $('lists').innerHTML=state.lists.length?state.lists.map(l=>`<div class="saved-item"><strong>${e(l.name)}</strong><p>${l.total} contatos · ${l.active} ativos<br>Origem: ${e(l.source)}</p><span class="pill">Importada em ${new Date(l.created_at).toLocaleDateString('pt-BR')}</span></div>`).join(''):'<p class="empty">Nenhuma lista importada.</p>';
   $('campaign-history').innerHTML=state.campaigns.length?state.campaigns.map(c=>`<div class="saved-item"><strong>${e(c.name)}</strong><p>${e(statusNames[c.status]||c.status)} · ${new Date(c.updated_at).toLocaleDateString('pt-BR')}</p><button class="text-button" type="button" data-campaign="${e(c.id)}">Abrir campanha</button></div>`).join(''):'<p class="empty">Nenhuma campanha criada.</p>';
@@ -54,6 +57,12 @@ for(const key of fields)$(key).addEventListener('input',preview);
 $('preview-width').addEventListener('change',()=>{$('email-preview').classList.toggle('mobile',$('preview-width').value==='mobile');$('preview-label').textContent=$('preview-width').value==='mobile'?'Celular':'Desktop';});
 action('new-message',async()=>{templateId=null;campaign=null;setContent({...starter,name:'Nova mensagem'});renderCampaign();feedback('Nova mensagem criada.');});
 action('load-template',async()=>{const value=state.templates.find(t=>t.id===$('template-picker').value);if(!value)throw new Error('Escolha um template salvo.');templateId=value.id;setContent(value.content);feedback('Template carregado.');});
+$('template-picker').addEventListener('change',updateButtons);
+let deletingTemplate=null;
+action('delete-template',async()=>{const value=state.templates.find(t=>t.id===$('template-picker').value);if(!value)throw new Error('Escolha um template salvo.');deletingTemplate=value.id;$('delete-template-name').textContent=value.name;$('delete-template-dialog').showModal();});
+$('cancel-delete-template').addEventListener('click',()=>$('delete-template-dialog').close());
+$('delete-template-form').addEventListener('submit',async event=>{event.preventDefault();const button=event.submitter;button.disabled=true;try{await api(`templates/${deletingTemplate}/archive`,{});if(templateId===deletingTemplate)templateId=null;$('delete-template-dialog').close();await refresh();feedback('Template excluído. Você pode restaurá-lo em Templates excluídos.');}catch(error){feedback(error.message,true);}finally{button.disabled=false;}});
+$('archived-templates').addEventListener('click',async event=>{const button=event.target.closest('[data-restore-template]');if(!button)return;button.disabled=true;try{await api(`templates/${button.dataset.restoreTemplate}/restore`,{});await refresh();$('template-picker').value=button.dataset.restoreTemplate;updateButtons();feedback('Template restaurado.');}catch(error){feedback(error.message,true);button.disabled=false;}});
 $('editor-form').addEventListener('submit',async event=>{event.preventDefault();const button=event.submitter;button.disabled=true;try{const result=await api('templates',{id:templateId,content:validateContent(content())});templateId=result.id;await refresh();$('template-picker').value=templateId;feedback('Template salvo. Nenhum email foi enviado.');}catch(error){feedback(error.message,true);}finally{button.disabled=false;}});
 function download(filename,text,type){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 action('download-html',async()=>{const value=validateContent(content());download('email-bufalo.html',renderEmail(value,{address:state.config.address||'CONFIGURE O ENDEREÇO DA EMPRESA'}).html,'text/html;charset=utf-8');feedback('HTML exportado para revisão. O descadastro será personalizado somente no disparo pelo painel.');});
@@ -136,4 +145,5 @@ async function runQueue(){
 action('continue-campaign',async()=>{campaign=await api('campaigns/'+campaign.id);if(campaign.status==='paused')campaign=await api(`campaigns/${campaign.id}/resume`,{});renderCampaign();await runQueue();});
 action('pause-campaign',async()=>{running=false;campaign=await api(`campaigns/${campaign.id}/pause`,{});renderCampaign();feedback('Campanha pausada. Um lote em processamento ainda pode terminar.');});
 action('refresh-campaign',async()=>{campaign=await api('campaigns/'+campaign.id);renderCampaign();await refresh();feedback('Resultados atualizados.');});
+mountReports(api,showPanel);
 setContent(starter);refresh().catch(error=>{feedback(error.message,true);$('connection').textContent='Conexão indisponível';});

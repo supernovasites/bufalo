@@ -1,4 +1,5 @@
 import {schema} from './email-schema.js';
+import {reportSchema,overview,report} from './email-reports.js';
 import {normalizeEmail, validateContent, renderEmail, escapeHtml, safeUrl} from '../../mkt/email/core.js';
 
 const encoder = new TextEncoder();
@@ -28,7 +29,7 @@ export async function authenticated(request,db) {
   return !!await db.prepare('SELECT token FROM live_sessions WHERE token=? AND expires>?').bind(await sha(value),Date.now()).first();
 }
 export async function ensureSchema(db) {
-  for(const statement of schema.split(';').map(s=>s.trim()).filter(Boolean))await db.prepare(statement).run();
+  for(const statement of (schema+reportSchema).split(';').map(s=>s.trim()).filter(Boolean))await db.prepare(statement).run();
 }
 export function configuration(env,origin) {
   const publicOrigin=env.MKT_PUBLIC_ORIGIN || 'https://www.bufalogrowler.com.br';
@@ -107,6 +108,7 @@ async function processBatch(db,env,campaign,origin,sendFetch) {
     if(!Array.isArray(result.data)||result.data.length!==emails.length||result.data.some(r=>typeof r.id!=='string'))fail('Resposta incompleta do provedor. O lote foi preservado para conferência.',502);
     await db.batch([
       ...emails.map((email,i)=>db.prepare("UPDATE mkt_recipients SET status='accepted',provider_id=? WHERE campaign_id=? AND email=? AND status='pending'").bind(result.data[i].id,campaign.id,email)),
+      ...emails.map((email,i)=>db.prepare("INSERT OR IGNORE INTO mkt_activity(id,campaign_id,email,type,occurred_at,received_at) VALUES(?,?,?,'accepted',?,?)").bind('accepted/'+result.data[i].id,campaign.id,email,Date.now(),Date.now())),
       db.prepare("UPDATE mkt_attempts SET status='done' WHERE id=?").bind(attempt.id)
     ]);
     // Webhook may arrive before this transaction; a provider replay reconciles it.
@@ -126,8 +128,9 @@ async function webhook(request,env) {
   const raw=await readLimited(request,100000);
   if(!await verifyWebhook(raw,request.headers,env.RESEND_WEBHOOK_SECRET))return json({error:'Assinatura inválida.'},401);
   let event;try{event=JSON.parse(raw);}catch{fail('Evento inválido.');}
-  const statuses={'email.delivered':'delivered','email.bounced':'bounced','email.complained':'complained','email.failed':'failed'};
-  const status=statuses[event.type];if(!status)return json({ok:true});
+  const statuses={'email.delivered':'delivered','email.bounced':'bounced','email.complained':'complained','email.failed':'failed','email.suppressed':'failed'};
+  const status=statuses[event.type];
+  if(!status&&!['email.sent','email.delivery_delayed','email.opened','email.clicked'].includes(event.type))return json({ok:true});
   const db=env.LIVE_DB;await ensureSchema(db);
   const row=await db.prepare('SELECT email,campaign_id FROM mkt_recipients WHERE provider_id=?').bind(event.data?.email_id||'').first();
   // Tests and other applications do not have campaign recipients. Only retry
@@ -138,7 +141,14 @@ async function webhook(request,env) {
   }
   const id=request.headers.get('svix-id');
   if(await db.prepare('SELECT id FROM mkt_events WHERE id=?').bind(id).first())return json({ok:true});
-  const statements=[db.prepare('INSERT OR IGNORE INTO mkt_events(id,created_at) VALUES(?,?)').bind(id,Date.now()),db.prepare("UPDATE mkt_recipients SET status=? WHERE provider_id=? AND (status NOT IN ('complained','bounced') OR ?='complained')").bind(status,event.data.email_id,status)];
+  const received=Date.now(),parsed=Date.parse(event.created_at),occurred=Number.isFinite(parsed)&&parsed>0&&parsed<=received+300000?parsed:received;
+  let detail=String(event.data?.bounce?.message||event.data?.failed?.reason||event.data?.suppressed?.reason||event.data?.error?.message||'').replace(/[\x00-\x1f]/g,' ').slice(0,500);
+  if(event.type==='email.clicked'){
+    try{const link=new URL(event.data?.click?.link);detail=['https:','http:'].includes(link.protocol)?(link.origin+link.pathname).slice(0,1000):'';}catch{detail='';}
+  }
+  const statements=[db.prepare('INSERT OR IGNORE INTO mkt_events(id,created_at) VALUES(?,?)').bind(id,received),
+    db.prepare('INSERT OR IGNORE INTO mkt_activity(id,campaign_id,email,type,occurred_at,received_at,detail) VALUES(?,?,?,?,?,?,?)').bind(id,row.campaign_id,row.email,event.type,occurred,received,detail)];
+  if(status)statements.push(db.prepare("UPDATE mkt_recipients SET status=?,detail=? WHERE provider_id=? AND (status NOT IN ('complained','bounced') OR ?='complained') AND NOT (status='delivered' AND ?='failed')").bind(status,detail||null,event.data.email_id,status,status));
   if(status==='bounced'||status==='complained')statements.push(db.prepare("UPDATE mkt_contacts SET status=CASE WHEN status='complained' THEN status ELSE ? END,updated_at=? WHERE email=?").bind(status,Date.now(),row.email));
   await db.batch(statements);return json({ok:true});
 }
@@ -164,17 +174,33 @@ async function handle(context,sendFetch) {
   if(request.method==='POST'&&request.headers.get('Origin')!==url.origin)return json({error:'Origem não permitida.'},403);
   const db=env.LIVE_DB;await ensureSchema(db);
   if(path==='/mkt/email/api/state'&&request.method==='GET'){
-    const templates=(await db.prepare('SELECT * FROM mkt_templates ORDER BY updated_at DESC LIMIT 100').all()).results.map(t=>({...t,content:JSON.parse(t.content)}));
+    const templates=(await db.prepare('SELECT * FROM mkt_templates WHERE id NOT IN (SELECT template_id FROM mkt_archived_templates) ORDER BY updated_at DESC LIMIT 100').all()).results.map(t=>({...t,content:JSON.parse(t.content)}));
+    const archivedTemplates=(await db.prepare('SELECT t.id,t.name,a.archived_at FROM mkt_templates t JOIN mkt_archived_templates a ON a.template_id=t.id ORDER BY a.archived_at DESC LIMIT 100').all()).results;
     const lists=(await db.prepare("SELECT l.*,COUNT(c.email) AS total,COALESCE(SUM(CASE WHEN c.status='active' THEN 1 ELSE 0 END),0) AS active FROM mkt_lists l LEFT JOIN mkt_list_contacts lc ON lc.list_id=l.id LEFT JOIN mkt_contacts c ON c.email=lc.email GROUP BY l.id ORDER BY l.created_at DESC LIMIT 100").all()).results;
     const campaigns=(await db.prepare('SELECT id,name,list_id,status,updated_at FROM mkt_campaigns ORDER BY updated_at DESC LIMIT 100').all()).results;
-    return json({config:configuration(env,url.origin),templates,lists,campaigns});
+    return json({config:configuration(env,url.origin),templates,archivedTemplates,lists,campaigns});
   }
   const detail=path.match(/^\/mkt\/email\/api\/campaigns\/([a-f0-9-]{36})$/);
   if(detail&&request.method==='GET')return json(await summary(db,detail[1]));
+  if(path==='/mkt/email/api/reports'&&request.method==='GET')return json(await overview(db));
+  const resultPath=path.match(/^\/mkt\/email\/api\/reports\/([a-f0-9-]{36})(\/events)?$/);
+  if(resultPath&&request.method==='GET'){
+    const result=await report(db,resultPath[1],url.searchParams);if(!result)fail('Campanha não encontrada.',404);
+    if(resultPath[2])return json({events:(await db.prepare('SELECT type,occurred_at,detail FROM mkt_activity WHERE campaign_id=? AND email=? ORDER BY occurred_at DESC,id DESC LIMIT 100').bind(resultPath[1],(url.searchParams.get('email')||'').slice(0,254)).all()).results});
+    return json(result);
+  }
   if(request.method!=='POST')return json({error:'Rota não encontrada.'},404);
   const p=await body(request),now=Date.now();
+  const templateAction=path.match(/^\/mkt\/email\/api\/templates\/([a-f0-9-]{36})\/(archive|restore)$/);
+  if(templateAction){
+    if(!await db.prepare('SELECT id FROM mkt_templates WHERE id=?').bind(templateAction[1]).first())fail('Template não encontrado.',404);
+    if(templateAction[2]==='archive')await db.prepare('INSERT OR IGNORE INTO mkt_archived_templates(template_id,archived_at) VALUES(?,?)').bind(templateAction[1],now).run();
+    else await db.prepare('DELETE FROM mkt_archived_templates WHERE template_id=?').bind(templateAction[1]).run();
+    return json({ok:true});
+  }
   if(path==='/mkt/email/api/templates'){
     const content=contentOf(p.content),id=p.id||crypto.randomUUID();if(!validId(id))fail('Template inválido.');
+    if(await db.prepare('SELECT template_id FROM mkt_archived_templates WHERE template_id=?').bind(id).first())fail('Este template foi excluído. Restaure-o ou salve uma nova mensagem.',409);
     await db.prepare('INSERT INTO mkt_templates(id,name,content,updated_at) VALUES(?,?,?,?) ON CONFLICT(id) DO UPDATE SET name=excluded.name,content=excluded.content,updated_at=excluded.updated_at').bind(id,content.name,JSON.stringify(content),now).run();return json({id});
   }
   if(path==='/mkt/email/api/import')return importContacts(db,p);

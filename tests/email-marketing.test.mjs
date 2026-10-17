@@ -5,6 +5,7 @@ import {readFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
 import {handleEmail,verifyWebhook,configuration} from '../functions/_lib/email-marketing.js';
 import {schema} from '../functions/_lib/email-schema.js';
+import {reportSchema} from '../functions/_lib/email-reports.js';
 import {starter,validateContent,renderEmail,parseCsv,contactsFromRows,normalizeEmail} from '../mkt/email/core.js';
 const origin='https://www.bufalogrowler.com.br';
 const content={...starter};
@@ -124,4 +125,47 @@ test('acknowledges signed test events but retries early campaign events until ID
   await call(`/api/campaigns/${id}/process`,{},{sendFetch:async()=>{throw new Error('network');}});
   assert.equal((await call('/webhook',event,{anonymous:true,headers:signature.headers})).status,503);
   db.sql.close();
+});
+
+test('reports use unique recipients, keep repeated interactions, filters, dates and safe links',async()=>{
+  const {call,db}=await setup();const id=await draft(call,await list(call,[{email:'one@example.com',name:'Ana'},{email:'two@example.com',name:'Beto'}]));await start(call,id);await call(`/api/campaigns/${id}/process`,{});
+  const providerId=db.sql.prepare("SELECT provider_id FROM mkt_recipients WHERE email='one@example.com'").get().provider_id;
+  const emit=async(type,extra={},eventId=crypto.randomUUID())=>{const event={type,created_at:new Date().toISOString(),data:{email_id:providerId,...extra}},sig=await signed(event,envConfig.RESEND_WEBHOOK_SECRET,eventId);const response=await call('/webhook',event,{anonymous:true,headers:sig.headers});assert.equal(response.status,200,await response.text());};
+  await emit('email.delivered');const duplicate=crypto.randomUUID();await emit('email.opened',{},duplicate);await emit('email.opened',{},duplicate);await emit('email.opened');
+  await emit('email.clicked',{click:{link:'https://loja.bufalogrowler.com.br/acai-bowl-500ml?token=private#secret'}});await emit('email.delivery_delayed');
+  await emit('email.failed',{failed:{reason:'older failure'}});assert.equal(db.sql.prepare("SELECT status FROM mkt_recipients WHERE email='one@example.com'").get().status,'delivered');
+  const response=await call('/api/reports/'+id);assert.equal(response.status,200,await response.clone().text());const r=await response.json();
+  assert.equal(r.totals.total,2);assert.equal(r.totals.sent,2);assert.equal(r.totals.delivered,1);assert.equal(r.totals.opened,1);assert.equal(r.totals.opens,2);assert.equal(r.totals.clicked,1);assert.equal(r.totals.delayed,0);
+  assert.equal(r.links[0].url,'https://loja.bufalogrowler.com.br/acai-bowl-500ml');assert.ok(r.recipients[0].accepted_at);assert.ok(r.recipients[0].delivered_at);assert.equal(r.daily.length,1);
+  assert.equal((await (await call('/api/reports/'+id+'?status=opened&search=Ana')).json()).matched,1);
+  assert.equal((await (await call('/api/reports/'+id+'?search=%27%20OR%201%3D1--')).json()).matched,0);
+  assert.equal((await (await call('/api/reports/'+id+'/events?email=one%40example.com')).json()).events.length,7);
+  const all=await (await call('/api/reports')).json();assert.equal(all.totals.sent,2);assert.equal(all.campaigns[0].delivered,1);
+  assert.equal((await call('/api/reports',undefined,{anonymous:true})).status,401);assert.equal((await call('/api/reports/'+id,undefined,{anonymous:true})).status,401);
+  assert.equal((await call('/api/reports/'+crypto.randomUUID())).status,404);db.sql.close();
+});
+
+test('report pagination, zero results and legacy statuses are preserved',async()=>{
+  const {call,db}=await setup();const id=await draft(call,await list(call,Array.from({length:55},(_,i)=>({email:`p${String(i).padStart(2,'0')}@example.com`,name:'Pessoa'}))));await start(call,id);
+  db.sql.prepare("UPDATE mkt_recipients SET status='delivered',provider_id='old-provider' WHERE email='p00@example.com'").run();
+  let r=await (await call('/api/reports/'+id)).json();assert.equal(r.pages,2);assert.equal(r.recipients.length,50);assert.equal(r.totals.delivered,1);assert.equal(r.recipients[0].delivered_at,null);
+  r=await (await call('/api/reports/'+id+'?page=2')).json();assert.equal(r.recipients.length,5);assert.equal(r.daily.length,0);
+  r=await (await call('/api/reports/'+id+'?status=clicked')).json();assert.equal(r.matched,0);
+  const empty=await draft(call,db.sql.prepare('SELECT list_id FROM mkt_campaigns LIMIT 1').get().list_id);r=await (await call('/api/reports/'+empty)).json();assert.equal(r.totals.total,0);db.sql.close();
+});
+
+test('template deletion is recoverable, authenticated and preserves campaign content',async()=>{
+  const {call,db}=await setup();const t=await (await call('/api/templates',{content})).json();const id=await draft(call,await list(call));
+  assert.equal((await call(`/api/templates/${t.id}/archive`,{},{anonymous:true})).status,401);
+  assert.equal((await call(`/api/templates/${t.id}/archive`,{},{requestOrigin:'https://other.test'})).status,403);
+  assert.equal((await call(`/api/templates/${t.id}/archive`,{})).status,200);
+  let state=await (await call('/api/state')).json();assert.equal(state.templates.length,0);assert.equal(state.archivedTemplates[0].id,t.id);
+  assert.deepEqual((await (await call('/api/campaigns/'+id)).json()).content,content);
+  assert.equal((await call('/api/templates',{id:t.id,content})).status,409);
+  assert.equal((await call(`/api/templates/${t.id}/restore`,{})).status,200);state=await (await call('/api/state')).json();assert.equal(state.templates.length,1);assert.equal(state.archivedTemplates.length,0);
+  assert.equal((await call(`/api/templates/${crypto.randomUUID()}/archive`,{})).status,404);db.sql.close();
+});
+
+test('report schema migration matches runtime additions',()=>{
+  assert.equal(reportSchema,readFileSync(new URL('../migrations/0016_email_results.sql',import.meta.url),'utf8').replaceAll('\r\n','\n'));
 });
