@@ -1,7 +1,9 @@
-import {LIMITS,starter,escapeHtml as e,validateContent,renderEmail,contactsFromRows,parseCsv} from './core.js';
+import {LIMITS,escapeHtml as e,validateContent,renderEmail,contactsFromRows,parseCsv} from './core.js';
 import {mountReports} from './reports.js';
 const $=id=>document.getElementById(id);
 const fields=['name','subject','preheader','heading','body','layout','imageUrl','imageAlt','buttonText','buttonUrl'];
+const blankContent=Object.fromEntries(fields.map(key=>[key,'']));
+let savingTemplate=false;
 const statusNames={draft:'Rascunho',queued:'Na fila',paused:'Pausada',completed:'Processamento concluído'};
 const countNames={pending:'Aguardando',accepted:'Aceitos',delivered:'Entregues',bounced:'Rejeitados',complained:'Reclamações',failed:'Falhas',skipped:'Bloqueados'};
 let state={config:{ready:false,address:''},templates:[],lists:[],campaigns:[]},templateId=null,campaign=null,rows=[],workbook=null,parsed=null,importedListId=null,running=false;
@@ -17,7 +19,9 @@ function content(){return Object.fromEntries(fields.map(key=>[key,$(key).value])
 function setContent(value){for(const key of fields)$(key).value=value[key]??'';preview();}
 function preview(){
   const value=content();$('preview-subject').textContent=value.subject||'Assunto da mensagem';$('preview-preheader').textContent=value.preheader;
-  $('email-preview').srcdoc=renderEmail(value,{address:state.config.address||'Endereço da empresa · configure antes do envio'}).html;
+  const hasMessage=['subject','preheader','heading','body','imageUrl','buttonText','buttonUrl'].some(key=>value[key].trim());
+  $('preview-empty').hidden=hasMessage;$('email-preview').hidden=!hasMessage;$('mail-envelope').hidden=!hasMessage;$('open-email-preview').disabled=!hasMessage;
+  $('email-preview').srcdoc=hasMessage?renderEmail(value,{address:state.config.address||'Endereço da empresa · configure antes do envio'}).html:'';
   $('campaign-message').innerHTML=`<strong>${e(value.name||'Sua mensagem')}</strong><small>Assunto: ${e(value.subject||'Preencha no editor')}</small>`;
 }
 function showPanel(id){for(const name of ['create','contacts','campaigns','results'])$(name).hidden=name!==id;document.querySelectorAll('[data-panel]').forEach(button=>{const active=button.dataset.panel===id;button.classList.toggle('active',active);if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});}
@@ -27,8 +31,8 @@ function updateButtons(){
   $('start-campaign').disabled=!state.config.ready||!campaign||campaign.status!=='draft'||running;
   $('continue-campaign').disabled=!state.config.ready||running;
   $('save-campaign').disabled=running;
-  $('new-message').disabled=running;$('load-template').disabled=running;
-  $('delete-template').disabled=running||!state.templates.some(t=>t.id===$('template-picker').value);
+  $('new-message').disabled=running||savingTemplate;$('load-template').disabled=running||savingTemplate;
+  $('delete-template').disabled=running||savingTemplate||!state.templates.some(t=>t.id===$('template-picker').value);
   $('import-contacts').disabled=!parsed?.contacts.length||!$('import-consent').checked;
 }
 async function refresh(){state=await api('state');renderState();}
@@ -57,15 +61,23 @@ for(const key of fields)$(key).addEventListener('input',preview);
 $('preview-width').addEventListener('change',()=>{$('email-preview').classList.toggle('mobile',$('preview-width').value==='mobile');$('preview-label').textContent=$('preview-width').value==='mobile'?'Celular':'Desktop';});
 $('open-email-preview').addEventListener('click',()=>{$('full-email-preview').srcdoc=$('email-preview').srcdoc;$('full-email-preview').classList.toggle('mobile',$('preview-width').value==='mobile');$('full-preview-dialog').showModal();});
 $('close-email-preview').addEventListener('click',()=>$('full-preview-dialog').close());
-action('new-message',async()=>{templateId=null;campaign=null;setContent({...starter,name:'Nova mensagem'});renderCampaign();feedback('Nova mensagem criada.');});
-action('load-template',async()=>{const value=state.templates.find(t=>t.id===$('template-picker').value);if(!value)throw new Error('Escolha um template salvo.');templateId=value.id;setContent(value.content);feedback('Template carregado.');});
+action('new-message',async()=>{templateId=null;campaign=null;$('template-picker').value='';$('test-email').value='';setContent(blankContent);renderCampaign();feedback('Editor limpo. Os exemplos nos campos servem apenas como orientação.');});
+action('load-template',async()=>{const id=$('template-picker').value;if(!id)throw new Error('Escolha um template salvo.');const value=await api('templates/'+id);templateId=value.id;setContent(value.content);feedback('Template carregado do servidor.');});
 $('template-picker').addEventListener('change',updateButtons);
 let deletingTemplate=null;
 action('delete-template',async()=>{const value=state.templates.find(t=>t.id===$('template-picker').value);if(!value)throw new Error('Escolha um template salvo.');deletingTemplate=value.id;$('delete-template-name').textContent=value.name;$('delete-template-dialog').showModal();});
 $('cancel-delete-template').addEventListener('click',()=>$('delete-template-dialog').close());
 $('delete-template-form').addEventListener('submit',async event=>{event.preventDefault();const button=event.submitter;button.disabled=true;try{await api(`templates/${deletingTemplate}/archive`,{});if(templateId===deletingTemplate)templateId=null;$('delete-template-dialog').close();await refresh();feedback('Template excluído. Você pode restaurá-lo em Templates excluídos.');}catch(error){feedback(error.message,true);}finally{button.disabled=false;}});
 $('archived-templates').addEventListener('click',async event=>{const button=event.target.closest('[data-restore-template]');if(!button)return;button.disabled=true;try{await api(`templates/${button.dataset.restoreTemplate}/restore`,{});await refresh();$('template-picker').value=button.dataset.restoreTemplate;updateButtons();feedback('Template restaurado.');}catch(error){feedback(error.message,true);button.disabled=false;}});
-$('editor-form').addEventListener('submit',async event=>{event.preventDefault();const button=event.submitter;button.disabled=true;try{const result=await api('templates',{id:templateId,content:validateContent(content())});templateId=result.id;await refresh();$('template-picker').value=templateId;feedback('Template salvo. Nenhum email foi enviado.');}catch(error){feedback(error.message,true);}finally{button.disabled=false;}});
+$('editor-form').addEventListener('submit',async event=>{
+  event.preventDefault();if(savingTemplate)return;const button=event.submitter,value=content();savingTemplate=true;button.disabled=true;updateButtons();
+  try{
+    const savedContent=validateContent(value),result=await api('templates',{id:templateId,content:savedContent});templateId=result.id;
+    const persisted=await api('templates/'+templateId);
+    if(!fields.every(key=>persisted.content[key]===savedContent[key]))throw new Error('O servidor retornou uma versão diferente do template. Recarregue-o antes de continuar.');
+    await refresh();$('template-picker').value=templateId;feedback('Template salvo e conferido no servidor. Nenhum email foi enviado.');
+  }catch(error){feedback(error.message,true);}finally{savingTemplate=false;button.disabled=false;updateButtons();}
+});
 function download(filename,text,type){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
 action('download-html',async()=>{const value=validateContent(content());download('email-bufalo.html',renderEmail(value,{address:state.config.address||'CONFIGURE O ENDEREÇO DA EMPRESA'}).html,'text/html;charset=utf-8');feedback('HTML exportado para revisão. O descadastro será personalizado somente no disparo pelo painel.');});
 action('send-test',async()=>{if(!$('test-email').reportValidity()||!$('test-email').value)throw new Error('Informe o email de teste.');await api('test',{email:$('test-email').value,content:validateContent(content())});feedback('Email de teste aceito pelo Resend. Confira a caixa de entrada e o spam.');});
@@ -148,4 +160,4 @@ action('continue-campaign',async()=>{campaign=await api('campaigns/'+campaign.id
 action('pause-campaign',async()=>{running=false;campaign=await api(`campaigns/${campaign.id}/pause`,{});renderCampaign();feedback('Campanha pausada. Um lote em processamento ainda pode terminar.');});
 action('refresh-campaign',async()=>{campaign=await api('campaigns/'+campaign.id);renderCampaign();await refresh();feedback('Resultados atualizados.');});
 mountReports(api,showPanel);
-setContent(starter);refresh().catch(error=>{feedback(error.message,true);$('connection').textContent='Conexão indisponível';});
+setContent(blankContent);refresh().catch(error=>{feedback(error.message,true);$('connection').textContent='Conexão indisponível';});

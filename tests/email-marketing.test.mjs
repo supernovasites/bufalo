@@ -72,6 +72,21 @@ test('templates and drafts persist; missing provider and preview domain cannot s
   const id=await draft(call,await list(call));assert.equal((await call(`/api/campaigns/${id}/start`,{confirm:'ENVIAR',consent:true})).status,409);
   assert.equal((await call('/api/test',{email:'test@example.com',content})).status,409);assert.equal(configuration(envConfig,'https://preview.bufalo.pages.dev').ready,false);db.sql.close();
 });
+
+test('saved templates can be read back, updated without duplication and reloaded from storage',async()=>{
+  const {call,db}=await setup();const value={...content,name:'Conferência de persistência',subject:'Assunto salvo',body:'Olá, {{nome}}!\n\nConteúdo salvo para recarregar.',imageUrl:'',imageAlt:'',buttonText:'',buttonUrl:''};
+  const saved=await (await call('/api/templates',{content:value})).json();
+  const path='/api/templates/'+saved.id;
+  let response=await call(path);assert.equal(response.status,200);assert.match(response.headers.get('cache-control'),/no-store/);assert.deepEqual((await response.json()).content,value);
+  const changed={...value,subject:'Assunto atualizado',preheader:'Prévia atualizada'};
+  const updated=await (await call('/api/templates',{id:saved.id,content:changed})).json();assert.equal(updated.id,saved.id);
+  assert.deepEqual((await (await call(path)).json()).content,changed);
+  const state=await (await call('/api/state')).json();assert.equal(state.templates.length,1);assert.deepEqual(state.templates[0].content,changed);
+  assert.equal((await call(path,undefined,{anonymous:true})).status,401);
+  assert.equal((await call('/api/templates/'+crypto.randomUUID())).status,404);
+  await call(path+'/archive',{});assert.equal((await call(path)).status,404);await call(path+'/restore',{});assert.deepEqual((await (await call(path)).json()).content,changed);
+  db.sql.close();
+});
 test('queue snapshots recipients and content, individual messages and suppression before sending',async()=>{
   sent=[];const {call,db}=await setup();const id=await draft(call,await list(call,[{email:'one@example.com',name:'Ana'},{email:'two@example.com',name:'Beto'}]));
   assert.equal((await call(`/api/campaigns/${id}/start`,{confirm:'WRONG',consent:true})).status,400);await start(call,id);
