@@ -180,6 +180,12 @@ async function handle(context,sendFetch) {
     const campaigns=(await db.prepare('SELECT id,name,list_id,status,updated_at FROM mkt_campaigns ORDER BY updated_at DESC LIMIT 100').all()).results;
     return json({config:configuration(env,url.origin),templates,archivedTemplates,lists,campaigns});
   }
+  const templateDetail=path.match(/^\/mkt\/email\/api\/templates\/([a-f0-9-]{36})$/);
+  if(templateDetail&&request.method==='GET'){
+    const template=await db.prepare('SELECT * FROM mkt_templates WHERE id=? AND id NOT IN (SELECT template_id FROM mkt_archived_templates)').bind(templateDetail[1]).first();
+    if(!template)fail('Template não encontrado ou excluído.',404);
+    return json({...template,content:JSON.parse(template.content)});
+  }
   const detail=path.match(/^\/mkt\/email\/api\/campaigns\/([a-f0-9-]{36})$/);
   if(detail&&request.method==='GET')return json(await summary(db,detail[1]));
   if(path==='/mkt/email/api/reports'&&request.method==='GET')return json(await overview(db));

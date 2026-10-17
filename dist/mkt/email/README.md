@@ -5,6 +5,7 @@
 ## O que está disponível
 
 - Editor por campos de texto, imagem e botão; três modelos (produto, editorial e carta), personalização `{{nome}}`, prévia em desktop/celular e exportação de HTML.
+- O editor abre vazio e “Nova mensagem” limpa os campos. Os exemplos são placeholders, nunca conteúdo preenchido automaticamente. Templates salvos são carregados explicitamente do servidor. Após salvar, o cliente faz uma nova leitura por ID e confere todos os campos antes de confirmar a gravação.
 - Templates reutilizáveis e campanhas em rascunho persistidos no D1. Não aceita HTML arbitrário; texto e nomes são escapados no HTML gerado.
 - Exclusão recuperável de templates, com confirmação e restauração em “Templates excluídos”. A exclusão não modifica cópias usadas em campanhas.
 - Aba Resultados: dashboards gerais e por campanha, comparação das 100 campanhas mais recentes, funil, evolução diária, links, filtros, paginação, histórico por destinatário e exportação CSV dos resultados filtrados. Atualização a cada 30 segundos enquanto visível, sem iniciar envios.
