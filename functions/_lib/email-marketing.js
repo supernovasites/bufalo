@@ -130,8 +130,12 @@ async function webhook(request,env) {
   const status=statuses[event.type];if(!status)return json({ok:true});
   const db=env.LIVE_DB;await ensureSchema(db);
   const row=await db.prepare('SELECT email,campaign_id FROM mkt_recipients WHERE provider_id=?').bind(event.data?.email_id||'').first();
-  // Retry early events instead of acknowledging and losing the delivery state.
-  if(!row)return json({error:'Envio ainda não conciliado. Repetir evento.'},503);
+  // Tests and other applications do not have campaign recipients. Only retry
+  // unmatched events while a campaign batch could still be awaiting its IDs.
+  if(!row){
+    const pending=await db.prepare("SELECT id FROM mkt_attempts WHERE status='pending' LIMIT 1").first();
+    return pending?json({error:'Envio ainda não conciliado. Repetir evento.'},503):json({ok:true});
+  }
   const id=request.headers.get('svix-id');
   if(await db.prepare('SELECT id FROM mkt_events WHERE id=?').bind(id).first())return json({ok:true});
   const statements=[db.prepare('INSERT OR IGNORE INTO mkt_events(id,created_at) VALUES(?,?)').bind(id,Date.now()),db.prepare("UPDATE mkt_recipients SET status=? WHERE provider_id=? AND (status NOT IN ('complained','bounced') OR ?='complained')").bind(status,event.data.email_id,status)];

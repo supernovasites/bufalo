@@ -116,3 +116,12 @@ test('signed delivery events update reports and suppress bounces; invalid signat
   for(let i=0;i<2;i++)assert.equal((await call('/webhook',event,{anonymous:true,headers:signature.headers})).status,200);
   assert.equal(db.sql.prepare('SELECT status FROM mkt_contacts').get().status,'bounced');assert.equal(db.sql.prepare('SELECT status FROM mkt_recipients').get().status,'bounced');assert.equal(db.sql.prepare('SELECT COUNT(*) AS n FROM mkt_events').get().n,1);db.sql.close();
 });
+test('acknowledges signed test events but retries early campaign events until IDs are reconciled',async()=>{
+  const {call,db}=await setup();
+  const event={type:'email.delivered',data:{email_id:'test-outside-campaign'}},signature=await signed(event,envConfig.RESEND_WEBHOOK_SECRET);
+  assert.equal((await call('/webhook',event,{anonymous:true,headers:signature.headers})).status,200);
+  const id=await draft(call,await list(call));await start(call,id);
+  await call(`/api/campaigns/${id}/process`,{},{sendFetch:async()=>{throw new Error('network');}});
+  assert.equal((await call('/webhook',event,{anonymous:true,headers:signature.headers})).status,503);
+  db.sql.close();
+});
