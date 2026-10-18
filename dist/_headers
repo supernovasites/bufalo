@@ -5,6 +5,11 @@
 /assets/shop-assistant.js
   Cache-Control: public, max-age=0, must-revalidate
 
+/assets/loja-integrada-shell.js
+  Cache-Control: public, max-age=0, must-revalidate
+/assets/loja-integrada-shell.css
+  Cache-Control: public, max-age=0, must-revalidate
+
 /assets/product-search.js
   Cache-Control: public, max-age=0, must-revalidate
 /assets/product-references.json

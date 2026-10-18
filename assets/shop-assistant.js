@@ -39,6 +39,8 @@ function validateResults(result){
  for(const [label,value] of [['Sim','yes'],['Não era isso','no']]){const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=()=>{box.querySelectorAll('button').forEach(b=>b.disabled=true);track('ai_search_feedback',{ai_search_id:id,feedback:value,result_count:result.productIds.length});if(value==='yes'){say('Ótimo! Toque em Ver na loja para continuar.');}else{result.productIds.forEach(id=>rejectedProductIds.add(id));messages.push({role:'assistant',content:'O cliente informou que os produtos sugeridos não correspondem ao pedido.'});rejectionCount+=1;try{sessionStorage.setItem('bg-ai-rejection-count',String(rejectionCount));}catch{}if(rejectionCount>=2)humanHelp();say('Vamos ajustar. Diga o tipo ou modelo e para que vai usar. Ex.: garrafa para academia, copo Niliravi 900 ml ou tampa para Garça 500 ml.');input.focus({preventScroll:true});}log.scrollTop=log.scrollHeight;};box.append(b);}log.append(box);log.scrollTop=log.scrollHeight;
 }
 form.addEventListener('submit',e=>{e.preventDefault();send(input.value);});dialog.querySelectorAll('.bg-chat-hints button').forEach(b=>b.onclick=()=>send(b.textContent));say('Qual produto você procura?');
+// Atalho do cabeçalho da loja oficial: abre o mesmo assistente na homepage.
+if(new URLSearchParams(location.search).get('open')==='ia')open();
 })();
 
 })();
