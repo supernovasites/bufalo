@@ -1,0 +1,13 @@
+#bg-site-header #bg-search-toggle{display:grid!important;place-items:center;width:44px;min-width:44px;height:44px;padding:10px;border:0;background:none;color:#142e32;cursor:pointer}
+#bg-site-header #bg-search-toggle svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7}
+#mobile-menu nav a{display:flex!important;align-items:center;gap:14px;min-height:64px;box-sizing:border-box}
+#mobile-menu nav a .bg-category-photo{display:block;width:48px!important;height:48px!important;max-width:48px!important;object-fit:contain;flex:0 0 48px;background:#fff;border-radius:6px}
+#mobile-menu nav a span{min-width:0}
+#mobile-menu .bg-search-results{margin:0 24px 16px;border:1px solid #dce0df;border-radius:4px;background:#fff;color:#142e32;overflow:hidden}
+#mobile-menu .bg-search-results[hidden]{display:none!important}
+#mobile-menu .bg-search-results p{padding:12px;margin:0;font:13px/1.5 Arial,Helvetica,sans-serif}
+#mobile-menu .bg-search-results a{display:flex;align-items:center;gap:12px;padding:10px;border-bottom:1px solid #e5e9e7;text-decoration:none;color:#142e32;font:14px/1.4 Arial,Helvetica,sans-serif}
+#mobile-menu .bg-search-results a[aria-selected="true"],#mobile-menu .bg-search-results a:hover{background:#edf2ef}
+#mobile-menu .bg-search-results img{width:48px!important;height:48px!important;object-fit:contain;flex:0 0 48px}
+#mobile-menu .bg-search-results .bg-search-all{justify-content:center;font-size:12px;font-weight:700;padding:13px}
+body:not(.pagina-produto):not([data-page-type="product"]) .mobile-dock,body:not(.pagina-produto):not([data-page-type="product"]) .desktop-floating-menu{display:none!important}

@@ -16,13 +16,7 @@
   "env": {
     "preview": {
       "d1_databases": [],
-      "r2_buckets": [],
-      "ai": {
-        "binding": "AI"
-      }
+      "r2_buckets": []
     }
-  },
-  "ai": {
-    "binding": "AI"
   }
 }
