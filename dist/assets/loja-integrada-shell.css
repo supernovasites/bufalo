@@ -1,7 +1,7 @@
 /* Cabeçalho e atalhos iguais aos da homepage, sem substituir scripts comerciais. */
 .bg-li-ready body::before{display:none!important;content:none!important}
 .bg-li-ready #cabecalho,.bg-li-ready .menu-desktop,.bg-li-ready .barra-mobile,
-.bg-li-ready .fmais-loyalty__bottom__open__btn{display:none!important}
+.bg-li-ready #fmais-loyalty__bottom__open__btn,.bg-li-ready .fmais-loyalty__bottom__open__btn{display:none!important}
 .bg-li-ready #bg-li-shell,.bg-li-ready #bg-site-header{box-sizing:border-box;width:100%;margin:0}
 .bg-li-ready #bg-site-announcement{box-sizing:border-box;background:#142e32;color:#fff;min-height:36px;padding:10px 20px;font:700 12px/18px Arial,Helvetica,sans-serif;letter-spacing:.2px;text-align:center}
 .bg-li-ready #bg-site-header{display:block!important;position:sticky!important;top:0!important;z-index:950!important;background:#fff!important;border-bottom:1px solid #dce0df;box-shadow:none!important}
