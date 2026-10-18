@@ -1,4 +1,6 @@
 /* Cabeçalho e atalhos iguais aos da homepage, sem substituir scripts comerciais. */
+.bg-li-ready #bg-site-header #bg-li-cart{position:relative}
+.bg-li-ready #bg-site-header .bg-cart-count{position:absolute;top:0;right:0;display:flex;align-items:center;justify-content:center;min-width:18px;height:18px;box-sizing:border-box;padding:0 4px;border:2px solid #fff;border-radius:20px;background:#142e32;color:#fff;font:700 10px/1 Arial,Helvetica,sans-serif;pointer-events:none}
 .bg-li-ready body::before{display:none!important;content:none!important}
 .bg-li-ready #cabecalho,.bg-li-ready .menu-desktop,.bg-li-ready .barra-mobile,
 .bg-li-ready #fmais-loyalty__bottom__open__btn,.bg-li-ready .fmais-loyalty__bottom__open__btn{display:none!important}
