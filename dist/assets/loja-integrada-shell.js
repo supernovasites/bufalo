@@ -39,8 +39,8 @@
       const footerScript=document.createElement('script');footerScript.src=home+'/assets/site-shell.js?v=20261018-footer';footerScript.defer=true;
       footerScript.addEventListener('load',()=>{if(document.getElementById('bg-site-footer'))document.documentElement.classList.add('bg-li-footer-ready');});document.body.append(footerScript);
     }
-    if(!document.querySelector('link[href*="/assets/menu-search.css"]')){const css=document.createElement('link');css.rel='stylesheet';css.href=home+'/assets/menu-search.css?v=20261018-search';document.head.append(css);}
-    const searchScript=document.createElement('script');searchScript.src=home+'/assets/menu-search.js?v=20261018-search';searchScript.defer=true;document.body.append(searchScript);
+    if(!document.querySelector('link[href*="/assets/menu-search.css"]')){const css=document.createElement('link');css.rel='stylesheet';css.href=home+'/assets/menu-search.css?v=20261018-commerce';document.head.append(css);}
+    const searchScript=document.createElement('script');searchScript.src=home+'/assets/menu-search.js?v=20261018-commerce';searchScript.defer=true;document.body.append(searchScript);
     let previousFocus;
     header.querySelector('#open-menu').addEventListener('click',()=>{previousFocus=document.activeElement;menu.showModal();});
     menu.querySelector('#close-menu').addEventListener('click',()=>menu.close());
