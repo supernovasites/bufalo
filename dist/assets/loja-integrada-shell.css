@@ -4,7 +4,7 @@
 .bg-li-ready .fmais-loyalty__bottom__open__btn{display:none!important}
 .bg-li-ready #bg-li-shell,.bg-li-ready #bg-site-header{box-sizing:border-box;width:100%;margin:0}
 .bg-li-ready #bg-site-announcement{box-sizing:border-box;background:#142e32;color:#fff;min-height:36px;padding:10px 20px;font:700 12px/18px Arial,Helvetica,sans-serif;letter-spacing:.2px;text-align:center}
-.bg-li-ready #bg-site-header{position:sticky!important;top:0!important;z-index:950!important;background:#fff!important;border-bottom:1px solid #dce0df;box-shadow:none!important}
+.bg-li-ready #bg-site-header{display:block!important;position:sticky!important;top:0!important;z-index:950!important;background:#fff!important;border-bottom:1px solid #dce0df;box-shadow:none!important}
 .bg-li-ready #bg-site-header .header-row{position:relative;display:flex;align-items:center;justify-content:space-between;min-height:88px;padding:12px 5%;gap:0;box-sizing:border-box}
 .bg-li-ready #bg-site-header .header-row>.logo{position:absolute!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;display:block!important;width:64px!important;height:64px!important;padding:0!important;margin:0!important;line-height:1!important}
 .bg-li-ready #bg-site-header .logo::before,.bg-li-ready #bg-site-header .logo::after{display:none!important;content:none!important}
