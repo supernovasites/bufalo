@@ -26,7 +26,7 @@
       const href=a.href;if(!href.startsWith(store+'/'))return;
       const text=(a.querySelector('.titulo')?.textContent||a.textContent).trim();if(text)link(text,href);
     });
-    if(!links.childElementCount){for(const [name,path] of [['Garrafas e growlers','/garrafas'],['Copos e bowls','/copos-e-bowls'],['Acessórios','/acessorios'],['Vestuário','/vestuario'],['Camping','/camping-'],['Ofertas','/ofertas']])link(name,store+path);}
+    if(!links.childElementCount){for(const [name,path] of [['Garrafas e growlers','/garrafas'],['Copos e bowls','/copos-e-bowls'],['Acessórios','/acessorios'],['Vestuário','/vestuario'],['Cutelaria','/cutelaria'],['Camping','/camping-'],['Jogos','/jogos'],['Ofertas','/ofertas']])link(name,store+path);}
     link('Ache aqui',home+'/catalogo/');link('Minha conta',store+'/conta/index');link('Meus pedidos',store+'/conta/pedido/listar');link('Meus desejos',store+'/conta/favorito/listar');link('Blog Búfalo',home+'/blog/');link('YouTube','https://www.youtube.com/@bufalogrowler');link('TikTok','https://www.tiktok.com/@bufalogrowler');
     const dock=document.createElement('nav');dock.id='bg-li-dock';dock.setAttribute('aria-label','Atalhos rápidos');
     const shortcuts=[['whatsapp','WhatsApp','https://wa.me/5591984973370'],['instagram','Instagram','https://www.instagram.com/bufalogrowler/'],['cash','ManadaCash',home+'/?open=mc'],['offers','Ofertas',store+'/ofertas'],['catalog','Ache aqui',home+'/catalogo/']];
@@ -41,7 +41,7 @@
     menu.querySelector('#close-menu').addEventListener('click',()=>menu.close());
     menu.addEventListener('close',()=>previousFocus?.focus({preventScroll:true}));
     menu.addEventListener('click',e=>{if(e.target!==menu)return;const r=menu.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)menu.close();});
-    dock.querySelector('.bg-li-cash').addEventListener('click',e=>{const launcher=document.querySelector('.fmais-loyalty__bottom__open__btn');if(launcher){e.preventDefault();launcher.click();}});
+    dock.querySelector('.bg-li-cash').addEventListener('click',e=>{const launcher=document.querySelector('#fmais-loyalty__bottom__open__btn,.fmais-loyalty__bottom__open__btn');if(launcher){e.preventDefault();launcher.click();}});
     // O carrinho original continua sendo a fonte da quantidade e dos eventos.
     const nativeCart=document.querySelector('#cabecalho .painel .carrinho');
     if(nativeCart){const update=()=>{const n=nativeCart.querySelector('strong')?.textContent.trim();header.querySelector('#bg-li-cart').setAttribute('aria-label',n?'Abrir carrinho na loja oficial · '+n+' itens':'Abrir carrinho na loja oficial');};update();new MutationObserver(update).observe(nativeCart,{childList:true,subtree:true,characterData:true});}
