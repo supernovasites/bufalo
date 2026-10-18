@@ -18,6 +18,6 @@ As fotos da galeria ficam limitadas a 360 px no desktop e 260 px no celular; min
 
 ## Carrinho e checkout
 
-No CSS Avançado, importe `https://www.bufalogrowler.com.br/assets/loja-integrada-commerce.css?v=20261018-commerce` antes das demais regras, preservando o CSS existente. Essa camada modifica somente a apresentação de `body.pagina-carrinho` e `body.carrinho-checkout`; os formulários, pagamentos e validações permanecem nativos. O checkout usa seu próprio cabeçalho e não recebe o script do shell.
+No CSS Avançado, acrescente o conteúdo de `assets/loja-integrada-commerce.css` após as regras existentes. Preserve todo o CSS anterior. O bloco HTML do shell também carrega esse arquivo para as páginas fora do checkout. Essa camada modifica somente a apresentação de `body.pagina-carrinho` e `body.carrinho-checkout`; os formulários, pagamentos e validações permanecem nativos. O checkout usa seu próprio cabeçalho e não recebe o script do shell.
 
 Na homepage, `data-bg-home` restaura os mesmos cinco atalhos da loja, sem destaque no ManadaCash. As demais páginas continuam sem o menu flutuante.
