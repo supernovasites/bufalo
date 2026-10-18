@@ -41,7 +41,7 @@
     menu.querySelector('#close-menu').addEventListener('click',()=>menu.close());
     menu.addEventListener('close',()=>previousFocus?.focus({preventScroll:true}));
     menu.addEventListener('click',e=>{if(e.target!==menu)return;const r=menu.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)menu.close();});
-    dock.querySelector('.bg-li-cash').addEventListener('click',e=>{const launcher=document.querySelector('#fmais-loyalty__bottom__open__btn,.fmais-loyalty__bottom__open__btn');if(launcher){e.preventDefault();launcher.click();}});
+    dock.querySelector('.bg-li-cash').addEventListener('click',e=>{const launcher=document.querySelector('#fmais-loyalty__bottom__open__btn,.fmais-loyalty__bottom__open__btn');if(launcher){e.preventDefault();e.stopPropagation();launcher.click();}});
     // O carrinho original continua sendo a fonte da quantidade e dos eventos.
     const nativeCart=document.querySelector('#cabecalho .painel .carrinho');
     if(nativeCart){const update=()=>{const n=nativeCart.querySelector('strong')?.textContent.trim();header.querySelector('#bg-li-cart').setAttribute('aria-label',n?'Abrir carrinho na loja oficial · '+n+' itens':'Abrir carrinho na loja oficial');};update();new MutationObserver(update).observe(nativeCart,{childList:true,subtree:true,characterData:true});}
