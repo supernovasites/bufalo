@@ -47,6 +47,14 @@
     menu.addEventListener('close',()=>previousFocus?.focus({preventScroll:true}));
     menu.addEventListener('click',e=>{if(e.target!==menu)return;const r=menu.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)menu.close();});
     dock.querySelector('.bg-li-cash').addEventListener('click',e=>{const launcher=document.querySelector('#fmais-loyalty__bottom__open__btn,.fmais-loyalty__bottom__open__btn');if(launcher){e.preventDefault();e.stopPropagation();launcher.click();}});
+    // Mantém o acionador nativo para abrir o programa, sem exibir a aba lateral.
+    const guardedLaunchers=new WeakSet();
+    const hideNativeLaunchers=()=>document.querySelectorAll('#fmais-loyalty__bottom__open__btn,.fmais-loyalty__bottom__open__btn').forEach(button=>{
+      const hide=()=>{if(button.style.getPropertyValue('display')!=='none'||button.style.getPropertyPriority('display')!=='important')button.style.setProperty('display','none','important');};
+      hide();button.setAttribute('aria-hidden','true');
+      if(!guardedLaunchers.has(button)){guardedLaunchers.add(button);new MutationObserver(hide).observe(button,{attributes:true,attributeFilter:['style','class']});}
+    });
+    hideNativeLaunchers();new MutationObserver(hideNativeLaunchers).observe(document.body,{childList:true,subtree:true});
 
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
