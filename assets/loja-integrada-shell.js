@@ -33,6 +33,12 @@
     // Fora do bloco do aviso, para manter position:sticky durante a rolagem.
     shell.after(header);
     document.documentElement.classList.add('bg-li-ready');
+    const nativeFooter=document.getElementById('rodape');
+    if(nativeFooter&&!document.getElementById('bg-site-footer')){
+      const placeholder=document.createElement('div');placeholder.setAttribute('data-bg-footer','');nativeFooter.before(placeholder);
+      const footerScript=document.createElement('script');footerScript.src=home+'/assets/site-shell.js?v=20261018-footer';footerScript.defer=true;
+      footerScript.addEventListener('load',()=>{if(document.getElementById('bg-site-footer'))document.documentElement.classList.add('bg-li-footer-ready');});document.body.append(footerScript);
+    }
     if(!document.querySelector('link[href*="/assets/menu-search.css"]')){const css=document.createElement('link');css.rel='stylesheet';css.href=home+'/assets/menu-search.css?v=20261018-search';document.head.append(css);}
     const searchScript=document.createElement('script');searchScript.src=home+'/assets/menu-search.js?v=20261018-search';searchScript.defer=true;document.body.append(searchScript);
     let previousFocus;
