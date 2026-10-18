@@ -29,7 +29,7 @@ body.carrinho-checkout .checkout-alerta-seguro-item{font-size:13px;line-height:1
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .produto-info>a{font-size:14px!important;line-height:20px;font-weight:700;color:#142e32}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .produto-info ul{margin:4px 0 0!important;font-size:11px;line-height:16px;color:#526265}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]>.clearfix{grid-column:2;grid-row:2}
- body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .quantidade{display:flex!important;align-items:center;justify-content:flex-start!important;float:none!important;margin:0!important;width:132px!important;max-width:100%;border:1px solid #dce0df;border-radius:6px;overflow:hidden}
+ html:root body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .quantidade{box-sizing:border-box;display:flex!important;align-items:center;justify-content:flex-start!important;float:none!important;margin:0!important;padding:0!important;width:132px!important;max-width:100%;height:46px!important;border:1px solid #dce0df;border-radius:6px;overflow:hidden}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .quantidade>a{display:grid!important;place-items:center;box-sizing:border-box;width:44px!important;min-height:44px;padding:0!important;flex:1;text-decoration:none;color:#142e32}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .quantidade input[name=quantidade]{width:44px!important;min-width:0;border:0!important;margin:0!important;padding:0!important;text-align:center}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]>.col-item-unit-price{grid-column:2;grid-row:3;align-self:center}
@@ -41,8 +41,8 @@ body.carrinho-checkout .checkout-alerta-seguro-item{font-size:13px;line-height:1
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr:not([data-produto-id]):not(.hidden-phone)>td{box-sizing:border-box;display:block;float:none;width:100%!important;padding:14px!important;border:0!important;text-align:left!important}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr:not([data-produto-id])>td:empty{display:none!important}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .control-label{display:block;float:none!important;width:auto!important;margin:0 0 8px!important;text-align:left!important;font-size:13px}
- body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .controls{margin:0!important;text-align:left!important}
- body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .input-append{display:flex!important;align-items:stretch;width:100%;margin:0!important}
+ html:root body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .form-horizontal,html:root body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .control-group,html:root body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .controls{box-sizing:border-box;display:block!important;float:none!important;width:100%!important;max-width:none!important;margin:0!important;text-align:left!important}
+ html:root body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .input-append{display:flex!important;align-items:stretch;width:100%!important;max-width:none!important;margin:0!important}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .input-append input{flex:1;min-width:0;width:0!important;height:46px!important;margin:0!important;padding:10px!important;border-radius:6px 0 0 6px!important}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .input-append .btn{flex:0 0 auto;min-height:46px;margin:0!important;padding:10px 12px!important;border-radius:0 6px 6px 0!important;font-size:12px;background:#142e32!important;color:#fff!important}
  body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .formas-envio{margin:0!important;padding:0!important}
@@ -57,6 +57,8 @@ body.carrinho-checkout .checkout-alerta-seguro-item{font-size:13px;line-height:1
  html:root body.carrinho-checkout .identificacao .submit-email.botao.principal{box-sizing:border-box;float:none!important;display:flex!important;align-items:center;justify-content:center;width:100%!important;height:48px!important;margin:0!important;padding:10px!important;line-height:24px!important}
  body.carrinho-checkout #corpo .resumo-compra{padding:14px!important;margin:18px 0!important}
  body.carrinho-checkout .resumo-compra .tabela-carrinho{display:table!important;width:100%!important;table-layout:fixed;border:0!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho tbody{display:table-row-group!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho tr:not(.hide):not(.esconder-mobile){display:table-row!important}
  body.carrinho-checkout .resumo-compra .tabela-carrinho th,body.carrinho-checkout .resumo-compra .tabela-carrinho td{display:table-cell!important;float:none!important;width:auto!important;padding:10px 4px!important;text-align:left!important;vertical-align:top;overflow-wrap:anywhere}
  body.carrinho-checkout .resumo-compra .tabela-carrinho th:nth-child(2),body.carrinho-checkout .resumo-compra .tabela-carrinho .conteiner-qtd{width:32px!important;text-align:center!important}
  body.carrinho-checkout .resumo-compra .tabela-carrinho th:nth-child(3),body.carrinho-checkout .resumo-compra .tabela-carrinho .conteiner-preco{width:92px!important;text-align:right!important}
@@ -64,6 +66,7 @@ body.carrinho-checkout .checkout-alerta-seguro-item{font-size:13px;line-height:1
  body.carrinho-checkout .resumo-compra .tabela-carrinho .produto-info *{text-align:left!important}
  body.carrinho-checkout .resumo-compra .tabela-carrinho .produto-info ul{font-size:10px;line-height:15px;margin:6px 0 0!important}
  body.carrinho-checkout .resumo-compra .tabela-carrinho .preco-promocional{font-size:15px!important;line-height:22px!important;white-space:nowrap}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho .hide,body.carrinho-checkout .resumo-compra .tabela-carrinho .hidden-phone{display:none!important}
  body.carrinho-checkout #formularioCheckout .caixa-sombreada{padding:16px!important;margin-bottom:16px}
  body.carrinho-checkout #formularioCheckout legend{font-size:20px!important;line-height:1.3!important}
  body.carrinho-checkout #formularioCheckout .control-group{margin-bottom:14px}
