@@ -1,4 +1,5 @@
-#bg-site-header #bg-search-toggle{display:grid!important;place-items:center;width:44px;min-width:44px;height:44px;padding:10px;border:0;background:none;color:#142e32;cursor:pointer}
+#bg-site-header #bg-search-toggle{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:52px!important;min-width:52px!important;height:48px!important;padding:2px!important;border:0;background:none;color:#142e32;cursor:pointer}
+#bg-site-header #bg-search-toggle .bg-search-label{display:block;white-space:nowrap;font:600 10px/12px Arial,Helvetica,sans-serif;letter-spacing:0}
 #bg-site-header #bg-search-toggle svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7}
 #mobile-menu nav a{display:flex!important;align-items:center;gap:14px;min-height:64px;box-sizing:border-box}
 #mobile-menu nav a .bg-category-photo{display:block;width:48px!important;height:48px!important;max-width:48px!important;object-fit:contain;flex:0 0 48px;background:#fff;border-radius:6px}
@@ -10,4 +11,9 @@
 #mobile-menu .bg-search-results a[aria-selected="true"],#mobile-menu .bg-search-results a:hover{background:#edf2ef}
 #mobile-menu .bg-search-results img{width:48px!important;height:48px!important;object-fit:contain;flex:0 0 48px}
 #mobile-menu .bg-search-results .bg-search-all{justify-content:center;font-size:12px;font-weight:700;padding:13px}
-body:not(.pagina-produto):not([data-page-type="product"]) .mobile-dock,body:not(.pagina-produto):not([data-page-type="product"]) .desktop-floating-menu{display:none!important}
+body:not([data-bg-home]):not(.pagina-produto):not([data-page-type="product"]) .mobile-dock,body:not([data-bg-home]):not(.pagina-produto):not([data-page-type="product"]) .desktop-floating-menu{display:none!important}
+body[data-bg-home] .mobile-dock a,body[data-bg-home] .desktop-floating-menu a{color:#142e32!important;background:none!important;font-weight:500!important}
+body[data-bg-home] .mobile-dock .dock-whatsapp{color:#128c4a!important}
+body[data-bg-home] .mobile-dock a span{font-weight:500!important}
+@media(max-width:760px){body[data-bg-home] .mobile-dock{display:grid!important;background:rgba(255,255,255,.7)!important;grid-template-columns:repeat(5,minmax(0,1fr));transform:scale(.9);transform-origin:center bottom}}
+@media(min-width:761px){body[data-bg-home] .desktop-floating-menu{display:flex!important}}

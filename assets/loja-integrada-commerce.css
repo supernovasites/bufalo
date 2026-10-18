@@ -1,0 +1,72 @@
+/* Camada visual do carrinho e checkout nativos. Não altera campos ou validações. */
+body.pagina-carrinho{--bg-commerce-ink:#142e32;--bg-commerce-line:#dce0df;color:#142e32}
+body.pagina-carrinho #corpo .cabecalho-interno h1{font:800 26px/1.2 Arial,Helvetica,sans-serif!important;letter-spacing:-.6px}
+body.pagina-carrinho #corpo .botao,body.pagina-carrinho #corpo .btn{box-sizing:border-box;border-radius:6px!important;background-image:none!important;text-shadow:none;box-shadow:none}
+html:root body.pagina-carrinho #corpo .botao.principal{background:#142e32!important;border-color:#142e32!important;color:#fff!important;box-shadow:none!important}
+body.pagina-carrinho #corpo input:not([type=checkbox]):not([type=radio]):not([type=hidden]),body.pagina-carrinho #corpo select{box-sizing:border-box;min-height:44px;border:1px solid #c6d0ce;border-radius:6px!important;font-size:16px!important;box-shadow:none}
+body.pagina-carrinho #corpo .caixa-sombreada{box-shadow:none!important;border:1px solid #dce0df!important;border-radius:8px!important}
+body.carrinho-checkout #cabecalho{position:relative;min-height:80px}
+body.carrinho-checkout #cabecalho .logo{width:64px!important;height:64px!important}
+body.carrinho-checkout #cabecalho .logo a,body.carrinho-checkout #cabecalho .logo img{width:64px!important;height:64px!important;max-height:64px!important;object-fit:contain}
+body.carrinho-checkout #cabecalho .conteiner{min-height:80px;box-sizing:border-box}
+body.carrinho-checkout .identificacao-inner{box-sizing:border-box;max-width:520px;margin:0 auto!important;padding:24px!important;border:1px solid #dce0df;border-radius:8px;background:#fff}
+body.carrinho-checkout .identificacao-title{font:700 22px/1.3 Arial,Helvetica,sans-serif!important;color:#142e32}
+body.carrinho-checkout .checkout-alerta-seguro{box-sizing:border-box;background:#eef2ed!important;border:0;border-radius:8px;padding:20px!important}
+body.carrinho-checkout .checkout-alerta-seguro-tit{font-size:15px!important;line-height:1.4!important;color:#142e32}
+body.carrinho-checkout .checkout-alerta-seguro-list{margin:12px 0 0!important}
+body.carrinho-checkout .checkout-alerta-seguro-item{font-size:13px;line-height:1.5;margin-bottom:6px}
+@media(max-width:760px){
+ body.pagina-carrinho #corpo>.conteiner{box-sizing:border-box;padding:20px 14px!important;width:100%!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho{display:block!important;width:100%!important;border:0!important;margin:0 0 16px!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho>tbody{display:block!important;width:100%}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]{box-sizing:border-box;display:grid!important;grid-template-columns:80px minmax(0,1fr) 44px;gap:8px 12px;padding:14px!important;margin:0 0 14px;border:1px solid #dce0df;border-radius:8px;background:#fff}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]>td{box-sizing:border-box;display:block!important;float:none!important;width:auto!important;padding:0!important;margin:0!important;border:0!important;text-align:left!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]>.conteiner-imagem{grid-column:1;grid-row:1/4}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .conteiner-imagem .imagem{width:80px!important;height:100px!important;margin:0!important;padding:0!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .conteiner-imagem img{max-width:100%!important;max-height:100%!important;width:80px!important;height:100px!important;object-fit:contain}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]>td:nth-child(2){grid-column:2/4;grid-row:1}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .produto-info{width:auto!important;text-align:left!important;padding:0!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .produto-info>a{font-size:14px!important;line-height:20px;font-weight:700;color:#142e32}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .produto-info ul{margin:4px 0 0!important;font-size:11px;line-height:16px;color:#526265}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]>.clearfix{grid-column:2;grid-row:2}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .quantidade{display:flex!important;align-items:center;justify-content:flex-start!important;float:none!important;margin:0!important;width:132px!important;max-width:100%;border:1px solid #dce0df;border-radius:6px;overflow:hidden}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .quantidade>a{display:grid!important;place-items:center;box-sizing:border-box;width:44px!important;min-height:44px;padding:0!important;flex:1;text-decoration:none;color:#142e32}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .quantidade input[name=quantidade]{width:44px!important;min-width:0;border:0!important;margin:0!important;padding:0!important;text-align:center}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]>.col-item-unit-price{grid-column:2;grid-row:3;align-self:center}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .preco-promocional{font-size:18px!important;line-height:26px!important;color:#142e32}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr[data-produto-id]>td:last-child{grid-column:3;grid-row:2/4;align-self:end}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .excluir{margin:0!important;padding:0!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .excluir>a{display:grid;place-items:center;width:44px;height:44px;border-radius:6px;background:#f3f5f3;color:#526265}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr:not([data-produto-id]):not(.hidden-phone){box-sizing:border-box;display:block!important;margin:0 0 12px;border:1px solid #dce0df;border-radius:8px;background:#f7f8f6;overflow:hidden}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr:not([data-produto-id]):not(.hidden-phone)>td{box-sizing:border-box;display:block;float:none;width:100%!important;padding:14px!important;border:0!important;text-align:left!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho tr:not([data-produto-id])>td:empty{display:none!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .control-label{display:block;float:none!important;width:auto!important;margin:0 0 8px!important;text-align:left!important;font-size:13px}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .controls{margin:0!important;text-align:left!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .input-append{display:flex!important;align-items:stretch;width:100%;margin:0!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .input-append input{flex:1;min-width:0;width:0!important;height:46px!important;margin:0!important;padding:10px!important;border-radius:6px 0 0 6px!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .input-append .btn{flex:0 0 auto;min-height:46px;margin:0!important;padding:10px 12px!important;border-radius:0 6px 6px 0!important;font-size:12px;background:#142e32!important;color:#fff!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .formas-envio{margin:0!important;padding:0!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .formas-vazio{margin:0!important;font-size:12px!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .total{text-align:left!important}
+ body.pagina-carrinho:not(.carrinho-checkout) .tabela-carrinho .total strong{font-size:26px!important;color:#142e32}
+ body.pagina-carrinho .finalizar-compra .botao{box-sizing:border-box;min-height:48px;white-space:normal}
+ body.carrinho-checkout #corpo .identificacao-inner{padding:20px!important}
+ body.carrinho-checkout .identificacao-title{font-size:21px!important;margin:0 0 18px!important}
+ body.carrinho-checkout .identificacao .email-box{float:none!important;width:100%!important}
+ body.carrinho-checkout .identificacao input{width:100%!important;height:48px!important;margin:0 0 10px!important}
+ html:root body.carrinho-checkout .identificacao .submit-email.botao.principal{box-sizing:border-box;float:none!important;display:flex!important;align-items:center;justify-content:center;width:100%!important;height:48px!important;margin:0!important;padding:10px!important;line-height:24px!important}
+ body.carrinho-checkout #corpo .resumo-compra{padding:14px!important;margin:18px 0!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho{display:table!important;width:100%!important;table-layout:fixed;border:0!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho th,body.carrinho-checkout .resumo-compra .tabela-carrinho td{display:table-cell!important;float:none!important;width:auto!important;padding:10px 4px!important;text-align:left!important;vertical-align:top;overflow-wrap:anywhere}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho th:nth-child(2),body.carrinho-checkout .resumo-compra .tabela-carrinho .conteiner-qtd{width:32px!important;text-align:center!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho th:nth-child(3),body.carrinho-checkout .resumo-compra .tabela-carrinho .conteiner-preco{width:92px!important;text-align:right!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho .produto-info{display:block!important;font-size:13px!important;text-align:left!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho .produto-info *{text-align:left!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho .produto-info ul{font-size:10px;line-height:15px;margin:6px 0 0!important}
+ body.carrinho-checkout .resumo-compra .tabela-carrinho .preco-promocional{font-size:15px!important;line-height:22px!important;white-space:nowrap}
+ body.carrinho-checkout #formularioCheckout .caixa-sombreada{padding:16px!important;margin-bottom:16px}
+ body.carrinho-checkout #formularioCheckout legend{font-size:20px!important;line-height:1.3!important}
+ body.carrinho-checkout #formularioCheckout .control-group{margin-bottom:14px}
+ body.carrinho-checkout #formularioCheckout label{font-size:13px;line-height:1.4}
+ body.carrinho-checkout #formularioCheckout input:not([type=checkbox]):not([type=radio]):not([type=hidden]),body.carrinho-checkout #formularioCheckout select{min-height:46px;height:auto!important;max-width:100%;padding:10px!important}
+}

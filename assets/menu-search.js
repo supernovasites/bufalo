@@ -1,6 +1,8 @@
 /* Busca por nome no catálogo da Loja Integrada, sem assistente de IA. */
 (()=>{
  'use strict';
+ const searchButton=document.getElementById('bg-search-toggle');
+ if(searchButton&&!searchButton.querySelector('.bg-search-label')){const label=document.createElement('span');label.className='bg-search-label';label.textContent='Ache Aqui';searchButton.append(label);searchButton.setAttribute('aria-label','Ache Aqui: buscar produtos');}
  const menu=document.getElementById('mobile-menu');if(!menu||menu.dataset.searchReady)return;menu.dataset.searchReady='true';
  const form=menu.querySelector('form'),input=form?.querySelector('input[name="q"]');if(!input)return;
  const store='https://loja.bufalogrowler.com.br';

@@ -4,6 +4,8 @@
   Cache-Control: public, max-age=0, must-revalidate
 /assets/menu-search.css
   Cache-Control: public, max-age=0, must-revalidate
+/assets/loja-integrada-commerce.css
+  Cache-Control: public, max-age=0, must-revalidate
 /assets/cart-count.js
   Cache-Control: public, max-age=0, must-revalidate
 /assets/site-shell.css
