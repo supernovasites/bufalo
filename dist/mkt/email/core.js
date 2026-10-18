@@ -15,22 +15,14 @@ export function safeUrl(value, optional = true) {
 export function buttonDestination(destination, campaignUtm='') {
   const base=safeUrl(destination),raw=String(campaignUtm??'').trim();
   if(!raw)return base||'';
-  if(raw.length>1000||/[\x00-\x1f\x7f]/.test(raw)||/^https?:\/\//i.test(raw))throw new Error('Informe o nome da campanha ou apenas os parâmetros UTM, sem o endereço do site.');
-  const allowed=new Set(['utm_source','utm_medium','utm_campaign','utm_id','utm_term','utm_content','utm_source_platform','utm_creative_format','utm_marketing_tactic']);
-  const params=raw.includes('=')||raw.startsWith('?')?new URLSearchParams(raw.replace(/^\?/,'')):new URLSearchParams({utm_campaign:raw});
-  const seen=new Set();
-  for(const [key,value] of params){
-    if(!allowed.has(key)||!value.trim()||value.length>300||/[\x00-\x1f\x7f]/.test(value)||seen.has(key))throw new Error('Use parâmetros UTM válidos, sem valores vazios ou repetidos. Ex.: utm_source=newsletter&utm_medium=email&utm_campaign=acai_bowl.');
-    seen.add(key);
-  }
-  if(!seen.size)throw new Error('Informe o nome da campanha ou os parâmetros UTM.');
+  if(raw.length>300||/[\x00-\x1f\x7f?&=#/:]/.test(raw))throw new Error('Informe somente o código da campanha, sem utm_campaign=, outros parâmetros ou endereço do site. Ex.: lancamento_acai_bowl.');
   if(!base)return '';
-  const url=new URL(base);for(const [key,value] of params)url.searchParams.set(key,value.trim());
+  const url=new URL(base);url.searchParams.set('utm_campaign',raw);
   if(url.href.length>3000)throw new Error('O link final do botão ficou muito longo. Reduza os parâmetros UTM.');
   return url.href;
 }
 export function validateContent(value) {
-  const fields = {name:120, subject:150, preheader:180, heading:160, body:12000, buttonText:60, buttonUrl:1500, imageUrl:1500, imageAlt:180, campaignUtm:1000};
+  const fields = {name:120, subject:150, preheader:180, heading:160, body:12000, buttonText:60, buttonUrl:1500, imageUrl:1500, imageAlt:180, campaignUtm:300};
   if (!value || typeof value !== 'object') throw new Error('Conteúdo inválido.');
   const result = {};
   for (const [key,max] of Object.entries(fields)) {

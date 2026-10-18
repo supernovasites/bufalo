@@ -49,23 +49,23 @@ test('validates and escapes email content, URLs, personalization and header inje
 });
 test('button UTM preserves destination parameters and fragment, encodes names and replaces existing UTM',()=>{
   const base='https://loja.example.com/produto?sku=123&utm_campaign=antiga#cores';
-  const url=new URL(buttonDestination(base,'?utm_source=newsletter&utm_medium=email&utm_campaign=a%C3%A7a%C3%AD'));
+  const url=new URL(buttonDestination(base,'açaí'));
   assert.equal(url.searchParams.get('sku'),'123');assert.equal(url.hash,'#cores');
   assert.equal(url.searchParams.get('utm_campaign'),'açaí');assert.equal(url.searchParams.getAll('utm_campaign').length,1);
-  assert.equal(url.searchParams.get('utm_source'),'newsletter');assert.equal(url.searchParams.get('utm_medium'),'email');
+  assert.equal(url.searchParams.has('utm_source'),false);assert.equal(url.searchParams.has('utm_medium'),false);
   assert.equal(new URL(buttonDestination(base,'Lançamento açaí')).searchParams.get('utm_campaign'),'Lançamento açaí');
   assert.equal(buttonDestination(base,''),base);
-  for(const utm of ['redirect=https://other.test','utm_campaign=','utm_campaign=a&utm_campaign=b','utm_source=%0a','https://example.com/?utm_campaign=a'])assert.throws(()=>buttonDestination(base,utm));
+  for(const utm of ['redirect=https://other.test','utm_campaign=acai','utm_campaign=a&utm_campaign=b','utm_source=%0a','https://example.com/?utm_campaign=a'])assert.throws(()=>buttonDestination(base,utm));
   assert.throws(()=>validateContent({...content,buttonText:'',buttonUrl:'',campaignUtm:'acai'}));
   const legacy={...content};delete legacy.campaignUtm;assert.equal(validateContent(legacy).campaignUtm,'');
-  const tracked={...content,campaignUtm:'utm_source=newsletter&utm_medium=email&utm_campaign=acai_bowl'};
+  const tracked={...content,campaignUtm:'acai_bowl'};
   const rendered=renderEmail(tracked),final=buttonDestination(tracked.buttonUrl,tracked.campaignUtm);
   assert.ok(rendered.text.includes(final));assert.ok(rendered.html.includes(final.replaceAll('&','&amp;')));
   assert.equal((rendered.html.match(/utm_campaign=/g)||[]).length,1);
 });
 
 test('campaign UTM survives template readback and campaign snapshot',async()=>{
-  const {call,db}=await setup();const value={...content,campaignUtm:'utm_source=newsletter&utm_medium=email&utm_campaign=acai_bowl'};
+  const {call,db}=await setup();const value={...content,campaignUtm:'acai_bowl'};
   const saved=await (await call('/api/templates',{content:value})).json();
   assert.deepEqual((await (await call('/api/templates/'+saved.id)).json()).content,value);
   const campaign=await call('/api/campaigns',{listId:await list(call),content:value});assert.equal(campaign.status,200);
