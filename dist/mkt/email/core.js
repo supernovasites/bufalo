@@ -12,13 +12,31 @@ export function safeUrl(value, optional = true) {
     return url.protocol === 'https:' && !url.username && !url.password && !/[\s\x00-\x1f]/.test(value) && value.length <= 1500 ? url.href : null;
   } catch { return null; }
 }
+export function buttonDestination(destination, campaignUtm='') {
+  const base=safeUrl(destination),raw=String(campaignUtm??'').trim();
+  if(!raw)return base||'';
+  if(raw.length>1000||/[\x00-\x1f\x7f]/.test(raw)||/^https?:\/\//i.test(raw))throw new Error('Informe o nome da campanha ou apenas os parâmetros UTM, sem o endereço do site.');
+  const allowed=new Set(['utm_source','utm_medium','utm_campaign','utm_id','utm_term','utm_content','utm_source_platform','utm_creative_format','utm_marketing_tactic']);
+  const params=raw.includes('=')||raw.startsWith('?')?new URLSearchParams(raw.replace(/^\?/,'')):new URLSearchParams({utm_campaign:raw});
+  const seen=new Set();
+  for(const [key,value] of params){
+    if(!allowed.has(key)||!value.trim()||value.length>300||/[\x00-\x1f\x7f]/.test(value)||seen.has(key))throw new Error('Use parâmetros UTM válidos, sem valores vazios ou repetidos. Ex.: utm_source=newsletter&utm_medium=email&utm_campaign=acai_bowl.');
+    seen.add(key);
+  }
+  if(!seen.size)throw new Error('Informe o nome da campanha ou os parâmetros UTM.');
+  if(!base)return '';
+  const url=new URL(base);for(const [key,value] of params)url.searchParams.set(key,value.trim());
+  if(url.href.length>3000)throw new Error('O link final do botão ficou muito longo. Reduza os parâmetros UTM.');
+  return url.href;
+}
 export function validateContent(value) {
-  const fields = {name:120, subject:150, preheader:180, heading:160, body:12000, buttonText:60, buttonUrl:1500, imageUrl:1500, imageAlt:180};
+  const fields = {name:120, subject:150, preheader:180, heading:160, body:12000, buttonText:60, buttonUrl:1500, imageUrl:1500, imageAlt:180, campaignUtm:1000};
   if (!value || typeof value !== 'object') throw new Error('Conteúdo inválido.');
   const result = {};
   for (const [key,max] of Object.entries(fields)) {
-    if (typeof value[key] !== 'string' || value[key].length > max || /[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(value[key])) throw new Error(`Revise o campo ${key}.`);
-    result[key] = value[key].trim();
+    const text=key==='campaignUtm'?(value[key]??''):value[key];
+    if (typeof text !== 'string' || text.length > max || /[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(text)) throw new Error(`Revise o campo ${key}.`);
+    result[key] = text.trim();
   }
   if (!result.name || !result.subject || !result.heading || !result.body) throw new Error('Preencha nome, assunto, título e mensagem.');
   if (/[\r\n]/.test(result.subject)) throw new Error('O assunto deve ter uma linha.');
@@ -26,6 +44,8 @@ export function validateContent(value) {
   result.layout = value.layout;
   for (const key of ['buttonUrl','imageUrl']) if (safeUrl(result[key]) === null) throw new Error('Use endereços HTTPS válidos.');
   if (Boolean(result.buttonText) !== Boolean(result.buttonUrl)) throw new Error('Preencha o texto e o endereço do botão.');
+  if(result.campaignUtm&&!result.buttonUrl)throw new Error('Preencha o destino do botão para usar a UTM da campanha.');
+  buttonDestination(result.buttonUrl,result.campaignUtm);
   if (result.imageUrl && !result.imageAlt) throw new Error('Descreva a imagem para quem usa leitor de tela.');
   return result;
 }
@@ -62,12 +82,12 @@ export const starter = {
   name:'Novidade para a manada', subject:'Uma novidade para acompanhar você', preheader:'Conheça a próxima companhia para a sua rotina.',
   heading:'Sua próxima companhia.', body:'Olá, {{nome}}!\n\nTem novidade na Búfalo. Feita para acompanhar seus momentos, da cidade à próxima aventura.\n\nConheça todos os detalhes na nossa loja.',
   layout:'product', imageUrl:'https://www.bufalogrowler.com.br/assets/acai-bowl/magenta.jpg', imageAlt:'Açaí Bowl Búfalo magenta',
-  buttonText:'Conheça na loja', buttonUrl:'https://loja.bufalogrowler.com.br/acai-bowl-500ml'
+  buttonText:'Conheça na loja', buttonUrl:'https://loja.bufalogrowler.com.br/acai-bowl-500ml',campaignUtm:''
 };
 export function renderEmail(content, {name='pessoa da manada', unsubscribeUrl='https://www.bufalogrowler.com.br/mkt/email/unsubscribe', address='Configure o endereço da empresa antes de enviar.'} = {}) {
   const personal = text => String(text).replaceAll('{{nome}}',name || 'pessoa da manada');
   const e = text => escapeHtml(personal(text));
-  const url = safeUrl(content.buttonUrl) || '', image = safeUrl(content.imageUrl) || '';
+  const url = buttonDestination(content.buttonUrl,content.campaignUtm), image = safeUrl(content.imageUrl) || '';
   const paragraphs = content.body.split(/\n\s*\n/).map(p=>`<p style="margin:0 0 18px;line-height:1.7">${e(p).replaceAll('\n','<br>')}</p>`).join('');
   const photo = image && content.layout !== 'letter' ? `<tr><td style="padding:${content.layout==='product'?'24px 32px 0':'0 32px 24px'}"><img src="${escapeHtml(image)}" alt="${e(content.imageAlt)}" width="536" style="display:block;width:100%;max-width:536px;height:auto;border:0"></td></tr>` : '';
   const header = `<tr><td align="center" bgcolor="#142e32" style="padding:10px 16px;background:#142e32;color:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:10px;line-height:16px;font-weight:700;letter-spacing:1px;text-align:center">SUA PRÓXIMA AVENTURA COMEÇA AQUI</td></tr><tr><td align="center" bgcolor="#ffffff" style="padding:14px 24px;background:#ffffff;border-bottom:1px solid #dce0df;text-align:center"><a href="https://www.bufalogrowler.com.br/" style="display:inline-block;color:#142e32;text-decoration:none"><img src="https://cdn.awsli.com.br/400x300/1237/1237589/logo/21547a1296.png" alt="Búfalo Growler" width="77" height="58" style="display:block;width:76.8px;height:57.6px;max-width:100%;margin:0 auto;border:0;color:#142e32;font-family:Arial,Helvetica,sans-serif;font-size:14px"></a></td></tr>`;

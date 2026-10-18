@@ -1,7 +1,7 @@
-import {LIMITS,escapeHtml as e,validateContent,renderEmail,contactsFromRows,parseCsv} from './core.js';
+import {LIMITS,escapeHtml as e,validateContent,renderEmail,buttonDestination,contactsFromRows,parseCsv} from './core.js';
 import {mountReports} from './reports.js';
 const $=id=>document.getElementById(id);
-const fields=['name','subject','preheader','heading','body','layout','imageUrl','imageAlt','buttonText','buttonUrl'];
+const fields=['name','subject','preheader','heading','body','layout','imageUrl','imageAlt','buttonText','buttonUrl','campaignUtm'];
 const blankContent=Object.fromEntries(fields.map(key=>[key,'']));
 let savingTemplate=false;
 const statusNames={draft:'Rascunho',queued:'Na fila',paused:'Pausada',completed:'Processamento concluído'};
@@ -19,9 +19,11 @@ function content(){return Object.fromEntries(fields.map(key=>[key,$(key).value])
 function setContent(value){for(const key of fields)$(key).value=value[key]??'';preview();}
 function preview(){
   const value=content();$('preview-subject').textContent=value.subject||'Assunto da mensagem';$('preview-preheader').textContent=value.preheader;
+  let tracked='',trackingError='';try{tracked=buttonDestination(value.buttonUrl,value.campaignUtm);}catch(error){trackingError=error.message;}
+  $('button-tracking-preview').hidden=!value.campaignUtm.trim();$('button-tracking-preview').textContent=trackingError||(tracked?'Link final do botão: '+tracked:'Preencha o destino do botão para conferir o link com UTM.');$('button-tracking-preview').classList.toggle('error',!!trackingError);
   const hasMessage=['subject','preheader','heading','body','imageUrl','buttonText','buttonUrl'].some(key=>value[key].trim());
   $('preview-empty').hidden=hasMessage;$('email-preview').hidden=!hasMessage;$('mail-envelope').hidden=!hasMessage;$('open-email-preview').disabled=!hasMessage;
-  $('email-preview').srcdoc=hasMessage?renderEmail(value,{address:state.config.address||'Endereço da empresa · configure antes do envio'}).html:'';
+  $('email-preview').srcdoc=hasMessage?renderEmail(trackingError?{...value,campaignUtm:''}:value,{address:state.config.address||'Endereço da empresa · configure antes do envio'}).html:'';
   $('campaign-message').innerHTML=`<strong>${e(value.name||'Sua mensagem')}</strong><small>Assunto: ${e(value.subject||'Preencha no editor')}</small>`;
 }
 function showPanel(id){for(const name of ['create','contacts','campaigns','results'])$(name).hidden=name!==id;document.querySelectorAll('[data-panel]').forEach(button=>{const active=button.dataset.panel===id;button.classList.toggle('active',active);if(active)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});}
