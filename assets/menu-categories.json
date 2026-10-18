@@ -1,0 +1,131 @@
+{
+  "verifiedAt": "2026-10-18",
+  "categories": [
+    {
+      "name": "Chopeiras",
+      "slug": "chopeiras",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/266520163/a82be5fecf024fd5b8e38a2bcdf7bcfd-ajydrwwate.png",
+        "name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portatil",
+        "url": "https://loja.bufalogrowler.com.br/bufaloontap2l"
+      }
+    },
+    {
+      "name": "Garrafas",
+      "slug": "garrafas",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/311751043/24166786bc9b4b49a5a1b2ecf37eaaab-j1kzlwcn6y.png",
+        "name": "Garrafa Jafarabadi 1L",
+        "url": "https://loja.bufalogrowler.com.br/garrafa-jafarabadi-1l-"
+      }
+    },
+    {
+      "name": "Copos",
+      "slug": "copos-bg",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/186946123/ravi-2-as6u67ab6a.png",
+        "name": "Copo Ravi 483ml",
+        "url": "https://loja.bufalogrowler.com.br/copo-ravi-483ml"
+      }
+    },
+    {
+      "name": "Hard Coolers",
+      "slug": "nagpro",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/348351397/18l-99wr7m25c8.jpeg",
+        "name": "Nag PRO 4 Cooler 18,9L",
+        "url": "https://loja.bufalogrowler.com.br/nagpro4"
+      }
+    },
+    {
+      "name": "Soft Bags Coolers",
+      "slug": "pandhar",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/341476470/-----editar---camping--2--3fkyfprwai.png",
+        "name": "Wine Tote 14L Soft Cooler",
+        "url": "https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l"
+      }
+    },
+    {
+      "name": "Carabinho Kids",
+      "slug": "carabinho-kids",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/381739500/carabinho-preta-e95i12wcat.png",
+        "name": "Garrafa Buba Kids 355ml",
+        "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml"
+      }
+    },
+    {
+      "name": "Cutelaria",
+      "slug": "cutelaria",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/217956208/canivete-e-cimo--1--yqlqkfr5x8.png",
+        "name": "Canivete E-Cimo Tool Inox",
+        "url": "https://loja.bufalogrowler.com.br/canivete-e-cimo-inox"
+      }
+    },
+    {
+      "name": "Mochilas Impermeáveis",
+      "slug": "mochilas",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/345277991/bolsa-est-2l-preta-s6a06mb0ql.png",
+        "name": "Bolsa Transversal Estanque Búfalo 2L",
+        "url": "https://loja.bufalogrowler.com.br/bolsa-transversal-estanque-bufalo-2l"
+      }
+    },
+    {
+      "name": "Cadeiras Praia e Camping",
+      "slug": "cadeiras",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/359881205/cadeira-dobr-vel-g-laranja-pq3nrgg9nm.png",
+        "name": "Cadeira Portátil Búfalo Pena G",
+        "url": "https://loja.bufalogrowler.com.br/xco61r2pc-cadeira-portatil-bufalo-pena-p-2025-06-27-12-50-37"
+      }
+    },
+    {
+      "name": "Vestuário",
+      "slug": "camisas-shorts",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/166521784/-----editar---shorts--1--rfplhog1jc.png",
+        "name": "Bermuda Pirarucu",
+        "url": "https://loja.bufalogrowler.com.br/bermuda-pirarucu"
+      }
+    },
+    {
+      "name": "Souvenir e Jogos",
+      "slug": "souvenir-e-jogos",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/117901622/pratos-5y9h6gh1sr.png",
+        "name": "Kit Pratos de Madeira",
+        "url": "https://loja.bufalogrowler.com.br/kit-de-pratos-de-madeira"
+      }
+    },
+    {
+      "name": "Acessórios e Bags",
+      "slug": "alcas-e-bags",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/390919334/5ae1e5c02a804fbe98b41064e4228597-l4l396nhhg.png",
+        "name": "Unibag - Bolsa universal Búfalo Growler",
+        "url": "https://loja.bufalogrowler.com.br/bolsa-esportiva-bufalo"
+      }
+    },
+    {
+      "name": "Reposição de partes",
+      "slug": "tampas-e-acessorios",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/344413208/1-lej5a1hjk6.png",
+        "name": "Tampa Esporte com Bico",
+        "url": "https://loja.bufalogrowler.com.br/tampa-esporte-com-bico"
+      }
+    },
+    {
+      "name": "Adesivos",
+      "slug": "adesivos",
+      "product": {
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/302674999/pack-camping---viagem--3--ukn5pudtv6.png",
+        "name": "Adesivos Camping",
+        "url": "https://loja.bufalogrowler.com.br/adesivos-camping"
+      }
+    }
+  ]
+}

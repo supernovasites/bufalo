@@ -30,19 +30,15 @@ As páginas de copos e garrafas, incluindo HTML, CSS, vídeos e posters, ficam e
 `dist/produtos/` contém o pacote publicado dessas páginas, seguindo a estrutura de publicação já usada por outras páginas do projeto. Ao editar as páginas, atualize também esse pacote enquanto o build do Cloudflare continuar usando o comando anterior. O comando acima copia `produtos/` durante o build.
 
 
-## Assistente de compras
+## Busca de produtos
 
-A homepage abre um diálogo pelo botão de conversa com IA. O endpoint `POST /api/shop-assistant` usa o binding Cloudflare Workers AI `AI`, declarado no `wrangler.jsonc`, e o modelo `@cf/meta/llama-3.3-70b-instruct-fp8-fast`. As recomendações retornam somente IDs existentes; imagens e links de compra vêm do catálogo, nunca do modelo. Sem o binding ou durante falhas, a interface identifica o modo de busca local no catálogo. Não há armazenamento de conversas.
+A lupa e o formulário do menu exibem sugestões de produtos cadastrados na Loja Integrada, sem IA. `GET /api/catalog-search?q=nome` consulta a busca pública da loja e retorna até seis produtos, com foto, nome e link. O catálogo verificado das categorias serve como contingência caso a loja não responda. O antigo endpoint de IA retorna 410 e não utiliza Workers AI.
 
-A base de 128 produtos foi extraída de `catalogo/index.html`; atualizar `functions/_lib/shop-products.js` e a constante `products` no script `bg-assistant-script` da homepage quando o catálogo mudar. Não há consulta em tempo real de preço ou estoque. A interface pede confirmação na loja e não exibe preços do catálogo.
-
-Verificação: `node --test tests/shop-assistant.test.mjs`. Limite de mensagem: 600 caracteres; histórico enviado: até 7 mensagens; proteção de rajada de 12 chamadas por minuto por IP e isolate (não é um limite global). Workers AI requer disponibilidade/cota na conta Cloudflare; verificar o endpoint após a publicação. Eventos GA4: `ai_assistant_open`, `ai_assistant_search`, `ai_assistant_results`, `ai_product_click`; não enviam o conteúdo das conversas.
-
-O assistente oferece o WhatsApp do menu flutuante quando a IA falha, não encontra produtos, não tem informação suficiente ou quando o cliente pede atendimento humano. O link é o mesmo do menu, sem enviar automaticamente o histórico. Evento: `ai_whatsapp_click`.
+`assets/menu-search.js` trata sugestões, teclado e buscas canceladas; `assets/menu-search.css` define as miniaturas e restringe atalhos flutuantes às páginas de produto. `assets/menu-categories.json` registra os produtos verificados em cada categoria.
 
 ## Cabeçalho e rodapé compartilhados
 
-`assets/site-shell.js` é a fonte única dos modelos de cabeçalho, menu, faixa superior e rodapé. `assets/site-shell.css` é a fonte única dos estilos desses componentes. As páginas usam os marcadores `data-bg-header`, `data-bg-footer` e `data-bg-announcement`; os componentes são aplicados automaticamente ao carregar a página. Os HTMLs existentes permanecem como fallback sem JavaScript. Altere os arquivos compartilhados para atualizar homepage, catálogo, Círio, Manada ONE, copos, garrafas e live na mesma publicação. Não edite os fallbacks para mudanças de componentes. Para novas páginas, inclua esses marcadores e os mesmos links para CSS/JS absolutos. O assistente usa `assets/shop-assistant.js` em todas as páginas. Mantenha as cópias de `dist/assets` sincronizadas na publicação.
+`assets/site-shell.js` é a fonte única dos modelos de cabeçalho, menu, faixa superior e rodapé. `assets/site-shell.css` é a fonte única dos estilos desses componentes. As páginas usam os marcadores `data-bg-header`, `data-bg-footer` e `data-bg-announcement`; os componentes são aplicados automaticamente ao carregar a página. Os HTMLs existentes permanecem como fallback sem JavaScript. Altere os arquivos compartilhados para atualizar homepage, catálogo, Círio, Manada ONE, copos, garrafas e live na mesma publicação. Não edite os fallbacks para mudanças de componentes. Para novas páginas, inclua esses marcadores e os mesmos links para CSS/JS absolutos. A busca usa `assets/menu-search.js` em todas as páginas com o cabeçalho compartilhado. Mantenha as cópias de `dist/assets` sincronizadas na publicação.
 
 ## Cupons do Desafio da Manada
 
