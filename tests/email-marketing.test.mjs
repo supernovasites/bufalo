@@ -6,7 +6,7 @@ import {createRequire} from 'node:module';
 import {handleEmail,verifyWebhook,configuration} from '../functions/_lib/email-marketing.js';
 import {schema} from '../functions/_lib/email-schema.js';
 import {reportSchema} from '../functions/_lib/email-reports.js';
-import {starter,validateContent,renderEmail,parseCsv,contactsFromRows,normalizeEmail} from '../mkt/email/core.js';
+import {starter,validateContent,renderEmail,buttonDestination,parseCsv,contactsFromRows,normalizeEmail} from '../mkt/email/core.js';
 const origin='https://www.bufalogrowler.com.br';
 const content={...starter};
 const envConfig={RESEND_API_KEY:'test-key',MKT_ENABLED:'true',MKT_FROM_EMAIL:'marketing@bufalogrowler.com.br',MKT_REPLY_TO:'contato@bufalogrowler.com.br',MKT_COMPANY_ADDRESS:'Endereço de teste',RESEND_WEBHOOK_SECRET:'whsec_'+Buffer.from('test-webhook-secret-only').toString('base64')};
@@ -47,6 +47,32 @@ test('validates and escapes email content, URLs, personalization and header inje
   const r=renderEmail({...content,body:'Olá, {{nome}}!\n\n<img src=x onerror=alert(1)>',heading:'<script>x</script>'},{name:'<b>Ana</b>'});
   assert.ok(!r.html.includes('<script>'));assert.ok(!r.html.includes('<img src=x'));assert.ok(r.html.includes('&lt;b&gt;Ana&lt;/b&gt;'));assert.ok(r.text.includes('Olá, <b>Ana</b>!'));
 });
+test('button UTM preserves destination parameters and fragment, encodes names and replaces existing UTM',()=>{
+  const base='https://loja.example.com/produto?sku=123&utm_campaign=antiga#cores';
+  const url=new URL(buttonDestination(base,'?utm_source=newsletter&utm_medium=email&utm_campaign=a%C3%A7a%C3%AD'));
+  assert.equal(url.searchParams.get('sku'),'123');assert.equal(url.hash,'#cores');
+  assert.equal(url.searchParams.get('utm_campaign'),'açaí');assert.equal(url.searchParams.getAll('utm_campaign').length,1);
+  assert.equal(url.searchParams.get('utm_source'),'newsletter');assert.equal(url.searchParams.get('utm_medium'),'email');
+  assert.equal(new URL(buttonDestination(base,'Lançamento açaí')).searchParams.get('utm_campaign'),'Lançamento açaí');
+  assert.equal(buttonDestination(base,''),base);
+  for(const utm of ['redirect=https://other.test','utm_campaign=','utm_campaign=a&utm_campaign=b','utm_source=%0a','https://example.com/?utm_campaign=a'])assert.throws(()=>buttonDestination(base,utm));
+  assert.throws(()=>validateContent({...content,buttonText:'',buttonUrl:'',campaignUtm:'acai'}));
+  const legacy={...content};delete legacy.campaignUtm;assert.equal(validateContent(legacy).campaignUtm,'');
+  const tracked={...content,campaignUtm:'utm_source=newsletter&utm_medium=email&utm_campaign=acai_bowl'};
+  const rendered=renderEmail(tracked),final=buttonDestination(tracked.buttonUrl,tracked.campaignUtm);
+  assert.ok(rendered.text.includes(final));assert.ok(rendered.html.includes(final.replaceAll('&','&amp;')));
+  assert.equal((rendered.html.match(/utm_campaign=/g)||[]).length,1);
+});
+
+test('campaign UTM survives template readback and campaign snapshot',async()=>{
+  const {call,db}=await setup();const value={...content,campaignUtm:'utm_source=newsletter&utm_medium=email&utm_campaign=acai_bowl'};
+  const saved=await (await call('/api/templates',{content:value})).json();
+  assert.deepEqual((await (await call('/api/templates/'+saved.id)).json()).content,value);
+  const campaign=await call('/api/campaigns',{listId:await list(call),content:value});assert.equal(campaign.status,200);
+  const row=db.sql.prepare('SELECT content FROM mkt_campaigns').get();assert.equal(JSON.parse(row.content).campaignUtm,value.campaignUtm);
+  db.sql.close();
+});
+
 test('CSV BOM, quoted separators/newlines, invalid rows and deduplication',()=>{
   const rows=parseCsv('\uFEFFemail;nome\r\nANA@example.com;"Ana; Silva"\r\nana@example.com;Duplicada\r\ninvalid;Falha\r\nnew@example.com;"Nome\nCompleto"\r\n');
   const result=contactsFromRows(rows.slice(1),0,1);assert.equal(result.contacts.length,2);assert.equal(result.duplicates,1);assert.deepEqual(result.invalid,[4]);assert.equal(result.contacts[0].name,'Ana; Silva');assert.equal(result.contacts[1].name,'NomeCompleto');assert.throws(()=>parseCsv('email,nome\na@example.com,"aberto'));
