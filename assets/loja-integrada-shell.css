@@ -65,9 +65,9 @@
 /* Categorias: a vitrine nativa mantém filtros, preços, avaliações e variações. */
 /* Produto mobile: só apresentação; o slider, zoom e a seleção de SKU seguem nativos. */
 html.bg-li-ready body.pagina-produto #corpo .produto-detalhes .nome-produto{text-align:center!important}
-html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item{box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:8px!important;border-radius:50%!important;border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important}
-html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item>span{box-sizing:border-box;display:block!important;width:28px!important;height:28px!important;border-width:14px!important;border-style:solid;border-radius:50%!important;box-shadow:0 0 0 1px #dce0df}
-html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor li.active .atributo-item>span{box-shadow:0 0 0 2px #fff,0 0 0 3px #142e32}
+html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item{box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;padding:4px!important;border-radius:50%!important;border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important}
+html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item>span{box-sizing:border-box;display:block!important;width:28px!important;height:28px!important;border-width:14px!important;border-style:solid;border-radius:50%!important;box-shadow:none!important}
+html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor li.active .atributo-item>span{box-shadow:none!important}
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor li{border:0!important;box-shadow:none!important;background:none!important}
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comum ul{display:flex!important;justify-content:flex-start!important;flex-wrap:wrap;gap:8px!important;width:100%!important}
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comum ul li{flex:0 0 auto!important;float:none!important;width:auto!important;min-width:0!important;max-width:none!important;margin:0!important}
@@ -116,9 +116,9 @@ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comu
  html.bg-li-ready body.pagina-produto .produto-descricao .descricao{font-size:14px!important;line-height:1.65!important;overflow-wrap:break-word}
  html.bg-li-ready body.pagina-produto .produto-descricao .descricao img{max-width:100%!important;height:auto!important}
  html.bg-li-ready body.pagina-produto #corpo .codigo-produto{justify-content:flex-start!important}
- html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item{border-radius:50%!important;border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important;padding:8px!important}
- html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item>span{box-sizing:border-box;display:block!important;width:28px!important;height:28px!important;border-width:14px!important;border-style:solid;border-radius:50%!important;box-shadow:0 0 0 1px #dce0df}
- html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor li.active .atributo-item>span{box-shadow:0 0 0 2px #fff,0 0 0 3px #142e32}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item{border-radius:50%!important;border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important;padding:4px!important}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item>span{box-sizing:border-box;display:block!important;width:28px!important;height:28px!important;border-width:14px!important;border-style:solid;border-radius:50%!important;box-shadow:none!important}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor li.active .atributo-item>span{box-shadow:none!important}
  html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .personalizado>span{text-align:left!important}
  html.bg-li-ready body.pagina-produto #corpo .principal>.atributos ul{justify-content:flex-start!important}
  html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comum ul{display:flex!important;justify-content:flex-start!important;gap:8px!important;width:100%!important}
@@ -158,3 +158,5 @@ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comu
  .bg-li-ready body.pagina-categoria .listagem .bandeiras-produto{top:8px!important;left:8px!important;right:50px!important}
  .bg-li-ready body.pagina-categoria .listagem a:focus-visible{outline:2px solid #142e32;outline-offset:-2px}
 }
+
+html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor ul{gap:0!important}
