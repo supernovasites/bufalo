@@ -67,8 +67,10 @@ html.bg-li-ready body.pagina-produto #corpo .produto-detalhes .nome-produto{text
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item{box-sizing:border-box;display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:8px!important;border-radius:50%!important;border:0!important;background:transparent!important;box-shadow:none!important;outline:0!important}
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item>span{box-sizing:border-box;display:block!important;width:28px!important;height:28px!important;border-width:14px!important;border-style:solid;border-radius:50%!important;box-shadow:0 0 0 1px #dce0df}
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor li.active .atributo-item>span{box-shadow:0 0 0 2px #fff,0 0 0 3px #142e32}
+html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor li{border:0!important;box-shadow:none!important;background:none!important}
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comum ul{display:flex!important;justify-content:flex-start!important;flex-wrap:wrap;gap:8px!important;width:100%!important}
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comum ul li{flex:0 0 auto!important;float:none!important;width:auto!important;min-width:0!important;max-width:none!important;margin:0!important}
+html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comum .atributo-item{padding:0!important;min-width:0!important;min-height:44px}
 @media(max-width:760px){
  html.bg-li-ready body.pagina-produto .produto-detalhes{padding:12px 0 24px!important}
  html.bg-li-ready body.pagina-produto .produto-detalhes>.conteiner{box-sizing:border-box;width:100%!important;padding:0 16px!important}
