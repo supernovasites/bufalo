@@ -32,45 +32,45 @@
       "name": "Hard Coolers",
       "slug": "nagpro",
       "product": {
-        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/348351397/18l-99wr7m25c8.jpeg",
-        "name": "Nag PRO 4 Cooler 18,9L",
-        "url": "https://loja.bufalogrowler.com.br/nagpro4"
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/348094223/nagpuri-42l-lx2yamfqmk.png",
+        "name": "Nag PRO 6 Cooler 42L com Rodinhas",
+        "url": "https://loja.bufalogrowler.com.br/nagpro6"
       }
     },
     {
       "name": "Soft Bags Coolers",
       "slug": "pandhar",
       "product": {
-        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/341476470/-----editar---camping--2--3fkyfprwai.png",
-        "name": "Wine Tote 14L Soft Cooler",
-        "url": "https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l"
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/341482470/-----editar---camping-p8635djpyl.png",
+        "name": "Pandhar 20L Soft Cooler Petróleo",
+        "url": "https://loja.bufalogrowler.com.br/bolsa-termica-nagpuri-20l-petroleo"
       }
     },
     {
       "name": "Carabinho Kids",
       "slug": "carabinho-kids",
       "product": {
-        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/381739500/carabinho-preta-e95i12wcat.png",
-        "name": "Garrafa Buba Kids 355ml",
-        "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml"
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/390291382/copo-carabinho-lima-iclpdgdp38.png",
+        "name": "Copo Carabinho 350ml",
+        "url": "https://loja.bufalogrowler.com.br/copo-carabinho-350ml"
       }
     },
     {
       "name": "Cutelaria",
       "slug": "cutelaria",
       "product": {
-        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/217956208/canivete-e-cimo--1--yqlqkfr5x8.png",
-        "name": "Canivete E-Cimo Tool Inox",
-        "url": "https://loja.bufalogrowler.com.br/canivete-e-cimo-inox"
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/265289143/machado-ax-kfv4gfmjrq.png",
+        "name": "Machado Ax Carbono 90Mm CB Madeira",
+        "url": "https://loja.bufalogrowler.com.br/machado-ax-carbono-90mm-cb-madeira"
       }
     },
     {
       "name": "Mochilas Impermeáveis",
       "slug": "mochilas",
       "product": {
-        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/345277991/bolsa-est-2l-preta-s6a06mb0ql.png",
-        "name": "Bolsa Transversal Estanque Búfalo 2L",
-        "url": "https://loja.bufalogrowler.com.br/bolsa-transversal-estanque-bufalo-2l"
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/361534760/mochila-estanque-verde_laranja-l9uwbvqkeh-ba5yf37rl8.png",
+        "name": "Mochila Marajó Dry 25L - Verde",
+        "url": "https://loja.bufalogrowler.com.br/mochila-marajo-dry-verde"
       }
     },
     {
@@ -95,9 +95,9 @@
       "name": "Souvenir e Jogos",
       "slug": "souvenir-e-jogos",
       "product": {
-        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/117901622/pratos-5y9h6gh1sr.png",
-        "name": "Kit Pratos de Madeira",
-        "url": "https://loja.bufalogrowler.com.br/kit-de-pratos-de-madeira"
+        "image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/117902270/growler-vidro-1-900-e59c7pkyvx.png",
+        "name": "Growler de Vidro 1.900ml",
+        "url": "https://loja.bufalogrowler.com.br/growler-de-vidro-1900ml"
       }
     },
     {
