@@ -42,6 +42,7 @@
 .bg-li-ready .produto-detalhes .thumbs-img{max-width:72px}
 .bg-li-ready .produto-detalhes .produto-share{margin-top:12px}
 @media(max-width:760px){
+ html.bg-li-ready body.pagina-produto #bg-li-dock{display:none!important}
  .bg-li-ready #bg-site-announcement{min-height:33px;padding:9px 12px;font-size:11px;line-height:15px;letter-spacing:0}
  .bg-li-ready #bg-site-header .header-row{min-height:73px;padding:5px 18px}
  .bg-li-ready #bg-site-header .header-row>.logo,.bg-li-ready #bg-site-header .logo img{width:58px!important;height:58px!important}
