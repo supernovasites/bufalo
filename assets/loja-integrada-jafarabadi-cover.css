@@ -1,6 +1,7 @@
 /* Escolha visual da capa Jafarabadi na seção de acessórios da Loja Integrada. */
 .bg-jafarabadi-cover-carousel {
   display: flex;
+  grid-column: 1 / -1;
   align-items: center;
   gap: 6px;
   width: 100%;

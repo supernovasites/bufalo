@@ -108,7 +108,9 @@
       select.dataset.bgCoverThumbnails = "true";
       select.setAttribute("aria-hidden", "true");
       select.tabIndex = -1;
-      select.insertAdjacentElement("afterend", carousel);
+      const accessoryLayout = item?.querySelector(":scope > div");
+      if (!accessoryLayout) return;
+      accessoryLayout.append(carousel);
       requestAnimationFrame(updateArrows);
     });
   }
