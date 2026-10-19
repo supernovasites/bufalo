@@ -106,6 +106,13 @@
  html.bg-li-ready body.pagina-produto .produto-descricao{padding:24px 0!important;margin:0!important}
  html.bg-li-ready body.pagina-produto .produto-descricao .descricao{font-size:14px!important;line-height:1.65!important;overflow-wrap:break-word}
  html.bg-li-ready body.pagina-produto .produto-descricao .descricao img{max-width:100%!important;height:auto!important}
+ html.bg-li-ready body.pagina-produto #corpo .codigo-produto{justify-content:flex-start!important}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item,html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor .atributo-item>span{border-radius:50%!important}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .personalizado>span{text-align:left!important}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos ul{justify-content:flex-start!important}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comum ul li{flex:0 0 auto!important}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.acoes-produto .preco-produto>div{justify-content:flex-start!important;text-align:left!important}
+ html.bg-li-ready body.pagina-produto #corpo .principal>.acoes-produto .preco-promocional,html.bg-li-ready body.pagina-produto #corpo .principal>.acoes-produto .preco-parcela{margin-left:0!important;margin-right:0!important;text-align:left!important}
 }
 @media(max-width:760px){
  .bg-li-ready body.pagina-categoria .categoria-titulo{gap:12px;align-items:center;margin-bottom:16px!important}
