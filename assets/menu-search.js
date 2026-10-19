@@ -32,6 +32,6 @@
   if(['ArrowDown','ArrowUp'].includes(e.key)&&!panel.hidden&&options.length){e.preventDefault();active=active<0?(e.key==='ArrowDown'?0:options.length-1):(active+(e.key==='ArrowDown'?1:-1)+options.length)%options.length;options.forEach((a,i)=>a.setAttribute('aria-selected',String(i===active)));input.setAttribute('aria-activedescendant',options[active].id);options[active].scrollIntoView({block:'nearest'});}
   if(e.key==='Enter'&&active>=0&&!panel.hidden){e.preventDefault();location.href=options[active].href;}
  });
- document.getElementById('bg-search-toggle')?.addEventListener('click',()=>{if(!menu.open)menu.showModal();input.focus({preventScroll:true});});
+ document.getElementById('bg-search-toggle')?.addEventListener('click',()=>{if(!menu.open)menu.showModal();document.getElementById('close-menu')?.focus({preventScroll:true});});
  menu.addEventListener('close',()=>{clearTimeout(timer);controller?.abort();++version;hide();});
 })();
