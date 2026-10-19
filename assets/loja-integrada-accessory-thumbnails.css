@@ -10,16 +10,50 @@
   border: 0 !important;
 }
 
+.bg-accessory-list[data-scrollable="true"] {
+  display: flex !important;
+  align-items: stretch;
+  gap: 14px;
+  max-width: 100%;
+  margin-inline: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 8px 3px 14px;
+  scrollbar-color: #9aa8a3 #edf0ee;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bg-accessory-list[data-scrollable="true"] > .item {
+  flex: 0 0 min(260px, 82vw);
+  min-width: 0;
+  margin: 0 !important;
+  padding: 12px;
+  border: 1px solid #e1e6e3;
+  border-radius: 12px;
+  background: #fff;
+  scroll-snap-align: start;
+}
+
 .bg-accessory-thumbnails {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 7px;
+  display: flex;
+  gap: 8px;
   margin-top: 10px;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 2px 2px 8px;
+  scrollbar-color: #9aa8a3 #edf0ee;
+  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
 }
 
 .bg-accessory-thumbnail {
   display: flex;
-  min-width: 0;
+  flex: 0 0 72px;
+  min-width: 72px;
   min-height: 78px;
   flex-direction: column;
   align-items: center;
@@ -33,7 +67,22 @@
   cursor: pointer;
   font: inherit;
   line-height: 1.15;
+  scroll-snap-align: start;
   -webkit-tap-highlight-color: transparent;
+}
+
+.bg-accessory-name {
+  color: #173236 !important;
+  font-weight: 700 !important;
+}
+
+.bg-accessory-heading {
+  display: inline-block;
+  margin-block: 5px 3px;
+  color: #173236;
+  font-size: 1.08em;
+  font-weight: 800;
+  letter-spacing: 0.01em;
 }
 
 .bg-accessory-thumbnail img {
@@ -64,13 +113,21 @@
 }
 
 @media (max-width: 760px) {
-  .bg-accessory-thumbnails {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 6px;
+  .bg-accessory-list[data-scrollable="true"] {
+    gap: 10px;
+    margin-inline: -4px;
+    padding-inline: 4px;
+  }
+
+  .bg-accessory-list[data-scrollable="true"] > .item {
+    flex-basis: min(230px, 78vw);
+    padding: 10px;
   }
 
   .bg-accessory-thumbnail {
-    min-height: 72px;
+    flex-basis: 68px;
+    min-width: 68px;
+    min-height: 76px;
   }
 
   .bg-accessory-thumbnail img {
