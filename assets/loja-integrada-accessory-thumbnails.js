@@ -1,4 +1,5 @@
 (() => {
+  let carouselId = 0;
   const variants = {
     "345713703": { color: "Areia", image: "https://cdn.awsli.com.br/200x200/1237/1237589/produto/345713697/base-de-jafa-areia-w881ky5sfc.png" },
     "400761718": { color: "Céu", image: "https://cdn.awsli.com.br/200x200/1237/1237589/produto/345713697/dc94da46e0bb4c498948f0b08a527c35-wxuppl22qu.png" },
@@ -150,11 +151,51 @@
       });
 
       group.append(...buttons);
+      let presentation = group;
+      if (options.length > 5) {
+        group.dataset.scrollable = "true";
+        group.id = `bg-accessory-thumbnails-${++carouselId}`;
+
+        const carousel = document.createElement("div");
+        carousel.className = "bg-accessory-carousel";
+
+        const previous = document.createElement("button");
+        previous.type = "button";
+        previous.className = "bg-accessory-arrow";
+        previous.setAttribute("aria-label", `Miniaturas anteriores de ${name}`);
+        previous.setAttribute("aria-controls", group.id);
+        previous.textContent = "‹";
+
+        const next = document.createElement("button");
+        next.type = "button";
+        next.className = "bg-accessory-arrow";
+        next.setAttribute("aria-label", `Próximas miniaturas de ${name}`);
+        next.setAttribute("aria-controls", group.id);
+        next.textContent = "›";
+
+        const updateArrows = () => {
+          const maxScroll = group.scrollWidth - group.clientWidth;
+          previous.disabled = group.scrollLeft <= 1;
+          next.disabled = maxScroll <= 1 || group.scrollLeft >= maxScroll - 1;
+        };
+        previous.addEventListener("click", () => {
+          group.scrollBy({ left: -group.clientWidth, behavior: "smooth" });
+        });
+        next.addEventListener("click", () => {
+          group.scrollBy({ left: group.clientWidth, behavior: "smooth" });
+        });
+        group.addEventListener("scroll", updateArrows, { passive: true });
+        window.addEventListener("resize", updateArrows, { passive: true });
+        requestAnimationFrame(updateArrows);
+
+        carousel.append(previous, group, next);
+        presentation = carousel;
+      }
       select.classList.add("bg-accessory-native-select");
       select.dataset.bgThumbnails = "true";
       select.setAttribute("aria-hidden", "true");
       select.tabIndex = -1;
-      select.insertAdjacentElement("afterend", group);
+      select.insertAdjacentElement("afterend", presentation);
     });
   }
 
