@@ -26,19 +26,101 @@
     "390919400": { color: "Preto", image: "https://cdn.awsli.com.br/200x200/1237/1237589/produto/390919334/5ae1e5c02a804fbe98b41064e4228597-l4l396nhhg.png" }
   };
 
+  const protectionCovers = {
+    harpuri: {
+      Areia: "base-de-harpuri-areia--1--k34g0u4476.png",
+      Céu: "03067340ff0d4329ac26c75b4adda259-4qxwkb8ufc.png",
+      Chocolate: "c401bbc3c28c4c4d87bd60babaa93b09-xkrfz9pkst.png",
+      Creme: "74f0e9ed6f844197b28d27e6505bf8e9-40axzbrzha.png",
+      Nuvem: "base-harpuri-jqfmpt650g.png",
+      Petróleo: "e3ed8b7bbf6847bb83706cd4c9cdf340-51xdkk2xgb.png",
+      Pitaya: "base-de-harpuri-rosa-ab20c9smk0.png",
+      Tiffany: "base-de-harpuri-turquesa-dybuhjt83t.png",
+      Preto: "base-de-harpuri-preto-k7387eedn3.png"
+    },
+    murrahBuba: {
+      Areia: "12-ipo7bchtvp.png",
+      Branco: "c45fe0852c8d43219bc28b8841f237f8-kuqmm0e15h.png",
+      Céu: "46306e0dd6d24f3abf55502c6906f1be-ajhtxluw6g.png",
+      Chocolate: "b11349fe1df54561a4714a765b4e3b7c-3y6xm7b4sg.png",
+      Creme: "24c6149e27db4f9c9b9abe974d0415db-gu8ffe9lfy.png",
+      Nuvem: "2c18c3d881454c0484adb46baa8af002-d2inrr5lv6.png",
+      Petróleo: "c0908ee52a3c445bac2cb3a9a889792d-mhf3w8isj8.png",
+      Pitaya: "base-garrafa-bubamurrah--1--pbemjpmq3w.png",
+      Tiffany: "base-de-buba_murrah-turquesa-g9ofvn8rlt.png",
+      Preto: "base-de-buba_murrah-preta-3rtrvfrkol.png"
+    }
+  };
+
+  function normalize(value) {
+    return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  }
+
+  function accessoryVariant(select, option) {
+    if (variants[option.value]) return variants[option.value];
+    const itemName = select.closest(".item")?.querySelector(".int span")?.textContent?.trim() || "";
+    const label = option.textContent.trim();
+    const color = Object.keys(protectionCovers.harpuri).find((name) =>
+      normalize(label).startsWith(normalize(name))
+    );
+    if (!color) return null;
+
+    let family;
+    let productId;
+    if (normalize(itemName).includes("capa harpuri")) {
+      family = protectionCovers.harpuri;
+      productId = "345697385";
+    } else if (normalize(itemName).includes("capa murrah") || normalize(itemName).includes("capa buba")) {
+      family = protectionCovers.murrahBuba;
+      productId = "345690989";
+    } else {
+      return null;
+    }
+    return {
+      color,
+      image: `https://cdn.awsli.com.br/200x200/1237/1237589/produto/${productId}/${family[color]}`
+    };
+  }
+
+  function emphasizeAccessoryHeading() {
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const textNodes = [];
+    while (walker.nextNode()) {
+      if (walker.currentNode.nodeValue.trim() === "Adicione acessórios:") textNodes.push(walker.currentNode);
+    }
+    textNodes.forEach((node) => {
+      const emphasis = document.createElement("strong");
+      emphasis.className = "bg-accessory-heading";
+      emphasis.textContent = node.nodeValue.trim();
+      node.replaceWith(emphasis);
+    });
+  }
+
   function enhanceAccessorySelectors() {
-    document.querySelectorAll(".list .item.multiple select:not([data-bg-thumbnails])").forEach((select) => {
+    emphasizeAccessoryHeading();
+    const accessorySelects = [...document.querySelectorAll(".list .item.multiple select")];
+    new Set(accessorySelects.map((select) => select.closest(".list")).filter(Boolean)).forEach((list) => {
+      const accessoryCount = list.querySelectorAll(":scope > .item").length;
+      list.classList.add("bg-accessory-list");
+      if (accessoryCount > 5) list.dataset.scrollable = "true";
+      else delete list.dataset.scrollable;
+    });
+
+    accessorySelects.filter((select) => !select.hasAttribute("data-bg-thumbnails")).forEach((select) => {
       const options = [...select.options].filter((option) => option.value && option.value !== "Selecione");
-      if (!options.length || !options.every((option) => variants[option.value])) return;
+      const optionVariants = options.map((option) => accessoryVariant(select, option));
+      if (!options.length || optionVariants.some((variant) => !variant)) return;
 
       const name = select.closest(".item")?.querySelector(".int span")?.textContent?.trim() || "Acessório";
+      select.closest(".item")?.querySelector(".int span")?.classList.add("bg-accessory-name");
       const group = document.createElement("div");
       group.className = "bg-accessory-thumbnails";
+      if (options.length > 5) group.dataset.scrollable = "true";
       group.setAttribute("role", "group");
       group.setAttribute("aria-label", `${name}: escolha uma opção`);
 
-      const buttons = options.map((option) => {
-        const variant = variants[option.value];
+      const buttons = options.map((option, index) => {
+        const variant = optionVariants[index];
         const button = document.createElement("button");
         button.type = "button";
         button.className = "bg-accessory-thumbnail";
