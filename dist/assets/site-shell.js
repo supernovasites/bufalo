@@ -17,7 +17,7 @@ function mount(){
  menu.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>menu.close()));
  document.querySelectorAll('#bg-site-header .nav-button').forEach(b=>b.addEventListener('click',()=>{const p=document.getElementById(b.dataset.menu);const show=p.hidden;document.querySelectorAll('#bg-site-header .mega').forEach(p=>p.hidden=true);p.hidden=!show;b.setAttribute('aria-expanded',String(show));}));
  const cartScript=document.createElement('script');cartScript.src='/assets/cart-count.js?v=20261018-nav';cartScript.defer=true;document.body.append(cartScript);
- const searchScript=document.createElement('script');searchScript.src='/assets/menu-search.js?v=20261018-options';searchScript.defer=true;document.body.append(searchScript);
+ const searchScript=document.createElement('script');searchScript.src='/assets/menu-search.js?v=20261018-ache-facil';searchScript.defer=true;document.body.append(searchScript);
  document.dispatchEvent(new CustomEvent('bg:site-shell-ready'));
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
