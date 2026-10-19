@@ -1,0 +1,136 @@
+/* Escolha visual da capa Jafarabadi na seção de acessórios da Loja Integrada. */
+.bg-jafarabadi-cover-carousel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin-top: 10px;
+}
+
+.bg-jafarabadi-cover-carousel .bg-jafarabadi-cover-options {
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: row nowrap;
+  gap: 7px;
+  width: 0;
+  min-width: 0;
+  margin: 0;
+  padding: 2px 1px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.bg-jafarabadi-cover-carousel .bg-jafarabadi-cover-options::-webkit-scrollbar {
+  display: none;
+}
+
+.bg-jafarabadi-cover-option {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 0 calc((100% - 28px) / 5);
+  min-width: 0;
+  min-height: 72px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 2px;
+  border: 1px solid #d9dfdc;
+  border-radius: 8px;
+  background: #fff;
+  color: #173236;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1.1;
+  scroll-snap-align: start;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bg-jafarabadi-cover-option img {
+  display: block;
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+
+.bg-jafarabadi-cover-option span {
+  max-width: 100%;
+  overflow: hidden;
+  color: #405254;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bg-jafarabadi-cover-option[aria-pressed="true"] {
+  border-color: #173236;
+  box-shadow: inset 0 0 0 1px #173236;
+  background: #f1f5f2;
+}
+
+.bg-jafarabadi-cover-option:focus-visible,
+.bg-jafarabadi-cover-arrow:focus-visible {
+  outline: 3px solid #db9c74;
+  outline-offset: 2px;
+}
+
+.bg-jafarabadi-cover-static-image {
+  display: none !important;
+}
+
+.bg-jafarabadi-cover-arrow {
+  display: inline-flex;
+  flex: 0 0 28px;
+  width: 28px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid #d9dfdc;
+  border-radius: 8px;
+  background: #fff;
+  color: #173236;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.bg-jafarabadi-cover-arrow:disabled {
+  opacity: .35;
+  cursor: default;
+}
+
+.bg-jafarabadi-cover-select-native {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.bg-accessories-heading {
+  display: block;
+  margin-block: 8px 10px;
+  color: #173236 !important;
+  font-size: 18px !important;
+  font-weight: 750 !important;
+  line-height: 1.3 !important;
+}
+
+@media (max-width: 480px) {
+  .bg-jafarabadi-cover-carousel { gap: 4px; }
+  .bg-jafarabadi-cover-arrow { flex-basis: 24px; width: 24px; height: 34px; }
+  .bg-jafarabadi-cover-option { min-height: 66px; }
+  .bg-jafarabadi-cover-option img { width: 40px; height: 40px; }
+}
