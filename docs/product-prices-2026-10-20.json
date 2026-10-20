@@ -1,0 +1,210 @@
+{
+  "checkedAt": "2026-10-20",
+  "offers": [
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-murrah-540ml",
+      "id": "370868951",
+      "variationId": "1069625",
+      "sku": "Murrah-pistach",
+      "price": 175,
+      "oldPrice": 230,
+      "pay": "29,16"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-murrah-540ml",
+      "id": "370869173",
+      "variationId": "1070817",
+      "sku": "Murrah-pistachept",
+      "price": 175,
+      "oldPrice": 230,
+      "pay": "29,16"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-harpuri-750ml-",
+      "id": "310863587",
+      "variationId": "1070817",
+      "sku": "Harp-pistachept",
+      "price": 175,
+      "oldPrice": 250,
+      "pay": "29,16"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-harpuri-750ml-",
+      "id": "310863376",
+      "variationId": "1069625",
+      "sku": "Harp-pistac",
+      "price": 175,
+      "oldPrice": 250,
+      "pay": "29,16"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-jafarabadi-1l-",
+      "id": "311751882",
+      "variationId": "1069625",
+      "sku": "Jafa-pistache",
+      "price": 189,
+      "oldPrice": 270,
+      "pay": "31,50"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-jafarabadi-1l-",
+      "id": "311752285",
+      "variationId": "1070817",
+      "sku": "Jafa-pistachept",
+      "price": 189,
+      "oldPrice": 270,
+      "pay": "31,50"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-jafarabadi-1l-",
+      "id": "311752521",
+      "variationId": "762609",
+      "sku": "Jafa-pitaya",
+      "price": 189,
+      "oldPrice": 270,
+      "pay": "31,50"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+      "id": "338968038",
+      "variationId": "858552",
+      "sku": "Buba-areia",
+      "price": 119,
+      "oldPrice": 170,
+      "pay": "19,83"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+      "id": "338968778",
+      "variationId": "1069625",
+      "sku": "Buba-pistache",
+      "price": 119,
+      "oldPrice": 170,
+      "pay": "19,83"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+      "id": "312199716",
+      "variationId": "1672485",
+      "sku": "Buba-citrus",
+      "price": 119,
+      "oldPrice": 170,
+      "pay": "19,83"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+      "id": "312200168",
+      "variationId": "545144",
+      "sku": "Buba-laranja",
+      "price": 119,
+      "oldPrice": 170,
+      "pay": "19,83"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+      "id": "312200372",
+      "variationId": "546664",
+      "sku": "Buba-laranjapt",
+      "price": 119,
+      "oldPrice": 170,
+      "pay": "19,83"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+      "id": "312199946",
+      "variationId": "1673300",
+      "sku": "Buba-citruspt",
+      "price": 119,
+      "oldPrice": 170,
+      "pay": "19,83"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+      "id": "312198608",
+      "variationId": "762609",
+      "sku": "Buba-pitaya",
+      "price": 119,
+      "oldPrice": 170,
+      "pay": "19,83"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
+      "id": "312201097",
+      "variationId": "493930",
+      "sku": "Buba-amarelopt",
+      "price": 119,
+      "oldPrice": 170,
+      "pay": "19,83"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/growler-mediterraneo-2l",
+      "id": "249954216",
+      "variationId": "426266",
+      "sku": "Medi2L-citrus",
+      "price": 304,
+      "oldPrice": 380,
+      "pay": "50,66"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/growler-mediterraneo-2l",
+      "id": "249954435",
+      "variationId": "426709",
+      "sku": "Medi2L-laranja",
+      "price": 304,
+      "oldPrice": 380,
+      "pay": "50,66"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/growler-palitano-14l",
+      "id": "339170892",
+      "variationId": "426224",
+      "sku": "Pali-areia",
+      "price": 264,
+      "oldPrice": 330,
+      "pay": "44,00"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/growler-palitano-14l",
+      "id": "339170711",
+      "variationId": "426124",
+      "sku": "Pali-pistache",
+      "price": 264,
+      "oldPrice": 330,
+      "pay": "44,00"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/growler-palitano-14l",
+      "id": "277432954",
+      "variationId": "425301",
+      "sku": "Pali-petrol",
+      "price": 264,
+      "oldPrice": 330,
+      "pay": "44,00"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/growler-palitano-14l",
+      "id": "277432742",
+      "variationId": "426573",
+      "sku": "Pali-pitaya",
+      "price": 264,
+      "oldPrice": 330,
+      "pay": "44,00"
+    },
+    {
+      "url": "https://loja.bufalogrowler.com.br/growler-palitano-14l",
+      "id": "277432543",
+      "variationId": "425881",
+      "sku": "Pali-alfazema",
+      "price": 264,
+      "oldPrice": 330,
+      "pay": "44,00"
+    }
+  ],
+  "notes": [
+    "Mediterrâneo Amarelo não possui oferta comprável ou card nas páginas consultadas.",
+    "Pistache e demais cores também incluem as combinações com tampa preta quando a loja aplica o mesmo preço.",
+    "Palitano Pitaya duplicado na solicitação foi tratado uma vez.",
+    "Desconto vigente de 20% com cupom da live permanece aplicado sobre o preço da loja.",
+    "Mediterrâneo possui dados no catálogo da live, mas não integra as categorias atualmente exibidas nessa página; sua composição foi preservada."
+  ]
+}

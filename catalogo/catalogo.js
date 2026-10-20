@@ -36,6 +36,12 @@ document.addEventListener('click',event=>{
   const apply=()=>{
     card.querySelectorAll('.color-swatch').forEach(swatch=>swatch.setAttribute('aria-pressed',String(swatch===button)));
     card.querySelector('.selected-color strong').textContent=button.dataset.colorLabel;
+    if(button.dataset.colorPrice){
+      const money=value=>Number(value).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+      const oldPrice=button.dataset.colorOldPrice;
+      card.querySelector('.price').innerHTML=(oldPrice?'<span class="old-price"><s>'+money(oldPrice)+'</s></span>':'')+money(button.dataset.colorPrice);
+      card.querySelector('.installments').textContent='até 6x de R$ '+button.dataset.colorPay+' sem juros';
+    }
   };
   const imageUrl=button.dataset.colorImg;
   if(!imageUrl){card.dataset.colorRequest='';card.querySelector('.photo').removeAttribute('aria-busy');apply();return;}

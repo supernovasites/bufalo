@@ -74,3 +74,5 @@ body{background:#fff;color:#142e32}
  .catalog-card .button{min-height:44px;font-size:12px;padding:9px 4px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.catalog-card .photo img,.category-index-links a{transition:none}}
+
+.catalog-pricing .old-price{display:block;font-size:12px;font-weight:400;color:#617273;margin-bottom:4px}
