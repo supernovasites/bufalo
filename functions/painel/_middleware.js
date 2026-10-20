@@ -1,4 +1,4 @@
-import { campaignSchema, campaignEnabled } from '../_lib/campaigns.js';
+import { campaigns, campaignSchema, campaignEnabled } from '../_lib/campaigns.js';
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const encoder = new TextEncoder();
 const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2,'0')).join('');
@@ -44,13 +44,13 @@ async function handler(context) {
       if (request.method === 'POST') {
         if (request.headers.get('Origin') !== url.origin) return json({error:'Origem não permitida.'},403);
         const payload = await body(request);
-        if (!payload || payload.slug !== 'cirio' || typeof payload.enabled !== 'boolean') return json({error:'Informe uma campanha e um status válidos.'},400);
+        if (!payload || !campaigns.some(campaign => campaign.slug === payload.slug) || typeof payload.enabled !== 'boolean') return json({error:'Informe uma campanha e um status válidos.'},400);
         await db.prepare(campaignSchema).run();
         await db.prepare('INSERT INTO campaign_settings (slug, enabled) VALUES (?, ?) ON CONFLICT(slug) DO UPDATE SET enabled=excluded.enabled').bind(payload.slug,payload.enabled?1:0).run();
       } else {
         await db.prepare(campaignSchema).run();
       }
-      return json({campaigns:[{slug:'cirio',name:'Círio',path:'/campanhas/cirio/',enabled:await campaignEnabled(db,'cirio')}]});
+      return json({campaigns:await Promise.all(campaigns.map(async campaign => ({...campaign,enabled:await campaignEnabled(db,campaign.slug)})))});
     }
     return json({error:'Página não encontrada.'},404);
   }

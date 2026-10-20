@@ -11,3 +11,7 @@ O formulário envia JSON para /reserva/acaibowl/api/reserva. A função valida o
 A coluna E, Data de cadastramento, é preenchida pelo Apps Script no momento da gravação com a data e hora do cadastro, no formato dd/MM/yyyy HH:mm:ss (exemplo: 23/09/2026 11:53:30).
 
 A mensagem de confirmação registra reserva de interesse, sem cobrança. O formulário não envia mensagens automaticamente.
+
+## Ativação no painel
+
+Em `/painel/`, a seção Campanhas permite ativar e desativar a Reserva Açaí Bowl. O status é salvo em `campaign_settings`, no banco já usado pelo painel. A página permanece ativa até a primeira alteração. Quando desativada, as rotas de `/reserva/acaibowl/`, incluindo o formulário, retornam um redirecionamento temporário para a homepage antes de processar a reserva. As respostas não são armazenadas em cache, permitindo reativar a página imediatamente.

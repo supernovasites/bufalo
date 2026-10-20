@@ -1,3 +1,7 @@
+export const campaigns = [
+  {slug:'cirio',name:'Círio',path:'/campanhas/cirio/'},
+  {slug:'acaibowl',name:'Reserva Açaí Bowl',path:'/reserva/acaibowl/'}
+];
 export const campaignSchema = 'CREATE TABLE IF NOT EXISTS campaign_settings (slug TEXT PRIMARY KEY, enabled INTEGER NOT NULL CHECK(enabled IN (0,1)))';
 export async function campaignEnabled(db, slug) {
   if (!db) return true;
