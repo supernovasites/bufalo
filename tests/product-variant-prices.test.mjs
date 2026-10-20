@@ -35,7 +35,11 @@ test('discounted colors appear only in monthly offers and retain prices on selec
  }
  assert.ok(!groups.garrafas.includes('growler-mediterraneo-2l'));
  for(const slug of groups.garrafas)if(thermalColors[slug])assert.ok(thermalColors[slug].length,slug+' retains available colors');
- assert.equal(products.length,9);
+ assert.equal(products.length,10);
+ assert.ok(!groups.copos.includes('copo-pand-750ml'));
+ assert.equal(thermalColors['copo-pand-750ml'],undefined);
+ assert.equal(offerColors['copo-pand-750ml'].length,3);
+ assert.equal(products.filter(p=>p.url==='copo-pand-750ml').length,1);
 });
 test('category selectors carry every requested available variant price and update after image load',()=>{
  const articles=[...catalog.matchAll(/<article\b[^>]*>[\s\S]*?<\/article>/g)].map(m=>m[0]);
