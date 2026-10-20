@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-13",
+  "checkedAt": "2026-10-20",
   "categories": [
     {
       "id": "live-chopeiras",
@@ -9169,9 +9169,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            152
           ],
-          "price": 190,
+          "price": 152,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425416",
@@ -9191,9 +9191,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            152
           ],
-          "price": 190,
+          "price": 152,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425881",
@@ -9213,9 +9213,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            152
           ],
-          "price": 190,
+          "price": 152,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426236",
@@ -9235,9 +9235,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            152
           ],
-          "price": 190,
+          "price": 152,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--37096",
@@ -9257,9 +9257,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            152
           ],
-          "price": 190,
+          "price": 152,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426185",
@@ -9279,9 +9279,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            152
           ],
-          "price": 190,
+          "price": 152,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426266",
@@ -9301,9 +9301,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            152
           ],
-          "price": 190,
+          "price": 152,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426709",
@@ -9329,9 +9329,9 @@
           ],
           "sizes": [],
           "prices": [
-            175
+            125
           ],
-          "price": 175,
+          "price": 125,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--425416",
@@ -9351,9 +9351,9 @@
           ],
           "sizes": [],
           "prices": [
-            175
+            125
           ],
-          "price": 175,
+          "price": 125,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--425881",
@@ -9373,9 +9373,9 @@
           ],
           "sizes": [],
           "prices": [
-            175
+            125
           ],
-          "price": 175,
+          "price": 125,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--426573",
@@ -9599,5 +9599,63 @@
         }
       ]
     }
-  ]
+  ],
+  "priceVerification": {
+    "checkedAt": "2026-10-20",
+    "source": "official_store_sku_sell_price",
+    "verifiedOptions": 377,
+    "updatedOptions": 10,
+    "unverifiedOptions": [
+      {
+        "key": "kit-cimo-trio-de-forca-ax--404336196",
+        "reason": "product_not_found",
+        "pricePreserved": true
+      },
+      {
+        "key": "dry-bag-20litros--5502363",
+        "reason": "sku_without_price",
+        "pricePreserved": true
+      },
+      {
+        "key": "tampa-padrao-copos--426774",
+        "reason": "sku_without_price",
+        "pricePreserved": true
+      },
+      {
+        "key": "tampa-easydrink--13587665",
+        "reason": "sku_without_price",
+        "pricePreserved": true
+      },
+      {
+        "key": "garrafa-carabinho-500ml--580457",
+        "reason": "product_not_found",
+        "pricePreserved": true
+      },
+      {
+        "key": "garrafa-carabinho-500ml--2615924",
+        "reason": "product_not_found",
+        "pricePreserved": true
+      },
+      {
+        "key": "garrafa-carabinho-500ml--2210839",
+        "reason": "product_not_found",
+        "pricePreserved": true
+      },
+      {
+        "key": "garrafa-carabinho-500ml--2596170",
+        "reason": "product_not_found",
+        "pricePreserved": true
+      },
+      {
+        "key": "nagneck--426224",
+        "reason": "sku_without_price",
+        "pricePreserved": true
+      },
+      {
+        "key": "nagneck--426208",
+        "reason": "sku_without_price",
+        "pricePreserved": true
+      }
+    ]
+  }
 }
