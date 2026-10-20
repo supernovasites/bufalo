@@ -43,15 +43,10 @@
         "https://loja.bufalogrowler.com.br/abridor-de-garrafa-de-madeira",
         "https://loja.bufalogrowler.com.br/machado-ax-carbono-90mm-cb-madeira",
         "https://loja.bufalogrowler.com.br/faca-cimo-ax-cb-madeira",
-        "https://loja.bufalogrowler.com.br/kit-de-pratos-de-madeira",
         "https://loja.bufalogrowler.com.br/kit-cimo-trio-de-forca-ax",
         "https://loja.bufalogrowler.com.br/facao-cimo-ax-colosso-com-bainha-em-couro",
         "https://loja.bufalogrowler.com.br/canivete-cimo-tomahawk",
         "https://loja.bufalogrowler.com.br/faca-com-bainha-bm-bufalo",
-        "https://loja.bufalogrowler.com.br/copo-stout-473ml",
-        "https://loja.bufalogrowler.com.br/growler-de-vidro-1100ml",
-        "https://loja.bufalogrowler.com.br/growler-de-vidro-1900ml",
-        "https://loja.bufalogrowler.com.br/kit-bowl-de-madeira",
         "https://loja.bufalogrowler.com.br/tabua-de-corte-premium"
       ]
     },
@@ -86,17 +81,10 @@
         "https://loja.bufalogrowler.com.br/garrafa-harpuri-750ml-",
         "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
         "https://loja.bufalogrowler.com.br/growler-palitano-14l",
-        "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-        "https://loja.bufalogrowler.com.br/growler-mediterraneo-2l",
         "https://loja.bufalogrowler.com.br/surti-duo-flow-900ml",
         "https://loja.bufalogrowler.com.br/garrafa-garca-500ml",
-        "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
-        "https://loja.bufalogrowler.com.br/copo-guara-1l",
         "https://loja.bufalogrowler.com.br/garrafa-murrah-540ml",
-        "https://loja.bufalogrowler.com.br/nagneck",
-        "https://loja.bufalogrowler.com.br/growler-silo128",
-        "https://loja.bufalogrowler.com.br/growler-kundi-2l",
-        "https://loja.bufalogrowler.com.br/growler-kundi-35l"
+        "https://loja.bufalogrowler.com.br/nagneck"
       ]
     },
     {
@@ -104,8 +92,6 @@
       "title": "Carabinho Kids",
       "url": "https://loja.bufalogrowler.com.br/carabinho-kids",
       "products": [
-        "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-        "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
         "https://loja.bufalogrowler.com.br/copo-carabinho-350ml"
       ]
     },
@@ -150,9 +136,6 @@
       "title": "Souvenirs e Jogos",
       "url": "https://loja.bufalogrowler.com.br/souvenir-e-jogos",
       "products": [
-        "https://loja.bufalogrowler.com.br/kit-de-pratos-de-madeira",
-        "https://loja.bufalogrowler.com.br/growler-de-vidro-1100ml",
-        "https://loja.bufalogrowler.com.br/growler-de-vidro-1900ml",
         "https://loja.bufalogrowler.com.br/kit-frescobol",
         "https://loja.bufalogrowler.com.br/tabua-de-corte-premium"
       ]
@@ -835,34 +818,6 @@
       ]
     },
     {
-      "name": "Kit Pratos de Madeira",
-      "url": "https://loja.bufalogrowler.com.br/kit-de-pratos-de-madeira",
-      "cards": [
-        {
-          "name": "Kit Pratos de Madeira",
-          "label": "",
-          "url": "https://loja.bufalogrowler.com.br/kit-de-pratos-de-madeira",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/117901622/pratos-5y9h6gh1sr.png",
-          "imageSource": "store_main",
-          "skus": [
-            "117901622"
-          ],
-          "variationIds": [
-            ""
-          ],
-          "sizes": [],
-          "prices": [
-            130
-          ],
-          "price": 130,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "kit-de-pratos-de-madeira--117901622",
-          "stock": "in_stock"
-        }
-      ]
-    },
-    {
       "name": "Combo Cutelaria Cimo Ax Machado + Facão Colosso + Faca",
       "url": "https://loja.bufalogrowler.com.br/kit-cimo-trio-de-forca-ax",
       "cards": [
@@ -970,118 +925,6 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "faca-com-bainha-bm-bufalo--388418552",
-          "stock": "in_stock"
-        }
-      ]
-    },
-    {
-      "name": "Copo Stout 473ml",
-      "url": "https://loja.bufalogrowler.com.br/copo-stout-473ml",
-      "cards": [
-        {
-          "name": "Copo Stout 473ml",
-          "label": "",
-          "url": "https://loja.bufalogrowler.com.br/copo-stout-473ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/117902755/vidros-stout-e-growler-mnbacw.jpg",
-          "imageSource": "store_main",
-          "skus": [
-            "117902755"
-          ],
-          "variationIds": [
-            ""
-          ],
-          "sizes": [],
-          "prices": [
-            30
-          ],
-          "price": 30,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "copo-stout-473ml--117902755",
-          "stock": "in_stock"
-        }
-      ]
-    },
-    {
-      "name": "Growler de Vidro 1100ml",
-      "url": "https://loja.bufalogrowler.com.br/growler-de-vidro-1100ml",
-      "cards": [
-        {
-          "name": "Growler de Vidro 1100ml",
-          "label": "",
-          "url": "https://loja.bufalogrowler.com.br/growler-de-vidro-1100ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/117902604/growler-vidro-1--1--fkypaifs89.png",
-          "imageSource": "store_main",
-          "skus": [
-            "117902604"
-          ],
-          "variationIds": [
-            ""
-          ],
-          "sizes": [],
-          "prices": [
-            35
-          ],
-          "price": 35,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "growler-de-vidro-1100ml--117902604",
-          "stock": "in_stock"
-        }
-      ]
-    },
-    {
-      "name": "Growler de Vidro 1.900ml",
-      "url": "https://loja.bufalogrowler.com.br/growler-de-vidro-1900ml",
-      "cards": [
-        {
-          "name": "Growler de Vidro 1.900ml",
-          "label": "",
-          "url": "https://loja.bufalogrowler.com.br/growler-de-vidro-1900ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/117902270/growler-vidro-1-900-e59c7pkyvx.png",
-          "imageSource": "store_main",
-          "skus": [
-            "117902270"
-          ],
-          "variationIds": [
-            ""
-          ],
-          "sizes": [],
-          "prices": [
-            95
-          ],
-          "price": 95,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "growler-de-vidro-1900ml--117902270",
-          "stock": "in_stock"
-        }
-      ]
-    },
-    {
-      "name": "Kit Bowl de Madeira",
-      "url": "https://loja.bufalogrowler.com.br/kit-bowl-de-madeira",
-      "cards": [
-        {
-          "name": "Kit Bowl de Madeira",
-          "label": "",
-          "url": "https://loja.bufalogrowler.com.br/kit-bowl-de-madeira",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/117901920/cumbucas--1--kvhx0hig2c.png",
-          "imageSource": "store_main",
-          "skus": [
-            "117901920"
-          ],
-          "variationIds": [
-            ""
-          ],
-          "sizes": [],
-          "prices": [
-            135
-          ],
-          "price": 135,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "kit-bowl-de-madeira--117901920",
           "stock": "in_stock"
         }
       ]
@@ -7540,254 +7383,6 @@
       ]
     },
     {
-      "name": "Garrafa Buba Kids 355ml",
-      "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-      "cards": [
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Coral/Preto",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/9d24c32f88b9445d90d599f97c79261e-3idaz4cwag.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "381857798"
-          ],
-          "variationIds": [
-            "546664"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--546664",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Preto/Preto",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/carabinho-preta-e95i12wcat.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "381739505"
-          ],
-          "variationIds": [
-            "38301"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--38301",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Olive Green/Olive Green",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/carabinho-pistache-kltrxalbn7.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "381739506"
-          ],
-          "variationIds": [
-            "1069625"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--1069625",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Melanie/Melanie",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/carabinho-nuvem-gk2m9xisrk.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "381739514"
-          ],
-          "variationIds": [
-            "1450222"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--1450222",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Gorse/Preto",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/540dc873b05f4cc78694095e7b5d132d-p12rco1dp9.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "381739511"
-          ],
-          "variationIds": [
-            "493930"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--493930",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Persian Pink/Persian Pink",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/carabinho-pitaya-qte48xtmsw.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "381741204"
-          ],
-          "variationIds": [
-            "762609"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--762609",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Ash/Ash",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/carabinho-areia-bbilwh84lb.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "381741675"
-          ],
-          "variationIds": [
-            "858552"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--858552",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Tropical Blue/Tropical Blue",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/buba-kids-c-u-i30jl4xier.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "399199124"
-          ],
-          "variationIds": [
-            "884136"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--884136",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Saddle/Saddle",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/buba-kids-chocolate-e1k1mz1q0z.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "393290362"
-          ],
-          "variationIds": [
-            "2016280"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--2016280",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Barley White/Barley White",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/buba-kids-creme-488bftva3g.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "393290519"
-          ],
-          "variationIds": [
-            "479585"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--479585",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba Kids 355ml",
-          "label": "Tawny Port/Tawny Port",
-          "url": "https://loja.bufalogrowler.com.br/buba-kids-355ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/381739500/buba-kids-magenta-0awefvc1ty.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "400340564"
-          ],
-          "variationIds": [
-            "1824393"
-          ],
-          "sizes": [],
-          "prices": [
-            220
-          ],
-          "price": 220,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "buba-kids-355ml--1824393",
-          "stock": "in_stock"
-        }
-      ]
-    },
-    {
       "name": "Growler Mediterrâneo 1,9L",
       "url": "https://loja.bufalogrowler.com.br/growler-mediterraneo-2l",
       "cards": [
@@ -8153,100 +7748,6 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--425732",
-          "stock": "in_stock"
-        }
-      ]
-    },
-    {
-      "name": "Garrafa Carabinho 500ml",
-      "url": "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
-      "cards": [
-        {
-          "name": "Garrafa Carabinho 500ml",
-          "label": "Rose/Froly",
-          "url": "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/389904879/g-caraibinho-pink-scja4x3op7.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "389905372"
-          ],
-          "variationIds": [
-            "580457"
-          ],
-          "sizes": [],
-          "prices": [
-            189
-          ],
-          "price": 189,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "garrafa-carabinho-500ml--580457",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Carabinho 500ml",
-          "label": "Gulf Blue/Bright Turquoise",
-          "url": "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/389904879/g-caraibinho-marinho-jqulc9wsw8.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "390020853"
-          ],
-          "variationIds": [
-            "2615924"
-          ],
-          "sizes": [],
-          "prices": [
-            189
-          ],
-          "price": 189,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "garrafa-carabinho-500ml--2615924",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Carabinho 500ml",
-          "label": "Polo Blue/Starship",
-          "url": "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/389904879/g-caraibinho-lil-s-7sflv2flvz.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "390022898"
-          ],
-          "variationIds": [
-            "2210839"
-          ],
-          "sizes": [],
-          "prices": [
-            189
-          ],
-          "price": 189,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "garrafa-carabinho-500ml--2210839",
-          "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Carabinho 500ml",
-          "label": "Bright Turquoise/Electric Lime",
-          "url": "https://loja.bufalogrowler.com.br/garrafa-carabinho-500ml",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/389904879/g-caraibinho-turquesa-96i1o2n7jl.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "390022066"
-          ],
-          "variationIds": [
-            "2596170"
-          ],
-          "sizes": [],
-          "prices": [
-            189
-          ],
-          "price": 189,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "garrafa-carabinho-500ml--2596170",
           "stock": "in_stock"
         }
       ]

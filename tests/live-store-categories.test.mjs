@@ -17,8 +17,15 @@ test('every available color/model is rendered exactly once within each source ca
  for(const c of data.categories)for(const url of c.products)for(const option of products.get(url)?.cards||[])expected.set(option.key,(expected.get(option.key)||0)+1);
  const actual=new Map();for(const m of html.matchAll(/data-variant-key="([^"]+)"/g))actual.set(m[1],(actual.get(m[1])||0)+1);
  assert.deepEqual([...actual].sort(),[...expected].sort());
- assert.equal([...actual.values()].reduce((a,b)=>a+b,0),409);
- assert.equal(data.products.reduce((n,p)=>n+p.cards.length,0),387);
+ assert.equal([...actual.values()].reduce((a,b)=>a+b,0),361);
+ assert.equal(data.products.reduce((n,p)=>n+p.cards.length,0),367);
+ assert.deepEqual(data.categories.find(c=>c.id==='live-carabinho-kids').products,
+   ['https://loja.bufalogrowler.com.br/copo-carabinho-350ml']);
+ assert.ok(!html.includes('id="live-garrafas-mais-modelos"'));
+ for(const slug of ['buba-kids-355ml','garrafa-carabinho-500ml','kit-de-pratos-de-madeira','copo-stout-473ml','growler-de-vidro-1100ml','growler-de-vidro-1900ml','kit-bowl-de-madeira']){
+   assert.ok(!html.includes(`data-variant-key="${slug}--`));
+ }
+ assert.equal(html,readFileSync(new URL('../dist/live/index.html',import.meta.url),'utf8'));
 });
 test('out-of-stock SKUs are excluded and each card retains its verified price and coupon',()=>{
  const audit=JSON.parse(readFileSync(new URL('../docs/live-catalog-exclusions-2026-10-13.json',import.meta.url),'utf8'));
