@@ -5,30 +5,37 @@ import vm from 'node:vm';
 const home=readFileSync(new URL('../index.html',import.meta.url),'utf8');
 const catalog=readFileSync(new URL('../catalogo/index.html',import.meta.url),'utf8');
 const evidence=JSON.parse(readFileSync(new URL('../docs/product-prices-2026-10-20.json',import.meta.url),'utf8'));
-const colors=JSON.parse(home.match(/const productColors=(\{[^\n]+?\});/)[1]);
-const products=JSON.parse(home.match(/const officialProducts=(\[[^\n]+?\]);/)[1]);
+const dictionaries=[...home.matchAll(/const productColors=(\{[^\n]+?\});/g)].map(m=>JSON.parse(m[1]));
+const thermalColors=dictionaries[0],offerColors=dictionaries[1];
+const colors=Object.fromEntries(Object.keys(thermalColors).map(slug=>[slug,[...(thermalColors[slug]||[]),...(offerColors[slug]||[])]]));
+const products=JSON.parse(home.match(/const rail=document.getElementById\('offers-rail'\);[^\n]*?const products=(\[[^\n]+?\]);/)[1]);
 const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-const renderCode=home.slice(home.indexOf('function thermalPrice'),home.indexOf("rail.addEventListener('click',async",home.indexOf('function renderThermal')));
-const listenerStart=home.indexOf("rail.addEventListener('click',event=>{",home.indexOf('selectThermal(thermalTabs['));
-const listenerCode=home.slice(listenerStart,home.indexOf('function railState',listenerStart));
-test('requested variant prices render and update on home color selection',()=>{
+const renderCode=home.slice(home.indexOf('function offerPrice'),home.indexOf('function offersRailState'));
+const listenerStart=home.indexOf("rail.addEventListener('click',event=>{",home.indexOf('function offersRailState'));
+const listenerCode=home.slice(listenerStart,home.indexOf('})();</script>',listenerStart));
+test('discounted colors appear only in monthly offers and retain prices on selection',()=>{
+ const groups=JSON.parse(home.match(/const officialGroups=(\{[^\n]+?\});/)[1]);
  for(const offer of evidence.offers){
   const slug=new URL(offer.url).pathname.slice(1),product={...products.find(p=>p.url===slug),defaultColor:offer.variationId};
+  assert.ok(product.url,offer.sku+' has an offer card');
+  assert.ok(!thermalColors[slug].some(c=>c.id===offer.variationId),offer.sku+' removed from previous section');
+  assert.ok(offerColors[slug].some(c=>c.id===offer.variationId),offer.sku+' moved to offers');
   const priceNode={},installments={},label={},img={},photo={querySelector:()=>img,classList:{add(){},remove(){}},setAttribute(){},removeAttribute(){}};
   const button={dataset:{color:offer.variationId},getAttribute:()=>false};
   const card={dataset:{product:'0'},querySelector:s=>s==='.photo'?photo:s==='.price'?priceNode:s==='.installments'?installments:s==='.selected-color strong'?label:{},querySelectorAll:()=>[{setAttribute(){}}]};button.closest=()=>card;
   let listener;
   const rail={innerHTML:'',addEventListener:(event,fn)=>listener=fn};
-  const context=vm.createContext({officialProducts:[product],officialGroups:{garrafas:[slug]},productColors:colors,visibleProducts:[],rail,railState(){},money,Image:class{set src(value){this.onload();}}});
-  vm.runInContext(renderCode+'renderThermal("garrafas");'+listenerCode,context);
+  const context=vm.createContext({products:[product],productColors:offerColors,rail,money,Image:class{set src(value){this.onload();}}});
+  vm.runInContext(renderCode+listenerCode,context);
   assert.ok(rail.innerHTML.includes(money(offer.price)),offer.sku+' initial');
   assert.ok(rail.innerHTML.includes('R$ '+offer.pay),offer.sku+' installments');
   listener({target:{closest:()=>button}});
   assert.ok(priceNode.innerHTML.includes(money(offer.price)),offer.sku+' selected');
   assert.equal(installments.textContent,'até 6x de R$ '+offer.pay+' sem juros');
-  const regular=colors[slug].find(c=>!c.oldPrice);
-  if(regular){button.dataset.color=regular.id;listener({target:{closest:()=>button}});assert.equal(priceNode.innerHTML,money(regular.price));}
  }
+ assert.ok(!groups.garrafas.includes('growler-mediterraneo-2l'));
+ for(const slug of groups.garrafas)if(thermalColors[slug])assert.ok(thermalColors[slug].length,slug+' retains available colors');
+ assert.equal(products.length,9);
 });
 test('category selectors carry every requested available variant price and update after image load',()=>{
  const articles=[...catalog.matchAll(/<article\b[^>]*>[\s\S]*?<\/article>/g)].map(m=>m[0]);
