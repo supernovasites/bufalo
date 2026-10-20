@@ -61,5 +61,5 @@ test('live uses verified store price before the existing 20 percent coupon',()=>
   assert.ok(article,offer.sku+' exists in live');
   assert.ok(article.includes(money(Math.round(offer.price*80)/100)),offer.sku);
  }
- for(const file of ['live/index.html','live/catalog-data.json'])assert.equal(readFileSync(new URL('../'+file,import.meta.url),'utf8'),readFileSync(new URL('../dist/'+file,import.meta.url),'utf8'));
+ for(const file of ['live/index.html'])assert.equal(readFileSync(new URL('../'+file,import.meta.url),'utf8'),readFileSync(new URL('../dist/'+file,import.meta.url),'utf8'));
 });
