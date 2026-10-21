@@ -16,3 +16,8 @@ A vitrine exibe 40 cards únicos, um por cor, com desconto e preço na própria 
 São usadas as imagens oficiais em resolução maior. A região ocupada pelo produto foi medida sobre as fotos originais para enquadramento por viewBox SVG. Nenhum pixel de cor ou logo foi modificado. Os enquadramentos estão registrados em `products.json`, e os arquivos originais continuam sendo carregados da CDN oficial. Fundo branco, proporções preservadas e enquadramento consistente em todos os cards.
 
 Validação: 40 variantes únicas, 40 preços sobre a foto, ausência de categorias e do bloco antigo, imagem de vídeo 1920 × 1080 no navegador desktop, play/pausa funcionando e ausência de overflow no desktop e em 375 px.
+
+## Organização por modelo
+
+Os 40 cards estão agrupados em dez carrosséis, com nome e capacidade no título de cada seção. Os textos abaixo da foto foram removidos; os cards mantêm apenas imagem, desconto e preço. A rolagem é manual, por toque, teclado ou setas. A escala visual usa a raiz cúbica da capacidade, como aproximação de dimensões físicas, com alinhamento de base e margens para preservar as fotos e logos originais.
+
