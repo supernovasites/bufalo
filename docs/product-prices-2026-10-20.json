@@ -6,18 +6,18 @@
       "id": "370868951",
       "variationId": "1069625",
       "sku": "Murrah-pistach",
-      "price": 175,
+      "price": 161,
       "oldPrice": 230,
-      "pay": "29,16"
+      "pay": "26,83"
     },
     {
       "url": "https://loja.bufalogrowler.com.br/garrafa-murrah-540ml",
       "id": "370869173",
       "variationId": "1070817",
       "sku": "Murrah-pistachept",
-      "price": 175,
+      "price": 161,
       "oldPrice": 230,
-      "pay": "29,16"
+      "pay": "26,83"
     },
     {
       "url": "https://loja.bufalogrowler.com.br/garrafa-harpuri-750ml-",
@@ -205,6 +205,7 @@
     "Pistache e demais cores também incluem as combinações com tampa preta quando a loja aplica o mesmo preço.",
     "Palitano Pitaya duplicado na solicitação foi tratado uma vez.",
     "Desconto vigente de 20% com cupom da live permanece aplicado sobre o preço da loja.",
-    "Mediterrâneo possui dados no catálogo da live, mas não integra as categorias atualmente exibidas nessa página; sua composição foi preservada."
+    "Mediterrâneo possui dados no catálogo da live, mas não integra as categorias atualmente exibidas nessa página; sua composição foi preservada.",
+    "Murrah Pistache e Pistache/Preto: preço ajustado para R$ 161 (30% sobre R$ 230) por solicitação do responsável em 20/10/2026."
   ]
 }

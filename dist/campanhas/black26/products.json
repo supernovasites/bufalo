@@ -781,8 +781,8 @@
     {
       "name": "Garrafa Murrah",
       "size": "540 ml",
-      "price": 175,
-      "pay": "29,16",
+      "price": 161,
+      "pay": "26,83",
       "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/370867889/murrah--1--on6pjzst4o.png",
       "url": "garrafa-murrah-540ml",
       "badge": "Oferta do mês",
@@ -799,9 +799,9 @@
           ],
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/370867889/murrah-pistache---3j6e2zek5n.png",
           "available": true,
-          "price": 175,
+          "price": 161,
           "oldPrice": 230,
-          "pay": "29,16",
+          "pay": "26,83",
           "crop": {
             "viewBox": [
               383,
@@ -835,9 +835,9 @@
           ],
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/370867889/murrah-pistachept---xs94ogpfs2.png",
           "available": true,
-          "price": 175,
+          "price": 161,
           "oldPrice": 230,
-          "pay": "29,16",
+          "pay": "26,83",
           "crop": {
             "viewBox": [
               383,
