@@ -23,12 +23,12 @@
 @media(max-width:1050px){.model-track{--original-card:calc((100cqw - 32px)/3 - 2px);grid-auto-columns:27%}}
 @media(max-width:760px){.model-track{--original-card:calc(72cqw - 2px);grid-auto-columns:55%}.photo .product-image{bottom:48px;width:calc((var(--original-card) - 42px)*var(--capacity-scale));height:calc((var(--original-card) - 76px)*var(--capacity-scale))}}
 
-/* Price is a high-contrast badge inside the product photo. */
-.photo-pricing{left:8px;right:8px;bottom:8px;z-index:2;padding:9px 10px;background:#d8bd80;color:#111a13;border:1px solid #b79a5d;border-radius:7px;box-shadow:0 3px 10px #0002;justify-content:center}
-.photo-pricing>div{justify-content:center;gap:7px;flex-wrap:nowrap;white-space:nowrap}
-.photo-pricing strong{font-size:27px;font-weight:800;line-height:1;letter-spacing:-.8px}
-.photo-pricing small{font-size:12px;font-weight:700;margin-right:3px;letter-spacing:0}
-.photo-pricing s{color:#4d4737;font-size:10px}
+/* Compact price badge integrated into the bottom-right corner of each photo. */
+.photo-pricing{left:auto;right:8px;bottom:6px;z-index:2;padding:6px 9px;background:#f4e8ca;color:#182119;border:0;border-radius:6px;box-shadow:none;max-width:calc(100% - 16px);justify-content:flex-end;text-align:right}
+.photo-pricing>div{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-wrap:nowrap;white-space:nowrap}
+.photo-pricing strong{font-size:27px;font-weight:800;line-height:1;letter-spacing:-.7px}
+.photo-pricing small{font-size:11px;font-weight:600;margin-right:3px;letter-spacing:0}
+.photo-pricing s{color:#82724e;font-size:10px;line-height:11px}
 .photo-pricing>span{display:none}
-@media(max-width:760px){.photo-pricing{left:6px;right:6px;bottom:6px;padding:9px 7px}.photo-pricing>div{gap:5px}.photo-pricing strong{font-size:24px}.photo-pricing small{font-size:10px;margin-right:2px}.photo-pricing s{font-size:9px}}
-@media(max-width:350px){.photo-pricing strong{font-size:21px}.photo-pricing s{font-size:8px}}
+@media(max-width:760px){.photo-pricing{right:7px;bottom:4px;padding:5px 8px}.photo-pricing>div{gap:1px}.photo-pricing strong{font-size:23px}.photo-pricing small{font-size:10px;margin-right:2px}.photo-pricing s{font-size:9px;line-height:10px}}
+@media(max-width:350px){.photo-pricing strong{font-size:21px}}
