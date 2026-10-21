@@ -5,7 +5,7 @@ import vm from 'node:vm';
 
 const code = readFileSync(new URL('../assets/black26-popup.js', import.meta.url), 'utf8');
 const home = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
-function run(iso, random = 0, blocked = false) {
+function run(iso, random = 0, blocked = false, browserSession = {cookie: ''}) {
   let now = iso;
   class Clock extends Date { constructor(...args) { super(...(args.length ? args : [now])); } }
   const events = {}, timers = [], image = {}, body = {style: {overflow: 'auto'}};
@@ -18,7 +18,9 @@ function run(iso, random = 0, blocked = false) {
     getBoundingClientRect: () => ({left: 10, right: 100, top: 10, bottom: 100})
   };
   const document = {body, getElementById: () => popup, querySelector: () => blocked, addEventListener: (name, fn) => events[name] = fn};
-  vm.runInNewContext(code, {document, Date: Clock, Intl, Math: {floor: Math.floor, random: () => random}, setTimeout: (fn, delay) => timers.push({fn, delay})});
+  Object.defineProperty(document, 'cookie', {get: () => browserSession.cookie, set: value => {browserSession.lastWrite = value; browserSession.cookie = value.split(';')[0];}});
+  const storage = new Map();
+  vm.runInNewContext(code, {document, location: {protocol: 'https:'}, sessionStorage: {getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value)}, Date: Clock, Intl, Math: {floor: Math.floor, random: () => random}, setTimeout: (fn, delay) => timers.push({fn, delay})});
   return {popup, image, body, events, timers, advance: iso => {now = iso;}};
 }
 test('Black26 opens Monday through Friday in Fortaleza, excluding the weekend and UTC boundary', () => {
@@ -45,4 +47,19 @@ test('does not overlap another dialog and closes at Friday midnight', () => {
   state.timers.find(t => t.delay === 600).fn(); assert.ok(state.popup.open);
   state.advance('2026-10-24T03:00:00Z'); state.timers.find(t => t.delay === 60000).fn();
   assert.equal(state.popup.open, false); assert.equal(state.body.style.overflow, 'auto');
+});
+test('only shows once per browser session, including reloads and other tabs', () => {
+  const session = {cookie: ''}, now = '2026-10-20T15:00:00Z';
+  const first = run(now, 0, false, session);
+  const simultaneousTab = run(now, 0.5, false, session);
+  first.timers.find(t => t.delay === 600).fn();
+  simultaneousTab.timers.find(t => t.delay === 600).fn();
+  assert.ok(first.popup.open); assert.equal(simultaneousTab.popup.open, false);
+  first.events.button();
+  assert.equal(run(now, 0, false, session).timers.length, 0);
+  assert.equal(run('2026-10-21T15:00:00Z', 0, false, session).timers.length, 0);
+  assert.ok(!/expires|max-age/i.test(session.lastWrite));
+  assert.ok(session.lastWrite.includes('Path=/; SameSite=Lax; Secure'));
+  const newSession = run(now);
+  newSession.timers.find(t => t.delay === 600).fn(); assert.ok(newSession.popup.open);
 });
