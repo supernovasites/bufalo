@@ -10,3 +10,9 @@
 @media(max-width:350px){.product-grid{gap:8px}.product-body{padding-inline:6px}.product-card h3{font-size:10px}.product-title>span{font-size:7px}.price{font-size:16px}.old-price{font-size:7px}.color-name,.installments{font-size:7px}.swatch{width:16px;min-width:16px;height:20px}.swatch>span{width:11px;height:11px}.filters button{font-size:8px;padding-inline:8px}}
 
 #bg-site-header #bg-search-toggle{color:#e0c78d}#mobile-menu .bg-search-results{background:#191913;color:#eee3ce;border-color:#57482a}#mobile-menu .bg-search-results a{color:#eee3ce;border-color:#3d3321}#mobile-menu .bg-search-results a:hover,#mobile-menu .bg-search-results a[aria-selected=true]{background:#302a1c}
+
+/* Final review: solid gold marks, white product photography, direct catalog layout. */
+#bg-site-header .logo::before,#bg-site-footer .footer-brand::before{background:#d3b675;filter:none}
+.product-photo{background:#fff}.product-photo img{mix-blend-mode:normal}
+.hero-inner{display:block;min-height:0;padding-top:44px;padding-bottom:35px}.hero-copy{max-width:850px;margin:auto;text-align:center}.hero .eyebrow{justify-content:center}.hero h1{font-size:110px;line-height:.95;margin:20px 0}.hero h1 br{display:none}.hero h1>span{display:inline-block;margin:0 0 0 20px}.offers{padding-top:28px}
+@media(max-width:760px){.hero-inner{padding:28px 20px 20px}.hero .eyebrow{justify-content:center;margin-bottom:17px}.hero h1{font-size:76px;line-height:.82;margin:0 0 18px}.hero h1 br{display:initial}.hero h1>span{display:block;margin:10px 0 0}.hero-tagline{font-size:17px}.hero-description{font-size:11px}.hero-footnote{font-size:8px}.offers{padding-top:24px}}

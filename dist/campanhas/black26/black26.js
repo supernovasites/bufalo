@@ -39,9 +39,6 @@
   });
   fetch(new URL('products.json',document.currentScript.src),{cache:'no-cache'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(data=>{
     products=data.products.map(p=>({...p,colors:p.colors.filter(c=>c.available!==false&&c.price>0&&c.oldPrice>c.price)})).filter(p=>p.colors.length);
-    const heroes=[['hero-bottle','garrafa-harpuri-750ml-','1069625'],['hero-cup','copo-pand-750ml','425881'],['hero-growler','growler-palitano-14l','426573']];
-    for(const [id,slug,colorId] of heroes){const product=products.find(p=>p.url===slug),color=product?.colors.find(c=>c.id===colorId)||product?.colors[0];if(color)document.getElementById(id).src=color.img;}
-    const max=Math.max(...products.flatMap(p=>p.colors.map(discount)));document.getElementById('max-discount').innerHTML=max+'<small>%</small>';
     render();
   }).catch(()=>{count.textContent='Seleção indisponível';document.getElementById('catalog-error').hidden=false;});
 })();
