@@ -7,6 +7,8 @@
   function render(next){
     if(state&&(next.round_id<state.round_id||(next.round_id===state.round_id&&(next.updated_at<state.updated_at||(next.updated_at===state.updated_at&&next.amount_cents<state.amount_cents)))))return;
     state=next;
+    root.hidden=!next.enabled;
+    if(!next.enabled){panel.hidden=true;pending=null;$('auction-open').setAttribute('aria-expanded','false');}
     $('auction-product-title').textContent=next.title;
     $('auction-description').textContent=next.description;
     const photo=$('auction-photo');if(photo.getAttribute('src')!==next.photo_url)photo.src=next.photo_url;

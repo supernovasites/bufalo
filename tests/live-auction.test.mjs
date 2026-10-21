@@ -2,8 +2,30 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
 import {onRequest} from '../functions/live/_middleware.js';
 const origin='https://www.bufalogrowler.com.br';
+test('public offer stays hidden until enabled, closes its form when paused, and reappears on refresh',async()=>{
+ const nodes=new Map();
+ const element=()=>({hidden:false,disabled:false,textContent:'',attributes:{},listeners:{},classList:{toggle(){},remove(){},add(){}},addEventListener(type,handler){this.listeners[type]=handler;},getAttribute(name){return this.attributes[name];},setAttribute(name,value){this.attributes[name]=value;},replaceChildren(){},append(){},scrollIntoView(){},focus(){}});
+ const get=id=>{if(!nodes.has(id))nodes.set(id,element());return nodes.get(id);};
+ get('live-auction').hidden=true;get('auction-bid-panel').hidden=true;
+ let enabled=false,poll,fail=false;
+ const snapshot=()=>({enabled,round_id:1,updated_at:1,amount_cents:50000,next_amount_cents:60000,title:'Cooler',description:'Oferta',photo_url:'/photo.png',bids:[]});
+ vm.runInNewContext(readFileSync(new URL('../live/auction.js',import.meta.url),'utf8'),{
+  document:{hidden:false,getElementById:get,createElement:element,addEventListener(){}},
+  fetch:async()=>({ok:!fail,json:async()=>snapshot()}),setInterval:callback=>{poll=callback;},crypto,matchMedia:()=>({matches:true})
+ });
+ await new Promise(setImmediate);
+ assert.equal(get('live-auction').hidden,true);
+ enabled=true;await poll();assert.equal(get('live-auction').hidden,false);
+ get('auction-open').listeners.click();assert.equal(get('auction-bid-panel').hidden,false);
+ enabled=false;await poll();assert.equal(get('live-auction').hidden,true);assert.equal(get('auction-bid-panel').hidden,true);assert.equal(get('auction-open').attributes['aria-expanded'],'false');
+ fail=true;await poll();assert.equal(get('live-auction').hidden,true);
+ fail=false;enabled=true;await poll();assert.equal(get('live-auction').hidden,false);assert.equal(get('auction-bid-panel').hidden,true);
+ const html=readFileSync(new URL('../live/index.html',import.meta.url),'utf8');assert.match(html,/id="live-auction" hidden/);
+ for(const file of ['index.html','auction.js','auction.css'])assert.equal(readFileSync(new URL('../live/'+file,import.meta.url),'utf8'),readFileSync(new URL('../dist/live/'+file,import.meta.url),'utf8'));
+});
 function database(){
  const sql=new DatabaseSync(':memory:');
  for(const name of ['0001_live.sql','0002_live_content.sql','0003_live_gallery.sql','0010_live_contact.sql'])sql.exec(readFileSync(new URL('../migrations/'+name,import.meta.url),'utf8'));
