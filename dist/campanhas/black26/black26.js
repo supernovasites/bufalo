@@ -29,7 +29,7 @@
   if('IntersectionObserver' in window)new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)video.pause();else if(!manuallyPaused)video.play().catch(syncVideo);}},{threshold:.1}).observe(video);
 
   fetch(new URL('products.json',document.currentScript.src),{cache:'no-cache'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(data=>{
-    products=data.products.flatMap(p=>p.colors.filter(c=>c.available!==false&&c.price>0&&c.oldPrice>c.price).map(color=>({...p,color}))); 
+    products=data.products.flatMap(p=>p.colors.filter(c=>c.available!==false&&c.price>0&&c.oldPrice>c.price).map(color=>({...p,color})));
     render();
   }).catch(()=>{count.textContent='Seleção indisponível';document.getElementById('catalog-error').hidden=false;});
 })();
