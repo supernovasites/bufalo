@@ -21,7 +21,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/301553979/pand-alfazema--4ginpw03ql.png",
           "available": true,
           "price": 125,
-          "oldPrice": 175
+          "oldPrice": 175,
+          "crop": {
+            "viewBox": [
+              331,
+              136,
+              440,
+              864
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "425416",
@@ -33,7 +43,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/301553979/pand-tiffany-zeozt1lx96.png",
           "available": true,
           "price": 125,
-          "oldPrice": 175
+          "oldPrice": 175,
+          "crop": {
+            "viewBox": [
+              328,
+              116,
+              453,
+              888
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426573",
@@ -45,7 +65,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/301553979/pand-pitaya-jrghs4zjvd.png",
           "available": true,
           "price": 125,
-          "oldPrice": 175
+          "oldPrice": 175,
+          "crop": {
+            "viewBox": [
+              320,
+              119,
+              459,
+              880
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -72,7 +102,17 @@
           "available": true,
           "price": 119,
           "oldPrice": 170,
-          "pay": "19,83"
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              377,
+              245,
+              333,
+              759
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "1672485",
@@ -85,7 +125,17 @@
           "available": true,
           "price": 119,
           "oldPrice": 170,
-          "pay": "19,83"
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              375,
+              243,
+              326,
+              756
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "1673300",
@@ -98,7 +148,17 @@
           "available": true,
           "price": 119,
           "oldPrice": 170,
-          "pay": "19,83"
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              375,
+              247,
+              328,
+              754
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "493930",
@@ -111,7 +171,17 @@
           "available": true,
           "price": 119,
           "oldPrice": 170,
-          "pay": "19,83"
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              379,
+              245,
+              332,
+              759
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "1069625",
@@ -124,7 +194,17 @@
           "available": true,
           "price": 119,
           "oldPrice": 170,
-          "pay": "19,83"
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              377,
+              244,
+              334,
+              760
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "762609",
@@ -137,7 +217,17 @@
           "available": true,
           "price": 119,
           "oldPrice": 170,
-          "pay": "19,83"
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              371,
+              242,
+              337,
+              767
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "545144",
@@ -150,7 +240,17 @@
           "available": true,
           "price": 119,
           "oldPrice": 170,
-          "pay": "19,83"
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              371,
+              246,
+              326,
+              753
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "546664",
@@ -163,7 +263,17 @@
           "available": true,
           "price": 119,
           "oldPrice": 170,
-          "pay": "19,83"
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              380,
+              235,
+              335,
+              772
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -190,7 +300,17 @@
           "available": true,
           "price": 175,
           "oldPrice": 250,
-          "pay": "29,16"
+          "pay": "29,16",
+          "crop": {
+            "viewBox": [
+              363,
+              71,
+              357,
+              947
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "1070817",
@@ -203,7 +323,17 @@
           "available": true,
           "price": 175,
           "oldPrice": 250,
-          "pay": "29,16"
+          "pay": "29,16",
+          "crop": {
+            "viewBox": [
+              363,
+              64,
+              357,
+              954
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -230,7 +360,17 @@
           "available": true,
           "price": 175,
           "oldPrice": 230,
-          "pay": "29,16"
+          "pay": "29,16",
+          "crop": {
+            "viewBox": [
+              383,
+              93,
+              327,
+              912
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "1070817",
@@ -243,7 +383,17 @@
           "available": true,
           "price": 175,
           "oldPrice": 230,
-          "pay": "29,16"
+          "pay": "29,16",
+          "crop": {
+            "viewBox": [
+              383,
+              90,
+              327,
+              915
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -270,7 +420,17 @@
           "available": true,
           "price": 189,
           "oldPrice": 270,
-          "pay": "31,50"
+          "pay": "31,50",
+          "crop": {
+            "viewBox": [
+              361,
+              23,
+              380,
+              987
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "1070817",
@@ -283,7 +443,17 @@
           "available": true,
           "price": 189,
           "oldPrice": 270,
-          "pay": "31,50"
+          "pay": "31,50",
+          "crop": {
+            "viewBox": [
+              361,
+              21,
+              380,
+              989
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "762609",
@@ -296,7 +466,17 @@
           "available": true,
           "price": 189,
           "oldPrice": 270,
-          "pay": "31,50"
+          "pay": "31,50",
+          "crop": {
+            "viewBox": [
+              363,
+              25,
+              382,
+              984
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -323,7 +503,17 @@
           "available": true,
           "price": 264,
           "oldPrice": 330,
-          "pay": "44,00"
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              345,
+              150,
+              379,
+              852
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "425301",
@@ -336,7 +526,17 @@
           "available": true,
           "price": 264,
           "oldPrice": 330,
-          "pay": "44,00"
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              353,
+              171,
+              371,
+              832
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "425881",
@@ -349,7 +549,17 @@
           "available": true,
           "price": 264,
           "oldPrice": 330,
-          "pay": "44,00"
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              339,
+              115,
+              383,
+              880
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426124",
@@ -362,7 +572,17 @@
           "available": true,
           "price": 264,
           "oldPrice": 330,
-          "pay": "44,00"
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              345,
+              150,
+              378,
+              851
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426573",
@@ -375,7 +595,17 @@
           "available": true,
           "price": 264,
           "oldPrice": 330,
-          "pay": "44,00"
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              353,
+              176,
+              374,
+              826
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -402,7 +632,17 @@
           "available": true,
           "price": 304,
           "oldPrice": 380,
-          "pay": "50,66"
+          "pay": "50,66",
+          "crop": {
+            "viewBox": [
+              340,
+              45,
+              411,
+              955
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426266",
@@ -415,7 +655,17 @@
           "available": true,
           "price": 304,
           "oldPrice": 380,
-          "pay": "50,66"
+          "pay": "50,66",
+          "crop": {
+            "viewBox": [
+              340,
+              44,
+              411,
+              957
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -439,7 +689,17 @@
           "available": true,
           "label": "Preto",
           "price": 99,
-          "oldPrice": 140
+          "oldPrice": 140,
+          "crop": {
+            "viewBox": [
+              321,
+              365,
+              437,
+              635
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426709",
@@ -452,7 +712,17 @@
           "available": true,
           "label": "Coral",
           "price": 99,
-          "oldPrice": 140
+          "oldPrice": 140,
+          "crop": {
+            "viewBox": [
+              320,
+              368,
+              432,
+              632
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426185",
@@ -465,7 +735,17 @@
           "available": true,
           "label": "Rosa antigo",
           "price": 99,
-          "oldPrice": 140
+          "oldPrice": 140,
+          "crop": {
+            "viewBox": [
+              320,
+              376,
+              431,
+              624
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -489,7 +769,17 @@
           "available": true,
           "label": "Citrus",
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              72,
+              92,
+              937,
+              924
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "425416",
@@ -502,7 +792,17 @@
           "available": true,
           "label": "Tiffany",
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              72,
+              92,
+              937,
+              926
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426236",
@@ -515,7 +815,17 @@
           "available": true,
           "label": "Lilás",
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              80,
+              92,
+              929,
+              924
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426185",
@@ -528,7 +838,17 @@
           "available": true,
           "label": "Rosa antigo",
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              80,
+              92,
+              929,
+              922
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426573",
@@ -541,7 +861,17 @@
           "available": true,
           "label": "Pitaya",
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              78,
+              92,
+              931,
+              920
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         }
       ]
     },
@@ -564,7 +894,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/d43c2f01f01545d7925b413a3c9ee8cc-d0cvgky7td.png",
           "available": true,
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              225,
+              215,
+              565,
+              785
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "425881",
@@ -576,7 +916,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/bhad-alfazema-w3p0rwnjs1.png",
           "available": true,
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              222,
+              207,
+              569,
+              794
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426709",
@@ -588,7 +938,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/72de97c693a4480687874986880a3a99-jr3xrkrs7a.png",
           "available": true,
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              122,
+              123,
+              315,
+              435
+            ],
+            "width": 598,
+            "height": 599
+          }
         },
         {
           "id": "426266",
@@ -600,7 +960,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/b65b049ca3374f759015709ee4980478-ncowb06rqs.png",
           "available": true,
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              0,
+              0,
+              441,
+              595
+            ],
+            "width": 599,
+            "height": 595
+          }
         },
         {
           "id": "425416",
@@ -612,7 +982,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/bhad-tiffany-8rbcdkuyyj.png",
           "available": true,
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              234,
+              209,
+              562,
+              792
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426236",
@@ -624,7 +1004,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/bhad-lilac-8ygr2l9ojg.png",
           "available": true,
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              219,
+              220,
+              564,
+              780
+            ],
+            "width": 1080,
+            "height": 1080
+          }
         },
         {
           "id": "426185",
@@ -636,7 +1026,17 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/5cfac809834948e8ae9cebbab0aff148-zk8yacgaqm.png",
           "available": true,
           "price": 152,
-          "oldPrice": 190
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              119,
+              122,
+              313,
+              435
+            ],
+            "width": 597,
+            "height": 597
+          }
         }
       ]
     }

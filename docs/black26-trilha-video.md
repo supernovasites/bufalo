@@ -1,11 +1,18 @@
-# Black Búfalo — vídeo de trilha
+# Black26 — vídeo e fotos
 
-O vídeo original `h_trilha25_mix.mp4` (1920 × 1080, aproximadamente 35 segundos, 85.918.560 bytes) foi convertido em H.264 com MP4 fast start, 24 fps e áudio AAC. A duração foi preservada.
+Original: `h_trilha25_mix.mp4`, aproximadamente 35 segundos, 1920 × 1080, 30 fps e 85.918.560 bytes.
 
-- Desktop: 1280 × 720, CRF 29, vídeo limitado a 1.800 kbps, áudio 64 kbps; 7.152.554 bytes.
-- Mobile: 854 × 480, CRF 30, vídeo limitado a 850 kbps, áudio 48 kbps; 3.494.299 bytes.
-- Capa JPEG para exibição antes do carregamento e quando a reprodução automática não estiver disponível.
+## Revisão de qualidade
 
-A página seleciona apenas um arquivo conforme a largura inicial. O vídeo começa sem som, possui controles de pausa e áudio e pausa quando sai da área visível. Preferências de movimento reduzido e economia de dados desativam a reprodução automática. No celular, a composição original é preservada e o texto aparece abaixo do vídeo.
+- Desktop: Full HD original (1920 × 1080, 30 fps), H.264 CRF 21, preset slow, máximo 4.800 kbps, áudio AAC 96 kbps e fast start. Tamanho: 20.615.188 bytes. A redução menos agressiva preserva melhor os detalhes da mata e da água.
+- Celular: 854 × 480, 24 fps, H.264 CRF 30, máximo 850 kbps, áudio AAC 48 kbps e fast start. Tamanho: 3.494.299 bytes.
+- A URL desktop recebeu uma versão para evitar a reutilização do arquivo antigo em cache.
+- Play/pausa usa os mesmos SVGs, dimensões e estado `aria-pressed` do botão `film-toggle hero-pause` da homepage. Inicia sem som, oferece controle de áudio e pausa fora da área visível.
 
-Os cards seguem a estrutura da homepage: foto quadrada, volume, nome, seleção de cor, preço anterior, oferta, parcelas e acesso à loja. A campanha preserva os dez modelos e as 40 cores da seleção anterior.
+## Cards e enquadramento
+
+A vitrine exibe 40 cards únicos, um por cor, com desconto e preço na própria área da foto. A barra de categorias e a chamada longa foram removidas. O título menor Black Búfalo aproxima a vitrine do vídeo.
+
+São usadas as imagens oficiais em resolução maior. A região ocupada pelo produto foi medida sobre as fotos originais para enquadramento por viewBox SVG. Nenhum pixel de cor ou logo foi modificado. Os enquadramentos estão registrados em `products.json`, e os arquivos originais continuam sendo carregados da CDN oficial. Fundo branco, proporções preservadas e enquadramento consistente em todos os cards.
+
+Validação: 40 variantes únicas, 40 preços sobre a foto, ausência de categorias e do bloco antigo, imagem de vídeo 1920 × 1080 no navegador desktop, play/pausa funcionando e ausência de overflow no desktop e em 375 px.
