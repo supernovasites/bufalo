@@ -22,23 +22,21 @@
     for(const section of grid.querySelectorAll('.model-section')){
       const track=section.querySelector('.model-track'),buttons=section.querySelectorAll('[data-direction]');
       const update=()=>{buttons[0].disabled=track.scrollLeft<=2;buttons[1].disabled=track.scrollLeft+track.clientWidth>=track.scrollWidth-2;};
-      buttons.forEach(button=>button.addEventListener('click',()=>track.scrollBy({left:Number(button.dataset.direction)*(track.firstElementChild.getBoundingClientRect().width+16),behavior:reducedMotion?'instant':'smooth'})));
+      buttons.forEach(button=>button.addEventListener('click',()=>track.scrollBy({left:Number(button.dataset.direction)*(track.firstElementChild.getBoundingClientRect().width+parseFloat(getComputedStyle(track).columnGap)),behavior:reducedMotion?'instant':'smooth'})));
       track.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);if('ResizeObserver' in window)new ResizeObserver(update).observe(track);update();
     }
   }
 
-  const video=document.getElementById('trilha-video'),playButton=document.getElementById('video-play'),soundButton=document.getElementById('video-sound');
+  const video=document.getElementById('trilha-video');
   const scriptURL=document.currentScript.src;
   const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saveData=!!navigator.connection?.saveData;
   let manuallyPaused=reducedMotion||saveData;
   video.src=new URL(matchMedia('(max-width: 760px)').matches?'media/trilha-mobile.mp4':'media/trilha-desktop.mp4?v=fullhd-20261020',scriptURL).href;
-  const syncVideo=()=>{playButton.setAttribute('aria-label',video.paused?'Reproduzir vídeo':'Pausar vídeo');playButton.title=video.paused?'Reproduzir vídeo':'Pausar vídeo';playButton.setAttribute('aria-pressed',String(video.paused));soundButton.textContent=video.muted?'Ativar som':'Desativar som';soundButton.setAttribute('aria-pressed',String(!video.muted));};
-  playButton.addEventListener('click',()=>{if(video.paused){manuallyPaused=false;video.play().catch(syncVideo);}else{manuallyPaused=true;video.pause();}});
-  soundButton.addEventListener('click',()=>{video.muted=!video.muted;syncVideo();});
-  video.addEventListener('play',syncVideo);video.addEventListener('pause',syncVideo);video.addEventListener('error',()=>{manuallyPaused=true;syncVideo();});
-  if(!manuallyPaused)video.play().catch(syncVideo);else syncVideo();
-  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)video.pause();else if(!manuallyPaused)video.play().catch(syncVideo);}},{threshold:.1}).observe(video);
+  const playbackUnavailable=()=>{};
+  video.addEventListener('error',()=>{manuallyPaused=true;});
+  if(!manuallyPaused)video.play().catch(playbackUnavailable);
+  if('IntersectionObserver' in window)new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)video.pause();else if(!manuallyPaused)video.play().catch(playbackUnavailable);}},{threshold:.1}).observe(video);
 
   fetch(new URL('products.json',document.currentScript.src),{cache:'no-cache'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(data=>{
     products=data.products.flatMap(p=>p.colors.filter(c=>c.available!==false&&c.price>0&&c.oldPrice>c.price).map(color=>({...p,color})));
