@@ -1,0 +1,1564 @@
+{
+  "checkedAt": "2026-10-20",
+  "products": [
+    {
+      "name": "Growler Palitano",
+      "size": "1,350 L",
+      "price": 264,
+      "pay": "44,00",
+      "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/277432251/growlers--3--u1w2a45pw7.png",
+      "url": "growler-palitano-14l",
+      "badge": "Oferta do mês",
+      "oldPrice": 330,
+      "defaultColor": "426224",
+      "category": "growlers",
+      "colors": [
+        {
+          "id": "426224",
+          "label": "Areia",
+          "hex": [
+            "#C6C3B5",
+            "#C6C3B5"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/medi-135-areia-qiqz1xotoa.png",
+          "available": true,
+          "price": 264,
+          "oldPrice": 330,
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              345,
+              150,
+              379,
+              852
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--426224.webp",
+            "crop": {
+              "viewBox": [
+                382,
+                165,
+                422,
+                949
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "425301",
+          "label": "Petróleo",
+          "hex": [
+            "#016162",
+            "#016162"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/growlers---chopeiras-mbdoku5x5n.png",
+          "available": true,
+          "price": 264,
+          "oldPrice": 330,
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              353,
+              171,
+              371,
+              832
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--425301.webp",
+            "crop": {
+              "viewBox": [
+                387,
+                127,
+                422,
+                979
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "425881",
+          "label": "Alfazema",
+          "hex": [
+            "#8581D9",
+            "#8581D9"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/medi13-alfazema-7902i67zg2.png",
+          "available": true,
+          "price": 264,
+          "oldPrice": 330,
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              339,
+              115,
+              383,
+              880
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--425881.webp",
+            "crop": {
+              "viewBox": [
+                369,
+                90,
+                442,
+                1041
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426124",
+          "label": "Pistache",
+          "hex": [
+            "#B5B35C",
+            "#B5B35C"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/medi-135-pistache-bigtetffm8.png",
+          "available": true,
+          "price": 264,
+          "oldPrice": 330,
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              345,
+              150,
+              378,
+              851
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--426124.webp",
+            "crop": {
+              "viewBox": [
+                383,
+                167,
+                420,
+                945
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426573",
+          "label": "Pitaya",
+          "hex": [
+            "#F77FBE",
+            "#F77FBE"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/growlers--6--s4zhsrtw13.png",
+          "available": true,
+          "price": 264,
+          "oldPrice": 330,
+          "pay": "44,00",
+          "crop": {
+            "viewBox": [
+              353,
+              176,
+              374,
+              826
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--426573.webp",
+            "crop": {
+              "viewBox": [
+                385,
+                132,
+                427,
+                980
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Copo Banni",
+      "size": "350 ml",
+      "price": 99,
+      "oldPrice": 140,
+      "pay": "16,50",
+      "url": "copo-banni-350ml",
+      "category": "copos",
+      "colors": [
+        {
+          "id": "37093",
+          "name": "Preto",
+          "hex": [
+            "#000000",
+            "#000000"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/106501781/banni--1--a3kir0fkam.png",
+          "available": true,
+          "label": "Preto",
+          "price": 99,
+          "oldPrice": 140,
+          "crop": {
+            "viewBox": [
+              321,
+              365,
+              437,
+              635
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-banni-350ml--37093-brushed.webp",
+            "crop": {
+              "viewBox": [
+                356,
+                360,
+                487,
+                720
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426709",
+          "name": "Coral",
+          "hex": [
+            "#FF7F50",
+            "#FF7F50"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/106501781/16c64ad0630842ae8747c50dcdc76ba5-s2ayzwh8qr.png",
+          "available": true,
+          "label": "Coral",
+          "price": 99,
+          "oldPrice": 140,
+          "crop": {
+            "viewBox": [
+              320,
+              368,
+              432,
+              632
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-banni-350ml--426709-brushed.webp",
+            "crop": {
+              "viewBox": [
+                354,
+                404,
+                497,
+                707
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426185",
+          "name": "Old Rose",
+          "hex": [
+            "#C08081",
+            "#C08081"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/106501781/banni-7-ddu3j1jw92.png",
+          "available": true,
+          "label": "Rosa antigo",
+          "price": 99,
+          "oldPrice": 140,
+          "crop": {
+            "viewBox": [
+              320,
+              376,
+              431,
+              624
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-banni-350ml--426185-brushed.webp",
+            "crop": {
+              "viewBox": [
+                353,
+                368,
+                498,
+                707
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Garrafa Jafarabadi",
+      "size": "1 L",
+      "price": 189,
+      "pay": "31,50",
+      "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/311751043/24166786bc9b4b49a5a1b2ecf37eaaab-j1kzlwcn6y.png",
+      "url": "garrafa-jafarabadi-1l-",
+      "badge": "Oferta do mês",
+      "oldPrice": 270,
+      "defaultColor": "1069625",
+      "category": "garrafas",
+      "colors": [
+        {
+          "id": "762609",
+          "label": "Pitaya / Pitaya",
+          "hex": [
+            "#F77FBE",
+            "#F77FBE"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/311751043/jafa-pitaya-22ndkwldxo.png",
+          "available": true,
+          "price": 189,
+          "oldPrice": 270,
+          "pay": "31,50",
+          "crop": {
+            "viewBox": [
+              363,
+              25,
+              382,
+              984
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-jafarabadi-1l---762609-brushed.webp",
+            "crop": {
+              "viewBox": [
+                402,
+                27,
+                425,
+                1095
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "1069625",
+          "label": "Pistache / Pistache",
+          "hex": [
+            "#B5B35C",
+            "#B5B35C"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/311751043/jafa-pistache-0yi58uvr7t.png",
+          "available": true,
+          "price": 189,
+          "oldPrice": 270,
+          "pay": "31,50",
+          "crop": {
+            "viewBox": [
+              361,
+              23,
+              380,
+              987
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-jafarabadi-1l---1069625-brushed.webp",
+            "crop": {
+              "viewBox": [
+                399,
+                21,
+                424,
+                1104
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "1070817",
+          "label": "Pistache / Preto",
+          "hex": [
+            "#000000",
+            "#B5B35C"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/311751043/jafa-pistachept-1lu37ifawt.png",
+          "available": true,
+          "price": 189,
+          "oldPrice": 270,
+          "pay": "31,50",
+          "crop": {
+            "viewBox": [
+              361,
+              21,
+              380,
+              989
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-jafarabadi-1l---1070817-brushed.webp",
+            "crop": {
+              "viewBox": [
+                400,
+                22,
+                424,
+                1101
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Growler Mediterrâneo",
+      "size": "1,9 L",
+      "price": 304,
+      "pay": "50,66",
+      "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/106476470/medi-19-preto--1--rrjciwd04v.png",
+      "url": "growler-mediterraneo-2l",
+      "badge": "Oferta do mês",
+      "oldPrice": 380,
+      "defaultColor": "426709",
+      "category": "growlers",
+      "colors": [
+        {
+          "id": "426709",
+          "label": "Coral",
+          "hex": [
+            "#FF7F50",
+            "#FF7F50"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/106476470/ef09201b1c424046a4b0515a6a2551a4-ilp1xvw5t8.png",
+          "available": true,
+          "price": 304,
+          "oldPrice": 380,
+          "pay": "50,66",
+          "crop": {
+            "viewBox": [
+              340,
+              45,
+              411,
+              955
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-mediterraneo-2l--426709.webp",
+            "crop": {
+              "viewBox": [
+                382,
+                47,
+                454,
+                1064
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426266",
+          "label": "Citrus",
+          "hex": [
+            "#CCFF00",
+            "#CCFF00"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/106476470/1f39520828d14abeaf64ec9d63891324-icw6ydl8bz.png",
+          "available": true,
+          "price": 304,
+          "oldPrice": 380,
+          "pay": "50,66",
+          "crop": {
+            "viewBox": [
+              340,
+              44,
+              411,
+              957
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-mediterraneo-2l--426266.webp",
+            "crop": {
+              "viewBox": [
+                365,
+                49,
+                483,
+                1062
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Caneca Bhadawari",
+      "size": "710 ml",
+      "url": "caneca-bhadawari-710ml",
+      "price": 152,
+      "oldPrice": 190,
+      "pay": "25,33",
+      "category": "copos",
+      "colors": [
+        {
+          "id": "37096",
+          "label": "Branco",
+          "hex": [
+            "#FFFFFF",
+            "#FFFFFF"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/d43c2f01f01545d7925b413a3c9ee8cc-d0cvgky7td.png",
+          "available": true,
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              225,
+              215,
+              565,
+              785
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--37096-brushed.webp",
+            "crop": {
+              "viewBox": [
+                248,
+                237,
+                649,
+                876
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "425881",
+          "label": "Alfazema",
+          "hex": [
+            "#8581D9",
+            "#8581D9"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/bhad-alfazema-w3p0rwnjs1.png",
+          "available": true,
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              222,
+              207,
+              569,
+              794
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--425881-brushed.webp",
+            "crop": {
+              "viewBox": [
+                244,
+                226,
+                636,
+                889
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426709",
+          "label": "Coral",
+          "hex": [
+            "#FF7F50",
+            "#FF7F50"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/72de97c693a4480687874986880a3a99-jr3xrkrs7a.png",
+          "available": true,
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              122,
+              123,
+              315,
+              435
+            ],
+            "width": 598,
+            "height": 599
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--426709-brushed.webp",
+            "crop": {
+              "viewBox": [
+                243,
+                241,
+                638,
+                881
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426266",
+          "label": "Citrus",
+          "hex": [
+            "#CCFF00",
+            "#CCFF00"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/b65b049ca3374f759015709ee4980478-ncowb06rqs.png",
+          "available": true,
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              0,
+              0,
+              441,
+              595
+            ],
+            "width": 599,
+            "height": 595
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--426266-brushed.webp",
+            "crop": {
+              "viewBox": [
+                249,
+                176,
+                637,
+                889
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "425416",
+          "label": "Tiffany",
+          "hex": [
+            "#1FC2C2",
+            "#1FC2C2"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/bhad-tiffany-8rbcdkuyyj.png",
+          "available": true,
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              234,
+              209,
+              562,
+              792
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--425416-brushed.webp",
+            "crop": {
+              "viewBox": [
+                260,
+                232,
+                632,
+                879
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426236",
+          "label": "Lilás",
+          "hex": [
+            "#C8A2C8",
+            "#C8A2C8"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/bhad-lilac-8ygr2l9ojg.png",
+          "available": true,
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              219,
+              220,
+              564,
+              780
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--426236-brushed.webp",
+            "crop": {
+              "viewBox": [
+                243,
+                242,
+                639,
+                870
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426185",
+          "label": "Rosa antigo",
+          "hex": [
+            "#C08081",
+            "#C08081"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/153342503/5cfac809834948e8ae9cebbab0aff148-zk8yacgaqm.png",
+          "available": true,
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              119,
+              122,
+              313,
+              435
+            ],
+            "width": 597,
+            "height": 597
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--426185-brushed.webp",
+            "crop": {
+              "viewBox": [
+                237,
+                241,
+                658,
+                881
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Garrafa Murrah",
+      "size": "540 ml",
+      "price": 175,
+      "pay": "29,16",
+      "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/370867889/murrah--1--on6pjzst4o.png",
+      "url": "garrafa-murrah-540ml",
+      "badge": "Oferta do mês",
+      "oldPrice": 230,
+      "defaultColor": "1069625",
+      "category": "garrafas",
+      "colors": [
+        {
+          "id": "1069625",
+          "label": "Pistache / Pistache",
+          "hex": [
+            "#B5B35C",
+            "#B5B35C"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/370867889/murrah-pistache---3j6e2zek5n.png",
+          "available": true,
+          "price": 175,
+          "oldPrice": 230,
+          "pay": "29,16",
+          "crop": {
+            "viewBox": [
+              383,
+              93,
+              327,
+              912
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-murrah-540ml--1069625-brushed.webp",
+            "crop": {
+              "viewBox": [
+                425,
+                102,
+                363,
+                1014
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "1070817",
+          "label": "Pistache / Preto",
+          "hex": [
+            "#000000",
+            "#B5B35C"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/370867889/murrah-pistachept---xs94ogpfs2.png",
+          "available": true,
+          "price": 175,
+          "oldPrice": 230,
+          "pay": "29,16",
+          "crop": {
+            "viewBox": [
+              383,
+              90,
+              327,
+              915
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-murrah-540ml--1070817-brushed.webp",
+            "crop": {
+              "viewBox": [
+                425,
+                99,
+                362,
+                1018
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Garrafa Harpuri",
+      "size": "750 ml",
+      "price": 175,
+      "pay": "29,16",
+      "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/310401957/2-s5nxjkcv2k.png",
+      "url": "garrafa-harpuri-750ml-",
+      "badge": "Oferta do mês",
+      "oldPrice": 250,
+      "defaultColor": "1069625",
+      "category": "garrafas",
+      "colors": [
+        {
+          "id": "1069625",
+          "label": "Pistache / Pistache",
+          "hex": [
+            "#B5B35C",
+            "#B5B35C"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/310401957/harpuri-pistache--2--imwti2adqe.png",
+          "available": true,
+          "price": 175,
+          "oldPrice": 250,
+          "pay": "29,16",
+          "crop": {
+            "viewBox": [
+              363,
+              71,
+              357,
+              947
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-harpuri-750ml---1069625-brushed.webp",
+            "crop": {
+              "viewBox": [
+                402,
+                78,
+                399,
+                1055
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "1070817",
+          "label": "Pistache / Preto",
+          "hex": [
+            "#000000",
+            "#B5B35C"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/310401957/harpuri-pistache-8ncmbtjbv0.png",
+          "available": true,
+          "price": 175,
+          "oldPrice": 250,
+          "pay": "29,16",
+          "crop": {
+            "viewBox": [
+              363,
+              64,
+              357,
+              954
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-harpuri-750ml---1070817-brushed.webp",
+            "crop": {
+              "viewBox": [
+                401,
+                70,
+                399,
+                1063
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Copo Pand",
+      "size": "750 ml",
+      "price": 125,
+      "pay": "20,83",
+      "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/301553979/pand-tiffany-zeozt1lx96.png",
+      "url": "copo-pand-750ml",
+      "badge": "Oferta do mês",
+      "category": "copos",
+      "colors": [
+        {
+          "id": "425881",
+          "label": "Alfazema",
+          "hex": [
+            "#8581D9",
+            "#8581D9"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/301553979/pand-alfazema--4ginpw03ql.png",
+          "available": true,
+          "price": 125,
+          "oldPrice": 175,
+          "crop": {
+            "viewBox": [
+              331,
+              136,
+              440,
+              864
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-pand-750ml--425881-brushed.webp",
+            "crop": {
+              "viewBox": [
+                367,
+                149,
+                491,
+                963
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "425416",
+          "label": "Tiffany",
+          "hex": [
+            "#1FC2C2",
+            "#1FC2C2"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/301553979/pand-tiffany-zeozt1lx96.png",
+          "available": true,
+          "price": 125,
+          "oldPrice": 175,
+          "crop": {
+            "viewBox": [
+              328,
+              116,
+              453,
+              888
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-pand-750ml--425416-brushed.webp",
+            "crop": {
+              "viewBox": [
+                364,
+                128,
+                504,
+                990
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426573",
+          "label": "Pitaya",
+          "hex": [
+            "#F77FBE",
+            "#F77FBE"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/301553979/pand-pitaya-jrghs4zjvd.png",
+          "available": true,
+          "price": 125,
+          "oldPrice": 175,
+          "crop": {
+            "viewBox": [
+              320,
+              119,
+              459,
+              880
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-pand-750ml--426573-brushed.webp",
+            "crop": {
+              "viewBox": [
+                355,
+                129,
+                511,
+                981
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Garrafa Buba",
+      "size": "355 ml",
+      "price": 119,
+      "pay": "19,83",
+      "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/312196614/3-a7ig3sbmvb.png",
+      "url": "garrafa-buba-355ml-",
+      "badge": "Oferta do mês",
+      "oldPrice": 170,
+      "defaultColor": "858552",
+      "category": "garrafas",
+      "colors": [
+        {
+          "id": "858552",
+          "label": "Areia / Areia",
+          "hex": [
+            "#C6C3B5",
+            "#C6C3B5"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-areia-qtwddtiyc9.png",
+          "available": true,
+          "price": 119,
+          "oldPrice": 170,
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              377,
+              245,
+              333,
+              759
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---858552-brushed.webp",
+            "crop": {
+              "viewBox": [
+                419,
+                270,
+                367,
+                847
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "1672485",
+          "label": "Citrus / Citrus",
+          "hex": [
+            "#CCFF00",
+            "#CCFF00"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-citrus-pc2sromwt6.png",
+          "available": true,
+          "price": 119,
+          "oldPrice": 170,
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              375,
+              243,
+              326,
+              756
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---1672485-brushed.webp",
+            "crop": {
+              "viewBox": [
+                415,
+                269,
+                364,
+                841
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "1673300",
+          "label": "Citrus / Preto",
+          "hex": [
+            "#000000",
+            "#CCFF00"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-citruspt-fbx2dlai7n.png",
+          "available": true,
+          "price": 119,
+          "oldPrice": 170,
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              375,
+              247,
+              328,
+              754
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---1673300-brushed.webp",
+            "crop": {
+              "viewBox": [
+                416,
+                272,
+                366,
+                841
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "493930",
+          "label": "Amarelo / Preto",
+          "hex": [
+            "#000000",
+            "#FFF14F"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-amarelapt-t1t501rb7i.png",
+          "available": true,
+          "price": 119,
+          "oldPrice": 170,
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              379,
+              245,
+              332,
+              759
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---493930-brushed.webp",
+            "crop": {
+              "viewBox": [
+                420,
+                266,
+                370,
+                849
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "1069625",
+          "label": "Pistache / Pistache",
+          "hex": [
+            "#B5B35C",
+            "#B5B35C"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-pistache-cubm6gat29.png",
+          "available": true,
+          "price": 119,
+          "oldPrice": 170,
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              377,
+              244,
+              334,
+              760
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---1069625-brushed.webp",
+            "crop": {
+              "viewBox": [
+                396,
+                123,
+                409,
+                989
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "762609",
+          "label": "Pitaya / Pitaya",
+          "hex": [
+            "#F77FBE",
+            "#F77FBE"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-pitaya-ud66znhjkp.png",
+          "available": true,
+          "price": 119,
+          "oldPrice": 170,
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              371,
+              242,
+              337,
+              767
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---762609-brushed.webp",
+            "crop": {
+              "viewBox": [
+                406,
+                164,
+                389,
+                950
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "545144",
+          "label": "Laranja / Laranja",
+          "hex": [
+            "#FF7F50",
+            "#FF7F50"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/bc7c31f77acf47d1841df6eb07d037cf-n7l4gc23mf.png",
+          "available": true,
+          "price": 119,
+          "oldPrice": 170,
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              371,
+              246,
+              326,
+              753
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---545144-brushed.webp",
+            "crop": {
+              "viewBox": [
+                403,
+                149,
+                392,
+                954
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "546664",
+          "label": "Laranja / Preto",
+          "hex": [
+            "#FF7F50",
+            "#000000"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/435060452db248ac98cc3c5d69586a2f-nksqwzxmhj.png",
+          "available": true,
+          "price": 119,
+          "oldPrice": 170,
+          "pay": "19,83",
+          "crop": {
+            "viewBox": [
+              380,
+              235,
+              335,
+              772
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---546664-brushed.webp",
+            "crop": {
+              "viewBox": [
+                420,
+                225,
+                377,
+                882
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Copo Niliravi",
+      "size": "900 ml",
+      "price": 152,
+      "pay": "25,33",
+      "url": "copo-nilliravi-900ml",
+      "badge": "Alça de brinde",
+      "category": "copos",
+      "colors": [
+        {
+          "id": "426266",
+          "name": "Electric Lime",
+          "hex": [
+            "#CCFF00",
+            "#CCFF00"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/47287212/24fa456712a24551b16be817e6a1f525-h9gbz1wlvb.png",
+          "available": true,
+          "label": "Citrus",
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              72,
+              92,
+              937,
+              924
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--426266-brushed.webp",
+            "crop": {
+              "viewBox": [
+                306,
+                18,
+                586,
+                1131
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "425416",
+          "name": "Java",
+          "hex": [
+            "#1FC2C2",
+            "#1FC2C2"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/47287212/8b4e821441ac4ef7aa973654ab4689d8-ypokd7u6ss.png",
+          "available": true,
+          "label": "Tiffany",
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              72,
+              92,
+              937,
+              926
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--425416-brushed.webp",
+            "crop": {
+              "viewBox": [
+                301,
+                0,
+                595,
+                1160
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426236",
+          "name": "Lilac",
+          "hex": [
+            "#C8A2C8",
+            "#C8A2C8"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/47287212/7025087dc6234762aa2b39395651530b-jze6jix260.png",
+          "available": true,
+          "label": "Lilás",
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              80,
+              92,
+              929,
+              924
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--426236-brushed.webp",
+            "crop": {
+              "viewBox": [
+                289,
+                22,
+                618,
+                1136
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426185",
+          "name": "Old Rose",
+          "hex": [
+            "#C08081",
+            "#C08081"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/47287212/fca1850e98704d15a5008af1355579c6-3meza0hhzr.png",
+          "available": true,
+          "label": "Rosa antigo",
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              80,
+              92,
+              929,
+              922
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--426185-brushed.webp",
+            "crop": {
+              "viewBox": [
+                297,
+                11,
+                603,
+                1136
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        },
+        {
+          "id": "426573",
+          "name": "Persian Pink",
+          "hex": [
+            "#F77FBE",
+            "#F77FBE"
+          ],
+          "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/47287212/80c439ccc6ce49f49b86e723ac28f752-esd26ovp4i.png",
+          "available": true,
+          "label": "Pitaya",
+          "price": 152,
+          "oldPrice": 190,
+          "crop": {
+            "viewBox": [
+              78,
+              92,
+              931,
+              920
+            ],
+            "width": 1080,
+            "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--426573-brushed.webp",
+            "crop": {
+              "viewBox": [
+                312,
+                34,
+                563,
+                1104
+              ],
+              "width": 1200,
+              "height": 1200
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
