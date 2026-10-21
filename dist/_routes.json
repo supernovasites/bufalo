@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "description": "Run Functions only for APIs and pages requiring server processing or authentication.",
+  "include": [
+    "/api/*",
+    "/live",
+    "/live/*",
+    "/painel",
+    "/painel/*",
+    "/blog",
+    "/blog/*",
+    "/manadaone",
+    "/manadaone/*",
+    "/midia",
+    "/midia/*",
+    "/mkt/email",
+    "/mkt/email/*",
+    "/reserva/acaibowl",
+    "/reserva/acaibowl/*",
+    "/campanhas/cirio",
+    "/campanhas/cirio/*"
+  ],
+  "exclude": []
+}
