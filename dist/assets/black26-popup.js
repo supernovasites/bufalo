@@ -5,6 +5,12 @@
   const calendar = new Intl.DateTimeFormat('en-US', {timeZone: 'America/Fortaleza', weekday: 'short'});
   const isWeekday = () => !['Sat', 'Sun'].includes(calendar.format(new Date()));
   if (!isWeekday()) return;
+  const sessionKey = 'bufalo_black26_popup_seen';
+  const hasSeen = () => {
+    try { if (document.cookie.split(';').some(cookie => cookie.trim() === sessionKey + '=1')) return true; } catch {}
+    try { return sessionStorage.getItem(sessionKey) === '1'; } catch { return false; }
+  };
+  if (hasSeen()) return;
 
   const images = [
     ['caneca-bhadawari-710ml--425416', 'Caneca Bhadawari 710 ml Tiffany, de R$ 190 por R$ 152, 20% OFF'],
@@ -37,9 +43,12 @@
   };
   checkAtMidnight();
   setTimeout(() => {
-    if (!isWeekday() || document.querySelector('dialog[open]')) return;
+    if (!isWeekday() || hasSeen() || document.querySelector('dialog[open]')) return;
     previousOverflow = document.body.style.overflow;
     popup.showModal();
+    // No expires/max-age: this cookie lasts for the browser session and covers other tabs.
+    try { document.cookie = sessionKey + '=1; Path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : ''); } catch {}
+    try { sessionStorage.setItem(sessionKey, '1'); } catch {}
     document.body.style.overflow = 'hidden';
   }, 600);
 })();
