@@ -32,3 +32,25 @@
 .photo-pricing>span{display:none}
 @media(max-width:760px){.photo-pricing{right:7px;bottom:4px;padding:5px 8px}.photo-pricing>div{gap:1px}.photo-pricing strong{font-size:23px}.photo-pricing small{font-size:10px;margin-right:2px}.photo-pricing s{font-size:9px;line-height:10px}}
 @media(max-width:350px){.photo-pricing strong{font-size:21px}}
+
+/* Softer card corners, dedicated price footer and prominent carousel controls. */
+.model-track .product-card{border-radius:18px;border-color:#536047}
+.model-track .photo{height:calc(var(--original-card) + 26px)}
+.photo .product-image{bottom:104px}
+.photo-pricing{left:0;right:0;bottom:0;max-width:none;padding:11px 12px;border-radius:0;background:#eeddb7;border-top:1px solid #c6ad79;text-align:right;min-height:65px}
+.photo-pricing>div{gap:3px}
+.model-controls{gap:9px}
+.model-controls button{width:44px;height:44px;background:#d8bd80;color:#142018;border:1px solid #edd6a3;box-shadow:0 3px 10px #0004;font-size:30px;font-weight:700}
+.model-controls button:hover:not(:disabled){background:#f0dba9;box-shadow:0 3px 14px #c6ad7945}
+.model-controls button:disabled{background:#293126;color:#8d967f;border-color:#48503c;box-shadow:none;opacity:.55}
+@media(max-width:760px){.model-track .product-card{border-radius:15px}.photo .product-image{bottom:94px}.photo-pricing{padding:8px 10px;min-height:60px}.model-controls button{width:40px;height:40px;font-size:28px}.model-controls{gap:7px}}
+
+/* Homepage-style white content with gold campaign accents. */
+body{background:#fff;color:#142e32}
+.offers{--line:#e2e5df;--text:#142e32;--muted:#667067;background:#fff;color:#142e32}
+.section-heading h1{color:#142e32}.section-heading h1 span{color:#a0803f}
+.section-heading .product-count,.model-heading p,.store-note{color:#657165}
+.model-heading h2{color:#142e32}.model-heading h2 span{color:#7b673b}
+.model-track .product-card{border-color:#e0e3da;background:#fff;box-shadow:0 2px 7px #142e3208}
+.model-controls button:disabled{background:#f3f3ec;color:#9a9f8e;border-color:#e0e3d7;opacity:.7}
+#catalog-error{color:#142e32}
