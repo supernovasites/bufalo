@@ -15,6 +15,8 @@ A vitrine exibe 40 cards únicos, um por cor, com desconto e preço na própria 
 
 As 40 fotografias receberam versões retocadas com a ferramenta de edição de imagens, usando cada foto oficial como referência de cor, logo, geometria e acabamento. As versões de entrega estão em `media/products/`, em WebP, e cada cor registra `retouch.src` e seu enquadramento SVG. Os campos originais `img` e `crop` foram preservados para rastreabilidade e alternativa de carregamento.
 
+As 33 variantes com aros, bases ou colares de aço expostos receberam uma segunda edição para acabamento de aço inox levemente escovado, com linhas finas no sentido da curvatura e reflexos acetinados. Os arquivos dessa revisão usam o sufixo `-brushed.webp`.
+
 O conteúdo usa fundo branco, títulos nas cores da homepage e detalhes dourados. Cards com cantos arredondados, faixa inferior de preço e setas douradas com estado desativado distinto.
 
 ## Organização por modelo
