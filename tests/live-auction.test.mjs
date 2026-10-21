@@ -94,7 +94,7 @@ test('auction form is inline at the end, description follows photo, and admin ac
  assert.ok(!html.includes('id="auction-dialog"'));assert.ok(html.includes('id="auction-bid-panel"'));assert.ok(html.indexOf('id="live-auction"')>html.indexOf('id="cadastro-live"'));
  assert.ok(html.indexOf('id="auction-description"')>html.indexOf('id="auction-photo"'));assert.ok(html.indexOf('id="auction-description"')<html.indexOf('class="auction-content"'));
  assert.ok(adminHtml.indexOf('id="dashboard"')>adminHtml.indexOf('id="auction-admin"'));assert.ok(adminHtml.includes('id="auction-admin-start"'));
- const script=readFileSync(new URL('../live/homepage-shell.js',import.meta.url),'utf8');assert.ok(script.includes('Ir para a Oferta da Manada'));
+ const script=readFileSync(new URL('../live/homepage-shell.js',import.meta.url),'utf8');assert.ok(!script.includes('Ir para a Oferta da Manada'));
 });
 test('history keeps the product name for each bid after the product and round change',async()=>{
  const db=database(),cookie=await admin(db);let state=await open(db,cookie);

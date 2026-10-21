@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Sorteios da Manada · Búfalo Growler</title>
+<link rel="stylesheet" href="/live/sorteio/sorteio.css?v=20261021">
+<script src="/live/sorteio/sorteio.js?v=20261021" defer></script>
+</head>
+<body>
+<header><a class="brand" href="/painel/">BÚFALO <small>GROWLER</small></a><nav aria-label="Administração"><a href="/painel/">Voltar ao painel</a><a href="/live/" target="_blank" rel="noopener">Abrir live ↗</a></nav></header>
+<main>
+<p class="eyebrow">LIVE BÚFALO · SORTEIOS DO DIA</p>
+<h1>A sorte faz parte<br>da nossa Manada.</h1>
+<p class="intro">Três sorteios, três chances de celebrar. Confirme cada ganhador para revelar o nome na página da live.</p>
+<div class="workspace">
+<section class="panel" aria-labelledby="participants-title">
+<span class="step">01 · PARTICIPANTES</span><h2 id="participants-title">Quem está nessa com a gente?</h2>
+<label for="names">Nomes dos participantes · um por linha</label>
+<textarea id="names" rows="12" maxlength="150000" placeholder="Ana Silva&#10;Bruno Costa&#10;Carla Souza" disabled></textarea>
+<p class="hint">Até 5.000 nomes. Nomes repetidos contam uma vez; ganhadores confirmados não participam dos próximos sorteios.</p>
+<div class="actions"><button id="draw" disabled>Sortear</button><button class="secondary" id="clear-names" disabled>Limpar nomes</button></div>
+</section>
+<section class="panel stage" aria-labelledby="draw-title">
+<span class="step" id="round-label">02 · SORTEIO</span><h2 id="draw-title">Um momento de sorte.</h2>
+<span class="trophy" aria-hidden="true">🏆</span>
+<p id="candidate" class="candidate" aria-live="polite">O próximo nome pode ser o seu.</p>
+<p id="candidate-note">Sorteie um participante e confira o nome antes de confirmar.</p>
+<div class="actions"><button id="confirm" disabled>Confirmar sorteado</button></div>
+<label class="sound"><input id="sound" type="checkbox" checked> Som da comemoração</label>
+</section>
+</div>
+<p id="feedback" role="status" aria-live="polite">Carregando sorteios…</p>
+<section class="results" aria-labelledby="results-title"><div class="results-heading"><div><span class="step">03 · GANHADORES DA LIVE</span><h2 id="results-title">A Manada celebra com vocês.</h2></div><button id="clear-winners" class="secondary" disabled>Limpar sorteados</button></div>
+<div class="result-grid">
+<article data-slot="1"><p>1º sorteio · às 15h15</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3></article>
+<article data-slot="2"><p>2º sorteio · às 16h</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3></article>
+<article data-slot="3"><p>3º sorteio · às 16h40</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3></article>
+</div></section>
+</main>
+<dialog id="celebration" aria-labelledby="celebration-title"><canvas id="fireworks" aria-hidden="true"></canvas><div class="celebration-copy"><span class="celebration-trophy" aria-hidden="true">🏆</span><p class="eyebrow">A MANADA ESTÁ EM FESTA!</p><h2 id="celebration-title">Parabéns!</h2><p id="celebration-name"></p><p>Hoje a sorte escolheu você.<br>Que venham muitas aventuras com a Búfalo!</p><button id="close-celebration">Continuar os sorteios</button></div></dialog>
+</body></html>
