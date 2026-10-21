@@ -20,7 +20,7 @@ test('raffle pages and private state require the painel session, including alias
   const allowed=await call(db,path,undefined,cookie);assert.equal(allowed.status,200);assert.match(allowed.headers.get('Cache-Control'),/no-store/);assert.match(allowed.headers.get('X-Robots-Tag'),/noindex/);
  }
  assert.equal((await call(db,'/live/api/raffle/admin')).status,401);
- assert.equal((await call(db,'/live/api/raffle/admin',{action:'clear-winners',revision:0})).status,401);
+ assert.equal((await call(db,'/live/api/raffle/admin',{action:'clear-winner',slot:1,revision:0})).status,401);
  assert.equal((await call(db,'/live/api/raffle/admin',{action:'draw',revision:0,names:'Ana'},cookie,'https://other.test')).status,403);
  db.sql.close();
 });
@@ -37,7 +37,7 @@ test('three confirmed results are published in order; pending names and particip
  }
  assert.equal(new Set(state.winners.map(w=>w.name)).size,3);
  assert.equal((await call(db,'/live/api/raffle/admin',{action:'draw',revision:state.revision,names:'Outra pessoa'},cookie)).status,409);
- state=await action(db,cookie,state,'clear-winners');assert.deepEqual(state.winners,[]);assert.equal(state.candidate,null);assert.deepEqual((await(await call(db)).json()).winners,[]);
+ for(const slot of [1,2,3])state=await action(db,cookie,state,'clear-winner',{slot});assert.deepEqual(state.winners,[]);assert.equal(state.candidate,null);assert.deepEqual((await(await call(db)).json()).winners,[]);
  db.sql.close();
 });
 test('reroll does not publish, clearing names invalidates the candidate, empty input is rejected',async()=>{
@@ -54,7 +54,7 @@ test('concurrent and stale confirmations cannot fill two slots or undo a reset',
  const confirmations=await Promise.all([1,2].map(()=>call(db,'/live/api/raffle/admin',{action:'confirm',revision:state.revision},cookie)));
  assert.deepEqual(confirmations.map(r=>r.status).sort(),[200,409]);
  let latest=await(await call(db,'/live/api/raffle/admin',undefined,cookie)).json();assert.equal(latest.winners.length,1);
- latest=await action(db,cookie,latest,'clear-winners');
+ latest=await action(db,cookie,latest,'clear-winner',{slot:1});
  assert.equal((await call(db,'/live/api/raffle/admin',{action:'confirm',revision:state.revision},cookie)).status,409);
  assert.deepEqual((await(await call(db)).json()).winners,[]);db.sql.close();
 });
@@ -65,6 +65,20 @@ test('names are normalized, bounded and migrations preserve existing results',as
  state=await action(db,cookie,state,'draw',{names:'<script>alert(1)</script>'});state=await action(db,cookie,state,'confirm');
  const migration=readFileSync(new URL('../migrations/0015_live_raffle.sql',import.meta.url),'utf8');db.sql.exec(migration);db.sql.exec(migration);assert.deepEqual((await(await call(db)).json()).winners,state.winners);db.sql.close();
 });
+test('clearing each slot preserves the other winners and the next confirmation refills that exact slot',async()=>{
+ for(const slot of [1,2,3]){
+  const db=database(),cookie=await admin(db);let state=await(await call(db,'/live/api/raffle/admin',undefined,cookie)).json();
+  for(let i=0;i<3;i++){state=await action(db,cookie,state,'draw',{names:'Ana\nBruno\nCarla\nDaniel'});state=await action(db,cookie,state,'confirm');}
+  const preserved=state.winners.filter(w=>w.slot!==slot),participants=state.participants;
+  state=await action(db,cookie,state,'clear-winner',{slot});
+  assert.deepEqual(state.winners,preserved);assert.deepEqual(state.participants,participants);assert.deepEqual((await(await call(db)).json()).winners,preserved);
+  assert.equal((await call(db,'/live/api/raffle/admin',{action:'clear-winner',slot,revision:state.revision},cookie)).status,409);
+  for(const badSlot of [0,4,'1',null,1.5])assert.equal((await call(db,'/live/api/raffle/admin',{action:'clear-winner',slot:badSlot,revision:state.revision},cookie)).status,400);
+  assert.equal((await call(db,'/live/api/raffle/admin',{action:'clear-winners',revision:state.revision},cookie)).status,400);
+  state=await action(db,cookie,state,'draw',{names:participants.join('\n')});state=await action(db,cookie,state,'confirm');
+  assert.equal(state.winners.at(-1).slot,slot);assert.equal(new Set(state.winners.map(w=>w.slot)).size,3);assert.deepEqual(state.winners.filter(w=>w.slot!==slot),preserved);db.sql.close();
+ }
+});
 test('public markup removes acai and hero purchase buttons and distributed files match source',()=>{
  const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
  const html=read('live/index.html');assert.ok(!html.includes('id="acai-pre-venda"'));assert.ok(!html.includes('class="hero-actions"'));assert.ok(!html.includes('class="button hero-link"'));
@@ -72,4 +86,7 @@ test('public markup removes acai and hero purchase buttons and distributed files
  for(const file of ['live/index.html','live/homepage-shell.js','live/admin.html','live/raffle.css','live/raffle-public.js','live/sorteio/index.html','live/sorteio/sorteio.css','live/sorteio/sorteio.js','painel/index.html'])assert.equal(read(file),read('dist/'+file));
  assert.match(read('live/raffle-public.js'),/name.textContent=text/);
  assert.match(read('painel/index.html'),/href="\/live\/sorteio\/"/);
+ assert.ok(!read('live/admin.html').includes('href="/live/sorteio/"'));
+ const raffleHtml=read('live/sorteio/index.html');assert.ok(!raffleHtml.includes('placeholder='));assert.ok(!raffleHtml.includes('id="clear-winners"'));
+ for(const slot of [1,2,3])assert.ok(raffleHtml.includes(`data-clear-slot="${slot}"`));
 });

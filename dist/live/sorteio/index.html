@@ -4,8 +4,8 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Sorteios da Manada · Búfalo Growler</title>
-<link rel="stylesheet" href="/live/sorteio/sorteio.css?v=20261021">
-<script src="/live/sorteio/sorteio.js?v=20261021" defer></script>
+<link rel="stylesheet" href="/live/sorteio/sorteio.css?v=20261021-individual">
+<script src="/live/sorteio/sorteio.js?v=20261021-individual" defer></script>
 </head>
 <body>
 <header><a class="brand" href="/painel/">BÚFALO <small>GROWLER</small></a><nav aria-label="Administração"><a href="/painel/">Voltar ao painel</a><a href="/live/" target="_blank" rel="noopener">Abrir live ↗</a></nav></header>
@@ -17,7 +17,7 @@
 <section class="panel" aria-labelledby="participants-title">
 <span class="step">01 · PARTICIPANTES</span><h2 id="participants-title">Quem está nessa com a gente?</h2>
 <label for="names">Nomes dos participantes · um por linha</label>
-<textarea id="names" rows="12" maxlength="150000" placeholder="Ana Silva&#10;Bruno Costa&#10;Carla Souza" disabled></textarea>
+<textarea id="names" rows="12" maxlength="150000" disabled></textarea>
 <p class="hint">Até 5.000 nomes. Nomes repetidos contam uma vez; ganhadores confirmados não participam dos próximos sorteios.</p>
 <div class="actions"><button id="draw" disabled>Sortear</button><button class="secondary" id="clear-names" disabled>Limpar nomes</button></div>
 </section>
@@ -31,11 +31,11 @@
 </section>
 </div>
 <p id="feedback" role="status" aria-live="polite">Carregando sorteios…</p>
-<section class="results" aria-labelledby="results-title"><div class="results-heading"><div><span class="step">03 · GANHADORES DA LIVE</span><h2 id="results-title">A Manada celebra com vocês.</h2></div><button id="clear-winners" class="secondary" disabled>Limpar sorteados</button></div>
+<section class="results" aria-labelledby="results-title"><div class="results-heading"><div><span class="step">03 · GANHADORES DA LIVE</span><h2 id="results-title">A Manada celebra com vocês.</h2></div></div>
 <div class="result-grid">
-<article data-slot="1"><p>1º sorteio · às 15h15</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3></article>
-<article data-slot="2"><p>2º sorteio · às 16h</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3></article>
-<article data-slot="3"><p>3º sorteio · às 16h40</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3></article>
+<article data-slot="1"><p>1º sorteio · às 15h15</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3><button type="button" class="secondary" data-clear-slot="1" disabled>Limpar 1º sorteado</button></article>
+<article data-slot="2"><p>2º sorteio · às 16h</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3><button type="button" class="secondary" data-clear-slot="2" disabled>Limpar 2º sorteado</button></article>
+<article data-slot="3"><p>3º sorteio · às 16h40</p><span aria-hidden="true">🏆</span><h3>Aguardando sorteio</h3><button type="button" class="secondary" data-clear-slot="3" disabled>Limpar 3º sorteado</button></article>
 </div></section>
 </main>
 <dialog id="celebration" aria-labelledby="celebration-title"><canvas id="fireworks" aria-hidden="true"></canvas><div class="celebration-copy"><span class="celebration-trophy" aria-hidden="true">🏆</span><p class="eyebrow">A MANADA ESTÁ EM FESTA!</p><h2 id="celebration-title">Parabéns!</h2><p id="celebration-name"></p><p>Hoje a sorte escolheu você.<br>Que venham muitas aventuras com a Búfalo!</p><button id="close-celebration">Continuar os sorteios</button></div></dialog>

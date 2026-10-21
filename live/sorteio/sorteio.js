@@ -1,7 +1,7 @@
 (() => {
   const $=id=>document.getElementById(id);
   let state, busy=true, audio, animation;
-  const controls=['draw','clear-names','confirm','clear-winners','names'];
+  const controls=['draw','clear-names','confirm','names'];
   const feedback=(text,error=false)=>{ $('feedback').textContent=text; $('feedback').classList.toggle('error',error); };
   function render() {
     controls.forEach(id=>$(id).disabled=busy||!state);
@@ -11,14 +11,15 @@
     $('draw').disabled=busy||complete||!$('names').value.trim();
     $('draw').textContent=state.candidate&&!edited?'Sortear novamente':'Sortear';
     $('confirm').disabled=busy||complete||!state.candidate||edited;
-    $('clear-winners').disabled=busy||!state.winners.length;
     $('clear-names').disabled=busy||(!$('names').value&&!state.participants.length&&!state.candidate);
-    $('round-label').textContent=complete?'02 · SORTEIOS CONCLUÍDOS':`02 · ${state.winners.length+1}º SORTEIO · ${['15h15','16h','16h40'][state.winners.length]}`;
+    const nextSlot=[1,2,3].find(slot=>!state.winners.some(winner=>winner.slot===slot));
+    $('round-label').textContent=complete?'02 · SORTEIOS CONCLUÍDOS':`02 · ${nextSlot}º SORTEIO · ${['15h15','16h','16h40'][nextSlot-1]}`;
     $('candidate').textContent=complete?'Três ganhadores. Uma Manada em festa.':state.candidate&&!edited?state.candidate:'O próximo nome pode ser o seu.';
     $('candidate-note').textContent=state.candidate&&!edited?'Confira o nome e confirme para publicar na live.':'Sorteie um participante e confira o nome antes de confirmar.';
     document.querySelectorAll('[data-slot]').forEach(card=>{
       const winner=state.winners.find(item=>item.slot===Number(card.dataset.slot));
       card.querySelector('h3').textContent=winner?.name||'Aguardando sorteio';
+      card.querySelector('[data-clear-slot]').disabled=busy||!winner;
     });
   }
   async function request(body) {
@@ -84,13 +85,13 @@
     }
     cancelAnimationFrame(animation);animation=requestAnimationFrame(frame);
   }
-  async function act(action) {
+  async function act(action,extra={}) {
     if(busy||!state)return;
     busy=true;render();feedback(action==='draw'?'Sorteando…':'Salvando…');
     try {
-      state=await request({action,revision:state.revision,...(action==='draw'?{names:$('names').value}:{})});
+      state=await request({action,revision:state.revision,...extra,...(action==='draw'?{names:$('names').value}:{})});
       $('names').value=state.participants.join('\n');
-      feedback({'draw':'Nome sorteado. Confirme para publicar ou sorteie novamente.','confirm':'Ganhador confirmado! O nome já está disponível na live.','clear-participants':'Lista de participantes limpa.','clear-winners':'Sorteados removidos desta página e da live.'}[action]);
+      feedback({'draw':'Nome sorteado. Confirme para publicar ou sorteie novamente.','confirm':'Ganhador confirmado! O nome já está disponível na live.','clear-participants':'Lista de participantes limpa.','clear-winner':`${extra.slot}º sorteado removido desta página e da live. Os outros resultados foram mantidos.`}[action]);
       if(action==='confirm')celebrate(state.winners.at(-1).name);
     } catch(error) {
       if(error.status===409)try{await load(true);}catch{/* Preserve original error. */}
@@ -101,9 +102,10 @@
   $('draw').addEventListener('click',()=>act('draw'));
   $('confirm').addEventListener('click',()=>{prepareSound();act('confirm');});
   $('clear-names').addEventListener('click',()=>act('clear-participants'));
-  $('clear-winners').addEventListener('click',()=>{
-    if(window.confirm('Limpar os três ganhadores? Os nomes também serão removidos da página da live.'))act('clear-winners');
-  });
+  document.querySelectorAll('[data-clear-slot]').forEach(button=>button.addEventListener('click',()=>{
+    const slot=Number(button.dataset.clearSlot);
+    if(window.confirm(`Limpar somente o ${slot}º sorteado? O nome também será removido desse espaço na live.`))act('clear-winner',{slot});
+  }));
   $('close-celebration').addEventListener('click',()=>$('celebration').close());
   $('celebration').addEventListener('close',()=>{cancelAnimationFrame(animation);});
   load().then(()=>feedback('Tudo pronto. Adicione os nomes e faça o primeiro sorteio.')).catch(error=>feedback(error.message,true)).finally(()=>{busy=false;render();});
