@@ -34,6 +34,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--426224.webp",
+            "crop": {
+              "viewBox": [
+                382,
+                165,
+                422,
+                949
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -57,6 +70,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--425301.webp",
+            "crop": {
+              "viewBox": [
+                387,
+                127,
+                422,
+                979
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -80,6 +106,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--425881.webp",
+            "crop": {
+              "viewBox": [
+                369,
+                90,
+                442,
+                1041
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -103,6 +142,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--426124.webp",
+            "crop": {
+              "viewBox": [
+                383,
+                167,
+                420,
+                945
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -126,6 +178,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-palitano-14l--426573.webp",
+            "crop": {
+              "viewBox": [
+                385,
+                132,
+                427,
+                980
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -160,6 +225,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-banni-350ml--37093.webp",
+            "crop": {
+              "viewBox": [
+                356,
+                361,
+                487,
+                719
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -183,6 +261,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-banni-350ml--426709.webp",
+            "crop": {
+              "viewBox": [
+                354,
+                404,
+                488,
+                707
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -206,6 +297,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-banni-350ml--426185.webp",
+            "crop": {
+              "viewBox": [
+                353,
+                369,
+                490,
+                706
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -243,6 +347,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-jafarabadi-1l---762609.webp",
+            "crop": {
+              "viewBox": [
+                402,
+                28,
+                425,
+                1094
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -266,6 +383,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-jafarabadi-1l---1069625.webp",
+            "crop": {
+              "viewBox": [
+                399,
+                21,
+                424,
+                1103
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -289,6 +419,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-jafarabadi-1l---1070817.webp",
+            "crop": {
+              "viewBox": [
+                400,
+                22,
+                424,
+                1100
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -326,6 +469,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-mediterraneo-2l--426709.webp",
+            "crop": {
+              "viewBox": [
+                382,
+                47,
+                454,
+                1064
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -349,6 +505,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/growler-mediterraneo-2l--426266.webp",
+            "crop": {
+              "viewBox": [
+                365,
+                49,
+                483,
+                1062
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -382,6 +551,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--37096.webp",
+            "crop": {
+              "viewBox": [
+                255,
+                236,
+                624,
+                877
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -404,6 +586,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--425881.webp",
+            "crop": {
+              "viewBox": [
+                244,
+                226,
+                636,
+                888
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -426,6 +621,19 @@
             ],
             "width": 598,
             "height": 599
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--426709.webp",
+            "crop": {
+              "viewBox": [
+                243,
+                242,
+                638,
+                880
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -448,6 +656,19 @@
             ],
             "width": 599,
             "height": 595
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--426266.webp",
+            "crop": {
+              "viewBox": [
+                249,
+                176,
+                637,
+                889
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -470,6 +691,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--425416.webp",
+            "crop": {
+              "viewBox": [
+                260,
+                232,
+                627,
+                879
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -492,6 +726,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--426236.webp",
+            "crop": {
+              "viewBox": [
+                243,
+                243,
+                629,
+                869
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -514,6 +761,19 @@
             ],
             "width": 597,
             "height": 597
+          },
+          "retouch": {
+            "src": "media/products/caneca-bhadawari-710ml--426185.webp",
+            "crop": {
+              "viewBox": [
+                237,
+                241,
+                652,
+                881
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -551,6 +811,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-murrah-540ml--1069625.webp",
+            "crop": {
+              "viewBox": [
+                425,
+                102,
+                363,
+                1014
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -574,6 +847,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-murrah-540ml--1070817.webp",
+            "crop": {
+              "viewBox": [
+                425,
+                100,
+                362,
+                1016
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -611,6 +897,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-harpuri-750ml---1069625.webp",
+            "crop": {
+              "viewBox": [
+                402,
+                78,
+                399,
+                1055
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -634,6 +933,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-harpuri-750ml---1070817.webp",
+            "crop": {
+              "viewBox": [
+                402,
+                71,
+                398,
+                1062
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -668,6 +980,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-pand-750ml--425881.webp",
+            "crop": {
+              "viewBox": [
+                367,
+                149,
+                490,
+                963
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -690,6 +1015,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-pand-750ml--425416.webp",
+            "crop": {
+              "viewBox": [
+                364,
+                128,
+                504,
+                990
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -712,6 +1050,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-pand-750ml--426573.webp",
+            "crop": {
+              "viewBox": [
+                355,
+                130,
+                511,
+                980
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -749,6 +1100,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---858552.webp",
+            "crop": {
+              "viewBox": [
+                419,
+                270,
+                367,
+                847
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -772,6 +1136,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---1672485.webp",
+            "crop": {
+              "viewBox": [
+                415,
+                270,
+                361,
+                840
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -795,6 +1172,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---1673300.webp",
+            "crop": {
+              "viewBox": [
+                416,
+                272,
+                366,
+                841
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -818,6 +1208,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---493930.webp",
+            "crop": {
+              "viewBox": [
+                420,
+                267,
+                370,
+                848
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -841,6 +1244,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---1069625.webp",
+            "crop": {
+              "viewBox": [
+                396,
+                124,
+                408,
+                988
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -864,6 +1280,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---762609.webp",
+            "crop": {
+              "viewBox": [
+                406,
+                165,
+                389,
+                948
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -887,6 +1316,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---545144.webp",
+            "crop": {
+              "viewBox": [
+                403,
+                149,
+                392,
+                955
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -910,6 +1352,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/garrafa-buba-355ml---546664.webp",
+            "crop": {
+              "viewBox": [
+                420,
+                225,
+                377,
+                882
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]
@@ -944,6 +1399,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--426266.webp",
+            "crop": {
+              "viewBox": [
+                306,
+                17,
+                586,
+                1133
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -967,6 +1435,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--425416.webp",
+            "crop": {
+              "viewBox": [
+                301,
+                0,
+                595,
+                1159
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -990,6 +1471,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--426236.webp",
+            "crop": {
+              "viewBox": [
+                290,
+                22,
+                617,
+                1135
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -1013,6 +1507,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--426185.webp",
+            "crop": {
+              "viewBox": [
+                296,
+                12,
+                604,
+                1135
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         },
         {
@@ -1036,6 +1543,19 @@
             ],
             "width": 1080,
             "height": 1080
+          },
+          "retouch": {
+            "src": "media/products/copo-nilliravi-900ml--426573.webp",
+            "crop": {
+              "viewBox": [
+                313,
+                34,
+                562,
+                1104
+              ],
+              "width": 1200,
+              "height": 1200
+            }
           }
         }
       ]

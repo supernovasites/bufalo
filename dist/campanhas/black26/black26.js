@@ -11,8 +11,9 @@
   const capacity=product=>{const value=parseFloat(product.size.replace(',','.'));return /ml/i.test(product.size)?value/1000:value;};
   function card(product){
     const color=product.color,oldPrice=color.oldPrice||product.oldPrice,label=labelFor(color);
-    const image=color.img.replace('/600x600/','/1200x1200/');
-    return `<article class="card product-card" data-product="${escape(product.url)}" data-variant="${escape(product.url+'--'+color.id)}" style="--capacity-scale:${(.88*Math.cbrt(capacity(product)/1.9)).toFixed(3)}"><a class="photo product-photo" href="${href(product)}" target="_blank" rel="noopener" aria-label="Ver ${escape(product.name+' '+product.size+' — '+label)} por ${escape(money(color.price))} na loja"><span class="badge discount-badge">${discount(color)}% OFF</span><svg class="product-image" viewBox="${color.crop.viewBox.join(' ')}" role="img" aria-label="${escape(product.name+' '+product.size+' — '+label)}"><image href="${escape(image)}" width="${color.crop.width}" height="${color.crop.height}"/></svg><div class="photo-pricing"><div><s>${money(oldPrice)}</s><strong>${priceHTML(color)}</strong></div><span aria-hidden="true">↗</span></div></a></article>`;
+    const image=color.retouch?.src||color.img.replace('/600x600/','/1200x1200/');
+    const frame=color.retouch?.crop||color.crop;
+    return `<article class="card product-card" data-product="${escape(product.url)}" data-variant="${escape(product.url+'--'+color.id)}" style="--capacity-scale:${(.88*Math.cbrt(capacity(product)/1.9)).toFixed(3)}"><a class="photo product-photo" href="${href(product)}" target="_blank" rel="noopener" aria-label="Ver ${escape(product.name+' '+product.size+' — '+label)} por ${escape(money(color.price))} na loja"><span class="badge discount-badge">${discount(color)}% OFF</span><svg class="product-image" viewBox="${frame.viewBox.join(' ')}" role="img" aria-label="${escape(product.name+' '+product.size+' — '+label)}"><image href="${escape(image)}" width="${frame.width}" height="${frame.height}"/></svg><div class="photo-pricing"><div><s>${money(oldPrice)}</s><strong>${priceHTML(color)}</strong></div><span aria-hidden="true">↗</span></div></a></article>`;
   }
   function render(){
     const groups=new Map();for(const product of products){if(!groups.has(product.url))groups.set(product.url,[]);groups.get(product.url).push(product);}
