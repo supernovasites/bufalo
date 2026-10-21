@@ -11,7 +11,7 @@ async function authenticated(request,db){const token=request.headers.get('Cookie
 async function handle(context) {
   const {request,env} = context;
   const url = new URL(request.url), path = url.pathname.replace(/\/$/,'');
-  const adminPage = path === '/live/admin' || path === '/live/admin.html' || path.startsWith('/live/admin/') || path === '/live/sorteio' || path === '/live/sorteio.html' || path.startsWith('/live/sorteio/');
+  const adminPage = path === '/live/admin' || path === '/live/admin.html' || path.startsWith('/live/admin/') || path === '/live/sorteio' || path === '/live/sorteio.html' || path.startsWith('/live/sorteio/') || path === '/live/mesadj' || path === '/live/mesadj.html' || path.startsWith('/live/mesadj/');
   if (path.startsWith('/live/api/')) {
     if (!env.LIVE_DB) return json({error:'O painel ainda não foi configurado no servidor.'},503);
     const db = env.LIVE_DB;

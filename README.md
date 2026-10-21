@@ -40,6 +40,10 @@ A lupa e o formulário do menu exibem sugestões de produtos cadastrados na Loja
 
 `assets/site-shell.js` é a fonte única dos modelos de cabeçalho, menu, faixa superior e rodapé. `assets/site-shell.css` é a fonte única dos estilos desses componentes. As páginas usam os marcadores `data-bg-header`, `data-bg-footer` e `data-bg-announcement`; os componentes são aplicados automaticamente ao carregar a página. Os HTMLs existentes permanecem como fallback sem JavaScript. Altere os arquivos compartilhados para atualizar homepage, catálogo, Círio, Manada ONE, copos, garrafas e live na mesma publicação. Não edite os fallbacks para mudanças de componentes. Para novas páginas, inclua esses marcadores e os mesmos links para CSS/JS absolutos. A busca usa `assets/menu-search.js` em todas as páginas com o cabeçalho compartilhado. Mantenha as cópias de `dist/assets` sincronizadas na publicação.
 
+## Mesa de DJ
+
+O botão **Abrir mesa de DJ** no card da Live em `/painel/` leva a `/live/mesadj/`. A página, seus arquivos e os áudios em `live/mesadj/sons/` exigem a sessão administrativa do painel. A mesa inclui Celebração, Contagem regressiva com bateria e Fundo do Chaves, fornecidos pela equipe, com reprodução e pausa, reinício, parada, busca na faixa, repetição, volume por faixa e volume geral. Os sons podem se sobrepor. Os atalhos 1, 2 e 3 controlam as faixas; Esc para todas. Nenhum áudio começa automaticamente. O som sai no dispositivo da operação; para entrar na transmissão, configure a captura desse áudio no aplicativo usado para transmitir a live. As cópias de `dist/live/mesadj/` devem acompanhar o pacote publicado.
+
 ## Sorteios da live
 
 Em `/painel/`, use **Abrir página de sorteio** para acessar `/live/sorteio/`, protegida pela mesma sessão administrativa. Cole até 5.000 nomes, um por linha, e clique em **Sortear**. **Sortear novamente** troca o candidato sem publicá-lo; **Confirmar sorteado** publica o nome e o troféu no primeiro espaço vazio: 1º às 15h15, 2º às 16h e 3º às 16h40. Os horários são informativos; a equipe conduz e confirma cada sorteio.
