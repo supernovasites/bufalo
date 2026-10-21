@@ -4,7 +4,7 @@
   const challenges = [
     {id:'tote',label:'Desafio 1',price:950,name:'Wine Tote 14L Soft Cooler',photo:'desafio-tote-noronha-20261021.png',url:'https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l',productImage:'wine-tote-product.png'},
     {id:'nag',label:'Desafio 2',price:2950,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-canions-20261021.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
-    {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-manga-20261021.png',price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/kit-cimo-trio-de-forca-ax',productImage:'trio-cimo-product.png'},
+    {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-manga-20261021.png',price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/cutelaria',productImage:'trio-cimo-product.png'},
     {id:'mestre',label:'Desafio 4',photo:'desafio-mestre-cabana-20261021.png',price:1830,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/mestrebufaloontap7l',productImage:'mestre-product.png'}
   ];
   root.classList.add('manada-challenge');
