@@ -42,7 +42,9 @@ A lupa e o formulário do menu exibem sugestões de produtos cadastrados na Loja
 
 ## Mesa de DJ
 
-O botão **Abrir mesa de DJ** no card da Live em `/painel/` leva a `/live/mesadj/`. A página, seus arquivos e os áudios em `live/mesadj/sons/` exigem a sessão administrativa do painel. A mesa inclui Celebração, Contagem regressiva com bateria e Fundo do Chaves, fornecidos pela equipe, com reprodução e pausa, reinício, parada, busca na faixa, repetição, volume por faixa e volume geral. Os sons podem se sobrepor. Os atalhos 1, 2 e 3 controlam as faixas; Esc para todas. Nenhum áudio começa automaticamente. O som sai no dispositivo da operação; para entrar na transmissão, configure a captura desse áudio no aplicativo usado para transmitir a live. As cópias de `dist/live/mesadj/` devem acompanhar o pacote publicado.
+O botão **Abrir mesa de DJ** no card da Live em `/painel/` leva a `/live/mesadj/`. A página, seus arquivos e os áudios em `live/mesadj/sons/` exigem a sessão administrativa do painel. A mesa inclui Celebração, Contagem regressiva com bateria, Fundo do Chaves e Trilha de fundo da live, fornecidos pela equipe, com reprodução e pausa, reinício, parada, busca na faixa, repetição, volume por faixa e volume geral. Os sons podem se sobrepor. Os atalhos 1, 2, 3 e 4 controlam as faixas; Esc para todas. Nenhum áudio começa automaticamente. O som sai no dispositivo da operação; para entrar na transmissão, configure a captura desse áudio no aplicativo usado para transmitir a live. As cópias de `dist/live/mesadj/` devem acompanhar o pacote publicado.
+
+A trilha longa da mesa está em `live/mesadj/sons/trilha-live.m4a`, convertida para AAC a 48 kb/s para ficar abaixo do limite de arquivo da hospedagem, com a duração completa de 59min55s. A interface usa quatro painéis compactos, sem discos decorativos; no celular, volume geral e parada ficam disponíveis durante a rolagem.
 
 ## Sorteios da live
 

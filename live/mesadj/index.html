@@ -5,49 +5,51 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>Mesa de DJ · Live Búfalo</title>
-  <link rel="stylesheet" href="/live/mesadj/mesadj.css?v=20261021-studio">
-  <script src="/live/mesadj/mesadj.js?v=20261021" defer></script>
+  <link rel="stylesheet" href="/live/mesadj/mesadj.css?v=20261021-compact4">
+  <script src="/live/mesadj/mesadj.js?v=20261021-compact4" defer></script>
 </head>
 <body>
   <header class="top"><a class="brand" href="/painel/">BÚFALO <small>GROWLER</small></a><nav aria-label="Administração"><a href="/painel/">Voltar ao painel</a><a href="/live/sorteio/">Sorteios</a><a href="/live/" target="_blank" rel="noopener">Abrir live ↗</a></nav></header>
   <main>
-    <div class="intro"><div><p class="eyebrow">NOS BASTIDORES DA MANADA</p><h1>O ritmo da live<br>está nas suas mãos.</h1><p class="description">Prepare o suspense, solte a comemoração e dê o tom de cada momento.</p></div><div class="console-label"><span aria-hidden="true">♫</span><p>MESA DE DJ<br><strong>LIVE BÚFALO</strong></p></div></div>
+    <div class="intro"><p class="eyebrow">LIVE BÚFALO · ESTÚDIO</p><h1>Mesa de DJ</h1></div>
     <section class="master" aria-labelledby="master-title">
-      <div><p class="eyebrow">CONTROLE GERAL</p><h2 id="master-title">Na medida certa.</h2></div>
+      <div class="master-heading"><h2 id="master-title">Controle geral</h2></div>
       <div class="master-volume"><label for="master-volume">Volume geral <output id="master-level" for="master-volume">80%</output></label><input id="master-volume" type="range" min="0" max="100" value="80"></div>
-      <button id="stop-all" class="stop-all" type="button"><span aria-hidden="true">■</span> Parar todos os sons <kbd>Esc</kbd></button>
+      <button id="stop-all" class="stop-all" type="button" aria-label="Parar todos os sons"><span aria-hidden="true">■</span> Parar tudo <kbd>Esc</kbd></button>
     </section>
-    <p class="hint">Os sons podem tocar juntos. Atalhos: <kbd>1</kbd> celebração, <kbd>2</kbd> contagem e <kbd>3</kbd> música de fundo. O áudio toca neste dispositivo.</p>
+    <p class="hint">Combine os sons da live. <span class="keyboard-hint">Use as teclas <kbd>1</kbd> a <kbd>4</kbd> para tocar e pausar.</span> O áudio toca neste dispositivo.</p>
     <section class="decks" aria-label="Sons da live">
       <article class="deck" data-track="celebracao">
         <div class="deck-top"><span class="track-number">01 / CELEBRAR</span><span class="track-status">Carregando áudio…</span></div>
-        <div class="disc" aria-hidden="true"><span>✦</span></div>
-        <h2>Celebração</h2><p class="track-copy">O som de uma conquista. Solte quando a Manada tiver motivo para festejar.</p>
+        <h2>Celebração</h2>
         <audio preload="metadata" src="/live/mesadj/sons/celebracao.mp3"></audio>
         <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Celebração" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
         <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>1</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Celebração do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Celebração" disabled>■</button></div>
-        <label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Celebração"></label>
-        <label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Celebração"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
       <article class="deck" data-track="contagem">
         <div class="deck-top"><span class="track-number">02 / SUSPENSE</span><span class="track-status">Carregando áudio…</span></div>
-        <div class="disc" aria-hidden="true"><span>Ⅲ</span></div>
-        <h2>Contagem regressiva</h2><p class="track-copy">A bateria entra, a expectativa cresce. Prepare o próximo grande momento.</p>
+        <h2>Contagem regressiva</h2>
         <audio preload="metadata" src="/live/mesadj/sons/contagem-bateria.mp3"></audio>
         <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Contagem regressiva" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
         <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>2</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Contagem regressiva do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Contagem regressiva" disabled>■</button></div>
-        <label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Contagem regressiva"></label>
-        <label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Contagem regressiva"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
       <article class="deck" data-track="chaves">
         <div class="deck-top"><span class="track-number">03 / CLIMA DA LIVE</span><span class="track-status">Carregando áudio…</span></div>
-        <div class="disc" aria-hidden="true"><span>♪</span></div>
-        <h2>Fundo do Chaves</h2><p class="track-copy">Uma trilha para aquele instante de brincadeira. Controle o clima no seu ritmo.</p>
+        <h2>Fundo do Chaves</h2>
         <audio preload="metadata" src="/live/mesadj/sons/fundo-chaves.mp3"></audio>
         <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Fundo do Chaves" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
         <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>3</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Fundo do Chaves do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Fundo do Chaves" disabled>■</button></div>
-        <label class="volume-label">Volume <output class="track-level">60%</output><input class="volume" type="range" min="0" max="100" value="60" aria-label="Volume de Fundo do Chaves"></label>
-        <label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">60%</output><input class="volume" type="range" min="0" max="100" value="60" aria-label="Volume de Fundo do Chaves"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="trilha-live">
+        <div class="deck-top"><span class="track-number">04 / TRILHA DA LIVE</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Trilha de fundo da live</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/trilha-live.m4a"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Trilha de fundo da live" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>4</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Trilha de fundo da live do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Trilha de fundo da live" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">40%</output><input class="volume" type="range" min="0" max="100" value="40" aria-label="Volume de Trilha de fundo da live"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
     </section>
     <p id="feedback" role="status" aria-live="polite">Escolha um som para começar.</p>
