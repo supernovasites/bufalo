@@ -138,7 +138,6 @@
       status.textContent = 'Imagem completa em ' + moves + (moves === 1 ? ' movimento. ' : ' movimentos. ') + (config.rewardPending ? 'Desafio concluído!' : 'Sua recompensa foi desbloqueada.');
       reward.hidden = false;
       render();
-      reward.scrollIntoView({behavior: 'smooth', block: 'nearest'});
       return;
     }
 
