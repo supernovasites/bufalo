@@ -119,8 +119,7 @@
     try {
       $('candidate-note').textContent='Prepare o coração. A sorte está chegando!';
       $('candidate').textContent=3;
-      const source=await playSound('countdown');
-      const duration=Math.max(3,source?.buffer.duration||7);
+      await playSound('countdown');
       $('candidate').style.animationDuration='1s';
       for(const number of [3,2,1]) {
         $('candidate').textContent=number;
@@ -130,14 +129,6 @@
         feedback('Contagem regressiva: '+number);
         await new Promise(resolve=>setTimeout(resolve,1000));
       }
-      $('candidate').textContent='Sorteando…';
-      $('candidate-note').textContent='Buscando o próximo nome da Manada.';
-      feedback('Sorteando…');
-      $('candidate').classList.remove('countdown-beat');
-      stage.classList.remove('is-counting');
-      if(duration>3)await new Promise(resolve=>setTimeout(resolve,(duration-3)*1000));
-      stopSound('countdown');
-      playSound('reveal');
     } finally {
       stopSound('countdown');
       $('candidate').classList.remove('countdown-beat');
@@ -150,12 +141,20 @@
     if(busy||!state)return;
     if(action==='draw'||action==='confirm'){stopSound('reveal');prepareSound();}
     if(action==='confirm')playSound('celebration');
-    busy=true;render();feedback(action==='draw'?'Sorteando…':'Salvando…');
+    busy=true;render();feedback(action==='draw'?'Contagem regressiva…':'Salvando…');
     try {
-      if(action==='draw')await countdown();
-      state=await request({action,revision:state.revision,...extra,...(action==='draw'?{names:$('names').value}:{})});
+      const body={action,revision:state.revision,...extra,...(action==='draw'?{names:$('names').value}:{})};
+      if(action==='draw') {
+        // Resolve the request during the countdown, keeping errors handled until it ends.
+        const pending=request(body).then(state=>({state}),error=>({error}));
+        await countdown();
+        const result=await pending;
+        if(result.error)throw result.error;
+        state=result.state;
+      } else state=await request(body);
       $('names').value=state.participants.join('\n');
       feedback({'draw':'Nome sorteado. Confirme para publicar ou sorteie novamente.','confirm':'Ganhador confirmado! O nome já está disponível na live.','clear-participants':'Lista de participantes limpa.','clear-winner':`${extra.slot}º sorteado removido desta página e da live. Os outros resultados foram mantidos.`}[action]);
+      if(action==='draw'){render();playSound('reveal');}
       if(action==='confirm')celebrate(state.winners.at(-1).name);
     } catch(error) {
       if(action==='confirm')stopSound('celebration');
