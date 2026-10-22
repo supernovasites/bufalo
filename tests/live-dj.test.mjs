@@ -49,9 +49,9 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  control(0,'.seek').value='50';control(0,'.seek').listeners.input();assert.equal(audio(0).currentTime,30);
  control(0,'.loop').checked=true;control(0,'.loop').listeners.change();assert.equal(audio(0).loop,true);
  stopAll.listeners.click();assert.ok(cards.every(card=>{const a=card.controls.get('audio');return a.paused&&a.currentTime===0;}));
- keys.keydown({key:'3',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(2).paused,false);
- keys.keydown({key:'Escape',target:{closest:()=>null},preventDefault(){}});assert.equal(audio(2).paused,true);
- keys.keydown({key:'4',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(3).paused,false);
+ keys.keydown({key:'1',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(0).paused,false);
+ keys.keydown({key:'Escape',target:{closest:()=>null},preventDefault(){}});assert.equal(audio(0).paused,true);
+ keys.keydown({key:'2',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(1).paused,false);
  stopAll.listeners.click();assert.equal(audio(3).paused,true);assert.equal(audio(3).currentTime,0);
  keys.keydown({key:'1',target:{closest:()=>true},preventDefault(){}});assert.equal(audio(0).paused,true);
  await control(0,'.play').listeners.click();windowEvents.pagehide();assert.equal(audio(0).paused,true);
@@ -59,7 +59,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  audio(1).error={code:4};audio(1).listeners.error();assert.equal(control(1,'.play').disabled,true);assert.match(control(1,'.track-status').textContent,/indisponível/);
 });
 test('bundled DJ audio and distributed files match the source, with no automatic playback',()=>{
- const html=read('live/mesadj/index.html').toString();assert.ok(!html.includes('autoplay'));assert.equal((html.match(/<audio /g)||[]).length,4);
+ const html=read('live/mesadj/index.html').toString();assert.ok(!html.includes('data-track="celebracao"'));assert.ok(!html.includes('data-track="contagem"'));assert.ok(!html.includes('autoplay'));assert.equal((html.match(/<audio /g)||[]).length,2);
  for(const file of ['index.html','mesadj.css','mesadj.js','sons/celebracao.mp3','sons/contagem-bateria.mp3','sons/fundo-chaves.mp3','sons/trilha-live.m4a'])assert.deepEqual(read('live/mesadj/'+file),read('dist/live/mesadj/'+file));
  assert.match(read('painel/index.html').toString(),/href="\/live\/mesadj\/">Abrir mesa de DJ/);
 });
