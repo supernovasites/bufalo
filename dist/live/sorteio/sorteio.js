@@ -85,10 +85,34 @@
     }
     cancelAnimationFrame(animation);animation=requestAnimationFrame(frame);
   }
+  async function countdown() {
+    const stage=document.querySelector('.stage');
+    stage.classList.add('is-counting');
+    stage.setAttribute('aria-busy','true');
+    try {
+      $('candidate-note').textContent='Prepare o coração. A sorte está chegando!';
+      for(const number of [3,2,1]) {
+        $('candidate').textContent=number;
+        $('candidate').classList.remove('countdown-beat');
+        void $('candidate').offsetWidth;
+        $('candidate').classList.add('countdown-beat');
+        feedback('Contagem regressiva: '+number);
+        await new Promise(resolve=>setTimeout(resolve,1000));
+      }
+      $('candidate').textContent='Sorteando…';
+      $('candidate-note').textContent='Buscando o próximo nome da Manada.';
+      feedback('Sorteando…');
+    } finally {
+      $('candidate').classList.remove('countdown-beat');
+      stage.classList.remove('is-counting');
+      stage.removeAttribute('aria-busy');
+    }
+  }
   async function act(action,extra={}) {
     if(busy||!state)return;
     busy=true;render();feedback(action==='draw'?'Sorteando…':'Salvando…');
     try {
+      if(action==='draw')await countdown();
       state=await request({action,revision:state.revision,...extra,...(action==='draw'?{names:$('names').value}:{})});
       $('names').value=state.participants.join('\n');
       feedback({'draw':'Nome sorteado. Confirme para publicar ou sorteie novamente.','confirm':'Ganhador confirmado! O nome já está disponível na live.','clear-participants':'Lista de participantes limpa.','clear-winner':`${extra.slot}º sorteado removido desta página e da live. Os outros resultados foram mantidos.`}[action]);
