@@ -9,19 +9,20 @@ function run(iso, random = 0, blocked = false, browserSession = {cookie: ''}) {
   let now = iso;
   class Clock extends Date { constructor(...args) { super(...(args.length ? args : [now])); } }
   const events = {}, timers = [], image = {}, body = {style: {overflow: 'auto'}};
+  const window = {scrollX: 0, scrollY: 640, scrollTo({left, top}) {this.scrollX = left; this.scrollY = top;}};
   const popup = {
     open: false,
     querySelector: selector => selector === 'img' ? image : {addEventListener: (name, fn) => events.button = fn},
     addEventListener: (name, fn) => events[name] = fn,
-    showModal() { this.open = true; },
-    close() { this.open = false; events.close(); },
+    showModal() { this.open = true; window.scrollY = 0; },
+    close() { this.open = false; window.scrollY = 0; events.close(); },
     getBoundingClientRect: () => ({left: 10, right: 100, top: 10, bottom: 100})
   };
   const document = {body, getElementById: () => popup, querySelector: () => blocked, addEventListener: (name, fn) => events[name] = fn};
   Object.defineProperty(document, 'cookie', {get: () => browserSession.cookie, set: value => {browserSession.lastWrite = value; browserSession.cookie = value.split(';')[0];}});
   const storage = new Map();
-  vm.runInNewContext(code, {document, location: {protocol: 'https:'}, sessionStorage: {getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value)}, Date: Clock, Intl, Math: {floor: Math.floor, random: () => random}, setTimeout: (fn, delay) => timers.push({fn, delay})});
-  return {popup, image, body, events, timers, advance: iso => {now = iso;}};
+  vm.runInNewContext(code, {window, document, location: {protocol: 'https:'}, sessionStorage: {getItem: key => storage.get(key), setItem: (key, value) => storage.set(key, value)}, Date: Clock, Intl, Math: {floor: Math.floor, random: () => random}, setTimeout: (fn, delay) => timers.push({fn, delay})});
+  return {popup, image, body, events, timers, window, advance: iso => {now = iso;}};
 }
 test('Black26 opens Monday through Friday in Fortaleza, excluding the weekend and UTC boundary', () => {
   for (const iso of ['2026-10-19T15:00:00Z', '2026-10-20T15:00:00Z', '2026-10-21T15:00:00Z', '2026-10-22T15:00:00Z', '2026-10-23T15:00:00Z', '2026-10-24T02:59:59Z']) {
@@ -62,4 +63,12 @@ test('only shows once per browser session, including reloads and other tabs', ()
   assert.ok(session.lastWrite.includes('Path=/; SameSite=Lax; Secure'));
   const newSession = run(now);
   newSession.timers.find(t => t.delay === 600).fn(); assert.ok(newSession.popup.open);
+});
+
+test('preserves mobile scroll position when automatic dialog focuses and closes', () => {
+ const state = run('2026-10-22T15:00:00Z');
+ state.timers.find(t => t.delay === 600).fn();
+ assert.equal(state.window.scrollY, 640);
+ state.events.button();
+ assert.equal(state.window.scrollY, 640);
 });

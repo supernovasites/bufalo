@@ -23,7 +23,8 @@
   image.alt = 'Black Búfalo. ' + description + '.';
   image.src = '/assets/campaigns/black26/' + file + '.webp';
 
-  let previousOverflow;
+  let previousOverflow, previousScroll;
+  const restoreScroll = () => { if (previousScroll) window.scrollTo({...previousScroll, behavior: 'instant'}); };
   popup.querySelector('[data-black26-close]').addEventListener('click', () => popup.close());
   popup.addEventListener('click', event => {
     const bounds = popup.getBoundingClientRect();
@@ -31,6 +32,7 @@
   });
   popup.addEventListener('close', () => {
     document.body.style.overflow = previousOverflow || '';
+    restoreScroll();
   });
   const closeOnWeekend = () => { if (popup.open && !isWeekday()) popup.close(); };
   document.addEventListener('visibilitychange', closeOnWeekend);
@@ -45,10 +47,12 @@
   setTimeout(() => {
     if (!isWeekday() || hasSeen() || document.querySelector('dialog[open]')) return;
     previousOverflow = document.body.style.overflow;
+    previousScroll = {left: window.scrollX, top: window.scrollY};
     popup.showModal();
     // No expires/max-age: this cookie lasts for the browser session and covers other tabs.
     try { document.cookie = sessionKey + '=1; Path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : ''); } catch {}
     try { sessionStorage.setItem(sessionKey, '1'); } catch {}
     document.body.style.overflow = 'hidden';
+    restoreScroll();
   }, 600);
 })();
