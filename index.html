@@ -375,11 +375,11 @@ html{scroll-padding-top:100px}@media(max-width:760px){html{scroll-padding-top:76
 <a class="launch-visual" href="https://loja.bufalogrowler.com.br/copo-tulipa-confraria-600ml" aria-label="Comprar Copo Tulipa Confraria 600 ml dourado"><img src="/assets/launches/tulipa-dourada.png" alt="Copo Tulipa Confraria 600 ml dourado" width="1254" height="1254" decoding="async"></a></div>
 </section>
 <script id="launch-carousel-script">
-(()=>{const root=document.getElementById('lancamentos'),slides=[...root.querySelectorAll(':scope > .launch-slide')],reduced=matchMedia('(prefers-reduced-motion: reduce)');let current=0,timer,paused=reduced.matches;
+(()=>{const root=document.getElementById('lancamentos'),slides=[...root.querySelectorAll(':scope > .launch-slide')];let current=0,timer;
 function show(index){current=index%slides.length;slides.forEach((slide,i)=>slide.hidden=i!==current)}
 function stop(){clearInterval(timer)}
-function start(){stop();if(!paused&&!document.hidden&&!root.contains(document.activeElement))timer=setInterval(()=>show(current+1),3000)}
-root.addEventListener('focusin',stop);root.addEventListener('focusout',()=>setTimeout(start,0));document.addEventListener('visibilitychange',start);reduced.addEventListener('change',()=>{paused=reduced.matches;start()});show(0);start();})();
+function start(){stop();if(!document.hidden&&!root.contains(document.activeElement))timer=setInterval(()=>show(current+1),3000)}
+root.addEventListener('focusin',stop);root.addEventListener('focusout',()=>setTimeout(start,0));document.addEventListener('visibilitychange',start);show(0);start();})();
 </script>
 
 
