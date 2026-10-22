@@ -378,8 +378,8 @@ html{scroll-padding-top:100px}@media(max-width:760px){html{scroll-padding-top:76
 (()=>{const root=document.getElementById('lancamentos'),slides=[...root.querySelectorAll(':scope > .launch-slide')],reduced=matchMedia('(prefers-reduced-motion: reduce)');let current=0,timer,paused=reduced.matches;
 function show(index){current=index%slides.length;slides.forEach((slide,i)=>slide.hidden=i!==current)}
 function stop(){clearInterval(timer)}
-function start(){stop();if(!paused&&!document.hidden&&!root.matches(':hover')&&!root.contains(document.activeElement))timer=setInterval(()=>show(current+1),3000)}
-root.addEventListener('mouseenter',stop);root.addEventListener('mouseleave',start);root.addEventListener('focusin',stop);root.addEventListener('focusout',()=>setTimeout(start,0));document.addEventListener('visibilitychange',start);reduced.addEventListener('change',()=>{paused=reduced.matches;start()});show(0);start();})();
+function start(){stop();if(!paused&&!document.hidden&&!root.contains(document.activeElement))timer=setInterval(()=>show(current+1),3000)}
+root.addEventListener('focusin',stop);root.addEventListener('focusout',()=>setTimeout(start,0));document.addEventListener('visibilitychange',start);reduced.addEventListener('change',()=>{paused=reduced.matches;start()});show(0);start();})();
 </script>
 
 
