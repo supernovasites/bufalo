@@ -81,7 +81,7 @@
       if(!buffer||token!==track.token||!$('sound').checked)return;
       const source=audio.createBufferSource();
       source.buffer=buffer;source.connect(audio.destination);
-      track.source=source;source.start();
+      track.source=source;source.start();return source;
     } catch { /* Audio failure must not interrupt a draw or confirmation. */ }
   }
   function celebrate(name) {
@@ -114,18 +114,21 @@
   }
   async function countdown() {
     const stage=document.querySelector('.stage');
-    playSound('countdown');
     stage.classList.add('is-counting');
     stage.setAttribute('aria-busy','true');
     try {
       $('candidate-note').textContent='Prepare o coração. A sorte está chegando!';
+      $('candidate').textContent=3;
+      const source=await playSound('countdown');
+      const duration=Math.max(3,source?.buffer.duration||7);
+      $('candidate').style.animationDuration=(duration/3)+'s';
       for(const number of [3,2,1]) {
         $('candidate').textContent=number;
         $('candidate').classList.remove('countdown-beat');
         void $('candidate').offsetWidth;
         $('candidate').classList.add('countdown-beat');
         feedback('Contagem regressiva: '+number);
-        await new Promise(resolve=>setTimeout(resolve,1000));
+        await new Promise(resolve=>setTimeout(resolve,duration*1000/3));
       }
       stopSound('countdown');
       $('candidate').textContent='Sorteando…';
@@ -135,6 +138,7 @@
     } finally {
       stopSound('countdown');
       $('candidate').classList.remove('countdown-beat');
+      $('candidate').style.animationDuration='';
       stage.classList.remove('is-counting');
       stage.removeAttribute('aria-busy');
     }
