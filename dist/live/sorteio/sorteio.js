@@ -3,6 +3,46 @@
   let state, busy=true, audio, animation;
   const controls=['draw','clear-names','confirm','names'];
   const feedback=(text,error=false)=>{ $('feedback').textContent=text; $('feedback').classList.toggle('error',error); };
+  let inkKey=null,inkRevealed=false,lastInkPoint=null;
+  function revealName() {
+    inkRevealed=true;lastInkPoint=null;
+    $('candidate-ink').hidden=true;$('reveal-name').hidden=true;
+  }
+  function coverName(key) {
+    if(key===inkKey)return;
+    inkKey=key;inkRevealed=false;lastInkPoint=null;
+    const canvas=$('candidate-ink');
+    canvas.hidden=true;$('reveal-name').hidden=true;
+    if(!key)return;
+    const ctx=canvas.getContext('2d');if(!ctx)return;
+    const rect=$('candidate-reveal').getBoundingClientRect();
+    const dpr=Math.min(window.devicePixelRatio||1,2);
+    canvas.width=Math.ceil(rect.width*dpr);canvas.height=Math.ceil(rect.height*dpr);
+    ctx.scale(dpr,dpr);
+    ctx.fillStyle='#926b20';ctx.fillRect(0,0,rect.width,rect.height);
+    ctx.fillStyle='#b68b37';
+    for(let i=0;i<100;i++){ctx.beginPath();ctx.arc(Math.random()*rect.width,Math.random()*rect.height,1+Math.random()*3,0,Math.PI*2);ctx.fill();}
+    ctx.fillStyle='#fff8e7';ctx.font='600 13px Arial';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('Passe o mouse ou o dedo para revelar',rect.width/2,rect.height/2,rect.width-24);
+    canvas.hidden=false;$('reveal-name').hidden=false;
+  }
+  function eraseInk(event) {
+    const canvas=$('candidate-ink');
+    if(canvas.hidden||!inkKey||inkRevealed)return;
+    if(event.pointerType!=='mouse'&&event.type!=='pointerdown'&&!event.buttons)return;
+    const rect=canvas.getBoundingClientRect(),ctx=canvas.getContext('2d');
+    const x=(event.clientX-rect.left)*canvas.width/rect.width,y=(event.clientY-rect.top)*canvas.height/rect.height;
+    ctx.save();ctx.setTransform(1,0,0,1,0,0);ctx.globalCompositeOperation='destination-out';
+    ctx.lineWidth=48*canvas.width/rect.width;ctx.lineCap='round';ctx.lineJoin='round';
+    ctx.beginPath();ctx.moveTo(lastInkPoint?.x??x,lastInkPoint?.y??y);ctx.lineTo(x,y);ctx.stroke();
+    ctx.beginPath();ctx.arc(x,y,ctx.lineWidth/2,0,Math.PI*2);ctx.fill();ctx.restore();
+    lastInkPoint={x,y};
+  }
+  $('candidate-ink').addEventListener('pointerdown',event=>{lastInkPoint=null;$('candidate-ink').setPointerCapture(event.pointerId);eraseInk(event);});
+  $('candidate-ink').addEventListener('pointermove',eraseInk);
+  for(const type of ['pointerleave','pointerup','pointercancel'])$('candidate-ink').addEventListener(type,()=>{lastInkPoint=null;});
+  $('reveal-name').addEventListener('click',revealName);
+  window.addEventListener('resize',()=>{if(inkKey&&!inkRevealed){const key=inkKey;inkKey=null;coverName(key);}});
   function render() {
     controls.forEach(id=>$(id).disabled=busy||!state);
     if(!state)return;
@@ -16,6 +56,7 @@
     $('round-label').textContent=complete?'02 · SORTEIOS CONCLUÍDOS':`02 · ${nextSlot}º SORTEIO · ${['15h15','16h','16h40'][nextSlot-1]}`;
     $('candidate').textContent=complete?'Três ganhadores. Uma Manada em festa.':state.candidate&&!edited?state.candidate:'O próximo nome pode ser o seu.';
     $('candidate-note').textContent=state.candidate&&!edited?'Confira o nome e confirme para publicar na live.':'Sorteie um participante e confira o nome antes de confirmar.';
+    coverName(!complete&&state.candidate&&!edited?state.revision+':'+state.candidate:null);
     document.querySelectorAll('[data-slot]').forEach(card=>{
       const winner=state.winners.find(item=>item.slot===Number(card.dataset.slot));
       card.querySelector('h3').textContent=winner?.name||'Aguardando sorteio';
@@ -113,6 +154,7 @@
     cancelAnimationFrame(animation);animation=requestAnimationFrame(frame);
   }
   async function countdown() {
+    coverName(null);
     const stage=document.querySelector('.stage');
     stage.classList.add('is-counting');
     stage.setAttribute('aria-busy','true');
