@@ -123,3 +123,13 @@
 #bg-site-header,#bg-site-footer,#mobile-menu,#bg-site-announcement{font-family:Arial,Helvetica,sans-serif}#bg-site-header svg,#bg-site-footer svg,#mobile-menu svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6}#bg-site-header a,#bg-site-footer a,#mobile-menu a{color:inherit;text-decoration:none}#bg-site-header button,#mobile-menu button{font:inherit;cursor:pointer;color:inherit}#bg-site-header .header-row{display:flex}#mobile-menu{background:white}#bg-site-header #mobile-search{color:#142e32}#bg-site-footer{scroll-margin-top:88px}
 
 #bg-site-header{--ink:#142e32;--line:#dce0df;display:block;padding:0;gap:0;min-height:0;grid-template-columns:none;align-items:initial}#bg-site-footer,#mobile-menu,#bg-site-announcement{--ink:#142e32;--line:#dce0df}#bg-site-header .header-row{box-sizing:border-box}#bg-site-footer{display:block}#bg-site-header .header-row a{margin:0}#bg-site-header .header-row svg{width:24px;height:24px}#bg-site-header #mobile-search svg{width:22px;height:22px}@media(max-width:760px){#bg-site-header .header-row svg{width:23px;height:23px}#bg-site-header #mobile-search svg{width:20px;height:20px}}
+
+/* Homepage: account access beside the menu, with its label below the icon. */
+#bg-site-header .bg-menu-order{display:flex;align-items:center;gap:8px;flex-shrink:0}
+#bg-site-header .bg-menu-order #open-menu{display:grid}
+#bg-site-header .bg-order-link{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;width:76px;min-height:56px;color:#142e32;text-align:center}
+#bg-site-header .bg-order-link span{font-size:11px;line-height:1.15;font-weight:600}
+#bg-site-header .bg-order-link:hover{color:#926b20}
+#bg-site-header .bg-order-link:focus-visible{outline:3px solid #e77939;outline-offset:3px;border-radius:4px}
+@media(max-width:760px){#bg-site-header .bg-menu-order{gap:2px}#bg-site-header .bg-order-link{width:64px;min-height:54px}#bg-site-header .bg-order-link span{font-size:10px}}
+@media(max-width:380px){#bg-site-header:has(.bg-menu-order) .header-row{padding-left:10px;padding-right:10px}}

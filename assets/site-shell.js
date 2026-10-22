@@ -6,7 +6,15 @@ function mount(){
  if(!header&&!footer)return;
  if(footer)footer.outerHTML=templates.footer.replaceAll('href="/bufalo"','href="https://www.bufalogrowler.com.br/"');
  if(!header)return;
+ const orderTracking=header.hasAttribute('data-bg-order-tracking');
  header.outerHTML=templates.header;
+ if(orderTracking) {
+   const menuButton=document.getElementById('open-menu');
+   const actions=document.createElement('div');actions.className='bg-menu-order';
+   menuButton.before(actions);actions.append(menuButton);
+   actions.insertAdjacentHTML('beforeend','<a class="bg-order-link" href="https://loja.bufalogrowler.com.br/conta/login" target="_blank" rel="noopener" aria-label="Acompanhe seu pedido: acessar conta na loja"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 7 9-4 9 4v10l-9 4-9-4V7Zm0 0 9 4 9-4M12 11v10M7.5 5l9 4"/></svg><span>Acompanhe<br>seu pedido</span></a>');
+ }
+
  const notice=document.querySelector('[data-bg-announcement]');if(notice)notice.outerHTML=templates.announcement;
  document.getElementById('mobile-menu')?.remove();document.getElementById('home-mobile-menu')?.remove();
  document.body.insertAdjacentHTML('beforeend',templates.icons+templates.menu);
