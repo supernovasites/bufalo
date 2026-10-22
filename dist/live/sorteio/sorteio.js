@@ -121,20 +121,23 @@
       $('candidate').textContent=3;
       const source=await playSound('countdown');
       const duration=Math.max(3,source?.buffer.duration||7);
-      $('candidate').style.animationDuration=(duration/3)+'s';
+      $('candidate').style.animationDuration='1s';
       for(const number of [3,2,1]) {
         $('candidate').textContent=number;
         $('candidate').classList.remove('countdown-beat');
         void $('candidate').offsetWidth;
         $('candidate').classList.add('countdown-beat');
         feedback('Contagem regressiva: '+number);
-        await new Promise(resolve=>setTimeout(resolve,duration*1000/3));
+        await new Promise(resolve=>setTimeout(resolve,1000));
       }
-      stopSound('countdown');
       $('candidate').textContent='Sorteando…';
-      playSound('reveal');
       $('candidate-note').textContent='Buscando o próximo nome da Manada.';
       feedback('Sorteando…');
+      $('candidate').classList.remove('countdown-beat');
+      stage.classList.remove('is-counting');
+      if(duration>3)await new Promise(resolve=>setTimeout(resolve,(duration-3)*1000));
+      stopSound('countdown');
+      playSound('reveal');
     } finally {
       stopSound('countdown');
       $('candidate').classList.remove('countdown-beat');
