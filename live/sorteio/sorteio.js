@@ -86,7 +86,7 @@
   }
   function celebrate(name) {
     $('celebration-name').textContent=name;
-    $('celebration').showModal();playSound('celebration');
+    $('celebration').showModal();
     if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
     const canvas=$('fireworks'),ctx=canvas.getContext('2d');
     if(!ctx)return;
@@ -146,6 +146,7 @@
   async function act(action,extra={}) {
     if(busy||!state)return;
     if(action==='draw'||action==='confirm'){stopSound('reveal');prepareSound();}
+    if(action==='confirm')playSound('celebration');
     busy=true;render();feedback(action==='draw'?'Sorteando…':'Salvando…');
     try {
       if(action==='draw')await countdown();
@@ -154,6 +155,7 @@
       feedback({'draw':'Nome sorteado. Confirme para publicar ou sorteie novamente.','confirm':'Ganhador confirmado! O nome já está disponível na live.','clear-participants':'Lista de participantes limpa.','clear-winner':`${extra.slot}º sorteado removido desta página e da live. Os outros resultados foram mantidos.`}[action]);
       if(action==='confirm')celebrate(state.winners.at(-1).name);
     } catch(error) {
+      if(action==='confirm')stopSound('celebration');
       if(error.status===409)try{await load(true);}catch{/* Preserve original error. */}
       feedback(error.message,true);
     } finally {busy=false;render();}
