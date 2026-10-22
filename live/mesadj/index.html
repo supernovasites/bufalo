@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>Mesa de DJ · Live Búfalo</title>
-  <link rel="stylesheet" href="/live/mesadj/mesadj.css?v=20261022-two-tracks">
-  <script src="/live/mesadj/mesadj.js?v=20261022-two-tracks" defer></script>
+  <link rel="stylesheet" href="/live/mesadj/mesadj.css?v=20261022-espera-sorteio">
+  <script src="/live/mesadj/mesadj.js?v=20261022-espera-sorteio" defer></script>
 </head>
 <body>
   <header class="top"><a class="brand" href="/painel/">BÚFALO <small>GROWLER</small></a><nav aria-label="Administração"><a href="/painel/">Voltar ao painel</a><a href="/live/sorteio/">Sorteios</a><a href="/live/" target="_blank" rel="noopener">Abrir live ↗</a></nav></header>
@@ -17,7 +17,7 @@
       <div class="master-volume"><label for="master-volume">Volume geral <output id="master-level" for="master-volume">80%</output></label><input id="master-volume" type="range" min="0" max="100" value="80"></div>
       <button id="stop-all" class="stop-all" type="button" aria-label="Parar todos os sons"><span aria-hidden="true">■</span> Parar tudo <kbd>Esc</kbd></button>
     </section>
-    <p class="hint">Combine os sons da live. <span class="keyboard-hint">Use as teclas <kbd>1</kbd> e <kbd>2</kbd> para tocar e pausar.</span> O áudio toca neste dispositivo.</p>
+    <p class="hint">Combine os sons da live. <span class="keyboard-hint">Use as teclas <kbd>1</kbd> a <kbd>3</kbd> para tocar e pausar.</span> O áudio toca neste dispositivo.</p>
     <section class="decks" aria-label="Sons da live">
       <article class="deck" data-track="chaves">
         <div class="deck-top"><span class="track-number">01 / CLIMA DA LIVE</span><span class="track-status">Carregando áudio…</span></div>
@@ -34,6 +34,14 @@
         <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Trilha de fundo da live" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
         <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>2</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Trilha de fundo da live do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Trilha de fundo da live" disabled>■</button></div>
         <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">40%</output><input class="volume" type="range" min="0" max="100" value="40" aria-label="Volume de Trilha de fundo da live"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="espera-sorteio">
+        <div class="deck-top"><span class="track-number">03 / ESPERA DO SORTEIO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Trilha espera do sorteio</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/trilha-espera-sorteio.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Trilha espera do sorteio" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>3</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Trilha espera do sorteio do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Trilha espera do sorteio" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">40%</output><input class="volume" type="range" min="0" max="100" value="40" aria-label="Volume de Trilha espera do sorteio"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
     </section>
     <p id="feedback" role="status" aria-live="polite">Escolha um som para começar.</p>

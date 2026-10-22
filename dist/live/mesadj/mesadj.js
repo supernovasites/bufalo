@@ -45,7 +45,7 @@
     if(event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;
     if(event.key==='Escape'){event.preventDefault();stopAll();return;}
     if(event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
-    const track=tracks[Number(event.key)-1];if(/^[1-2]$/.test(event.key)&&track){event.preventDefault();track.toggle();}
+    const track=tracks[Number(event.key)-1];if(/^[1-3]$/.test(event.key)&&track){event.preventDefault();track.toggle();}
   });
   window.addEventListener('pagehide',()=>tracks.forEach(track=>track.halt()));
 })();

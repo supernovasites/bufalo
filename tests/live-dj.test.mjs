@@ -59,7 +59,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  audio(1).error={code:4};audio(1).listeners.error();assert.equal(control(1,'.play').disabled,true);assert.match(control(1,'.track-status').textContent,/indisponível/);
 });
 test('bundled DJ audio and distributed files match the source, with no automatic playback',()=>{
- const html=read('live/mesadj/index.html').toString();assert.ok(!html.includes('data-track="celebracao"'));assert.ok(!html.includes('data-track="contagem"'));assert.ok(!html.includes('autoplay'));assert.equal((html.match(/<audio /g)||[]).length,2);
- for(const file of ['index.html','mesadj.css','mesadj.js','sons/celebracao.mp3','sons/contagem-bateria.mp3','sons/fundo-chaves.mp3','sons/trilha-live.m4a'])assert.deepEqual(read('live/mesadj/'+file),read('dist/live/mesadj/'+file));
+ const html=read('live/mesadj/index.html').toString();assert.ok(!html.includes('data-track="celebracao"'));assert.ok(!html.includes('data-track="contagem"'));assert.ok(!html.includes('autoplay'));assert.equal((html.match(/<audio /g)||[]).length,3);
+ for(const file of ['index.html','mesadj.css','mesadj.js','sons/celebracao.mp3','sons/contagem-bateria.mp3','sons/fundo-chaves.mp3','sons/trilha-live.m4a','sons/trilha-espera-sorteio.mp3'])assert.deepEqual(read('live/mesadj/'+file),read('dist/live/mesadj/'+file));
  assert.match(read('painel/index.html').toString(),/href="\/live\/mesadj\/">Abrir mesa de DJ/);
 });
