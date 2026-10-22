@@ -34,10 +34,11 @@
     if(!preserveNames)$('names').value=state.participants.join('\n');
   }
   const tracks={
+    reveal:{},
     countdown:{url:'/live/mesadj/sons/contagem-bateria.mp3'},
     celebration:{url:'/live/mesadj/sons/celebracao.mp3'}
   };
-  for(const track of Object.values(tracks)) {
+  for(const track of Object.values(tracks).filter(track=>track.url)) {
     track.bytes=fetch(track.url).then(response=>{
       if(!response.ok)throw new Error('Áudio indisponível');
       return response.arrayBuffer();
@@ -48,7 +49,17 @@
     try {
       audio ||= new (window.AudioContext||window.webkitAudioContext)();
       audio.resume().catch(()=>{});
-      for(const track of Object.values(tracks))track.buffer ||= track.bytes.then(bytes=>bytes?audio.decodeAudioData(bytes):null).catch(()=>null);
+      if(!tracks.reveal.buffer) {
+        const buffer=audio.createBuffer(1,Math.ceil(audio.sampleRate*.65),audio.sampleRate);
+        const samples=buffer.getChannelData(0);
+        // A brief original bell chord for the name reveal.
+        for(let i=0;i<samples.length;i++) {
+          const time=i/audio.sampleRate,envelope=Math.min(time/.008,1)*(1-i/samples.length)**3;
+          samples[i]=envelope*.16*[659.25,830.61,987.77].reduce((sum,hz)=>sum+Math.sin(2*Math.PI*hz*time),0);
+        }
+        tracks.reveal.buffer=Promise.resolve(buffer);
+      }
+      for(const track of Object.values(tracks).filter(track=>track.url))track.buffer ||= track.bytes.then(bytes=>bytes?audio.decodeAudioData(bytes):null).catch(()=>null);
     } catch { /* A visual sequence remains available without audio. */ }
   }
   function stopSound(key) {
@@ -123,20 +134,21 @@
   }
   async function act(action,extra={}) {
     if(busy||!state)return;
-    if(action==='draw'||action==='confirm')prepareSound();
+    if(action==='draw'||action==='confirm'){stopSound('reveal');prepareSound();}
     busy=true;render();feedback(action==='draw'?'Sorteando…':'Salvando…');
     try {
       if(action==='draw')await countdown();
       state=await request({action,revision:state.revision,...extra,...(action==='draw'?{names:$('names').value}:{})});
       $('names').value=state.participants.join('\n');
       feedback({'draw':'Nome sorteado. Confirme para publicar ou sorteie novamente.','confirm':'Ganhador confirmado! O nome já está disponível na live.','clear-participants':'Lista de participantes limpa.','clear-winner':`${extra.slot}º sorteado removido desta página e da live. Os outros resultados foram mantidos.`}[action]);
+      if(action==='draw'){render();playSound('reveal');}
       if(action==='confirm')celebrate(state.winners.at(-1).name);
     } catch(error) {
       if(error.status===409)try{await load(true);}catch{/* Preserve original error. */}
       feedback(error.message,true);
     } finally {busy=false;render();}
   }
-  $('sound').addEventListener('change',()=>{if(!$('sound').checked){stopSound('countdown');stopSound('celebration');}});
+  $('sound').addEventListener('change',()=>{if(!$('sound').checked){stopSound('countdown');stopSound('reveal');stopSound('celebration');}});
   $('names').addEventListener('input',render);
   $('draw').addEventListener('click',()=>act('draw'));
   $('confirm').addEventListener('click',()=>act('confirm'));
