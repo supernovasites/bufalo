@@ -50,12 +50,17 @@
       audio ||= new (window.AudioContext||window.webkitAudioContext)();
       audio.resume().catch(()=>{});
       if(!tracks.reveal.buffer) {
-        const buffer=audio.createBuffer(1,Math.ceil(audio.sampleRate*.65),audio.sampleRate);
+        const duration=1.05;
+        const buffer=audio.createBuffer(1,Math.ceil(audio.sampleRate*duration),audio.sampleRate);
         const samples=buffer.getChannelData(0);
-        // A brief original bell chord for the name reveal.
+        // Vitória curta: the ascending notes selected in preview option 3.
         for(let i=0;i<samples.length;i++) {
-          const time=i/audio.sampleRate,envelope=Math.min(time/.008,1)*(1-i/samples.length)**3;
-          samples[i]=envelope*.16*[659.25,830.61,987.77].reduce((sum,hz)=>sum+Math.sin(2*Math.PI*hz*time),0);
+          const time=i/audio.sampleRate;
+          const fade=Math.min(time/.008,1,Math.max((duration-time)/.04,0));
+          samples[i]=fade*.22*[523.25,659.25,783.99,1046.5].reduce((sum,hz,index)=>{
+            const elapsed=time-index*.105;
+            return sum+(elapsed>=0?Math.sin(2*Math.PI*hz*elapsed)*Math.min(elapsed/.008,1)*Math.exp(-elapsed*7):0);
+          },0);
         }
         tracks.reveal.buffer=Promise.resolve(buffer);
       }
@@ -122,7 +127,9 @@
         feedback('Contagem regressiva: '+number);
         await new Promise(resolve=>setTimeout(resolve,1000));
       }
+      stopSound('countdown');
       $('candidate').textContent='Sorteando…';
+      playSound('reveal');
       $('candidate-note').textContent='Buscando o próximo nome da Manada.';
       feedback('Sorteando…');
     } finally {
@@ -141,7 +148,6 @@
       state=await request({action,revision:state.revision,...extra,...(action==='draw'?{names:$('names').value}:{})});
       $('names').value=state.participants.join('\n');
       feedback({'draw':'Nome sorteado. Confirme para publicar ou sorteie novamente.','confirm':'Ganhador confirmado! O nome já está disponível na live.','clear-participants':'Lista de participantes limpa.','clear-winner':`${extra.slot}º sorteado removido desta página e da live. Os outros resultados foram mantidos.`}[action]);
-      if(action==='draw'){render();playSound('reveal');}
       if(action==='confirm')celebrate(state.winners.at(-1).name);
     } catch(error) {
       if(error.status===409)try{await load(true);}catch{/* Preserve original error. */}
