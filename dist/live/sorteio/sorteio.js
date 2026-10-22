@@ -33,33 +33,44 @@
     state=await request();
     if(!preserveNames)$('names').value=state.participants.join('\n');
   }
+  const tracks={
+    countdown:{url:'/live/mesadj/sons/contagem-bateria.mp3'},
+    celebration:{url:'/live/mesadj/sons/celebracao.mp3'}
+  };
+  for(const track of Object.values(tracks)) {
+    track.bytes=fetch(track.url).then(response=>{
+      if(!response.ok)throw new Error('Áudio indisponível');
+      return response.arrayBuffer();
+    }).catch(()=>null);
+  }
   function prepareSound() {
     if(!$('sound').checked)return;
-    try { audio ||= new (window.AudioContext||window.webkitAudioContext)(); audio.resume().catch(()=>{}); } catch { /* Visual celebration remains available. */ }
-  }
-  function playSound() {
-    if(!audio||!$('sound').checked)return;
     try {
-      const now=audio.currentTime;
-      // Short original fanfare, generated locally without external audio files.
-      [523.25,659.25,783.99,1046.5].forEach((frequency,index)=>{
-        const oscillator=audio.createOscillator(), gain=audio.createGain(), start=now+index*.16;
-        oscillator.type='triangle';oscillator.frequency.value=frequency;
-        gain.gain.setValueAtTime(0,start);gain.gain.linearRampToValueAtTime(.13,start+.02);gain.gain.exponentialRampToValueAtTime(.001,start+.65);
-        oscillator.connect(gain);gain.connect(audio.destination);oscillator.start(start);oscillator.stop(start+.7);
-      });
-      [.1,.7,1.3].forEach(delay=>{
-        const buffer=audio.createBuffer(1,audio.sampleRate*.6,audio.sampleRate), data=buffer.getChannelData(0);
-        for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*(1-i/data.length)**3;
-        const source=audio.createBufferSource(),gain=audio.createGain(),filter=audio.createBiquadFilter();
-        source.buffer=buffer;filter.type='lowpass';filter.frequency.value=750;gain.gain.value=.22;
-        source.connect(filter);filter.connect(gain);gain.connect(audio.destination);source.start(now+delay);
-      });
-    } catch { /* Browser audio restrictions must not interrupt a confirmed result. */ }
+      audio ||= new (window.AudioContext||window.webkitAudioContext)();
+      audio.resume().catch(()=>{});
+      for(const track of Object.values(tracks))track.buffer ||= track.bytes.then(bytes=>bytes?audio.decodeAudioData(bytes):null).catch(()=>null);
+    } catch { /* A visual sequence remains available without audio. */ }
+  }
+  function stopSound(key) {
+    const track=tracks[key];
+    track.token=(track.token||0)+1;
+    if(track.source){try{track.source.stop();}catch{}track.source=null;}
+  }
+  async function playSound(key) {
+    stopSound(key);
+    if(!audio||!$('sound').checked)return;
+    const track=tracks[key],token=track.token;
+    try {
+      const buffer=await track.buffer;
+      if(!buffer||token!==track.token||!$('sound').checked)return;
+      const source=audio.createBufferSource();
+      source.buffer=buffer;source.connect(audio.destination);
+      track.source=source;source.start();
+    } catch { /* Audio failure must not interrupt a draw or confirmation. */ }
   }
   function celebrate(name) {
     $('celebration-name').textContent=name;
-    $('celebration').showModal();playSound();
+    $('celebration').showModal();playSound('celebration');
     if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
     const canvas=$('fireworks'),ctx=canvas.getContext('2d');
     if(!ctx)return;
@@ -87,6 +98,7 @@
   }
   async function countdown() {
     const stage=document.querySelector('.stage');
+    playSound('countdown');
     stage.classList.add('is-counting');
     stage.setAttribute('aria-busy','true');
     try {
@@ -103,6 +115,7 @@
       $('candidate-note').textContent='Buscando o próximo nome da Manada.';
       feedback('Sorteando…');
     } finally {
+      stopSound('countdown');
       $('candidate').classList.remove('countdown-beat');
       stage.classList.remove('is-counting');
       stage.removeAttribute('aria-busy');
@@ -110,6 +123,7 @@
   }
   async function act(action,extra={}) {
     if(busy||!state)return;
+    if(action==='draw'||action==='confirm')prepareSound();
     busy=true;render();feedback(action==='draw'?'Sorteando…':'Salvando…');
     try {
       if(action==='draw')await countdown();
@@ -122,15 +136,16 @@
       feedback(error.message,true);
     } finally {busy=false;render();}
   }
+  $('sound').addEventListener('change',()=>{if(!$('sound').checked){stopSound('countdown');stopSound('celebration');}});
   $('names').addEventListener('input',render);
   $('draw').addEventListener('click',()=>act('draw'));
-  $('confirm').addEventListener('click',()=>{prepareSound();act('confirm');});
+  $('confirm').addEventListener('click',()=>act('confirm'));
   $('clear-names').addEventListener('click',()=>act('clear-participants'));
   document.querySelectorAll('[data-clear-slot]').forEach(button=>button.addEventListener('click',()=>{
     const slot=Number(button.dataset.clearSlot);
     if(window.confirm(`Limpar somente o ${slot}º sorteado? O nome também será removido desse espaço na live.`))act('clear-winner',{slot});
   }));
   $('close-celebration').addEventListener('click',()=>$('celebration').close());
-  $('celebration').addEventListener('close',()=>{cancelAnimationFrame(animation);});
+  $('celebration').addEventListener('close',()=>{cancelAnimationFrame(animation);stopSound('celebration');});
   load().then(()=>feedback('Tudo pronto. Adicione os nomes e faça o primeiro sorteio.')).catch(error=>feedback(error.message,true)).finally(()=>{busy=false;render();});
 })();
