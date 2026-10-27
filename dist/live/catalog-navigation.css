@@ -52,3 +52,33 @@ nav.purchase-bar .copy:hover{background:#ffffff18}
  nav.purchase-bar .buy-actions .button{min-width:0;width:100%;max-width:none;min-height:44px;padding:10px 8px;font-size:11px}
  body{padding-bottom:180px}
 }
+/* Two-row category navigation with explicit paging controls. */
+.selection .live-catalog-nav,.selection .live-catalog-nav.is-floating{display:grid;grid-template-columns:30px minmax(0,1fr) 30px;align-items:center;gap:6px;padding:7px 0;overflow:visible}
+.catalog-nav-track{display:grid;grid-template-rows:repeat(2,30px);grid-auto-flow:column;grid-auto-columns:max-content;gap:5px;min-width:0;overflow-x:auto;scrollbar-width:none;scroll-padding-inline:2px;overscroll-behavior-x:contain}
+.catalog-nav-track::-webkit-scrollbar{display:none}
+.selection .live-catalog-nav a{min-height:30px;white-space:nowrap;margin:0;padding:5px 10px;font-size:11px;line-height:1.2}
+.catalog-nav-arrow{display:grid;place-items:center;width:30px;height:44px;padding:0;border:1px solid #ccd8d3;border-radius:8px;background:#edf2ee;color:#142e32;font-size:25px;line-height:1;cursor:pointer}
+.catalog-nav-arrow:disabled{opacity:.3;cursor:default}
+.catalog-nav-arrow:focus-visible{outline:2px solid #e77939;outline-offset:2px}
+/* Full-width bottom bar with compact controls. */
+nav.purchase-bar{left:0;right:0;bottom:0;max-width:none;width:100%;margin:0;border:0;border-top:1px solid #365456;border-radius:0;padding:9px max(20px,calc((100vw - 1320px)/2));gap:20px;box-shadow:0 -3px 18px #142e321a}
+nav.purchase-bar .coupon{gap:14px}
+nav.purchase-bar .coupon strong{font-size:17px;padding:5px 9px}
+nav.purchase-bar .copy{min-height:38px;padding:8px 12px}
+nav.purchase-bar .buy-actions .button{min-height:40px;padding:9px 16px}
+body{padding-bottom:90px}
+@media(max-width:900px){
+ nav.purchase-bar{left:0;right:0;bottom:0;width:100%;padding:7px 12px max(7px,env(safe-area-inset-bottom));border-radius:0;gap:6px}
+ nav.purchase-bar .coupon{gap:7px}
+ nav.purchase-bar .coupon small{font-size:8px}
+ nav.purchase-bar .coupon strong{font-size:14px;padding:4px 6px}
+ nav.purchase-bar #live-timer{font-size:19px}
+ nav.purchase-bar .copy{min-height:36px;padding:7px 10px;font-size:10px}
+ nav.purchase-bar .buy-actions .button{min-height:38px;padding:8px;font-size:11px}
+ body{padding-bottom:138px}
+}
+@media(max-width:740px){
+ .selection .live-catalog-nav,.selection .live-catalog-nav.is-floating{gap:5px;grid-template-columns:28px minmax(0,1fr) 28px;padding:6px 0}
+ .catalog-nav-arrow{width:28px;height:44px}
+ .selection .live-catalog-nav a{font-size:10px;padding:5px 8px}
+}

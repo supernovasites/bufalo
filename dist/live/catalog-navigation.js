@@ -1,6 +1,28 @@
 (() => {
   const nav = document.querySelector('.live-catalog-nav');
   if (nav) {
+    const track = document.createElement('div');
+    track.className = 'catalog-nav-track';
+    track.id = 'catalog-nav-track';
+    track.append(...nav.children);
+    const previous = document.createElement('button');
+    const next = document.createElement('button');
+    [previous, next].forEach((button, index) => {
+      button.type = 'button';
+      button.className = 'catalog-nav-arrow';
+      button.textContent = index ? '›' : '‹';
+      button.setAttribute('aria-label', index ? 'Ver mais categorias' : 'Ver categorias anteriores');
+      button.setAttribute('aria-controls', track.id);
+      button.addEventListener('click', () => track.scrollBy({left:(index ? 1 : -1)*track.clientWidth*.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
+    });
+    nav.replaceChildren(previous, track, next);
+    const arrows = () => {
+      previous.disabled = track.scrollLeft <= 2;
+      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
+    };
+    track.addEventListener('scroll', arrows, {passive:true});
+    new ResizeObserver(arrows).observe(track);
+    arrows();
     const anchor = document.createElement('div');
     nav.before(anchor);
     const pin = () => {
