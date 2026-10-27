@@ -158,12 +158,13 @@ test('live rewards use each discount for prices and show only 3 coupons after so
   const discounts={tote:25,nag:30,outdoor:35,mestre:40};
   const document={querySelector:()=>root,getElementById:()=>({textContent:'LIVE20'}),createElement:element,documentElement:{getAttribute:name=>{const id=name.split('-')[2];return name.endsWith('discount')?String(discounts[id]):id.toUpperCase()+'25';}}};
   vm.runInNewContext(readFileSync(new URL('../live/carousel.js',import.meta.url),'utf8'),{document,Image:class {}});
-  const prices={tote:'712,50',nag:'2.065,00',outdoor:'448,50',mestre:'1.098,00'};
-  const savings={tote:237.5,nag:885,outdoor:241.5,mestre:732};
+  const prices={tote:'825,00',nag:'2.065,00',outdoor:'448,50',mestre:'1.098,00'};
+  const savings={tote:275,nag:885,outdoor:241.5,mestre:732};
   for(const id of ids){
     const host=hosts[id];
     const saving=savings[id].toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-    assert.ok(host.innerHTML.includes('<span class="reward-discount-value">'+saving+' de desconto</span>'));
+    assert.ok(!host.innerHTML.includes('reward-discount-value'));
+    assert.ok(host.innerHTML.includes('Você economiza '+saving));
     assert.ok(host.innerHTML.includes(discounts[id]+'% OFF'));
     assert.ok(host.innerHTML.includes(prices[id]));
     assert.ok(host.innerHTML.includes('3 cupons disponíveis!'));
