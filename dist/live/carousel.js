@@ -2,10 +2,10 @@
   const root = document.querySelector('.photo-gallery');
   if (!root) return;
   const challenges = [
-    {id:'tote',label:'Desafio 1',price:950,name:'Wine Tote 14L Soft Cooler',photo:'desafio-tote-lago-20261027.png',url:'https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l',productImage:'wine-tote-product.png'},
-    {id:'nag',label:'Desafio 2',price:2950,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-cachoeira-20261027.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
-    {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-fazenda-20261027.png',price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/cutelaria',productImage:'trio-cimo-product.png'},
-    {id:'mestre',label:'Desafio 4',photo:'desafio-mestre-vinhedo-20261027.png',price:1830,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/buscar?q=mestre',productImage:'mestre-product.png'}
+    {id:'tote',label:'Desafio 1',price:950,name:'Wine Tote 14L Soft Cooler',photo:'desafio-tote-alter-do-chao-20261027.png',url:'https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l',productImage:'wine-tote-product.png'},
+    {id:'nag',label:'Desafio 2',price:2950,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-marajo-20261027.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
+    {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-ver-o-peso-20261027.png',price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/cutelaria',productImage:'trio-cimo-product.png'},
+    {id:'mestre',label:'Desafio 4',photo:'desafio-mestre-docas-20261027.png',price:1830,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/buscar?q=mestre',productImage:'mestre-product.png'}
   ];
   root.classList.add('manada-challenge');
   root.innerHTML = '<div class="challenge-tabs" role="tablist" aria-label="Escolha seu desafio">'+challenges.map((c,i)=>'<button type="button" role="tab" id="tab-'+c.id+'" aria-controls="puzzle-'+c.id+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'">'+c.label+'</button>').join('')+'</div>'+challenges.map((c,i)=>'<div role="tabpanel" id="puzzle-'+c.id+'" aria-labelledby="tab-'+c.id+'"'+(i?' hidden':'')+'></div>').join('');
