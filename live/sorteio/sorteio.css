@@ -12,3 +12,5 @@
 #candidate-ink{position:absolute;inset:0;width:100%;height:100%;border-radius:12px;cursor:crosshair;touch-action:none}
 #candidate-ink[hidden],.reveal-name[hidden]{display:none}
 .stage .reveal-name{font-size:12px;padding:8px 14px;min-height:36px;margin-top:6px}
+
+.claim-clock{width:min(100%,320px);margin:12px 0 4px;padding:18px 12px 14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);color:var(--gold)}.claim-clock[hidden]{display:none}.claim-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}.claim-time{font-size:clamp(64px,8vw,88px);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-3px;line-height:1.1;margin:8px 0}.claim-clock p{font-size:12px;line-height:1.5;color:#746b59;margin:0}

@@ -4,8 +4,8 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Sorteios da Manada · Búfalo Growler</title>
-<link rel="stylesheet" href="/live/sorteio/sorteio.css?v=20261022-ink-reveal">
-<script src="/live/sorteio/sorteio.js?v=20261022-ink-reveal" defer></script>
+<link rel="stylesheet" href="/live/sorteio/sorteio.css?v=20261027-claim-clock">
+<script src="/live/sorteio/sorteio.js?v=20261027-claim-clock" defer></script>
 </head>
 <body>
 <header><a class="brand" href="/painel/">BÚFALO <small>GROWLER</small></a><nav aria-label="Administração"><a href="/painel/">Voltar ao painel</a><a href="/live/" target="_blank" rel="noopener">Abrir live ↗</a></nav></header>
@@ -27,8 +27,13 @@
 <div class="candidate-reveal" id="candidate-reveal"><p id="candidate" class="candidate" aria-live="polite">O próximo nome pode ser o seu.</p><canvas id="candidate-ink" aria-hidden="true" hidden></canvas></div>
 <button type="button" class="secondary reveal-name" id="reveal-name" hidden>Revelar nome inteiro</button>
 <p id="candidate-note">Sorteie um participante e confira o nome antes de confirmar.</p>
+<div class="claim-clock" id="claim-clock" hidden>
+<span class="claim-label">A sorte está com você</span>
+<div class="claim-time" id="claim-time" role="timer" aria-label="Tempo restante para o sorteado se apresentar" aria-live="off">01:00</div>
+<p id="claim-status" role="status">Tempo para o sorteado se apresentar</p>
+</div>
 <div class="actions"><button id="confirm" disabled>Confirmar sorteado</button></div>
-<label class="sound"><input id="sound" type="checkbox" checked> Som da contagem, revelação e comemoração</label>
+<label class="sound"><input id="sound" type="checkbox" checked> Som da contagem, revelação, tempo encerrado e comemoração</label>
 </section>
 </div>
 <p id="feedback" role="status" aria-live="polite">Carregando sorteios…</p>
