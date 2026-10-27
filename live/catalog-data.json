@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-20",
+  "checkedAt": "2026-10-27",
   "categories": [
     {
       "id": "live-chopeiras",
@@ -233,9 +233,9 @@
           ],
           "sizes": [],
           "prices": [
-            1250
+            1250.0
           ],
-          "price": 1250,
+          "price": 1250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bufaloontap2l--37093",
@@ -255,9 +255,9 @@
           ],
           "sizes": [],
           "prices": [
-            1250
+            1250.0
           ],
-          "price": 1250,
+          "price": 1250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bufaloontap2l--426782",
@@ -283,9 +283,9 @@
           ],
           "sizes": [],
           "prices": [
-            1450
+            1450.0
           ],
-          "price": 1450,
+          "price": 1450.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bufaloontap35l--426709",
@@ -305,9 +305,9 @@
           ],
           "sizes": [],
           "prices": [
-            1450
+            1450.0
           ],
-          "price": 1450,
+          "price": 1450.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bufaloontap35l--37093",
@@ -333,9 +333,9 @@
           ],
           "sizes": [],
           "prices": [
-            1830
+            1830.0
           ],
-          "price": 1830,
+          "price": 1830.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "mestrebufaloontap7l--38301",
@@ -361,9 +361,9 @@
           ],
           "sizes": [],
           "prices": [
-            380
+            380.0
           ],
-          "price": 380,
+          "price": 380.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-kundi-2l--37093",
@@ -383,9 +383,9 @@
           ],
           "sizes": [],
           "prices": [
-            380
+            380.0
           ],
-          "price": 380,
+          "price": 380.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-kundi-2l--426782",
@@ -411,9 +411,9 @@
           ],
           "sizes": [],
           "prices": [
-            1730
+            1730.0
           ],
-          "price": 1730,
+          "price": 1730.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "mestre-bufalo-growler-spritz--38301",
@@ -433,9 +433,9 @@
           ],
           "sizes": [],
           "prices": [
-            1730
+            1730.0
           ],
-          "price": 1730,
+          "price": 1730.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "mestre-bufalo-growler-spritz--481146",
@@ -461,9 +461,9 @@
           ],
           "sizes": [],
           "prices": [
-            480
+            480.0
           ],
-          "price": 480,
+          "price": 480.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-kundi-35l--426709",
@@ -483,9 +483,9 @@
           ],
           "sizes": [],
           "prices": [
-            480
+            480.0
           ],
-          "price": 480,
+          "price": 480.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-kundi-35l--37093",
@@ -511,9 +511,9 @@
           ],
           "sizes": [],
           "prices": [
-            1518
+            1518.0
           ],
-          "price": 1518,
+          "price": 1518.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro4--37096",
@@ -539,9 +539,9 @@
           ],
           "sizes": [],
           "prices": [
-            3300
+            3300.0
           ],
-          "price": 3300,
+          "price": 3300.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro8--37096",
@@ -561,9 +561,9 @@
           ],
           "sizes": [],
           "prices": [
-            3300
+            3300.0
           ],
-          "price": 3300,
+          "price": 3300.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro8--426034",
@@ -589,9 +589,9 @@
           ],
           "sizes": [],
           "prices": [
-            2950
+            2950.0
           ],
-          "price": 2950,
+          "price": 2950.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro6--37096",
@@ -611,9 +611,9 @@
           ],
           "sizes": [],
           "prices": [
-            2950
+            2950.0
           ],
-          "price": 2950,
+          "price": 2950.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro6--426034",
@@ -639,9 +639,9 @@
           ],
           "sizes": [],
           "prices": [
-            950
+            950.0
           ],
-          "price": 950,
+          "price": 950.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-tote-termica-nagpuri-14l--341476470",
@@ -667,9 +667,9 @@
           ],
           "sizes": [],
           "prices": [
-            1100
+            1100.0
           ],
-          "price": 1100,
+          "price": 1100.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-termica-nagpuri-20l-petroleo--341482470",
@@ -695,9 +695,9 @@
           ],
           "sizes": [],
           "prices": [
-            120
+            120.0
           ],
-          "price": 120,
+          "price": 120.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "canivete-e-cimo-inox--217956208",
@@ -723,9 +723,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "kit-garfo-faca-bufalo--388382926",
@@ -751,9 +751,9 @@
           ],
           "sizes": [],
           "prices": [
-            16
+            16.0
           ],
-          "price": 16,
+          "price": 16.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "abridor-de-garrafa-de-madeira--58862378",
@@ -779,9 +779,9 @@
           ],
           "sizes": [],
           "prices": [
-            240
+            240.0
           ],
-          "price": 240,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "machado-ax-carbono-90mm-cb-madeira--265289143",
@@ -807,9 +807,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            190.0
           ],
-          "price": 190,
+          "price": 190.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "faca-cimo-ax-cb-madeira--217956350",
@@ -863,9 +863,9 @@
           ],
           "sizes": [],
           "prices": [
-            260
+            260.0
           ],
-          "price": 260,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "facao-cimo-ax-colosso-com-bainha-em-couro--398774433",
@@ -891,9 +891,9 @@
           ],
           "sizes": [],
           "prices": [
-            190
+            190.0
           ],
-          "price": 190,
+          "price": 190.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "canivete-cimo-tomahawk--398773705",
@@ -919,9 +919,9 @@
           ],
           "sizes": [],
           "prices": [
-            288
+            288.0
           ],
-          "price": 288,
+          "price": 288.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "faca-com-bainha-bm-bufalo--388418552",
@@ -947,9 +947,9 @@
           ],
           "sizes": [],
           "prices": [
-            111.2
+            139.0
           ],
-          "price": 111.2,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--2385723",
@@ -969,9 +969,9 @@
           ],
           "sizes": [],
           "prices": [
-            111.2
+            139.0
           ],
-          "price": 111.2,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--2304388",
@@ -991,9 +991,9 @@
           ],
           "sizes": [],
           "prices": [
-            111.2
+            139.0
           ],
-          "price": 111.2,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--2792163",
@@ -1013,9 +1013,9 @@
           ],
           "sizes": [],
           "prices": [
-            111.2
+            139.0
           ],
-          "price": 111.2,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--1570426",
@@ -1035,9 +1035,9 @@
           ],
           "sizes": [],
           "prices": [
-            111.2
+            139.0
           ],
-          "price": 111.2,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--2973974",
@@ -1063,9 +1063,9 @@
           ],
           "sizes": [],
           "prices": [
-            57.6
+            72.0
           ],
-          "price": 57.6,
+          "price": 72.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--5502361",
@@ -1085,9 +1085,9 @@
           ],
           "sizes": [],
           "prices": [
-            57.6
+            72.0
           ],
-          "price": 57.6,
+          "price": 72.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--5502362",
@@ -1107,9 +1107,9 @@
           ],
           "sizes": [],
           "prices": [
-            57.6
+            72.0
           ],
-          "price": 57.6,
+          "price": 72.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--5502363",
@@ -1129,9 +1129,9 @@
           ],
           "sizes": [],
           "prices": [
-            57.6
+            72.0
           ],
-          "price": 57.6,
+          "price": 72.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--14282641",
@@ -1151,9 +1151,9 @@
           ],
           "sizes": [],
           "prices": [
-            57.6
+            72.0
           ],
-          "price": 57.6,
+          "price": 72.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--9703097",
@@ -1173,9 +1173,9 @@
           ],
           "sizes": [],
           "prices": [
-            57.6
+            72.0
           ],
-          "price": 57.6,
+          "price": 72.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--10057521",
@@ -1201,9 +1201,9 @@
           ],
           "sizes": [],
           "prices": [
-            341
+            341.0
           ],
-          "price": 341,
+          "price": 341.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "mochila-marajo-dry-verde--361534760",
@@ -1229,9 +1229,9 @@
           ],
           "sizes": [],
           "prices": [
-            341
+            341.0
           ],
-          "price": 341,
+          "price": 341.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "mochila-marajo-dry-azul--361534589",
@@ -1257,9 +1257,9 @@
           ],
           "sizes": [],
           "prices": [
-            341
+            341.0
           ],
-          "price": 341,
+          "price": 341.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "mochila-marajo-dry-rosa--361534028",
@@ -1307,9 +1307,9 @@
           ],
           "sizes": [],
           "prices": [
-            120
+            120.0
           ],
-          "price": 120,
+          "price": 120.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-20litros--5502366",
@@ -1335,9 +1335,9 @@
           ],
           "sizes": [],
           "prices": [
-            395
+            395.0
           ],
-          "price": 395,
+          "price": 395.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "xco61r2pc-cadeira-portatil-bufalo-pena-p-2025-06-27-12-50-37--426262",
@@ -1357,9 +1357,9 @@
           ],
           "sizes": [],
           "prices": [
-            395
+            395.0
           ],
-          "price": 395,
+          "price": 395.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "xco61r2pc-cadeira-portatil-bufalo-pena-p-2025-06-27-12-50-37--426251",
@@ -1385,9 +1385,9 @@
           ],
           "sizes": [],
           "prices": [
-            275
+            275.0
           ],
-          "price": 275,
+          "price": 275.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "cadeira-portatil-bufalo-pena-p--426251",
@@ -1407,9 +1407,9 @@
           ],
           "sizes": [],
           "prices": [
-            275
+            275.0
           ],
-          "price": 275,
+          "price": 275.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "cadeira-portatil-bufalo-pena-p--426262",
@@ -1443,9 +1443,9 @@
             "GG"
           ],
           "prices": [
-            90
+            90.0
           ],
-          "price": 90,
+          "price": 90.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bermuda-pirarucu--38416",
@@ -1482,9 +1482,9 @@
             "G"
           ],
           "prices": [
-            90
+            90.0
           ],
-          "price": 90,
+          "price": 90.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bermuda-selva--38419",
@@ -1521,9 +1521,9 @@
             "M"
           ],
           "prices": [
-            90
+            90.0
           ],
-          "price": 90,
+          "price": 90.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bermuda-listrada--38416",
@@ -1560,9 +1560,9 @@
             "GG"
           ],
           "prices": [
-            90
+            90.0
           ],
-          "price": 90,
+          "price": 90.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bermuda-aloha--38418",
@@ -1596,9 +1596,9 @@
             "M"
           ],
           "prices": [
-            100
+            100.0
           ],
-          "price": 100,
+          "price": 100.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "kjmrx5jia-camiseta-viva-a-natureza-cowboy--38418-5502362",
@@ -1626,9 +1626,9 @@
             "37/38"
           ],
           "prices": [
-            65
+            65.0
           ],
-          "price": 65,
+          "price": 65.0,
           "priceFrom": false,
           "illustrative": true,
           "key": "chinelo-estampa-marajo-art-feminina--5502361-6873289",
@@ -1653,9 +1653,9 @@
             "39/40"
           ],
           "prices": [
-            65
+            65.0
           ],
-          "price": 65,
+          "price": 65.0,
           "priceFrom": false,
           "illustrative": true,
           "key": "chinelo-estampa-marajo-art-feminina--5502365-6873289",
@@ -1689,9 +1689,9 @@
             "G"
           ],
           "prices": [
-            90
+            90.0
           ],
-          "price": 90,
+          "price": 90.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "camiseta-viva-a-natureza-tucunare--38416-5502365",
@@ -1728,9 +1728,9 @@
             "G"
           ],
           "prices": [
-            100
+            100.0
           ],
-          "price": 100,
+          "price": 100.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "42rbc3uuh-camiseta-viva-a-natureza-tucunare-2023-06-21-16-01-17--38419-9437428",
@@ -1761,9 +1761,9 @@
             "P"
           ],
           "prices": [
-            100
+            100.0
           ],
-          "price": 100,
+          "price": 100.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bxxkrmea0-camiseta-marajo-art-2023-04-24-15-40-12--38419-9437427",
@@ -1797,9 +1797,9 @@
             "P"
           ],
           "prices": [
-            100
+            100.0
           ],
-          "price": 100,
+          "price": 100.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "camiseta-steak-e-beer--38418-5502361",
@@ -1836,9 +1836,9 @@
             "M"
           ],
           "prices": [
-            100
+            100.0
           ],
-          "price": 100,
+          "price": 100.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "camiseta-selva--38416-5502361",
@@ -1875,9 +1875,9 @@
             "M"
           ],
           "prices": [
-            100
+            100.0
           ],
-          "price": 100,
+          "price": 100.0,
           "priceFrom": false,
           "illustrative": true,
           "key": "camiseta-marajoart--38418-5502362",
@@ -1908,9 +1908,9 @@
             "G"
           ],
           "prices": [
-            100
+            100.0
           ],
-          "price": 100,
+          "price": 100.0,
           "priceFrom": false,
           "illustrative": true,
           "key": "camiseta-marajoart--38416-5502363",
@@ -1938,9 +1938,9 @@
             "37/38"
           ],
           "prices": [
-            110
+            110.0
           ],
-          "price": 110,
+          "price": 110.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "chinelo-slid-unissex--6873289",
@@ -1968,9 +1968,9 @@
             "37/38"
           ],
           "prices": [
-            65
+            65.0
           ],
-          "price": 65,
+          "price": 65.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "chinelo-estampa-listrada-feminina--6873289",
@@ -1998,9 +1998,9 @@
             "43/44"
           ],
           "prices": [
-            65
+            65.0
           ],
-          "price": 65,
+          "price": 65.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "chinelo-estampa-listrada-masculino--6873292",
@@ -2026,9 +2026,9 @@
           ],
           "sizes": [],
           "prices": [
-            120
+            120.0
           ],
-          "price": 120,
+          "price": 120.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-esportiva-bufalo--5502361",
@@ -2048,9 +2048,9 @@
           ],
           "sizes": [],
           "prices": [
-            120
+            120.0
           ],
-          "price": 120,
+          "price": 120.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-esportiva-bufalo--14150568",
@@ -2076,9 +2076,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-copo-niliravi---37093",
@@ -2098,9 +2098,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-copo-niliravi---426721",
@@ -2126,9 +2126,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-neoprene-niliravi--150361965",
@@ -2154,9 +2154,9 @@
           ],
           "sizes": [],
           "prices": [
-            25
+            25.0
           ],
-          "price": 25,
+          "price": 25.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-silicone-garrafa-garca--5502361",
@@ -2176,9 +2176,9 @@
           ],
           "sizes": [],
           "prices": [
-            25
+            25.0
           ],
-          "price": 25,
+          "price": 25.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-silicone-garrafa-garca--13587666",
@@ -2198,9 +2198,9 @@
           ],
           "sizes": [],
           "prices": [
-            25
+            25.0
           ],
-          "price": 25,
+          "price": 25.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-silicone-garrafa-garca--5502365",
@@ -2226,9 +2226,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-neoprene-para-garrafa-jafarabadi--150361811",
@@ -2254,9 +2254,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bag-neoprene-harpuri--231803424",
@@ -2282,9 +2282,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bag-neoprene-buba--231803300",
@@ -2310,9 +2310,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bag-neoprene-para-surti-murrah--150362113",
@@ -2338,9 +2338,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-copo-surti--152069679",
@@ -2366,9 +2366,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-para-garrafa-com-argola--569102",
@@ -2388,9 +2388,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-para-garrafa-com-argola--38301",
@@ -2410,9 +2410,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-para-garrafa-com-argola--2484600",
@@ -2438,9 +2438,9 @@
           ],
           "sizes": [],
           "prices": [
-            10
+            10.0
           ],
-          "price": 10,
+          "price": 10.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "argola-mosquetao--336668451",
@@ -2466,9 +2466,9 @@
           ],
           "sizes": [],
           "prices": [
-            18
+            18.0
           ],
-          "price": 18,
+          "price": 18.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-antiderrapante-de-silicone--277481791",
@@ -2494,9 +2494,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bag-neoprene-copo-surti--232425553",
@@ -2522,9 +2522,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13498254",
@@ -2544,9 +2544,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--5502361",
@@ -2566,9 +2566,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587667",
@@ -2588,9 +2588,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587666",
@@ -2610,9 +2610,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587668",
@@ -2632,9 +2632,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587665",
@@ -2654,9 +2654,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--14167361",
@@ -2676,9 +2676,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13750956",
@@ -2698,9 +2698,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--14167360",
@@ -2720,9 +2720,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--14167358",
@@ -2742,9 +2742,9 @@
           ],
           "sizes": [],
           "prices": [
-            60
+            60.0
           ],
-          "price": 60,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--14167359",
@@ -2770,9 +2770,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14167359",
@@ -2792,9 +2792,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331552",
@@ -2814,9 +2814,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331556",
@@ -2836,9 +2836,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--11841209",
@@ -2858,9 +2858,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--10057521",
@@ -2880,9 +2880,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331551",
@@ -2902,9 +2902,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14150568",
@@ -2924,9 +2924,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331554",
@@ -2946,9 +2946,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--9703097",
@@ -2968,9 +2968,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14282641",
@@ -2990,9 +2990,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331553",
@@ -3012,9 +3012,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14323979",
@@ -3068,9 +3068,9 @@
           ],
           "sizes": [],
           "prices": [
-            16
+            16.0
           ],
-          "price": 16,
+          "price": 16.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---5502364",
@@ -3090,9 +3090,9 @@
           ],
           "sizes": [],
           "prices": [
-            16
+            16.0
           ],
-          "price": 16,
+          "price": 16.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---9703097",
@@ -3112,9 +3112,9 @@
           ],
           "sizes": [],
           "prices": [
-            16
+            16.0
           ],
-          "price": 16,
+          "price": 16.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---5502366",
@@ -3134,9 +3134,9 @@
           ],
           "sizes": [],
           "prices": [
-            16
+            16.0
           ],
-          "price": 16,
+          "price": 16.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---11841507",
@@ -3156,9 +3156,9 @@
           ],
           "sizes": [],
           "prices": [
-            16
+            16.0
           ],
-          "price": 16,
+          "price": 16.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---11034358",
@@ -3184,9 +3184,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--14167359",
@@ -3206,9 +3206,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--14167358",
@@ -3228,9 +3228,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13750956",
@@ -3250,9 +3250,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--5502361",
@@ -3272,9 +3272,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13587666",
@@ -3294,9 +3294,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13498263",
@@ -3316,9 +3316,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--14167361",
@@ -3338,9 +3338,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13587665",
@@ -3360,9 +3360,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13498254",
@@ -3388,9 +3388,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426709",
@@ -3410,9 +3410,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--37093",
@@ -3432,9 +3432,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426266",
@@ -3454,9 +3454,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--425313",
@@ -3498,9 +3498,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--425684",
@@ -3520,9 +3520,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--425471",
@@ -3542,9 +3542,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426365",
@@ -3564,9 +3564,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--425732",
@@ -3592,9 +3592,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426573",
@@ -3614,9 +3614,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--37076",
@@ -3636,9 +3636,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--37093",
@@ -3658,9 +3658,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426185",
@@ -3680,9 +3680,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426236",
@@ -3702,9 +3702,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425416",
@@ -3724,9 +3724,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425301",
@@ -3746,9 +3746,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426124",
@@ -3790,9 +3790,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426782",
@@ -3812,9 +3812,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425612",
@@ -3834,9 +3834,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425732",
@@ -3862,9 +3862,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-easydrink--13498254",
@@ -3884,9 +3884,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-easydrink--5502361",
@@ -3906,9 +3906,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-easydrink--13587665",
@@ -3934,9 +3934,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--14167359",
@@ -3956,9 +3956,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--14167358",
@@ -3978,9 +3978,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--14167361",
@@ -4000,9 +4000,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13498254",
@@ -4022,9 +4022,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13587665",
@@ -4044,9 +4044,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13750956",
@@ -4066,9 +4066,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13587666",
@@ -4088,9 +4088,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--5502361",
@@ -4110,9 +4110,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13498263",
@@ -4132,9 +4132,9 @@
           ],
           "sizes": [],
           "prices": [
-            35
+            35.0
           ],
-          "price": 35,
+          "price": 35.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--5502362",
@@ -4160,9 +4160,9 @@
           ],
           "sizes": [],
           "prices": [
-            25
+            25.0
           ],
-          "price": 25,
+          "price": 25.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-p--13498263",
@@ -4182,9 +4182,9 @@
           ],
           "sizes": [],
           "prices": [
-            25
+            25.0
           ],
-          "price": 25,
+          "price": 25.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-p--13750956",
@@ -4204,9 +4204,9 @@
           ],
           "sizes": [],
           "prices": [
-            25
+            25.0
           ],
-          "price": 25,
+          "price": 25.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-p--13587666",
@@ -4226,9 +4226,9 @@
           ],
           "sizes": [],
           "prices": [
-            25
+            25.0
           ],
-          "price": 25,
+          "price": 25.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-p--5502361",
@@ -4254,9 +4254,9 @@
           ],
           "sizes": [],
           "prices": [
-            10
+            10.0
           ],
-          "price": 10,
+          "price": 10.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "canudos-de-plastico-para-tampa-esporte-com-bico--264632965",
@@ -4282,9 +4282,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copo-pand-750ml--159118610",
@@ -4310,9 +4310,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-hotdrink--76706483",
@@ -4338,9 +4338,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--14167358",
@@ -4360,9 +4360,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13750956",
@@ -4382,9 +4382,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--5502361",
@@ -4404,9 +4404,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13587666",
@@ -4426,9 +4426,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13498263",
@@ -4448,9 +4448,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13498254",
@@ -4470,9 +4470,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13587665",
@@ -4492,9 +4492,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--14167359",
@@ -4514,9 +4514,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--14167361",
@@ -4542,9 +4542,9 @@
           ],
           "sizes": [],
           "prices": [
-            12
+            12.0
           ],
-          "price": 12,
+          "price": 12.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "abex7u6zd-kit-canudo-de-inox--227106923",
@@ -4570,9 +4570,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-carabinho--580457",
@@ -4592,9 +4592,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-carabinho--2615924",
@@ -4614,9 +4614,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-carabinho--1375097",
@@ -4636,9 +4636,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-carabinho--2596170",
@@ -4664,9 +4664,9 @@
           ],
           "sizes": [],
           "prices": [
-            30
+            30.0
           ],
-          "price": 30,
+          "price": 30.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--37093",
@@ -4686,9 +4686,9 @@
           ],
           "sizes": [],
           "prices": [
-            30
+            30.0
           ],
-          "price": 30,
+          "price": 30.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--425301",
@@ -4708,9 +4708,9 @@
           ],
           "sizes": [],
           "prices": [
-            30
+            30.0
           ],
-          "price": 30,
+          "price": 30.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--425612",
@@ -4730,9 +4730,9 @@
           ],
           "sizes": [],
           "prices": [
-            30
+            30.0
           ],
-          "price": 30,
+          "price": 30.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--426224",
@@ -4752,9 +4752,9 @@
           ],
           "sizes": [],
           "prices": [
-            30
+            30.0
           ],
-          "price": 30,
+          "price": 30.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--426405",
@@ -4780,9 +4780,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-surti-duo-flow--5502362",
@@ -4802,9 +4802,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-surti-duo-flow--13587665",
@@ -4824,9 +4824,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-surti-duo-flow--5502361",
@@ -4852,9 +4852,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-m--267475137",
@@ -4880,9 +4880,9 @@
           ],
           "sizes": [],
           "prices": [
-            25
+            25.0
           ],
-          "price": 25,
+          "price": 25.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "kit-canudo-de-inox--50565028",
@@ -4908,9 +4908,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-magnetica-copos-niliravi-e-pand--48081961",
@@ -4936,9 +4936,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-com-fecho-magnetico-copo-surti-banni-ravi--48081776",
@@ -4964,9 +4964,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copo-niliravi-900ml--426266",
@@ -4986,9 +4986,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copo-niliravi-900ml--37093",
@@ -5008,9 +5008,9 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copo-niliravi-900ml--426709",
@@ -5036,9 +5036,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-g--267475948",
@@ -5064,9 +5064,9 @@
           ],
           "sizes": [],
           "prices": [
-            12
+            12.0
           ],
-          "price": 12,
+          "price": 12.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "extrator-de-borracha-espatula-bg--229193497",
@@ -5092,9 +5092,9 @@
           ],
           "sizes": [],
           "prices": [
-            10
+            10.0
           ],
-          "price": 10,
+          "price": 10.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "canudo-interno-para-copo-carabinho--403781200",
@@ -5120,9 +5120,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-copo-guara-1l--400433202",
@@ -5148,9 +5148,9 @@
           ],
           "sizes": [],
           "prices": [
-            50
+            50.0
           ],
-          "price": 50,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-copo-guara-850ml--400432174",
@@ -5176,9 +5176,9 @@
           ],
           "sizes": [],
           "prices": [
-            15
+            15.0
           ],
-          "price": 15,
+          "price": 15.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "borracha-argola-bubaneck-em-silicone--234163304",
@@ -5204,9 +5204,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bomba-de-terere-inox--106246183",
@@ -5232,9 +5232,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "chaveiro-mosquetao--106244459",
@@ -5260,9 +5260,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500172",
@@ -5282,9 +5282,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--11202366",
@@ -5304,9 +5304,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500179",
@@ -5326,9 +5326,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500168",
@@ -5348,9 +5348,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500177",
@@ -5370,9 +5370,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500170",
@@ -5398,9 +5398,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503242",
@@ -5420,9 +5420,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503193",
@@ -5442,9 +5442,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503195",
@@ -5464,9 +5464,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503517",
@@ -5492,9 +5492,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502454",
@@ -5514,9 +5514,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502474",
@@ -5536,9 +5536,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502444",
@@ -5558,9 +5558,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502446",
@@ -5580,9 +5580,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502496",
@@ -5602,9 +5602,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12607053",
@@ -5624,9 +5624,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12607046",
@@ -5652,9 +5652,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501626",
@@ -5674,9 +5674,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501621",
@@ -5696,9 +5696,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501619",
@@ -5718,9 +5718,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501622",
@@ -5740,9 +5740,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501628",
@@ -5768,9 +5768,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12497098",
@@ -5790,9 +5790,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12497101",
@@ -5812,9 +5812,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--11202571",
@@ -5834,9 +5834,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--11202577",
@@ -5856,9 +5856,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12573646",
@@ -5878,9 +5878,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12566934",
@@ -5900,9 +5900,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12566911",
@@ -5922,9 +5922,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12573688",
@@ -5950,9 +5950,9 @@
           ],
           "sizes": [],
           "prices": [
-            15
+            15.0
           ],
-          "price": 15,
+          "price": 15.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155591",
@@ -5972,9 +5972,9 @@
           ],
           "sizes": [],
           "prices": [
-            15
+            15.0
           ],
-          "price": 15,
+          "price": 15.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155590",
@@ -5994,9 +5994,9 @@
           ],
           "sizes": [],
           "prices": [
-            15
+            15.0
           ],
-          "price": 15,
+          "price": 15.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155552",
@@ -6016,9 +6016,9 @@
           ],
           "sizes": [],
           "prices": [
-            15
+            15.0
           ],
-          "price": 15,
+          "price": 15.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155551",
@@ -6038,9 +6038,9 @@
           ],
           "sizes": [],
           "prices": [
-            15
+            15.0
           ],
-          "price": 15,
+          "price": 15.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155553",
@@ -6060,9 +6060,9 @@
           ],
           "sizes": [],
           "prices": [
-            15
+            15.0
           ],
-          "price": 15,
+          "price": 15.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155550",
@@ -6088,9 +6088,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-tattoo--12607176",
@@ -6110,9 +6110,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-tattoo--11202578",
@@ -6132,9 +6132,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-tattoo--12607169",
@@ -6154,9 +6154,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-tattoo--12607170",
@@ -6182,9 +6182,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566709",
@@ -6204,9 +6204,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566713",
@@ -6226,9 +6226,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566710",
@@ -6248,9 +6248,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566708",
@@ -6270,9 +6270,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566783",
@@ -6292,9 +6292,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566711",
@@ -6314,9 +6314,9 @@
           ],
           "sizes": [],
           "prices": [
-            20
+            20.0
           ],
-          "price": 20,
+          "price": 20.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566771",
@@ -6342,9 +6342,9 @@
           ],
           "sizes": [],
           "prices": [
-            270
+            270.0
           ],
-          "price": 270,
+          "price": 270.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1450222",
@@ -6364,9 +6364,9 @@
           ],
           "sizes": [],
           "prices": [
-            270
+            270.0
           ],
-          "price": 270,
+          "price": 270.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---38301",
@@ -6386,9 +6386,9 @@
           ],
           "sizes": [],
           "prices": [
-            270
+            270.0
           ],
-          "price": 270,
+          "price": 270.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1824393",
@@ -6408,9 +6408,9 @@
           ],
           "sizes": [],
           "prices": [
-            189
+            189.0
           ],
-          "price": 189,
+          "price": 189.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1069625",
@@ -6430,9 +6430,9 @@
           ],
           "sizes": [],
           "prices": [
-            189
+            189.0
           ],
-          "price": 189,
+          "price": 189.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1070817",
@@ -6452,9 +6452,9 @@
           ],
           "sizes": [],
           "prices": [
-            270
+            270.0
           ],
-          "price": 270,
+          "price": 270.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---2016280",
@@ -6474,9 +6474,9 @@
           ],
           "sizes": [],
           "prices": [
-            189
+            189.0
           ],
-          "price": 189,
+          "price": 189.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---762609",
@@ -6496,9 +6496,9 @@
           ],
           "sizes": [],
           "prices": [
-            270
+            270.0
           ],
-          "price": 270,
+          "price": 270.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---479585",
@@ -6518,9 +6518,9 @@
           ],
           "sizes": [],
           "prices": [
-            270
+            270.0
           ],
-          "price": 270,
+          "price": 270.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---2467221",
@@ -6540,9 +6540,9 @@
           ],
           "sizes": [],
           "prices": [
-            270
+            270.0
           ],
-          "price": 270,
+          "price": 270.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---884136",
@@ -6568,9 +6568,9 @@
           ],
           "sizes": [],
           "prices": [
-            175
+            175.0
           ],
-          "price": 175,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1070817",
@@ -6590,9 +6590,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1824393",
@@ -6612,9 +6612,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1450222",
@@ -6634,9 +6634,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---38301",
@@ -6656,9 +6656,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---2467221",
@@ -6678,9 +6678,9 @@
           ],
           "sizes": [],
           "prices": [
-            175
+            175.0
           ],
-          "price": 175,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1069625",
@@ -6700,9 +6700,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---884136",
@@ -6722,9 +6722,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---2016280",
@@ -6744,9 +6744,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---479585",
@@ -6766,9 +6766,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---2467539",
@@ -6794,9 +6794,9 @@
           ],
           "sizes": [],
           "prices": [
-            170
+            170.0
           ],
-          "price": 170,
+          "price": 170.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1450222",
@@ -6816,9 +6816,9 @@
           ],
           "sizes": [],
           "prices": [
-            119
+            119.0
           ],
-          "price": 119,
+          "price": 119.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---858552",
@@ -6838,9 +6838,9 @@
           ],
           "sizes": [],
           "prices": [
-            119
+            119.0
           ],
-          "price": 119,
+          "price": 119.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1069625",
@@ -6860,9 +6860,9 @@
           ],
           "sizes": [],
           "prices": [
-            170
+            170.0
           ],
-          "price": 170,
+          "price": 170.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1824393",
@@ -6882,9 +6882,9 @@
           ],
           "sizes": [],
           "prices": [
-            119
+            119.0
           ],
-          "price": 119,
+          "price": 119.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1672485",
@@ -6904,9 +6904,9 @@
           ],
           "sizes": [],
           "prices": [
-            119
+            119.0
           ],
-          "price": 119,
+          "price": 119.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---545144",
@@ -6926,9 +6926,9 @@
           ],
           "sizes": [],
           "prices": [
-            119
+            119.0
           ],
-          "price": 119,
+          "price": 119.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---546664",
@@ -6948,9 +6948,9 @@
           ],
           "sizes": [],
           "prices": [
-            119
+            119.0
           ],
-          "price": 119,
+          "price": 119.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1673300",
@@ -6970,9 +6970,9 @@
           ],
           "sizes": [],
           "prices": [
-            170
+            170.0
           ],
-          "price": 170,
+          "price": 170.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---38301",
@@ -6992,9 +6992,9 @@
           ],
           "sizes": [],
           "prices": [
-            119
+            119.0
           ],
-          "price": 119,
+          "price": 119.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---762609",
@@ -7014,9 +7014,9 @@
           ],
           "sizes": [],
           "prices": [
-            170
+            170.0
           ],
-          "price": 170,
+          "price": 170.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---479585",
@@ -7036,9 +7036,9 @@
           ],
           "sizes": [],
           "prices": [
-            170
+            170.0
           ],
-          "price": 170,
+          "price": 170.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---2467221",
@@ -7058,9 +7058,9 @@
           ],
           "sizes": [],
           "prices": [
-            119
+            119.0
           ],
-          "price": 119,
+          "price": 119.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---493930",
@@ -7080,9 +7080,9 @@
           ],
           "sizes": [],
           "prices": [
-            170
+            170.0
           ],
-          "price": 170,
+          "price": 170.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---884136",
@@ -7108,9 +7108,9 @@
           ],
           "sizes": [],
           "prices": [
-            330
+            264.0
           ],
-          "price": 330,
+          "price": 264.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425418",
@@ -7130,9 +7130,9 @@
           ],
           "sizes": [],
           "prices": [
-            264
+            264.0
           ],
-          "price": 264,
+          "price": 264.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426224",
@@ -7152,9 +7152,9 @@
           ],
           "sizes": [],
           "prices": [
-            330
+            330.0
           ],
-          "price": 330,
+          "price": 330.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426405",
@@ -7174,9 +7174,9 @@
           ],
           "sizes": [],
           "prices": [
-            264
+            264.0
           ],
-          "price": 264,
+          "price": 264.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426124",
@@ -7196,9 +7196,9 @@
           ],
           "sizes": [],
           "prices": [
-            330
+            330.0
           ],
-          "price": 330,
+          "price": 330.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425416",
@@ -7218,9 +7218,9 @@
           ],
           "sizes": [],
           "prices": [
-            330
+            330.0
           ],
-          "price": 330,
+          "price": 330.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--37093",
@@ -7240,9 +7240,9 @@
           ],
           "sizes": [],
           "prices": [
-            264
+            264.0
           ],
-          "price": 264,
+          "price": 264.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425301",
@@ -7262,9 +7262,9 @@
           ],
           "sizes": [],
           "prices": [
-            264
+            264.0
           ],
-          "price": 264,
+          "price": 264.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426573",
@@ -7284,9 +7284,9 @@
           ],
           "sizes": [],
           "prices": [
-            264
+            264.0
           ],
-          "price": 264,
+          "price": 264.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425881",
@@ -7306,9 +7306,9 @@
           ],
           "sizes": [],
           "prices": [
-            330
+            330.0
           ],
-          "price": 330,
+          "price": 330.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425732",
@@ -7328,9 +7328,9 @@
           ],
           "sizes": [],
           "prices": [
-            330
+            330.0
           ],
-          "price": 330,
+          "price": 330.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425612",
@@ -7350,9 +7350,9 @@
           ],
           "sizes": [],
           "prices": [
-            330
+            330.0
           ],
-          "price": 330,
+          "price": 330.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426782",
@@ -7372,9 +7372,9 @@
           ],
           "sizes": [],
           "prices": [
-            330
+            330.0
           ],
-          "price": 330,
+          "price": 330.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426208",
@@ -7400,9 +7400,9 @@
           ],
           "sizes": [],
           "prices": [
-            304
+            304.0
           ],
-          "price": 304,
+          "price": 304.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-mediterraneo-2l--426266",
@@ -7422,9 +7422,9 @@
           ],
           "sizes": [],
           "prices": [
-            304
+            304.0
           ],
-          "price": 304,
+          "price": 304.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-mediterraneo-2l--426709",
@@ -7450,9 +7450,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--38301",
@@ -7472,9 +7472,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--2016880",
@@ -7494,9 +7494,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--481146",
@@ -7538,9 +7538,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--885444",
@@ -7560,9 +7560,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--1450222",
@@ -7582,9 +7582,9 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            250.0
           ],
-          "price": 250,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--800985",
@@ -7610,9 +7610,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--426405",
@@ -7632,9 +7632,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--426224",
@@ -7654,9 +7654,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--426208",
@@ -7676,9 +7676,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--425612",
@@ -7698,9 +7698,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--426782",
@@ -7720,9 +7720,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--425416",
@@ -7742,9 +7742,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--425732",
@@ -7770,9 +7770,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-guara-1l--426208",
@@ -7792,9 +7792,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-guara-1l--425732",
@@ -7814,9 +7814,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-guara-1l--425416",
@@ -7842,9 +7842,9 @@
           ],
           "sizes": [],
           "prices": [
-            161
+            161.0
           ],
-          "price": 161,
+          "price": 161.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1069625",
@@ -7864,9 +7864,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--38301",
@@ -7886,9 +7886,9 @@
           ],
           "sizes": [],
           "prices": [
-            161
+            161.0
           ],
-          "price": 161,
+          "price": 161.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1070817",
@@ -7930,9 +7930,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--2016280",
@@ -7952,9 +7952,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--479585",
@@ -7974,9 +7974,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1450222",
@@ -7996,9 +7996,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--884136",
@@ -8018,9 +8018,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--2467221",
@@ -8040,9 +8040,9 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            230.0
           ],
-          "price": 230,
+          "price": 230.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1824393",
@@ -8068,9 +8068,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426405",
@@ -8090,9 +8090,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426224",
@@ -8112,9 +8112,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426774",
@@ -8134,9 +8134,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--425301",
@@ -8156,9 +8156,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--37093",
@@ -8178,9 +8178,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426266",
@@ -8200,9 +8200,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426782",
@@ -8222,9 +8222,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            134.0
           ],
-          "price": 185,
+          "price": 134.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426124",
@@ -8244,9 +8244,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426573",
@@ -8266,9 +8266,9 @@
           ],
           "sizes": [],
           "prices": [
-            185
+            185.0
           ],
-          "price": 185,
+          "price": 185.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426208",
@@ -8294,9 +8294,9 @@
           ],
           "sizes": [],
           "prices": [
-            450
+            450.0
           ],
-          "price": 450,
+          "price": 450.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-silo128--37093",
@@ -8322,9 +8322,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426124",
@@ -8344,9 +8344,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426131",
@@ -8366,9 +8366,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426185",
@@ -8388,9 +8388,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426709",
@@ -8410,9 +8410,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426266",
@@ -8432,9 +8432,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426573",
@@ -8454,9 +8454,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--425416",
@@ -8476,9 +8476,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--425881",
@@ -8498,9 +8498,9 @@
           ],
           "sizes": [],
           "prices": [
-            149
+            149.0
           ],
-          "price": 149,
+          "price": 149.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426782",
@@ -8526,9 +8526,9 @@
           ],
           "sizes": [],
           "prices": [
-            169
+            169.0
           ],
-          "price": 169,
+          "price": 169.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-torcida--37093",
@@ -8548,9 +8548,9 @@
           ],
           "sizes": [],
           "prices": [
-            169
+            169.0
           ],
-          "price": 169,
+          "price": 169.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-torcida--425279",
@@ -8570,9 +8570,9 @@
           ],
           "sizes": [],
           "prices": [
-            169
+            169.0
           ],
-          "price": 169,
+          "price": 169.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-torcida--425314",
@@ -8598,9 +8598,9 @@
           ],
           "sizes": [],
           "prices": [
-            210
+            210.0
           ],
-          "price": 210,
+          "price": 210.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml-open--425313",
@@ -8620,9 +8620,9 @@
           ],
           "sizes": [],
           "prices": [
-            210
+            210.0
           ],
-          "price": 210,
+          "price": 210.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml-open--37093",
@@ -8642,9 +8642,9 @@
           ],
           "sizes": [],
           "prices": [
-            210
+            210.0
           ],
-          "price": 210,
+          "price": 210.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml-open--425314",
@@ -8670,9 +8670,9 @@
           ],
           "sizes": [],
           "prices": [
-            152
+            152.0
           ],
-          "price": 152,
+          "price": 152.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425416",
@@ -8692,9 +8692,9 @@
           ],
           "sizes": [],
           "prices": [
-            152
+            152.0
           ],
-          "price": 152,
+          "price": 152.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425881",
@@ -8714,9 +8714,9 @@
           ],
           "sizes": [],
           "prices": [
-            152
+            152.0
           ],
-          "price": 152,
+          "price": 152.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426236",
@@ -8758,9 +8758,9 @@
           ],
           "sizes": [],
           "prices": [
-            152
+            152.0
           ],
-          "price": 152,
+          "price": 152.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426185",
@@ -8780,9 +8780,9 @@
           ],
           "sizes": [],
           "prices": [
-            152
+            152.0
           ],
-          "price": 152,
+          "price": 152.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426266",
@@ -8802,9 +8802,9 @@
           ],
           "sizes": [],
           "prices": [
-            152
+            152.0
           ],
-          "price": 152,
+          "price": 152.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426709",
@@ -8830,9 +8830,9 @@
           ],
           "sizes": [],
           "prices": [
-            125
+            125.0
           ],
-          "price": 125,
+          "price": 125.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--425416",
@@ -8852,9 +8852,9 @@
           ],
           "sizes": [],
           "prices": [
-            125
+            125.0
           ],
-          "price": 125,
+          "price": 125.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--425881",
@@ -8874,9 +8874,9 @@
           ],
           "sizes": [],
           "prices": [
-            125
+            125.0
           ],
-          "price": 125,
+          "price": 125.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--426573",
@@ -8902,9 +8902,9 @@
           ],
           "sizes": [],
           "prices": [
-            155
+            155.0
           ],
-          "price": 155,
+          "price": 155.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-banni-350ml--37093",
@@ -8924,9 +8924,9 @@
           ],
           "sizes": [],
           "prices": [
-            155
+            155.0
           ],
-          "price": 155,
+          "price": 155.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-banni-350ml--426405",
@@ -8946,9 +8946,9 @@
           ],
           "sizes": [],
           "prices": [
-            155
+            155.0
           ],
-          "price": 155,
+          "price": 155.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-banni-350ml--425667",
@@ -8968,9 +8968,9 @@
           ],
           "sizes": [],
           "prices": [
-            155
+            155.0
           ],
-          "price": 155,
+          "price": 155.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-banni-350ml--426782",
@@ -8996,9 +8996,9 @@
           ],
           "sizes": [],
           "prices": [
-            210
+            210.0
           ],
-          "price": 210,
+          "price": 210.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "niliravi_com_alca--346610020",
@@ -9024,9 +9024,9 @@
           ],
           "sizes": [],
           "prices": [
-            139
+            139.0
           ],
-          "price": 139,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-carabinho-350ml--2523857",
@@ -9046,9 +9046,9 @@
           ],
           "sizes": [],
           "prices": [
-            139
+            139.0
           ],
-          "price": 139,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-carabinho-350ml--867685",
@@ -9068,9 +9068,9 @@
           ],
           "sizes": [],
           "prices": [
-            139
+            139.0
           ],
-          "price": 139,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-carabinho-350ml--1717227",
@@ -9090,9 +9090,9 @@
           ],
           "sizes": [],
           "prices": [
-            139
+            139.0
           ],
-          "price": 139,
+          "price": 139.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-carabinho-350ml--2890171",
@@ -9102,61 +9102,42 @@
     }
   ],
   "priceVerification": {
-    "checkedAt": "2026-10-20",
-    "source": "official_store_sku_sell_price",
-    "verifiedOptions": 377,
-    "updatedOptions": 10,
-    "unverifiedOptions": [
-      {
-        "key": "kit-cimo-trio-de-forca-ax--404336196",
-        "reason": "product_not_found",
-        "pricePreserved": true
-      },
-      {
-        "key": "dry-bag-20litros--5502363",
-        "reason": "sku_without_price",
-        "pricePreserved": true
-      },
-      {
-        "key": "tampa-padrao-copos--426774",
-        "reason": "sku_without_price",
-        "pricePreserved": true
-      },
-      {
-        "key": "tampa-easydrink--13587665",
-        "reason": "sku_without_price",
-        "pricePreserved": true
-      },
-      {
-        "key": "garrafa-carabinho-500ml--580457",
-        "reason": "product_not_found",
-        "pricePreserved": true
-      },
-      {
-        "key": "garrafa-carabinho-500ml--2615924",
-        "reason": "product_not_found",
-        "pricePreserved": true
-      },
-      {
-        "key": "garrafa-carabinho-500ml--2210839",
-        "reason": "product_not_found",
-        "pricePreserved": true
-      },
-      {
-        "key": "garrafa-carabinho-500ml--2596170",
-        "reason": "product_not_found",
-        "pricePreserved": true
-      },
-      {
-        "key": "nagneck--426224",
-        "reason": "sku_without_price",
-        "pricePreserved": true
-      },
-      {
-        "key": "nagneck--426208",
-        "reason": "sku_without_price",
-        "pricePreserved": true
-      }
+    "checkedAt": "2026-10-27",
+    "source": "destination_product_pages",
+    "checkedCards": 359,
+    "errors": [
+      [
+        "https://loja.bufalogrowler.com.br/kit-cimo-trio-de-forca-ax",
+        "not fetched"
+      ],
+      [
+        "dry-bag-20litros--5502363",
+        "no matching sku price"
+      ],
+      [
+        "https://loja.bufalogrowler.com.br/tampa-com-bocal-growler-palitano",
+        "not fetched"
+      ],
+      [
+        "tampa-padrao-copos--426774",
+        "no matching sku price"
+      ],
+      [
+        "tampa-original-garrafas--425418",
+        "no matching sku price"
+      ],
+      [
+        "surti-duo-flow-900ml--1825113",
+        "no matching sku price"
+      ],
+      [
+        "garrafa-murrah-540ml--762609",
+        "no matching sku price"
+      ],
+      [
+        "caneca-bhadawari-710ml--37096",
+        "no matching sku price"
+      ]
     ]
   }
 }
