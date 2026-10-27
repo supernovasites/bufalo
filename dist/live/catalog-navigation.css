@@ -12,3 +12,13 @@
  .live-catalog-nav a{flex:0 0 auto;white-space:nowrap;min-height:44px;padding:10px 14px;font-size:12px}
  .product .product-image .badge.catalog-saving-badge{top:8px;left:8px;max-width:calc(100% - 16px);font-size:11px;padding:7px 9px}
 }
+
+/* Compact, fully visible categories in both menu positions. */
+.selection .live-catalog-nav{flex-wrap:wrap;overflow:visible;gap:5px;padding:8px 0}
+.selection .live-catalog-nav.is-floating{padding:8px 0}
+.selection .live-catalog-nav a{flex:0 1 auto;min-height:30px;padding:6px 9px;font-size:11px;line-height:1.25;white-space:normal;text-align:center;justify-content:center}
+@media(max-width:740px){
+ .selection .live-catalog-nav{gap:4px;padding:6px 0}
+ .selection .live-catalog-nav.is-floating{padding:6px 0}
+ .selection .live-catalog-nav a{min-height:30px;padding:5px 7px;font-size:10px;line-height:1.2}
+}
