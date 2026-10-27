@@ -54,3 +54,5 @@ html=html.replace(/href="category-groups\.css[^\"]*"/,'href="category-groups.css
 writeFileSync(target,html);
 copyFileSync(target,path.join(root,'dist/live/index.html'));
 console.log(JSON.stringify({categories:data.categories.length,rows:rowCount,cards:cardCount,uniqueModels:data.products.length}));
+
+await import('./build-black-bufalo.mjs');
