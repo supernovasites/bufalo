@@ -16,8 +16,9 @@ async function handler(context) {
     const db = env.LIVE_DB;
     if (path === '/painel/api/login' && request.method === 'POST') {
       const payload = await body(request);
-      const expected = env.MANADAONE_PASSWORD || 'As285546';
-      if (!payload || typeof payload.password !== 'string' || payload.password !== expected) return json({error:'Senha incorreta. Tente novamente.'},401);
+      const expectedUser = env.PANEL_USERNAME || 'Alexsos';
+      const expectedHash = env.PANEL_PASSWORD ? await sha(env.PANEL_PASSWORD) : '095fdc1e44699663a46ea67708756b179a7c5e672b41c8213e187c6fbc31bfa7';
+      if (!payload || typeof payload.username !== 'string' || typeof payload.password !== 'string' || payload.username !== expectedUser || await sha(payload.password) !== expectedHash) return json({error:'Usuário ou senha incorretos. Tente novamente.'},401);
       const token = Array.from(crypto.getRandomValues(new Uint8Array(32)), b => b.toString(16).padStart(2,'0')).join('');
       const expires = Date.now() + 30 * 24 * 60 * 60 * 1000;
       await db.batch([

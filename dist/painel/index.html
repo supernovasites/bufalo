@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Painel administrativo · Búfalo Growler</title>
   <link rel="stylesheet" href="/live/admin.css?v=20260929-panel-css1">
-  <script src="/painel/painel.js?v=20261020-acaibowl-campaign" defer></script>
+  <script src="/painel/painel.js?v=20261027-panel-login" defer></script>
 </head>
 <body>
   <header class="top">
@@ -21,6 +21,8 @@
       <h2>Acesso administrativo</h2>
       <p class="intro">Acesso reservado para a equipe Búfalo.</p>
       <form id="login-form">
+        <label for="username">Usuário</label>
+        <input id="username" type="text" autocomplete="username" required maxlength="128">
         <label for="password">Senha</label>
         <input id="password" type="password" autocomplete="current-password" required maxlength="128">
         <button class="btn" type="submit">Entrar no painel</button>
