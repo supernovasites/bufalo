@@ -4,8 +4,8 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Sorteios da Manada · Búfalo Growler</title>
-<link rel="stylesheet" href="/live/sorteio/sorteio.css?v=20261027-manual-game-over">
-<script src="/live/sorteio/sorteio.js?v=20261027-manual-game-over" defer></script>
+<link rel="stylesheet" href="/live/sorteio/sorteio.css?v=20261027-stage-tabs">
+<script src="/live/sorteio/sorteio.js?v=20261027-stage-tabs" defer></script>
 </head>
 <body>
 <header><a class="brand" href="/painel/">BÚFALO <small>GROWLER</small></a><nav aria-label="Administração"><a href="/painel/">Voltar ao painel</a><a href="/live/" target="_blank" rel="noopener">Abrir live ↗</a></nav></header>
@@ -25,10 +25,8 @@
 <span class="step" id="round-label">02 · SORTEIO</span><h2 id="draw-title">Um momento de sorte.</h2>
 <span class="trophy" aria-hidden="true">🏆</span>
 <div class="candidate-reveal" id="candidate-reveal"><p id="candidate" class="candidate" aria-live="polite">O próximo nome pode ser o seu.</p><canvas id="candidate-ink" aria-hidden="true" hidden></canvas></div>
-<button type="button" class="secondary reveal-name" id="reveal-name" hidden>Revelar e copiar nome</button>
-<button type="button" class="secondary reveal-name" id="copy-name" hidden>Copiar nome</button>
+<button type="button" class="secondary reveal-name" id="reveal-name" hidden>Revelar nome</button>
 <p id="candidate-note">Sorteie um participante e confira o nome antes de confirmar.</p>
-<button type="button" class="secondary reveal-name" id="start-claim" hidden>Iniciar contagem de 1 minuto</button>
 <div class="claim-clock" id="claim-clock" hidden>
 <span class="claim-label">A sorte está com você</span>
 <div class="claim-time" id="claim-time" role="timer" aria-label="Tempo restante para o sorteado se apresentar" aria-live="off">01:00</div>
@@ -36,6 +34,10 @@
 </div>
 <div class="actions"><button id="confirm" disabled>Confirmar sorteado</button></div>
 <label class="sound"><input id="sound" type="checkbox" checked> Som da contagem, revelação, tempo encerrado e comemoração</label>
+<div class="stage-tools" id="stage-tools" role="group" aria-label="Ferramentas do sorteio" hidden>
+<button type="button" id="copy-name" hidden>Copiar nome</button>
+<button type="button" id="start-claim" hidden>Iniciar contagem · 1 min</button>
+</div>
 </section>
 </div>
 <p id="feedback" role="status" aria-live="polite">Carregando sorteios…</p>

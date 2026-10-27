@@ -49,6 +49,7 @@
     const canvas=$('candidate-ink');
     canvas.hidden=true;$('reveal-name').hidden=true;
     $('start-claim').hidden=!key;$('copy-name').hidden=!key;
+    $('stage-tools').hidden=!key;
     if(!key)return;
     const ctx=canvas.getContext('2d');if(!ctx)return;
     const rect=$('candidate-reveal').getBoundingClientRect();
