@@ -6,7 +6,7 @@ const data=JSON.parse(readFileSync(path.join(root,'live/catalog-data.json'),'utf
 const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#39;');
 const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const slugify=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
-const byUrl=new Map(data.products.map(p=>[p.url,{...p,cards:p.cards.filter(option=>option.stock==='in_stock')}]));
+const byUrl=new Map(data.products.map(p=>[p.url,{...p,cards:p.cards.filter(option=>option.stock==='in_stock'&&option.imageAvailable!==false&&Boolean(option.image))}]));
 let rowCount=0,cardCount=0;
 function card(product,option){
   cardCount++;
@@ -56,3 +56,4 @@ copyFileSync(target,path.join(root,'dist/live/index.html'));
 console.log(JSON.stringify({categories:data.categories.length,rows:rowCount,cards:cardCount,uniqueModels:data.products.length}));
 
 await import('./build-black-bufalo.mjs');
+

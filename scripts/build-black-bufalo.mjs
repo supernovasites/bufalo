@@ -33,8 +33,8 @@ function find(name,technical){
 }
 function card(name,technical,color){
  const p=find(name,technical);
- if(p && (p.option.stock==='out_of_stock'||unavailable.has(p.option.key)))return ''; 
- if(!p){missing.push(color+' — '+name);return `<article class="product banni-card black-pending"><div class="product-image"><span class="pending-mark" aria-hidden="true">BÚFALO</span></div><div class="product-info"><h3>${esc(name)}</h3><p class="banni-color">${color}</p><p class="black-pending-note">Variação a confirmar no catálogo</p></div></article>`;}
+ if(p && (p.option.stock==='out_of_stock'||p.option.imageAvailable===false||!p.option.image||unavailable.has(p.option.key)))return ''; 
+ if(!p){missing.push(color+' — '+name);return '';}
  const o=p.option,href=p.url+'?utm_source=pagina_live&amp;utm_medium=referral&amp;utm_campaign=BlackBufalo&amp;utm_content='+esc(o.key);
  return `<article class="product banni-card" data-discount="20" data-product-name="${esc(name)}" data-variant-key="${esc(o.key)}" data-stock="${o.stock}"><a class="product-photo-link" href="${href}" target="_blank" rel="noopener noreferrer"><div class="product-image"><span class="badge">−20%</span><img src="${esc(o.image)}" alt="${esc(name+' — '+color)}" width="400" height="400" loading="lazy" decoding="async"></div></a><div class="product-info"><h3>${esc(name)}</h3><p class="banni-color"><span class="black-dot" aria-hidden="true"></span>${color}</p><p class="old"><s>${money(o.price)}</s></p><p class="price">${money(Math.round(o.price*80)/100)}</p><p class="with-coupon">com o cupom <strong>__LIVE_COUPON__</strong></p><a class="product-cta" href="${href}" target="_blank" rel="noopener noreferrer">Compre com desconto</a></div></article>`;
 }

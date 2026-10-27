@@ -3482,7 +3482,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426774",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "imageAvailable": false
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -7522,7 +7523,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--1825113",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "imageAvailable": false
         },
         {
           "name": "Surti Duo Flow 900ml",
