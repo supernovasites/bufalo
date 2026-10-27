@@ -1,60 +1,16 @@
 {
   "groups": [
     [
-      "Pitaya",
-      "Persian Pink",
-      "#f9dced",
-      "#ac407c",
+      "Pistache",
+      "Olive Green",
+      "#e3ecd7",
+      "#5a713c",
       [
-        "Copo Niliravi 900ml",
-        "Copo Pand 750ml",
         "Garrafa Buba 355ml",
+        "Garrafa Harpuri 750ml",
         "Garrafa Jafarabadi 1L",
+        "Garrafa Murrah 540ml",
         "Growler Palitano 1,350L"
-      ]
-    ],
-    [
-      "Alfazema",
-      "Chetwode Blue",
-      "#e8e4fa",
-      "#6860ab",
-      [
-        "Caneca Bhadawari 710ml",
-        "Copo Niliravi 900ml",
-        "Copo Pand 750ml",
-        "Growler Palitano 1,350L"
-      ]
-    ],
-    [
-      "Amarelo",
-      "Gorse",
-      "#fff0b3",
-      "#947000",
-      [
-        "Garrafa Buba 355ml",
-        "Growler Mediterrâneo 1,9L"
-      ]
-    ],
-    [
-      "Areia",
-      "Ash",
-      "#eee5d5",
-      "#84735a",
-      [
-        "Garrafa Buba 355ml",
-        "Growler Palitano 1,350L"
-      ]
-    ],
-    [
-      "Citrus",
-      "Electric Lime",
-      "#ecf5c2",
-      "#677d14",
-      [
-        "Caneca Bhadawari 710ml",
-        "Copo Niliravi 900ml",
-        "Garrafa Buba 355ml",
-        "Growler Mediterrâneo 1,9L"
       ]
     ],
     [
@@ -70,16 +26,60 @@
       ]
     ],
     [
-      "Pistache",
-      "Olive Green",
-      "#e3ecd7",
-      "#5a713c",
+      "Citrus",
+      "Electric Lime",
+      "#ecf5c2",
+      "#677d14",
+      [
+        "Caneca Bhadawari 710ml",
+        "Copo Niliravi 900ml",
+        "Garrafa Buba 355ml",
+        "Growler Mediterrâneo 1,9L"
+      ]
+    ],
+    [
+      "Alfazema",
+      "Chetwode Blue",
+      "#e8e4fa",
+      "#6860ab",
+      [
+        "Caneca Bhadawari 710ml",
+        "Copo Niliravi 900ml",
+        "Copo Pand 750ml",
+        "Growler Palitano 1,350L"
+      ]
+    ],
+    [
+      "Pitaya",
+      "Persian Pink",
+      "#f9dced",
+      "#ac407c",
+      [
+        "Copo Niliravi 900ml",
+        "Copo Pand 750ml",
+        "Garrafa Buba 355ml",
+        "Garrafa Jafarabadi 1L",
+        "Growler Palitano 1,350L"
+      ]
+    ],
+    [
+      "Areia",
+      "Ash",
+      "#eee5d5",
+      "#84735a",
       [
         "Garrafa Buba 355ml",
-        "Garrafa Harpuri 750ml",
-        "Garrafa Jafarabadi 1L",
-        "Garrafa Murrah 540ml",
         "Growler Palitano 1,350L"
+      ]
+    ],
+    [
+      "Amarelo",
+      "Gorse",
+      "#fff0b3",
+      "#947000",
+      [
+        "Garrafa Buba 355ml",
+        "Growler Mediterrâneo 1,9L"
       ]
     ]
   ],

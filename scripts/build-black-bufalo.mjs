@@ -17,7 +17,8 @@ const groups=[
  ['Pistache','Olive Green','#e3ecd7','#5a713c',['Garrafa Buba 355ml','Garrafa Harpuri 750ml','Garrafa Jafarabadi 1L','Garrafa Murrah 540ml','Growler Palitano 1,350L']],
  ['Pitaya','Persian Pink','#f9dced','#ac407c',['Copo Niliravi 900ml','Copo Pand 750ml','Garrafa Buba 355ml','Garrafa Jafarabadi 1L','Growler Palitano 1,350L']]
 ];
-groups.sort((a,b)=>(a[0]==='Pitaya'?-1:b[0]==='Pitaya'?1:0));
+const colorOrder=['Pistache','Laranja','Citrus','Alfazema','Pitaya','Areia','Amarelo'];
+groups.sort((a,b)=>colorOrder.indexOf(a[0])-colorOrder.indexOf(b[0]));
 const unavailable=new Set(data.stockVerification?.unavailableKeys||[]);
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
