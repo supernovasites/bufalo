@@ -43,3 +43,5 @@
 .challenge-panel .challenge-tabs button:disabled{opacity:.5}
 .challenge-panel .puzzle-board{border-radius:12px;border-top-width:4px}
 .challenge-panel .challenge-tabs{flex-wrap:wrap}
+
+.reward-highlight .reward-discount-value{display:block;margin-top:12px;font-size:clamp(24px,4vw,36px);line-height:1.25;font-weight:800;letter-spacing:0;color:#fff;overflow-wrap:anywhere}

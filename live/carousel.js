@@ -2,7 +2,7 @@
   const root = document.querySelector('.photo-gallery');
   if (!root) return;
   const challenges = [
-    {id:'tote',label:'Desafio 1',price:950,name:'Wine Tote 14L Soft Cooler',photo:'desafio-tote-alter-do-chao-20261027.png',url:'https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l',productImage:'wine-tote-product.png'},
+    {id:'tote',label:'Desafio 1',price:950,name:'Wine Tote 14L Soft Cooler',photo:'desafio-tote-atalaia-20261027.png',url:'https://loja.bufalogrowler.com.br/bolsa-tote-termica-nagpuri-14l',productImage:'wine-tote-product.png'},
     {id:'nag',label:'Desafio 2',price:2950,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-marajo-20261027.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
     {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-ver-o-peso-20261027.png',price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/cutelaria',productImage:'trio-cimo-product.png'},
     {id:'mestre',label:'Desafio 4',photo:'desafio-mestre-docas-20261027.png',price:1830,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/buscar?q=mestre',productImage:'mestre-product.png'}
@@ -56,7 +56,7 @@
     <p class="challenge-status" role="status" aria-live="polite">Escolha a primeira peça.</p>
     <div class="challenge-reward reward-highlight" hidden>
       <span class="reward-label">DESAFIO CONCLUÍDO</span>
-      ${config.rewardPending ? '<strong class="reward-headline"><span class="reward-headline-copy">Você completou o Desafio 3!</span></strong>' : `<strong class="reward-headline"><span class="reward-discount">${config.discount}% OFF</span><span class="reward-headline-copy">Sua recompensa está liberada.</span></strong>
+      ${config.rewardPending ? '<strong class="reward-headline"><span class="reward-headline-copy">Você completou o Desafio 3!</span></strong>' : `<strong class="reward-headline"><span class="reward-discount">${config.discount}% OFF</span><span class="reward-discount-value">${money(config.price * config.discount / 100)} de desconto</span><span class="reward-headline-copy">Sua recompensa está liberada.</span></strong>
       <article class="product growler-card reward-product" data-discount="${config.discount}" data-product-name="${config.name}">
         <a class="growler-photo-link" href="${config.url}" target="_blank" rel="noopener noreferrer">
           <div class="product-image"><img src="${config.productImage}" alt="${config.name}" width="400" height="400" loading="lazy"></div>
