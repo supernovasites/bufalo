@@ -1,62 +1,4 @@
 (() => {
-  const nav = document.querySelector('.live-catalog-nav');
-  if (nav) {
-    const track = document.createElement('div');
-    track.className = 'catalog-nav-track';
-    track.id = 'catalog-nav-track';
-    track.append(...nav.children);
-    const previous = document.createElement('button');
-    const next = document.createElement('button');
-    [previous, next].forEach((button, index) => {
-      button.type = 'button';
-      button.className = 'catalog-nav-arrow';
-      button.textContent = index ? '›' : '‹';
-      button.setAttribute('aria-label', index ? 'Ver mais categorias' : 'Ver categorias anteriores');
-      button.setAttribute('aria-controls', track.id);
-      button.addEventListener('click', () => track.scrollBy({left:(index ? 1 : -1)*track.clientWidth*.8,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
-    });
-    nav.replaceChildren(previous, track, next);
-    const arrows = () => {
-      previous.disabled = track.scrollLeft <= 2;
-      next.disabled = track.scrollLeft >= track.scrollWidth - track.clientWidth - 2;
-    };
-    track.addEventListener('scroll', arrows, {passive:true});
-    new ResizeObserver(arrows).observe(track);
-    arrows();
-    const anchor = document.createElement('div');
-    nav.before(anchor);
-    const pin = () => {
-      const rect = anchor.getBoundingClientRect();
-      const fixed = rect.top < 0;
-      anchor.style.height = fixed ? `${nav.offsetHeight}px` : '0px';
-      nav.classList.toggle('is-floating', fixed);
-      nav.style.left = fixed ? `${rect.left}px` : '';
-      nav.style.width = fixed ? `${rect.width}px` : '';
-    };
-    const syncHeight = () => document.documentElement.style.setProperty('--catalog-nav-height', `${nav.offsetHeight}px`);
-    new ResizeObserver(syncHeight).observe(nav);
-    syncHeight();
-    const links = [...nav.querySelectorAll('a')];
-    const sections = links.map(link => document.querySelector(link.getAttribute('href')));
-    let pending = false;
-    const update = () => {
-      pending = false;
-      pin();
-      let current = -1;
-      sections.forEach((section, index) => {
-        if (section && section.getBoundingClientRect().top <= nav.offsetHeight + 24) current = index;
-      });
-      links.forEach((link, index) => {
-        if (index === current) link.setAttribute('aria-current', 'location');
-        else link.removeAttribute('aria-current');
-      });
-    };
-    window.addEventListener('scroll', () => {
-      if (!pending) { pending = true; requestAnimationFrame(update); }
-    }, {passive: true});
-    update();
-    window.addEventListener('resize', () => { pin(); syncHeight(); });
-  }
   const parseMoney = text => Number(text.replace(/[^\d,.-]/g, '').replace(/\./g, '').replace(',', '.'));
   const format = value => value.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
   const refreshSavings = () => {
@@ -81,28 +23,28 @@
     requestAnimationFrame(() => { queued = false; refreshSavings(); });
   }).observe(document.querySelector('main') || document.body, {subtree:true, childList:true, characterData:true});
   refreshSavings();
-  document.addEventListener('click', async event => {
+  document.addEventListener('click', event => {
     const link = event.target.closest('.product .product-cta');
-    if (!link || event.defaultPrevented || event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (!link || event.defaultPrevented || event.button !== 0) return;
     const coupon = document.getElementById('code')?.textContent.trim();
     if (!coupon || coupon.includes('__LIVE_')) return;
-    event.preventDefault();
-    const destination = link.href;
-    const tab = link.target === '_blank' ? window.open('about:blank', '_blank') : null;
-    if (tab) tab.opener = null;
-    let copied = false;
-    try { await navigator.clipboard.writeText(coupon); copied = true; } catch {
+    const report = copied => {
+      const feedback = document.getElementById('feedback');
+      if (feedback) feedback.textContent = copied ? 'Cupom '+coupon+' copiado. Use na finalização da compra.' : 'Use o cupom '+coupon+' na finalização da compra.';
+    };
+    const fallback = () => {
       const field = document.createElement('textarea');
       field.value = coupon;
       field.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
       document.body.append(field);
       field.select();
+      let copied = false;
       try { copied = document.execCommand('copy'); } catch {}
       field.remove();
-    }
-    const feedback = document.getElementById('feedback');
-    if (feedback) feedback.textContent = copied ? `Cupom ${coupon} copiado. Use na finalização da compra.` : `Use o cupom ${coupon} na finalização da compra.`;
-    if (tab) tab.location.href = destination;
-    else window.location.assign(destination);
+      report(copied);
+    };
+    if (navigator.clipboard?.writeText) navigator.clipboard.writeText(coupon).then(() => report(true), fallback);
+    else fallback();
+    // Keep native anchor navigation: clipboard permission must never block buying.
   });
 })();

@@ -82,3 +82,8 @@ body{padding-bottom:90px}
  .catalog-nav-arrow{width:28px;height:44px}
  .selection .live-catalog-nav a{font-size:10px;padding:5px 8px}
 }
+/* Categories stay at their original position; every item is visible. */
+.selection .live-catalog-nav,.selection .live-catalog-nav.is-floating{position:static;display:flex;flex-wrap:wrap;overflow:visible;gap:5px;width:auto;min-height:0;padding:8px 0;margin:20px 0 28px;box-shadow:none}
+.selection .live-catalog-nav a{flex:0 1 auto;min-height:30px;padding:5px 9px;font-size:11px;white-space:normal}
+.selection .black-bufalo,.selection .live-category-group,.selection .product-row{scroll-margin-top:24px}
+@media(max-width:740px){.selection .live-catalog-nav a{padding:5px 7px;font-size:10px}.selection .live-catalog-nav{gap:4px}}
