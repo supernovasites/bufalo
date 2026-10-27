@@ -1,6 +1,19 @@
 {
   "groups": [
     [
+      "Pitaya",
+      "Persian Pink",
+      "#f9dced",
+      "#ac407c",
+      [
+        "Copo Niliravi 900ml",
+        "Copo Pand 750ml",
+        "Garrafa Buba 355ml",
+        "Garrafa Jafarabadi 1L",
+        "Growler Palitano 1,350L"
+      ]
+    ],
+    [
       "Alfazema",
       "Chetwode Blue",
       "#e8e4fa",
@@ -66,19 +79,6 @@
         "Garrafa Harpuri 750ml",
         "Garrafa Jafarabadi 1L",
         "Garrafa Murrah 540ml",
-        "Growler Palitano 1,350L"
-      ]
-    ],
-    [
-      "Pitaya",
-      "Persian Pink",
-      "#f9dced",
-      "#ac407c",
-      [
-        "Copo Niliravi 900ml",
-        "Copo Pand 750ml",
-        "Garrafa Buba 355ml",
-        "Garrafa Jafarabadi 1L",
         "Growler Palitano 1,350L"
       ]
     ]

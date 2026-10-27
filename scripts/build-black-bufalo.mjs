@@ -17,6 +17,8 @@ const groups=[
  ['Pistache','Olive Green','#e3ecd7','#5a713c',['Garrafa Buba 355ml','Garrafa Harpuri 750ml','Garrafa Jafarabadi 1L','Garrafa Murrah 540ml','Growler Palitano 1,350L']],
  ['Pitaya','Persian Pink','#f9dced','#ac407c',['Copo Niliravi 900ml','Copo Pand 750ml','Garrafa Buba 355ml','Garrafa Jafarabadi 1L','Growler Palitano 1,350L']]
 ];
+groups.sort((a,b)=>(a[0]==='Pitaya'?-1:b[0]==='Pitaya'?1:0));
+const unavailable=new Set(data.stockVerification?.unavailableKeys||[]);
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const norm=s=>s.toLowerCase().replace('chetewode','chetwode').replace('persia pink','persian pink');
@@ -31,13 +33,15 @@ function find(name,technical){
 }
 function card(name,technical,color){
  const p=find(name,technical);
+ if(p && (p.option.stock==='out_of_stock'||unavailable.has(p.option.key)))return ''; 
  if(!p){missing.push(color+' — '+name);return `<article class="product banni-card black-pending"><div class="product-image"><span class="pending-mark" aria-hidden="true">BÚFALO</span></div><div class="product-info"><h3>${esc(name)}</h3><p class="banni-color">${color}</p><p class="black-pending-note">Variação a confirmar no catálogo</p></div></article>`;}
  const o=p.option,href=p.url+'?utm_source=pagina_live&amp;utm_medium=referral&amp;utm_campaign=BlackBufalo&amp;utm_content='+esc(o.key);
  return `<article class="product banni-card" data-discount="20" data-product-name="${esc(name)}" data-variant-key="${esc(o.key)}" data-stock="${o.stock}"><a class="product-photo-link" href="${href}" target="_blank" rel="noopener noreferrer"><div class="product-image"><span class="badge">−20%</span><img src="${esc(o.image)}" alt="${esc(name+' — '+color)}" width="400" height="400" loading="lazy" decoding="async"></div></a><div class="product-info"><h3>${esc(name)}</h3><p class="banni-color"><span class="black-dot" aria-hidden="true"></span>${color}</p><p class="old"><s>${money(o.price)}</s></p><p class="price">${money(Math.round(o.price*80)/100)}</p><p class="with-coupon">com o cupom <strong>__LIVE_COUPON__</strong></p><a class="product-cta" href="${href}" target="_blank" rel="noopener noreferrer">Compre com desconto</a></div></article>`;
 }
 const rows=groups.map(([color,technical,bg,accent,names],i)=>{
  const id='black-cor-'+i;
- return `<section class="product-row black-color-row" style="--color-bg:${bg};--color-accent:${accent}" aria-labelledby="${id}"><div class="product-row-heading"><div><span class="black-row-number">0${i+1} / ESCOLHA SUA COR</span><h3 class="category-title" id="${id}">${color}<span class="black-row-count">${names.length} modelos</span></h3></div><div class="row-navigation"><button class="row-arrow" type="button" data-direction="-1" aria-controls="${id}-track" aria-label="Ver produtos anteriores em ${color}">‹</button><button class="row-arrow" type="button" data-direction="1" aria-controls="${id}-track" aria-label="Ver próximos produtos em ${color}">›</button></div></div><div class="product-track" id="${id}-track" tabindex="0" role="group" aria-label="Produtos em ${color}">${names.map(name=>card(name,technical,color)).join('')}</div></section>`;
+ const cards=names.map(name=>card(name,technical,color)).filter(Boolean); 
+ return `<section class="product-row black-color-row" style="--color-bg:${bg};--color-accent:${accent}" aria-labelledby="${id}"><div class="product-row-heading"><div><span class="black-row-number">0${i+1} / ESCOLHA SUA COR</span><h3 class="category-title" id="${id}">${color}<span class="black-row-count">${cards.length} modelos</span></h3></div><div class="row-navigation"><button class="row-arrow" type="button" data-direction="-1" aria-controls="${id}-track" aria-label="Ver produtos anteriores em ${color}">‹</button><button class="row-arrow" type="button" data-direction="1" aria-controls="${id}-track" aria-label="Ver próximos produtos em ${color}">›</button></div></div><div class="product-track" id="${id}-track" tabindex="0" role="group" aria-label="Produtos em ${color}">${cards.join('')}</div></section>`;
 }).join('\n');
 const section=`<section class="black-bufalo" id="black-bufalo" aria-labelledby="black-bufalo-title"><header class="black-heading"><div><p class="eyebrow">SUAS CORES FAVORITAS. A MESMA MANADA.</p><h2 id="black-bufalo-title">Black Búfalo<span>.</span></h2></div><p>Encontre sua cor.<br>Combine seus favoritos.</p></header>${rows}</section>`;
 if(html.includes('id="black-bufalo"'))throw Error('Section already exists');

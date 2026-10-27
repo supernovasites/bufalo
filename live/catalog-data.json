@@ -1291,7 +1291,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-20litros--5502363",
-          "stock": "in_stock"
+          "stock": "out_of_stock"
         },
         {
           "name": "Saco Estanque Búfalo 20L - Dry Bag",
@@ -3774,7 +3774,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425418",
-          "stock": "in_stock"
+          "stock": "out_of_stock"
         },
         {
           "name": "Tampa Original Garrafas",
@@ -7914,7 +7914,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--762609",
-          "stock": "in_stock"
+          "stock": "out_of_stock"
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -8742,7 +8742,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--37096",
-          "stock": "in_stock"
+          "stock": "out_of_stock"
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -9138,6 +9138,20 @@
         "caneca-bhadawari-710ml--37096",
         "no matching sku price"
       ]
+    ]
+  },
+  "stockVerification": {
+    "checkedAt": "2026-10-27",
+    "source": "destination_product_sku_availability",
+    "unavailableKeys": [
+      "dry-bag-20litros--5502363",
+      "tampa-original-garrafas--425418",
+      "garrafa-murrah-540ml--762609",
+      "caneca-bhadawari-710ml--37096"
+    ],
+    "unverifiedKeys": [
+      "tampa-padrao-copos--426774",
+      "surti-duo-flow-900ml--1825113"
     ]
   }
 }
