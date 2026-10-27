@@ -133,3 +133,10 @@
 #bg-site-header .bg-order-link:focus-visible{outline:3px solid #e77939;outline-offset:3px;border-radius:4px}
 @media(max-width:760px){#bg-site-header .bg-menu-order{gap:2px}#bg-site-header .bg-order-link{width:64px;min-height:54px}#bg-site-header .bg-order-link span{font-size:10px}}
 @media(max-width:380px){#bg-site-header:has(.bg-menu-order) .header-row{padding-left:10px;padding-right:10px}}
+
+/* Acesso à conta antes da busca no menu compartilhado. */
+#mobile-menu .bg-menu-account{display:flex;align-items:center;gap:12px;margin:20px 24px 0;padding:13px 16px;min-height:48px;border:1px solid var(--line);border-radius:4px;background:#f3f4f2;font-size:16px;font-weight:600}
+#mobile-menu .bg-menu-account span{flex:1}
+#mobile-menu .bg-menu-account svg{flex:none;width:22px;height:22px}
+#mobile-menu .bg-menu-account:hover{background:#e4e9e5}
+#mobile-menu .bg-menu-account:focus-visible{outline:3px solid #e77939;outline-offset:3px}
