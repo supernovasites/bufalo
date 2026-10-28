@@ -29,10 +29,6 @@
       regular.textContent = format(original);
       const discount = Number(card.dataset.discount || 20);
       offer.textContent = format(Math.round(base * (100 - discount)) / 100);
-      const saving = card.querySelector('.live-saving');
-      if (saving) saving.textContent = 'Economize ' + format(Math.round((original - Math.round(base * (100 - discount)) / 100) * 100) / 100);
-      const badge = card.querySelector('.badge');
-      if (badge) badge.textContent = '−' + discount + '%';
     });
 
     const topButton = document.createElement('button');

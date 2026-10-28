@@ -5,12 +5,12 @@
 .live-catalog-nav a{flex:0 0 auto;white-space:nowrap;min-height:44px;box-sizing:border-box}
 .live-catalog-nav a[aria-current="location"]{background:#193239;color:#fff;border-color:#193239}
 .selection .black-bufalo,.selection .live-category-group,.selection .product-row{scroll-margin-top:calc(var(--catalog-nav-height,110px) + 20px)}
-.product .product-image .badge.catalog-saving-badge{position:absolute;top:10px;left:10px;right:auto;max-width:calc(100% - 20px);box-sizing:border-box;padding:8px 10px;border-radius:6px;background:#142e32;color:#fff;font-size:12px;font-weight:800;line-height:1.3;letter-spacing:0;text-transform:none;box-shadow:0 2px 8px #142e3226}
+.product .product-image .badge.catalog-saving-badge{position:absolute;top:10px;left:10px;right:auto;max-width:calc(100% - 86px);box-sizing:border-box;padding:5px 7px;border-radius:6px;background:#142e32;color:#fff;font-size:11px;font-weight:800;line-height:1.2;letter-spacing:0;text-transform:none;box-shadow:0 2px 8px #142e3226}
 @media(max-width:740px){
  .selection .live-catalog-nav{gap:8px;padding:10px 2px;margin:20px 0 28px}
  .selection .live-catalog-nav.is-floating{margin:0}
  .live-catalog-nav a{flex:0 0 auto;white-space:nowrap;min-height:44px;padding:10px 14px;font-size:12px}
- .product .product-image .badge.catalog-saving-badge{top:8px;left:8px;max-width:calc(100% - 16px);font-size:11px;padding:7px 9px}
+ .product .product-image .badge.catalog-saving-badge{top:8px;left:8px;max-width:calc(100% - 76px);font-size:10px;padding:4px 6px}
 }
 
 /* Compact, fully visible categories in both menu positions. */
@@ -87,3 +87,5 @@ body{padding-bottom:106px}
 .selection .live-catalog-nav a{flex:0 1 auto;min-height:30px;padding:5px 9px;font-size:11px;white-space:normal}
 .selection .black-bufalo,.selection .live-category-group,.selection .product-row{scroll-margin-top:24px}
 @media(max-width:740px){.selection .live-catalog-nav a{padding:5px 7px;font-size:10px}.selection .live-catalog-nav{gap:4px}}
+.product .product-image .catalog-total-discount{position:absolute;top:10px;right:10px;z-index:2;padding:5px 7px;border-radius:6px;background:#ffb16c;color:#142e32;font-size:11px;font-weight:800;line-height:1.2;white-space:nowrap}
+@media(max-width:740px){.product .product-image .catalog-total-discount{top:8px;right:8px;padding:4px 6px;font-size:10px}}
