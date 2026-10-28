@@ -23,11 +23,14 @@
       const offer = card.querySelector('.price');
       if (!regular || !offer) return;
       const selected = card.querySelector('.growler-swatch[aria-pressed="true"]');
-      const base = selected?.dataset.price ? Number(selected.dataset.price) : readPrice(regular.textContent);
+      const base = selected?.dataset.price ? Number(selected.dataset.price) : Number(card.dataset.basePrice || readPrice(regular.textContent));
       if (!Number.isFinite(base) || base <= 0) return;
-      regular.textContent = format(base);
+      const original = Math.max(base, Number(card.dataset.originalPrice) || base);
+      regular.textContent = format(original);
       const discount = Number(card.dataset.discount || 20);
       offer.textContent = format(Math.round(base * (100 - discount)) / 100);
+      const saving = card.querySelector('.live-saving');
+      if (saving) saving.textContent = 'Economize ' + format(Math.round((original - Math.round(base * (100 - discount)) / 100) * 100) / 100);
       const badge = card.querySelector('.badge');
       if (badge) badge.textContent = '−' + discount + '%';
     });

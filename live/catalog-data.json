@@ -339,7 +339,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "mestrebufaloontap7l--38301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 1930
         }
       ]
     },
@@ -417,7 +418,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "mestre-bufalo-growler-spritz--38301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 1830
         },
         {
           "name": "Mestre Búfalo Growler On TAP - Combo 5,5L Chopeira térmica portátil",
@@ -439,7 +441,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "mestre-bufalo-growler-spritz--481146",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 1830
         }
       ]
     },
@@ -6415,7 +6418,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1069625",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 270
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6437,7 +6441,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1070817",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 270
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6481,7 +6486,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---762609",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 270
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6575,7 +6581,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1070817",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 250
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6685,7 +6692,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1069625",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 250
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6823,7 +6831,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---858552",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6845,7 +6854,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1069625",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6889,7 +6899,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1672485",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6911,7 +6922,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---545144",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6933,7 +6945,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---546664",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6955,7 +6968,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1673300",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6999,7 +7013,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---762609",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -7065,7 +7080,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---493930",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -7137,7 +7153,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426224",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 330
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7181,7 +7198,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426124",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 330
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7247,7 +7265,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 330
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7269,7 +7288,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426573",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 330
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7291,7 +7311,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425881",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 330
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7407,7 +7428,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-mediterraneo-2l--426266",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 380
         },
         {
           "name": "Growler Mediterrâneo 1,9L",
@@ -7429,7 +7451,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-mediterraneo-2l--426709",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 380
         }
       ]
     },
@@ -7850,7 +7873,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1069625",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 230
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7894,7 +7918,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1070817",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 230
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -8678,7 +8703,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 190
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8700,7 +8726,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425881",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 190
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8722,7 +8749,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426236",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 190
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8744,7 +8772,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--37096",
-          "stock": "out_of_stock"
+          "stock": "out_of_stock",
+          "oldPrice": 190
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8766,7 +8795,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426185",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 190
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8788,7 +8818,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426266",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 190
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8810,7 +8841,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426709",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 190
         }
       ]
     },
@@ -8838,7 +8870,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--425416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 175
         },
         {
           "name": "Copo Pand 750ml",
@@ -8860,7 +8893,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--425881",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 175
         },
         {
           "name": "Copo Pand 750ml",
@@ -8882,7 +8916,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-750ml--426573",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 175
         }
       ]
     },
