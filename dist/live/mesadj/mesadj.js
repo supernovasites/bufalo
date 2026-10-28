@@ -46,7 +46,7 @@
     if(event.key==='Escape'){event.preventDefault();stopAll();return;}
     if(event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
     const digit=/^Digit[1-9]$/.test(event.code)?Number(event.code.slice(-1)):/^[1-9]$/.test(event.key)?Number(event.key):0;
-    const index=event.shiftKey?(digit>=1&&digit<=4?digit+8:-1):digit-1;
+    const index=event.shiftKey?(digit>=1&&digit<=5?digit+8:-1):digit-1;
     const track=tracks[index];if(track){event.preventDefault();track.toggle();}
   });
   window.addEventListener('pagehide',()=>tracks.forEach(track=>track.halt()));
