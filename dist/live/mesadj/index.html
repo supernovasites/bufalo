@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>Mesa de DJ · Live Búfalo</title>
-  <link rel="stylesheet" href="/live/mesadj/mesadj.css?v=20261028-efeitos">
-  <script src="/live/mesadj/mesadj.js?v=20261028-efeitos" defer></script>
+  <link rel="stylesheet" href="/live/mesadj/mesadj.css?v=20261028-grupos">
+  <script src="/live/mesadj/mesadj.js?v=20261028-grupos" defer></script>
 </head>
 <body>
   <header class="top"><a class="brand" href="/painel/">BÚFALO <small>GROWLER</small></a><nav aria-label="Administração"><a href="/painel/">Voltar ao painel</a><a href="/live/sorteio/">Sorteios</a><a href="/live/" target="_blank" rel="noopener">Abrir live ↗</a></nav></header>
@@ -18,7 +18,9 @@
       <button id="stop-all" class="stop-all" type="button" aria-label="Parar todos os sons"><span aria-hidden="true">■</span> Parar tudo <kbd>Esc</kbd></button>
     </section>
     <p class="hint">Combine os sons da live. <span class="keyboard-hint">Use <kbd>1</kbd> a <kbd>9</kbd> para os sons 1–9 e <kbd>Shift</kbd> + <kbd>1</kbd> a <kbd>4</kbd> para os sons 10–13. Pressione novamente para pausar.</span> O áudio toca neste dispositivo.</p>
-    <section class="decks" aria-label="Sons da live">
+    <section class="sound-group" aria-labelledby="background-title">
+      <div class="group-heading"><h2 id="background-title">Sons de fundo</h2><p>Trilhas para acompanhar a live.</p></div>
+      <div class="decks">
       <article class="deck" data-track="chaves">
         <div class="deck-top"><span class="track-number">01 / CLIMA DA LIVE</span><span class="track-status">Carregando áudio…</span></div>
         <h2>Fundo do Chaves</h2>
@@ -35,6 +37,11 @@
         <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>2</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Trilha de fundo da live do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Trilha de fundo da live" disabled>■</button></div>
         <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">40%</output><input class="volume" type="range" min="0" max="100" value="40" aria-label="Volume de Trilha de fundo da live"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
+      </div>
+    </section>
+    <section class="sound-group" aria-labelledby="effects-title">
+      <div class="group-heading"><h2 id="effects-title">Efeitos sonoros</h2><p>Aplausos, risadas e outros efeitos para cada momento.</p></div>
+      <div class="decks">
       <article class="deck" data-track="aplauso">
         <div class="deck-top"><span class="track-number">03 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
         <h2>Aplauso</h2>
@@ -123,6 +130,7 @@
         <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>Shift+4</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Vencedor SFX do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Vencedor SFX" disabled>■</button></div>
         <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Vencedor SFX"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
+      </div>
     </section>
     <p id="feedback" role="status" aria-live="polite">Escolha um som para começar.</p>
     <noscript>Ative o JavaScript para usar os controles da mesa de DJ.</noscript>
