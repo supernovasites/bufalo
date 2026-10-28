@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>Mesa de DJ · Live Búfalo</title>
-  <link rel="stylesheet" href="/live/mesadj/mesadj.css?v=20261022-espera-sorteio">
-  <script src="/live/mesadj/mesadj.js?v=20261022-espera-sorteio" defer></script>
+  <link rel="stylesheet" href="/live/mesadj/mesadj.css?v=20261028-efeitos">
+  <script src="/live/mesadj/mesadj.js?v=20261028-efeitos" defer></script>
 </head>
 <body>
   <header class="top"><a class="brand" href="/painel/">BÚFALO <small>GROWLER</small></a><nav aria-label="Administração"><a href="/painel/">Voltar ao painel</a><a href="/live/sorteio/">Sorteios</a><a href="/live/" target="_blank" rel="noopener">Abrir live ↗</a></nav></header>
@@ -17,7 +17,7 @@
       <div class="master-volume"><label for="master-volume">Volume geral <output id="master-level" for="master-volume">80%</output></label><input id="master-volume" type="range" min="0" max="100" value="80"></div>
       <button id="stop-all" class="stop-all" type="button" aria-label="Parar todos os sons"><span aria-hidden="true">■</span> Parar tudo <kbd>Esc</kbd></button>
     </section>
-    <p class="hint">Combine os sons da live. <span class="keyboard-hint">Use as teclas <kbd>1</kbd> a <kbd>3</kbd> para tocar e pausar.</span> O áudio toca neste dispositivo.</p>
+    <p class="hint">Combine os sons da live. <span class="keyboard-hint">Use <kbd>1</kbd> a <kbd>9</kbd> para os sons 1–9 e <kbd>Shift</kbd> + <kbd>1</kbd> a <kbd>4</kbd> para os sons 10–13. Pressione novamente para pausar.</span> O áudio toca neste dispositivo.</p>
     <section class="decks" aria-label="Sons da live">
       <article class="deck" data-track="chaves">
         <div class="deck-top"><span class="track-number">01 / CLIMA DA LIVE</span><span class="track-status">Carregando áudio…</span></div>
@@ -35,13 +35,93 @@
         <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>2</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Trilha de fundo da live do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Trilha de fundo da live" disabled>■</button></div>
         <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">40%</output><input class="volume" type="range" min="0" max="100" value="40" aria-label="Volume de Trilha de fundo da live"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
-      <article class="deck" data-track="espera-sorteio">
-        <div class="deck-top"><span class="track-number">03 / ESPERA DO SORTEIO</span><span class="track-status">Carregando áudio…</span></div>
-        <h2>Trilha espera do sorteio</h2>
-        <audio preload="metadata" src="/live/mesadj/sons/trilha-espera-sorteio.mp3"></audio>
-        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Trilha espera do sorteio" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
-        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>3</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Trilha espera do sorteio do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Trilha espera do sorteio" disabled>■</button></div>
-        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">40%</output><input class="volume" type="range" min="0" max="100" value="40" aria-label="Volume de Trilha espera do sorteio"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      <article class="deck" data-track="aplauso">
+        <div class="deck-top"><span class="track-number">03 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Aplauso</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/aplauso.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Aplauso" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>3</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Aplauso do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Aplauso" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Aplauso"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="caixa-registradora">
+        <div class="deck-top"><span class="track-number">04 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Caixa registradora</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/caixa-registradora.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Caixa registradora" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>4</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Caixa registradora do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Caixa registradora" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Caixa registradora"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="erro">
+        <div class="deck-top"><span class="track-number">05 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Erro</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/erro.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Erro" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>5</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Erro do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Erro" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Erro"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="explosao-curta">
+        <div class="deck-top"><span class="track-number">06 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Explosão curta</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/explosao-curta.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Explosão curta" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>6</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Explosão curta do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Explosão curta" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Explosão curta"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="explosao">
+        <div class="deck-top"><span class="track-number">07 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Explosão</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/explosao.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Explosão" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>7</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Explosão do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Explosão" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Explosão"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="grilo">
+        <div class="deck-top"><span class="track-number">08 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Grilo</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/grilo.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Grilo" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>8</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Grilo do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Grilo" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Grilo"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="pessoas-sorrindo">
+        <div class="deck-top"><span class="track-number">09 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Pessoas sorrindo</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/pessoas-sorrindo.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Pessoas sorrindo" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>9</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Pessoas sorrindo do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Pessoas sorrindo" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Pessoas sorrindo"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="risadinha">
+        <div class="deck-top"><span class="track-number">10 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Risadinha</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/risadinha.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Risadinha" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>Shift+1</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Risadinha do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Risadinha" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Risadinha"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="sirene-policia">
+        <div class="deck-top"><span class="track-number">11 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Sirene polícia</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/sirene-policia.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Sirene polícia" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>Shift+2</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Sirene polícia do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Sirene polícia" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Sirene polícia"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="tiktak-relogio">
+        <div class="deck-top"><span class="track-number">12 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Tique-taque do relógio</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/tiktak-relogio.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Tique-taque do relógio" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>Shift+3</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Tique-taque do relógio do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Tique-taque do relógio" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Tique-taque do relógio"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
+      <article class="deck" data-track="vencedor-sfx">
+        <div class="deck-top"><span class="track-number">13 / EFEITO SONORO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Vencedor SFX</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/vencedor-sfx.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Vencedor SFX" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>Shift+4</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Vencedor SFX do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Vencedor SFX" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">100%</output><input class="volume" type="range" min="0" max="100" value="100" aria-label="Volume de Vencedor SFX"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
     </section>
     <p id="feedback" role="status" aria-live="polite">Escolha um som para começar.</p>

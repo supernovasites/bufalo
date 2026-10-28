@@ -14,7 +14,7 @@
       const playing=!audio.paused&&!audio.ended;
       card.classList.toggle('is-playing',playing);card.classList.toggle('has-error',failed);
       play.replaceChildren(document.createTextNode(playing?'Pausar ':'Tocar '));
-      const key=document.createElement('kbd');key.textContent=String(index+1);play.append(key);
+      const key=document.createElement('kbd');key.textContent=index<9?String(index+1):'Shift+'+String(index-8);play.append(key);
       play.setAttribute('aria-label',(playing?'Pausar ':'Tocar ')+name);
       status.textContent=failed?'Áudio indisponível':!ready?'Carregando áudio…':playing?'Tocando agora':audio.currentTime>0&&!audio.ended?'Em pausa':'Pronto para tocar';
       updateTime();
@@ -45,7 +45,9 @@
     if(event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;
     if(event.key==='Escape'){event.preventDefault();stopAll();return;}
     if(event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
-    const track=tracks[Number(event.key)-1];if(/^[1-3]$/.test(event.key)&&track){event.preventDefault();track.toggle();}
+    const digit=/^Digit[1-9]$/.test(event.code)?Number(event.code.slice(-1)):/^[1-9]$/.test(event.key)?Number(event.key):0;
+    const index=event.shiftKey?(digit>=1&&digit<=4?digit+8:-1):digit-1;
+    const track=tracks[index];if(track){event.preventDefault();track.toggle();}
   });
   window.addEventListener('pagehide',()=>tracks.forEach(track=>track.halt()));
 })();
