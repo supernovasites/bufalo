@@ -61,21 +61,21 @@ nav.purchase-bar .copy:hover{background:#ffffff18}
 .catalog-nav-arrow:disabled{opacity:.3;cursor:default}
 .catalog-nav-arrow:focus-visible{outline:2px solid #e77939;outline-offset:2px}
 /* Full-width bottom bar with compact controls. */
-nav.purchase-bar{left:0;right:0;bottom:0;max-width:none;width:100%;margin:0;border:0;border-top:1px solid #365456;border-radius:0;padding:9px max(20px,calc((100vw - 1320px)/2));gap:20px;box-shadow:0 -3px 18px #142e321a}
+nav.purchase-bar{left:0;right:0;bottom:16px;max-width:none;width:100%;margin:0;border:0;border-top:1px solid #365456;border-radius:0;padding:9px max(20px,calc((100vw - 1320px)/2));gap:20px;box-shadow:0 -3px 18px #142e321a}
 nav.purchase-bar .coupon{gap:14px}
 nav.purchase-bar .coupon strong{font-size:17px;padding:5px 9px}
 nav.purchase-bar .copy{min-height:38px;padding:8px 12px}
 nav.purchase-bar .buy-actions .button{min-height:40px;padding:9px 16px}
-body{padding-bottom:90px}
+body{padding-bottom:106px}
 @media(max-width:900px){
- nav.purchase-bar{left:0;right:0;bottom:0;width:100%;padding:7px 12px max(7px,env(safe-area-inset-bottom));border-radius:0;gap:6px}
+ nav.purchase-bar{left:0;right:0;bottom:16px;width:100%;padding:7px 12px max(7px,env(safe-area-inset-bottom));border-radius:0;gap:6px}
  nav.purchase-bar .coupon{gap:7px}
  nav.purchase-bar .coupon small{font-size:8px}
  nav.purchase-bar .coupon strong{font-size:14px;padding:4px 6px}
  nav.purchase-bar #live-timer{font-size:19px}
  nav.purchase-bar .copy{min-height:36px;padding:7px 10px;font-size:10px}
  nav.purchase-bar .buy-actions .button{min-height:38px;padding:8px;font-size:11px}
- body{padding-bottom:138px}
+ body{padding-bottom:154px}
 }
 @media(max-width:740px){
  .selection .live-catalog-nav,.selection .live-catalog-nav.is-floating{gap:5px;grid-template-columns:28px minmax(0,1fr) 28px;padding:6px 0}
