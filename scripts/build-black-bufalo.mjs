@@ -29,7 +29,7 @@ function find(name,technical){
  if(p){const exact=p.cards.find(c=>norm(c.label)===norm(technical)||norm(c.label)===norm(technical+'/'+technical));const split=p.cards.find(c=>norm(c.label.split('/')[0])===norm(technical));if(exact||split)return {...p,option:exact||split};}
  const slug=name.startsWith('Copo Niliravi')?'copo-nilliravi-900ml':name.startsWith('Copo Banni')?'copo-banni-350ml':null;
  const opt=extra[slug]?.find(c=>norm(c.name||c.label)===norm(technical));
- if(opt)return {name,url:'https://loja.bufalogrowler.com.br/'+slug,option:{label:technical,image:opt.img,price:opt.price,key:slug+'--'+opt.id,stock:'in_stock'}};
+ if(opt)return {name,url:'https://loja.bufalogrowler.com.br/'+slug,option:{label:technical,image:opt.img,price:opt.price,oldPrice:opt.oldPrice,key:slug+'--'+opt.id,stock:'in_stock'}};
  return null;
 }
 function card(name,technical,color){
@@ -37,7 +37,7 @@ function card(name,technical,color){
  if(p && (p.option.stock==='out_of_stock'||p.option.imageAvailable===false||!p.option.image||unavailable.has(p.option.key)))return ''; 
  if(!p){missing.push(color+' — '+name);return '';}
  const o=p.option,href=p.url+'?utm_source=pagina_live&amp;utm_medium=referral&amp;utm_campaign=LiveshopBG&amp;utm_content='+esc(o.key);
- return `<article class="product banni-card" data-discount="20" data-product-name="${esc(name)}" data-variant-key="${esc(o.key)}" data-stock="${o.stock}"><a class="product-photo-link" href="${href}" target="_blank" rel="noopener noreferrer"><div class="product-image"><span class="badge">−20%</span><img src="${esc(o.image)}" alt="${esc(name+' — '+color)}" width="400" height="400" loading="lazy" decoding="async"></div></a><div class="product-info"><h3>${esc(name)}</h3><p class="banni-color"><span class="black-dot" aria-hidden="true"></span>${color}</p><p class="old"><s>${money(o.price)}</s></p><p class="price">${money(Math.round(o.price*80)/100)}</p><p class="with-coupon">com o cupom <strong>__LIVE_COUPON__</strong></p><a class="product-cta" href="${href}" target="_blank" rel="noopener noreferrer">Compre com desconto</a></div></article>`;
+ return `<article class="product banni-card" data-discount="20" data-base-price="${o.price}" data-original-price="${o.oldPrice || o.price}" data-product-name="${esc(name)}" data-variant-key="${esc(o.key)}" data-stock="${o.stock}"><a class="product-photo-link" href="${href}" target="_blank" rel="noopener noreferrer"><div class="product-image"><span class="badge">−20%</span><img src="${esc(o.image)}" alt="${esc(name+' — '+color)}" width="400" height="400" loading="lazy" decoding="async"></div></a><div class="product-info"><h3>${esc(name)}</h3><p class="banni-color"><span class="black-dot" aria-hidden="true"></span>${color}</p><p class="old"><s>${money(o.oldPrice || o.price)}</s></p><p class="price">${money(Math.round(o.price*80)/100)}</p><p class="live-saving">Economize ${money(Math.round(((o.oldPrice || o.price) - Math.round(o.price*80)/100)*100)/100)}</p><p class="with-coupon">com o cupom <strong>__LIVE_COUPON__</strong></p><a class="product-cta" href="${href}" target="_blank" rel="noopener noreferrer">Compre com desconto</a></div></article>`;
 }
 const rows=groups.map(([color,technical,bg,accent,names],i)=>{
  const id='black-cor-'+i;
