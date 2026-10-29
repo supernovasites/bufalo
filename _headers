@@ -22,3 +22,6 @@
   Cache-Control: public, max-age=0, must-revalidate
 /assets/product-references.json
   Cache-Control: public, max-age=0, must-revalidate
+
+/assets/announcement.js
+  Cache-Control: public, max-age=0, must-revalidate
