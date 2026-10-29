@@ -258,3 +258,6 @@ body{background:#f2f5ef}
 .button,.button.light,.product-copy .button,.product-copy .button:hover,.gift-popup .bw-cta,.variant-controls button{background:var(--button-petrol);border-color:var(--button-petrol);color:#fff}
 .button:hover,.button.light:hover,.product-copy .button:hover,.gift-popup .bw-cta:hover,.variant-controls button:hover{background:var(--button-petrol-hover);border-color:var(--button-petrol-hover);color:#fff}
 .play-circle{background:var(--button-petrol);box-shadow:0 0 0 12px #142e3233,0 10px 40px #0005}
+.gift-popup{border:0}
+.gift-popup button.bw-cta{background:var(--button-petrol);color:#fff;border:0}
+.gift-popup button.bw-cta:hover{background:var(--button-petrol-hover);color:#fff}
