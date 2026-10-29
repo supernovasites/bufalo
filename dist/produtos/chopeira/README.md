@@ -12,7 +12,7 @@ Preços e estoque ficam na loja para evitar informação desatualizada. Ao adici
 
 ## Banner
 
-Criado pelo gerador de imagens integrado (modo de edição), usando a foto de produto enviada pelo usuário. Prompt resumido: preservar a chopeira preta e seus componentes, retirar o fundo branco e os elementos promocionais, criar um estúdio preto enigmático com luz de contorno, névoa discreta e pedestal de pedra, produto à direita e espaço negativo à esquerda; sem texto gerado. A tipografia do banner é HTML acessível. WebP em 1536 × 1024 e 960 × 640, com preload responsivo. As fotos das seções são as fotos reais da loja; o hero é uma composição ilustrativa gerada a partir da referência.
+Criado pelo gerador de imagens integrado (modo de edição), usando a foto de produto enviada pelo usuário. Banner atual: `images/mestre-cervejeiro-hero.webp` e versão de 960 px. Prompt resumido: usar o kit Mestre Cervejeiro da foto enviada, com dois growlers pretos do mesmo tamanho, somente um com torneira e regulador; preservar silhuetas, bases de inox e marcas; remover fundo branco e texto promocional; criar estúdio preto enigmático, pedra escura, névoa sutil, contornos prateados e reflexo âmbar discreto; agrupar à direita com espaço negativo à esquerda, sem texto gerado. Gerador integrado utilizado como ferramenta, com a foto como referência. A imagem anterior foi preservada como arquivo, mas não é carregada pela página. A tipografia do banner é HTML acessível. WebP em 1536 × 1024 e 960 × 640, com preload responsivo. As fotos das seções são as fotos reais da loja; o hero é uma composição ilustrativa gerada a partir da referência.
 
 ## GA4 e UTMs
 
