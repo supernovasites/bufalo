@@ -13,7 +13,12 @@
  ['Olá, {cliente}! Confira nossos lançamentos.','Sua próxima aventura merece uma novidade.',home+'/#lancamentos'],
  ['Olá, {cliente}! Conte com a nossa equipe.','Ficou com alguma dúvida? Fale com a gente!','https://wa.me/5591984973370']
  ];
- let firstName='',index=0,link,bar;
+ let firstName='',index=Math.floor(Math.random()*messages.length),link,bar;
+ try {
+  const previous=sessionStorage.getItem('bg-announcement-index');
+  if(previous!==null&&/^\d+$/.test(previous)&&Number(previous)<messages.length)index=(Number(previous)+1)%messages.length;
+  sessionStorage.setItem('bg-announcement-index',String(index));
+ } catch {}
  const normalize=value=>typeof value==='string'?value.trim().split(/\s+/)[0].slice(0,30):'';
  function render(){if(!link)return;const m=messages[index];link.textContent=firstName?m[0].replace('{cliente}',firstName):m[1];link.href=m[2];}
  function nativeName(){return location.origin===store?normalize(document.querySelector('#cabecalho .menu-user-name')?.textContent):'';}
@@ -28,5 +33,4 @@
  document.addEventListener('bg:site-shell-ready',mount);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount,{once:true});else mount();
  if(location.origin===store)new MutationObserver(()=>setName(nativeName())).observe(document.body,{childList:true,subtree:true,characterData:true});
- setInterval(()=>{if(document.hidden||bar?.matches(':hover')||bar?.contains(document.activeElement))return;index=(index+1)%messages.length;render();},7000);
 })();
