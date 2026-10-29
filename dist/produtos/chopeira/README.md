@@ -24,7 +24,7 @@ Usa preload none, playsinline, botão destacado e reprodução somente após cli
 
 ## Brinde
 
-Popup no formato de imagem acima do texto, CTA e botão externo de fechar do `bw-popup`/Black26 da homepage `/bufalo`. Duas fotos oficiais da página https://loja.bufalogrowler.com.br/bag-tiracolo-para-chopeira, com growler + bag como primeira imagem e primeira miniatura. Oferta informada pelo proprietário: Bag Tiracolo na compra de Kit Mestre Cervejeiro, também exibida nos dois combos. Comunicação na landing; não altera regras de carrinho/checkout da Loja Integrada. Abre uma vez por sessão após 600 ms, sem interromper vídeo ou outro diálogo; reabre por “Conheça o brinde”. Fecha por botão, Escape ou fundo e restaura rolagem.
+Popup com uma única imagem, sem borda ou galeria, inspirado no formato `bw-popup` da homepage. `images/bag-taphouse-popup.webp` mostra o growler com a bag em um tap house de fundo bem desfocado. Criado pelo gerador integrado, usando como referência a foto oficial do growler com bag da loja; prompt: manter o conjunto e a marca, trocar o fundo branco por balcão de madeira, torneiras e luzes âmbar desfocadas, tons petróleo, produto nítido e espaço escuro inferior sem texto. O botão petróleo está sobre a própria imagem, com “Ganhe a Bag na compra do Kit Mestre Cervejeiro”; apenas fecha a janela, não navega nem registra seleção de promoção. Oferta informada pelo proprietário, também exibida nos kits; não altera checkout. Abre uma vez por sessão, não interrompe vídeo/diálogo; reabre por “Conheça o brinde” e fecha por botão, Escape ou fundo, restaurando a rolagem.
 
 ## GA4 e UTMs
 
@@ -37,7 +37,7 @@ Eventos específicos:
 - `select_item`: clique para ver o produto na loja, com ID, nome, lista e posição.
 - `ontap_cta_click`: CTA do hero, sugestão de ocasião, navegação de modelos e saída para a categoria.
 - `ontap_video_play`: reprodução efetiva, não apenas clique. `ontap_video_progress`: 25%, 50%, 75%, 100%, uma vez por carregamento.
-- `view_promotion`, `select_promotion`: abertura e seleção da oferta `ontap26_bag`.
+- `view_promotion`: abertura da oferta `ontap26_bag`. O botão de fechar não registra seleção de promoção.
 - `ontap_variant_scroll`: uso das setas da rolagem de variantes, com ID da lista e direção. Swipe e teclado permanecem nativos, sem coleta de gestos.
 - `ontap_faq_open`: abertura de uma pergunta, por identificador fixo.
 - `ontap_scroll`: marcos de 25%, 50%, 75% e 100%, uma vez por carregamento.

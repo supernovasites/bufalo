@@ -64,7 +64,7 @@ assert.match(hero, /id="original-logo-photo"/);
 assert.doesNotMatch(html, /class="model-nav"|class="care wrap"|class="faq wrap"/);
 assert.equal((html.match(/class="variant-rail"/g) || []).length, 3);
 assert.match(html, /Qualidade<br>\s*que se prova/);
-assert.match(html, /id="gift-photo" class="bw-art" src="images\/bag-gift-3.webp"/);
+assert.match(html, /id="gift-photo" class="bw-art" src="images\/bag-taphouse-popup.webp"/);
 const shortcuts = html.match(/<div class="shortcut-grid">([\s\S]*?)<\/div>/)[1];
 assert.doesNotMatch(shortcuts, /404796101|404795783/);
 const disabled = setup(false);

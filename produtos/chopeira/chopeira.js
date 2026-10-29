@@ -86,13 +86,6 @@
       if (event.target === gift && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) gift.close();
     });
     gift.querySelector('[data-gift-cta]').addEventListener('click', () => gift.close());
-    gift.querySelectorAll('[data-gift-photo]').forEach(button => button.addEventListener('click', () => {
-      const inUse = button.dataset.giftPhoto === '3';
-      const photo = document.getElementById('gift-photo');
-      photo.src = 'images/bag-gift-' + (inUse ? '3' : '1') + '.webp';
-      photo.alt = inUse ? 'Bag Tiracolo Búfalo com growler; imagem ilustrativa de uso' : 'Bag Tiracolo Búfalo preta com alça regulável';
-      gift.querySelectorAll('[data-gift-photo]').forEach(el => el.setAttribute('aria-pressed', String(el === button)));
-    }));
     setTimeout(() => {if (!hasSeen() && (!video || video.paused)) openGift();}, 600);
   }
   const milestones = new Set();

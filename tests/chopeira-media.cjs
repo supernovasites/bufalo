@@ -37,8 +37,6 @@ function setup() {
   s.video.paused = true; s.timers[0](); assert.equal(s.gift.open, true);
   assert.equal(s.document.body.style.overflow, 'hidden');
   assert.equal(s.events.at(-1)[1], 'view_promotion');
-  s.thumbnails[1].listeners.click(); assert.equal(s.photo.src, 'images/bag-gift-3.webp');
-  assert.equal(s.thumbnails[1]['aria-pressed'], 'true'); assert.equal(s.thumbnails[0]['aria-pressed'], 'false');
   s.close.listeners.click(); assert.equal(s.gift.open, false); assert.equal(s.document.body.style.overflow, 'auto');
   s.timers[0](); assert.equal(s.gift.open, false, 'Automatic offer shows only once per session');
   s.manual.listeners.click(); assert.equal(s.gift.open, true, 'The gift remains manually accessible');
