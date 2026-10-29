@@ -19,7 +19,10 @@
         "Regulador com manômetro",
         "5 cápsulas de CO₂ de 16 g"
       ],
-      "note": "O barril tem 1,9 L; com o dispensador, o sistema tem capacidade de 2 L, conforme a loja."
+      "note": "O barril tem 1,9 L; com o dispensador, o sistema tem capacidade de 2 L, conforme a loja.",
+      "price": 1250.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "404795468",
@@ -38,7 +41,10 @@
         "Aço inox 18/8",
         "5 cápsulas de CO₂ de 16 g"
       ],
-      "note": ""
+      "note": "",
+      "price": 1450.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "404795783",
@@ -57,7 +63,10 @@
         "Acabamento creme",
         "5 cápsulas de CO₂ de 16 g"
       ],
-      "note": ""
+      "note": "",
+      "price": 1450.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "404796101",
@@ -76,7 +85,10 @@
         "Isolamento a vácuo",
         "Regulador com manômetro"
       ],
-      "note": ""
+      "note": "",
+      "price": 1450.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "400891545",
@@ -95,7 +107,10 @@
         "1 kit dispensador",
         "5 cápsulas de CO₂ de 16 g"
       ],
-      "note": "5,5 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador."
+      "note": "5,5 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador.",
+      "price": 1730.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "397365368",
@@ -114,7 +129,10 @@
         "1 kit dispensador",
         "5 cápsulas de CO₂ de 16 g"
       ],
-      "note": "7 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador."
+      "note": "7 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador.",
+      "price": 1830.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "399839761",
@@ -133,7 +151,10 @@
         "Isolamento a vácuo",
         "Tampa com alça"
       ],
-      "note": "Nome comercial da loja: Kundi 2 L. A descrição técnica informa 1,9 L; confirme a capacidade com a equipe antes da compra."
+      "note": "Nome comercial da loja: Kundi 2 L. A descrição técnica informa 1,9 L; confirme a capacidade com a equipe antes da compra.",
+      "price": 380.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "400011429",
@@ -152,7 +173,10 @@
         "Aço inox 18/8",
         "Tampa com alça"
       ],
-      "note": ""
+      "note": "",
+      "price": 480.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "404585328",
@@ -171,7 +195,11 @@
         "Alça regulável",
         "Ombreira acolchoada"
       ],
-      "note": "Acessório de transporte. Confira os itens inclusos e a compatibilidade na página do produto."
+      "note": "Acessório de transporte. Confira os itens inclusos e a compatibilidade na página do produto.",
+      "price": 168.0,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
     }
-  ]
+  ],
+  "prices_checked_at": "2026-10-29"
 }
