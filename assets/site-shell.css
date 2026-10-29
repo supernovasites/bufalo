@@ -140,3 +140,19 @@
 #mobile-menu .bg-menu-account svg{flex:none;width:22px;height:22px}
 #mobile-menu .bg-menu-account:hover{background:#e4e9e5}
 #mobile-menu .bg-menu-account:focus-visible{outline:3px solid #e77939;outline-offset:3px}
+
+/* Componentes independentes dos estilos e variáveis das páginas. */
+#bg-site-header,#bg-site-footer,#mobile-menu,#bg-site-announcement{--ink:#142e32;--line:#dce0df;color:#142e32;font-family:Arial,Helvetica,sans-serif;font-style:normal;letter-spacing:normal;text-transform:none}
+#bg-site-header *,#bg-site-footer *,#mobile-menu *{box-sizing:border-box}
+#bg-site-header{flex-shrink:0;width:100%;margin:0;text-align:left;line-height:normal;border-radius:0;box-shadow:none}
+#bg-site-header .logo img{display:block;max-width:100%}
+#bg-site-header .header-row>.logo{margin:0}
+#bg-site-footer{flex-shrink:0;width:100%;margin:0;text-align:left;font-size:14px;line-height:1.5;background:#142e32;color:#fff;text-wrap:wrap}
+#bg-site-footer h2,#bg-site-footer h3,#bg-site-footer p{margin-top:0}
+#bg-site-footer .footer-signature span,#bg-site-footer .footer-bottom span{font:inherit;letter-spacing:inherit}
+#mobile-menu{box-sizing:border-box;text-align:left;line-height:1.5}
+#mobile-menu header{position:static;background:#fff;color:#142e32;border-radius:0}
+[data-bg-header]{min-height:88px}
+@media(max-width:760px){[data-bg-header]{min-height:73px}}
+
+#bg-site-footer .footer-google-pay{margin-top:24px;padding-top:20px;border-top:1px solid #ffffff26}#bg-site-footer .footer-google-pay .payment-label{display:block;color:#d3dedd;font:600 12px/1.4 Arial,sans-serif;margin-bottom:8px}#bg-site-footer .footer-pay-flags{display:flex;align-items:center;gap:8px}#bg-site-footer .footer-pay-flags>span{width:126px;height:75px;display:flex;align-items:center;justify-content:center;background:transparent}#bg-site-footer .footer-pay-flags img{display:block;width:126px!important;height:auto!important;max-width:100%!important}

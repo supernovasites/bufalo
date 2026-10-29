@@ -38,7 +38,7 @@ A lupa e o formulário do menu exibem sugestões de produtos cadastrados na Loja
 
 ## Cabeçalho e rodapé compartilhados
 
-`assets/site-shell.js` é a fonte única dos modelos de cabeçalho, menu, faixa superior e rodapé. `assets/site-shell.css` é a fonte única dos estilos desses componentes. As páginas usam os marcadores `data-bg-header`, `data-bg-footer` e `data-bg-announcement`; os componentes são aplicados automaticamente ao carregar a página. Os HTMLs existentes permanecem como fallback sem JavaScript. Altere os arquivos compartilhados para atualizar homepage, catálogo, Círio, Manada ONE, copos, garrafas e live na mesma publicação. Não edite os fallbacks para mudanças de componentes. Para novas páginas, inclua esses marcadores e os mesmos links para CSS/JS absolutos. A busca usa `assets/menu-search.js` em todas as páginas com o cabeçalho compartilhado. Mantenha as cópias de `dist/assets` sincronizadas na publicação.
+`assets/site-shell.js` é a fonte única dos modelos de cabeçalho, menu, faixa superior e rodapé. `assets/site-shell.css` é a fonte única dos estilos desses componentes. As páginas usam os marcadores `data-bg-header`, `data-bg-footer` e `data-bg-announcement`; os componentes são aplicados automaticamente ao carregar a página. Os HTMLs usam espaços de montagem para os componentes compartilhados. Altere os arquivos compartilhados para atualizar homepage, catálogo, Círio, Manada ONE, copos, garrafas e live na mesma publicação. Não crie versões particulares do cabeçalho e rodapé nas páginas. Para novas páginas, inclua esses marcadores e os mesmos links para CSS/JS absolutos. A busca usa `assets/menu-search.js` em todas as páginas com o cabeçalho compartilhado. Mantenha as cópias de `dist/assets` sincronizadas na publicação.
 
 ## Mesa de DJ
 
@@ -61,3 +61,11 @@ Em `/live/admin`, a seção **Desafio da Manada** permite salvar um cupom para c
 Até a primeira configuração, os quatro desafios usam o cupom do dia. Depois de salvar os cupons dos desafios, alterar o cupom do dia não os substitui. Páginas da live já abertas precisam ser recarregadas para receber os novos códigos.
 
 As tabelas `live_challenge_coupons` e `live_challenge_discounts` são criadas no primeiro salvamento autenticado; as migrações idempotentes `0011_live_challenge_coupons.sql` e `0012_live_challenge_discounts.sql` também podem ser aplicadas pelo fluxo de migrations do projeto. Os descontos existentes permanecem em 20% até nova configuração. Cupom e percentual são salvos juntos em uma transação. Verificação: `node --test tests/live-challenge-coupons.test.mjs`.
+
+## Cabeçalho e rodapé em todas as páginas públicas
+
+Homepage, catálogo, blog/artigos, produtos, campanhas, Live (ativa e encerrada), Manada ONE, ManadaCash, playground e pré-reserva usam os mesmos componentes de `assets/site-shell.js` e `assets/site-shell.css`. A marcação das páginas contém apenas os espaços `data-bg-header` e `data-bg-footer`; o componente inclui a faixa compartilhada de mensagens, menu, conta, busca, carrinho e bandeiras de pagamento. Não crie cópias locais desses componentes. Atualize os arquivos compartilhados para refletir a mudança em todas as páginas, inclusive a homepage.
+
+Carregue `/assets/site-shell.css` com `data-bg-shell-style` e `/assets/site-shell.js` sem versões fixas no endereço. O servidor obriga revalidação desses arquivos para que páginas antigas recebam as atualizações. Inclua os mesmos dois recursos e espaços em novas páginas públicas. Os painéis operacionais, o checkout e as rotas que apenas redirecionam mantêm suas interfaces específicas.
+
+Verificação: `node --test tests/site-shell.test.mjs`.
