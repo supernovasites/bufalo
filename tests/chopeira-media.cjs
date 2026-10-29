@@ -42,7 +42,8 @@ function setup() {
   s.close.listeners.click(); assert.equal(s.gift.open, false); assert.equal(s.document.body.style.overflow, 'auto');
   s.timers[0](); assert.equal(s.gift.open, false, 'Automatic offer shows only once per session');
   s.manual.listeners.click(); assert.equal(s.gift.open, true, 'The gift remains manually accessible');
-  s.cta.listeners.click(); assert.equal(s.gift.open, false); assert.equal(s.events.at(-1)[1], 'select_promotion');
+  const beforeDismiss = s.events.length;
+  s.cta.listeners.click(); assert.equal(s.gift.open, false); assert.equal(s.events.length, beforeDismiss, 'Dismiss-only button is not a promotion selection');
   s.video.play = async () => {throw new Error('Playback unavailable');};
   await s.play.listeners.click(); assert.equal(s.play.hidden, false, 'Playback failure keeps the play button accessible');
   console.log('Chopeira media checks passed: explicit playback, progress, failure recovery, gift session, thumbnails and scroll restoration.');

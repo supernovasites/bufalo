@@ -85,9 +85,7 @@
       const bounds = gift.getBoundingClientRect();
       if (event.target === gift && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) gift.close();
     });
-    gift.querySelector('[data-gift-cta]').addEventListener('click', () => {
-      track('select_promotion', {promotion_id: 'ontap26_bag', promotion_name: 'Bag de brinde no Kit Mestre Cervejeiro'}); gift.close();
-    });
+    gift.querySelector('[data-gift-cta]').addEventListener('click', () => gift.close());
     gift.querySelectorAll('[data-gift-photo]').forEach(button => button.addEventListener('click', () => {
       const inUse = button.dataset.giftPhoto === '3';
       const photo = document.getElementById('gift-photo');
