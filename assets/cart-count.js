@@ -18,7 +18,9 @@
   if(location.origin===store){
    let count=null,peer=null;
    const publish=()=>{if(peer&&valid(count))parent.postMessage({type:'bg:cart-count',nonce:peer.nonce,count},peer.origin);};
+   const publishCustomer=()=>{if(peer){const firstName=(document.querySelector('#cabecalho .menu-user-name')?.textContent||'').trim().split(/\s+/)[0].slice(0,30);parent.postMessage({type:'bg:customer',nonce:peer.nonce,firstName},peer.origin);}};
    const update=()=>{
+    publishCustomer();
     const native=document.querySelector('#cabecalho .qtd-carrinho');
     if(!native)return;
     const text=native.textContent.trim();if(!/^\d+$/.test(text))return;
@@ -41,6 +43,7 @@
   addEventListener('message',e=>{
    if(e.origin!==store||!frame||e.source!==frame.contentWindow)return;
    if(e.data?.type==='bg:cart-ready'){request();return;}
+   if(e.data?.type==='bg:customer'&&e.data.nonce===nonce&&typeof e.data.firstName==='string'&&e.data.firstName.length<=30){window.__bgCustomerFirstName=e.data.firstName;document.dispatchEvent(new CustomEvent('bg:customer',{detail:{firstName:e.data.firstName}}));}
    if(e.data?.type==='bg:cart-count'&&e.data.nonce===nonce&&valid(e.data.count))render(e.data.count);
   });
   function refresh(){
