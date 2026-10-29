@@ -35,7 +35,7 @@ for (const host of ['bufalogrowler.com.br', 'www.bufalogrowler.com.br', 'bufalo.
   assert.equal(config.page_referrer, 'https://instagram.com/');
   vm.runInNewContext(script, s.env); assert.equal(s.scripts.length, 1); checks++;
 }
-for (const [path, group] of [['/', 'home'], ['/catalogo/', 'catalogo'], ['/manadaone/', 'manadaone'], ['/manadacash/', 'manadacash'], ['/campanhas/cirio/', 'cirio'], ['/reserva/acaibowl/', 'reserva_acai'], ['/blog/artigo.html?post=aventura', 'blog']]) {
+for (const [path, group] of [['/', 'home'], ['/produtos/chopeira/', 'chopeiras'], ['/catalogo/', 'catalogo'], ['/manadaone/', 'manadaone'], ['/manadacash/', 'manadacash'], ['/campanhas/cirio/', 'cirio'], ['/reserva/acaibowl/', 'reserva_acai'], ['/blog/artigo.html?post=aventura', 'blog']]) {
   const s = setup('https://bufalogrowler.com.br' + path);
   assert.equal([...s.window.dataLayer.find(args => args[0] === 'config')][2].content_group, group); checks++;
 }
