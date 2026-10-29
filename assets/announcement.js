@@ -21,12 +21,12 @@
  } catch {}
  const normalize=value=>typeof value==='string'?value.trim().split(/\s+/)[0].slice(0,30):'';
  function render(){if(!link)return;const m=messages[index];link.textContent=firstName?m[0].replace('{cliente}',firstName):m[1];link.href=m[2];}
- function nativeName(){return location.origin===store?normalize(document.querySelector('#cabecalho .menu-user-name')?.textContent):'';}
+ function nativeName(){return location.origin===store?normalize(window.__bgCustomerFirstName??document.querySelector('#cabecalho .menu-user-name')?.textContent):'';}
  function setName(value){const next=normalize(value);if(next===firstName)return;firstName=next;render();}
  function mount(){
   const next=document.getElementById('bg-site-announcement');if(!next||next===bar)return;
   bar=next;bar.replaceChildren();link=document.createElement('a');link.className='bg-announcement-link';bar.append(link);bar.setAttribute('aria-label','Novidades e atendimento Búfalo');
-  if(!document.getElementById('bg-announcement-style')){const style=document.createElement('style');style.id='bg-announcement-style';style.textContent='#bg-site-announcement{box-sizing:border-box;min-height:40px;display:flex;align-items:center;justify-content:center;padding:7px 14px;text-align:center;background:#142e32;color:#fff}#bg-site-announcement .bg-announcement-link{display:block;width:100%;max-width:950px;color:inherit;text-decoration:none;font:600 12px/1.35 Arial,Helvetica,sans-serif;letter-spacing:0;text-transform:none;overflow-wrap:anywhere}#bg-site-announcement .bg-announcement-link:focus-visible{outline:2px solid white;outline-offset:3px}@media(max-width:760px){#bg-site-announcement{min-height:44px}#bg-site-announcement .bg-announcement-link{font-size:11px}}';document.head.append(style);}
+  if(!document.getElementById('bg-announcement-style')){const style=document.createElement('style');style.id='bg-announcement-style';style.textContent='#bg-site-announcement{box-sizing:border-box;min-height:40px;display:flex;align-items:center;justify-content:center;padding:7px 14px;text-align:center;background:#142e32;color:#fff}#bg-site-announcement .bg-announcement-link{display:block;width:100%;max-width:950px;color:inherit;text-decoration:none;font:700 15px/1.35 Arial,Helvetica,sans-serif;letter-spacing:0;text-transform:none;overflow-wrap:anywhere}#bg-site-announcement .bg-announcement-link:focus-visible{outline:2px solid white;outline-offset:3px}@media(max-width:760px){#bg-site-announcement{min-height:44px}#bg-site-announcement .bg-announcement-link{font-size:13px}}';document.head.append(style);}
   setName(location.origin===store?nativeName():(window.__bgCustomerFirstName||''));render();
  }
  document.addEventListener('bg:customer',e=>setName(e.detail?.firstName));

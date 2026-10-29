@@ -2,9 +2,9 @@
 (()=>{
   'use strict';
   function mount(){
-    const counter=document.createElement('script');counter.src='https://www.bufalogrowler.com.br/assets/cart-count.js?v=20261018-nav';counter.defer=true;document.body.append(counter);
+    const counter=document.createElement('script');counter.src='https://www.bufalogrowler.com.br/assets/cart-count.js?v=20261029-session-name';counter.defer=true;document.body.append(counter);
     if(new URLSearchParams(location.search).has('bg_cart_count')&&window.parent!==window)return;
-    const announcementScript=document.createElement('script');announcementScript.src='https://www.bufalogrowler.com.br/assets/announcement.js?v=20261029';announcementScript.defer=true;document.body.append(announcementScript);
+    const announcementScript=document.createElement('script');announcementScript.src='https://www.bufalogrowler.com.br/assets/announcement.js?v=20261029-session-name';announcementScript.defer=true;document.body.append(announcementScript);
     const original=document.getElementById('cabecalho');
     if(!original||document.getElementById('bg-site-header'))return;
     const home='https://www.bufalogrowler.com.br',store='https://loja.bufalogrowler.com.br';

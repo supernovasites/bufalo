@@ -1,4 +1,4 @@
-/* Quantidade nativa da loja; o site recebe somente o número por uma ponte restrita. */
+/* Ponte restrita: quantidade do carrinho e primeiro nome da sessão autenticada. */
 (()=>{
  'use strict';
  if(window.__bgCartCountStarted)return;window.__bgCartCountStarted=true;
@@ -16,9 +16,18 @@
  }
  function start(){
   if(location.origin===store){
-   let count=null,peer=null;
+   let count=null,peer=null,firstName='',customerRequest;
+   const refreshCustomer=()=>{
+    if(customerRequest)return customerRequest;
+    customerRequest=fetch('/conta/status',{credentials:'same-origin',cache:'no-store'})
+     .then(response=>{if(!response.ok)throw new Error('Status indisponível');return response.json();})
+     .then(status=>{firstName=status.logged===true&&typeof status.name==='string'?status.name.trim().split(/\s+/)[0].slice(0,30):'';})
+     .catch(()=>{firstName='';})
+     .finally(()=>{customerRequest=null;window.__bgCustomerFirstName=firstName;document.dispatchEvent(new CustomEvent('bg:customer',{detail:{firstName}}));publishCustomer();});
+    return customerRequest;
+   };
    const publish=()=>{if(peer&&valid(count))parent.postMessage({type:'bg:cart-count',nonce:peer.nonce,count},peer.origin);};
-   const publishCustomer=()=>{if(peer){const firstName=(document.querySelector('#cabecalho .menu-user-name')?.textContent||'').trim().split(/\s+/)[0].slice(0,30);parent.postMessage({type:'bg:customer',nonce:peer.nonce,firstName},peer.origin);}};
+   const publishCustomer=()=>{if(peer)parent.postMessage({type:'bg:customer',nonce:peer.nonce,firstName},peer.origin);};
    const update=()=>{
     publishCustomer();
     const native=document.querySelector('#cabecalho .qtd-carrinho');
@@ -30,10 +39,12 @@
    if(parent!==window&&new URLSearchParams(location.search).has('bg_cart_count')){
     addEventListener('message',e=>{
      if(e.source!==parent||!sites.has(e.origin)||e.data?.type!=='bg:cart-request'||typeof e.data.nonce!=='string'||e.data.nonce.length>100)return;
-     peer={origin:e.origin,nonce:e.data.nonce};update();publish();
+     peer={origin:e.origin,nonce:e.data.nonce};update();publish();refreshCustomer();
     });
     try{const origin=new URL(document.referrer).origin;if(sites.has(origin))parent.postMessage({type:'bg:cart-ready'},origin);}catch{}
    }
+   refreshCustomer();addEventListener('focus',refreshCustomer);document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshCustomer();});
+   if(window.jQuery)window.jQuery('body').on('user_state_changed.bgAnnouncement',refreshCustomer);
    update();new MutationObserver(update).observe(document.body,{childList:true,subtree:true,characterData:true});
    return;
   }
@@ -50,7 +61,7 @@
    if(document.visibilityState==='hidden'||Date.now()-lastRefresh<15000)return;
    lastRefresh=Date.now();nonce=crypto.randomUUID();
    if(!frame){frame=document.createElement('iframe');frame.hidden=true;frame.title='Quantidade do carrinho da loja';frame.setAttribute('aria-hidden','true');frame.tabIndex=-1;frame.addEventListener('load',request);document.body.append(frame);}
-   frame.src=store+'/carrinho/index?bg_cart_count='+encodeURIComponent(nonce);
+   frame.src=store+'/?bg_cart_count='+encodeURIComponent(nonce);
   }
   refresh();addEventListener('focus',refresh);addEventListener('pageshow',refresh);document.addEventListener('visibilitychange',refresh);
  }
