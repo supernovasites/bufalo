@@ -41,25 +41,6 @@
       "note": ""
     },
     {
-      "id": "404796101",
-      "slug": "ontap-35-laranja",
-      "name": "On TAP 3,5 L · Laranja",
-      "store_name": "Búfalo Growler On TAP 3,5L - Chopeira Térmica Portatil - Laranja",
-      "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-35l-chopeira-termica-portatil-laranja",
-      "source_image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/404796101/on-tap-3-5-l-laranja-2d1a5b31-wxuvod2ch6.png",
-      "title": "Mais cor para o seu lado de fora.",
-      "kicker": "CHOPEIRAS · 3,5 L",
-      "description": "Sua On TAP com atitude.",
-      "use": "Encontro no jardim",
-      "tip": "Destaque para a mesa do encontro.",
-      "specs": [
-        "3,5 L",
-        "Isolamento a vácuo",
-        "Regulador com manômetro"
-      ],
-      "note": ""
-    },
-    {
       "id": "404795783",
       "slug": "ontap-35-creme",
       "name": "On TAP 3,5 L · Creme",
@@ -75,6 +56,25 @@
         "3,5 L",
         "Acabamento creme",
         "5 cápsulas de CO₂ de 16 g"
+      ],
+      "note": ""
+    },
+    {
+      "id": "404796101",
+      "slug": "ontap-35-laranja",
+      "name": "On TAP 3,5 L · Laranja",
+      "store_name": "Búfalo Growler On TAP 3,5L - Chopeira Térmica Portatil - Laranja",
+      "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-35l-chopeira-termica-portatil-laranja",
+      "source_image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/404796101/on-tap-3-5-l-laranja-2d1a5b31-wxuvod2ch6.png",
+      "title": "Mais cor para o seu lado de fora.",
+      "kicker": "CHOPEIRAS · 3,5 L",
+      "description": "Sua On TAP com atitude.",
+      "use": "Encontro no jardim",
+      "tip": "Destaque para a mesa do encontro.",
+      "specs": [
+        "3,5 L",
+        "Isolamento a vácuo",
+        "Regulador com manômetro"
       ],
       "note": ""
     },
