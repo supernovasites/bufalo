@@ -8,6 +8,8 @@ assert.equal(new Set(products.map(p => p.id)).size, 9);
 for (const p of products) {
   assert.ok(html.includes(`id="${p.slug}" data-product-id="${p.id}"`));
   assert.ok(fs.existsSync(`produtos/chopeira/images/${p.id}.webp`));
+  const section = html.match(new RegExp('<section class="ontap-product[^\\"]*" id="' + p.slug + '"[\\s\\S]*?</section>'))[0];
+  assert.ok(section.includes('src="images/' + p.id + '.webp"'), 'Each color keeps its own official product photo');
   assert.ok(html.includes(p.url + '?utm_source=bufalo&amp;utm_medium=landing_page&amp;utm_campaign=ontap26&amp;utm_content=' + p.slug));
 }
 assert.match(html, /data-bg-header/); assert.match(html, /data-bg-footer/);
@@ -25,7 +27,7 @@ function setup(enabled = true) {
   const document = {
     documentElement: {scrollHeight: 1800},
     getElementById: id => id === 'ontap-products' ? {textContent: JSON.stringify(products)} : elements[id],
-    querySelectorAll: selector => selector.startsWith('button') ? buttons : selector.startsWith('details') ? [{open: true, dataset: {faq: 'co2'}, addEventListener: (name, fn) => faq[name] = fn}] : [visual],
+    querySelectorAll: selector => selector.startsWith('button') ? buttons : selector.startsWith('details') ? [{open: true, dataset: {faq: 'co2'}, addEventListener: (name, fn) => faq[name] = fn}] : selector.startsWith('.ontap-product') ? [visual] : [],
     addEventListener: (name, fn) => listeners[name] = fn
   };
   class IntersectionObserver {
@@ -51,14 +53,20 @@ s.window.scrollY = 1000; s.scroll.scroll(); s.scroll.scroll();
 assert.deepEqual(s.events.filter(e => e[1] === 'ontap_scroll').map(e => e[2].percent_scrolled), [25, 50, 75, 100]);
 assert.ok(s.events.every(e => e[2].send_to === 'G-FPEC1ZGMJQ' && e[2].campaign_id === 'ontap26'));
 assert.ok(s.events.every(e => !['purchase', 'page_view', 'config'].includes(e[1])));
-for (const [index, slug] of ['ontap-2l', 'ontap-35-preta', 'combo-7'].entries()) {
-  s.listeners.click({target: {closest: selector => selector === 'a' ? null : s.buttons[index]}});
-  assert.equal(s.elements['match-result'].hidden, false);
-  assert.equal(s.elements['match-link'].href, '#' + slug);
-  assert.equal(s.buttons[index]['aria-pressed'], 'true');
-  assert.equal(s.buttons.filter(button => button['aria-pressed'] === 'true').length, 1);
-  assert.equal(s.events.at(-1)[1], 'ontap_occasion_select');
-}
+assert.doesNotMatch(html, /discovery-guided|data-occasion=|class="ritual/);
+assert.match(html, /id="cheruti-video"[^>]+preload="none"/);
+assert.match(html, /mestre-integrated-original-brand.svg/);
+const crypto = require('node:crypto');
+const hero = fs.readFileSync('produtos/chopeira/images/mestre-integrated-original-brand.svg', 'utf8');
+const originalPhoto = hero.match(/data:image\/png;base64,([^\"]+)/)[1];
+assert.equal(crypto.createHash('sha256').update(Buffer.from(originalPhoto, 'base64')).digest('hex'), 'f7285eaa7a6f4d5b0660ab27cc93c7e04291eefcebaa72ee4e4a230ae8f1de45');
+assert.match(hero, /id="original-logo-photo"/);
+assert.doesNotMatch(html, /class="model-nav"|class="care wrap"|class="faq wrap"/);
+assert.equal((html.match(/class="variant-rail"/g) || []).length, 3);
+assert.match(html, /Qualidade<br>\s*que se prova/);
+assert.match(html, /id="gift-photo" class="bw-art" src="images\/bag-gift-3.webp"/);
+const shortcuts = html.match(/<div class="shortcut-grid">([\s\S]*?)<\/div>/)[1];
+assert.doesNotMatch(shortcuts, /404796101|404795783/);
 const disabled = setup(false);
 disabled.observe([{target: disabled.visual, isIntersecting: true, intersectionRatio: 1}]);
 disabled.faq.toggle(); disabled.window.scrollY = 1000; disabled.scroll.scroll();
