@@ -61,7 +61,7 @@
    if(document.visibilityState==='hidden'||Date.now()-lastRefresh<15000)return;
    lastRefresh=Date.now();nonce=crypto.randomUUID();
    if(!frame){frame=document.createElement('iframe');frame.hidden=true;frame.title='Quantidade do carrinho da loja';frame.setAttribute('aria-hidden','true');frame.tabIndex=-1;frame.addEventListener('load',request);document.body.append(frame);}
-   frame.src=store+'/?bg_cart_count='+encodeURIComponent(nonce);
+   frame.src=store+'/carrinho/index?bg_cart_count='+encodeURIComponent(nonce);
   }
   refresh();addEventListener('focus',refresh);addEventListener('pageshow',refresh);document.addEventListener('visibilitychange',refresh);
  }
