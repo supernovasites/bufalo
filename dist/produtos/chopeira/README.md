@@ -2,6 +2,8 @@
 
 Página estática em `/produtos/chopeira/`. Usa os mesmos `assets/site-shell.css`, `assets/site-shell.js` e `assets/menu-search.css` da homepage. O HTML contém fallback dos componentes compartilhados. Não alterar o cabeçalho/rodapé apenas nesta página.
 
+Composição inspirada na Trade Coffee: abertura com produto, painel com dois caminhos (sugestão por ocasião ou atalhos por linha), narrativa do ritual em três passos e apresentação editorial dos modelos. Preserva Arial, verde escuro `#142e32`, laranja `#eb6f32`, fundos claros e botões da identidade da homepage Búfalo. Nenhuma fonte, cor de campanha, logotipo ou conteúdo comercial da Trade foi incorporado. A escolha por ocasião acontece no próprio navegador, sem formulário ou cadastro, e revela uma sugestão com link para a seção correspondente. Os nove produtos continuam acessíveis independentemente da seleção e sem JavaScript.
+
 ## Catálogo e publicação
 
 Os nove produtos de https://loja.bufalogrowler.com.br/chopeiras foram conferidos em 29/10/2026, sem paginação adicional. `products.json` registra nomes, IDs, URLs e fotos da fonte, além das sugestões editoriais. Cada produto tem seção e link próprios, inclusive as três cores da On TAP 3,5 L. Os combos incluem dois growlers e um dispensador; as capacidades anunciadas são somadas. A divergência entre o nome Kundi 2 L e a descrição técnica 1,9 L está explicitada.
@@ -22,6 +24,7 @@ Eventos específicos:
 - `view_item`: uma vez por produto, ao atingir 50% de visibilidade da sua foto.
 - `select_item`: clique para ver o produto na loja, com ID, nome, lista e posição.
 - `ontap_cta_click`: CTA do hero, sugestão de ocasião, navegação de modelos e saída para a categoria.
+- `ontap_occasion_select`: escolha de ocasião, com `occasion_id` fixo e `suggested_item_id`, sem dados pessoais. A sugestão leva à seção do produto; não altera estoque nem representa compra.
 - `ontap_faq_open`: abertura de uma pergunta, por identificador fixo.
 - `ontap_scroll`: marcos de 25%, 50%, 75% e 100%, uma vez por carregamento.
 

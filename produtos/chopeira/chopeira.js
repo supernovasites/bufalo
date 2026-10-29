@@ -25,7 +25,28 @@
   }
   document.addEventListener('click', event => {
     const link = event.target.closest('a');
-    if (!link) return;
+    if (!link) {
+      const button = event.target.closest('button[data-occasion]');
+      if (!button) return;
+      const suggestions = {
+        a_dois: ['266520163', 'Para uma conversa sem pressa. Conheça a On TAP 2 L e planeje a quantidade para o seu encontro.'],
+        amigos: ['404795468', 'Uma opção de 3,5 L para o churrasco ou a noite de jogos. Explore também as cores laranja e creme.'],
+        manada: ['397365368', 'Dois growlers de 3,5 L e um kit dispensador. Mais capacidade total para organizar os planos da turma.']
+      };
+      const choice = suggestions[button.dataset.occasion];
+      if (!choice) return;
+      const product = products.find(p => p.id === choice[0]);
+      if (!product) return;
+      document.querySelectorAll('button[data-occasion]').forEach(el => el.setAttribute('aria-pressed', String(el === button)));
+      const result = document.getElementById('match-result');
+      document.getElementById('match-image').src = 'images/' + product.id + '.webp';
+      document.getElementById('match-name').textContent = product.name;
+      document.getElementById('match-description').textContent = choice[1];
+      document.getElementById('match-link').href = '#' + product.slug;
+      result.hidden = false;
+      track('ontap_occasion_select', {occasion_id: button.dataset.occasion, suggested_item_id: product.id, link_position: 'discovery'});
+      return;
+    }
     if (link.dataset.productLink) {
       const p = products.find(p => p.id === link.dataset.productLink);
       if (p) track('select_item', {item_list_id: 'ontap26_collection', item_list_name: 'Linha On TAP', link_position: link.dataset.placement, items: [item(p)]});
