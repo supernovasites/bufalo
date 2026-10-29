@@ -243,3 +243,18 @@ body{background:#f2f5ef}
 .play-circle i{display:block;width:0;height:0;border-top:15px solid transparent;border-bottom:15px solid transparent;border-left:23px solid #fff;margin-left:6px}
 #bg-site-footer .footer-instagram svg,#bg-site-footer .footer-whatsapp svg{display:none}
 @media(max-width:760px){.variant-heading{align-items:start}.variant-controls{padding-top:18px}.variant-controls button{padding:9px 10px;min-width:50px;font-size:10px}.play-circle i{border-top-width:12px;border-bottom-width:12px;border-left-width:19px}}
+
+/* Compact product options: two fully visible cards at every mobile breakpoint. */
+.variant-rail .product-visual{padding:20px 20px 12px}
+.variant-rail .product-visual img{width:210px;height:210px}
+.variant-rail .product-copy{padding:24px}
+.variant-rail .product-copy h2{font-size:24px;margin-bottom:14px}
+.variant-rail .description{font-size:15px;margin-bottom:16px}
+.variant-rail .use-caption{margin-bottom:17px}
+.variant-rail .product-copy .button{min-height:46px;padding:13px 16px}
+@media(max-width:760px){.variant-rail{grid-auto-columns:calc((100% - 12px)/2);gap:12px;padding:0 16px 14px;scroll-padding-inline:16px}.variant-heading{padding:0 16px}.rail-hint{padding:0 16px}.variant-rail .product-visual{padding:16px 8px 8px}.variant-rail .product-visual img{width:100%;height:145px}.variant-rail .section-number{font-size:7px;top:9px;left:10px;letter-spacing:1px}.variant-rail .product-copy{padding:16px 12px 20px}.variant-rail .product-copy>.eyebrow{font-size:7px;letter-spacing:.7px;line-height:1.4;margin-bottom:9px}.variant-rail .product-copy h2{font-size:17px;line-height:1.14;letter-spacing:-.4px;margin-bottom:11px}.variant-rail .description{font-size:11px;line-height:1.45;margin-bottom:13px}.variant-rail .specs{display:block;margin-bottom:13px}.variant-rail .specs li{font-size:8px;line-height:1.5;margin-bottom:6px;padding-left:9px}.variant-rail .specs li:before{width:3px;height:3px}.variant-rail .use-caption{font-size:9px;line-height:1.5;margin-bottom:13px}.variant-rail .product-note{font-size:8px;line-height:1.5;margin-bottom:14px}.variant-rail .gift-tag{font-size:7px;letter-spacing:.3px;line-height:1.5;padding:6px;margin-bottom:13px}.variant-rail .product-copy .button{font-size:10px;line-height:1.4;min-height:46px;padding:10px 8px;width:100%}}
+@media(max-width:360px){.variant-rail{grid-auto-columns:calc((100% - 10px)/2);gap:10px}.variant-rail .product-visual img{height:125px}.variant-rail .product-copy{padding:14px 9px 18px}.variant-rail .product-copy h2{font-size:15px}.variant-rail .description{font-size:10px}.variant-rail .product-copy .button{font-size:9px;padding:10px 6px}}
+:root{--button-petrol:#142e32;--button-petrol-hover:#284b50}
+.button,.button.light,.product-copy .button,.product-copy .button:hover,.gift-popup .bw-cta,.variant-controls button{background:var(--button-petrol);border-color:var(--button-petrol);color:#fff}
+.button:hover,.button.light:hover,.product-copy .button:hover,.gift-popup .bw-cta:hover,.variant-controls button:hover{background:var(--button-petrol-hover);border-color:var(--button-petrol-hover);color:#fff}
+.play-circle{background:var(--button-petrol);box-shadow:0 0 0 12px #142e3233,0 10px 40px #0005}
