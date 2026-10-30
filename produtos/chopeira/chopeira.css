@@ -315,3 +315,17 @@ body{background:#f2f5ef}
 .kit-color:focus-visible{outline:3px solid #a84729;outline-offset:3px}
 @media(max-width:1280px){.mestre-kit-banner{margin-left:32px;margin-right:32px}.mestre-kit-message{padding:36px}}
 @media(max-width:760px){.mestre-kit-banner{margin:38px 0 0;border-radius:0;grid-template-columns:1fr}.mestre-kit-message{padding:34px 24px;gap:18px}.mestre-kit-message h2{font-size:42px}.mestre-kit-message>p:not(.eyebrow){font-size:16px}.mestre-kit-banner>img{min-height:0;height:auto;aspect-ratio:3/2;object-fit:contain}.kit-colors p{font-size:10px}.kit-color-options{gap:2px}.kit-colors{padding-top:12px;margin-bottom:16px}}
+
+/* Original photography stays sharp; only the independent garden layer is blurred. */
+.mestre-kit-banner{grid-template-columns:minmax(300px,.85fr) minmax(0,1.3fr)}
+.mestre-kit-message{padding:40px 36px}
+.mestre-kit-scene{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:500px;background:#faf8f1}
+.mestre-kit-scene:before{content:"";position:absolute;inset:-30px;background:url('images/mestre-garden-background.png') center/cover;filter:blur(16px);opacity:.55;z-index:-2}
+.mestre-kit-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#faf8f133 0%,#faf8f1e8 35%,#faf8f1 75%);z-index:-1}
+.mestre-kit-products{display:grid;grid-template-columns:1.1fr 1fr;align-items:end;width:100%;padding:100px 12px 34px;gap:0}
+.mestre-kit-products figure{margin:0;min-width:0;position:relative;text-align:center}
+.mestre-kit-products img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;mix-blend-mode:multiply;border:0;border-radius:0;box-shadow:none;filter:none;transform:none}
+.mestre-kit-products figcaption{font-size:12px;line-height:1.5;font-weight:600;color:#142e32;margin:14px 0 0}
+.mestre-bag-label{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);padding:9px 12px;background:#142e32;color:#fff5e5;border-radius:3px;white-space:nowrap;font-size:10px;letter-spacing:.7px;font-weight:700}
+@media(max-width:1000px) and (min-width:761px){.mestre-kit-banner{grid-template-columns:1fr}.mestre-kit-message{padding:38px}.mestre-kit-scene{min-height:0}.mestre-kit-products{padding:70px 30px 30px;max-width:780px;margin:auto}}
+@media(max-width:760px){.mestre-kit-banner{grid-template-columns:1fr}.mestre-kit-message{padding:34px 24px}.mestre-kit-scene{min-height:0}.mestre-kit-products{padding:78px 8px 25px;grid-template-columns:1.05fr 1fr}.mestre-kit-products figcaption{font-size:10px;margin-top:10px}.mestre-bag-label{font-size:8px;padding:8px;bottom:calc(100% + 10px)}}

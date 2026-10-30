@@ -55,3 +55,7 @@ Validação: `node tests/analytics.cjs`, `node tests/chopeira.cjs` e `node tests
 ## Banner dos kits e cores (30/10/2026)
 
 Banner terracota acima dos cards Mestre Cervejeiro, com fotografia lifestyle gerada e oferta da bag autorizada pelo proprietário. Texto e botão são HTML acessível. Cada combo mantém um único card com botões de cor, foto oficial por variação e indicação da seleção. Cores verificadas na loja: 5,5 L Preto/Preto e Barley White/Preto; 7 L Preto/Preto e Preto/Coral. O link abre a loja com o parâmetro de variação; a seleção final e disponibilidade são confirmadas na loja. Fonte de variantes registrada em products.json. Manter dist sincronizado.
+
+### Correção da bag e preservação da marca
+
+A seção dos kits usa agora a fotografia oficial do combo em `mestre-kit-official.png` e a bag preta real da referência em `bag-gift-3.webp`, com logo cobre e alça original BÚFALO GROWLER. Os produtos são imagens independentes, sem redesenhar logos, deformar proporções ou aplicar desfoque. Apenas o cenário de jardim, gerado sem produtos, recebe blur em uma camada CSS separada. A imagem anterior com bag incorreta não é mais carregada na seção. Os cards e variantes reais permanecem abaixo do banner.
