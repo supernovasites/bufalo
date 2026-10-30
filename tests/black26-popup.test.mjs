@@ -34,9 +34,9 @@ test('Black26 opens Monday through Friday in Fortaleza, excluding the weekend an
     const state = run(iso); assert.equal(state.timers.length, 0); assert.equal(state.image.src, undefined);
   }
 });
-test('both campaign banners can be chosen on a fresh page opening', () => {
+test('all four campaign banners can be chosen on a fresh page opening', () => {
   const paths = [0, 0.25, 0.5, 0.999].map(r => run('2026-10-20T15:00:00Z', r).image.src);
-  assert.equal(new Set(paths).size, 2);
+  assert.equal(new Set(paths).size, 4);
   for (const path of paths) assert.ok(existsSync(new URL('..' + path, import.meta.url)));
   assert.ok(home.includes('href="https://www.bufalogrowler.com.br/campanhas/black26/"'));
   assert.ok(home.includes('A Black Búfalo já começou! Aproveite as ofertas antes que acabem.'));
@@ -58,7 +58,10 @@ test('each reload shows the other banner and keeps it fixed', () => {
   assert.ok(first.popup.open && second.popup.open);
   assert.notEqual(first.image.src, second.image.src);
   const third = run(now, 0, false, session);
-  assert.equal(third.image.src, first.image.src);
+  assert.notEqual(third.image.src, first.image.src);
+  const fourth = run(now, 0, false, session);
+  assert.equal(new Set([first.image.src, second.image.src, third.image.src, fourth.image.src]).size, 4);
+  assert.equal(run(now, 0, false, session).image.src, first.image.src);
 });
 
 test('preserves mobile scroll position when automatic dialog focuses and closes', () => {

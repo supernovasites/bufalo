@@ -7,12 +7,14 @@
   if (!isWeekday()) return;
   const images = [
     ['black-bufalo-floresta', 'Black Búfalo: garrafas verde-oliva em cenário de floresta. Até 30% OFF.'],
-    ['black-bufalo-pitaya', 'Black Búfalo: garrafas e copo Pitaya à beira da piscina. Até 30% OFF.']
+    ['black-bufalo-pitaya', 'Black Búfalo: garrafas e copo Pitaya à beira da piscina. Até 30% OFF.'],
+    ['black-bufalo-laranja-montanha', 'Black Búfalo: produtos laranja em expedição na montanha. Até 30% OFF.'],
+    ['black-bufalo-citrus-futebol', 'Black Búfalo: produtos cítrus no campo de futebol. Até 30% OFF.']
   ];
   let currentImage = Math.floor(Math.random() * images.length);
   try {
     const previous = sessionStorage.getItem('bufalo_black26_banner');
-    if (previous === '0' || previous === '1') currentImage = (Number(previous) + 1) % images.length;
+    if (previous !== null && /^\d+$/.test(previous) && Number(previous) < images.length) currentImage = (Number(previous) + 1) % images.length;
     sessionStorage.setItem('bufalo_black26_banner', String(currentImage));
   } catch {}
   const image = popup.querySelector('img');

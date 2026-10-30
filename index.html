@@ -773,7 +773,7 @@ let dismissed=false;try{dismissed=sessionStorage.getItem(dismissKey)==='1'}catch
 if(dismissed)return;
 let previousOverflow,previousScroll;
 const restoreScroll=()=>{if(previousScroll)window.scrollTo({...previousScroll,behavior:'instant'})};
-const open=()=>{if(document.querySelector('dialog[open]'))return;previousOverflow=document.body.style.overflow;previousScroll={left:window.scrollX,top:window.scrollY};popup.showModal();document.body.style.overflow='hidden';restoreScroll()};
+const open=()=>{if(!dayState().weekend||document.querySelector('dialog[open]'))return;previousOverflow=document.body.style.overflow;previousScroll={left:window.scrollX,top:window.scrollY};popup.showModal();document.body.style.overflow='hidden';restoreScroll()};
 popup.querySelectorAll('[data-bw-close]').forEach(button=>button.addEventListener('click',()=>popup.close()));
 popup.addEventListener('click',event=>{const r=popup.getBoundingClientRect();if(event.target===popup&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))popup.close()});
 popup.addEventListener('close',()=>{document.body.style.overflow=previousOverflow||'';restoreScroll();try{sessionStorage.setItem(dismissKey,'1')}catch{}});
@@ -791,7 +791,7 @@ setTimeout(open,600);
 <div class="bw-grid"><a class="bw-art-wrap" style="display:block" href="https://www.bufalogrowler.com.br/campanhas/black26/" aria-label="Aproveitar ofertas Black Búfalo"><img class="bw-art" src="/assets/campaigns/black26/black-bufalo-floresta.webp" alt="Black Búfalo. Até 30% OFF." width="1254" height="1254" decoding="async"></a>
 <div class="bw-copy"><p id="black26-popup-copy" class="bw-offer-copy">A Black Búfalo já começou! Aproveite as ofertas antes que acabem.</p><a class="bw-cta" href="https://www.bufalogrowler.com.br/campanhas/black26/">Aproveitar ofertas</a></div></div>
 </dialog>
-<script defer src="/assets/black26-popup.js?v=20261029-banners"></script>
+<script defer src="/assets/black26-popup.js?v=20261030-four-banners"></script>
 
 </body></html>
 
