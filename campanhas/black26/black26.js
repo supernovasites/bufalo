@@ -31,6 +31,7 @@
   const video=document.getElementById('trilha-video');
   const scriptURL=document.currentScript.src;
   const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(video){
   const saveData=!!navigator.connection?.saveData;
   let manuallyPaused=reducedMotion||saveData;
   video.src=new URL(matchMedia('(max-width: 760px)').matches?'media/trilha-mobile.mp4':'media/trilha-desktop.mp4?v=fullhd-20261020',scriptURL).href;
@@ -38,6 +39,8 @@
   video.addEventListener('error',()=>{manuallyPaused=true;});
   if(!manuallyPaused)video.play().catch(playbackUnavailable);
   if('IntersectionObserver' in window)new IntersectionObserver(entries=>{for(const entry of entries){if(!entry.isIntersecting)video.pause();else if(!manuallyPaused)video.play().catch(playbackUnavailable);}},{threshold:.1}).observe(video);
+
+  }
 
   fetch(new URL('products.json',document.currentScript.src),{cache:'no-cache'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(data=>{
     products=data.products.flatMap(p=>p.colors.filter(c=>c.available!==false&&c.price>0&&c.oldPrice>c.price).map(color=>({...p,color})));
