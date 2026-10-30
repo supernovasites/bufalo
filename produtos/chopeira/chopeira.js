@@ -103,3 +103,21 @@
     if (!pending) {pending = true; requestAnimationFrame(measureScroll);}
   }, {passive: true});
 })();
+
+/* Keep both real color variations inside each kit card. */
+(() => {
+  document.querySelectorAll('[data-kit-color]').forEach(button => {
+    button.addEventListener('click', () => {
+      const card = button.closest('.ontap-product');
+      const image = card.querySelector('.product-visual img');
+      image.src = button.dataset.image;
+      image.alt = card.querySelector('h2').textContent + ' · ' + button.dataset.colorName;
+      card.querySelector('[data-kit-color-label]').textContent = button.dataset.colorName;
+      card.querySelectorAll('[data-kit-color]').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+      const link = card.querySelector('[data-product-link]');
+      const url = new URL(link.href);
+      url.searchParams.set('variacao', button.dataset.variantId);
+      link.href = url.href;
+    });
+  });
+})();

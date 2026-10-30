@@ -51,3 +51,7 @@ Links comerciais desta página usam `utm_source=bufalo&utm_medium=landing_page&u
 A grafia correta do parâmetro é `utm_campaign`. Criar definições personalizadas com escopo de evento no GA4 para `campaign_id`, `cta_id`, `link_position`, `section_id` e `question_id` se esses campos forem usados nas Explorações. A criação da página não altera a administração da propriedade GA4.
 
 Validação: `node tests/analytics.cjs`, `node tests/chopeira.cjs` e `node tests/chopeira-media.cjs`, além de inspeção responsiva, reprodução do vídeo e popup no navegador.
+
+## Banner dos kits e cores (30/10/2026)
+
+Banner terracota acima dos cards Mestre Cervejeiro, com fotografia lifestyle gerada e oferta da bag autorizada pelo proprietário. Texto e botão são HTML acessível. Cada combo mantém um único card com botões de cor, foto oficial por variação e indicação da seleção. Cores verificadas na loja: 5,5 L Preto/Preto e Barley White/Preto; 7 L Preto/Preto e Preto/Coral. O link abre a loja com o parâmetro de variação; a seleção final e disponibilidade são confirmadas na loja. Fonte de variantes registrada em products.json. Manter dist sincronizado.

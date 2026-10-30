@@ -110,7 +110,23 @@
       "note": "5,5 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador.",
       "price": 1730.0,
       "currency": "BRL",
-      "price_checked_at": "2026-10-29"
+      "price_checked_at": "2026-10-29",
+      "variants": [
+        {
+          "id": "400891547",
+          "variation_id": "38301",
+          "name": "Preto/Preto",
+          "image": "images/combo-55-38301.png",
+          "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/400891545/d556cd5c14234579b6461ac4a206a01f-ea6vropf7z.png"
+        },
+        {
+          "id": "400891546",
+          "variation_id": "481146",
+          "name": "Barley White/Preto",
+          "image": "images/combo-55-481146.png",
+          "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/400891545/a650f2f2cc0a455f8000bbd1c891d79e-axckw4qofa.png"
+        }
+      ]
     },
     {
       "id": "397365368",
@@ -132,7 +148,23 @@
       "note": "7 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador.",
       "price": 1830.0,
       "currency": "BRL",
-      "price_checked_at": "2026-10-29"
+      "price_checked_at": "2026-10-29",
+      "variants": [
+        {
+          "id": "397365870",
+          "variation_id": "38301",
+          "name": "Preto/Preto",
+          "image": "images/combo-7-38301.png",
+          "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/397365368/mestre-cervejeiro-black-15bux68m3s.png"
+        },
+        {
+          "id": "404477582",
+          "variation_id": "2973054",
+          "name": "Preto/Coral",
+          "image": "images/combo-7-2973054.png",
+          "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/397365368/mestre-cervejeiro-4d1947f4-yc96el1bo4.png"
+        }
+      ]
     },
     {
       "id": "399839761",
