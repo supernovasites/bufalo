@@ -339,12 +339,12 @@ body{background:#f2f5ef}
 .mestre-kit-slideshow img:nth-child(2){opacity:0}
 .mestre-kit-slideshow.is-rotating img{animation:mestre-kit-appear 4s infinite}
 .mestre-kit-slideshow.is-rotating img:nth-child(2){animation-delay:-2s}
-.mestre-kit-slideshow.is-paused img{animation-play-state:paused}
+
 @keyframes mestre-kit-appear{0%,39%{opacity:1}50%,89%{opacity:0}100%{opacity:1}}
-.mestre-kit-pause{display:block;margin:8px auto 0;padding:8px 12px;min-height:44px;border:1px solid #142e3240;border-radius:4px;background:transparent;color:#142e32;font:inherit;font-size:11px;cursor:pointer}
-.mestre-kit-pause[hidden]{display:none}
-.mestre-kit-pause:focus-visible{outline:2px solid #9c492e;outline-offset:3px}
-@media(prefers-reduced-motion:reduce){.mestre-kit-slideshow.is-rotating img{animation:none}.mestre-kit-pause{display:none}}
+
+
+
+@media(prefers-reduced-motion:reduce){.mestre-kit-slideshow.is-rotating img{animation:none}}
 
 /* One purchase offer replaces the two kit cards. */
 .mestre-kit-sale{max-width:1216px;margin:0 auto 48px;padding:36px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:36px;align-items:center;background:#edf3eb;color:#142e32;border-radius:0 0 6px 6px;scroll-margin-top:110px}
@@ -362,3 +362,5 @@ body{background:#f2f5ef}
 
 .mestre-sale-promotion{font-size:12px;line-height:1.5;color:#77361f;margin:0 0 9px}
 .mestre-sale-promotion[hidden]{display:none}
+
+.mestre-kit-sale{display:block;padding:28px 24px}.mestre-sale-buy{max-width:520px;margin:0 auto;text-align:center}.mestre-sale-price-label{font-weight:600;margin-bottom:14px}

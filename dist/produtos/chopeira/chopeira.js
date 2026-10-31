@@ -125,20 +125,13 @@
 (() => {
   const slideshow = document.querySelector('.mestre-kit-slideshow');
   if (!slideshow) return;
-  const button = slideshow.closest('figure').querySelector('.mestre-kit-pause');
   const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let ready = false;
   function update() {
     slideshow.classList.toggle('is-rotating', ready && !motion.matches);
-    button.hidden = !ready || motion.matches;
   }
   // Keep the first photo visible if either image fails to load.
   Promise.all([...slideshow.querySelectorAll('img')].map(img => img.decode()))
     .then(() => { ready = true; update(); }).catch(() => {});
   motion.addEventListener('change', update);
-  button.addEventListener('click', () => {
-    const paused = slideshow.classList.toggle('is-paused');
-    button.setAttribute('aria-pressed', String(paused));
-    button.textContent = paused ? 'Retomar fotos' : 'Pausar fotos';
-  });
 })();
