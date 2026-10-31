@@ -1,13 +1,13 @@
 {
-  "checked_at": "2026-10-29",
+  "checked_at": "2026-10-31",
   "source": "https://loja.bufalogrowler.com.br/chopeiras",
   "products": [
     {
       "id": "266520163",
-      "slug": "ontap-2l",
-      "name": "On TAP 2 L",
-      "store_name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portatil",
-      "url": "https://loja.bufalogrowler.com.br/bufaloontap2l",
+      "slug": "ontap-2l-preta",
+      "name": "On TAP 2 L · Preta",
+      "store_name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portátil - Preta",
+      "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-2l-chopeira-termica-portatil-preta",
       "source_image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/266520163/a82be5fecf024fd5b8e38a2bcdf7bcfd-ajydrwwate.png",
       "title": "Seu bar. Onde você estiver.",
       "kicker": "CHOPEIRAS · 2 L",
@@ -20,7 +20,29 @@
         "5 cápsulas de CO₂ de 16 g"
       ],
       "note": "O barril tem 1,9 L; com o dispensador, o sistema tem capacidade de 2 L, conforme a loja.",
-      "price": 1250.0,
+      "price": 1250,
+      "currency": "BRL",
+      "price_checked_at": "2026-10-29"
+    },
+    {
+      "id": "391053303",
+      "slug": "ontap-2l-creme",
+      "name": "On TAP 2 L · Creme",
+      "store_name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portátil - Creme",
+      "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-2l-chopeira-termica-portatil-creme",
+      "source_image": "https://cdn.awsli.com.br/2500x2500/1237/1237589/produto/266520163/keg-1-9l-1-klxcujsyy3.png",
+      "title": "Seu bar. Onde você estiver.",
+      "kicker": "CHOPEIRAS · 2 L",
+      "description": "Chope na torneira. Onde você estiver.",
+      "use": "Fim de tarde a dois",
+      "tip": "Varanda e encontros a dois.",
+      "specs": [
+        "Sistema de 2 L com dispensador",
+        "Regulador com manômetro",
+        "5 cápsulas de CO₂ de 16 g"
+      ],
+      "note": "O barril tem 1,9 L; com o dispensador, o sistema tem capacidade de 2 L, conforme a loja.",
+      "price": 1350,
       "currency": "BRL",
       "price_checked_at": "2026-10-29"
     },
@@ -42,7 +64,7 @@
         "5 cápsulas de CO₂ de 16 g"
       ],
       "note": "",
-      "price": 1450.0,
+      "price": 1450,
       "currency": "BRL",
       "price_checked_at": "2026-10-29"
     },
@@ -64,7 +86,7 @@
         "5 cápsulas de CO₂ de 16 g"
       ],
       "note": "",
-      "price": 1450.0,
+      "price": 1450,
       "currency": "BRL",
       "price_checked_at": "2026-10-29"
     },
@@ -86,7 +108,7 @@
         "Regulador com manômetro"
       ],
       "note": "",
-      "price": 1450.0,
+      "price": 1450,
       "currency": "BRL",
       "price_checked_at": "2026-10-29"
     },
@@ -108,25 +130,9 @@
         "5 cápsulas de CO₂ de 16 g"
       ],
       "note": "5,5 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador.",
-      "price": 1730.0,
+      "price": 1730,
       "currency": "BRL",
-      "price_checked_at": "2026-10-29",
-      "variants": [
-        {
-          "id": "400891547",
-          "variation_id": "38301",
-          "name": "Preto/Preto",
-          "image": "images/combo-55-38301.png",
-          "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/400891545/d556cd5c14234579b6461ac4a206a01f-ea6vropf7z.png"
-        },
-        {
-          "id": "400891546",
-          "variation_id": "481146",
-          "name": "Barley White/Preto",
-          "image": "images/combo-55-481146.png",
-          "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/400891545/a650f2f2cc0a455f8000bbd1c891d79e-axckw4qofa.png"
-        }
-      ]
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "397365368",
@@ -146,25 +152,9 @@
         "5 cápsulas de CO₂ de 16 g"
       ],
       "note": "7 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador.",
-      "price": 1830.0,
+      "price": 1830,
       "currency": "BRL",
-      "price_checked_at": "2026-10-29",
-      "variants": [
-        {
-          "id": "397365870",
-          "variation_id": "38301",
-          "name": "Preto/Preto",
-          "image": "images/combo-7-38301.png",
-          "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/397365368/mestre-cervejeiro-black-15bux68m3s.png"
-        },
-        {
-          "id": "404477582",
-          "variation_id": "2973054",
-          "name": "Preto/Coral",
-          "image": "images/combo-7-2973054.png",
-          "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/397365368/mestre-cervejeiro-4d1947f4-yc96el1bo4.png"
-        }
-      ]
+      "price_checked_at": "2026-10-29"
     },
     {
       "id": "399839761",
@@ -184,7 +174,7 @@
         "Tampa com alça"
       ],
       "note": "Nome comercial da loja: Kundi 2 L. A descrição técnica informa 1,9 L; confirme a capacidade com a equipe antes da compra.",
-      "price": 380.0,
+      "price": 380,
       "currency": "BRL",
       "price_checked_at": "2026-10-29"
     },
@@ -206,7 +196,7 @@
         "Tampa com alça"
       ],
       "note": "",
-      "price": 480.0,
+      "price": 480,
       "currency": "BRL",
       "price_checked_at": "2026-10-29"
     },
@@ -228,7 +218,7 @@
         "Ombreira acolchoada"
       ],
       "note": "Acessório de transporte. Confira os itens inclusos e a compatibilidade na página do produto.",
-      "price": 168.0,
+      "price": 168,
       "currency": "BRL",
       "price_checked_at": "2026-10-29"
     }
