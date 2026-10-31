@@ -30,7 +30,7 @@
       "name": "On TAP 2 L · Creme",
       "store_name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portátil - Creme",
       "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-2l-chopeira-termica-portatil-creme",
-      "source_image": "https://cdn.awsli.com.br/2500x2500/1237/1237589/produto/266520163/keg-1-9l-1-klxcujsyy3.png",
+      "source_image": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/266520163/cfaee69e9ac8411ca544e948e922009d-oqsqt59omg.png",
       "title": "Seu bar. Onde você estiver.",
       "kicker": "CHOPEIRAS · 2 L",
       "description": "Chope na torneira. Onde você estiver.",
@@ -42,9 +42,10 @@
         "5 cápsulas de CO₂ de 16 g"
       ],
       "note": "O barril tem 1,9 L; com o dispensador, o sistema tem capacidade de 2 L, conforme a loja.",
-      "price": 1350,
+      "price": 1250,
       "currency": "BRL",
-      "price_checked_at": "2026-10-29"
+      "price_checked_at": "2026-10-31",
+      "weekend_price": 995
     },
     {
       "id": "404795468",
@@ -223,5 +224,5 @@
       "price_checked_at": "2026-10-29"
     }
   ],
-  "prices_checked_at": "2026-10-29"
+  "prices_checked_at": "2026-10-31"
 }
