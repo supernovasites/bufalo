@@ -25,40 +25,18 @@
   refresh();
 })();
 
-/* Weekend-only special for the On TAP 2 L creme, in Brasilia time. */
+/* Búfalo Weekend: Saturday and Sunday prices for On TAP 2 L and 3,5 L, Brasília timezone. */
 (() => {
-  const price = document.querySelector('[data-ontap2-creme-price]');
-  const promotion = document.querySelector('[data-ontap2-creme-promo]');
-  const original = document.querySelector('[data-ontap2-creme-original]');
-  if (!price || !promotion || !original) return;
-  const clock = new Intl.DateTimeFormat('en-GB', {
-    timeZone: 'America/Sao_Paulo', weekday: 'short',
-    hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
-  });
-  const currency = new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'});
-  let timer;
-  function refresh() {
-    clearTimeout(timer);
-    const local = Object.fromEntries(clock.formatToParts(new Date()).map(part => [part.type, part.value]));
-    const weekend = local.weekday === 'Sat' || local.weekday === 'Sun';
-    price.textContent = currency.format(weekend ? 995 : 1250);
-    promotion.hidden = !weekend;
-    original.hidden = !weekend;
-    price.classList.toggle('is-weekend-price', weekend);
-    const seconds = Number(local.hour) * 3600 + Number(local.minute) * 60 + Number(local.second);
-    timer = setTimeout(refresh, (86400 - seconds) * 1000 + 150);
-  }
-  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
-  window.addEventListener('pageshow', refresh);
-  refresh();
-})();
+  const offers = [...document.querySelectorAll('.ontap-weekend-offer[data-regular-price][data-weekend-price]')].map(container => ({
+    price: container.querySelector('.product-price'),
+    promotion: container.querySelector('.ontap-weekend-tag'),
+    original: container.querySelector('.ontap-weekend-original'),
+    regularPrice: Number(container.dataset.regularPrice),
+    weekendPrice: Number(container.dataset.weekendPrice)
+  })).filter(offer => offer.price && offer.promotion && offer.original &&
+    Number.isFinite(offer.regularPrice) && Number.isFinite(offer.weekendPrice));
+  if (!offers.length) return;
 
-/* Weekend-only special for On TAP 2 L preta, synchronized to Brasilia time. */
-(() => {
-  const price = document.querySelector('[data-ontap2-preta-price]');
-  const promotion = document.querySelector('[data-ontap2-preta-promo]');
-  const original = document.querySelector('[data-ontap2-preta-original]');
-  if (!price || !promotion || !original) return;
   const clock = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'America/Sao_Paulo', weekday: 'short',
     hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
@@ -69,10 +47,13 @@
     clearTimeout(timer);
     const local = Object.fromEntries(clock.formatToParts(new Date()).map(part => [part.type, part.value]));
     const weekend = local.weekday === 'Sat' || local.weekday === 'Sun';
-    price.textContent = currency.format(weekend ? 995 : 1250);
-    promotion.hidden = !weekend;
-    original.hidden = !weekend;
-    price.classList.toggle('is-weekend-price', weekend);
+    for (const offer of offers) {
+      offer.price.textContent = currency.format(weekend ? offer.weekendPrice : offer.regularPrice);
+      offer.promotion.hidden = !weekend;
+      offer.original.hidden = !weekend;
+      offer.price.classList.toggle('is-weekend-price', weekend);
+    }
+    // Recheck at Brasília midnight, including pages left open.
     const seconds = Number(local.hour) * 3600 + Number(local.minute) * 60 + Number(local.second);
     timer = setTimeout(refresh, (86400 - seconds) * 1000 + 150);
   }
