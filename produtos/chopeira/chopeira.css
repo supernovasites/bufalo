@@ -494,3 +494,48 @@ body{background:#f2f5ef}
   .kundi-parts .kundi-part-product .product-copy h3{font-size:16px}
   .kundi-parts .kundi-part-product .product-copy .button{font-size:10px}
 }
+
+
+/* Visual integrado para a Bag Tiracolo; o branco do catálogo se funde ao fundo da seção. */
+#bag-tiracolo .bag-product-visual,
+#bag-tiracolo.reverse .bag-product-visual{
+  background:#eef2eb;
+  overflow:hidden;
+}
+#bag-tiracolo .bag-product-visual .bag-integrated-image{
+  width:min(100%,440px);
+  max-width:100%;
+  height:auto;
+  max-height:none;
+  aspect-ratio:1;
+  object-fit:contain;
+  padding:0;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  filter:none;
+  background:transparent;
+  mix-blend-mode:multiply;
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 89%,transparent 99%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 89%,transparent 99%);
+}
+.color-chooser{width:100%;padding:15px 0 22px;border-top:1px solid #e0e8de;border-bottom:1px solid #e0e8de;margin:0 0 20px}
+.color-chooser-title{font-size:14px;color:#405a51;line-height:1.45;margin:0 0 12px}
+.color-chooser-title strong{color:#142e32}
+.color-options{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+.color-swatch{appearance:none;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:6px;width:79px;padding:5px 3px 6px;border:0;border-radius:8px;background:transparent;color:#526567;font:inherit;font-size:11px;text-decoration:none;cursor:pointer;transition:background .15s ease}
+.color-swatch .color-chip{display:block;flex:none;width:36px;height:36px;border:1px solid #142e3240;border-radius:50%;background:var(--swatch);outline:2px solid transparent;outline-offset:4px}
+.color-swatch[aria-pressed="true"] .color-chip{outline-color:#142e32}
+.color-swatch:focus-visible{outline:3px solid #e87942;outline-offset:2px}
+.color-swatch:hover{background:#edf2eb}
+.color-swatch-other{width:112px}
+.color-chip-multi{background:conic-gradient(#c6b793 0 25%,#1c2728 25% 50%,#9d5c3d 50% 75%,#87968a 75%)!important}
+#ontap-2l .color-chooser{margin:0 0 20px}
+@media(max-width:760px){
+  #bag-tiracolo .bag-product-visual,
+  #bag-tiracolo.reverse .bag-product-visual{aspect-ratio:1.2;padding:16px}
+  #bag-tiracolo .bag-product-visual .bag-integrated-image{width:min(100%,320px);max-height:320px}
+  .color-chooser{padding:12px 0 16px;margin:0 0 16px}
+  .color-chooser-title{font-size:13px}
+  .color-swatch{font-size:11px;min-width:64px}
+}
