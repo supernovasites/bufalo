@@ -1,26 +1,140 @@
-(()=>{const root=document.querySelector('#manada-stories-stage');if(!root)return;
-/* Upload the media files to /produtos/chopeira/media/stories/ to activate them. */
-const items=[
-{type:'video',src:'media/stories/manada-01.mp4'},
-{type:'video',src:'media/stories/manada-02.mp4'},
-{type:'video',src:'media/stories/manada-03.mp4'},
-{type:'video',src:'media/stories/manada-04.mp4'},
-{type:'video',src:'media/stories/manada-05.mp4'},
-{type:'video',src:'media/stories/manada-06.mp4'},
-{type:'video',src:'media/stories/manada-07.mp4'},
-{type:'video',src:'media/stories/manada-08.mp4'},
-{type:'image',src:'media/stories/manada-foto-01.jpg'},
-{type:'image',src:'media/stories/manada-foto-02.jpg'}];
-let available=[],index=0,paused=false,timer=null,start=0,remaining=3000;
-const prev=root.querySelector('.manada-story-prev'),next=root.querySelector('.manada-story-next'),center=root.querySelector('.manada-story-current'),media=center.querySelector('.manada-story-media'),pause=center.querySelector('.manada-story-pause');
-const wrap=n=>(n+available.length)%available.length;
-function thumb(el,item){el.replaceChildren();if(!item)return;const node=document.createElement(item.type==='image'?'img':'video');node.src=item.src;node.muted=true;node.playsInline=true;if(item.type==='image')node.alt='Momento da Manada Búfalo';else node.preload='metadata';el.append(node)}
-function stop(){clearTimeout(timer);const v=media.querySelector('video');if(v)v.pause()}
-function advance(n=1){if(!available.length)return;index=wrap(index+n);render()}
-function progress(){center.style.setProperty('--story-progress','0%');const duration=available[index].type==='image'?3000:0;if(duration&&!paused){start=Date.now();timer=setTimeout(()=>advance(),duration);center.style.setProperty('--story-progress','100%')}}
-function render(){stop();if(!available.length){root.hidden=true;return}thumb(prev,available[wrap(index-1)]);thumb(next,available[wrap(index+1)]);media.replaceChildren();const item=available[index];const el=document.createElement(item.type==='image'?'img':'video');el.src=item.src;if(item.type==='image'){el.alt='Story da comunidade Búfalo';}else{el.playsInline=true;el.muted=true;el.autoplay=true;el.preload='auto';el.addEventListener('ended',()=>advance());el.addEventListener('error',()=>advance());}media.append(el);pause.textContent=paused?'▶':'Ⅱ';if(!paused){if(item.type==='video')el.play().catch(()=>{});else progress()}}
-prev.addEventListener('click',()=>advance(-1));next.addEventListener('click',()=>advance(1));pause.addEventListener('click',()=>{paused=!paused;if(paused){clearTimeout(timer);remaining=Math.max(0,3000-(Date.now()-start));media.querySelector('video')?.pause()}else{const v=media.querySelector('video');if(v)v.play().catch(()=>{});else{start=Date.now();timer=setTimeout(()=>advance(),remaining)}}pause.textContent=paused?'▶':'Ⅱ'});
-let sx=0;root.addEventListener('touchstart',e=>{sx=e.changedTouches[0].clientX},{passive:true});root.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>45)advance(d<0?1:-1)},{passive:true});root.addEventListener('keydown',e=>{if(e.key==='ArrowRight')advance();if(e.key==='ArrowLeft')advance(-1)});
-document.addEventListener('visibilitychange',()=>{const v=media.querySelector('video');if(document.hidden){v?.pause();clearTimeout(timer)}else if(!paused){if(v)v.play().catch(()=>{});else{start=Date.now();timer=setTimeout(()=>advance(),3000)}}});
-Promise.all(items.map(async item=>{try{const r=await fetch(item.src,{method:'HEAD'});return r.ok?item:null}catch{return null}})).then(found=>{available=found.filter(Boolean);if(available.length){index=0;render()}else {root.closest('.manada-stories').classList.add('manada-stories-awaiting');root.querySelector('.manada-story-current .manada-story-media').textContent='Em breve, os stories da Manada por aqui.';root.querySelector('.manada-story-prev').hidden=true;root.querySelector('.manada-story-next').hidden=true;root.querySelector('.manada-story-pause').hidden=true;}});
+(() => {
+  const stage = document.getElementById('manada-stories-stage');
+  if (!stage) return;
+  const section = stage.closest('.manada-stories');
+  const items = JSON.parse(document.getElementById('manada-stories-items').textContent);
+  const count = section.querySelector('.manada-stories-count');
+  const progress = section.querySelector('.manada-stories-progress');
+  const wrap = n => (n + items.length) % items.length;
+  let index = 0, inView = false, dragging = false, pointer = null;
+  let frame = 0, elapsed = 0, since = null, generation = 0;
+  const failed = new Set();
+  const cards = items.map((item, i) => {
+    const card = document.createElement('button');
+    card.type = 'button'; card.className = 'manada-story';
+    card.setAttribute('aria-label', `Ver story ${i + 1} de ${items.length}`);
+    const poster = document.createElement('img');
+    poster.src = item.poster || item.src; poster.alt = item.alt;
+    poster.width = 540; poster.height = 960;
+    poster.loading = i < 3 || i > items.length - 3 ? 'eager' : 'lazy';
+    poster.draggable = false; card.append(poster);
+    card.addEventListener('click', () => { if (i !== index && !dragging) go(i); });
+    stage.append(card);
+    return {card, poster, video: null};
+  });
+  function active() { return inView && !document.hidden && !dragging && !document.querySelector('dialog[open]'); }
+  function stopClock() {
+    if (since !== null) elapsed += performance.now() - since;
+    since = null; cancelAnimationFrame(frame);
+  }
+  function paint(value) { progress.style.setProperty('--story-progress', `${Math.min(100, Math.max(0, value))}%`); }
+  function tick() {
+    if (!active()) return;
+    const video = cards[index].video;
+    if (items[index].type === 'image') {
+      const time = elapsed + (since !== null ? performance.now() - since : 0);
+      paint(time / 30);
+      if (time >= 3000) { go(index + 1); return; }
+    } else if (video && Number.isFinite(video.duration) && video.duration > 0) paint(video.currentTime / video.duration * 100);
+    frame = requestAnimationFrame(tick);
+  }
+  function play() {
+    stopClock();
+    const entry = cards[index];
+    if (!active()) { entry.video?.pause(); return; }
+    if (items[index].type === 'image') {
+      if (!entry.poster.complete || !entry.poster.naturalWidth) return;
+      since = performance.now();
+    } else if (entry.video?.paused) {
+      entry.video.muted = true;
+      const attempt = entry.video.play();
+      if (attempt) attempt.catch(() => {});
+    }
+    frame = requestAnimationFrame(tick);
+  }
+  function layout() {
+    cards.forEach((entry, i) => {
+      let offset = wrap(i - index);
+      if (offset > items.length / 2) offset -= items.length;
+      const visible = Math.abs(offset) <= 2;
+      entry.card.hidden = !visible;
+      entry.card.dataset.position = String(offset);
+      entry.card.tabIndex = Math.abs(offset) === 1 ? 0 : -1;
+      entry.card.setAttribute('aria-hidden', String(!visible || Math.abs(offset) === 2));
+      if (offset === 0) entry.card.setAttribute('aria-current', 'true');
+      else entry.card.removeAttribute('aria-current');
+    });
+    count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
+    stage.setAttribute('aria-label', `Stories da comunidade Búfalo. Story ${index + 1} de ${items.length}. Arraste para a esquerda para avançar.`);
+  }
+  function go(next) {
+    stopClock(); cards[index].video?.pause();
+    // Release the old decoder and download; side cards only use their poster.
+    if (cards[index].video) { cards[index].video.removeAttribute('src'); cards[index].video.load(); cards[index].video.remove(); cards[index].video = null; }
+    index = wrap(next); elapsed = 0; paint(0); generation++;
+    layout();
+    const entry = cards[index], item = items[index], token = generation;
+    const skip = () => {
+      if (token !== generation) return;
+      failed.add(index);
+      if (failed.size < items.length) {
+        let nextIndex = wrap(index + 1);
+        while (failed.has(nextIndex)) nextIndex = wrap(nextIndex + 1);
+        go(nextIndex);
+      }
+    };
+    entry.poster.onload = () => { if (token === generation) play(); };
+    entry.poster.onerror = skip;
+    if (item.type === 'video') {
+      const video = document.createElement('video'); entry.video = video;
+      video.muted = true; video.defaultMuted = true; video.playsInline = true;
+      video.preload = 'auto'; video.controls = false;
+      video.setAttribute('muted', ''); video.setAttribute('playsinline', '');
+      video.setAttribute('disablepictureinpicture', '');
+      video.setAttribute('aria-label', item.alt); video.poster = item.poster;
+      video.addEventListener('playing', () => { if (token === generation) entry.card.classList.add('is-playing'); });
+      video.addEventListener('canplay', () => { if (token === generation) play(); });
+      video.addEventListener('ended', () => { if (token === generation) go(index + 1); });
+      video.addEventListener('error', skip);
+      video.src = item.src; entry.card.append(video);
+    }
+    cards.forEach(entry => entry.card.classList.remove('is-playing'));
+    play();
+  }
+  stage.addEventListener('pointerdown', event => {
+    if (event.button !== 0) return;
+    pointer = {id: event.pointerId, x: event.clientX, y: event.clientY};
+  });
+  stage.addEventListener('pointermove', event => {
+    if (!pointer || pointer.id !== event.pointerId) return;
+    const dx = event.clientX - pointer.x, dy = event.clientY - pointer.y;
+    if (!dragging && Math.abs(dx) > 12 && Math.abs(dx) > Math.abs(dy) * 1.25) {
+      dragging = true; stage.setPointerCapture(event.pointerId); play();
+    }
+    if (dragging) { event.preventDefault(); stage.style.setProperty('--story-drag', `${Math.max(-110, Math.min(110, dx))}px`); }
+  });
+  function release(event) {
+    if (!pointer || pointer.id !== event.pointerId) return;
+    const dx = event.clientX - pointer.x, wasDragging = dragging;
+    pointer = null; stage.style.removeProperty('--story-drag');
+    if (stage.hasPointerCapture(event.pointerId)) stage.releasePointerCapture(event.pointerId);
+    if (wasDragging && event.type !== 'pointercancel' && Math.abs(dx) >= 45) go(index + (dx < 0 ? 1 : -1));
+    // Suppress the synthetic click after a swipe.
+    setTimeout(() => { dragging = false; play(); }, 0);
+  }
+  stage.addEventListener('pointerup', release);
+  stage.addEventListener('pointercancel', release);
+  stage.addEventListener('dragstart', event => event.preventDefault());
+  stage.addEventListener('keydown', event => {
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); go(index + (event.key === 'ArrowLeft' ? -1 : 1)); }
+  });
+  document.addEventListener('visibilitychange', play);
+  document.addEventListener('pointerdown', play, {capture: true, passive: true});
+  document.addEventListener('keydown', play, {capture: true});
+  window.addEventListener('pageshow', play);
+  document.querySelectorAll('dialog').forEach(dialog => {
+    new MutationObserver(play).observe(dialog, {attributes: true, attributeFilter: ['open']});
+  });
+  new IntersectionObserver(entries => { inView = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.35; play(); }, {threshold: 0.35}).observe(stage);
+  go(0);
 })();

@@ -59,3 +59,11 @@ Banner terracota acima dos cards Mestre Cervejeiro, com fotografia lifestyle ger
 ### Correção da bag e preservação da marca
 
 A seção dos kits usa agora a fotografia oficial do combo em `mestre-kit-official.png` e a bag preta real da referência em `bag-gift-3.webp`, com logo cobre e alça original BÚFALO GROWLER. Os produtos são imagens independentes, sem redesenhar logos, deformar proporções ou aplicar desfoque. Apenas o cenário de jardim, gerado sem produtos, recebe blur em uma camada CSS separada. A imagem anterior com bag incorreta não é mais carregada na seção. Os cards e variantes reais permanecem abaixo do banner.
+
+## A Manada no Stories (31/10/2026)
+
+A seção fica imediatamente acima do banner Mestre Cervejeiro. Inclui os 11 vídeos e as 2 fotos fornecidos pelo proprietário em `media/stories/`; a ordem está no JSON `manada-stories-items` em `index.html`. Os arquivos MOV foram convertidos para MP4 H.264 sem áudio; os três originais já em H.264 foram apenas remuxados, preservando os pixels e evitando recompressão. Nenhum vídeo foi ampliado além da resolução original. As fotos mantêm o enquadramento completo.
+
+`stories.js` mantém só um vídeo no DOM, no card central. Laterais e camadas da fila usam capas estáticas. O vídeo avança ao terminar; cada foto permanece por 3 segundos efetivamente visíveis. Arrastar para a esquerda avança; para a direita retorna. Também há navegação pelos cards laterais e pelas teclas direcionais. A sequência é circular. O player pausa fora da tela, com a aba oculta ou enquanto um modal estiver aberto. O banner inicial continua independente.
+
+Ao editar a seção, sincronizar HTML, `stories.js`, `stories.css` e `media/stories/` em `dist/produtos/chopeira/`. Validação: `node tests/chopeira-stories.cjs`, além dos testes existentes de chopeira, mídia e hero; inspeção em 390 px e 1440 px com arraste e reprodução reais.
