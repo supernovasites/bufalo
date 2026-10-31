@@ -52,3 +52,31 @@
   window.addEventListener('pageshow', refresh);
   refresh();
 })();
+
+/* Weekend-only special for On TAP 2 L preta, synchronized to Brasilia time. */
+(() => {
+  const price = document.querySelector('[data-ontap2-preta-price]');
+  const promotion = document.querySelector('[data-ontap2-preta-promo]');
+  const original = document.querySelector('[data-ontap2-preta-original]');
+  if (!price || !promotion || !original) return;
+  const clock = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'America/Sao_Paulo', weekday: 'short',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hourCycle: 'h23'
+  });
+  const currency = new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'});
+  let timer;
+  function refresh() {
+    clearTimeout(timer);
+    const local = Object.fromEntries(clock.formatToParts(new Date()).map(part => [part.type, part.value]));
+    const weekend = local.weekday === 'Sat' || local.weekday === 'Sun';
+    price.textContent = currency.format(weekend ? 995 : 1250);
+    promotion.hidden = !weekend;
+    original.hidden = !weekend;
+    price.classList.toggle('is-weekend-price', weekend);
+    const seconds = Number(local.hour) * 3600 + Number(local.minute) * 60 + Number(local.second);
+    timer = setTimeout(refresh, (86400 - seconds) * 1000 + 150);
+  }
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) refresh(); });
+  window.addEventListener('pageshow', refresh);
+  refresh();
+})();

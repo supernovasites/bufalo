@@ -22,7 +22,8 @@
       "note": "O barril tem 1,9 L; com o dispensador, o sistema tem capacidade de 2 L, conforme a loja.",
       "price": 1250,
       "currency": "BRL",
-      "price_checked_at": "2026-10-29"
+      "price_checked_at": "2026-10-31",
+      "weekend_price": 995
     },
     {
       "id": "391053303",
