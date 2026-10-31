@@ -329,3 +329,16 @@ body{background:#f2f5ef}
 .mestre-bag-label{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);padding:9px 12px;background:#142e32;color:#fff5e5;border-radius:3px;white-space:nowrap;font-size:10px;letter-spacing:.7px;font-weight:700}
 @media(max-width:1000px) and (min-width:761px){.mestre-kit-banner{grid-template-columns:1fr}.mestre-kit-message{padding:38px}.mestre-kit-scene{min-height:0}.mestre-kit-products{padding:70px 30px 30px;max-width:780px;margin:auto}}
 @media(max-width:760px){.mestre-kit-banner{grid-template-columns:1fr}.mestre-kit-message{padding:34px 24px}.mestre-kit-scene{min-height:0}.mestre-kit-products{padding:78px 8px 25px;grid-template-columns:1.05fr 1fr}.mestre-kit-products figcaption{font-size:10px;margin-top:10px}.mestre-bag-label{font-size:8px;padding:8px;bottom:calc(100% + 10px)}}
+
+/* Alternate the official 7L color photos every two seconds. */
+.mestre-kit-slideshow{display:grid}
+.mestre-kit-slideshow img{grid-area:1/1}
+.mestre-kit-slideshow img:nth-child(2){opacity:0}
+.mestre-kit-slideshow.is-rotating img{animation:mestre-kit-appear 4s infinite}
+.mestre-kit-slideshow.is-rotating img:nth-child(2){animation-delay:-2s}
+.mestre-kit-slideshow.is-paused img{animation-play-state:paused}
+@keyframes mestre-kit-appear{0%,39%{opacity:1}50%,89%{opacity:0}100%{opacity:1}}
+.mestre-kit-pause{display:block;margin:8px auto 0;padding:8px 12px;min-height:44px;border:1px solid #142e3240;border-radius:4px;background:transparent;color:#142e32;font:inherit;font-size:11px;cursor:pointer}
+.mestre-kit-pause[hidden]{display:none}
+.mestre-kit-pause:focus-visible{outline:2px solid #9c492e;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.mestre-kit-slideshow.is-rotating img{animation:none}.mestre-kit-pause{display:none}}

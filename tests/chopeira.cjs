@@ -26,6 +26,7 @@ function setup(enabled = true) {
   if (enabled) {window.bufaloAnalytics = {}; window.gtag = (...args) => events.push(args);}
   const document = {
     documentElement: {scrollHeight: 1800},
+    querySelector: () => null,
     getElementById: id => id === 'ontap-products' ? {textContent: JSON.stringify(products)} : elements[id],
     querySelectorAll: selector => selector.startsWith('button') ? buttons : selector.startsWith('details') ? [{open: true, dataset: {faq: 'co2'}, addEventListener: (name, fn) => faq[name] = fn}] : selector.startsWith('.ontap-product') ? [visual] : [],
     addEventListener: (name, fn) => listeners[name] = fn
