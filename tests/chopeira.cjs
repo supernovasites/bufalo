@@ -7,7 +7,11 @@ assert.equal(products.length, 10);
 assert.equal(new Set(products.map(p => p.id)).size, 10);
 for (const p of products.filter(p => !['combo-55', 'combo-7'].includes(p.slug))) {
   assert.ok(html.includes(`id="${p.slug}" data-product-id="${p.id}"`));
-  const section = html.match(new RegExp('<section class="ontap-product[^\\\\"]*" id="' + p.slug + '"[\\\\s\\\\S]*?</section>'))[0];
+  const position = html.indexOf('id="' + p.slug + '" data-product-id="' + p.id + '"');
+  assert.ok(position >= 0, 'Card must have its own slug and product ID');
+  const sectionStart = html.lastIndexOf('<section class="ontap-product', position);
+  const sectionEnd = html.indexOf('</section>', position);
+  const section = html.slice(sectionStart, sectionEnd + '</section>'.length);
   if (p.slug === 'ontap-2l-creme') {
     assert.ok(section.includes('src="' + p.source_image + '"'), 'Cream 2L uses its official color photo from the store');
   } else {
