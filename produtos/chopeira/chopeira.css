@@ -364,3 +364,15 @@ body{background:#f2f5ef}
 .mestre-sale-promotion[hidden]{display:none}
 
 .mestre-kit-sale{display:block;padding:28px 24px}.mestre-sale-buy{max-width:520px;margin:0 auto;text-align:center}.mestre-sale-price-label{font-weight:600;margin-bottom:14px}
+
+/* Cards de peças: mesmo padrão visual da linha On Tap, em carrossel horizontal. */
+.kundi-parts .kundi-parts-products{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 2px 24px;-webkit-overflow-scrolling:touch}
+.kundi-parts .kundi-part-product{flex:0 0 calc((100% - 36px)/3);min-width:0;display:flex;flex-direction:column;scroll-snap-align:start;border-radius:12px;overflow:hidden;background:#fff}
+.kundi-parts .kundi-part-product .product-visual{width:100%;min-height:0;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#f7f8f5}
+.kundi-parts .kundi-part-product .product-visual img{width:100%;height:100%;object-fit:contain}
+.kundi-parts .kundi-part-product .product-copy{width:100%;padding:24px;display:flex;flex:1;flex-direction:column;align-items:flex-start}
+.kundi-parts .kundi-part-product h3{font-size:clamp(20px,2.1vw,30px);line-height:1.14;margin:0 0 12px}
+.kundi-parts .kundi-part-product .description{font-size:14px;line-height:1.5}
+.kundi-parts .kundi-part-product .product-price{margin-top:auto;padding-top:20px}
+.kundi-parts .kundi-part-product .button{width:100%;text-align:center;justify-content:center}
+@media(max-width:760px){.kundi-parts .kundi-parts-products{gap:12px;padding-inline:16px}.kundi-parts .kundi-part-product{flex-basis:76%;max-width:330px}.kundi-parts .kundi-part-product .product-copy{padding:20px}.kundi-parts .kundi-part-product h3{font-size:23px}}
