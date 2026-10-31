@@ -5,7 +5,7 @@ const html = fs.readFileSync('produtos/chopeira/index.html', 'utf8');
 const products = JSON.parse(fs.readFileSync('produtos/chopeira/products.json', 'utf8')).products;
 assert.equal(products.length, 9);
 assert.equal(new Set(products.map(p => p.id)).size, 9);
-for (const p of products) {
+for (const p of products.filter(p => !['combo-55', 'combo-7'].includes(p.slug))) {
   assert.ok(html.includes(`id="${p.slug}" data-product-id="${p.id}"`));
   assert.ok(fs.existsSync(`produtos/chopeira/images/${p.id}.webp`));
   const section = html.match(new RegExp('<section class="ontap-product[^\\"]*" id="' + p.slug + '"[\\s\\S]*?</section>'))[0];
@@ -63,7 +63,9 @@ const originalPhoto = hero.match(/data:image\/png;base64,([^\"]+)/)[1];
 assert.equal(crypto.createHash('sha256').update(Buffer.from(originalPhoto, 'base64')).digest('hex'), 'f7285eaa7a6f4d5b0660ab27cc93c7e04291eefcebaa72ee4e4a230ae8f1de45');
 assert.match(hero, /id="original-logo-photo"/);
 assert.doesNotMatch(html, /class="model-nav"|class="care wrap"|class="faq wrap"/);
-assert.equal((html.match(/class="variant-rail"/g) || []).length, 3);
+assert.equal((html.match(/class="variant-rail"/g) || []).length, 2);
+assert.doesNotMatch(html, /id="combo-55"|id="kits-mestre-rail"/);
+assert.match(html, /class="mestre-kit-sale" id="combo-7" data-product-id="397365368"/);
 assert.match(html, /Qualidade<br>\s*que se prova/);
 assert.match(html, /id="gift-photo" class="bw-art" src="images\/bag-taphouse-popup.webp"/);
 const shortcuts = html.match(/<div class="shortcut-grid">([\s\S]*?)<\/div>/)[1];

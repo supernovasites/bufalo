@@ -331,8 +331,11 @@ body{background:#f2f5ef}
 @media(max-width:760px){.mestre-kit-banner{grid-template-columns:1fr}.mestre-kit-message{padding:34px 24px}.mestre-kit-scene{min-height:0}.mestre-kit-products{padding:78px 8px 25px;grid-template-columns:1.05fr 1fr}.mestre-kit-products figcaption{font-size:10px;margin-top:10px}.mestre-bag-label{font-size:8px;padding:8px;bottom:calc(100% + 10px)}}
 
 /* Alternate the official 7L color photos every two seconds. */
-.mestre-kit-slideshow{display:grid}
-.mestre-kit-slideshow img{grid-area:1/1}
+.mestre-kit-products{align-items:start}
+.mestre-kit-products>.mestre-official-kit{grid-column:1;grid-row:1}
+.mestre-kit-products>.mestre-official-bag{grid-column:2;grid-row:1}
+.mestre-kit-products .mestre-kit-slideshow{position:relative;display:block;width:100%;aspect-ratio:1;isolation:isolate;mix-blend-mode:multiply}
+.mestre-kit-products .mestre-kit-slideshow>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;margin:0}
 .mestre-kit-slideshow img:nth-child(2){opacity:0}
 .mestre-kit-slideshow.is-rotating img{animation:mestre-kit-appear 4s infinite}
 .mestre-kit-slideshow.is-rotating img:nth-child(2){animation-delay:-2s}
@@ -342,3 +345,17 @@ body{background:#f2f5ef}
 .mestre-kit-pause[hidden]{display:none}
 .mestre-kit-pause:focus-visible{outline:2px solid #9c492e;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.mestre-kit-slideshow.is-rotating img{animation:none}.mestre-kit-pause{display:none}}
+
+/* One purchase offer replaces the two kit cards. */
+.mestre-kit-sale{max-width:1216px;margin:0 auto 48px;padding:36px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:36px;align-items:center;background:#edf3eb;color:#142e32;border-radius:0 0 6px 6px;scroll-margin-top:110px}
+.mestre-sale-copy .eyebrow{font-size:10px;letter-spacing:2px;color:#647466;margin:0 0 12px}
+.mestre-sale-copy h2{font-size:clamp(24px,3vw,36px);line-height:1.12;letter-spacing:-.8px;margin:0 0 14px}
+.mestre-sale-copy>p:not(.eyebrow){font-size:15px;line-height:1.6;margin:0 0 14px}
+.mestre-sale-copy .mestre-sale-gifts{padding:14px 16px;background:#dfe9d9;border-radius:5px}
+.mestre-kit-sale .mestre-sale-note{font-size:11px;line-height:1.5;color:#647466;margin:12px 0 0}
+.mestre-sale-buy{min-width:0}
+.mestre-sale-price-label{font-size:13px;margin:0 0 7px}
+.mestre-sale-price{font-size:clamp(30px,4vw,44px);font-weight:700;letter-spacing:-1px;margin:0 0 20px;line-height:1.15}
+.mestre-sale-buy .button{width:100%;text-align:center;justify-content:center;white-space:normal}
+@media(max-width:1280px){.mestre-kit-sale{margin-left:32px;margin-right:32px}}
+@media(max-width:760px){.mestre-kit-sale{grid-template-columns:1fr;margin:0 0 28px;padding:28px 24px;gap:22px;border-radius:0}.mestre-sale-copy>p:not(.eyebrow){font-size:14px}.mestre-sale-price{font-size:36px}.mestre-kit-products{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}}
