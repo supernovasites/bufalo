@@ -365,14 +365,132 @@ body{background:#f2f5ef}
 
 .mestre-kit-sale{display:block;padding:28px 24px}.mestre-sale-buy{max-width:520px;margin:0 auto;text-align:center}.mestre-sale-price-label{font-weight:600;margin-bottom:14px}
 
-/* Cards de peças: mesmo padrão visual da linha On Tap, em carrossel horizontal. */
-.kundi-parts .kundi-parts-products{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 2px 24px;-webkit-overflow-scrolling:touch}
-.kundi-parts .kundi-part-product{flex:0 0 calc((100% - 36px)/3);min-width:0;display:flex;flex-direction:column;scroll-snap-align:start;border-radius:12px;overflow:hidden;background:#fff}
-.kundi-parts .kundi-part-product .product-visual{width:100%;min-height:0;aspect-ratio:1;display:flex;align-items:center;justify-content:center;background:#f7f8f5}
-.kundi-parts .kundi-part-product .product-visual img{width:100%;height:100%;object-fit:contain}
-.kundi-parts .kundi-part-product .product-copy{width:100%;padding:24px;display:flex;flex:1;flex-direction:column;align-items:flex-start}
-.kundi-parts .kundi-part-product h3{font-size:clamp(20px,2.1vw,30px);line-height:1.14;margin:0 0 12px}
-.kundi-parts .kundi-part-product .description{font-size:14px;line-height:1.5}
-.kundi-parts .kundi-part-product .product-price{margin-top:auto;padding-top:20px}
-.kundi-parts .kundi-part-product .button{width:100%;text-align:center;justify-content:center}
-@media(max-width:760px){.kundi-parts .kundi-parts-products{gap:12px;padding-inline:16px}.kundi-parts .kundi-part-product{flex-basis:76%;max-width:330px}.kundi-parts .kundi-part-product .product-copy{padding:20px}.kundi-parts .kundi-part-product h3{font-size:23px}}
+/* Peças e reposição: mesma grade de dois cards das chopeiras, com rolagem lateral. */
+.kundi-parts .kundi-parts-products{
+  --parts-gap:24px;
+  display:flex;
+  gap:var(--parts-gap);
+  max-width:1200px;
+  width:100%;
+  margin:0 auto;
+  padding:0 0 16px;
+  overflow-x:auto;
+  overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:thin;
+  scrollbar-color:#bcc9be #e5ebe2;
+  -webkit-overflow-scrolling:touch;
+  align-items:stretch;
+}
+.kundi-parts .kundi-parts-products>.kundi-part-product{
+  flex:0 0 calc((100% - var(--parts-gap))/2);
+  width:calc((100% - var(--parts-gap))/2);
+  max-width:none;
+  min-width:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  align-self:stretch;
+  scroll-snap-align:start;
+  scroll-margin-top:0;
+  border:1px solid #dce3dd;
+  border-radius:6px;
+  background:#fff;
+  color:#142e32;
+  box-shadow:0 5px 22px #142e3205;
+  overflow:hidden;
+}
+.kundi-parts .kundi-part-product .product-visual,
+.kundi-parts .kundi-part-product.reverse .product-visual{
+  order:0;
+  flex:none;
+  width:100%;
+  min-height:0;
+  aspect-ratio:1.45;
+  padding:24px;
+  background:#f8faf7;
+  display:grid;
+  place-items:center;
+}
+.kundi-parts .kundi-part-product .product-visual img{
+  width:100%;
+  height:100%;
+  max-width:340px;
+  max-height:340px;
+  aspect-ratio:1;
+  object-fit:contain;
+  border:0;
+  padding:0;
+  background:transparent;
+  box-shadow:none;
+  filter:none;
+  mix-blend-mode:normal;
+}
+.kundi-parts .kundi-part-product .product-copy,
+.kundi-parts .kundi-part-product.reverse .product-copy{
+  order:1;
+  align-self:stretch;
+  flex:1;
+  min-width:0;
+  width:100%;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  background:#fff;
+}
+.kundi-parts .kundi-part-product .product-copy h3{
+  font-size:clamp(23px,2.3vw,32px);
+  line-height:1.15;
+  margin:0 0 14px;
+  letter-spacing:-.5px;
+}
+.kundi-parts .kundi-part-product .product-copy .description{
+  font-size:15px;
+  line-height:1.5;
+  margin-bottom:14px;
+}
+.kundi-parts .kundi-part-product .product-copy .product-note{
+  font-size:12px;
+  line-height:1.5;
+  margin-bottom:18px;
+}
+.kundi-parts .kundi-part-product .product-copy .product-price{
+  margin:auto 0 16px;
+  padding-top:14px;
+  font-size:clamp(24px,3vw,32px);
+  font-weight:700;
+}
+.kundi-parts .kundi-part-product .product-copy .button{
+  margin:0;
+  width:100%;
+  min-height:48px;
+  justify-content:center;
+  text-align:center;
+  white-space:normal;
+}
+.kundi-parts-controls{max-width:1200px;margin:0 auto 14px;justify-content:flex-end}
+.kundi-parts-hint{max-width:1200px;margin:10px auto 0;text-align:center}
+@media(max-width:760px){
+  .kundi-parts .kundi-parts-products{--parts-gap:12px;padding:0 0 12px;scroll-padding-inline:0}
+  .kundi-parts .kundi-part-product .product-visual,
+  .kundi-parts .kundi-part-product.reverse .product-visual{aspect-ratio:1.12;padding:12px 8px 8px}
+  .kundi-parts .kundi-part-product .product-visual img{max-width:100%;max-height:160px}
+  .kundi-parts .kundi-part-product .product-copy,
+  .kundi-parts .kundi-part-product.reverse .product-copy{padding:18px 12px 20px}
+  .kundi-parts .kundi-part-product .product-copy>.eyebrow{font-size:8px;letter-spacing:1.1px;margin-bottom:9px}
+  .kundi-parts .kundi-part-product .product-copy h3{font-size:clamp(17px,4.5vw,22px);line-height:1.16;letter-spacing:-.35px;margin-bottom:10px;overflow-wrap:anywhere}
+  .kundi-parts .kundi-part-product .product-copy .description{font-size:11px;line-height:1.4;margin-bottom:10px}
+  .kundi-parts .kundi-part-product .product-copy .product-note{font-size:10px;line-height:1.35;margin-bottom:12px}
+  .kundi-parts .kundi-part-product .product-copy .product-price{font-size:clamp(20px,5.5vw,25px);padding-top:12px;margin-bottom:14px}
+  .kundi-parts .kundi-part-product .product-copy .button{min-height:46px;padding:10px 7px;font-size:11px;line-height:1.25}
+  .kundi-parts-controls{padding:0 0 0 12px;margin-bottom:12px}
+  .kundi-parts-hint{font-size:11px}
+}
+@media(max-width:360px){
+  .kundi-parts .kundi-parts-products{--parts-gap:10px}
+  .kundi-parts .kundi-part-product .product-copy,
+  .kundi-parts .kundi-part-product.reverse .product-copy{padding:15px 9px}
+  .kundi-parts .kundi-part-product .product-copy h3{font-size:16px}
+  .kundi-parts .kundi-part-product .product-copy .button{font-size:10px}
+}
