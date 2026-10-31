@@ -67,28 +67,6 @@
     });
     video.addEventListener('ended', () => {measureVideo(100); play.hidden = false;});
   }
-  const gift = document.getElementById('mestre-gift');
-  if (gift) {
-    const key = 'bufalo_ontap26_bag_seen';
-    let previousOverflow = '';
-    const hasSeen = () => {try {return sessionStorage.getItem(key) === '1';} catch {return false;}};
-    function openGift() {
-      if (gift.open || document.querySelector('dialog[open]')) return;
-      previousOverflow = document.body.style.overflow;
-      gift.showModal(); document.body.style.overflow = 'hidden';
-      try {sessionStorage.setItem(key, '1');} catch {}
-      track('view_promotion', {promotion_id: 'ontap26_bag', promotion_name: 'Bag de brinde no Kit Mestre Cervejeiro'});
-    }
-    document.querySelectorAll('[data-gift-open]').forEach(button => button.addEventListener('click', openGift));
-    gift.querySelector('[data-gift-close]').addEventListener('click', () => gift.close());
-    gift.addEventListener('close', () => {document.body.style.overflow = previousOverflow;});
-    gift.addEventListener('click', event => {
-      const bounds = gift.getBoundingClientRect();
-      if (event.target === gift && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) gift.close();
-    });
-    gift.querySelector('[data-gift-cta]').addEventListener('click', () => gift.close());
-    setTimeout(() => {if (!hasSeen() && (!video || video.paused)) openGift();}, 600);
-  }
   const milestones = new Set();
   let pending = false;
   function measureScroll() {
@@ -135,4 +113,23 @@
   Promise.all([...slideshow.querySelectorAll('img')].map(img => img.decode()))
     .then(() => { ready = true; update(); }).catch(() => {});
   motion.addEventListener('change', update);
+})();
+
+/* Prévia interativa das cores originais da Bag Tiracolo. A seleção comercial é confirmada na loja. */
+(() => {
+  const card = document.getElementById('bag-tiracolo');
+  if (!card) return;
+  const image = card.querySelector('#bag-color-image');
+  const label = card.querySelector('[data-bag-color-label]');
+  const options = card.querySelectorAll('[data-bag-color]');
+  if (!image || !label || options.length === 0) return;
+  options.forEach(button => button.addEventListener('click', () => {
+    const color = button.dataset.bagColor;
+    const source = button.dataset.image;
+    if (!color || !source) return;
+    image.src = source;
+    image.alt = 'Bag Tiracolo para chopeira Búfalo na cor ' + color.toLowerCase() + ', imagem ilustrativa';
+    label.textContent = color;
+    options.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+  }));
 })();
