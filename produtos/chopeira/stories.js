@@ -6,7 +6,9 @@
   const count = section.querySelector('.manada-stories-count');
   const progress = section.querySelector('.manada-stories-progress');
   const wrap = n => (n + items.length) % items.length;
-  let index = 0, inView = false, dragging = false, pointer = null;
+  const videoIndices = items.flatMap((item, i) => item.type === 'video' ? [i] : []);
+  const initialIndex = videoIndices.length ? videoIndices[Math.floor(Math.random() * videoIndices.length)] : 0;
+  let index = initialIndex, inView = false, dragging = false, pointer = null;
   let frame = 0, elapsed = 0, since = null, generation = 0;
   const failed = new Set();
   const cards = items.map((item, i) => {
@@ -16,7 +18,7 @@
     const poster = document.createElement('img');
     poster.src = item.poster || item.src; poster.alt = item.alt;
     poster.width = 540; poster.height = 960;
-    poster.loading = i < 3 || i > items.length - 3 ? 'eager' : 'lazy';
+    poster.loading = Math.min(wrap(i - initialIndex), wrap(initialIndex - i)) <= 2 ? 'eager' : 'lazy';
     poster.draggable = false; card.append(poster);
     card.addEventListener('click', () => { if (i !== index && !dragging) go(i); });
     stage.append(card);
@@ -136,5 +138,5 @@
     new MutationObserver(play).observe(dialog, {attributes: true, attributeFilter: ['open']});
   });
   new IntersectionObserver(entries => { inView = entries[0].isIntersecting && entries[0].intersectionRatio >= 0.35; play(); }, {threshold: 0.35}).observe(stage);
-  go(0);
+  go(initialIndex);
 })();

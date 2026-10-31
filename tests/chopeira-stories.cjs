@@ -11,7 +11,7 @@ for (const item of items) for (const src of [item.src, item.poster].filter(Boole
   assert.ok(fs.existsSync('produtos/chopeira/' + src), src);
   assert.ok(fs.existsSync('dist/produtos/chopeira/' + src), 'Published asset: ' + src);
 }
-function setup() {
+function setup(random = 0) {
   let now = 1, sequence = 0, observe;
   const raf = new Map(), tasks = [], all = [];
   function element(tag = 'div') {
@@ -35,6 +35,7 @@ function setup() {
     querySelector:()=>document.modal?{}:null,querySelectorAll:()=>[],
     addEventListener(k,fn){this.listeners[k]=fn;}};
   vm.runInNewContext(fs.readFileSync('produtos/chopeira/stories.js','utf8'),{document,
+    Math: Object.assign(Object.create(Math), {random: () => random}),
     window:{addEventListener(){}},MutationObserver:class{},
     IntersectionObserver:class{constructor(fn){observe=fn;}observe(){}},
     performance:{now:()=>now},requestAnimationFrame:fn=>{raf.set(++sequence,fn);return sequence;},
@@ -62,3 +63,15 @@ s.document.hidden=true;s.document.listeners.visibilitychange();assert.equal(s.vi
 s.video().listeners.error();assert.equal(s.count.textContent,'07 / 13','A failed video does not trap the queue');
 const loop=setup();loop.visible(true);loop.key('ArrowLeft');assert.equal(loop.count.textContent,'13 / 13');loop.tick(3000);assert.equal(loop.count.textContent,'01 / 13','The queue loops after the final photo');
 console.log('Stories checks passed: 13 media, placement, ended, 3-second photos, offscreen/hidden pause, gestures, decoder cleanup, stale events, failure recovery and wraparound.');
+
+const videoIndices = items.flatMap((item, i) => item.type === 'video' ? [i] : []);
+for (const [slot, index] of videoIndices.entries()) {
+  const sample = setup((slot + 0.5) / videoIndices.length);
+  assert.equal(sample.count.textContent, `${String(index + 1).padStart(2, '0')} / 13`, 'Each video can be selected initially');
+  assert.ok(sample.video(), 'The random initial story is always a video');
+  assert.equal(sample.current().children[0].loading, 'eager', 'The selected poster loads eagerly');
+  sample.visible(true);
+  assert.equal(sample.video().paused, false, 'The selected video plays when visible');
+}
+assert.equal(setup(0.999999).count.textContent, `${String(videoIndices.at(-1) + 1).padStart(2, '0')} / 13`);
+console.log('Random start checks passed for all 11 videos.');
