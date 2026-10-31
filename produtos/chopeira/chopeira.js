@@ -39,7 +39,8 @@
   document.querySelectorAll('[data-rail-step]').forEach(button => button.addEventListener('click', () => {
     const rail = document.getElementById(button.dataset.rail);
     if (!rail?.firstElementChild) return;
-    const distance = rail.firstElementChild.getBoundingClientRect().width + 24;
+    const gap = parseFloat(window.getComputedStyle(rail).columnGap) || 0;
+    const distance = rail.firstElementChild.getBoundingClientRect().width + gap;
     rail.scrollBy({left: distance * Number(button.dataset.railStep), behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth'});
     track('ontap_variant_scroll', {item_list_id: button.dataset.rail, direction: button.dataset.railStep === '1' ? 'next' : 'previous'});
   }));
