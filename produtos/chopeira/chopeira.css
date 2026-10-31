@@ -359,3 +359,6 @@ body{background:#f2f5ef}
 .mestre-sale-buy .button{width:100%;text-align:center;justify-content:center;white-space:normal}
 @media(max-width:1280px){.mestre-kit-sale{margin-left:32px;margin-right:32px}}
 @media(max-width:760px){.mestre-kit-sale{grid-template-columns:1fr;margin:0 0 28px;padding:28px 24px;gap:22px;border-radius:0}.mestre-sale-copy>p:not(.eyebrow){font-size:14px}.mestre-sale-price{font-size:36px}.mestre-kit-products{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}}
+
+.mestre-sale-promotion{font-size:12px;line-height:1.5;color:#77361f;margin:0 0 9px}
+.mestre-sale-promotion[hidden]{display:none}
