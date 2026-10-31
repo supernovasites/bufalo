@@ -33,16 +33,8 @@ function setup() {
   assert.equal(s.events.at(-1)[1], 'ontap_video_play');
   s.video.currentTime = 35; s.video.listeners.timeupdate(); s.video.listeners.timeupdate(); s.video.listeners.ended();
   assert.deepEqual(s.events.filter(e => e[1] === 'ontap_video_progress').map(e => e[2].video_percent), [25, 50, 75, 100]);
-  s.timers[0](); assert.equal(s.gift.open, false, 'Do not interrupt playback with the automatic popup');
-  s.video.paused = true; s.timers[0](); assert.equal(s.gift.open, true);
-  assert.equal(s.document.body.style.overflow, 'hidden');
-  assert.equal(s.events.at(-1)[1], 'view_promotion');
-  s.close.listeners.click(); assert.equal(s.gift.open, false); assert.equal(s.document.body.style.overflow, 'auto');
-  s.timers[0](); assert.equal(s.gift.open, false, 'Automatic offer shows only once per session');
-  s.manual.listeners.click(); assert.equal(s.gift.open, true, 'The gift remains manually accessible');
-  const beforeDismiss = s.events.length;
-  s.cta.listeners.click(); assert.equal(s.gift.open, false); assert.equal(s.events.length, beforeDismiss, 'Dismiss-only button is not a promotion selection');
+  assert.equal(s.events.filter(e => e[1] === 'view_promotion').length, 0, 'The removed promotional popup must not run');
   s.video.play = async () => {throw new Error('Playback unavailable');};
   await s.play.listeners.click(); assert.equal(s.play.hidden, false, 'Playback failure keeps the play button accessible');
-  console.log('Chopeira media checks passed: explicit playback, progress, failure recovery, gift session, thumbnails and scroll restoration.');
+  console.log('Chopeira media checks passed: explicit playback, progress, failure recovery, no promotional popup.');
 })().catch(error => {console.error(error); process.exitCode = 1;});
