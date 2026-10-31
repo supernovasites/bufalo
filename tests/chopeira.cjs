@@ -3,13 +3,17 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const html = fs.readFileSync('produtos/chopeira/index.html', 'utf8');
 const products = JSON.parse(fs.readFileSync('produtos/chopeira/products.json', 'utf8')).products;
-assert.equal(products.length, 9);
-assert.equal(new Set(products.map(p => p.id)).size, 9);
+assert.equal(products.length, 10);
+assert.equal(new Set(products.map(p => p.id)).size, 10);
 for (const p of products.filter(p => !['combo-55', 'combo-7'].includes(p.slug))) {
   assert.ok(html.includes(`id="${p.slug}" data-product-id="${p.id}"`));
-  assert.ok(fs.existsSync(`produtos/chopeira/images/${p.id}.webp`));
-  const section = html.match(new RegExp('<section class="ontap-product[^\\"]*" id="' + p.slug + '"[\\s\\S]*?</section>'))[0];
-  assert.ok(section.includes('src="images/' + p.id + '.webp"'), 'Each color keeps its own official product photo');
+  const section = html.match(new RegExp('<section class="ontap-product[^\\\\"]*" id="' + p.slug + '"[\\\\s\\\\S]*?</section>'))[0];
+  if (p.slug === 'ontap-2l-creme') {
+    assert.ok(section.includes('src="' + p.source_image + '"'), 'Cream 2L uses its official color photo from the store');
+  } else {
+    assert.ok(fs.existsSync(`produtos/chopeira/images/${p.id}.webp`));
+    assert.ok(section.includes('src="images/' + p.id + '.webp"'), 'Each model keeps its official product photo');
+  }
   assert.ok(html.includes(p.url + '?utm_source=bufalo&amp;utm_medium=landing_page&amp;utm_campaign=ontap26&amp;utm_content=' + p.slug));
 }
 assert.match(html, /data-bg-header/); assert.match(html, /data-bg-footer/);
@@ -43,7 +47,7 @@ s.observe([{target: s.visual, isIntersecting: true, intersectionRatio: .4}]);
 assert.equal(s.events.length, 0);
 s.observe([{target: s.visual, isIntersecting: true, intersectionRatio: .5}]);
 assert.deepEqual(s.events.map(e => e[1]), ['view_item_list', 'view_item']);
-assert.equal(s.events[0][2].items.length, 9); assert.equal(s.unobserved(), 1);
+assert.equal(s.events[0][2].items.length, 10); assert.equal(s.unobserved(), 1);
 s.listeners.click({target: {closest: () => ({dataset: {productLink: products[0].id, placement: 'product_section'}})}});
 assert.equal(s.events.at(-1)[1], 'select_item');
 assert.equal(s.events.at(-1)[2].items[0].item_id, products[0].id);
@@ -63,15 +67,19 @@ const originalPhoto = hero.match(/data:image\/png;base64,([^\"]+)/)[1];
 assert.equal(crypto.createHash('sha256').update(Buffer.from(originalPhoto, 'base64')).digest('hex'), 'f7285eaa7a6f4d5b0660ab27cc93c7e04291eefcebaa72ee4e4a230ae8f1de45');
 assert.match(hero, /id="original-logo-photo"/);
 assert.doesNotMatch(html, /class="model-nav"|class="care wrap"|class="faq wrap"/);
-assert.equal((html.match(/class="variant-rail"/g) || []).length, 2);
+assert.equal((html.match(/class="variant-rail"/g) || []).length, 3);
 assert.doesNotMatch(html, /id="combo-55"|id="kits-mestre-rail"/);
 assert.match(html, /class="mestre-kit-sale" id="combo-7" data-product-id="397365368"/);
 assert.match(html, /Qualidade<br>\s*que se prova/);
-assert.match(html, /id="gift-photo" class="bw-art" src="images\/bag-taphouse-popup.webp"/);
+assert.doesNotMatch(html, /id="mestre-gift"|class="gift-reminder"/);
+assert.match(html, /id="ontap-2l" aria-labelledby="ontap-2-title"/);
+assert.match(html, /id="ontap-2-rail" class="variant-rail"/);
+assert.match(html, /bufalo-growler-on-tap-2l-chopeira-termica-portatil-preta/);
+assert.match(html, /bufalo-growler-on-tap-2l-chopeira-termica-portatil-creme/);
 const shortcuts = html.match(/<div class="shortcut-grid">([\s\S]*?)<\/div>/)[1];
 assert.doesNotMatch(shortcuts, /404796101|404795783/);
 const disabled = setup(false);
 disabled.observe([{target: disabled.visual, isIntersecting: true, intersectionRatio: 1}]);
 disabled.faq.toggle(); disabled.window.scrollY = 1000; disabled.scroll.scroll();
 assert.equal(disabled.events.length, 0);
-console.log('Chopeira checks passed: nine products, campaign URLs, shared shell, GA4 list/views/clicks/FAQ/scroll and preview privacy.');
+console.log('Chopeira checks passed: ten products, campaign URLs, shared shell, GA4 list/views/clicks/FAQ/scroll and preview privacy.');
