@@ -92,7 +92,7 @@
     scroll.replaceChildren();
     (data.scroll || [25,50,75,100].map(percent=>({percent,visits:0}))).forEach(item=>{
       const card = make('div','metric');
-      card.append(make('span','metric-label',item.percent + '% da rolagem'),make('strong','',number(item.visits)),make('small','','Usuários nesta faixa'));
+      card.append(make('span','metric-label',item.percent + '% — ' + (item.sections?.length ? item.sections.join(' / ') : 'Seção ainda não registrada')),make('strong','',number(item.visits)),make('small','','Usuários nesta faixa'));
       scroll.append(card);
     });
     const product = $('top-product');

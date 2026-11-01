@@ -70,12 +70,29 @@
   let highest = 0;
   
 
+  let layoutSignature = '';
+  function reportScrollSections(distance) {
+    if (pagePath !== '/' || typeof document.querySelectorAll !== 'function') return;
+    const landmarks = [...document.querySelectorAll('main section,body > section,footer,[data-bg-footer]')].filter(el=>el.getBoundingClientRect().height>0);
+    const mapping = [25,50,75,100].map(percent=>{
+      const y = Math.min(distance + innerHeight - 1, distance * percent / 100 + innerHeight - 1);
+      const containing = landmarks.filter(el=>{const r=el.getBoundingClientRect();return y >= r.top + window.scrollY && y < r.bottom + window.scrollY;});
+      const el = containing.at(-1) || landmarks.filter(el=>el.getBoundingClientRect().top + window.scrollY <= y).at(-1);
+      const name = el?.matches('footer,[data-bg-footer]') ? 'Rodapé' : el?.querySelector('h2')?.textContent || el?.getAttribute('aria-label') || el?.id || 'Página';
+      return {percent,name:label(name)};
+    });
+    const signature = JSON.stringify(mapping);
+    if (signature === layoutSignature) return;
+    layoutSignature = signature;
+    mapping.forEach(item=>send({kind:'scroll-section',section:'homepage',key:'scroll-' + item.percent,label:item.name,target:'/'}));
+  }
   let scrollPending = false;
   function measureScroll() {
     scrollPending = false;
     const page = document.documentElement;
     const distance = Math.max(page.scrollHeight, document.body?.scrollHeight || 0) - innerHeight;
     if (distance <= 0) return;
+    reportScrollSections(distance);
     const progress = Math.min(1, Math.max(0, window.scrollY / distance));
     const mark = [100,75,50,25].find(mark => progress >= mark / 100 || (mark === 100 && distance - window.scrollY <= 2)) || 0;
     if (visitor && mark > highest) {

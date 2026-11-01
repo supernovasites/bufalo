@@ -12,18 +12,24 @@ export async function onRequestPost({ request, env }) {
   if (raw.length > 1100) return deny(413, 'Evento muito grande.');
   let data;
   try { data = JSON.parse(raw); } catch { return deny(400, 'Evento inválido.'); }
-  if (!data || !['click','view','scroll','product'].includes(data.kind) || !['mobile','tablet','desktop'].includes(data.device)) return deny(400, 'Evento inválido.');
+  if (!data || !['click','view','scroll','product','scroll-section'].includes(data.kind) || !['mobile','tablet','desktop'].includes(data.device)) return deny(400, 'Evento inválido.');
   const page = data.page || '/';
   if (typeof page !== 'string' || !/^\/[a-zA-Z0-9_./%-]{0,159}$/.test(page) || /(?:admin|painel|mkt|midia|mesadj|sorteio|assets|api)(?:[/.]|$)/i.test(page)) return deny(400, 'Página inválida.');
   if (typeof data.section !== 'string' || !/^[a-z0-9_-]{1,64}$/.test(data.section) ||
       typeof data.key !== 'string' || !/^[a-zA-Z0-9_:/.%-]{1,180}$/.test(data.key)) return deny(400, 'Identificador inválido.');
   if (data.kind === 'view' && (data.section !== 'homepage' || data.key !== 'page-load')) return deny(400, 'Visualização inválida.');
-  if (data.kind === 'scroll' && (data.section !== 'homepage' || !/^scroll-(25|50|75|100)$/.test(data.key))) return deny(400, 'Rolagem inválida.');
+  if (['scroll','scroll-section'].includes(data.kind) && (data.section !== 'homepage' || !/^scroll-(25|50|75|100)$/.test(data.key))) return deny(400, 'Rolagem inválida.');
   if (typeof data.label !== 'string' || typeof data.target !== 'string') return deny(400, 'Campos inválidos.');
   const label = data.label.replace(/\s+/g,' ').replace(/[\u0000-\u001f<>]/g,'').trim().slice(0,100);
   const target = data.target.replace(/[?#].*$/,'').trim().slice(0,180);
   if (!label || /@|\b\d{8,}\b/.test(label) || !/^[a-zA-Z0-9/:._%-]*$/.test(target)) return deny(400, 'Rótulo inválido.');
   await ensureHomepageStats(env.LIVE_DB);
+  if (data.kind === 'scroll-section') {
+    if (page !== '/') return deny(400,'Página inválida.');
+    await env.LIVE_DB.prepare("INSERT INTO site_scroll_sections (page,device,percent,label,day) VALUES (?,?,?,?,?) ON CONFLICT(page,device,percent) DO UPDATE SET label=excluded.label,day=excluded.day")
+      .bind(page,data.device,Number(data.key.slice(7)),label,belemDay()).run();
+    return new Response(null,{status:204,headers:{'Cache-Control':'no-store'}});
+  }
   if (data.kind === 'scroll') {
     if (typeof data.visitor !== 'string' || !/^[a-f0-9-]{36}$/.test(data.visitor)) return deny(400, 'Usuário inválido.');
     const visitorHash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(data.visitor))),b=>b.toString(16).padStart(2,'0')).join('');
