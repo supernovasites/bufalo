@@ -84,9 +84,18 @@
     scroll.replaceChildren();
     (data.scroll || [25,50,75,100].map(percent=>({percent,visits:0}))).forEach(item=>{
       const card = make('div','metric');
-      card.append(make('span','metric-label',item.percent + '% da rolagem'),make('strong','',number(item.visits)),make('small','','Visitas que atingiram este marco'));
+      card.append(make('span','metric-label',item.percent + '% da rolagem'),make('strong','',number(item.visits)),make('small','','Usuários nesta faixa'));
       scroll.append(card);
     });
+    const product = $('top-product');
+    product.replaceChildren();
+    if (data.topProduct) {
+      product.append(make('strong','',data.topProduct.label),make('p','',number(data.topProduct.clicks) + ' cliques'));
+      const link = make('a','','Ver produto');
+      link.href = 'https://' + data.topProduct.target;
+      link.target = '_blank'; link.rel = 'noopener';
+      product.append(link);
+    } else product.append(make('p','','Nenhum clique em produto registrado nesta seleção.'));
     bars(data.sections,$('click-sections').id);
     drawDaily(data.daily);
     const control = $('click-section');

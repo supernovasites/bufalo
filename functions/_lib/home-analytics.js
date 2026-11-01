@@ -6,6 +6,7 @@ export async function ensureHomepageStats(db) {
   if (!initialized) initialized = (async () => {
     await db.prepare(homeAnalyticsSchema).run();
     await db.prepare(homeAnalyticsMigration).run();
+    await db.prepare("CREATE TABLE IF NOT EXISTS homepage_scroll_users (visitor TEXT PRIMARY KEY, day TEXT NOT NULL, device TEXT NOT NULL, percent INTEGER NOT NULL CHECK(percent IN (25,50,75,100)))").run();
   })().catch(error => { initialized = null; throw error; });
   return initialized;
 }
@@ -17,14 +18,15 @@ export async function homepageStats(db, days, device) {
   const start = belemDay(Date.now() - (days - 1) * 86400000);
   const where = "day >= ? AND (? = 'all' OR device = ?)";
   const query = (sql, extra = []) => db.prepare(sql).bind(start, device, device, ...extra).all().then(out => out.results || []);
-  const [totals, daily, sections, elements, devices, scroll] = await Promise.all([
+  const [totals, daily, sections, elements, devices, scroll, products] = await Promise.all([
     query("SELECT kind, SUM(total) AS total FROM homepage_interactions WHERE " + where + " GROUP BY kind"),
     query("SELECT day, SUM(CASE WHEN kind = 'click' THEN total ELSE 0 END) AS clicks, SUM(CASE WHEN kind = 'view' THEN total ELSE 0 END) AS views FROM homepage_interactions WHERE " + where + " GROUP BY day ORDER BY day"),
     query("SELECT section, SUM(total) AS clicks FROM homepage_interactions WHERE " + where + " AND kind = 'click' GROUP BY section ORDER BY clicks DESC LIMIT 40"),
     query("SELECT day, section, element_key AS element, MAX(label) AS label, MAX(target) AS target, SUM(total) AS clicks FROM homepage_interactions WHERE " + where + " AND kind = 'click' GROUP BY day, section, element_key ORDER BY day DESC, clicks DESC LIMIT 500"),
     query("SELECT device, SUM(CASE WHEN kind = 'click' THEN total ELSE 0 END) AS clicks, SUM(CASE WHEN kind = 'view' THEN total ELSE 0 END) AS views FROM homepage_interactions WHERE " + where + " GROUP BY device"),
-    query("SELECT element_key AS milestone, SUM(total) AS visits FROM homepage_interactions WHERE " + where + " AND kind = 'scroll' GROUP BY element_key")
+    query("SELECT percent, COUNT(*) AS visits FROM homepage_scroll_users WHERE " + where + " GROUP BY percent"),
+    query("SELECT target, MAX(label) AS label, SUM(total) AS clicks FROM homepage_interactions WHERE " + where + " AND kind = 'product' GROUP BY target ORDER BY clicks DESC, target LIMIT 1")
   ]);
   const count = kind => Number(totals.find(row => row.kind === kind)?.total || 0);
-  return {days, device, timezone:'America/Belem', start, end:belemDay(), clicks:count('click'), views:count('view'), daily, sections, elements, devices, scroll:[25,50,75,100].map(percent => ({percent,visits:Number(scroll.find(row => row.milestone === 'scroll-' + percent)?.visits || 0)}))};
+  return {days, device, timezone:'America/Belem', start, end:belemDay(), clicks:count('click'), views:count('view'), daily, sections, elements, devices, topProduct:products[0] || null, scroll:[25,50,75,100].map(percent => ({percent,visits:Number(scroll.find(row => Number(row.percent) === percent)?.visits || 0)}))};
 }

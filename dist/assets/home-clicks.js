@@ -60,7 +60,14 @@
     } catch {}
     try { fetch(endpoint,{method:'POST',body:data,headers:{'Content-Type':'text/plain;charset=UTF-8'},keepalive:true,credentials:'same-origin'}).catch(() => {}); } catch {}
   }
-  const reached = new Set();
+  let visitor = '';
+  try {
+    visitor = localStorage.getItem('bg-scroll-user-v2') || crypto.randomUUID();
+    localStorage.setItem('bg-scroll-user-v2',visitor);
+  } catch {}
+  let highest = 0;
+  try { highest = Number(localStorage.getItem('bg-scroll-max-v2') || 0); } catch {}
+
   let scrollPending = false;
   function measureScroll() {
     scrollPending = false;
@@ -68,12 +75,11 @@
     const distance = Math.max(page.scrollHeight, document.body?.scrollHeight || 0) - innerHeight;
     if (distance <= 0) return;
     const progress = Math.min(1, Math.max(0, window.scrollY / distance));
-    [25,50,75,100].forEach(mark => {
-      if (!reached.has(mark) && (progress >= mark / 100 || (mark === 100 && distance - window.scrollY <= 2))) {
-        reached.add(mark);
-        send({kind:'scroll',section:'homepage',key:'scroll-' + mark,label:'Rolagem ' + mark + '%',target:'/'});
-      }
-    });
+    const mark = [100,75,50,25].find(mark => progress >= mark / 100 || (mark === 100 && distance - window.scrollY <= 2)) || 0;
+    if (visitor && mark > highest) {
+      highest = mark;
+      send({kind:'scroll',visitor,section:'homepage',key:'scroll-' + mark,label:'Rolagem ' + mark + '%',target:'/'});
+    }
   }
   function scheduleScroll() {
     if (!scrollPending) { scrollPending = true; requestAnimationFrame(measureScroll); }
@@ -99,5 +105,9 @@
     last.set(dedupe,now);
     if (last.size > 200) last.clear();
     send({kind:'click',section,...info});
+    const product = action.closest('.card,.product-card,.thermal-card,.accessory-item,.launch-card');
+    if (product && product.querySelector('h3,.product-title,.product-name') && action.matches('a[href]') && info.target.startsWith('loja.bufalogrowler.com.br/')) {
+      send({kind:'product',section,...info});
+    }
   }, true);
 })();

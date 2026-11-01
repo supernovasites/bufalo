@@ -6,9 +6,9 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Painel administrativo · Búfalo Growler</title>
   <link rel="stylesheet" href="/live/admin.css?v=20260929-panel-css1">
-  <link rel="stylesheet" href="/painel/home-analytics.css?v=20261101-2">
+  <link rel="stylesheet" href="/painel/home-analytics.css?v=20261101-4">
   <script src="/painel/painel.js?v=20261027-panel-login" defer></script>
-  <script src="/painel/home-analytics.js?v=20261101-2" defer></script>
+  <script src="/painel/home-analytics.js?v=20261101-4" defer></script>
 </head>
 <body>
   <header class="top">
@@ -52,7 +52,12 @@
         <section class="metric-panel" aria-labelledby="scroll-title">
           <h3 id="scroll-title">Até onde as visitas rolam a homepage</h3>
           <div id="scroll-milestones" class="metrics-scroll"></div>
-          <p class="metrics-help">Cada marco é contado uma vez por carregamento da homepage. A coleta começa nesta atualização e segue os filtros de período e dispositivo.</p>
+          <p class="metrics-help">Cada usuário aparece somente no maior percentual alcançado, sem somar nas faixas anteriores. Identificação anônima por navegador; outro aparelho ou a limpeza dos dados conta como novo usuário. O período considera a data em que o maior marco foi atingido. A nova contagem começa nesta atualização.</p>
+        </section>
+        <section class="metric-panel metrics-product" aria-labelledby="top-product-title">
+          <h3 id="top-product-title">Produto com mais cliques</h3>
+          <div id="top-product"></div>
+          <p class="metrics-help">Cliques nos cards de produto a partir desta atualização, agrupados pelo destino e conforme os filtros acima.</p>
         </section>
         <div class="metrics-sections">
           <section class="metric-panel" aria-labelledby="click-sections-title">
