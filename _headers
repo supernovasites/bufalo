@@ -25,3 +25,6 @@
 
 /assets/announcement.js
   Cache-Control: public, max-age=0, must-revalidate
+
+/assets/home-clicks.js
+  Cache-Control: public, max-age=0, must-revalidate
