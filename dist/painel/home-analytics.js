@@ -63,12 +63,12 @@
     body.replaceChildren();
     if (!list.length) {
       const td = make('td','','Nenhum clique registrado nesta seleção.');
-      td.colSpan = 4;
+      td.colSpan = 5;
       const tr = make('tr');tr.append(td);body.append(tr);return;
     }
     list.forEach((item,index)=>{
       const tr = make('tr');
-      tr.append(make('td','',String(index+1)),make('td','',sectionTitle(item.section)));
+      tr.append(make('td','',String(index+1)),make('td','',item.day ? item.day.split('-').reverse().join('/') : '—'),make('td','',sectionTitle(item.section)));
       const name = make('td','',item.label || item.element);
       if(item.target)name.append(make('small','',item.target));
       tr.append(name,make('td','',number(item.clicks)));
@@ -80,6 +80,13 @@
     $('click-total').textContent = number(data.clicks);
     $('click-views').textContent = number(data.views);
     $('click-rate').textContent = data.views ? (data.clicks / data.views).toLocaleString('pt-BR',{maximumFractionDigits:2}) : '—';
+    const scroll = $('scroll-milestones');
+    scroll.replaceChildren();
+    (data.scroll || [25,50,75,100].map(percent=>({percent,visits:0}))).forEach(item=>{
+      const card = make('div','metric');
+      card.append(make('span','metric-label',item.percent + '% da rolagem'),make('strong','',number(item.visits)),make('small','','Visitas que atingiram este marco'));
+      scroll.append(card);
+    });
     bars(data.sections,$('click-sections').id);
     drawDaily(data.daily);
     const control = $('click-section');
@@ -98,7 +105,7 @@
       track.append(fill);row.append(track);el.append(row);
     });
     else el.append(make('p','','Sem dados por dispositivo.'));
-    setStatus('Atualizado: ' + new Date().toLocaleString('pt-BR') + ' · Horário de Belém (UTC−3).');
+    setStatus('Atualizado: ' + new Date().toLocaleString('pt-BR',{timeZone:'America/Belem'}) + ' · Horário de Belém (UTC−3).');
   }
   async function load() {
     if (dash.hidden) return;

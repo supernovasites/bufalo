@@ -60,7 +60,28 @@
     } catch {}
     try { fetch(endpoint,{method:'POST',body:data,headers:{'Content-Type':'text/plain;charset=UTF-8'},keepalive:true,credentials:'same-origin'}).catch(() => {}); } catch {}
   }
-  function pageView() { send({kind:'view',section:'homepage',key:'page-load',label:'Visita à homepage',target:'/'}); }
+  const reached = new Set();
+  let scrollPending = false;
+  function measureScroll() {
+    scrollPending = false;
+    const page = document.documentElement;
+    const distance = Math.max(page.scrollHeight, document.body?.scrollHeight || 0) - innerHeight;
+    if (distance <= 0) return;
+    const progress = Math.min(1, Math.max(0, window.scrollY / distance));
+    [25,50,75,100].forEach(mark => {
+      if (!reached.has(mark) && (progress >= mark / 100 || (mark === 100 && distance - window.scrollY <= 2))) {
+        reached.add(mark);
+        send({kind:'scroll',section:'homepage',key:'scroll-' + mark,label:'Rolagem ' + mark + '%',target:'/'});
+      }
+    });
+  }
+  function scheduleScroll() {
+    if (!scrollPending) { scrollPending = true; requestAnimationFrame(measureScroll); }
+  }
+  window.addEventListener('scroll',scheduleScroll,{passive:true});
+  window.addEventListener('resize',scheduleScroll,{passive:true});
+  window.addEventListener('load',scheduleScroll,{once:true});
+  function pageView() { scheduleScroll(); send({kind:'view',section:'homepage',key:'page-load',label:'Visita à homepage',target:'/'}); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',pageView,{once:true});
   else pageView();
   const last = new Map();

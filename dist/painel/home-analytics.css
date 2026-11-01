@@ -33,3 +33,7 @@
 .home-metrics .metrics-status{font-size:12px;color:#617273;margin:12px 0 0}
 .home-metrics .metrics-help{font-size:12px!important;line-height:1.5;margin:13px 0 0!important}
 @media(max-width:740px){.home-metrics .metrics-numbers{grid-template-columns:1fr 1fr}.home-metrics .metric:last-child{grid-column:1/-1}.home-metrics .metrics-sections{grid-template-columns:1fr}.home-metrics .metric{padding:13px}.home-metrics .metrics-top{display:block}.home-metrics .metrics-filters{margin-top:14px}.home-metrics th,.home-metrics td{padding:8px 6px}}
+
+.home-metrics .metrics-scroll{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0}
+.home-metrics .metrics-sections{margin-top:24px}
+@media(max-width:740px){.home-metrics .metrics-scroll{grid-template-columns:repeat(2,minmax(0,1fr))}.home-metrics .metrics-scroll .metric:last-child{grid-column:auto}}

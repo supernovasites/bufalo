@@ -12,10 +12,11 @@ export async function onRequestPost({ request, env }) {
   if (raw.length > 700) return deny(413, 'Evento muito grande.');
   let data;
   try { data = JSON.parse(raw); } catch { return deny(400, 'Evento inválido.'); }
-  if (!data || !['click','view'].includes(data.kind) || !['mobile','tablet','desktop'].includes(data.device)) return deny(400, 'Evento inválido.');
+  if (!data || !['click','view','scroll'].includes(data.kind) || !['mobile','tablet','desktop'].includes(data.device)) return deny(400, 'Evento inválido.');
   if (typeof data.section !== 'string' || !/^[a-z0-9_-]{1,64}$/.test(data.section) ||
       typeof data.key !== 'string' || !/^[a-zA-Z0-9_:/.%-]{1,180}$/.test(data.key)) return deny(400, 'Identificador inválido.');
   if (data.kind === 'view' && (data.section !== 'homepage' || data.key !== 'page-load')) return deny(400, 'Visualização inválida.');
+  if (data.kind === 'scroll' && (data.section !== 'homepage' || !/^scroll-(25|50|75|100)$/.test(data.key))) return deny(400, 'Rolagem inválida.');
   if (typeof data.label !== 'string' || typeof data.target !== 'string') return deny(400, 'Campos inválidos.');
   const label = data.label.replace(/\s+/g,' ').replace(/[\u0000-\u001f<>]/g,'').trim().slice(0,100);
   const target = data.target.replace(/[?#].*$/,'').trim().slice(0,180);

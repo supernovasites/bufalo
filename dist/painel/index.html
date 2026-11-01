@@ -6,9 +6,9 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Painel administrativo · Búfalo Growler</title>
   <link rel="stylesheet" href="/live/admin.css?v=20260929-panel-css1">
-  <link rel="stylesheet" href="/painel/home-analytics.css?v=20261101-1">
+  <link rel="stylesheet" href="/painel/home-analytics.css?v=20261101-2">
   <script src="/painel/painel.js?v=20261027-panel-login" defer></script>
-  <script src="/painel/home-analytics.js?v=20261101-1" defer></script>
+  <script src="/painel/home-analytics.js?v=20261101-2" defer></script>
 </head>
 <body>
   <header class="top">
@@ -49,6 +49,11 @@
           <div class="metric"><span class="metric-label">Visitas à homepage</span><strong id="click-views">—</strong><small>Carregamentos registrados, não visitantes únicos</small></div>
           <div class="metric"><span class="metric-label">Cliques por visita</span><strong id="click-rate">—</strong><small>Média de cliques por carregamento</small></div>
         </div>
+        <section class="metric-panel" aria-labelledby="scroll-title">
+          <h3 id="scroll-title">Até onde as visitas rolam a homepage</h3>
+          <div id="scroll-milestones" class="metrics-scroll"></div>
+          <p class="metrics-help">Cada marco é contado uma vez por carregamento da homepage. A coleta começa nesta atualização e segue os filtros de período e dispositivo.</p>
+        </section>
         <div class="metrics-sections">
           <section class="metric-panel" aria-labelledby="click-sections-title">
             <h3 id="click-sections-title">Cliques por seção</h3>
@@ -67,8 +72,8 @@
         </div>
         <div class="metrics-table-wrap">
           <table>
-            <thead><tr><th scope="col">#</th><th scope="col">Seção</th><th scope="col">Produto, link ou botão</th><th scope="col">Cliques</th></tr></thead>
-            <tbody id="click-items"><tr><td colspan="4">Carregando estatísticas…</td></tr></tbody>
+            <thead><tr><th scope="col">#</th><th scope="col">Data da contagem</th><th scope="col">Seção</th><th scope="col">Produto, link ou botão</th><th scope="col">Cliques</th></tr></thead>
+            <tbody id="click-items"><tr><td colspan="5">Carregando estatísticas…</td></tr></tbody>
           </table>
         </div>
         <p id="click-status" class="metrics-status" role="status" aria-live="polite">Aguardando acesso ao painel…</p>
