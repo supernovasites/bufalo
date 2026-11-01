@@ -37,7 +37,7 @@
     const type = typeFor(element);
     const isLink = element.matches('a[href]');
     const dataId = element.dataset.analyticsId || element.dataset.thermal || element.dataset.camping || element.dataset.accessory || element.dataset.direction || '';
-    const key = (isLink ? type + ':' + target : type + ':' + slug(element.id || dataId || element.getAttribute('aria-label') || element.textContent || 'acao')).slice(0,180);
+    let key = '';
     let title = '';
     if (section === 'cabecalho' || section === 'rodape') {
       title = isLink ? ('Navegação: ' + (target || 'link')) : (element.getAttribute('aria-label') || element.id || 'Menu');
@@ -48,6 +48,9 @@
       title ||= element.textContent;
       if (!title || !title.trim()) title = element.id || target || type;
     }
+    // Muitos acessórios, posts do blog e categorias dividem a mesma URL: diferenciar cada card.
+    const cardSpecific = ['shop-category-card','accessory-circle','blog-card','social-tile','launch-visual','launch-button'].includes(type);
+    key = (isLink ? (type + ':' + (cardSpecific ? slug(title) + ':' : '') + target) : type + ':' + slug(element.id || dataId || element.getAttribute('aria-label') || title || 'acao')).slice(0,180);
     return {key,label:label(title) || type,target:target.slice(0,180)};
   }
   function send(payload) {
