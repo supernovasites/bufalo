@@ -13,13 +13,13 @@
       const data=await r.json();if(!r.ok)throw Error(data.error||'Não foi possível consultar os acessos.');
       if(id!==requestId||dash.hidden)return;
       const list=$('summary-pages');list.replaceChildren();
-      const pages=[...new Set([...["/blog/artigo.html","/blog/","/campanhas/black26/","/campanhas/cirio/","/catalogo/","/","/live/encerrada.html","/live/games/","/live/","/manadacash/","/manadaone/encerrada.html","/manadaone/","/mc/","/produtos/chopeira/","/produtos/copos/","/produtos/garrafas/","/reserva/acaibowl/"],...data.pages.map(p=>p.page)])];
-      pages.sort((a,b)=>(data.pages.find(p=>p.page===b)?.views||0)-(data.pages.find(p=>p.page===a)?.views||0));
-      for(const page of pages){
+      const pages=[...data.pages].filter(p=>Number(p.views)>0).sort((a,b)=>Number(b.views)-Number(a.views)||a.page.localeCompare(b.page)).slice(0,5);
+      if(!pages.length){const empty=document.createElement('p');empty.textContent='Nenhum acesso registrado neste período.';list.append(empty);}
+      for(const [index,page] of pages.entries()){
         const row=document.createElement('div');row.className='metric-bar-row';
         const name=document.createElement('span'),count=document.createElement('strong');
-        name.textContent=page==='/'?'Homepage':page;
-        count.textContent=Number(data.pages.find(p=>p.page===page)?.views||0).toLocaleString('pt-BR');
+        name.textContent=(index+1)+'. '+(page.page==='/'?'Homepage':page.page);
+        count.textContent=Number(page.views||0).toLocaleString('pt-BR');
         row.append(name,count);list.append(row);
       }
       $('summary-status').textContent='Atualizado: '+new Date().toLocaleString('pt-BR',{timeZone:'America/Belem'});

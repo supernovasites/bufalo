@@ -77,15 +77,12 @@
   }
   function render(data) {
     currentData = data;
-    const pageControl = $('stats-page'), selected = pageControl.value;
-    const known = [...new Set([...["/blog/artigo.html","/blog/","/campanhas/black26/","/campanhas/cirio/","/catalogo/","/","/live/encerrada.html","/live/games/","/live/","/manadacash/","/manadaone/encerrada.html","/manadaone/","/mc/","/produtos/chopeira/","/produtos/copos/","/produtos/garrafas/","/reserva/acaibowl/"],...data.pages.map(item=>item.page)])];
-    pageControl.replaceChildren(new Option('Todas as páginas','all'),...known.map(page=>new Option(page === '/' ? 'Homepage' : page,page)));
-    if ([...pageControl.options].some(item=>item.value===selected)) pageControl.value=selected;
     const pageList = $('stats-pages'); pageList.replaceChildren();
-    known.sort((a,b)=>(data.pages.find(p=>p.page===b)?.views || 0)-(data.pages.find(p=>p.page===a)?.views || 0)).forEach(page=>{
-      const counts = data.pages.find(item=>item.page===page);
+    const pages = [...data.pages].filter(item=>Number(item.views)>0).sort((a,b)=>Number(b.views)-Number(a.views)||a.page.localeCompare(b.page)).slice(0,5);
+    if (!pages.length) pageList.append(make('p','','Nenhum acesso registrado neste período.'));
+    pages.forEach((item,index)=>{
       const row = make('div','metric-bar-row');
-      row.append(make('span','',page === '/' ? 'Homepage' : page),make('strong','',number(counts?.views) + ' acessos · ' + number(counts?.clicks) + ' cliques'));
+      row.append(make('span','',(index+1) + '. ' + (item.page === '/' ? 'Homepage' : item.page)),make('strong','',number(item.views) + ' acessos'));
       pageList.append(row);
     });
     $('click-total').textContent = number(data.clicks);
@@ -133,7 +130,7 @@
     $('click-reload').disabled=true;
     setStatus('Carregando dados de cliques…');
     try {
-      const params = new URLSearchParams({days:$('click-days').value,device:$('click-device').value,page:$('stats-page').value});
+      const params = new URLSearchParams({days:$('click-days').value,device:$('click-device').value,page:'/'});
       const response = await fetch('/painel/api/site-analytics?' + params,{cache:'no-store',credentials:'same-origin'});
       const json = await response.json();
       if (response.status === 401) { location.href='/painel/'; return; }
@@ -142,7 +139,6 @@
     } catch (error) { if (id === currentRequest) setStatus(error.message,true); }
     finally { if (id === currentRequest) $('click-reload').disabled=false; }
   }
-  $('stats-page').addEventListener('change',load);
   $('click-days').addEventListener('change',load);
   $('click-device').addEventListener('change',load);
   $('click-section').addEventListener('change',updateElements);
