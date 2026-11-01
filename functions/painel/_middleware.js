@@ -1,4 +1,5 @@
 import { campaigns, campaignSchema, campaignEnabled } from '../_lib/campaigns.js';
+import { homepageStats } from '../_lib/home-analytics.js';
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const encoder = new TextEncoder();
 const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2,'0')).join('');
@@ -36,6 +37,16 @@ async function handler(context) {
       const token = tokenFrom(request);
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       return json({authenticated:active});
+    }
+    if (path === '/painel/api/home-analytics') {
+      if (request.method !== 'GET') return json({error:'Método não permitido.'},405,{Allow:'GET'});
+      const token = tokenFrom(request);
+      const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
+      if (!active) return json({error:'Entre no painel para ver as estatísticas.'},401);
+      const days = Number(url.searchParams.get('days') || '7');
+      const device = url.searchParams.get('device') || 'all';
+      if (![1,7,30,90].includes(days) || !['all','mobile','tablet','desktop'].includes(device)) return json({error:'Filtro inválido.'},400);
+      return json(await homepageStats(db,days,device));
     }
     if (path === '/painel/api/campaigns') {
       const token = tokenFrom(request);
