@@ -38,7 +38,7 @@ async function handler(context) {
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       return json({authenticated:active});
     }
-    if (path === '/painel/api/home-analytics') {
+    if (['/painel/api/home-analytics','/painel/api/site-analytics'].includes(path)) {
       if (request.method !== 'GET') return json({error:'Método não permitido.'},405,{Allow:'GET'});
       const token = tokenFrom(request);
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
@@ -46,7 +46,9 @@ async function handler(context) {
       const days = Number(url.searchParams.get('days') || '7');
       const device = url.searchParams.get('device') || 'all';
       if (![1,7,30,90].includes(days) || !['all','mobile','tablet','desktop'].includes(device)) return json({error:'Filtro inválido.'},400);
-      return json(await homepageStats(db,days,device));
+      const page = url.searchParams.get('page') || (path.endsWith('/home-analytics') ? '/' : 'all');
+      if (page !== 'all' && !/^\/[a-zA-Z0-9_./%-]{0,159}$/.test(page)) return json({error:'Página inválida.'},400);
+      return json(await homepageStats(db,days,device,page));
     }
     if (path === '/painel/api/campaigns') {
       const token = tokenFrom(request);

@@ -9,10 +9,12 @@ export async function onRequestPost({ request, env }) {
   if ((origin && origin !== url.origin) || (site && !['same-origin','none'].includes(site))) return deny(403, 'Origem inválida.');
   if (/bot|crawler|spider|headless|preview/i.test(request.headers.get('User-Agent') || '')) return new Response(null, {status:204});
   const raw = await request.text();
-  if (raw.length > 700) return deny(413, 'Evento muito grande.');
+  if (raw.length > 1100) return deny(413, 'Evento muito grande.');
   let data;
   try { data = JSON.parse(raw); } catch { return deny(400, 'Evento inválido.'); }
   if (!data || !['click','view','scroll','product'].includes(data.kind) || !['mobile','tablet','desktop'].includes(data.device)) return deny(400, 'Evento inválido.');
+  const page = data.page || '/';
+  if (typeof page !== 'string' || !/^\/[a-zA-Z0-9_./%-]{0,159}$/.test(page) || /(?:admin|painel|mkt|midia|mesadj|sorteio|assets|api)(?:[/.]|$)/i.test(page)) return deny(400, 'Página inválida.');
   if (typeof data.section !== 'string' || !/^[a-z0-9_-]{1,64}$/.test(data.section) ||
       typeof data.key !== 'string' || !/^[a-zA-Z0-9_:/.%-]{1,180}$/.test(data.key)) return deny(400, 'Identificador inválido.');
   if (data.kind === 'view' && (data.section !== 'homepage' || data.key !== 'page-load')) return deny(400, 'Visualização inválida.');
@@ -26,13 +28,13 @@ export async function onRequestPost({ request, env }) {
     if (typeof data.visitor !== 'string' || !/^[a-f0-9-]{36}$/.test(data.visitor)) return deny(400, 'Usuário inválido.');
     const visitorHash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(data.visitor))),b=>b.toString(16).padStart(2,'0')).join('');
     const percent = Number(data.key.slice(7));
-    await env.LIVE_DB.prepare("INSERT INTO homepage_scroll_users (visitor,day,device,percent) VALUES (?,?,?,?) ON CONFLICT(visitor) DO UPDATE SET day=excluded.day,device=excluded.device,percent=excluded.percent WHERE excluded.percent > homepage_scroll_users.percent")
-      .bind(visitorHash,belemDay(),data.device,percent).run();
+    await env.LIVE_DB.prepare("INSERT INTO site_scroll_users (page,visitor,day,device,percent) VALUES (?,?,?,?,?) ON CONFLICT(page,visitor) DO UPDATE SET day=excluded.day,device=excluded.device,percent=excluded.percent WHERE excluded.percent > site_scroll_users.percent")
+      .bind(page,visitorHash,belemDay(),data.device,percent).run();
     return new Response(null,{status:204,headers:{'Cache-Control':'no-store'}});
   }
   if (data.kind === 'product' && !target.startsWith('loja.bufalogrowler.com.br/')) return deny(400, 'Produto inválido.');
-  await env.LIVE_DB.prepare("INSERT INTO homepage_interactions (day,device,kind,section,element_key,label,target,total) VALUES (?,?,?,?,?,?,?,1) ON CONFLICT(day,device,kind,section,element_key) DO UPDATE SET total=total+1,label=excluded.label,target=excluded.target")
-    .bind(belemDay(),data.device,data.kind,data.section,data.key,label,target).run();
+  await env.LIVE_DB.prepare("INSERT INTO site_interactions (page,day,device,kind,section,element_key,label,target,total) VALUES (?,?,?,?,?,?,?,?,1) ON CONFLICT(page,day,device,kind,section,element_key) DO UPDATE SET total=total+1,label=excluded.label,target=excluded.target")
+    .bind(page,belemDay(),data.device,data.kind,data.section,data.key,label,target).run();
   return new Response(null, {status:204, headers:{'Cache-Control':'no-store'}});
 }
 export function onRequestGet() { return deny(405, 'Método não permitido.'); }

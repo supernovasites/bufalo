@@ -1,0 +1,41 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {DatabaseSync} from 'node:sqlite';
+const urlFor=s=>'data:text/javascript;base64,'+Buffer.from(s).toString('base64');
+const libUrl=urlFor(fs.readFileSync('functions/_lib/home-analytics.js','utf8'));
+const {homepageStats,ensureHomepageStats,belemDay}=await import(libUrl);
+const endpoint=await import(urlFor(fs.readFileSync('functions/api/home-analytics.js','utf8').replace("'../_lib/home-analytics.js'",JSON.stringify(libUrl))));
+const sql=new DatabaseSync(':memory:');
+const db={prepare(q){const stmt=sql.prepare(q);let params=[];return {bind(...p){params=p;return this},async run(){return stmt.run(...params)},async all(){return {results:stmt.all(...params)}}}}};
+await ensureHomepageStats(db);
+sql.prepare("INSERT INTO homepage_interactions VALUES (?,?,?,?,?,?,?,?)").run(belemDay(),'mobile','view','homepage','page-load','Homepage','/',5);
+async function post(payload){
+ const request=new Request('https://bufalogrowler.com.br/api/home-analytics',{method:'POST',headers:{Origin:'https://bufalogrowler.com.br','User-Agent':'test-browser'},body:JSON.stringify({device:'mobile',section:'homepage',key:'page-load',label:'Visita',target:'/',...payload})});
+ return endpoint.onRequestPost({request,env:{LIVE_DB:db}});
+}
+for(const page of ['/','/live/','/produtos/chopeira/'])assert.equal((await post({page,kind:'view'})).status,204);
+for(const page of ['/live/','/produtos/chopeira/'])assert.equal((await post({page,kind:'click',key:'buy',label:'Comprar'})).status,204);
+const visitor='12345678-1234-1234-1234-123456789abc';
+for(const [page,marks] of [['/live/',[25,75,50,75]],['/produtos/chopeira/',[50,100,25]]])for(const percent of marks)assert.equal((await post({page,kind:'scroll',visitor,key:'scroll-'+percent})).status,204);
+assert.equal((await post({page:'/painel/',kind:'view'})).status,400);
+assert.equal((await post({page:'/live/?email=private',kind:'view'})).status,400);
+assert.equal((await post({page:'/live/',kind:'product',key:'product-test',target:'loja.bufalogrowler.com.br/copo',label:'Copo teste'})).status,204);
+const all=await homepageStats(db,7,'all','all');
+assert.equal(all.views,8);assert.equal(all.clicks,2);assert.equal(all.pages.length,3);assert.equal(all.scroll.find(x=>x.percent===75).visits,1);assert.equal(all.scroll.find(x=>x.percent===100).visits,1);
+const live=await homepageStats(db,7,'mobile','/live/');
+assert.equal(live.views,1);assert.equal(live.clicks,1);assert.equal(live.topProduct.label,'Copo teste');assert.equal(live.elements[0].page,'/live/');
+assert.equal((await homepageStats(db,7,'desktop','all')).views,0);
+const tracker=fs.readFileSync('assets/home-clicks.js','utf8');
+for(const path of ['/','/live/','/produtos/chopeira/','/campanhas/black26/','/catalogo/']){
+ const events=[],listeners={},window={scrollY:0,addEventListener:(n,f)=>listeners[n]=f};
+ vm.runInNewContext(tracker,{window,document:{documentElement:{scrollHeight:5000},body:{scrollHeight:5000},readyState:'complete',addEventListener(){}},location:{hostname:'bufalogrowler.com.br',pathname:path},innerWidth:400,innerHeight:1000,navigator:{sendBeacon:(u,b)=>{events.push(b.data);return true}},Blob:class{constructor(p){this.data=JSON.parse(p[0])}},localStorage:{getItem:()=>visitor,setItem(){}},requestAnimationFrame:f=>f(),URL});
+ assert.equal(events[0].page,path);window.scrollY=3000;listeners.scroll();assert.equal(events[1].key,'scroll-75');assert.equal(events.length,2);
+}
+const report=fs.readFileSync('painel/estatisticas/index.html','utf8');
+for(const match of fs.readFileSync('painel/home-analytics.js','utf8').matchAll(/\$\('([^']+)'\)/g))assert.ok(report.includes('id="'+match[1]+'"')||match[1]==='dashboard',match[1]);
+assert.ok(!fs.readFileSync('painel/index.html','utf8').includes('id="click-items"'));
+const middleware=fs.readFileSync('functions/_middleware.js','utf8');
+assert.ok(middleware.includes("'/painel/estatisticas'"));
+assert.ok(middleware.includes('HTMLRewriter'));
+console.log('PASS: legacy history, all pages, page/device filters, product leader, exclusive unique scroll per page, invalid/admin path rejection, tracker coverage and report controls.');

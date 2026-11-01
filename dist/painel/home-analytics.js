@@ -63,12 +63,12 @@
     body.replaceChildren();
     if (!list.length) {
       const td = make('td','','Nenhum clique registrado nesta seleção.');
-      td.colSpan = 5;
+      td.colSpan = 6;
       const tr = make('tr');tr.append(td);body.append(tr);return;
     }
     list.forEach((item,index)=>{
       const tr = make('tr');
-      tr.append(make('td','',String(index+1)),make('td','',item.day ? item.day.split('-').reverse().join('/') : '—'),make('td','',sectionTitle(item.section)));
+      tr.append(make('td','',String(index+1)),make('td','',item.day ? item.day.split('-').reverse().join('/') : '—'),make('td','',item.page || '/'),make('td','',sectionTitle(item.section)));
       const name = make('td','',item.label || item.element);
       if(item.target)name.append(make('small','',item.target));
       tr.append(name,make('td','',number(item.clicks)));
@@ -77,6 +77,17 @@
   }
   function render(data) {
     currentData = data;
+    const pageControl = $('stats-page'), selected = pageControl.value;
+    const known = [...new Set([...["/blog/artigo.html","/blog/","/campanhas/black26/","/campanhas/cirio/","/catalogo/","/","/live/encerrada.html","/live/games/","/live/","/manadacash/","/manadaone/encerrada.html","/manadaone/","/mc/","/produtos/chopeira/","/produtos/copos/","/produtos/garrafas/","/reserva/acaibowl/"],...data.pages.map(item=>item.page)])];
+    pageControl.replaceChildren(new Option('Todas as páginas','all'),...known.map(page=>new Option(page === '/' ? 'Homepage' : page,page)));
+    if ([...pageControl.options].some(item=>item.value===selected)) pageControl.value=selected;
+    const pageList = $('stats-pages'); pageList.replaceChildren();
+    known.sort((a,b)=>(data.pages.find(p=>p.page===b)?.views || 0)-(data.pages.find(p=>p.page===a)?.views || 0)).forEach(page=>{
+      const counts = data.pages.find(item=>item.page===page);
+      const row = make('div','metric-bar-row');
+      row.append(make('span','',page === '/' ? 'Homepage' : page),make('strong','',number(counts?.views) + ' acessos · ' + number(counts?.clicks) + ' cliques'));
+      pageList.append(row);
+    });
     $('click-total').textContent = number(data.clicks);
     $('click-views').textContent = number(data.views);
     $('click-rate').textContent = data.views ? (data.clicks / data.views).toLocaleString('pt-BR',{maximumFractionDigits:2}) : '—';
@@ -122,14 +133,16 @@
     $('click-reload').disabled=true;
     setStatus('Carregando dados de cliques…');
     try {
-      const params = new URLSearchParams({days:$('click-days').value,device:$('click-device').value});
-      const response = await fetch('/painel/api/home-analytics?' + params,{cache:'no-store',credentials:'same-origin'});
+      const params = new URLSearchParams({days:$('click-days').value,device:$('click-device').value,page:$('stats-page').value});
+      const response = await fetch('/painel/api/site-analytics?' + params,{cache:'no-store',credentials:'same-origin'});
       const json = await response.json();
+      if (response.status === 401) { location.href='/painel/'; return; }
       if (!response.ok) throw new Error(json.error || 'Não foi possível consultar o relatório.');
       if (id === currentRequest) render(json);
     } catch (error) { if (id === currentRequest) setStatus(error.message,true); }
     finally { if (id === currentRequest) $('click-reload').disabled=false; }
   }
+  $('stats-page').addEventListener('change',load);
   $('click-days').addEventListener('change',load);
   $('click-device').addEventListener('change',load);
   $('click-section').addEventListener('change',updateElements);

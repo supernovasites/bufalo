@@ -39,3 +39,5 @@
 @media(max-width:740px){.home-metrics .metrics-scroll{grid-template-columns:repeat(2,minmax(0,1fr))}.home-metrics .metrics-scroll .metric:last-child{grid-column:auto}}
 
 .home-metrics .metrics-product{padding:20px;margin-top:24px;background:#f3f4f2;border:1px solid #e4e7e3;border-radius:5px}
+
+.home-metrics{min-width:0}.home-metrics .metric-bar-row span{overflow-wrap:anywhere}.home-metrics .metrics-filters select{max-width:100%}.home-metrics .metrics-table-wrap{width:100%}.home-metrics .metrics-table-wrap table{min-width:620px}

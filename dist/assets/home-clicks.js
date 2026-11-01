@@ -1,9 +1,11 @@
-/* Búfalo: contador agregado de interações da homepage. Sem dados pessoais. */
+/* Búfalo: acessos, cliques e rolagem das páginas públicas. */
 (() => {
   'use strict';
   const allowedHosts = ['bufalogrowler.com.br','www.bufalogrowler.com.br','bufalo.pages.dev'];
-  if (!allowedHosts.includes(location.hostname) || !['/','/index.html','/bufalo'].includes(location.pathname) || window.bgHomeClicks) return;
+  if (!allowedHosts.includes(location.hostname) || /\/(admin|painel|mkt|midia|assets|api|mesadj|sorteio)(?:[/.]|$)/.test(location.pathname) || window.bgHomeClicks) return;
   window.bgHomeClicks = true;
+  const page = location.pathname.replace(/index\.html$/, '').replace(/\/$/,'') || '/';
+  const pagePath = page === '/' || /\.html$/.test(page) ? page : page + '/';
   const endpoint = '/api/home-analytics';
   const device = innerWidth < 768 ? 'mobile' : innerWidth < 1100 ? 'tablet' : 'desktop';
   const slug = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60) || 'item';
@@ -54,7 +56,7 @@
     return {key,label:label(title) || type,target:target.slice(0,180)};
   }
   function send(payload) {
-    const data = JSON.stringify({device,...payload});
+    const data = JSON.stringify({device,page:pagePath,...payload});
     try {
       if (navigator.sendBeacon && navigator.sendBeacon(endpoint,new Blob([data],{type:'text/plain;charset=UTF-8'}))) return;
     } catch {}
@@ -66,7 +68,7 @@
     localStorage.setItem('bg-scroll-user-v2',visitor);
   } catch {}
   let highest = 0;
-  try { highest = Number(localStorage.getItem('bg-scroll-max-v2') || 0); } catch {}
+  
 
   let scrollPending = false;
   function measureScroll() {
@@ -87,7 +89,7 @@
   window.addEventListener('scroll',scheduleScroll,{passive:true});
   window.addEventListener('resize',scheduleScroll,{passive:true});
   window.addEventListener('load',scheduleScroll,{once:true});
-  function pageView() { scheduleScroll(); send({kind:'view',section:'homepage',key:'page-load',label:'Visita à homepage',target:'/'}); }
+  function pageView() { scheduleScroll(); send({kind:'view',section:'homepage',key:'page-load',label:'Visita à página',target:pagePath}); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',pageView,{once:true});
   else pageView();
   const last = new Map();
@@ -105,8 +107,8 @@
     last.set(dedupe,now);
     if (last.size > 200) last.clear();
     send({kind:'click',section,...info});
-    const product = action.closest('.card,.product-card,.thermal-card,.accessory-item,.launch-card');
-    if (product && product.querySelector('h3,.product-title,.product-name') && action.matches('a[href]') && info.target.startsWith('loja.bufalogrowler.com.br/')) {
+    const product = action.closest('.card,.product-card,.thermal-card,.accessory-item,.launch-card,.one-card,article.product');
+    if (product && product.querySelector('h3,h2,.product-title,.product-name') && action.matches('a[href]') && info.target.startsWith('loja.bufalogrowler.com.br/')) {
       send({kind:'product',section,...info});
     }
   }, true);
