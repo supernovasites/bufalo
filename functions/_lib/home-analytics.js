@@ -1,9 +1,13 @@
 // Contadores agregados da homepage. Nao guardar IP, cookies, CPF ou consultas.
 export const homeAnalyticsSchema = "CREATE TABLE IF NOT EXISTS homepage_interactions (day TEXT NOT NULL, device TEXT NOT NULL, kind TEXT NOT NULL, section TEXT NOT NULL, element_key TEXT NOT NULL, label TEXT NOT NULL, target TEXT NOT NULL DEFAULT '', total INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(day,device,kind,section,element_key))";
 export const homeAnalyticsMigration = "CREATE INDEX IF NOT EXISTS homepage_interactions_day_kind ON homepage_interactions(day,kind)";
+let initialized;
 export async function ensureHomepageStats(db) {
-  await db.prepare(homeAnalyticsSchema).run();
-  await db.prepare(homeAnalyticsMigration).run();
+  if (!initialized) initialized = (async () => {
+    await db.prepare(homeAnalyticsSchema).run();
+    await db.prepare(homeAnalyticsMigration).run();
+  })().catch(error => { initialized = null; throw error; });
+  return initialized;
 }
 export function belemDay(date = Date.now()) {
   return new Date(date - 3 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -17,7 +21,7 @@ export async function homepageStats(db, days, device) {
     query("SELECT kind, SUM(total) AS total FROM homepage_interactions WHERE " + where + " GROUP BY kind"),
     query("SELECT day, SUM(CASE WHEN kind = 'click' THEN total ELSE 0 END) AS clicks, SUM(CASE WHEN kind = 'view' THEN total ELSE 0 END) AS views FROM homepage_interactions WHERE " + where + " GROUP BY day ORDER BY day"),
     query("SELECT section, SUM(total) AS clicks FROM homepage_interactions WHERE " + where + " AND kind = 'click' GROUP BY section ORDER BY clicks DESC LIMIT 40"),
-    query("SELECT section, element_key AS element, MAX(label) AS label, MAX(target) AS target, SUM(total) AS clicks FROM homepage_interactions WHERE " + where + " AND kind = 'click' GROUP BY section, element_key ORDER BY clicks DESC LIMIT 120"),
+    query("SELECT section, element_key AS element, MAX(label) AS label, MAX(target) AS target, SUM(total) AS clicks FROM homepage_interactions WHERE " + where + " AND kind = 'click' GROUP BY section, element_key ORDER BY clicks DESC LIMIT 500"),
     query("SELECT device, SUM(CASE WHEN kind = 'click' THEN total ELSE 0 END) AS clicks, SUM(CASE WHEN kind = 'view' THEN total ELSE 0 END) AS views FROM homepage_interactions WHERE " + where + " GROUP BY device")
   ]);
   const count = kind => Number(totals.find(row => row.kind === kind)?.total || 0);
