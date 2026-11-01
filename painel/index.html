@@ -6,7 +6,9 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Painel administrativo · Búfalo Growler</title>
   <link rel="stylesheet" href="/live/admin.css?v=20260929-panel-css1">
+  <link rel="stylesheet" href="/painel/home-analytics.css?v=20261101-1">
   <script src="/painel/painel.js?v=20261027-panel-login" defer></script>
+  <script src="/painel/home-analytics.js?v=20261101-1" defer></script>
 </head>
 <body>
   <header class="top">
@@ -29,6 +31,50 @@
       </form>
     </section>
     <section id="dashboard" class="dashboard" hidden>
+      <article class="card home-metrics" id="homepage-analytics">
+        <div class="metrics-top">
+          <div>
+            <div class="eyebrow">DESEMPENHO DO SITE</div>
+            <h2>Cliques da homepage.</h2>
+            <p class="metrics-description">Acompanhe quais seções, produtos, banners e botões atraem mais interações.</p>
+          </div>
+          <div class="metrics-filters" aria-label="Filtros de cliques">
+            <label>Período<select id="click-days"><option value="1">Hoje</option><option value="7" selected>7 dias</option><option value="30">30 dias</option><option value="90">90 dias</option></select></label>
+            <label>Dispositivo<select id="click-device"><option value="all">Todos</option><option value="mobile">Celular</option><option value="desktop">Computador</option><option value="tablet">Tablet</option></select></label>
+            <button class="btn light" id="click-reload" type="button">Atualizar</button>
+          </div>
+        </div>
+        <div class="metrics-numbers">
+          <div class="metric"><span class="metric-label">Total de cliques</span><strong id="click-total">—</strong><small>Interações nos elementos da homepage</small></div>
+          <div class="metric"><span class="metric-label">Visitas à homepage</span><strong id="click-views">—</strong><small>Carregamentos registrados, não visitantes únicos</small></div>
+          <div class="metric"><span class="metric-label">Cliques por visita</span><strong id="click-rate">—</strong><small>Média de cliques por carregamento</small></div>
+        </div>
+        <div class="metrics-sections">
+          <section class="metric-panel" aria-labelledby="click-sections-title">
+            <h3 id="click-sections-title">Cliques por seção</h3>
+            <div id="click-sections" class="metric-bar-list"></div>
+          </section>
+          <section class="metric-panel" aria-labelledby="click-daily-title">
+            <h3 id="click-daily-title">Evolução diária de cliques</h3>
+            <div id="click-daily" class="metrics-chart" aria-label="Gráfico de cliques por dia"></div>
+            <h3 style="margin-top:20px">Por dispositivo</h3>
+            <div id="click-devices" class="metric-bar-list"></div>
+          </section>
+        </div>
+        <div class="metrics-table-head">
+          <h3>Elementos mais clicados</h3>
+          <label>Seção <select id="click-section"><option value="all">Todas as seções</option></select></label>
+        </div>
+        <div class="metrics-table-wrap">
+          <table>
+            <thead><tr><th scope="col">#</th><th scope="col">Seção</th><th scope="col">Produto, link ou botão</th><th scope="col">Cliques</th></tr></thead>
+            <tbody id="click-items"><tr><td colspan="4">Carregando estatísticas…</td></tr></tbody>
+          </table>
+        </div>
+        <p id="click-status" class="metrics-status" role="status" aria-live="polite">Aguardando acesso ao painel…</p>
+        <p class="metrics-help">Os dados são registrados a partir da ativação deste contador. Não incluem compras confirmadas nem identificam visitantes. A filtragem utiliza a data de Belém.</p>
+      </article>
+
       <article class="card">
         <div class="eyebrow">ENCONTRO AO VIVO</div>
         <h2>Live Búfalo.</h2>
