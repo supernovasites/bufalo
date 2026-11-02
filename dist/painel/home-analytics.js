@@ -107,14 +107,13 @@
     product.replaceChildren();
     const products = data.topProducts || (data.topProduct ? [data.topProduct] : []);
     if (products.length) {
-      const list = make('ol','');
+      const list = make('ol','top-products-list');
       products.slice(0,5).forEach((item,index) => {
         const row = make('li','metric-bar-row');
-        row.append(make('strong','',(index+1) + '. ' + item.label),make('p','',number(item.clicks) + ' cliques'));
-        const link = make('a','','Ver produto');
+        const link = make('a','top-product-link',(index+1) + '. ' + item.label);
         link.href = 'https://' + item.target;
         link.target = '_blank'; link.rel = 'noopener';
-        row.append(link); list.append(row);
+        row.append(link,make('span','top-product-count',number(item.clicks) + ' cliques')); list.append(row);
       });
       product.append(list);
     } else product.append(make('p','','Nenhum clique em produto registrado nesta seleção.'));

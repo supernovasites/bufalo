@@ -41,3 +41,8 @@
 .home-metrics .metrics-product{padding:20px;margin-top:24px;background:#f3f4f2;border:1px solid #e4e7e3;border-radius:5px}
 
 .home-metrics{min-width:0}.home-metrics .metric-bar-row span{overflow-wrap:anywhere}.home-metrics .metrics-filters select{max-width:100%}.home-metrics .metrics-table-wrap{width:100%}.home-metrics .metrics-table-wrap table{min-width:620px}
+
+.home-metrics .top-products-list{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.home-metrics .top-product-link{font-weight:700;color:inherit;overflow-wrap:anywhere;text-decoration:none}
+.home-metrics .top-product-link:hover,.home-metrics .top-product-link:focus-visible{text-decoration:underline}
+.home-metrics .top-product-count{white-space:nowrap;color:#617273;font-variant-numeric:tabular-nums}
