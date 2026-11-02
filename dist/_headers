@@ -23,5 +23,13 @@
 /assets/product-references.json
   Cache-Control: public, max-age=0, must-revalidate
 
+/assets/announcement.js
+  Cache-Control: public, max-age=0, must-revalidate
+
 /assets/home-clicks.js
+  Cache-Control: public, max-age=0, must-revalidate
+
+/campanhas/black26/black26.js
+  Cache-Control: public, max-age=0, must-revalidate
+/campanhas/black26/products.json
   Cache-Control: public, max-age=0, must-revalidate

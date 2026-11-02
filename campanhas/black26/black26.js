@@ -42,7 +42,7 @@
 
   }
 
-  fetch(new URL('products.json',document.currentScript.src),{cache:'no-cache'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(data=>{
+  fetch(new URL('products.json?v=acai-colors-20261102',scriptURL),{cache:'no-cache'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(data=>{
     products=data.products.flatMap(p=>p.colors.filter(c=>c.available!==false&&c.price>0&&(c.oldPrice>c.price||p.showRegularPrice===true)).map(color=>({...p,color})));
     render();
   }).catch(()=>{count.textContent='Seleção indisponível';document.getElementById('catalog-error').hidden=false;});
