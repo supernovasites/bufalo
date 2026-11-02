@@ -105,12 +105,18 @@
     });
     const product = $('top-product');
     product.replaceChildren();
-    if (data.topProduct) {
-      product.append(make('strong','',data.topProduct.label),make('p','',number(data.topProduct.clicks) + ' cliques'));
-      const link = make('a','','Ver produto');
-      link.href = 'https://' + data.topProduct.target;
-      link.target = '_blank'; link.rel = 'noopener';
-      product.append(link);
+    const products = data.topProducts || (data.topProduct ? [data.topProduct] : []);
+    if (products.length) {
+      const list = make('ol','');
+      products.slice(0,5).forEach((item,index) => {
+        const row = make('li','metric-bar-row');
+        row.append(make('strong','',(index+1) + '. ' + item.label),make('p','',number(item.clicks) + ' cliques'));
+        const link = make('a','','Ver produto');
+        link.href = 'https://' + item.target;
+        link.target = '_blank'; link.rel = 'noopener';
+        row.append(link); list.append(row);
+      });
+      product.append(list);
     } else product.append(make('p','','Nenhum clique em produto registrado nesta seleção.'));
     bars(data.sections,$('click-sections').id);
     drawDaily(data.daily);
