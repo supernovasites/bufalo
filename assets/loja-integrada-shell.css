@@ -160,3 +160,5 @@ html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-comu
 }
 
 html.bg-li-ready body.pagina-produto #corpo .principal>.atributos .atributo-cor ul{gap:0!important}
+
+.bg-li-ready #mobile-menu #bg-li-search{box-sizing:border-box;width:100%;max-width:none}

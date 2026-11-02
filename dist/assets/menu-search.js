@@ -5,6 +5,8 @@
  if(searchButton&&!searchButton.querySelector('.bg-search-label')){const label=document.createElement('span');label.className='bg-search-label';label.textContent='Ache Fácil';searchButton.append(label);searchButton.setAttribute('aria-label','Ache Fácil: buscar produtos');}
  const menu=document.getElementById('mobile-menu');if(!menu||menu.dataset.searchReady)return;menu.dataset.searchReady='true';
  const form=menu.querySelector('form'),input=form?.querySelector('input[name="q"]');if(!input)return;
+ const account=menu.querySelector('.bg-menu-account');
+ if(account)form.after(account);
  const store='https://loja.bufalogrowler.com.br';
  const panel=document.createElement('section');panel.className='bg-search-results';panel.hidden=true;panel.setAttribute('aria-label','Sugestões de produtos');form.after(panel);
  input.type='search';input.autocomplete='off';input.placeholder='Digite o nome do produto';input.setAttribute('role','combobox');input.setAttribute('aria-autocomplete','list');input.setAttribute('aria-expanded','false');input.setAttribute('aria-controls','bg-search-options');input.setAttribute('aria-label','Buscar produtos na Loja Integrada');

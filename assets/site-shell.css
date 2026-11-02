@@ -156,3 +156,7 @@
 @media(max-width:760px){[data-bg-header]{min-height:73px}}
 
 #bg-site-footer .footer-google-pay{margin-top:24px;padding-top:20px;border-top:1px solid #ffffff26}#bg-site-footer .footer-google-pay .payment-label{display:block;color:#d3dedd;font:600 12px/1.4 Arial,sans-serif;margin-bottom:8px}#bg-site-footer .footer-pay-flags{display:flex;align-items:center;gap:8px}#bg-site-footer .footer-pay-flags>span{width:126px;height:75px;display:flex;align-items:center;justify-content:center;background:transparent}#bg-site-footer .footer-pay-flags img{display:block;width:126px!important;height:auto!important;max-width:100%!important}
+
+/* Busca do menu acima da conta, com as mesmas margens e largura. */
+#mobile-menu .search{box-sizing:border-box;width:calc(100% - 48px);max-width:none;margin:20px 24px 0;min-height:48px;flex-shrink:0}
+#mobile-menu .bg-menu-account{box-sizing:border-box;margin-top:12px}
