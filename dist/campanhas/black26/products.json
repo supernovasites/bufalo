@@ -2,6 +2,158 @@
   "checkedAt": "2026-10-20",
   "products": [
     {
+      "name": "Copo Tulipa Confraria",
+      "size": "600 ml",
+      "url": "copo-tulipa-confraria-600ml",
+      "price": 149,
+      "oldPrice": 190,
+      "pay": "24,83",
+      "category": "copos",
+      "colors": [
+        {
+          "id": "426271",
+          "label": "Dourado",
+          "sku": "TULI-gold",
+          "img": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404548346/2-3bf7631c-23102v6im1.png",
+          "crop": {
+            "viewBox": [
+              251,
+              138,
+              290,
+              591
+            ],
+            "width": 800,
+            "height": 800
+          },
+          "price": 149,
+          "oldPrice": 190,
+          "available": true
+        },
+        {
+          "id": "426121",
+          "label": "Rosé",
+          "sku": "TULI-roseglow",
+          "img": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404548346/3-65612e14-nwkrav5rtc.png",
+          "crop": {
+            "viewBox": [
+              243,
+              156,
+              298,
+              574
+            ],
+            "width": 800,
+            "height": 800
+          },
+          "price": 149,
+          "oldPrice": 190,
+          "available": true
+        },
+        {
+          "id": "37095",
+          "label": "Grey",
+          "sku": "TULI-Grafit",
+          "img": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404548346/4-9f8ab0dd-vh93pttwkb.png",
+          "crop": {
+            "viewBox": [
+              257,
+              129,
+              292,
+              600
+            ],
+            "width": 800,
+            "height": 800
+          },
+          "price": 149,
+          "oldPrice": 190,
+          "available": true
+        },
+        {
+          "id": "426614",
+          "label": "Branco",
+          "sku": "TULI-branco",
+          "img": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404548346/-editar-tulipa-6f78af0b-64io327t6y.png",
+          "crop": {
+            "viewBox": [
+              233,
+              128,
+              309,
+              604
+            ],
+            "width": 800,
+            "height": 800
+          },
+          "price": 149,
+          "oldPrice": 190,
+          "available": true
+        }
+      ]
+    },
+    {
+      "name": "Açaí Bowl",
+      "size": "500 ml",
+      "url": "acai-bowl-500ml",
+      "price": 220,
+      "pay": "36,66",
+      "category": "copos",
+      "showRegularPrice": true,
+      "colors": [
+        {
+          "id": "425732",
+          "label": "Magenta",
+          "sku": "ACAIBW-MAG",
+          "img": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/400513057/gpt_acaimagenta-5a84a767-rrjjqg0agt.jpg",
+          "crop": {
+            "viewBox": [
+              199,
+              52,
+              402,
+              687
+            ],
+            "width": 800,
+            "height": 800
+          },
+          "price": 220,
+          "available": true
+        },
+        {
+          "id": "426425",
+          "label": "Creme",
+          "sku": "ACAIBW-CRE",
+          "img": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/400513057/gpt_acaicreme-e6e33e07-32ugjstvnw.jpg",
+          "crop": {
+            "viewBox": [
+              199,
+              52,
+              402,
+              687
+            ],
+            "width": 800,
+            "height": 800
+          },
+          "price": 220,
+          "available": true
+        },
+        {
+          "id": "37093",
+          "label": "Preto",
+          "sku": "ACAIBW-PTO",
+          "img": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/400513057/gpt_acaipreto-95cf5f55-qrn2yt833b.jpg",
+          "crop": {
+            "viewBox": [
+              199,
+              52,
+              402,
+              687
+            ],
+            "width": 800,
+            "height": 800
+          },
+          "price": 220,
+          "available": true
+        }
+      ]
+    },
+    {
       "name": "Growler Palitano",
       "size": "1,350 L",
       "price": 264,
@@ -1560,5 +1712,12 @@
         }
       ]
     }
-  ]
+  ],
+  "variantUpdates": {
+    "checkedAt": "2026-11-02",
+    "products": [
+      "copo-tulipa-confraria-600ml",
+      "acai-bowl-500ml"
+    ]
+  }
 }
