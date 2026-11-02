@@ -90,9 +90,11 @@
     $('click-rate').textContent = data.views ? (data.clicks / data.views).toLocaleString('pt-BR',{maximumFractionDigits:2}) : '—';
     const scroll = $('scroll-milestones');
     scroll.replaceChildren();
-    (data.scroll || [25,50,75,100].map(percent=>({percent,visits:0}))).forEach(item=>{
+    const scrollRows = data.scroll || [25,50,75,100].map(percent=>({percent,visits:0}));
+    const scrollTotal = scrollRows.reduce((total,item)=>total + Number(item.visits || 0),0);
+    scrollRows.forEach(item=>{
       const card = make('div','metric');
-      card.append(make('span','metric-label',item.percent + '% — ' + (item.sections?.length ? item.sections.join(' / ') : 'Seção ainda não registrada')),make('strong','',number(item.visits)),make('small','','Usuários nesta faixa'));
+      card.append(make('span','metric-label',item.percent + '% — ' + (item.sections?.length ? item.sections.join(' / ') : 'Seção ainda não registrada')),make('strong','',number(item.visits)),make('small','',(scrollTotal ? 100 * Number(item.visits || 0) / scrollTotal : 0).toLocaleString('pt-BR',{maximumFractionDigits:1}) + '% dos usuários nesta faixa'));
       scroll.append(card);
     });
     const product = $('top-product');
