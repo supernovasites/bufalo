@@ -5,7 +5,8 @@
   if (!allowedHosts.includes(location.hostname) || /\/(admin|painel|mkt|midia|assets|api|mesadj|sorteio)(?:[/.]|$)/.test(location.pathname) || window.bgHomeClicks) return;
   window.bgHomeClicks = true;
   const page = location.pathname.replace(/index\.html$/, '').replace(/\/$/,'') || '/';
-  const pagePath = page === '/' || /\.html$/.test(page) ? page : page + '/';
+  const normalizedPath = page === '/' || /\.html$/.test(page) ? page : page + '/';
+  const pagePath = ({'/black26/':'/campanhas/black26/','/chopeira/':'/produtos/chopeira/'})[normalizedPath] || normalizedPath;
   const endpoint = '/api/home-analytics';
   const device = innerWidth < 768 ? 'mobile' : innerWidth < 1100 ? 'tablet' : 'desktop';
   const slug = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60) || 'item';
@@ -72,7 +73,7 @@
 
   let layoutSignature = '';
   function reportScrollSections(distance) {
-    if (!['/','/produtos/chopeira/'].includes(pagePath) || typeof document.querySelectorAll !== 'function') return;
+    if (!['/','/produtos/chopeira/','/campanhas/black26/'].includes(pagePath) || typeof document.querySelectorAll !== 'function') return;
     const landmarks = [...document.querySelectorAll('main section,body > section,footer,[data-bg-footer]')].filter(el=>el.getBoundingClientRect().height>0);
     const mapping = [25,50,75,100].map(percent=>{
       const y = Math.min(distance + innerHeight - 1, distance * percent / 100 + innerHeight - 1);
@@ -84,7 +85,7 @@
     const signature = JSON.stringify(mapping);
     if (signature === layoutSignature) return;
     layoutSignature = signature;
-    mapping.forEach(item=>send({kind:'scroll-section',section:'homepage',key:'scroll-' + item.percent,label:item.name,target:'/'}));
+    mapping.forEach(item=>send({kind:'scroll-section',section:'homepage',key:'scroll-' + item.percent,label:item.name,target:pagePath}));
   }
   let scrollPending = false;
   function measureScroll() {
@@ -97,7 +98,7 @@
     const mark = [100,75,50,25].find(mark => progress >= mark / 100 || (mark === 100 && distance - window.scrollY <= 2)) || 0;
     if (visitor && mark > highest) {
       highest = mark;
-      send({kind:'scroll',visitor,section:'homepage',key:'scroll-' + mark,label:'Rolagem ' + mark + '%',target:'/'});
+      send({kind:'scroll',visitor,section:'homepage',key:'scroll-' + mark,label:'Rolagem ' + mark + '%',target:pagePath});
     }
   }
   function scheduleScroll() {
@@ -125,7 +126,7 @@
     if (last.size > 200) last.clear();
     send({kind:'click',section,...info});
     const product = action.closest('.card,.product-card,.thermal-card,.accessory-item,.launch-card,.one-card,article.product');
-    if (product && product.querySelector('h3,h2,.product-title,.product-name') && action.matches('a[href]') && info.target.startsWith('loja.bufalogrowler.com.br/')) {
+    if (product && (product.querySelector('h3,h2,.product-title,.product-name') || product.matches('.product-card')) && action.matches('a[href]') && info.target.startsWith('loja.bufalogrowler.com.br/')) {
       send({kind:'product',section,...info});
     }
   }, true);

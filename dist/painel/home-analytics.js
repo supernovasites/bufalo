@@ -15,7 +15,7 @@
   };
   const sectionTitle = key => sectionNames[key] || (key.startsWith('popup-') ? 'Popup: ' + key.slice(6).replace(/-/g,' ') : key.replace(/-/g,' '));
   $('click-page').value = '/';
-  const pageName = page => page === '/produtos/chopeira/' ? 'Chopeira' : 'Homepage';
+  const pageName = page => ({'/':'Homepage','/produtos/chopeira/':'Chopeira','/campanhas/black26/':'Black26'})[page] || page;
   let loaded = false, currentData = null, currentRequest = 0;
   function make(tag,cls,text) {
     const el = document.createElement(tag);
@@ -84,7 +84,7 @@
     $('stats-views-title').textContent = 'Acessos à ' + name;
     $('scroll-title').textContent = 'Rolagem da ' + name;
     const pageList = $('stats-pages'); pageList.replaceChildren();
-    const pages = [...data.pages].filter(item=>['/','/produtos/chopeira/'].includes(item.page)).sort((a,b)=>Number(b.views)-Number(a.views)||a.page.localeCompare(b.page)).slice(0,5);
+    const pages = [...data.pages].filter(item=>['/','/produtos/chopeira/','/campanhas/black26/'].includes(item.page)).sort((a,b)=>Number(b.views)-Number(a.views)||a.page.localeCompare(b.page)).slice(0,5);
     if (!pages.length) pageList.append(make('p','','Nenhum acesso registrado neste período.'));
     pages.forEach((item,index)=>{
       const row = make('div','metric-bar-row');

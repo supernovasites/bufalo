@@ -18,7 +18,7 @@
       for(const [index,page] of pages.entries()){
         const row=document.createElement('div');row.className='metric-bar-row';
         const name=document.createElement('span'),count=document.createElement('strong');
-        name.textContent=(index+1)+'. '+(page.page==='/'?'Homepage':page.page);
+        name.textContent=(index+1)+'. '+(({'/':'Homepage','/produtos/chopeira/':'Chopeira','/campanhas/black26/':'Black26'})[page.page]||page.page);
         count.textContent=Number(page.views||0).toLocaleString('pt-BR');
         row.append(name,count);list.append(row);
       }

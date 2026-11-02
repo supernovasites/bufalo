@@ -13,7 +13,8 @@ export async function onRequestPost({ request, env }) {
   let data;
   try { data = JSON.parse(raw); } catch { return deny(400, 'Evento inválido.'); }
   if (!data || !['click','view','scroll','product','scroll-section'].includes(data.kind) || !['mobile','tablet','desktop'].includes(data.device)) return deny(400, 'Evento inválido.');
-  const page = data.page || '/';
+  const rawPage = data.page || '/';
+  const page = ({'/black26':'/campanhas/black26/','/black26/':'/campanhas/black26/','/chopeira':'/produtos/chopeira/','/chopeira/':'/produtos/chopeira/'})[rawPage] || rawPage;
   if (typeof page !== 'string' || !/^\/[a-zA-Z0-9_./%-]{0,159}$/.test(page) || /(?:admin|painel|mkt|midia|mesadj|sorteio|assets|api)(?:[/.]|$)/i.test(page)) return deny(400, 'Página inválida.');
   if (typeof data.section !== 'string' || !/^[a-z0-9_-]{1,64}$/.test(data.section) ||
       typeof data.key !== 'string' || !/^[a-zA-Z0-9_:/.%-]{1,180}$/.test(data.key)) return deny(400, 'Identificador inválido.');
@@ -25,7 +26,7 @@ export async function onRequestPost({ request, env }) {
   if (!label || /@|\b\d{8,}\b/.test(label) || !/^[a-zA-Z0-9/:._%-]*$/.test(target)) return deny(400, 'Rótulo inválido.');
   await ensureHomepageStats(env.LIVE_DB);
   if (data.kind === 'scroll-section') {
-    if (!['/','/produtos/chopeira/'].includes(page)) return deny(400,'Página inválida.');
+    if (!['/','/produtos/chopeira/','/campanhas/black26/'].includes(page)) return deny(400,'Página inválida.');
     await env.LIVE_DB.prepare("INSERT INTO site_scroll_sections (page,device,percent,label,day) VALUES (?,?,?,?,?) ON CONFLICT(page,device,percent) DO UPDATE SET label=excluded.label,day=excluded.day")
       .bind(page,data.device,Number(data.key.slice(7)),label,belemDay()).run();
     return new Response(null,{status:204,headers:{'Cache-Control':'no-store'}});

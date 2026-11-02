@@ -36,12 +36,25 @@ assert.equal(all.views,8);assert.equal(all.clicks,2);assert.equal(all.pages.leng
 const live=await homepageStats(db,7,'mobile','/live/');
 assert.equal(live.views,1);assert.equal(live.clicks,1);assert.equal(live.topProduct.label,'Copo teste');assert.equal(live.elements[0].page,'/live/');
 assert.equal((await homepageStats(db,7,'desktop','all')).views,0);
+// Public aliases share one report; Black26 stays isolated from Homepage and Chopeira.
+for(const page of ['/black26','/black26/','/campanhas/black26/'])assert.equal((await post({page,kind:'view'})).status,204);
+assert.equal((await post({page:'/black26/',kind:'click',key:'banner',label:'Ver cores'})).status,204);
+assert.equal((await post({page:'/black26/',kind:'product',key:'tulipa',label:'Tulipa Confraria Dourado',target:'loja.bufalogrowler.com.br/copo-tulipa-confraria-600ml'})).status,204);
+assert.equal((await post({page:'/black26/',kind:'scroll-section',key:'scroll-50',label:'Ofertas Black Búfalo'})).status,204);
+assert.equal((await post({page:'/black26/',kind:'scroll',visitor,key:'scroll-50'})).status,204);
+const black=await homepageStats(db,7,'mobile','/campanhas/black26/');
+assert.equal(black.views,3);assert.equal(black.clicks,1);assert.equal(black.topProduct.label,'Tulipa Confraria Dourado');
+assert.equal(black.scroll.find(x=>x.percent===50).visits,1);
+assert.deepEqual(black.scroll.find(x=>x.percent===50).sections,['Ofertas Black Búfalo']);
+assert.equal((await homepageStats(db,7,'all','/')).views,6);
+assert.equal((await homepageStats(db,7,'all','/produtos/chopeira/')).views,1);
 const tracker=fs.readFileSync('assets/home-clicks.js','utf8');
-for(const path of ['/','/live/','/produtos/chopeira/','/campanhas/black26/','/catalogo/']){
+for(const path of ['/','/live/','/produtos/chopeira/','/campanhas/black26/','/black26/','/chopeira/','/catalogo/']){
  const events=[],listeners={},window={scrollY:0,addEventListener:(n,f)=>listeners[n]=f};
  vm.runInNewContext(tracker,{window,document:{documentElement:{scrollHeight:5000},body:{scrollHeight:5000},readyState:'complete',addEventListener(){}},location:{hostname:'bufalogrowler.com.br',pathname:path},innerWidth:400,innerHeight:1000,navigator:{sendBeacon:(u,b)=>{events.push(b.data);return true}},Blob:class{constructor(p){this.data=JSON.parse(p[0])}},localStorage:{getItem:()=>visitor,setItem(){}},requestAnimationFrame:f=>f(),URL});
- assert.equal(events[0].page,path);window.scrollY=3000;listeners.scroll();assert.equal(events[1].key,'scroll-75');assert.equal(events.length,2);
+ assert.equal(events[0].page,({'/black26/':'/campanhas/black26/','/chopeira/':'/produtos/chopeira/'})[path]||path);window.scrollY=3000;listeners.scroll();assert.equal(events[1].key,'scroll-75');assert.equal(events.length,2);
 }
+for(const path of ['campanhas/black26/index.html','produtos/chopeira/index.html'])assert.ok(fs.readFileSync(path,'utf8').includes('/assets/home-clicks.js'));
 const report=fs.readFileSync('painel/estatisticas/index.html','utf8');
 for(const match of fs.readFileSync('painel/home-analytics.js','utf8').matchAll(/\$\('([^']+)'\)/g))assert.ok(report.includes('id="'+match[1]+'"')||match[1]==='dashboard',match[1]);
 assert.ok(!fs.readFileSync('painel/index.html','utf8').includes('id="click-items"'));
