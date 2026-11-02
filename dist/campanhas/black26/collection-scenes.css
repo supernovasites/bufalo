@@ -9,18 +9,12 @@
 /* Explicit stacking keeps photos above the banner background in all browsers. */
 .collection-art{z-index:0}.collection-hero-v2:after{z-index:1}.collection-copy-v2,.collection-controls-v2{position:relative;z-index:2}.collection-controls-v2{position:absolute}
 
-/* Complete campaign artworks share the collection carousel without cropping. */
-.collection-poster:before{content:'';position:absolute;inset:-30px;background-image:var(--poster-image);background-size:cover;background-position:center;filter:blur(22px) brightness(.45)}
-.collection-poster a{position:absolute;inset:0;display:block}
-.collection-frame-v2.collection-poster img{position:relative;object-fit:contain;object-position:center;padding:16px 0 68px;box-sizing:border-box}
-.collection-hero-v2.is-poster:after{background:linear-gradient(0deg,#031517e6,transparent 18%)}
-.collection-copy-v2[hidden]{display:none}
-.collection-tabs-v2{flex-wrap:wrap;gap:8px 22px}
-.collection-controls-v2{z-index:3}
-@media(max-width:760px){
-.collection-hero-v2.is-poster{height:calc(100vw + 82px);min-height:0;max-height:none;aspect-ratio:auto}
-.collection-frame-v2.collection-poster img{padding:0 0 82px}
-.collection-hero-v2.is-poster .collection-controls-v2{left:5%;right:5%;bottom:10px}
-.collection-tabs-v2{gap:0 14px;max-width:calc(100% - 55px)}
-.collection-tabs-v2 button{padding:8px 0}
-}
+
+/* Keep every campaign in the same hero frame and navigation on one line. */
+.collection-controls-v2{z-index:3;min-width:0}
+.collection-tabs-v2{flex:1;min-width:0;display:flex;flex-wrap:nowrap;overflow-x:auto;white-space:nowrap;gap:24px;scrollbar-width:none}
+.collection-tabs-v2::-webkit-scrollbar{display:none}
+.collection-tabs-v2 button{flex:0 0 auto;white-space:nowrap}
+#collection-pause{flex:0 0 auto;white-space:nowrap}
+.collection-offer-v2[hidden]{display:none}
+@media(max-width:760px){.collection-tabs-v2{gap:18px;max-width:none}.collection-tabs-v2 button{white-space:nowrap}.collection-controls-v2{align-items:center}}
