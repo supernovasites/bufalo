@@ -21,6 +21,16 @@ for(const [page,marks] of [['/live/',[25,75,50,75]],['/produtos/chopeira/',[50,1
 assert.equal((await post({page:'/painel/',kind:'view'})).status,400);
 assert.equal((await post({page:'/live/?email=private',kind:'view'})).status,400);
 assert.equal((await post({page:'/live/',kind:'product',key:'product-test',target:'loja.bufalogrowler.com.br/copo',label:'Copo teste'})).status,204);
+assert.equal((await post({page:'/produtos/chopeira/',kind:'scroll-section',key:'scroll-50',label:'Chopeiras OnTap'})).status,204);
+const chopeira=await homepageStats(db,7,'mobile','/produtos/chopeira/');
+assert.equal(chopeira.views,1);
+assert.equal(chopeira.clicks,1);
+assert.equal(chopeira.scroll.find(x=>x.percent===100).visits,1);
+assert.deepEqual(chopeira.scroll.find(x=>x.percent===50).sections,['Chopeiras OnTap']);
+const home=await homepageStats(db,7,'all','/');
+assert.equal(home.views,6);
+assert.equal(home.clicks,0);
+assert.ok(home.scroll.every(x=>x.visits===0 && x.sections.length===0));
 const all=await homepageStats(db,7,'all','all');
 assert.equal(all.views,8);assert.equal(all.clicks,2);assert.equal(all.pages.length,3);assert.equal(all.scroll.find(x=>x.percent===75).visits,1);assert.equal(all.scroll.find(x=>x.percent===100).visits,1);
 const live=await homepageStats(db,7,'mobile','/live/');

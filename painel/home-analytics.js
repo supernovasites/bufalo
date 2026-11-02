@@ -14,6 +14,8 @@
     'manada-instagram':'Instagram','mc-converter':'ManadaCash'
   };
   const sectionTitle = key => sectionNames[key] || (key.startsWith('popup-') ? 'Popup: ' + key.slice(6).replace(/-/g,' ') : key.replace(/-/g,' '));
+  $('click-page').value = '/';
+  const pageName = page => page === '/produtos/chopeira/' ? 'Chopeira' : 'Homepage';
   let loaded = false, currentData = null, currentRequest = 0;
   function make(tag,cls,text) {
     const el = document.createElement(tag);
@@ -77,12 +79,16 @@
   }
   function render(data) {
     currentData = data;
+    const name = pageName(data.page);
+    $('stats-page-title').textContent = 'Desempenho da ' + name;
+    $('stats-views-title').textContent = 'Acessos à ' + name;
+    $('scroll-title').textContent = 'Rolagem da ' + name;
     const pageList = $('stats-pages'); pageList.replaceChildren();
-    const pages = [...data.pages].filter(item=>Number(item.views)>0).sort((a,b)=>Number(b.views)-Number(a.views)||a.page.localeCompare(b.page)).slice(0,5);
+    const pages = [...data.pages].filter(item=>['/','/produtos/chopeira/'].includes(item.page)).sort((a,b)=>Number(b.views)-Number(a.views)||a.page.localeCompare(b.page)).slice(0,5);
     if (!pages.length) pageList.append(make('p','','Nenhum acesso registrado neste período.'));
     pages.forEach((item,index)=>{
       const row = make('div','metric-bar-row');
-      row.append(make('span','',(index+1) + '. ' + (item.page === '/' ? 'Homepage' : item.page)),make('strong','',number(item.views) + ' acessos'));
+      row.append(make('span','',(index+1) + '. ' + pageName(item.page)),make('strong','',number(item.views) + ' acessos'));
       pageList.append(row);
     });
     $('click-total').textContent = number(data.clicks);
@@ -132,7 +138,7 @@
     $('click-reload').disabled=true;
     setStatus('Carregando dados de cliques…');
     try {
-      const params = new URLSearchParams({days:$('click-days').value,device:$('click-device').value,page:'/'});
+      const params = new URLSearchParams({days:$('click-days').value,device:$('click-device').value,page:$('click-page').value});
       const response = await fetch('/painel/api/site-analytics?' + params,{cache:'no-store',credentials:'same-origin'});
       const json = await response.json();
       if (response.status === 401) { location.href='/painel/'; return; }
@@ -141,6 +147,7 @@
     } catch (error) { if (id === currentRequest) setStatus(error.message,true); }
     finally { if (id === currentRequest) $('click-reload').disabled=false; }
   }
+  $('click-page').addEventListener('change',()=>{ $('click-section').value='all'; load(); });
   $('click-days').addEventListener('change',load);
   $('click-device').addEventListener('change',load);
   $('click-section').addEventListener('change',updateElements);
