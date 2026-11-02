@@ -2,17 +2,15 @@
   'use strict';
   const popup = document.getElementById('black26-popup');
   if (!popup) return;
-  const calendar = new Intl.DateTimeFormat('en-US', {timeZone: 'America/Fortaleza', weekday: 'short'});
-  const isWeekday = () => !['Sat', 'Sun'].includes(calendar.format(new Date()));
-  if (!isWeekday()) return;
   const images = [
-    ['black-bufalo-floresta', 'Black Búfalo: garrafas verde-oliva em cenário de floresta. Até 30% OFF.'],
-    ['black-bufalo-pitaya', 'Black Búfalo: garrafas e copo Pitaya à beira da piscina. Até 30% OFF.']
+    ['black-bufalo-acai-bowl', 'Black Búfalo: Açaí Bowl. Grátis colher personalizada.'],
+    ['black-bufalo-tulipa-confraria', 'Black Búfalo: Tulipa Confraria.'],
+    ['black-bufalo-pitaya', 'Black Búfalo: coleção Rosa Pitaya. Até 30% OFF.']
   ];
   let currentImage = Math.floor(Math.random() * images.length);
   try {
     const previous = sessionStorage.getItem('bufalo_black26_banner');
-    if (previous === '0' || previous === '1') currentImage = (Number(previous) + 1) % images.length;
+    if (previous !== null && /^\d+$/.test(previous) && Number(previous) < images.length) currentImage = (Number(previous) + 1) % images.length;
     sessionStorage.setItem('bufalo_black26_banner', String(currentImage));
   } catch {}
   const image = popup.querySelector('img');
@@ -34,18 +32,8 @@
     document.body.style.overflow = previousOverflow || '';
     restoreScroll();
   });
-  const closeOnWeekend = () => { if (popup.open && !isWeekday()) popup.close(); };
-  document.addEventListener('visibilitychange', closeOnWeekend);
-  // Fortaleza is UTC-3: recheck at local midnight if the page stays open overnight.
-  const checkAtMidnight = () => {
-    const now = new Date(), next = new Date(now);
-    next.setUTCHours(3, 0, 0, 0);
-    if (next <= now) next.setUTCDate(next.getUTCDate() + 1);
-    setTimeout(() => { closeOnWeekend(); if (isWeekday()) checkAtMidnight(); }, next - now);
-  };
-  checkAtMidnight();
   setTimeout(() => {
-    if (!isWeekday() || document.querySelector('dialog[open]')) return;
+    if (document.querySelector('dialog[open]')) return;
     previousOverflow = document.body.style.overflow;
     previousScroll = {left: window.scrollX, top: window.scrollY};
     popup.showModal();

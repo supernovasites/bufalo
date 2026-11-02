@@ -757,31 +757,7 @@ root.querySelector('#camping-prev').onclick=()=>rail.scrollBy({left:-rail.client
 .bw-popup{padding:0;border:0;border-radius:8px;background:#fff;color:#142e32;width:min(294px,57.4vw,calc(50.4dvh - 91px));max-width:none;max-height:78dvh;overflow:visible;box-shadow:0 24px 90px #0005}
 .bw-popup::backdrop{background:#071b2099}.bw-grid{display:block;overflow:hidden;border-radius:8px}.bw-art-wrap{position:relative;aspect-ratio:1;overflow:hidden}.bw-art{display:block;width:100%;height:100%;object-fit:cover}.bw-art-title{position:absolute;top:18px;right:18px;left:18px;margin:0;color:#fff7ed;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:.92;text-align:right;text-shadow:0 2px 12px #0009}.bw-copy{font-family:Arial,Helvetica,sans-serif;background:#fff;padding:10px;display:flex;flex-direction:column;gap:7px;text-align:center}.bw-offer-title{margin:0;font-size:14px;font-weight:800}.bw-offer-price,.bw-offer-copy{margin:0;font-size:12px;font-weight:400;line-height:1.3}.bw-offer-price strong{font-weight:800}.bw-cta{display:flex;justify-content:center;align-items:center;min-height:38px;background:#142e32;color:#fff;border-radius:4px;font-size:12px;font-weight:700;padding:7px 5px;text-align:center}.bw-cta:hover{background:#315354}.bw-close{position:absolute;right:0;top:-46px;min-height:38px;padding:7px 11px;background:#fff;color:#142e32;border:1px solid #dce0df;border-radius:999px;font-family:Arial,Helvetica,sans-serif;font-size:12px;font-weight:700;display:flex;gap:9px;align-items:center;box-shadow:0 2px 8px #0002}.bw-close span{font-size:22px;line-height:1}.bw-open[hidden]{display:none}
 </style>
-<dialog id="bufalo-weekend" class="bw-popup" aria-label="Búfalo Weekend — Chopeira Búfalo 2L">
-<button class="bw-close" type="button" data-bw-close autofocus>Fechar oferta <span aria-hidden="true">×</span></button>
-<div class="bw-grid"><div class="bw-art-wrap"><img class="bw-art" src="assets/campaigns/bufalo-weekend.jpg?v=drink-corrected" alt="Búfalo Weekend. Chopeira Búfalo 2L à beira da piscina." width="1254" height="1254"></div>
-<div class="bw-copy"><p class="bw-offer-title">Chopeiras Búfalo</p><p class="bw-offer-price">De <s>R$ 1250</s> por <strong>R$ 995</strong> Só hoje!</p><a class="bw-cta" href="/chopeira">Compre agora</a></div></div>
-</dialog>
-<script id="bufalo-weekend-script">
-(async()=>{
-const popup=document.getElementById('bufalo-weekend');
-const calendar=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Fortaleza',weekday:'short',year:'numeric',month:'2-digit',day:'2-digit'});
-const dayState=(date=new Date())=>{const p=Object.fromEntries(calendar.formatToParts(date).map(x=>[x.type,x.value]));return {weekend:p.weekday==='Sat'||p.weekday==='Sun',key:p.year+'-'+p.month+'-'+p.day}};
-const state=dayState();
-const active=state.weekend;
-if(!active)return;
-const dismissKey='bufalo-weekend-dismissed-v3:'+state.key;
-let dismissed=false;try{dismissed=sessionStorage.getItem(dismissKey)==='1'}catch{}
-if(dismissed)return;
-let previousOverflow,previousScroll;
-const restoreScroll=()=>{if(previousScroll)window.scrollTo({...previousScroll,behavior:'instant'})};
-const open=()=>{if(!dayState().weekend||document.querySelector('dialog[open]'))return;previousOverflow=document.body.style.overflow;previousScroll={left:window.scrollX,top:window.scrollY};popup.showModal();document.body.style.overflow='hidden';restoreScroll()};
-popup.querySelectorAll('[data-bw-close]').forEach(button=>button.addEventListener('click',()=>popup.close()));
-popup.addEventListener('click',event=>{const r=popup.getBoundingClientRect();if(event.target===popup&&(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom))popup.close()});
-popup.addEventListener('close',()=>{document.body.style.overflow=previousOverflow||'';restoreScroll();try{sessionStorage.setItem(dismissKey,'1')}catch{}});
-setTimeout(open,600);
-})();
-</script>
+
 
 
 
@@ -790,10 +766,10 @@ setTimeout(open,600);
 
 <dialog id="black26-popup" class="bw-popup" aria-label="Ofertas Black Búfalo" aria-describedby="black26-popup-copy">
 <button class="bw-close" type="button" data-black26-close autofocus>Fechar oferta <span aria-hidden="true">×</span></button>
-<div class="bw-grid"><a class="bw-art-wrap" style="display:block" href="https://www.bufalogrowler.com.br/campanhas/black26/" aria-label="Aproveitar ofertas Black Búfalo"><img class="bw-art" src="/assets/campaigns/black26/black-bufalo-floresta.webp" alt="Black Búfalo. Até 30% OFF." width="1254" height="1254" decoding="async"></a>
+<div class="bw-grid"><a class="bw-art-wrap" style="display:block" href="https://www.bufalogrowler.com.br/campanhas/black26/" aria-label="Aproveitar ofertas Black Búfalo"><img class="bw-art" src="/assets/campaigns/black26/black-bufalo-acai-bowl.webp" alt="Black Búfalo. Até 30% OFF." width="1254" height="1254" decoding="async"></a>
 <div class="bw-copy"><p id="black26-popup-copy" class="bw-offer-copy">A Black Búfalo já começou! Aproveite as ofertas antes que acabem.</p><a class="bw-cta" href="https://www.bufalogrowler.com.br/campanhas/black26/">Aproveitar ofertas</a></div></div>
 </dialog>
-<script defer src="/assets/black26-popup.js?v=20261030-four-banners"></script>
+<script defer src="/assets/black26-popup.js?v=20261102-three-products"></script>
 
 </body></html>
 
