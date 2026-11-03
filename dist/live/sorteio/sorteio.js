@@ -4,17 +4,6 @@
   const controls=['draw','clear-names','confirm','names'];
   const feedback=(text,error=false)=>{ $('feedback').textContent=text; $('feedback').classList.toggle('error',error); };
   let inkKey=null,inkRevealed=false,lastInkPoint=null;
-  let eraserTimer=null;
-  function stopEraser() {
-    clearTimeout(eraserTimer);eraserTimer=null;stopSound('eraser');
-  }
-  function soundEraser() {
-    if(!$('sound').checked)return;
-    if(!audio||audio.state==='suspended')prepareSound();
-    if(!eraserTimer)playSound('eraser');
-    clearTimeout(eraserTimer);
-    eraserTimer=setTimeout(stopEraser,100);
-  }
   let claimInterval=null,claimDeadline=0,claimKey=null;
   function resetClaimClock() {
     clearInterval(claimInterval);claimInterval=null;claimDeadline=0;claimKey=null;
@@ -36,7 +25,7 @@
   }
   function startClaimClock() {
     if(!inkKey||claimKey===inkKey)return;
-    stopEraser();stopSound('reveal');
+    stopSound('reveal');
     prepareSound();
     resetClaimClock();claimKey=inkKey;claimDeadline=Date.now()+60000;
     $('claim-clock').hidden=false;updateClaimClock();
@@ -50,14 +39,12 @@
     catch {feedback('Não foi possível copiar. Selecione o nome e copie manualmente.',true);}
   }
   function revealName() {
-    stopEraser();
     inkRevealed=true;lastInkPoint=null;
     $('candidate-ink').hidden=true;$('reveal-name').hidden=true;
     copyName();
   }
   function coverName(key) {
     if(key===inkKey)return;
-    stopEraser();
     if(key!==claimKey)resetClaimClock();
     inkKey=key;inkRevealed=false;lastInkPoint=null;
     const canvas=$('candidate-ink');
@@ -88,13 +75,10 @@
     ctx.beginPath();ctx.moveTo(lastInkPoint?.x??x,lastInkPoint?.y??y);ctx.lineTo(x,y);ctx.stroke();
     ctx.beginPath();ctx.arc(x,y,ctx.lineWidth/2,0,Math.PI*2);ctx.fill();ctx.restore();
     lastInkPoint={x,y};
-    soundEraser();
   }
   $('candidate-ink').addEventListener('pointerdown',event=>{lastInkPoint=null;$('candidate-ink').setPointerCapture(event.pointerId);eraseInk(event);});
   $('candidate-ink').addEventListener('pointermove',eraseInk);
-  for(const type of ['pointerleave','pointerup','pointercancel'])$('candidate-ink').addEventListener(type,()=>{lastInkPoint=null;stopEraser();});
-  window.addEventListener('blur',stopEraser);
-  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopEraser();});
+  for(const type of ['pointerleave','pointerup','pointercancel'])$('candidate-ink').addEventListener(type,()=>{lastInkPoint=null;});
   $('reveal-name').addEventListener('click',revealName);
   $('copy-name').addEventListener('click',copyName);
   $('start-claim').addEventListener('click',startClaimClock);
@@ -132,9 +116,8 @@
   }
   const tracks={
     reveal:{},
-    eraser:{loop:true,volume:.16},
     timeout:{url:'/live/mesadj/sons/game-over.mp3'},
-    waiting:{url:'/live/mesadj/sons/trilha-espera-sorteio.mp3',volume:.02},
+    waiting:{url:'/live/mesadj/sons/trilha-espera-sorteio.mp3'},
     countdown:{url:'/live/mesadj/sons/contagem-bateria.mp3'},
     celebration:{url:'/live/mesadj/sons/celebracao.mp3'}
   };
@@ -149,19 +132,6 @@
     try {
       audio ||= new (window.AudioContext||window.webkitAudioContext)();
       audio.resume().catch(()=>{});
-      if(!tracks.eraser.buffer) {
-        const buffer=audio.createBuffer(1,audio.sampleRate,audio.sampleRate);
-        const samples=buffer.getChannelData(0);
-        let smooth=0;
-        for(let i=0;i<samples.length;i++) {
-          const noise=Math.random()*2-1;
-          smooth=.78*smooth+.22*noise;
-          const time=i/audio.sampleRate;
-          const edge=Math.min(time/.015,(1-time)/.015,1);
-          samples[i]=smooth*edge*(.55+.45*Math.sin(2*Math.PI*7*time)**2);
-        }
-        tracks.eraser.buffer=Promise.resolve(buffer);
-      }
       if(!tracks.reveal.buffer) {
         const duration=1.05;
         const buffer=audio.createBuffer(1,Math.ceil(audio.sampleRate*duration),audio.sampleRate);
@@ -194,8 +164,7 @@
       if(!buffer||token!==track.token||!$('sound').checked)return;
       const source=audio.createBufferSource();
       source.buffer=buffer;
-      source.loop=!!track.loop;
-      const gain=audio.createGain();gain.gain.value=track.volume??1;
+      const gain=audio.createGain();gain.gain.value=.03;
       source.connect(gain);gain.connect(audio.destination);
       track.source=source;source.start();return source;
     } catch { /* Audio failure must not interrupt a draw or confirmation. */ }
@@ -279,7 +248,7 @@
       feedback(error.message,true);
     } finally {busy=false;render();}
   }
-  $('sound').addEventListener('change',()=>{if(!$('sound').checked){stopEraser();stopSound('countdown');stopSound('reveal');stopSound('celebration');stopSound('timeout');stopSound('waiting');}else {prepareSound();if(claimInterval)playSound('waiting');}});
+  $('sound').addEventListener('change',()=>{if(!$('sound').checked){stopSound('countdown');stopSound('reveal');stopSound('celebration');stopSound('timeout');stopSound('waiting');}else {prepareSound();if(claimInterval)playSound('waiting');}});
   $('names').addEventListener('input',render);
   $('draw').addEventListener('click',()=>act('draw'));
   $('confirm').addEventListener('click',()=>act('confirm'));
