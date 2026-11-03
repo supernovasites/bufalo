@@ -2,7 +2,7 @@
   const root = document.querySelector('.photo-gallery');
   if (!root) return;
   const challenges = [
-    {id:'tote',label:'Desafio 1',price:1100,name:'Pandhar 20L Soft Cooler Petróleo',photo:'desafio-tote-atalaia-3x2-20261027.png',url:'https://loja.bufalogrowler.com.br/bolsa-termica-nagpuri-20l-petroleo',productImage:'pandhar-20l-petroleo-product.png'},
+    {id:'tote',label:'Desafio 1',price:1100,name:'Pandhar 20L Soft Cooler Petróleo',photo:'desafio-pandhar-alter-do-chao-fotoreferencia-20261103.png',url:'https://loja.bufalogrowler.com.br/bolsa-termica-nagpuri-20l-petroleo',productImage:'pandhar-20l-petroleo-product.png'},
     {id:'nag',label:'Desafio 2',price:2950,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-marajo-20261027.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
     {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-ver-o-peso-20261027.png',price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/kit-cimo-trio-de-forca-ax',productImage:'trio-cimo-product.png'},
     {id:'mestre',label:'Desafio 4',photo:'desafio-mestre-docas-20261027.png',price:1830,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/mestrebufaloontap7l',productImage:'mestre-product.png'}
