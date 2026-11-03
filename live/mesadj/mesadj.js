@@ -6,7 +6,9 @@
   const tracks=[...document.querySelectorAll('[data-track]')].map((card,index)=>{
     const audio=card.querySelector('audio'),play=card.querySelector('.play'),restart=card.querySelector('.restart'),stop=card.querySelector('.stop'),seek=card.querySelector('.seek'),volume=card.querySelector('.volume'),loop=card.querySelector('.loop'),status=card.querySelector('.track-status'),name=card.querySelector('h2').textContent;
     let starting=false,playbackVersion=0;
-    const updateVolume=()=>{audio.volume=Number(master.value)/100*Number(volume.value)/100;card.querySelector('.track-level').textContent=volume.value+'%';};
+    const background=card.closest('.sound-group').getAttribute('aria-labelledby')==='background-title';
+    if(background){volume.max='3';volume.step='0.1';volume.value='3';}
+    const updateVolume=()=>{const level=Math.max(0,Math.min(background?3:100,Number(volume.value)));audio.volume=Math.max(0,Math.min(100,Number(master.value)))/100*level/100;card.querySelector('.track-level').textContent=level+'%';};
     const updateTime=()=>{card.querySelector('.elapsed').textContent=time(audio.currentTime);card.querySelector('.duration').textContent=time(audio.duration);seek.value=Number.isFinite(audio.duration)&&audio.duration>0?audio.currentTime/audio.duration*100:0;};
     const render=()=>{
       const failed=Boolean(audio.error),ready=audio.readyState>=1&&!failed;
@@ -21,6 +23,7 @@
     };
     const start=async(fromBeginning=false)=>{
       if(starting||audio.readyState<1||audio.error)return;
+      if(background)tracks.forEach(track=>{if(track.background&&track.audio!==audio)track.pause();});
       starting=true;
       const version=++playbackVersion;
       try{if(fromBeginning)audio.currentTime=0;await audio.play();if(version===playbackVersion)message(name+' tocando.');}
@@ -28,6 +31,7 @@
       finally{starting=false;render();}
     };
     const halt=()=>{playbackVersion++;audio.pause();if(audio.readyState>=1)audio.currentTime=0;render();};
+    const pause=()=>{playbackVersion++;audio.pause();render();};
     const toggle=()=>{if(!audio.paused){audio.pause();message(name+' pausado.');}else return start();};
     play.addEventListener('click',toggle);restart.addEventListener('click',()=>start(true));stop.addEventListener('click',()=>{halt();message(name+' parado.');});
     volume.addEventListener('input',updateVolume);loop.addEventListener('change',()=>{audio.loop=loop.checked;});
@@ -36,7 +40,7 @@
     audio.addEventListener('timeupdate',updateTime);
     audio.addEventListener('error',()=>{render();message('Não foi possível carregar '+name+'. Atualize a página para tentar novamente.',true);});
     audio.loop=loop.checked;updateVolume();render();
-    return {halt,toggle,updateVolume};
+    return {halt,pause,toggle,updateVolume,background,audio};
   });
   master.addEventListener('input',()=>{document.getElementById('master-level').textContent=master.value+'%';tracks.forEach(track=>track.updateVolume());});
   const stopAll=()=>{tracks.forEach(track=>track.halt());message('Todos os sons foram parados.');};

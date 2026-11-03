@@ -34,18 +34,18 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
   controls.set('audio',audio);controls.set('h2',element({textContent:'Track '+index}));
   for(const name of ['.play','.restart','.stop','.seek','.volume','.loop','.track-status','.track-level','.elapsed','.duration'])controls.set(name,element());
   controls.get('.volume').value=index===2?'60':index===3?'40':'100';controls.get('.loop').checked=false;
-  return element({querySelector:selector=>controls.get(selector),controls});
+  return element({querySelector:selector=>controls.get(selector),closest:()=>({getAttribute:()=>index<3?'background-title':'effects-title'}),controls});
  });
  vm.runInNewContext(read('live/mesadj/mesadj.js').toString(),{
   document:{getElementById:id=>({'master-volume':master,'master-level':level,feedback,'stop-all':stopAll}[id]),querySelectorAll:()=>cards,createTextNode:text=>text,createElement:()=>element(),addEventListener:(event,handler)=>{keys[event]=handler;}},window:{addEventListener:(event,handler)=>{windowEvents[event]=handler;}}
  });
  const control=(index,name)=>cards[index].controls.get(name),audio=index=>control(index,'audio');
- assert.ok(cards.every(card=>card.controls.get('audio').paused));assert.equal(audio(0).volume,.8);assert.equal(audio(2).volume,.48);
- await control(0,'.play').listeners.click();await control(1,'.play').listeners.click();assert.equal(audio(0).paused,false);assert.equal(audio(1).paused,false);
+ assert.ok(cards.every(card=>card.controls.get('audio').paused));assert.ok(Math.abs(audio(0).volume-.024)<1e-9);assert.ok(Math.abs(audio(2).volume-.024)<1e-9);
+ await control(0,'.play').listeners.click();await control(1,'.play').listeners.click();assert.equal(audio(0).paused,true);assert.equal(audio(1).paused,false); await control(3,'.play').listeners.click(); await control(4,'.play').listeners.click(); assert.equal(audio(1).paused,false);assert.equal(audio(3).paused,false);assert.equal(audio(4).paused,false); await control(0,'.play').listeners.click();assert.equal(audio(1).paused,true);assert.equal(audio(3).paused,false);
  control(0,'.play').listeners.click();assert.equal(audio(0).paused,true);
  audio(0).currentTime=20;await control(0,'.restart').listeners.click();assert.equal(audio(0).currentTime,0);assert.equal(audio(0).paused,false);
- master.value='50';master.listeners.input();assert.equal(audio(2).volume,.3);assert.equal(level.textContent,'50%');
- control(0,'.volume').value='40';control(0,'.volume').listeners.input();assert.equal(audio(0).volume,.2);
+ master.value='50';master.listeners.input();assert.equal(audio(2).volume,.015);assert.equal(level.textContent,'50%');
+ control(0,'.volume').value='40';control(0,'.volume').listeners.input();assert.equal(audio(0).volume,.015); control(0,'.volume').value='1';control(0,'.volume').listeners.input();assert.equal(audio(0).volume,.005);
  control(0,'.seek').value='50';control(0,'.seek').listeners.input();assert.equal(audio(0).currentTime,30);
  control(0,'.loop').checked=true;control(0,'.loop').listeners.change();assert.equal(audio(0).loop,true);
  stopAll.listeners.click();assert.ok(cards.every(card=>{const a=card.controls.get('audio');return a.paused&&a.currentTime===0;}));
