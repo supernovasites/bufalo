@@ -7,8 +7,8 @@
     const audio=card.querySelector('audio'),play=card.querySelector('.play'),restart=card.querySelector('.restart'),stop=card.querySelector('.stop'),seek=card.querySelector('.seek'),volume=card.querySelector('.volume'),loop=card.querySelector('.loop'),status=card.querySelector('.track-status'),name=card.querySelector('h2').textContent;
     let starting=false,playbackVersion=0;
     const background=card.closest('.sound-group').getAttribute('aria-labelledby')==='background-title';
-    if(background){volume.max='3';volume.step='0.1';volume.value='3';}
-    const updateVolume=()=>{const level=Math.max(0,Math.min(background?3:100,Number(volume.value)));audio.volume=Math.max(0,Math.min(100,Number(master.value)))/100*level/100;card.querySelector('.track-level').textContent=level+'%';};
+    volume.max='3';volume.step='0.1';volume.value='3';
+    const updateVolume=()=>{const level=Math.max(0,Math.min(3,Number(volume.value)));audio.volume=Math.max(0,Math.min(100,Number(master.value)))/100*level/100;card.querySelector('.track-level').textContent=level+'%';};
     const updateTime=()=>{card.querySelector('.elapsed').textContent=time(audio.currentTime);card.querySelector('.duration').textContent=time(audio.duration);seek.value=Number.isFinite(audio.duration)&&audio.duration>0?audio.currentTime/audio.duration*100:0;};
     const render=()=>{
       const failed=Boolean(audio.error),ready=audio.readyState>=1&&!failed;
