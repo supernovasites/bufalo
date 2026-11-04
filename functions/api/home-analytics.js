@@ -26,7 +26,7 @@ export async function onRequestPost({ request, env }) {
   if (!label || /@|\b\d{8,}\b/.test(label) || !/^[a-zA-Z0-9/:._%-]*$/.test(target)) return deny(400, 'Rótulo inválido.');
   await ensureHomepageStats(env.LIVE_DB);
   if (data.kind === 'scroll-section') {
-    if (!['/','/produtos/chopeira/','/campanhas/black26/'].includes(page)) return deny(400,'Página inválida.');
+    if (!['/','/produtos/chopeira/','/campanhas/black26/','/live/'].includes(page)) return deny(400,'Página inválida.');
     await env.LIVE_DB.prepare("INSERT INTO site_scroll_sections (page,device,percent,label,day) VALUES (?,?,?,?,?) ON CONFLICT(page,device,percent) DO UPDATE SET label=excluded.label,day=excluded.day")
       .bind(page,data.device,Number(data.key.slice(7)),label,belemDay()).run();
     return new Response(null,{status:204,headers:{'Cache-Control':'no-store'}});

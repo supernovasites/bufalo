@@ -73,7 +73,7 @@
 
   let layoutSignature = '';
   function reportScrollSections(distance) {
-    if (!['/','/produtos/chopeira/','/campanhas/black26/'].includes(pagePath) || typeof document.querySelectorAll !== 'function') return;
+    if (!['/','/produtos/chopeira/','/campanhas/black26/','/live/'].includes(pagePath) || typeof document.querySelectorAll !== 'function') return;
     const landmarks = [...document.querySelectorAll('main section,body > section,footer,[data-bg-footer]')].filter(el=>el.getBoundingClientRect().height>0);
     const mapping = [25,50,75,100].map(percent=>{
       const y = Math.min(distance + innerHeight - 1, distance * percent / 100 + innerHeight - 1);

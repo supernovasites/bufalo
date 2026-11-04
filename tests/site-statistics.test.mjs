@@ -33,7 +33,9 @@ assert.equal(home.clicks,0);
 assert.ok(home.scroll.every(x=>x.visits===0 && x.sections.length===0));
 const all=await homepageStats(db,7,'all','all');
 assert.equal(all.views,8);assert.equal(all.clicks,2);assert.equal(all.pages.length,3);assert.equal(all.scroll.find(x=>x.percent===75).visits,1);assert.equal(all.scroll.find(x=>x.percent===100).visits,1);
+assert.equal((await post({page:'/live/',kind:'scroll-section',key:'scroll-75',label:'Desafio da Manada'})).status,204);
 const live=await homepageStats(db,7,'mobile','/live/');
+assert.deepEqual(live.scroll.find(x=>x.percent===75).sections,['Desafio da Manada']);
 assert.equal(live.views,1);assert.equal(live.clicks,1);assert.equal(live.topProduct.label,'Copo teste');assert.equal(live.elements[0].page,'/live/');
 assert.equal((await homepageStats(db,7,'desktop','all')).views,0);
 // Public aliases share one report; Black26 stays isolated from Homepage and Chopeira.
