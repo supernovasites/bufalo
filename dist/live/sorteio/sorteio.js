@@ -115,10 +115,10 @@
     if(!preserveNames)$('names').value=state.participants.join('\n');
   }
   const tracks={
-    reveal:{volume:.10},
+    reveal:{volume:.20},
     timeout:{url:'/live/mesadj/sons/game-over.mp3'},
-    waiting:{url:'/live/mesadj/sons/trilha-espera-sorteio.mp3',volume:.10},
-    countdown:{url:'/live/mesadj/sons/contagem-bateria.mp3',volume:.10},
+    waiting:{url:'/live/mesadj/sons/trilha-espera-sorteio.mp3',volume:.20},
+    countdown:{url:'/live/mesadj/sons/contagem-bateria.mp3',volume:.20},
     celebration:{url:'/live/mesadj/sons/celebracao.mp3'}
   };
   for(const track of Object.values(tracks).filter(track=>track.url)) {
