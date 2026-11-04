@@ -7,6 +7,7 @@ test('featured collections retain every color, SKU and stacked live price in the
   const html = readFileSync(new URL('../live/index.html', import.meta.url), 'utf8');
   const generated = featuredLiveCollections();
   assert.ok(html.includes(generated));
+  assert.ok(html.indexOf(generated) < html.indexOf('<section class="black-bufalo"'));
   assert.ok(generated.indexOf('id="live-acai-bowl"') < generated.indexOf('id="live-tulipa-confraria"'));
   const {collections} = JSON.parse(readFileSync(new URL('../live/featured-collections.json', import.meta.url)));
   assert.deepEqual(collections.map(c => c.cards.length), [3, 4]);

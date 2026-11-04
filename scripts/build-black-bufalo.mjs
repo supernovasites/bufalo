@@ -3,6 +3,7 @@ import {fileURLToPath} from 'node:url';
 import {featuredLiveCollections} from './featured-live-collections.mjs';
 const root=fileURLToPath(new URL('../',import.meta.url));
 let html=await fs.readFile(root+'live/index.html','utf8');
+html=html.replace(/<section class="product-row black-color-row featured-collection\b[\s\S]*?<\/section>/g,'');
 if(html.includes('<section class="black-bufalo"')){const start=html.indexOf('<section class="black-bufalo"');const end=html.indexOf('<section class="live-category-group" id="live-chopeiras"',start);html=html.slice(0,start)+html.slice(end);html=html.replace('<a href="#black-bufalo">Black Búfalo</a>','').replace('<link rel="stylesheet" href="black-bufalo.css?v=20261027">','');}
 const data=JSON.parse(await fs.readFile(root+'live/catalog-data.json','utf8'));
 html=html.replaceAll('<link rel="stylesheet" href="black-bufalo.css?v=20261027">','');
@@ -45,7 +46,7 @@ const rows=groups.map(([color,technical,bg,accent,names],i)=>{
  const cards=names.map(name=>card(name,technical,color)).filter(Boolean); 
  return `<section class="product-row black-color-row" style="--color-bg:${bg};--color-accent:${accent}" aria-labelledby="${id}"><div class="product-row-heading"><div><span class="black-row-number">0${i+1} / ESCOLHA SUA COR</span><h3 class="category-title" id="${id}">${color}<span class="black-row-count">${cards.length} modelos</span></h3></div><div class="row-navigation"><button class="row-arrow" type="button" data-direction="-1" aria-controls="${id}-track" aria-label="Ver produtos anteriores em ${color}">‹</button><button class="row-arrow" type="button" data-direction="1" aria-controls="${id}-track" aria-label="Ver próximos produtos em ${color}">›</button></div></div><div class="product-track" id="${id}-track" tabindex="0" role="group" aria-label="Produtos em ${color}">${cards.join('')}</div></section>`;
 }).join('\n');
-const section=`<section class="black-bufalo" id="black-bufalo" aria-labelledby="black-bufalo-title"><header class="black-heading"><div><p class="eyebrow">SUAS CORES FAVORITAS. A MESMA MANADA.</p><h2 id="black-bufalo-title">Black Búfalo<span>.</span></h2></div><p>Encontre sua cor.<br>Combine seus favoritos.</p></header>${rows}${featuredLiveCollections()}</section>`;
+const section=`${featuredLiveCollections()}<section class="black-bufalo" id="black-bufalo" aria-labelledby="black-bufalo-title"><header class="black-heading"><div><p class="eyebrow">SUAS CORES FAVORITAS. A MESMA MANADA.</p><h2 id="black-bufalo-title">Black Búfalo<span>.</span></h2></div><p>Encontre sua cor.<br>Combine seus favoritos.</p></header>${rows}</section>`;
 if(html.includes('id="black-bufalo"'))throw Error('Section already exists');
 html=html.replace('<section class="live-category-group" id="live-chopeiras"',section+'\n<section class="live-category-group" id="live-chopeiras"');
 html=html.replace('<a href="#live-chopeiras">','<a href="#black-bufalo">Black Búfalo</a><a href="#live-chopeiras">');
