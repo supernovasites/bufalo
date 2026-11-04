@@ -119,7 +119,7 @@
     timeout:{url:'/live/mesadj/sons/game-over.mp3'},
     waiting:{url:'/live/mesadj/sons/trilha-espera-sorteio.mp3',volume:.20},
     countdown:{url:'/live/mesadj/sons/contagem-bateria.mp3',volume:.20},
-    celebration:{url:'/live/mesadj/sons/celebracao.mp3'}
+    celebration:{url:'/live/mesadj/sons/celebracao.mp3',volume:.20}
   };
   for(const track of Object.values(tracks).filter(track=>track.url)) {
     track.bytes=fetch(track.url).then(response=>{
