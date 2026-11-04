@@ -64,3 +64,17 @@ const middleware=fs.readFileSync('functions/_middleware.js','utf8');
 assert.ok(middleware.includes("'/painel/estatisticas'"));
 assert.ok(middleware.includes('HTMLRewriter'));
 console.log('PASS: legacy history, all pages, page/device filters, product leader, exclusive unique scroll per page, invalid/admin path rejection, tracker coverage and report controls.');
+
+// Inclusive date boundaries apply to totals and the page ranking.
+const {analyticsRange}=await import(libUrl);
+const yesterday=belemDay(Date.now()-86400000);
+assert.deepEqual(analyticsRange('yesterday'),{start:yesterday,end:yesterday});
+assert.throws(()=>analyticsRange('custom','2026-02-30','2026-03-01'));
+assert.throws(()=>analyticsRange('custom',belemDay(),yesterday));
+assert.deepEqual(analyticsRange('custom',yesterday,belemDay()),{start:yesterday,end:belemDay()});
+sql.prepare('INSERT INTO site_interactions VALUES (?,?,?,?,?,?,?,?,?)').run('/live/',yesterday,'mobile','view','homepage','page-load','Visita','/live/',4);
+const previous=await homepageStats(db,1,'mobile','/live/',analyticsRange('yesterday'));
+assert.equal(previous.views,4);
+assert.equal(previous.pages.find(x=>x.page==='/live/').views,4);
+assert.equal((await homepageStats(db,1,'mobile','/live/')).views,1);
+console.log('PASS: today, yesterday, inclusive date ranges and invalid dates.');

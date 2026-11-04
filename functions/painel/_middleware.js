@@ -1,5 +1,5 @@
 import { campaigns, campaignSchema, campaignEnabled } from '../_lib/campaigns.js';
-import { homepageStats } from '../_lib/home-analytics.js';
+import { homepageStats, analyticsRange } from '../_lib/home-analytics.js';
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
 const encoder = new TextEncoder();
 const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2,'0')).join('');
@@ -43,12 +43,16 @@ async function handler(context) {
       const token = tokenFrom(request);
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       if (!active) return json({error:'Entre no painel para ver as estatísticas.'},401);
-      const days = Number(url.searchParams.get('days') || '7');
+      const period = url.searchParams.get('days') || '1';
+      let range;
+      try { range = analyticsRange(period,url.searchParams.get('start'),url.searchParams.get('end')); }
+      catch (error) { return json({error:error.message},400); }
+      const days = Math.round((Date.parse(range.end)-Date.parse(range.start))/86400000)+1;
       const device = url.searchParams.get('device') || 'all';
-      if (![1,7,30,90].includes(days) || !['all','mobile','tablet','desktop'].includes(device)) return json({error:'Filtro inválido.'},400);
+      if (!['all','mobile','tablet','desktop'].includes(device)) return json({error:'Filtro inválido.'},400);
       const page = url.searchParams.get('page') || (path.endsWith('/home-analytics') ? '/' : 'all');
       if (page !== 'all' && !/^\/[a-zA-Z0-9_./%-]{0,159}$/.test(page)) return json({error:'Página inválida.'},400);
-      return json(await homepageStats(db,days,device,page));
+      return json(await homepageStats(db,days,device,page,range));
     }
     if (path === '/painel/api/campaigns') {
       const token = tokenFrom(request);

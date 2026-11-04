@@ -15,6 +15,15 @@
   };
   const sectionTitle = key => sectionNames[key] || (key.startsWith('popup-') ? 'Popup: ' + key.slice(6).replace(/-/g,' ') : key.replace(/-/g,' '));
   $('click-page').value = '/';
+  $('click-days').value = '1';
+  const today = new Intl.DateTimeFormat('en-CA',{timeZone:'America/Belem',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  for (const id of ['click-start','click-end']) { $(id).value = today; $(id).max = today; }
+  function dateControls() {
+    const custom = $('click-days').value === 'custom';
+    $('click-start-label').hidden = !custom;
+    $('click-end-label').hidden = !custom;
+  }
+  dateControls();
   const pageName = page => ({'/':'Homepage','/produtos/chopeira/':'Chopeira','/campanhas/black26/':'Black26','/live/':'Live'})[page] || page;
   let loaded = false, currentData = null, currentRequest = 0;
   function make(tag,cls,text) {
@@ -144,6 +153,11 @@
     setStatus('Carregando dados de cliques…');
     try {
       const params = new URLSearchParams({days:$('click-days').value,device:$('click-device').value,page:$('click-page').value});
+      if ($('click-days').value === 'custom') {
+        const start = $('click-start').value, end = $('click-end').value;
+        if (!start || !end || start > end || end > today) throw new Error('Selecione um intervalo válido, até hoje.');
+        params.set('start',start); params.set('end',end);
+      }
       const response = await fetch('/painel/api/site-analytics?' + params,{cache:'no-store',credentials:'same-origin'});
       const json = await response.json();
       if (response.status === 401) { location.href='/painel/'; return; }
@@ -153,7 +167,9 @@
     finally { if (id === currentRequest) $('click-reload').disabled=false; }
   }
   $('click-page').addEventListener('change',()=>{ $('click-section').value='all'; load(); });
-  $('click-days').addEventListener('change',load);
+  $('click-days').addEventListener('change',()=>{dateControls();load();});
+  $('click-start').addEventListener('change',load);
+  $('click-end').addEventListener('change',load);
   $('click-device').addEventListener('change',load);
   $('click-section').addEventListener('change',updateElements);
   $('click-reload').addEventListener('click',load);
