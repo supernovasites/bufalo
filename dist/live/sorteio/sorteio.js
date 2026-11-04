@@ -115,10 +115,10 @@
     if(!preserveNames)$('names').value=state.participants.join('\n');
   }
   const tracks={
-    reveal:{},
+    reveal:{volume:.05},
     timeout:{url:'/live/mesadj/sons/game-over.mp3'},
     waiting:{url:'/live/mesadj/sons/trilha-espera-sorteio.mp3'},
-    countdown:{url:'/live/mesadj/sons/contagem-bateria.mp3'},
+    countdown:{url:'/live/mesadj/sons/contagem-bateria.mp3',volume:.05},
     celebration:{url:'/live/mesadj/sons/celebracao.mp3'}
   };
   for(const track of Object.values(tracks).filter(track=>track.url)) {
@@ -164,7 +164,7 @@
       if(!buffer||token!==track.token||!$('sound').checked)return;
       const source=audio.createBufferSource();
       source.buffer=buffer;
-      const gain=audio.createGain();gain.gain.value=.03;
+      const gain=audio.createGain();gain.gain.value=track.volume??.03;
       source.connect(gain);gain.connect(audio.destination);
       track.source=source;source.start();return source;
     } catch { /* Audio failure must not interrupt a draw or confirmation. */ }
