@@ -67,3 +67,7 @@ A seção fica imediatamente acima do banner Mestre Cervejeiro. Inclui os 11 ví
 `stories.js` mantém só um vídeo no DOM, no card central. Laterais e camadas da fila usam capas estáticas. O vídeo avança ao terminar; cada foto permanece por 3 segundos efetivamente visíveis. Arrastar para a esquerda avança; para a direita retorna. Também há navegação pelos cards laterais e pelas teclas direcionais. A sequência é circular. O player pausa fora da tela, com a aba oculta ou enquanto um modal estiver aberto. O banner inicial continua independente.
 
 Ao editar a seção, sincronizar HTML, `stories.js`, `stories.css` e `media/stories/` em `dist/produtos/chopeira/`. Validação: `node tests/chopeira-stories.cjs`, além dos testes existentes de chopeira, mídia e hero; inspeção em 390 px e 1440 px com arraste e reprodução reais.
+
+## Cupom Black20 (05/11/2026)
+
+Os 12 cards com preço da página exibem o valor regular riscado, o valor com 20% de desconto e um botão para copiar `Black20`, com confirmação acessível e alternativa de cópia quando a Clipboard API não estiver disponível. Inclui kit 7L, modelos On TAP, Kundi, bag e peças de reposição. A página carrega `black20.js` e `black20.css` no lugar de `kit-price.js`: o desconto não acumula com os preços de fim de semana. O cupom deve ser aplicado no carrinho da loja; esta alteração não configura cupons no checkout. Manter `dist/produtos/chopeira/` sincronizado. Validação: `node --test tests/chopeira-black20.test.mjs`.
