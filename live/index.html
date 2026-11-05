@@ -571,16 +571,15 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
 </style>
 <style id="product-coupon-copy-style">
 .selection .with-coupon {
-  display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:4px 8px;
-  box-sizing:border-box; width:100%; min-height:48px; margin:10px 0 14px; padding:10px 8px;
-  border:1px dashed #99521e; border-radius:6px; background:#fff0d9; color:#683610;
-  font-size:12px; font-weight:600; line-height:1.35; text-align:center; cursor:pointer;
-  transition:background .2s,border-color .2s;
+  display:flex; flex-wrap:wrap; align-items:center; gap:3px 5px;
+  box-sizing:border-box; width:fit-content; max-width:100%; margin:4px 0 14px; padding:3px 0;
+  border:0; border-radius:3px; background:transparent; color:#617273;
+  font-size:11px; font-weight:400; line-height:1.4; cursor:pointer;
 }
-.selection .with-coupon strong { font-size:14px; font-weight:800; letter-spacing:.4px; overflow-wrap:anywhere; }
-.selection .with-coupon:hover { background:#ffe0ad; border-color:#683610; }
-.selection .with-coupon:focus-visible { outline:3px solid #142e32; outline-offset:3px; }
-.selection .with-coupon[data-copied="true"] { background:#e1f3e6; border-color:#28603b; color:#1e512f; }
+.selection .with-coupon strong { font-size:11px; font-weight:700; letter-spacing:0; overflow-wrap:anywhere; }
+.selection .with-coupon:hover { color:#142e32; text-decoration:underline; text-underline-offset:3px; }
+.selection .with-coupon:focus-visible { outline:2px solid #142e32; outline-offset:3px; }
+.selection .with-coupon[data-copied="true"] { color:#28603b; }
 </style>
 <script id="product-coupon-navigation">
 (() => {
