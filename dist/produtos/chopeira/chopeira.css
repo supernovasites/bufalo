@@ -539,3 +539,19 @@ body{background:#f2f5ef}
   .color-chooser-title{font-size:13px}
   .color-swatch{font-size:11px;min-width:64px}
 }
+
+/* Keep swatches with the group heading and constrain mobile page overflow. */
+.variant-heading>div:first-child{min-width:0}
+.variant-heading h2 .title-colors{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;align-items:center}
+.title-color{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--swatch);border:1px solid #142e3240;box-shadow:0 0 0 2px #fff9;flex:none}
+@media(max-width:760px){
+ html,body{max-width:100%;overflow-x:hidden}
+ @supports(overflow:clip){html,body{overflow-x:clip}}
+ main,.product-sections,.variant-group,.variant-rail{min-width:0;max-width:100%}
+ .variant-heading{flex-wrap:wrap}
+ .variant-heading>div:first-child{flex:1 1 190px}
+ .variant-controls{flex:0 0 auto;max-width:100%}
+ .variant-rail{width:100%;overscroll-behavior-x:contain}
+ .variant-heading h2 .title-colors{gap:7px;margin-top:10px}
+ .title-color{width:12px;height:12px}
+}
