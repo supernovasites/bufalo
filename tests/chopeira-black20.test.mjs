@@ -26,3 +26,22 @@ test('copies exact coupon and announces success or a failed fallback',async()=>{
   if(fail){assert.equal(removed,true);assert.match(status.textContent,/Digite Black20/);}else{assert.equal(copied,'Black20');assert.match(status.textContent,/Cupom copiado/);}
  }
 });
+
+test('2L variants show 1245 regular and 996 with coupon; popup has functional controls',()=>{
+ const html=read('produtos/chopeira/index.html');
+ assert.equal((html.match(/data-black20-original="1245"/g)||[]).length,2);
+ assert.equal((html.match(/R\$\s*996,00/g)||[]).length,2);
+ assert.equal((html.match(/class="black20-condition"/g)||[]).length,12);
+ assert.match(html,/<dialog class="black20-popup"/);
+ assert.match(html,/class="black20-popup-shop"/);
+ for(const f of ['black20-popup.js','images/black20-campanha-20261105.png']){
+  if(f.endsWith('.js'))assert.equal(read('produtos/chopeira/'+f),read('dist/produtos/chopeira/'+f));
+  else assert.deepEqual(readFileSync(new URL('produtos/chopeira/'+f,root)),readFileSync(new URL('dist/produtos/chopeira/'+f,root)));
+ }
+});
+test('popup opens once per session without blocking on silent decorative video',()=>{
+ let opened=0,timer;const storage=new Map(),handlers={};
+ const popup={showModal(){opened++},querySelector(){return {addEventListener(){}}},addEventListener(e,fn){handlers[e]=fn}};
+ const context={document:{getElementById:()=>popup,querySelector:()=>null,querySelectorAll:()=>[{paused:false,controls:false,muted:true}],body:{style:{overflow:''}},hidden:false},sessionStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)},setTimeout:fn=>timer=fn};
+ vm.runInNewContext(read('produtos/chopeira/black20-popup.js'),context);timer();assert.equal(opened,1);timer();assert.equal(opened,1);handlers.close();assert.equal(context.document.body.style.overflow,'');
+});
