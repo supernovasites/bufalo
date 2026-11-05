@@ -545,8 +545,9 @@ body{background:#f2f5ef}
 .variant-heading h2 .title-colors{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;align-items:center}
 .title-color{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--swatch);border:1px solid #142e3240;box-shadow:0 0 0 2px #fff9;flex:none}
 @media(max-width:760px){
- html,body{max-width:100%;overflow-x:hidden}
- @supports(overflow:clip){html,body{overflow-x:clip}}
+ html,body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}
+ main{width:100%;overflow-x:hidden}
+ @supports(overflow:clip){main{overflow-x:clip}}
  main,.product-sections,.variant-group,.variant-rail{min-width:0;max-width:100%}
  .variant-heading{flex-wrap:wrap}
  .variant-heading>div:first-child{flex:1 1 190px}
@@ -554,4 +555,13 @@ body{background:#f2f5ef}
  .variant-rail{width:100%;overscroll-behavior-x:contain}
  .variant-heading h2 .title-colors{gap:7px;margin-top:10px}
  .title-color{width:12px;height:12px}
+}
+
+/* Keep mobile carousels inside the viewport, including Safari. */
+@media(max-width:760px){
+ main>.product-sections,main>.kundi-parts{width:100%;min-width:0;max-width:100%}
+ .variant-group{width:100%;min-width:0;max-width:100%}
+ .variant-rail,.kundi-parts .kundi-parts-products{min-width:0;max-width:100%;contain:inline-size;overscroll-behavior-x:contain}
+ .variant-rail .product-copy,.variant-heading>*{min-width:0}
+ .variant-rail .product-copy{width:100%;overflow-wrap:anywhere}
 }
