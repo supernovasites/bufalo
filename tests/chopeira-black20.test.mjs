@@ -33,8 +33,8 @@ test('2L variants show 1245 regular and 996 with coupon; popup has functional co
  assert.equal((html.match(/R\$\s*996,00/g)||[]).length,2);
  assert.equal((html.match(/class="black20-condition"/g)||[]).length,12);
  assert.match(html,/<dialog class="black20-popup"/);
- assert.match(html,/class="black20-popup-shop"/);
- for(const f of ['black20-popup.js','images/black20-campanha-20261105.png']){
+ assert.match(html,/class="black20-popup-shop bw-cta"/);
+ for(const f of ['black20-popup.js','images/black20-popup-weekend-original-20261105.png']){
   if(f.endsWith('.js'))assert.equal(read('produtos/chopeira/'+f),read('dist/produtos/chopeira/'+f));
   else assert.deepEqual(readFileSync(new URL('produtos/chopeira/'+f,root)),readFileSync(new URL('dist/produtos/chopeira/'+f,root)));
  }

@@ -2,7 +2,7 @@
  'use strict';
  const popup=document.getElementById('black20-popup');
  if(!popup || typeof popup.showModal!=='function')return;
- const key='bufalo_chopeira_black20_20261105';
+ const key='bufalo_chopeira_black20_weekend_20261105';
  let previousFocus,previousOverflow;
  popup.querySelector('.black20-popup-close').addEventListener('click',()=>popup.close());
  popup.querySelector('.black20-popup-shop').addEventListener('click',()=>{
