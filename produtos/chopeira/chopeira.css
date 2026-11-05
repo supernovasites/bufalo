@@ -565,3 +565,24 @@ body{background:#f2f5ef}
  .variant-rail .product-copy,.variant-heading>*{min-width:0}
  .variant-rail .product-copy{width:100%;overflow-wrap:anywhere}
 }
+
+/* Contain positioned accessibility labels within their own carousel cards. */
+.variant-rail,
+.kundi-parts-products,
+.ontap-product,
+.black20-offer{position:relative}
+
+/* Bound the document itself as well as main; Safari must not pan into empty space. */
+html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
+@supports(overflow:clip){
+ html[data-page-type="chopeira"],
+ html[data-page-type="chopeira"] body,
+ html[data-page-type="chopeira"] main{overflow-x:clip}
+}
+@media(max-width:760px){
+ #bg-site-footer .footer-signature{grid-template-columns:82px minmax(0,1fr)}
+ #bg-site-footer .footer-signature>div{min-width:0}
+ #bg-site-footer .footer-signature h2{white-space:normal!important;overflow-wrap:anywhere}
+ .manada-stories{overflow:hidden}
+ @supports(overflow:clip){.manada-stories{overflow:clip}}
+}
