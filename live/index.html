@@ -570,9 +570,17 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
 }
 </style>
 <style id="product-coupon-copy-style">
-.selection .with-coupon { cursor:pointer; width:fit-content; border-radius:4px; }
-.selection .with-coupon:hover { text-decoration:underline; text-underline-offset:3px; }
-.selection .with-coupon:focus-visible { outline:2px solid #142e32; outline-offset:4px; }
+.selection .with-coupon {
+  display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:4px 8px;
+  box-sizing:border-box; width:100%; min-height:48px; margin:10px 0 14px; padding:10px 8px;
+  border:1px dashed #99521e; border-radius:6px; background:#fff0d9; color:#683610;
+  font-size:12px; font-weight:600; line-height:1.35; text-align:center; cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+.selection .with-coupon strong { font-size:14px; font-weight:800; letter-spacing:.4px; overflow-wrap:anywhere; }
+.selection .with-coupon:hover { background:#ffe0ad; border-color:#683610; }
+.selection .with-coupon:focus-visible { outline:3px solid #142e32; outline-offset:3px; }
+.selection .with-coupon[data-copied="true"] { background:#e1f3e6; border-color:#28603b; color:#1e512f; }
 </style>
 <script id="product-coupon-navigation">
 (() => {
@@ -603,6 +611,9 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
   const enableCoupon = element => {
     if (element.dataset.couponEnabled) return;
     element.dataset.couponEnabled = 'true';
+    const prefix = element.firstChild;
+    if (prefix && prefix.nodeType === Node.TEXT_NODE) prefix.textContent = 'Copiar cupom ';
+    else element.insertBefore(document.createTextNode('Copiar cupom '), element.firstChild);
     element.setAttribute('role', 'button');
     element.setAttribute('tabindex', '0');
     element.setAttribute('aria-label', 'Copiar cupom ' + element.querySelector('strong').textContent.trim());
@@ -621,6 +632,7 @@ document.getElementById('copy-ai-prompt').addEventListener('click',async()=>{
     const copied = await copyCoupon(code);
     element.dataset.copying = 'false';
     if (copied) {
+      element.dataset.copied = 'true';
       window.bufaloAnalytics?.track('coupon_copy',{coupon:code});
       const prefix = element.firstChild;
       if (prefix && prefix.nodeType === Node.TEXT_NODE) prefix.textContent = 'Cupom copiado: ';
