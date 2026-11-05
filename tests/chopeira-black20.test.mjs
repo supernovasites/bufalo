@@ -4,10 +4,10 @@ import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 const root=new URL('../',import.meta.url);
 const read=p=>readFileSync(new URL(p,root),'utf8');
-test('all twelve chopeira offers show regular and Black20 prices without weekend overwrite',()=>{
+test('all seventeen chopeira offers show regular and Black20 prices without weekend overwrite',()=>{
  const html=read('produtos/chopeira/index.html');
  const offers=[...html.matchAll(/<div class="black20-offer" data-black20-original="([\d.]+)">([\s\S]*?)<\/div>/g)];
- assert.equal(offers.length,12);
+ assert.equal(offers.length,17);
  for(const [,original,body] of offers){
   const currency=n=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(n);
   assert.ok(body.includes('<s>'+currency(Number(original))+'</s>'));
@@ -29,9 +29,9 @@ test('copies exact coupon and announces success or a failed fallback',async()=>{
 
 test('2L variants show 1245 regular and 996 with coupon; popup has functional controls',()=>{
  const html=read('produtos/chopeira/index.html');
- assert.equal((html.match(/data-black20-original="1245"/g)||[]).length,2);
- assert.equal((html.match(/R\$\s*996,00/g)||[]).length,2);
- assert.equal((html.match(/class="black20-condition"/g)||[]).length,12);
+ assert.equal((html.match(/data-black20-original="1245"/g)||[]).length,6);
+ assert.equal((html.match(/R\$\s*996,00/g)||[]).length,6);
+ assert.equal((html.match(/class="black20-condition"/g)||[]).length,17);
  assert.match(html,/<dialog class="black20-popup"/);
  assert.match(html,/class="black20-popup-shop bw-cta"/);
  for(const f of ['black20-popup.js','images/black20-popup-weekend-original-20261105.png']){
@@ -44,4 +44,16 @@ test('popup opens once per session without blocking on silent decorative video',
  const popup={showModal(){opened++},querySelector(){return {addEventListener(){}}},addEventListener(e,fn){handlers[e]=fn}};
  const context={document:{getElementById:()=>popup,querySelector:()=>null,querySelectorAll:()=>[{paused:false,controls:false,muted:true}],body:{style:{overflow:''}},hidden:false},sessionStorage:{getItem:k=>storage.get(k),setItem:(k,v)=>storage.set(k,v)},setTimeout:fn=>timer=fn};
  vm.runInNewContext(read('produtos/chopeira/black20-popup.js'),context);timer();assert.equal(opened,1);timer();assert.equal(opened,1);handlers.close();assert.equal(context.document.body.style.overflow,'');
+});
+
+test('2L colors are individual linked variants starting pink then black; chocolate 3.5L is present',()=>{
+ const html=read('produtos/chopeira/index.html');
+ const cards=[...html.matchAll(/<section class="ontap-product[^"]*" id="(ontap-2l-[^"]+)"[\s\S]*?<\/section>/g)];
+ assert.deepEqual(cards.map(c=>c[1]),['ontap-2l-rosa','ontap-2l-preta','ontap-2l-azul','ontap-2l-verde','ontap-2l-mostarda','ontap-2l-urucum']);
+ for(const c of cards){assert.match(c[0],/bufaloontap2l\?sku=OnTap2L-/);assert.match(c[0],/-oficial.png/);}
+ assert.match(html,/id="ontap-35-chocolate"/);
+ const data=JSON.parse(read('produtos/chopeira/products.json'));
+ assert.equal(data.products.filter(p=>p.slug.startsWith('ontap-2l-')).length,6);
+ assert.ok(data.products.every(p=>p.specs?.length));
+ assert.match(html,/Black Búfalo\.<br><span>Seu brinde,/);
 });
