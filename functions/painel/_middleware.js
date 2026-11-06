@@ -1,3 +1,4 @@
+import { surveyResults } from '../_lib/chopeira-survey.js';
 import { campaigns, campaignSchema, campaignEnabled } from '../_lib/campaigns.js';
 import { homepageStats, analyticsRange } from '../_lib/home-analytics.js';
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
@@ -37,6 +38,18 @@ async function handler(context) {
       const token = tokenFrom(request);
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       return json({authenticated:active});
+    }
+    if (path === '/painel/api/chopeira-surveys') {
+      if (request.method !== 'GET') return json({error:'Método não permitido.'},405);
+      const token = tokenFrom(request);
+      const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
+      if (!active) return json({error:'Entre no painel para ver as respostas.'},401);
+      let range;
+      try { range=analyticsRange(url.searchParams.get('days')||'1',url.searchParams.get('start'),url.searchParams.get('end')); }
+      catch(error){ return json({error:error.message},400); }
+      const device=url.searchParams.get('device')||'all', offset=Number(url.searchParams.get('offset')||0);
+      if(!['all','mobile','tablet','desktop'].includes(device)||!Number.isSafeInteger(offset)||offset<0)return json({error:'Filtro inválido.'},400);
+      return json(await surveyResults(db,range,device,offset));
     }
     if (['/painel/api/home-analytics','/painel/api/site-analytics'].includes(path)) {
       if (request.method !== 'GET') return json({error:'Método não permitido.'},405,{Allow:'GET'});

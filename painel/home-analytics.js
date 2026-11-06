@@ -146,8 +146,42 @@
     else el.append(make('p','','Sem dados por dispositivo.'));
     setStatus('Atualizado: ' + new Date().toLocaleString('pt-BR',{timeZone:'America/Belem'}) + ' · Horário de Belém (UTC−3).');
   }
+  const surveyReasons={'produto-caro':'Preço do produto alto','frete-caro':'Frete caro','prazo-longo':'Prazo de entrega longo','outro':'Outro motivo'};
+  let surveyOffset=0, surveyRequest=0;
+  async function loadSurvey() {
+    const requestId=++surveyRequest;
+    const panel=$('survey-panel');
+    panel.hidden=$('click-page').value!=='/produtos/chopeira/';
+    if(panel.hidden){$('survey-rows').replaceChildren();$('survey-summary').replaceChildren();return;}
+    $('survey-status').textContent='Carregando respostas…';
+    $('survey-rows').replaceChildren();$('survey-summary').replaceChildren();
+    $('survey-prev').disabled=true;$('survey-next').disabled=true;
+    const params=new URLSearchParams({days:$('click-days').value,device:$('click-device').value,offset:String(surveyOffset)});
+    if($('click-days').value==='custom'){params.set('start',$('click-start').value);params.set('end',$('click-end').value);}
+    try {
+      const response=await fetch('/painel/api/chopeira-surveys?'+params,{cache:'no-store',credentials:'same-origin'});
+      const data=await response.json();
+      if(requestId!==surveyRequest)return;
+      if(response.status===401){location.href='/painel/';return;}
+      if(!response.ok)throw new Error(data.error||'Não foi possível consultar as respostas.');
+      const body=$('survey-rows');body.replaceChildren();
+      data.rows.forEach(item=>{
+        const tr=make('tr');const phone=make('td');
+        const link=make('a','', '+'+item.phone);link.href='https://wa.me/'+item.phone;link.target='_blank';link.rel='noopener noreferrer';phone.append(link);
+        tr.append(make('td','',new Date(item.created_at).toLocaleString('pt-BR',{timeZone:'America/Belem'})),make('td','',item.name),phone,make('td','',item.reasons.map(key=>surveyReasons[key]||key).join(', ')),make('td','',item.other||'—'));body.append(tr);
+      });
+      if(!data.rows.length){const tr=make('tr'),td=make('td','','Nenhuma resposta neste período.');td.colSpan=5;tr.append(td);body.append(tr);}
+      const summary=$('survey-summary');summary.replaceChildren();
+      data.summary.forEach(item=>{const row=make('div','metric-bar-row');row.append(make('span','',surveyReasons[item.reason]||item.reason),make('strong','',number(item.total)));summary.append(row);});
+      $('survey-status').textContent=number(data.total)+' respostas'+(data.total?' · Exibindo '+(data.offset+1)+' a '+(data.offset+data.rows.length):'')+'. Uma pessoa pode selecionar vários motivos.';
+      $('survey-prev').disabled=surveyOffset===0;$('survey-next').disabled=surveyOffset+data.limit>=data.total;
+    }catch(error){if(requestId===surveyRequest)$('survey-status').textContent=error.message;}
+  }
+  $('survey-prev').addEventListener('click',()=>{surveyOffset=Math.max(0,surveyOffset-50);loadSurvey();});
+  $('survey-next').addEventListener('click',()=>{surveyOffset+=50;loadSurvey();});
   async function load() {
     if (dash.hidden) return;
+    surveyOffset=0;loadSurvey();
     const id = ++currentRequest;
     $('click-reload').disabled=true;
     setStatus('Carregando dados de cliques…');
