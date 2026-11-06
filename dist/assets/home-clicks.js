@@ -45,8 +45,8 @@
     if (section === 'cabecalho' || section === 'rodape') {
       title = isLink ? ('Navegação: ' + (target || 'link')) : (element.getAttribute('aria-label') || element.id || 'Menu');
     } else {
-      const product = element.closest('.card,.product-card,.thermal-card,.shop-category-card,.accessory-item,.blog-card,.launch-card,article');
-      title = product?.querySelector('h3,.product-title,.product-name')?.textContent;
+      const product = element.closest('.card,.product-card,.thermal-card,.shop-category-card,.accessory-item,.blog-card,.launch-card,.ontap-product,article');
+      title = product?.querySelector(product.matches('.ontap-product') ? 'h2,h3,.product-title,.product-name' : 'h3,.product-title,.product-name')?.textContent;
       title ||= element.getAttribute('aria-label') || element.getAttribute('title') || element.querySelector('img[alt]')?.getAttribute('alt');
       title ||= element.textContent;
       if (!title || !title.trim()) title = element.id || target || type;
@@ -125,7 +125,7 @@
     last.set(dedupe,now);
     if (last.size > 200) last.clear();
     send({kind:'click',section,...info});
-    const product = action.closest('.card,.product-card,.thermal-card,.accessory-item,.launch-card,.one-card,article.product');
+    const product = action.closest('.card,.product-card,.thermal-card,.accessory-item,.launch-card,.one-card,.ontap-product,article.product');
     if (product && (product.querySelector('h3,h2,.product-title,.product-name') || product.matches('.product-card')) && action.matches('a[href]') && info.target.startsWith('loja.bufalogrowler.com.br/')) {
       send({kind:'product',section,...info});
     }
