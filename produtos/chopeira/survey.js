@@ -15,8 +15,7 @@
   dialog.querySelector('.negotiation-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('close',()=>previousFocus?.focus());
   dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
-  const started=Date.now();
-  document.addEventListener('mouseout',event=>{if(!seen&&!event.relatedTarget&&event.clientY<=0&&Date.now()-started>5000&&matchMedia('(hover: hover) and (pointer: fine)').matches)open();});
+  setTimeout(()=>{if(!seen)open();},60000);
   const form=dialog.querySelector('form'),status=dialog.querySelector('.negotiation-status');
   const other=form.elements.other;
   form.addEventListener('change',()=>{const enabled=form.querySelector('[value="outro"]').checked;other.parentElement.hidden=!enabled;other.required=enabled;});
