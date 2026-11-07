@@ -2,6 +2,12 @@
   'use strict';
   const popup = document.getElementById('black26-popup');
   if (!popup) return;
+
+  // Campaign days follow Belem time, regardless of the visitor's timezone.
+  const day = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'America/Belem', weekday: 'short'
+  }).format(new Date());
+  const weekend = day === 'Sat' || day === 'Sun';
   const images = [
     ['black-bufalo-acai-bowl', 'Black Búfalo: Açaí Bowl. Grátis colher personalizada.'],
     ['black-bufalo-tulipa-confraria', 'Black Búfalo: Tulipa Confraria.'],
@@ -19,7 +25,18 @@
     image.alt = description;
     image.src = '/assets/campaigns/black26/' + file + '.webp';
   };
-  showImage();
+  if (weekend) {
+    image.src = '/assets/campaigns/bufalo-weekend.jpg';
+    image.alt = 'Oferta Búfalo Weekend';
+    popup.setAttribute('aria-label', 'Oferta Búfalo Weekend');
+    popup.querySelector('#black26-popup-copy').textContent = 'Aproveite as ofertas Búfalo Weekend nas chopeiras.';
+    popup.querySelectorAll('a').forEach(link => {
+      link.href = '/produtos/chopeira/';
+      link.setAttribute('aria-label', 'Aproveitar ofertas de chopeiras Búfalo Weekend');
+    });
+  } else {
+    showImage();
+  }
 
   let previousOverflow, previousScroll;
   const restoreScroll = () => { if (previousScroll) window.scrollTo({...previousScroll, behavior: 'instant'}); };
