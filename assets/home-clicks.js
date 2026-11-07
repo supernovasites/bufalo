@@ -107,7 +107,7 @@
   window.addEventListener('scroll',scheduleScroll,{passive:true});
   window.addEventListener('resize',scheduleScroll,{passive:true});
   window.addEventListener('load',scheduleScroll,{once:true});
-  function pageView() { scheduleScroll(); send({kind:'view',section:'homepage',key:'page-load',label:'Visita à página',target:pagePath}); }
+  function pageView() { scheduleScroll(); if (visitor) send({kind:'view',visitor,section:'homepage',key:'page-load',label:'Visita à página',target:pagePath}); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded',pageView,{once:true});
   else pageView();
   const last = new Map();

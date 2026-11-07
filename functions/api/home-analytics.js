@@ -31,6 +31,13 @@ export async function onRequestPost({ request, env }) {
       .bind(page,data.device,Number(data.key.slice(7)),label,belemDay()).run();
     return new Response(null,{status:204,headers:{'Cache-Control':'no-store'}});
   }
+  if (data.kind === 'view') {
+    if (typeof data.visitor !== 'string' || !/^[a-f0-9-]{36}$/.test(data.visitor)) return deny(400, 'Usuário inválido.');
+    const visitorHash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(data.visitor))),b=>b.toString(16).padStart(2,'0')).join('');
+    await env.LIVE_DB.prepare('INSERT OR IGNORE INTO site_unique_visits (page,visitor,day,device) VALUES (?,?,?,?)')
+      .bind(page,visitorHash,belemDay(),data.device).run();
+    return new Response(null,{status:204,headers:{'Cache-Control':'no-store'}});
+  }
   if (data.kind === 'scroll') {
     if (typeof data.visitor !== 'string' || !/^[a-f0-9-]{36}$/.test(data.visitor)) return deny(400, 'Usuário inválido.');
     const visitorHash = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(data.visitor))),b=>b.toString(16).padStart(2,'0')).join('');

@@ -90,7 +90,7 @@
     currentData = data;
     const name = pageName(data.page);
     $('stats-page-title').textContent = 'Desempenho da ' + name;
-    $('stats-views-title').textContent = 'Acessos à ' + name;
+    $('stats-views-title').textContent = 'Acessos únicos à ' + name;
     $('scroll-title').textContent = 'Rolagem da ' + name;
     const pageList = $('stats-pages'); pageList.replaceChildren();
     const pages = [...data.pages].filter(item=>['/','/produtos/chopeira/','/campanhas/black26/','/live/'].includes(item.page)).sort((a,b)=>Number(b.views)-Number(a.views)||a.page.localeCompare(b.page)).slice(0,5);

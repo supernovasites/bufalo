@@ -4,6 +4,7 @@ export const homeAnalyticsMigration = "CREATE INDEX IF NOT EXISTS homepage_inter
 let initialized;
 export async function ensureHomepageStats(db) {
   if (!initialized) initialized = (async () => {
+    await db.prepare("CREATE TABLE IF NOT EXISTS site_unique_visits (page TEXT NOT NULL,visitor TEXT NOT NULL,day TEXT NOT NULL,device TEXT NOT NULL,PRIMARY KEY(page,visitor,day))").run();
     await db.prepare(homeAnalyticsSchema).run();
     await db.prepare(homeAnalyticsMigration).run();
     await db.prepare("CREATE TABLE IF NOT EXISTS site_scroll_sections (page TEXT NOT NULL,device TEXT NOT NULL,percent INTEGER NOT NULL,label TEXT NOT NULL,day TEXT NOT NULL,PRIMARY KEY(page,device,percent))").run();
@@ -48,6 +49,25 @@ export async function homepageStats(db, days, device, page = '/', range = analyt
     db.prepare("SELECT page,SUM(CASE WHEN kind = 'view' THEN total ELSE 0 END) AS views,SUM(CASE WHEN kind = 'click' THEN total ELSE 0 END) AS clicks FROM " + source + " WHERE day >= ? AND day <= ? AND (? = 'all' OR device = ?) GROUP BY page ORDER BY views DESC,page").bind(start,end,device,device).all().then(out=>out.results || []),
     query("SELECT percent,label,device FROM site_scroll_sections WHERE " + where + " ORDER BY device")
   ]);
+  // Legacy page-load aggregates cannot identify visitors and are excluded from unique counts.
+  const unique = await query('SELECT page,visitor,day,device FROM site_unique_visits WHERE ' + where);
+  const uniquePages = await db.prepare("SELECT page,COUNT(*) AS views FROM site_unique_visits WHERE day >= ? AND day <= ? AND (? = 'all' OR device = ?) GROUP BY page").bind(start,end,device,device).all().then(out=>out.results || []);
+  const uniqueCount = rows => new Set(rows.map(row=>row.page + ':' + row.visitor + ':' + row.day)).size;
+  for (const row of daily) row.views = 0;
+  for (const day of new Set(unique.map(row=>row.day))) {
+    let row = daily.find(row=>row.day === day);
+    if (!row) { row = {day,clicks:0,views:0}; daily.push(row); }
+    row.views = uniqueCount(unique.filter(item=>item.day === day));
+  }
+  daily.sort((a,b)=>a.day.localeCompare(b.day));
+  for (const kind of new Set([...devices.map(row=>row.device),...unique.map(row=>row.device)])) {
+    let row = devices.find(row=>row.device === kind);
+    if (!row) {row = {device:kind,clicks:0,views:0}; devices.push(row);}
+    row.views = uniqueCount(unique.filter(item=>item.device === kind));
+  }
+  for (const row of pages) row.views = Number(uniquePages.find(item=>item.page === row.page)?.views || 0);
+  for (const row of uniquePages) if (!pages.some(item=>item.page === row.page)) pages.push({...row,clicks:0});
+  pages.sort((a,b)=>b.views-a.views || a.page.localeCompare(b.page));
   const count = kind => Number(totals.find(row => row.kind === kind)?.total || 0);
-  return {days, device, page, pages, timezone:'America/Belem', start, end, clicks:count('click'), views:count('view'), daily, sections, elements, devices, topProducts:products, topProduct:products[0] || null, scroll:[25,50,75,100].map(percent => ({percent,sections:[...new Set(scrollSections.filter(row=>Number(row.percent)===percent).map(row=>row.label))],visits:Number(scroll.find(row => Number(row.percent) === percent)?.visits || 0)}))};
+  return {days, device, page, pages, timezone:'America/Belem', start, end, clicks:count('click'), views:uniqueCount(unique), accessMetric:'daily-unique-visitors', daily, sections, elements, devices, topProducts:products, topProduct:products[0] || null, scroll:[25,50,75,100].map(percent => ({percent,sections:[...new Set(scrollSections.filter(row=>Number(row.percent)===percent).map(row=>row.label))],visits:Number(scroll.find(row => Number(row.percent) === percent)?.visits || 0)}))};
 }

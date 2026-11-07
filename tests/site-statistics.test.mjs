@@ -9,14 +9,14 @@ const endpoint=await import(urlFor(fs.readFileSync('functions/api/home-analytics
 const sql=new DatabaseSync(':memory:');
 const db={prepare(q){const stmt=sql.prepare(q);let params=[];return {bind(...p){params=p;return this},async run(){return stmt.run(...params)},async all(){return {results:stmt.all(...params)}}}}};
 await ensureHomepageStats(db);
+const visitor='12345678-1234-1234-1234-123456789abc';
 sql.prepare("INSERT INTO homepage_interactions VALUES (?,?,?,?,?,?,?,?)").run(belemDay(),'mobile','view','homepage','page-load','Homepage','/',5);
 async function post(payload){
- const request=new Request('https://bufalogrowler.com.br/api/home-analytics',{method:'POST',headers:{Origin:'https://bufalogrowler.com.br','User-Agent':'test-browser'},body:JSON.stringify({device:'mobile',section:'homepage',key:'page-load',label:'Visita',target:'/',...payload})});
+ const request=new Request('https://bufalogrowler.com.br/api/home-analytics',{method:'POST',headers:{Origin:'https://bufalogrowler.com.br','User-Agent':'test-browser'},body:JSON.stringify({visitor,device:'mobile',section:'homepage',key:'page-load',label:'Visita',target:'/',...payload})});
  return endpoint.onRequestPost({request,env:{LIVE_DB:db}});
 }
 for(const page of ['/','/live/','/produtos/chopeira/'])assert.equal((await post({page,kind:'view'})).status,204);
 for(const page of ['/live/','/produtos/chopeira/'])assert.equal((await post({page,kind:'click',key:'buy',label:'Comprar'})).status,204);
-const visitor='12345678-1234-1234-1234-123456789abc';
 for(const [page,marks] of [['/live/',[25,75,50,75]],['/produtos/chopeira/',[50,100,25]]])for(const percent of marks)assert.equal((await post({page,kind:'scroll',visitor,key:'scroll-'+percent})).status,204);
 assert.equal((await post({page:'/painel/',kind:'view'})).status,400);
 assert.equal((await post({page:'/live/?email=private',kind:'view'})).status,400);
@@ -28,11 +28,11 @@ assert.equal(chopeira.clicks,1);
 assert.equal(chopeira.scroll.find(x=>x.percent===100).visits,1);
 assert.deepEqual(chopeira.scroll.find(x=>x.percent===50).sections,['Chopeiras OnTap']);
 const home=await homepageStats(db,7,'all','/');
-assert.equal(home.views,6);
+assert.equal(home.views,1);
 assert.equal(home.clicks,0);
 assert.ok(home.scroll.every(x=>x.visits===0 && x.sections.length===0));
 const all=await homepageStats(db,7,'all','all');
-assert.equal(all.views,8);assert.equal(all.clicks,2);assert.equal(all.pages.length,3);assert.equal(all.scroll.find(x=>x.percent===75).visits,1);assert.equal(all.scroll.find(x=>x.percent===100).visits,1);
+assert.equal(all.views,3);assert.equal(all.clicks,2);assert.equal(all.pages.length,3);assert.equal(all.scroll.find(x=>x.percent===75).visits,1);assert.equal(all.scroll.find(x=>x.percent===100).visits,1);
 assert.equal((await post({page:'/live/',kind:'scroll-section',key:'scroll-75',label:'Desafio da Manada'})).status,204);
 const live=await homepageStats(db,7,'mobile','/live/');
 assert.deepEqual(live.scroll.find(x=>x.percent===75).sections,['Desafio da Manada']);
@@ -45,10 +45,10 @@ assert.equal((await post({page:'/black26/',kind:'product',key:'tulipa',label:'Tu
 assert.equal((await post({page:'/black26/',kind:'scroll-section',key:'scroll-50',label:'Ofertas Black Búfalo'})).status,204);
 assert.equal((await post({page:'/black26/',kind:'scroll',visitor,key:'scroll-50'})).status,204);
 const black=await homepageStats(db,7,'mobile','/campanhas/black26/');
-assert.equal(black.views,3);assert.equal(black.clicks,1);assert.equal(black.topProduct.label,'Tulipa Confraria Dourado');
+assert.equal(black.views,1);assert.equal(black.clicks,1);assert.equal(black.topProduct.label,'Tulipa Confraria Dourado');
 assert.equal(black.scroll.find(x=>x.percent===50).visits,1);
 assert.deepEqual(black.scroll.find(x=>x.percent===50).sections,['Ofertas Black Búfalo']);
-assert.equal((await homepageStats(db,7,'all','/')).views,6);
+assert.equal((await homepageStats(db,7,'all','/')).views,1);
 assert.equal((await homepageStats(db,7,'all','/produtos/chopeira/')).views,1);
 const tracker=fs.readFileSync('assets/home-clicks.js','utf8');
 for(const path of ['/','/live/','/produtos/chopeira/','/campanhas/black26/','/black26/','/chopeira/','/catalogo/']){
@@ -72,9 +72,33 @@ assert.deepEqual(analyticsRange('yesterday'),{start:yesterday,end:yesterday});
 assert.throws(()=>analyticsRange('custom','2026-02-30','2026-03-01'));
 assert.throws(()=>analyticsRange('custom',belemDay(),yesterday));
 assert.deepEqual(analyticsRange('custom',yesterday,belemDay()),{start:yesterday,end:belemDay()});
-sql.prepare('INSERT INTO site_interactions VALUES (?,?,?,?,?,?,?,?,?)').run('/live/',yesterday,'mobile','view','homepage','page-load','Visita','/live/',4);
+for(let n=0;n<5;n++) assert.equal((await post({page:'/live/',kind:'view'})).status,204);
+assert.equal((await post({page:'/live/',kind:'view',visitor:''})).status,400);
+const hash=sql.prepare('SELECT visitor FROM site_unique_visits LIMIT 1').get().visitor;
+sql.prepare('INSERT INTO site_unique_visits VALUES (?,?,?,?)').run('/live/',hash,yesterday,'mobile');
+const returning=await homepageStats(db,7,'all','/live/');
+assert.equal(returning.views,2);
+assert.equal(returning.pages.find(row=>row.page==='/live/').views,2);
+assert.equal(returning.devices.find(row=>row.device==='mobile').views,2);
+assert.equal(returning.daily.find(row=>row.day===yesterday).views,1);
+assert.equal(returning.daily.find(row=>row.day===belemDay()).views,1);
+
 const previous=await homepageStats(db,1,'mobile','/live/',analyticsRange('yesterday'));
-assert.equal(previous.views,4);
-assert.equal(previous.pages.find(x=>x.page==='/live/').views,4);
+assert.equal(previous.views,1);
+assert.equal(previous.pages.find(x=>x.page==='/live/').views,1);
 assert.equal((await homepageStats(db,1,'mobile','/live/')).views,1);
 console.log('PASS: today, yesterday, inclusive date ranges and invalid dates.');
+
+// Every measured public page uses the same daily uniqueness rule.
+for (const page of ['/', '/produtos/chopeira/', '/campanhas/black26/', '/live/', '/catalogo/', '/produtos/copos/', '/produtos/garrafas/', '/blog/']) {
+  for (let reload=0;reload<3;reload++) assert.equal((await post({page,kind:'view'})).status,204);
+  sql.prepare('INSERT OR IGNORE INTO site_unique_visits VALUES (?,?,?,?)').run(page,hash,yesterday,'mobile');
+  const report=await homepageStats(db,7,'all',page);
+  assert.equal(report.views,2,page);
+  assert.equal(report.pages.find(row=>row.page===page).views,2,page);
+  assert.equal((await homepageStats(db,1,'all',page)).views,1,page);
+  assert.equal((await homepageStats(db,1,'all',page,analyticsRange('yesterday'))).views,1,page);
+}
+assert.equal(belemDay(Date.parse('2026-11-07T02:59:59Z')),'2026-11-06');
+assert.equal(belemDay(Date.parse('2026-11-07T03:00:00Z')),'2026-11-07');
+console.log('PASS: daily unique access across all measured pages and Belém midnight boundary.');
