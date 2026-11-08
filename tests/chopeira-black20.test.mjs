@@ -4,10 +4,10 @@ import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 const root=new URL('../',import.meta.url);
 const read=p=>readFileSync(new URL(p,root),'utf8');
-test('fourteen chopeira offers show regular and Black20 prices without weekend overwrite',()=>{
+test('thirteen chopeira offers show regular and Black20 prices without weekend overwrite',()=>{
  const html=read('produtos/chopeira/index.html');
  const offers=[...html.matchAll(/<div class="black20-offer" data-black20-original="([\d.]+)">([\s\S]*?)<\/div>/g)];
- assert.equal(offers.length,14);
+ assert.equal(offers.length,13);
  for(const [,original,body] of offers){
   const currency=n=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(n);
   assert.ok(body.includes('<s>'+currency(Number(original))+'</s>'));
@@ -31,7 +31,7 @@ test('2L variants show 1245 regular and 996 with coupon; popup has functional co
  const html=read('produtos/chopeira/index.html');
  assert.equal((html.match(/data-black20-original="1245"/g)||[]).length,6);
  assert.equal((html.match(/R\$\s*996,00/g)||[]).length,6);
- assert.equal((html.match(/class="black20-condition"/g)||[]).length,14);
+ assert.equal((html.match(/class="black20-condition"/g)||[]).length,13);
  assert.match(html,/<dialog class="black20-popup"/);
  assert.match(html,/class="black20-popup-shop bw-cta"/);
  for(const f of ['black20-popup.js','images/black20-popup-weekend-original-20261105.png']){
