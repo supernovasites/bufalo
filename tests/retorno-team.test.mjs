@@ -45,3 +45,18 @@ assert.equal((await request('/retorno/api/contacts',{cookie:collaboratorCookie})
 assert.equal((await request('/retorno/api/login',{body:{username:'marina',password:'test-collaborator-password'}})).status,401);
 assert.equal((await request('/painel/api/session',{cookie:adminCookie})).status,200);
 console.log('PASS: shared login; admin preserved; collaborator cannot access admin routes, APIs or user management; passwords hashed; deactivation revokes sessions; cross-origin and role escalation rejected.');
+
+await request('/painel/api/users',{cookie:adminCookie,body:{id,name:'Marina Atualizada',username:'marina',active:true,role:'C'}});
+const beforeRemoval=await request('/retorno/api/login',{body:{username:'marina',password:'1234'}});assert.equal(beforeRemoval.status,200);const removalCookie=beforeRemoval.headers.get('set-cookie').split(';')[0];
+assert.equal((await request('/painel/api/users/remove',{cookie:removalCookie,body:{id}})).status,403);
+assert.equal((await request('/painel/api/users/remove',{body:{id}})).status,401);
+assert.equal((await request('/painel/api/users/remove',{cookie:adminCookie,origin:'https://evil.local',body:{id}})).status,403);
+assert.equal((await request('/painel/api/users/remove',{cookie:adminCookie,body:{id:'administrator'}})).status,404);
+assert.equal((await request('/painel/api/users/remove',{cookie:adminCookie,body:{id}})).status,200);
+assert.equal((await request('/retorno/api/session',{cookie:removalCookie})).status,200);assert.equal((await (await request('/retorno/api/session',{cookie:removalCookie})).json()).authenticated,false);
+assert.equal((await request('/retorno/api/login',{body:{username:'marina',password:'1234'}})).status,401);
+assert.equal(sql.prepare('SELECT COUNT(*) AS n FROM team_users WHERE id=?').get(id).n,0);
+assert.equal(sql.prepare('SELECT COUNT(*) AS n FROM team_password_changes WHERE user_id=?').get(id).n,0);
+const retained=await survey.surveyResults(db,{start:'2000-01-01',end:'2099-12-31'},'all');assert.equal(retained.rows[0].attendance_result,'Retorno realizado.');assert.equal(retained.rows[0].staff_name,'Marina Silva');
+assert.equal((await request('/painel/api/session',{cookie:adminCookie})).status,200);
+console.log('PASS: only A removes C, all sessions revoked, administrator protected, attendance history retained.');

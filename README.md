@@ -79,3 +79,5 @@ Retorno separa contatos por origem/produto (atualmente a pesquisa de Chopeira), 
 As tabelas team_users, team_sessions, chopeira_survey_attendance e chopeira_attendance_staff são criadas automaticamente sem remover pesquisas ou sessões administrativas existentes. Inclua retorno/ e painel/usuarios/ no pacote dist. Verificação: node --test tests/retorno-team.test.mjs tests/chopeira-survey.test.mjs tests/site-statistics.test.mjs.
 
 Novos colaboradores recebem sempre a senha inicial 1234. Em /painel/usuarios/, o administrador pode redefinir a senha para esse padrão, encerrando todas as sessões do colaborador. O login exige senha pessoal de 10 a 128 caracteres antes de liberar os contatos, inclusive por API. Cadastros existentes mantêm sua senha até uma redefinição.
+
+A gestão de colaboradores não exibe mais o controle Usuário ativo: novos cadastros e edições ficam ativos. Somente administradores A cadastram, editam, redefinem senha e removem colaboradores C. Remover um colaborador encerra suas sessões e exclui seu acesso, preservando resultados e nomes no histórico de atendimentos.

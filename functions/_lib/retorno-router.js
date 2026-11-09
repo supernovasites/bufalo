@@ -1,4 +1,4 @@
-import {identity,ensureTeam,loginTeam,createSession,logoutTeam,sessionCookie,saveCollaborator,resetCollaboratorPassword,changeOwnPassword} from './team-auth.js';
+import {identity,ensureTeam,loginTeam,createSession,logoutTeam,sessionCookie,saveCollaborator,resetCollaboratorPassword,changeOwnPassword,removeCollaborator} from './team-auth.js';
 import {surveyResults,saveAttendance} from './chopeira-survey.js';
 const headers={'Cache-Control':'no-store','Content-Type':'application/json; charset=utf-8','X-Content-Type-Options':'nosniff'};
 const json=(data,status=200,extra={})=>new Response(JSON.stringify(data),{status,headers:{...headers,...extra}});
@@ -30,6 +30,10 @@ export async function teamRouter(context){
       return json({ok:true,user:updated},200,{'Set-Cookie':await createSession(updated,request,env.LIVE_DB)});
     }
     if(user.must_change_password)return json({error:'Altere sua senha inicial para continuar.',must_change_password:true},403);
+    if(path==='/painel/api/users/remove'&&request.method==='POST'){
+      if(user.role!=='A')return json({error:'Acesso exclusivo do administrador.'},403);
+      const data=await payload(request),result=await removeCollaborator(env.LIVE_DB,data?.id);return json(result,result.status||200);
+    }
     if(path==='/painel/api/users/reset-password'&&request.method==='POST'){
       if(user.role!=='A')return json({error:'Acesso exclusivo do administrador.'},403);
       const data=await payload(request),result=await resetCollaboratorPassword(env.LIVE_DB,data?.id);return json(result,result.status||200);

@@ -73,3 +73,9 @@ export async function changeOwnPassword(db,user,data){
  await db.batch([db.prepare('UPDATE team_users SET password_hash=?,salt=? WHERE id=?').bind(hash,salt,user.id),db.prepare('INSERT INTO team_password_changes (user_id,required) VALUES (?,0) ON CONFLICT(user_id) DO UPDATE SET required=0').bind(user.id),db.prepare('DELETE FROM team_sessions WHERE user_id=?').bind(user.id)]);
  return {ok:true};
 }
+
+export async function removeCollaborator(db,id){
+ if(typeof id!=='string'||!await db.prepare("SELECT id FROM team_users WHERE id=? AND role='C'").bind(id).first())return {error:'Colaborador não encontrado.',status:404};
+ await db.batch([db.prepare('DELETE FROM team_sessions WHERE user_id=?').bind(id),db.prepare('DELETE FROM team_password_changes WHERE user_id=?').bind(id),db.prepare("DELETE FROM team_users WHERE id=? AND role='C'").bind(id)]);
+ return {ok:true};
+}
