@@ -18,7 +18,9 @@
     "/reserva/acaibowl",
     "/reserva/acaibowl/*",
     "/campanhas/cirio",
-    "/campanhas/cirio/*"
+    "/campanhas/cirio/*",
+    "/retorno",
+    "/retorno/*"
   ],
   "exclude": []
 }
