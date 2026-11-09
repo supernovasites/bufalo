@@ -3,13 +3,23 @@ import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from
 const cache=new Map();function moduleURL(file){file=path.resolve(file);if(cache.has(file))return cache.get(file);let code=fs.readFileSync(file,'utf8').replace(/from ['"]([^'"]+)['"]/g,(m,p)=>p.startsWith('.')?'from '+JSON.stringify(moduleURL(path.resolve(path.dirname(file),p))):m);const url='data:text/javascript;base64,'+Buffer.from(code).toString('base64');cache.set(file,url);return url;}
 const auth=await import(moduleURL('functions/_lib/team-auth.js')),root=await import(moduleURL('functions/_middleware.js'));
 const sql=new DatabaseSync(':memory:');const db={prepare(q){const statement=sql.prepare(q);let args=[];return{bind(...values){args=values;return this},async run(){return statement.run(...args)},async first(){return statement.get(...args)},async all(){return {results:statement.all(...args)}}}}};
+db.batch=async statements=>{sql.exec('BEGIN');try{const results=[];for(const statement of statements)results.push(await statement.run());sql.exec('COMMIT');return results;}catch(error){sql.exec('ROLLBACK');throw error;}};
 const env={LIVE_DB:db,PANEL_USERNAME:'Admin',PANEL_PASSWORD:'test-admin-password',PANEL_NAME:'Administradora'};
 async function request(url,{body,cookie,origin='https://test.local'}={}){return root.onRequest({request:new Request('https://test.local'+url,{method:body?'POST':'GET',headers:{Origin:origin,...(cookie?{Cookie:cookie}:{})},body:body?JSON.stringify(body):undefined}),env,next:async()=>new Response('page',{headers:{'Content-Type':'text/plain'}})});}
 const adminLogin=await request('/retorno/api/login',{body:{username:'Admin',password:env.PANEL_PASSWORD}});assert.equal(adminLogin.status,200);const adminCookie=adminLogin.headers.get('set-cookie').split(';')[0];assert.equal((await adminLogin.json()).user.name,'Administradora');
 let created=await request('/painel/api/users',{cookie:adminCookie,body:{name:'Marina Silva',username:'marina',password:'test-collaborator-password',active:true,role:'C'}});assert.equal(created.status,200);const id=(await created.json()).id;
 assert.equal((await request('/painel/api/users')).status,401);
 assert.equal((await request('/retorno/api/login',{body:{username:'marina',password:'incorrect'}})).status,401);
-const login=await request('/painel/api/login',{body:{username:'MARINA',password:'test-collaborator-password'}});assert.equal(login.status,200);const collaboratorCookie=login.headers.get('set-cookie').split(';')[0];assert.ok(collaboratorCookie.startsWith('retorno_session='));assert.equal((await login.json()).user.role,'C');
+const login=await request('/painel/api/login',{body:{username:'MARINA',password:'1234'}});assert.equal(login.status,200);let collaboratorCookie=login.headers.get('set-cookie').split(';')[0];assert.ok(collaboratorCookie.startsWith('retorno_session='));const firstLogin=await login.json();assert.equal(firstLogin.user.role,'C');assert.equal(firstLogin.user.must_change_password,true);
+assert.equal((await request('/retorno/api/contacts',{cookie:collaboratorCookie})).status,403,'default password cannot read contacts');
+assert.equal((await request('/retorno/api/attendance',{cookie:collaboratorCookie,body:{id:'test',result:'blocked'}})).status,403);
+for(const data of [{current_password:'wrong',new_password:'new-personal-password',confirm_password:'new-personal-password'},{current_password:'1234',new_password:'1234',confirm_password:'1234'},{current_password:'1234',new_password:'new-personal-password',confirm_password:'different'}])assert.equal((await request('/retorno/api/change-password',{cookie:collaboratorCookie,body:data})).status,400);
+assert.equal((await request('/retorno/api/change-password',{body:{current_password:'1234',new_password:'new-personal-password',confirm_password:'new-personal-password'}})).status,401);
+const initialCookie=collaboratorCookie;
+const changed=await request('/retorno/api/change-password',{cookie:collaboratorCookie,body:{current_password:'1234',new_password:'test-collaborator-password',confirm_password:'test-collaborator-password'}});assert.equal(changed.status,200);assert.equal((await changed.json()).user.must_change_password,false);collaboratorCookie=changed.headers.get('set-cookie').split(';')[0];
+assert.equal((await request('/retorno/api/contacts',{cookie:initialCookie})).status,401);
+assert.equal((await request('/retorno/api/login',{body:{username:'marina',password:'1234'}})).status,401);
+
 assert.equal((await request('/painel/api/users',{cookie:collaboratorCookie})).status,403);
 assert.equal((await request('/painel/api/campaigns',{cookie:collaboratorCookie})).status,403);
 assert.equal((await request('/painel/usuarios/',{cookie:collaboratorCookie})).status,302);
@@ -23,6 +33,13 @@ const contactId='12345678-1234-4123-8123-123456789abc';
 sql.prepare('INSERT INTO chopeira_surveys (id,name,phone,reasons,other,device,day,created_at,consent) VALUES (?,?,?,?,?,?,?,?,1)').run(contactId,'Cliente teste','5591999991234','["produto-caro"]','','mobile','2026-11-09',new Date().toISOString());
 const attendance=await request('/retorno/api/attendance',{cookie:collaboratorCookie,body:{id:contactId,result:'Retorno realizado.',staff_name:'Nome adulterado'}});assert.equal(attendance.status,200);assert.equal((await attendance.json()).staff_name,'Marina Silva');
 const contacts=await (await request('/retorno/api/contacts',{cookie:collaboratorCookie})).json();assert.equal(contacts.products[0].contacts[0].attendance_result,'Retorno realizado.');assert.equal(contacts.products[0].contacts[0].staff_name,'Marina Silva');assert.ok(contacts.products[0].contacts[0].responded_at);
+assert.equal((await request('/painel/api/users/reset-password',{cookie:collaboratorCookie,body:{id}})).status,403);
+assert.equal((await request('/painel/api/users/reset-password',{cookie:adminCookie,origin:'https://evil.local',body:{id}})).status,403);
+assert.equal((await request('/painel/api/users/reset-password',{cookie:adminCookie,body:{id}})).status,200);
+assert.equal((await request('/retorno/api/contacts',{cookie:collaboratorCookie})).status,401,'reset revokes active sessions');
+assert.equal((await request('/retorno/api/login',{body:{username:'marina',password:'test-collaborator-password'}})).status,401);
+const resetLogin=await request('/retorno/api/login',{body:{username:'marina',password:'1234'}});assert.equal(resetLogin.status,200);assert.equal((await resetLogin.json()).user.must_change_password,true);
+const resetCookie=resetLogin.headers.get('set-cookie').split(';')[0];assert.equal((await request('/retorno/api/contacts',{cookie:resetCookie})).status,403);
 let result=await request('/painel/api/users',{cookie:adminCookie,body:{id,name:'Marina Atualizada',username:'marina',password:'',active:false,role:'C'}});assert.equal(result.status,200);
 assert.equal((await request('/retorno/api/contacts',{cookie:collaboratorCookie})).status,401);
 assert.equal((await request('/retorno/api/login',{body:{username:'marina',password:'test-collaborator-password'}})).status,401);

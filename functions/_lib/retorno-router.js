@@ -1,4 +1,4 @@
-import {identity,ensureTeam,loginTeam,createSession,logoutTeam,sessionCookie,saveCollaborator} from './team-auth.js';
+import {identity,ensureTeam,loginTeam,createSession,logoutTeam,sessionCookie,saveCollaborator,resetCollaboratorPassword,changeOwnPassword} from './team-auth.js';
 import {surveyResults,saveAttendance} from './chopeira-survey.js';
 const headers={'Cache-Control':'no-store','Content-Type':'application/json; charset=utf-8','X-Content-Type-Options':'nosniff'};
 const json=(data,status=200,extra={})=>new Response(JSON.stringify(data),{status,headers:{...headers,...extra}});
@@ -23,10 +23,21 @@ export async function teamRouter(context){
       for(const name of ['admin_session','retorno_session'])response.headers.append('Set-Cookie',sessionCookie(name,'',request));return response;
     }
     if(!user)return json({error:'Entre no sistema para continuar.'},401);
+    if(path==='/retorno/api/change-password'&&request.method==='POST'){
+      const result=await changeOwnPassword(env.LIVE_DB,user,await payload(request));
+      if(result.error)return json(result,result.status||400);
+      const updated={...user,must_change_password:false};
+      return json({ok:true,user:updated},200,{'Set-Cookie':await createSession(updated,request,env.LIVE_DB)});
+    }
+    if(user.must_change_password)return json({error:'Altere sua senha inicial para continuar.',must_change_password:true},403);
+    if(path==='/painel/api/users/reset-password'&&request.method==='POST'){
+      if(user.role!=='A')return json({error:'Acesso exclusivo do administrador.'},403);
+      const data=await payload(request),result=await resetCollaboratorPassword(env.LIVE_DB,data?.id);return json(result,result.status||200);
+    }
     if(path==='/painel/api/users'){
       if(user.role!=='A')return json({error:'Acesso exclusivo do administrador.'},403);
       if(request.method==='POST'){const result=await saveCollaborator(env.LIVE_DB,await payload(request),env);return json(result,result.status||200);}
-      const users=await env.LIVE_DB.prepare('SELECT id,username,name,role,active FROM team_users ORDER BY name').all();return json({users:users.results||[]});
+      const users=await env.LIVE_DB.prepare('SELECT id,username,name,role,active,COALESCE((SELECT required FROM team_password_changes WHERE user_id=id),0) AS must_change_password FROM team_users ORDER BY name').all();return json({users:users.results||[]});
     }
     if(path==='/retorno/api/contacts'&&request.method==='GET'){
       // Product sections use existing consented survey sources; currently Chopeira.
