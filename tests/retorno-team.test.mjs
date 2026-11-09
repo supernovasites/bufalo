@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';import path from 'node:path';import {DatabaseSync} from 'node:sqlite';
+const cache=new Map();function moduleURL(file){file=path.resolve(file);if(cache.has(file))return cache.get(file);let code=fs.readFileSync(file,'utf8').replace(/from ['"]([^'"]+)['"]/g,(m,p)=>p.startsWith('.')?'from '+JSON.stringify(moduleURL(path.resolve(path.dirname(file),p))):m);const url='data:text/javascript;base64,'+Buffer.from(code).toString('base64');cache.set(file,url);return url;}
+const auth=await import(moduleURL('functions/_lib/team-auth.js')),root=await import(moduleURL('functions/_middleware.js'));
+const sql=new DatabaseSync(':memory:');const db={prepare(q){const statement=sql.prepare(q);let args=[];return{bind(...values){args=values;return this},async run(){return statement.run(...args)},async first(){return statement.get(...args)},async all(){return {results:statement.all(...args)}}}}};
+const env={LIVE_DB:db,PANEL_USERNAME:'Admin',PANEL_PASSWORD:'test-admin-password',PANEL_NAME:'Administradora'};
+async function request(url,{body,cookie,origin='https://test.local'}={}){return root.onRequest({request:new Request('https://test.local'+url,{method:body?'POST':'GET',headers:{Origin:origin,...(cookie?{Cookie:cookie}:{})},body:body?JSON.stringify(body):undefined}),env,next:async()=>new Response('page',{headers:{'Content-Type':'text/plain'}})});}
+const adminLogin=await request('/retorno/api/login',{body:{username:'Admin',password:env.PANEL_PASSWORD}});assert.equal(adminLogin.status,200);const adminCookie=adminLogin.headers.get('set-cookie').split(';')[0];assert.equal((await adminLogin.json()).user.name,'Administradora');
+let created=await request('/painel/api/users',{cookie:adminCookie,body:{name:'Marina Silva',username:'marina',password:'test-collaborator-password',active:true,role:'C'}});assert.equal(created.status,200);const id=(await created.json()).id;
+assert.equal((await request('/painel/api/users')).status,401);
+assert.equal((await request('/retorno/api/login',{body:{username:'marina',password:'incorrect'}})).status,401);
+const login=await request('/painel/api/login',{body:{username:'MARINA',password:'test-collaborator-password'}});assert.equal(login.status,200);const collaboratorCookie=login.headers.get('set-cookie').split(';')[0];assert.ok(collaboratorCookie.startsWith('retorno_session='));assert.equal((await login.json()).user.role,'C');
+assert.equal((await request('/painel/api/users',{cookie:collaboratorCookie})).status,403);
+assert.equal((await request('/painel/api/campaigns',{cookie:collaboratorCookie})).status,403);
+assert.equal((await request('/painel/usuarios/',{cookie:collaboratorCookie})).status,302);
+assert.equal((await request('/live/admin/',{cookie:collaboratorCookie})).status,302);
+assert.equal((await request('/live/admin.css',{cookie:collaboratorCookie})).status,200);
+assert.equal((await request('/retorno/api/contacts',{cookie:collaboratorCookie})).status,200);
+assert.equal((await request('/painel/api/users',{cookie:adminCookie,origin:'https://evil.local',body:{}})).status,403);
+assert.equal((await request('/painel/api/users',{cookie:adminCookie,body:{name:'Wrong',username:'elevated',password:'test-password',active:true,role:'A'}})).status,400);
+const survey=await import(moduleURL('functions/_lib/chopeira-survey.js'));await survey.ensureSurvey(db);
+const contactId='12345678-1234-4123-8123-123456789abc';
+sql.prepare('INSERT INTO chopeira_surveys (id,name,phone,reasons,other,device,day,created_at,consent) VALUES (?,?,?,?,?,?,?,?,1)').run(contactId,'Cliente teste','5591999991234','["produto-caro"]','','mobile','2026-11-09',new Date().toISOString());
+const attendance=await request('/retorno/api/attendance',{cookie:collaboratorCookie,body:{id:contactId,result:'Retorno realizado.',staff_name:'Nome adulterado'}});assert.equal(attendance.status,200);assert.equal((await attendance.json()).staff_name,'Marina Silva');
+const contacts=await (await request('/retorno/api/contacts',{cookie:collaboratorCookie})).json();assert.equal(contacts.products[0].contacts[0].attendance_result,'Retorno realizado.');assert.equal(contacts.products[0].contacts[0].staff_name,'Marina Silva');assert.ok(contacts.products[0].contacts[0].responded_at);
+let result=await request('/painel/api/users',{cookie:adminCookie,body:{id,name:'Marina Atualizada',username:'marina',password:'',active:false,role:'C'}});assert.equal(result.status,200);
+assert.equal((await request('/retorno/api/contacts',{cookie:collaboratorCookie})).status,401);
+assert.equal((await request('/retorno/api/login',{body:{username:'marina',password:'test-collaborator-password'}})).status,401);
+assert.equal((await request('/painel/api/session',{cookie:adminCookie})).status,200);
+console.log('PASS: shared login; admin preserved; collaborator cannot access admin routes, APIs or user management; passwords hashed; deactivation revokes sessions; cross-origin and role escalation rejected.');

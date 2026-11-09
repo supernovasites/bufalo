@@ -69,3 +69,11 @@ Homepage, catálogo, blog/artigos, produtos, campanhas, Live (ativa e encerrada)
 Carregue `/assets/site-shell.css` com `data-bg-shell-style` e `/assets/site-shell.js` sem versões fixas no endereço. O servidor obriga revalidação desses arquivos para que páginas antigas recebam as atualizações. Inclua os mesmos dois recursos e espaços em novas páginas públicas. Os painéis operacionais, o checkout e as rotas que apenas redirecionam mantêm suas interfaces específicas.
 
 Verificação: `node --test tests/site-shell.test.mjs`.
+
+## Retorno de atendimentos e colaboradores
+
+Em /retorno/, a equipe entra com as mesmas credenciais de /painel/. O administrador existente é perfil A; PANEL_NAME pode definir seu nome de exibição. Em /painel/usuarios/, somente A cadastra e altera colaboradores C (nome, usuário, senha e situação). C utiliza uma sessão exclusiva, sem autorização para os demais painéis e APIs administrativos. Editar ou desativar um colaborador encerra suas sessões. Senhas C usam PBKDF2-SHA256 com salt individual; não são retornadas pela API.
+
+Retorno separa contatos por origem/produto (atualmente a pesquisa de Chopeira), com paginação. A mensagem aceita [nome cliente] e [nome funcionário], usando o nome do usuário autenticado. Abrir WhatsApp prepara a conversa; o funcionário confirma o envio no WhatsApp. Isso não marca atendimento como respondido. Salvar um resultado não vazio registra o atendimento, nome do funcionário e data, e muda o status para Respondido. O resultado pode ser editado. Nas estatísticas, ao selecionar Chopeira, os contatos e seus resultados permanecem visíveis, com link para /retorno/.
+
+As tabelas team_users, team_sessions, chopeira_survey_attendance e chopeira_attendance_staff são criadas automaticamente sem remover pesquisas ou sessões administrativas existentes. Inclua retorno/ e painel/usuarios/ no pacote dist. Verificação: node --test tests/retorno-team.test.mjs tests/chopeira-survey.test.mjs tests/site-statistics.test.mjs.

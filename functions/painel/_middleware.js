@@ -1,4 +1,4 @@
-import { surveyResults } from '../_lib/chopeira-survey.js';
+import { surveyResults, saveAttendance } from '../_lib/chopeira-survey.js';
 import { campaigns, campaignSchema, campaignEnabled } from '../_lib/campaigns.js';
 import { homepageStats, analyticsRange } from '../_lib/home-analytics.js';
 const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':'nosniff','Referrer-Policy':'same-origin'};
@@ -40,10 +40,15 @@ async function handler(context) {
       return json({authenticated:active});
     }
     if (path === '/painel/api/chopeira-surveys') {
-      if (request.method !== 'GET') return json({error:'Método não permitido.'},405);
+      if (!['GET','POST'].includes(request.method)) return json({error:'Método não permitido.'},405);
       const token = tokenFrom(request);
       const active = !!token && !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();
       if (!active) return json({error:'Entre no painel para ver as respostas.'},401);
+      if (request.method === 'POST') {
+        if (request.headers.get('Origin') !== url.origin) return json({error:'Origem não permitida.'},403);
+        const saved=await saveAttendance(db,await body(request));
+        return json(saved,saved.status||200);
+      }
       let range;
       try { range=analyticsRange(url.searchParams.get('days')||'1',url.searchParams.get('start'),url.searchParams.get('end')); }
       catch(error){ return json({error:error.message},400); }

@@ -46,3 +46,9 @@
 .home-metrics .top-product-link{font-weight:700;color:inherit;overflow-wrap:anywhere;text-decoration:none}
 .home-metrics .top-product-link:hover,.home-metrics .top-product-link:focus-visible{text-decoration:underline}
 .home-metrics .top-product-count{white-space:nowrap;color:#617273;font-variant-numeric:tabular-nums}
+
+.home-metrics .survey-attendance{min-width:280px;vertical-align:top}
+.home-metrics .survey-attendance textarea{display:block;box-sizing:border-box;width:100%;min-height:80px;margin:10px 0;padding:10px;border:1px solid #aeb9b7;border-radius:4px;font:inherit;resize:vertical;background:#fff;color:#173e40}
+.home-metrics .survey-badge{display:inline-block;padding:4px 9px;border-radius:12px;background:#f7ecd1;color:#70551b;font-weight:700}
+.home-metrics .survey-badge.responded{background:#dcefe1;color:#245d35}
+.home-metrics .survey-feedback{max-width:320px;margin:8px 0;font-size:13px}

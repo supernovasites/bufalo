@@ -168,9 +168,12 @@
       data.rows.forEach(item=>{
         const tr=make('tr');const phone=make('td');
         const link=make('a','', '+'+item.phone);link.href='https://wa.me/'+item.phone;link.target='_blank';link.rel='noopener noreferrer';phone.append(link);
-        tr.append(make('td','',new Date(item.created_at).toLocaleString('pt-BR',{timeZone:'America/Belem'})),make('td','',item.name),phone,make('td','',item.reasons.map(key=>surveyReasons[key]||key).join(', ')),make('td','',item.other||'—'));body.append(tr);
+        const attendance=make('td','survey-attendance');
+        attendance.append(make('span','survey-badge'+(item.responded_at?' responded':''),item.responded_at?'Respondido':'Pendente'),make('p','',item.attendance_result||'Nenhum retorno registrado.'));
+        if(item.responded_at)attendance.append(make('small','', (item.staff_name?item.staff_name+' · ':'')+new Date(item.responded_at).toLocaleString('pt-BR',{timeZone:'America/Belem'})));
+        tr.append(make('td','',new Date(item.created_at).toLocaleString('pt-BR',{timeZone:'America/Belem'})),make('td','',item.name),phone,make('td','',item.reasons.map(key=>surveyReasons[key]||key).join(', ')),make('td','',item.other||'—'),attendance);body.append(tr);
       });
-      if(!data.rows.length){const tr=make('tr'),td=make('td','','Nenhuma resposta neste período.');td.colSpan=5;tr.append(td);body.append(tr);}
+      if(!data.rows.length){const tr=make('tr'),td=make('td','','Nenhuma resposta neste período.');td.colSpan=6;tr.append(td);body.append(tr);}
       const summary=$('survey-summary');summary.replaceChildren();
       data.summary.forEach(item=>{const row=make('div','metric-bar-row');row.append(make('span','',surveyReasons[item.reason]||item.reason),make('strong','',number(item.total)));summary.append(row);});
       $('survey-status').textContent=number(data.total)+' respostas'+(data.total?' · Exibindo '+(data.offset+1)+' a '+(data.offset+data.rows.length):'')+'. Uma pessoa pode selecionar vários motivos.';
