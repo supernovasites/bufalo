@@ -3,7 +3,7 @@
 #bg-site-header #bg-search-toggle svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.7}
 #mobile-menu nav a{display:flex!important;align-items:center;gap:14px;min-height:64px;box-sizing:border-box}
 #mobile-menu nav a .bg-category-photo{display:block;width:48px!important;height:48px!important;max-width:48px!important;object-fit:contain;flex:0 0 48px;background:#fff;border-radius:6px}
-#mobile-menu nav a[data-product-url="https://loja.bufalogrowler.com.br/bufaloontap2l"] .bg-category-photo{box-sizing:border-box;padding:6px!important}
+#mobile-menu nav a[data-product-url="https://loja.bufalogrowler.com.br/bufaloontap2l"] .bg-category-photo{box-sizing:border-box;width:72px!important;height:72px!important;max-width:72px!important;flex:0 0 72px;margin-inline:-12px;padding:0!important}
 #mobile-menu nav a span{min-width:0}
 #mobile-menu .bg-search-results{margin:0 24px 16px;border:1px solid #dce0df;border-radius:4px;background:#fff;color:#142e32;overflow:hidden}
 #mobile-menu .bg-search-results[hidden]{display:none!important}
