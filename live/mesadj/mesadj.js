@@ -56,7 +56,7 @@
     if(event.repeat||event.ctrlKey||event.metaKey||event.altKey)return;
     if(event.key==='Escape'){event.preventDefault();stopAll();return;}
     if(event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
-    if(event.code==='Space'||event.key===' '){event.preventDefault();stopAll();return;}
+    if(event.code==='Space'||event.key===' '){event.preventDefault();tracks.forEach(track=>track.pause());message('Todos os sons foram pausados.');return;}
     const digit=/^Digit[1-9]$/.test(event.code)?Number(event.code.slice(-1)):/^[1-9]$/.test(event.key)?Number(event.key):0;
     const index=digit>=1?(event.shiftKey?backgroundCount+digit-1:digit<=backgroundCount?digit-1:-1):-1;
     const track=tracks[index];if(track){event.preventDefault();track.restart();}

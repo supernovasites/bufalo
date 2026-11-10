@@ -73,7 +73,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
   keys.keydown({key:['!','@','#','$','%','^','&','*'][digit-1],code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit+3).paused,false);
   audio(digit+3).currentTime=1;keys.keydown({key:String(digit),code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit+3).paused,false);assert.equal(audio(digit+3).currentTime,0);
  }
- keys.keydown({key:' ',code:'Space',target:{closest:()=>null},preventDefault(){}});assert.ok(cards.every(card=>card.controls.get('audio').paused));
+ audio(4).currentTime=1.5;audio(11).currentTime=2;keys.keydown({key:' ',code:'Space',target:{closest:()=>null},preventDefault(){}});assert.ok(cards.every(card=>card.controls.get('audio').paused));assert.equal(audio(4).currentTime,1.5);assert.equal(audio(11).currentTime,2);await control(4,'.play').listeners.click();assert.equal(audio(4).currentTime,1.5);
  keys.keydown({key:'9',code:'Digit9',shiftKey:true,target:{closest:()=>null},preventDefault(){throw new Error('Unassigned shortcut');}});
  keys.keydown({key:'5',code:'Digit5',target:{closest:()=>null},preventDefault(){throw new Error('Effects require Shift');}});
  stopAll.listeners.click();assert.equal(audio(3).paused,true);assert.equal(audio(3).currentTime,10);
