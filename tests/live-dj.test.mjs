@@ -28,7 +28,7 @@ function element(extra={}){
 }
 test('DJ can mix tracks, multiply individual and master levels, pause, restart and stop all',async()=>{
  const master=element({value:'80'}),level=element(),feedback=element(),stopAll=element(),keys={},windowEvents={};
- const cards=Array.from({length:12},(_,index)=>{
+ const cards=Array.from({length:11},(_,index)=>{
   const controls=new Map();
   const audio=element({paused:true,ended:false,error:null,currentTime:0,duration:60,readyState:1,volume:1,loop:false,async play(){this.paused=false;this.listeners.play?.();},pause(){this.paused=true;this.listeners.pause?.();}});
   controls.set('audio',audio);controls.set('h2',element({textContent:'Track '+index}));
@@ -69,7 +69,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  for(let digit=1;digit<=9;digit++){
   keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).paused,false);stopAll.listeners.click();
  }
- for(let digit=1;digit<=3;digit++){
+ for(let digit=1;digit<=2;digit++){
   keys.keydown({key:['!','@','#','$','%'][digit-1],code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit+8).paused,false);
   keys.keydown({key:String(digit),code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});assert.equal(audio(digit+8).paused,true);
  }
@@ -81,7 +81,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  audio(1).error={code:4};audio(1).listeners.error();assert.equal(control(1,'.play').disabled,true);assert.match(control(1,'.track-status').textContent,/indisponível/);
 });
 test('bundled DJ audio and distributed files match the source, with no automatic playback',()=>{
- const html=read('live/mesadj/index.html').toString();assert.ok(!html.includes('data-track="celebracao"'));assert.ok(!html.includes('data-track="contagem"'));assert.ok(!html.includes('autoplay'));assert.match(html,/data-track="cris-anuncia-pos-live"/);assert.ok(html.includes('>Cris anuncia Pos Live</h2>'));assert.match(html,/data-track="foguinho" data-loop-end="30"/);assert.match(html,/<input class="loop" type="checkbox" checked> Repetir primeiros 30 segundos/);assert.equal((html.match(/data-loop-end=/g)||[]).length,1);assert.equal((html.match(/<audio /g)||[]).length,12);assert.ok(!html.includes('data-track="espera-sorteio"'));for(const id of ['explosao-curta','explosao','vencedor-sfx'])assert.ok(!html.includes('data-track="'+id+'"'));
+ const html=read('live/mesadj/index.html').toString();assert.ok(!html.includes('data-track="celebracao"'));assert.ok(!html.includes('data-track="contagem"'));assert.ok(!html.includes('autoplay'));assert.match(html,/data-track="cris-anuncia-pos-live"/);assert.ok(html.includes('>Cris anuncia Pos Live</h2>'));assert.match(html,/data-track="foguinho" data-loop-end="30"/);assert.match(html,/<input class="loop" type="checkbox" checked> Repetir primeiros 30 segundos/);assert.equal((html.match(/data-loop-end=/g)||[]).length,1);assert.equal((html.match(/<audio /g)||[]).length,11);assert.ok(!html.includes('data-track="espera-sorteio"'));for(const id of ['explosao-curta','explosao','vencedor-sfx','risadinha'])assert.ok(!html.includes('data-track="'+id+'"'));
  for(const match of html.matchAll(/<audio[^>]+src="([^"]+)"/g)){const path=match[1].slice(1);assert.ok(read(path).length>0);assert.deepEqual(read(path),read('dist/'+path));}
  for(const file of ['index.html','mesadj.css','mesadj.js','sons/celebracao.mp3','sons/contagem-bateria.mp3','sons/fundo-chaves.mp3','sons/trilha-live.m4a','sons/trilha-espera-sorteio.mp3'])assert.deepEqual(read('live/mesadj/'+file),read('dist/live/mesadj/'+file));
  assert.match(read('painel/index.html').toString(),/href="\/live\/mesadj\/">Abrir mesa de DJ/);
