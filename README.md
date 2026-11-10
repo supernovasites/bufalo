@@ -81,3 +81,7 @@ As tabelas team_users, team_sessions, chopeira_survey_attendance e chopeira_atte
 Novos colaboradores recebem sempre a senha inicial 1234. Em /painel/usuarios/, o administrador pode redefinir a senha para esse padrão, encerrando todas as sessões do colaborador. O login exige senha pessoal de 10 a 128 caracteres antes de liberar os contatos, inclusive por API. Cadastros existentes mantêm sua senha até uma redefinição.
 
 A gestão de colaboradores não exibe mais o controle Usuário ativo: novos cadastros e edições ficam ativos. Somente administradores A cadastram, editam, redefinem senha e removem colaboradores C. Remover um colaborador encerra suas sessões e exclui seu acesso, preservando resultados e nomes no histórico de atendimentos.
+
+## Visibilidade da seção ManadaCash na live
+
+Em `/live/admin`, o card **Seção ManadaCash** permite ocultar ou exibir a seção de presença (Primeiro Cadastro / Já sou da Manada). A configuração é persistida no D1, exige sessão administrativa e aparece na página pública após recarregar. Por padrão, a seção permanece visível. A tabela `live_manadacash` é criada no primeiro salvamento. O botão flutuante de consulta de pontos continua independente.

@@ -1,5 +1,6 @@
 const $ = id => document.getElementById(id);
 let enabled = true;
+let manadacashEnabled = true;
 let selectedPhoto = null;
 let objectUrl = null;
 
@@ -38,6 +39,10 @@ async function api(path, body) {
 
 function render(data) {
   enabled = Boolean(data.enabled);
+  manadacashEnabled = data.manadacash_enabled !== false;
+  text('manadacash-status', manadacashEnabled ? 'A seção está visível na live.' : 'A seção está oculta na live.');
+  text('toggle-manadacash', manadacashEnabled ? 'Ocultar seção' : 'Exibir seção');
+  if ($('toggle-manadacash')) $('toggle-manadacash').disabled = false;
   const dashboard = $('dashboard');
   const editor = $('content-editor');
   const logout = $('logout');
@@ -86,6 +91,20 @@ $('toggle')?.addEventListener('click', async event => {
       : 'Live desativada. A mensagem de agradecimento já está no ar.');
   } catch (error) {
     message(error.message, true);
+  } finally {
+    button.disabled = false;
+  }
+});
+
+$('toggle-manadacash')?.addEventListener('click', async event => {
+  const button = event.currentTarget;
+  button.disabled = true;
+  text('manadacash-feedback', 'Salvando alteração…');
+  try {
+    render(await api('manadacash', {enabled: !manadacashEnabled}));
+    text('manadacash-feedback', manadacashEnabled ? 'Seção ManadaCash exibida na live.' : 'Seção ManadaCash ocultada na live.');
+  } catch(error) {
+    text('manadacash-feedback', error.message);
   } finally {
     button.disabled = false;
   }

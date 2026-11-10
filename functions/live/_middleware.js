@@ -1,4 +1,4 @@
-import {content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable, challengeDiscountTable} from '../../lib/live-content.js';
+import {manadacashEnabled, manadacashTable, content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable, challengeDiscountTable} from '../../lib/live-content.js';
 import {handleAuction} from '../../lib/live-auction.js';
 import {handleRaffle} from '../../lib/live-raffle.js';
 const encoder = new TextEncoder();
@@ -6,7 +6,7 @@ const noCache = {'Cache-Control':'no-store, max-age=0','X-Content-Type-Options':
 const json = (body, status = 200, headers = {}) => new Response(JSON.stringify(body), {status, headers:{...noCache,'Content-Type':'application/json; charset=utf-8',...headers}});
 const hex = bytes => Array.from(new Uint8Array(bytes), b => b.toString(16).padStart(2,'0')).join('');
 async function sha(value) { return hex(await crypto.subtle.digest('SHA-256', encoder.encode(value))); }
-async function state(db) { const row = await db.prepare('SELECT enabled FROM live_settings WHERE id = 1').first(); return {enabled: row ? !!row.enabled : true,...await content(db)}; }
+async function state(db) { const row = await db.prepare('SELECT enabled FROM live_settings WHERE id = 1').first(); return {enabled: row ? !!row.enabled : true,manadacash_enabled:await manadacashEnabled(db),...await content(db)}; }
 async function authenticated(request,db){const token=request.headers.get('Cookie')?.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];if(!token)return false;return !!await db.prepare('SELECT token FROM live_sessions WHERE token = ? AND expires > ?').bind(await sha(token),Date.now()).first();}
 async function handle(context) {
   const {request,env} = context;
@@ -82,6 +82,12 @@ async function handle(context) {
       } else await couponStatement.run();
       return json(await state(db));
     }
+    if(path==='/live/api/manadacash' && request.method==='POST') {
+      if(typeof body.enabled !== 'boolean') return json({error:'Estado inválido.'},400);
+      await db.prepare(manadacashTable).run();
+      await db.prepare('INSERT INTO live_manadacash (id,enabled) VALUES (1,?) ON CONFLICT(id) DO UPDATE SET enabled=excluded.enabled').bind(body.enabled?1:0).run();
+      return json(await state(db));
+    }
     if(path==='/live/api/contact' && request.method==='POST') {
       const number=typeof body.whatsapp_number==='string'?body.whatsapp_number.trim():'';
       const message=typeof body.whatsapp_message==='string'?body.whatsapp_message.trim():'';
@@ -126,6 +132,7 @@ async function handle(context) {
   if (['/live','/live/index','/live/index.html'].includes(path) && result.status===200 && headers.get('Content-Type')?.includes('text/html')) {
     const config=await content(env.LIVE_DB);
     let html=await result.text();
+    if(!await manadacashEnabled(env.LIVE_DB)) html=html.replace(/<section\b[^>]*\bid="cadastro-live"[^>]*>[\s\S]*?<\/section>/, '');
     html=html.replaceAll('__LIVE_COUPON__',config.coupon).replaceAll('__LIVE_DATE__',config.live_date).replaceAll('__LIVE_DATE_DOTTED__',config.live_date.replace('/','.'));
     for(const id of challengeIds) {
       const coupon = config.challenge_coupons[id] || config.coupon;
