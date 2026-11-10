@@ -67,12 +67,13 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  keys.keydown({key:'Escape',target:{closest:()=>null},preventDefault(){}});assert.equal(audio(0).paused,true);
  keys.keydown({key:'2',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(1).paused,false);
  for(let digit=1;digit<=4;digit++){
-  keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).paused,false);stopAll.listeners.click();
+  keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).paused,false);audio(digit-1).currentTime=20;keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).currentTime,digit===4?10:0);stopAll.listeners.click();
  }
  for(let digit=1;digit<=8;digit++){
   keys.keydown({key:['!','@','#','$','%','^','&','*'][digit-1],code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit+3).paused,false);
-  keys.keydown({key:String(digit),code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});assert.equal(audio(digit+3).paused,true);
+  audio(digit+3).currentTime=1;keys.keydown({key:String(digit),code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit+3).paused,false);assert.equal(audio(digit+3).currentTime,0);
  }
+ keys.keydown({key:' ',code:'Space',target:{closest:()=>null},preventDefault(){}});assert.ok(cards.every(card=>card.controls.get('audio').paused));
  keys.keydown({key:'9',code:'Digit9',shiftKey:true,target:{closest:()=>null},preventDefault(){throw new Error('Unassigned shortcut');}});
  keys.keydown({key:'5',code:'Digit5',target:{closest:()=>null},preventDefault(){throw new Error('Effects require Shift');}});
  stopAll.listeners.click();assert.equal(audio(3).paused,true);assert.equal(audio(3).currentTime,10);
