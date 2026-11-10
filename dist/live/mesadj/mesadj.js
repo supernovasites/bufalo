@@ -6,6 +6,7 @@
   const tracks=[...document.querySelectorAll('[data-track]')].map((card,index)=>{
     const audio=card.querySelector('audio'),play=card.querySelector('.play'),restart=card.querySelector('.restart'),stop=card.querySelector('.stop'),seek=card.querySelector('.seek'),volume=card.querySelector('.volume'),loop=card.querySelector('.loop'),status=card.querySelector('.track-status'),name=card.querySelector('h2').textContent;
     let starting=false,playbackVersion=0;
+    const startAt=Math.max(0,Number(card.dataset?.startAt)||0);
     const loopEnd=Number(card.dataset?.loopEnd)||0;
     const duration=()=>loop.checked&&loopEnd>0?Math.min(loopEnd,audio.duration):audio.duration;
     const background=card.closest('.sound-group').getAttribute('aria-labelledby')==='background-title';
@@ -29,18 +30,19 @@
       if(background)tracks.forEach(track=>{if(track.background&&track.audio!==audio)track.pause();});
       starting=true;
       const version=++playbackVersion;
-      try{if(fromBeginning||(loop.checked&&loopEnd>0&&audio.currentTime>=duration()))audio.currentTime=0;await audio.play();if(version===playbackVersion)message(name+' tocando.');}
+      try{if(fromBeginning||audio.ended||audio.currentTime<startAt||(loop.checked&&loopEnd>0&&audio.currentTime>=duration()))audio.currentTime=startAt;await audio.play();if(version===playbackVersion)message(name+' tocando.');}
       catch{if(version===playbackVersion)message('Não foi possível tocar '+name+'. Tente novamente pelo botão Tocar.',true);}
       finally{starting=false;render();}
     };
-    const halt=()=>{playbackVersion++;audio.pause();if(audio.readyState>=1)audio.currentTime=0;render();};
+    const halt=()=>{playbackVersion++;audio.pause();if(audio.readyState>=1)audio.currentTime=startAt;render();};
     const pause=()=>{playbackVersion++;audio.pause();render();};
     const toggle=()=>{if(!audio.paused){audio.pause();message(name+' pausado.');}else return start();};
     play.addEventListener('click',toggle);restart.addEventListener('click',()=>start(true));stop.addEventListener('click',()=>{halt();message(name+' parado.');});
     volume.addEventListener('input',updateVolume);loop.addEventListener('change',()=>{audio.loop=loop.checked;if(loop.checked&&loopEnd>0&&audio.currentTime>=duration())audio.currentTime=0;updateTime();});
     seek.addEventListener('input',()=>{const end=duration();if(Number.isFinite(end)&&end>0)audio.currentTime=Number(seek.value)/100*end;updateTime();});
     ['loadedmetadata','durationchange','play','pause','ended','emptied','canplay'].forEach(event=>audio.addEventListener(event,render));
-    audio.addEventListener('timeupdate',()=>{if(loop.checked&&loopEnd>0&&!audio.paused&&audio.currentTime>=duration())audio.currentTime=0;updateTime();});
+    audio.addEventListener('loadedmetadata',()=>{if(startAt>0&&audio.currentTime<startAt)audio.currentTime=startAt;render();});
+    audio.addEventListener('timeupdate',()=>{if(startAt>0&&!audio.paused&&audio.currentTime<startAt)audio.currentTime=startAt;if(loop.checked&&loopEnd>0&&!audio.paused&&audio.currentTime>=duration())audio.currentTime=0;updateTime();});
     audio.addEventListener('error',()=>{render();message('Não foi possível carregar '+name+'. Atualize a página para tentar novamente.',true);});
     audio.loop=loop.checked;updateVolume();render();
     return {halt,pause,toggle,updateVolume,background,audio};

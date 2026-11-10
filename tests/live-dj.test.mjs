@@ -34,7 +34,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
   controls.set('audio',audio);controls.set('h2',element({textContent:'Track '+index}));
   for(const name of ['.play','.restart','.stop','.seek','.volume','.loop','.track-status','.track-level','.elapsed','.duration'])controls.set(name,element());
   controls.get('.volume').value=index===2?'60':index===3?'40':'100';controls.get('.loop').checked=index===0;
-  return element({dataset:index===0?{loopEnd:'30'}:{},querySelector:selector=>controls.get(selector),closest:()=>({getAttribute:()=>index<4?'background-title':'effects-title'}),controls});
+  return element({dataset:index===0?{loopEnd:'30'}:index===3?{startAt:'10'}:{},querySelector:selector=>controls.get(selector),closest:()=>({getAttribute:()=>index<4?'background-title':'effects-title'}),controls});
  });
  vm.runInNewContext(read('live/mesadj/mesadj.js').toString(),{
   document:{getElementById:id=>({'master-volume':master,'master-level':level,feedback,'stop-all':stopAll}[id]),querySelectorAll:()=>cards,createTextNode:text=>text,createElement:()=>element(),addEventListener:(event,handler)=>{keys[event]=handler;}},window:{addEventListener:(event,handler)=>{windowEvents[event]=handler;}}
@@ -45,6 +45,8 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  await control(0,'.play').listeners.click();await control(1,'.play').listeners.click();assert.equal(audio(0).paused,true);assert.equal(audio(1).paused,false); await control(4,'.play').listeners.click(); await control(5,'.play').listeners.click(); assert.equal(audio(1).paused,false);assert.equal(audio(4).paused,false);assert.equal(audio(4).paused,false); await control(0,'.play').listeners.click();assert.equal(audio(1).paused,true);assert.equal(audio(4).paused,false);
  control(0,'.play').listeners.click();assert.equal(audio(0).paused,true);
  audio(0).currentTime=20;await control(0,'.restart').listeners.click();assert.equal(audio(0).currentTime,0);assert.equal(audio(0).paused,false);
+ await control(3,'.play').listeners.click();assert.equal(audio(3).currentTime,10);audio(3).currentTime=24;control(3,'.play').listeners.click();await control(3,'.play').listeners.click();assert.equal(audio(3).currentTime,24);await control(3,'.restart').listeners.click();assert.equal(audio(3).currentTime,10);control(3,'.stop').listeners.click();assert.equal(audio(3).currentTime,10);
+ await control(0,'.restart').listeners.click();
  assert.equal(audio(0).loop,true);
  audio(0).currentTime=29.9;audio(0).listeners.timeupdate();assert.equal(audio(0).currentTime,29.9);
  audio(0).currentTime=30;audio(0).listeners.timeupdate();assert.equal(audio(0).currentTime,0);assert.equal(audio(0).paused,false);
@@ -60,7 +62,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  control(0,'.volume').value='40';control(0,'.volume').listeners.input();assert.equal(audio(0).volume,.015); control(0,'.volume').value='1';control(0,'.volume').listeners.input();assert.equal(audio(0).volume,.005);
  control(4,'.volume').value='100';control(4,'.volume').listeners.input();assert.equal(audio(4).volume,.1);control(4,'.volume').value='10';control(4,'.volume').listeners.input();assert.equal(audio(4).volume,.05);control(4,'.volume').value='0';control(4,'.volume').listeners.input();assert.equal(audio(4).volume,0);control(0,'.seek').value='50';control(0,'.seek').listeners.input();assert.equal(audio(0).currentTime,30);
  control(0,'.loop').checked=true;control(0,'.loop').listeners.change();assert.equal(audio(0).loop,true);
- stopAll.listeners.click();assert.ok(cards.every(card=>{const a=card.controls.get('audio');return a.paused&&a.currentTime===0;}));
+ stopAll.listeners.click();assert.ok(cards.every((card,index)=>{const a=card.controls.get('audio');return a.paused&&a.currentTime===(index===3?10:0);}));
  keys.keydown({key:'1',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(0).paused,false);
  keys.keydown({key:'Escape',target:{closest:()=>null},preventDefault(){}});assert.equal(audio(0).paused,true);
  keys.keydown({key:'2',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(1).paused,false);
@@ -72,7 +74,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
   keys.keydown({key:String(digit),code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});assert.equal(audio(digit+8).paused,true);
  }
  keys.keydown({key:'6',code:'Digit6',shiftKey:true,target:{closest:()=>null},preventDefault(){throw new Error('Unassigned shortcut');}});
- stopAll.listeners.click();assert.equal(audio(3).paused,true);assert.equal(audio(3).currentTime,0);
+ stopAll.listeners.click();assert.equal(audio(3).paused,true);assert.equal(audio(3).currentTime,10);
  keys.keydown({key:'1',target:{closest:()=>true},preventDefault(){}});assert.equal(audio(0).paused,true);
  await control(0,'.play').listeners.click();windowEvents.pagehide();assert.equal(audio(0).paused,true);
  audio(0).play=async()=>{throw new Error('blocked');};await control(0,'.play').listeners.click();assert.match(feedback.textContent,/Não foi possível tocar/);assert.equal(audio(0).paused,true);
