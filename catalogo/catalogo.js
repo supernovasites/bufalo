@@ -36,6 +36,7 @@ document.addEventListener('click',event=>{
   const apply=()=>{
     card.querySelectorAll('.color-swatch').forEach(swatch=>swatch.setAttribute('aria-pressed',String(swatch===button)));
     card.querySelector('.selected-color strong').textContent=button.dataset.colorLabel;
+    if(button.dataset.colorUrl)card.querySelectorAll('a.photo,h3 a,a.button').forEach(link=>link.href=button.dataset.colorUrl);
     if(button.dataset.colorPrice){
       const money=value=>Number(value).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
       const oldPrice=button.dataset.colorOldPrice;
