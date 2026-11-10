@@ -34,7 +34,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
   controls.set('audio',audio);controls.set('h2',element({textContent:'Track '+index}));
   for(const name of ['.play','.restart','.stop','.seek','.volume','.loop','.track-status','.track-level','.elapsed','.duration'])controls.set(name,element());
   controls.get('.volume').value=index===2?'60':index===3?'40':'100';controls.get('.loop').checked=index===0;
-  return element({dataset:index===0?{loopEnd:'30'}:index===3?{startAt:'10'}:{},querySelector:selector=>controls.get(selector),closest:()=>({getAttribute:()=>index<4?'background-title':'effects-title'}),controls});
+  return element({dataset:index===0?{loopEnd:'30'}:{},querySelector:selector=>controls.get(selector),closest:()=>({getAttribute:()=>index<4?'background-title':'effects-title'}),controls});
  });
  vm.runInNewContext(read('live/mesadj/mesadj.js').toString(),{
   document:{getElementById:id=>({'master-volume':master,'master-level':level,feedback,'stop-all':stopAll}[id]),querySelectorAll:()=>cards,createTextNode:text=>text,createElement:()=>element(),addEventListener:(event,handler)=>{keys[event]=handler;}},window:{addEventListener:(event,handler)=>{windowEvents[event]=handler;}}
@@ -45,7 +45,7 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  await control(0,'.play').listeners.click();await control(1,'.play').listeners.click();assert.equal(audio(0).paused,true);assert.equal(audio(1).paused,false); await control(4,'.play').listeners.click(); await control(5,'.play').listeners.click(); assert.equal(audio(1).paused,false);assert.equal(audio(4).paused,false);assert.equal(audio(4).paused,false); await control(0,'.play').listeners.click();assert.equal(audio(1).paused,true);assert.equal(audio(4).paused,false);
  control(0,'.play').listeners.click();assert.equal(audio(0).paused,true);
  audio(0).currentTime=20;await control(0,'.restart').listeners.click();assert.equal(audio(0).currentTime,0);assert.equal(audio(0).paused,false);
- await control(3,'.play').listeners.click();assert.equal(audio(3).currentTime,10);audio(3).currentTime=24;control(3,'.play').listeners.click();await control(3,'.play').listeners.click();assert.equal(audio(3).currentTime,24);await control(3,'.restart').listeners.click();assert.equal(audio(3).currentTime,10);control(3,'.stop').listeners.click();assert.equal(audio(3).currentTime,10);
+ await control(3,'.play').listeners.click();assert.equal(audio(3).currentTime,0);audio(3).currentTime=24;control(3,'.play').listeners.click();await control(3,'.play').listeners.click();assert.equal(audio(3).currentTime,24);await control(3,'.restart').listeners.click();assert.equal(audio(3).currentTime,0);control(3,'.stop').listeners.click();assert.equal(audio(3).currentTime,0);
  await control(0,'.restart').listeners.click();
  assert.equal(audio(0).loop,true);
  audio(0).currentTime=29.9;audio(0).listeners.timeupdate();assert.equal(audio(0).currentTime,29.9);
@@ -62,12 +62,12 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  control(0,'.volume').value='40';control(0,'.volume').listeners.input();assert.equal(audio(0).volume,.015); control(0,'.volume').value='1';control(0,'.volume').listeners.input();assert.equal(audio(0).volume,.005);
  control(4,'.volume').value='100';control(4,'.volume').listeners.input();assert.equal(audio(4).volume,.1);control(4,'.volume').value='10';control(4,'.volume').listeners.input();assert.equal(audio(4).volume,.05);control(4,'.volume').value='0';control(4,'.volume').listeners.input();assert.equal(audio(4).volume,0);control(0,'.seek').value='50';control(0,'.seek').listeners.input();assert.equal(audio(0).currentTime,30);
  control(0,'.loop').checked=true;control(0,'.loop').listeners.change();assert.equal(audio(0).loop,true);
- stopAll.listeners.click();assert.ok(cards.every((card,index)=>{const a=card.controls.get('audio');return a.paused&&a.currentTime===(index===3?10:0);}));
+ stopAll.listeners.click();assert.ok(cards.every((card,index)=>{const a=card.controls.get('audio');return a.paused&&a.currentTime===(0);}));
  keys.keydown({key:'1',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(0).paused,false);
  keys.keydown({key:'Escape',target:{closest:()=>null},preventDefault(){}});assert.equal(audio(0).paused,true);
  keys.keydown({key:'2',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(1).paused,false);
  for(let digit=1;digit<=4;digit++){
-  keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).paused,false);audio(digit-1).currentTime=20;keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).currentTime,digit===4?10:0);stopAll.listeners.click();
+  keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).paused,false);audio(digit-1).currentTime=20;keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).currentTime,0);stopAll.listeners.click();
  }
  for(let digit=1;digit<=8;digit++){
   keys.keydown({key:['!','@','#','$','%','^','&','*'][digit-1],code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit+3).paused,false);
@@ -76,14 +76,14 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  audio(4).currentTime=1.5;audio(11).currentTime=2;keys.keydown({key:' ',code:'Space',target:{closest:()=>null},preventDefault(){}});assert.ok(cards.every(card=>card.controls.get('audio').paused));assert.equal(audio(4).currentTime,1.5);assert.equal(audio(11).currentTime,2);await control(4,'.play').listeners.click();assert.equal(audio(4).currentTime,1.5);
  keys.keydown({key:'9',code:'Digit9',shiftKey:true,target:{closest:()=>null},preventDefault(){throw new Error('Unassigned shortcut');}});
  keys.keydown({key:'5',code:'Digit5',target:{closest:()=>null},preventDefault(){throw new Error('Effects require Shift');}});
- stopAll.listeners.click();assert.equal(audio(3).paused,true);assert.equal(audio(3).currentTime,10);
+ stopAll.listeners.click();assert.equal(audio(3).paused,true);assert.equal(audio(3).currentTime,0);
  keys.keydown({key:'1',target:{closest:()=>true},preventDefault(){}});assert.equal(audio(0).paused,true);
  await control(0,'.play').listeners.click();windowEvents.pagehide();assert.equal(audio(0).paused,true);
  audio(0).play=async()=>{throw new Error('blocked');};await control(0,'.play').listeners.click();assert.match(feedback.textContent,/Não foi possível tocar/);assert.equal(audio(0).paused,true);
  audio(1).error={code:4};audio(1).listeners.error();assert.equal(control(1,'.play').disabled,true);assert.match(control(1,'.track-status').textContent,/indisponível/);
 });
 test('bundled DJ audio and distributed files match the source, with no automatic playback',()=>{
- const html=read('live/mesadj/index.html').toString();assert.ok(!html.includes('data-track="celebracao"'));assert.ok(!html.includes('data-track="contagem"'));assert.ok(!html.includes('autoplay'));assert.ok(html.includes('data-track="risadinha-pode-crer"'));assert.ok(html.includes('>Risadinha Pode crer</h2>'));assert.match(html,/data-track="cris-anuncia-pos-live"/);assert.ok(html.includes('>Cris anuncia Pos Live</h2>'));assert.match(html,/data-track="foguinho" data-loop-end="30"/);assert.match(html,/<input class="loop" type="checkbox" checked> Repetir primeiros 30 segundos/);assert.equal((html.match(/data-loop-end=/g)||[]).length,1);assert.equal((html.match(/<audio /g)||[]).length,12);assert.ok(!html.includes('data-track="espera-sorteio"'));for(const id of ['explosao-curta','explosao','vencedor-sfx','risadinha'])assert.ok(!html.includes('data-track="'+id+'"'));
+ const html=read('live/mesadj/index.html').toString();assert.ok(!html.includes('data-track="celebracao"'));assert.ok(!html.includes('data-track="contagem"'));assert.ok(!html.includes('autoplay'));assert.ok(html.includes('data-track="risadinha-pode-crer"'));assert.ok(html.includes('>Risadinha Pode crer</h2>'));assert.match(html,/data-track="cris-anuncia-pos-live"/);assert.ok(!html.includes('data-start-at="10"'));assert.ok(html.includes('/sons/cris-anuncia-pos-live-completa.mp3'));assert.ok(html.includes('>Cris anuncia Pos Live</h2>'));assert.match(html,/data-track="foguinho" data-loop-end="30"/);assert.match(html,/<input class="loop" type="checkbox" checked> Repetir primeiros 30 segundos/);assert.equal((html.match(/data-loop-end=/g)||[]).length,1);assert.equal((html.match(/<audio /g)||[]).length,12);assert.ok(!html.includes('data-track="espera-sorteio"'));for(const id of ['explosao-curta','explosao','vencedor-sfx','risadinha'])assert.ok(!html.includes('data-track="'+id+'"'));
  for(const match of html.matchAll(/<audio[^>]+src="([^"]+)"/g)){const path=match[1].slice(1);assert.ok(read(path).length>0);assert.deepEqual(read(path),read('dist/'+path));}
  for(const file of ['index.html','mesadj.css','mesadj.js','sons/celebracao.mp3','sons/contagem-bateria.mp3','sons/fundo-chaves.mp3','sons/trilha-live.m4a','sons/trilha-espera-sorteio.mp3'])assert.deepEqual(read('live/mesadj/'+file),read('dist/live/mesadj/'+file));
  assert.match(read('painel/index.html').toString(),/href="\/live\/mesadj\/">Abrir mesa de DJ/);
