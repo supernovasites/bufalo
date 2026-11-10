@@ -1,3 +1,4 @@
+import {validCpf} from '../../lib/cpf.js';
 import {manadacashEnabled, manadacashTable, content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable, challengeDiscountTable} from '../../lib/live-content.js';
 import {handleAuction} from '../../lib/live-auction.js';
 import {handleRaffle} from '../../lib/live-raffle.js';
@@ -44,6 +45,7 @@ async function handle(context) {
       const member=body.tipo_cadastro==='member';
       if (body.tipo_cadastro && !['first','member'].includes(body.tipo_cadastro)) return json({error:'Tipo de cadastro inválido.'},400);
       const nome=field(body.nome,120), nascimento=member?'':field(body.data_nascimento,10), cpf=field(body.cpf,18), email=member?'':field(body.email,254), instagram=field(body.instagram,80,member)??'', cidade=field(body.cidade,100), whatsapp=member?'':field(body.whatsapp,22);
+      if (!validCpf(cpf)) return json({error:'Informe um CPF válido. Confira os dígitos digitados.'},400);
       if (!nome || !cpf || cpf.replace(/\D/g,'').length!==11 || !cidade || (member ? !instagram : (!nome || !/^\d{4}-\d{2}-\d{2}$/.test(nascimento || '') || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !whatsapp || !/^\d{10,13}$/.test(whatsapp.replace(/\D/g,''))))) return json({error:'Confira os dados informados e tente novamente.'},400);
       const now=Date.now(), bucket=Math.floor(now/900000);
       const client=await sha('register:'+(request.headers.get('CF-Connecting-IP')||'local')+':'+bucket);
