@@ -3,7 +3,9 @@
   const feedback=document.getElementById('feedback');
   const time=value=>Number.isFinite(value)?`${Math.floor(value/60)}:${String(Math.floor(value%60)).padStart(2,'0')}`:'—:—';
   const message=(text,error=false)=>{feedback.textContent=text;feedback.classList.toggle('error',error);};
-  const tracks=[...document.querySelectorAll('[data-track]')].map((card,index)=>{
+  const cards=[...document.querySelectorAll('[data-track]')];
+  const backgroundCount=cards.filter(card=>card.closest('.sound-group').getAttribute('aria-labelledby')==='background-title').length;
+  const tracks=cards.map((card,index)=>{
     const audio=card.querySelector('audio'),play=card.querySelector('.play'),restart=card.querySelector('.restart'),stop=card.querySelector('.stop'),seek=card.querySelector('.seek'),volume=card.querySelector('.volume'),loop=card.querySelector('.loop'),status=card.querySelector('.track-status'),name=card.querySelector('h2').textContent;
     let starting=false,playbackVersion=0;
     const startAt=Math.max(0,Number(card.dataset?.startAt)||0);
@@ -20,7 +22,7 @@
       const playing=!audio.paused&&!audio.ended;
       card.classList.toggle('is-playing',playing);card.classList.toggle('has-error',failed);
       play.replaceChildren(document.createTextNode(playing?'Pausar ':'Tocar '));
-      const key=document.createElement('kbd');key.textContent=index<9?String(index+1):'Shift+'+String(index-8);play.append(key);
+      const key=document.createElement('kbd');key.textContent=background?String(index+1):'Shift+'+String(index-backgroundCount+1);play.append(key);
       play.setAttribute('aria-label',(playing?'Pausar ':'Tocar ')+name);
       status.textContent=failed?'Áudio indisponível':!ready?'Carregando áudio…':playing?'Tocando agora':audio.currentTime>0&&!audio.ended?'Em pausa':'Pronto para tocar';
       updateTime();
@@ -55,7 +57,7 @@
     if(event.key==='Escape'){event.preventDefault();stopAll();return;}
     if(event.target.closest('input,textarea,select,[contenteditable="true"]'))return;
     const digit=/^Digit[1-9]$/.test(event.code)?Number(event.code.slice(-1)):/^[1-9]$/.test(event.key)?Number(event.key):0;
-    const index=event.shiftKey?(digit>=1&&digit<=5?digit+8:-1):digit-1;
+    const index=digit>=1?(event.shiftKey?backgroundCount+digit-1:digit<=backgroundCount?digit-1:-1):-1;
     const track=tracks[index];if(track){event.preventDefault();track.toggle();}
   });
   window.addEventListener('pagehide',()=>tracks.forEach(track=>track.halt()));

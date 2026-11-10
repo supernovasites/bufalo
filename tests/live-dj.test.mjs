@@ -66,14 +66,15 @@ test('DJ can mix tracks, multiply individual and master levels, pause, restart a
  keys.keydown({key:'1',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(0).paused,false);
  keys.keydown({key:'Escape',target:{closest:()=>null},preventDefault(){}});assert.equal(audio(0).paused,true);
  keys.keydown({key:'2',target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(1).paused,false);
- for(let digit=1;digit<=9;digit++){
+ for(let digit=1;digit<=4;digit++){
   keys.keydown({key:String(digit),code:'Digit'+digit,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit-1).paused,false);stopAll.listeners.click();
  }
- for(let digit=1;digit<=3;digit++){
-  keys.keydown({key:['!','@','#','$','%'][digit-1],code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit+8).paused,false);
-  keys.keydown({key:String(digit),code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});assert.equal(audio(digit+8).paused,true);
+ for(let digit=1;digit<=8;digit++){
+  keys.keydown({key:['!','@','#','$','%','^','&','*'][digit-1],code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});await new Promise(setImmediate);assert.equal(audio(digit+3).paused,false);
+  keys.keydown({key:String(digit),code:'Digit'+digit,shiftKey:true,target:{closest:()=>null},preventDefault(){}});assert.equal(audio(digit+3).paused,true);
  }
- keys.keydown({key:'6',code:'Digit6',shiftKey:true,target:{closest:()=>null},preventDefault(){throw new Error('Unassigned shortcut');}});
+ keys.keydown({key:'9',code:'Digit9',shiftKey:true,target:{closest:()=>null},preventDefault(){throw new Error('Unassigned shortcut');}});
+ keys.keydown({key:'5',code:'Digit5',target:{closest:()=>null},preventDefault(){throw new Error('Effects require Shift');}});
  stopAll.listeners.click();assert.equal(audio(3).paused,true);assert.equal(audio(3).currentTime,10);
  keys.keydown({key:'1',target:{closest:()=>true},preventDefault(){}});assert.equal(audio(0).paused,true);
  await control(0,'.play').listeners.click();windowEvents.pagehide();assert.equal(audio(0).paused,true);
