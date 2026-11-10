@@ -1,6 +1,9 @@
 /* Busca por nome no catálogo da Loja Integrada, sem assistente de IA. */
 (()=>{
  'use strict';
+ const chopeiraImage=document.querySelector('#mobile-menu nav a[data-product-url="https://loja.bufalogrowler.com.br/bufaloontap2l"] .bg-category-photo');
+ if(chopeiraImage)chopeiraImage.src='https://cdn.awsli.com.br/400x400/1237/1237589/produto/404795468/on-tap-3-5-l-preta-1-da6f65e6-fpy9epl7a0.png';
+
  const searchButton=document.getElementById('bg-search-toggle');
  if(searchButton&&!searchButton.querySelector('.bg-search-label')){const label=document.createElement('span');label.className='bg-search-label';label.textContent='Ache Fácil';searchButton.append(label);searchButton.setAttribute('aria-label','Ache Fácil: buscar produtos');}
  const menu=document.getElementById('mobile-menu');if(!menu||menu.dataset.searchReady)return;menu.dataset.searchReady='true';
