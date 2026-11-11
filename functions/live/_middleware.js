@@ -1,4 +1,5 @@
 import {validCpf} from '../../lib/cpf.js';
+import {moment, momentTable} from '../../lib/live-content.js';
 import {manadacashEnabled, manadacashTable, content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable, challengeDiscountTable} from '../../lib/live-content.js';
 import {handleAuction} from '../../lib/live-auction.js';
 import {handleRaffle} from '../../lib/live-raffle.js';
@@ -19,7 +20,7 @@ async function handle(context) {
     if(path==='/live/api/raffle'||path.startsWith('/live/api/raffle/'))return handleRaffle(request,db,()=>authenticated(request,db));
     if(path==='/live/api/auction'||path.startsWith('/live/api/auction/'))return handleAuction(request,db,()=>authenticated(request,db));
     const gallerySlot=path.match(/^\/live\/api\/gallery\/([1-5])$/)?.[1];
-    if(path==='/live/api/gallery' && request.method==='GET')return json({photos:await gallery(db)});
+    if(path==='/live/api/gallery' && request.method==='GET')return json({photos:await gallery(db),moment:await moment(db)});
     if(gallerySlot && ['GET','HEAD'].includes(request.method))return photoResponse(db,request,noCache,Number(gallerySlot));
     if(path==='/live/api/photo' && ['GET','HEAD'].includes(request.method)) return photoResponse(db,request,noCache);
     if (!['GET','POST'].includes(request.method)) return json({error:'Método não permitido.'},405);
@@ -38,6 +39,14 @@ async function handle(context) {
       let raw; try{raw=new TextDecoder().decode(await readLimited(request,2048));}catch{return json({error:'Pedido muito grande.'},413);}
       try { body = JSON.parse(raw); } catch { return json({error:'Pedido inválido.'},400); }
       if(!body||typeof body!=='object'||Array.isArray(body))return json({error:'Pedido inválido.'},400);
+    }
+    if(path==='/live/api/gallery/select' && request.method==='POST') {
+      if(!await authenticated(request,db))return json({error:'Entre no painel para continuar.'},401);
+      if(!Number.isInteger(body.slot)||body.slot<1||body.slot>5)return json({error:'Escolha uma foto de 1 a 5.'},400);
+      if(!await db.prepare('SELECT slot FROM live_gallery WHERE slot=?').bind(body.slot).first())return json({error:'Carregue a foto antes de exibi-la.'},400);
+      await db.prepare(momentTable).run();
+      await db.prepare('INSERT INTO live_moment (id,slot) VALUES (1,?) ON CONFLICT(id) DO UPDATE SET slot=excluded.slot').bind(body.slot).run();
+      return json({photos:await gallery(db),moment:await moment(db)});
     }
     if (path === '/live/api/register' && request.method === 'POST') {
       if (!env.LIVE_SHEET_WEBHOOK_URL || !env.LIVE_SUBMISSION_TOKEN) return json({error:'Cadastro indisponível no momento. Tente novamente mais tarde.'},503);
@@ -147,7 +156,8 @@ async function handle(context) {
     whatsapp.searchParams.set('text',config.whatsapp_message);
     whatsapp.searchParams.set('utm_source','pagina_live');whatsapp.searchParams.set('utm_medium','referral');whatsapp.searchParams.set('utm_campaign','LiveshopBG');whatsapp.searchParams.set('utm_content','comprar_whatsapp');
     html=html.replace(/(<a\b[^>]*class="button whatsapp"[^>]*\bhref=")[^"]*(")/,(_,before,after)=>before+whatsapp.href.replaceAll('&','&amp;')+after);
-    if(config.photo_version)html=html.replace(/<img id="momento-image"[^>]*>/,tag=>tag.replace(/src="[^"]*"/,'src="/live/api/photo?v='+encodeURIComponent(config.photo_version)+'"').replace(/alt="[^"]*"/,'alt="Foto da manada no Momento BG"'));
+    const selectedMoment=await moment(env.LIVE_DB);
+    if(selectedMoment.url)html=html.replace(/<img id="momento-image"[^>]*>/,tag=>tag.replace(/src="[^"]*"/,'src="'+selectedMoment.url+'"').replace(/alt="[^"]*"/,'alt="Foto da manada no Momento BG"'));
     headers.delete('Content-Length');headers.delete('ETag');
     return new Response(request.method==='HEAD'?null:html,{status:200,headers});
   }

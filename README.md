@@ -85,3 +85,8 @@ A gestão de colaboradores não exibe mais o controle Usuário ativo: novos cada
 ## Visibilidade da seção ManadaCash na live
 
 Em `/live/admin`, o card **Seção ManadaCash** permite ocultar ou exibir a seção de presença (Primeiro Cadastro / Já sou da Manada). A configuração é persistida no D1, exige sessão administrativa e aparece na página pública após recarregar. Por padrão, a seção permanece visível. A tabela `live_manadacash` é criada no primeiro salvamento. O botão flutuante de consulta de pontos continua independente.
+## Fotos do Momento BG
+
+Em `/live/admin`, carregue até cinco imagens individualmente, com prévia e progresso de envio. Marque **Exibir no Momento BG** na foto salva que deseja mostrar. A seleção é persistida no D1 e a live aberta a consulta a cada três segundos, mantendo uma única imagem visível. As proporções originais são preservadas. Enviar outra foto para um espaço não selecionado não altera a foto ao vivo; substituir o espaço selecionado atualiza a imagem exibida. A foto anterior permanece até a primeira seleção.
+
+A tabela de seleção é criada no primeiro salvamento autenticado; `migrations/0019_live_moment.sql` também pode ser aplicada repetidamente. Verificação: `node --test tests/live-moment.test.mjs`.

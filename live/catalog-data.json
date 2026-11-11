@@ -6674,29 +6674,6 @@
         },
         {
           "name": "Garrafa Harpuri 750ml",
-          "label": "Olive Green/Olive Green",
-          "url": "https://loja.bufalogrowler.com.br/garrafa-harpuri-750ml-",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/310401957/harpuri-pistache--2--imwti2adqe.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "310863376"
-          ],
-          "variationIds": [
-            "1069625"
-          ],
-          "sizes": [],
-          "prices": [
-            175.0
-          ],
-          "price": 175.0,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "garrafa-harpuri-750ml---1069625",
-          "stock": "in_stock",
-          "oldPrice": 250
-        },
-        {
-          "name": "Garrafa Harpuri 750ml",
           "label": "Tropical Blue/Tropical Blue",
           "url": "https://loja.bufalogrowler.com.br/garrafa-harpuri-750ml-",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/310401957/harpuri-c-u-g8pfu7gj7c.png",
@@ -6810,29 +6787,6 @@
           "illustrative": false,
           "key": "garrafa-buba-355ml---1450222",
           "stock": "in_stock"
-        },
-        {
-          "name": "Garrafa Buba 355ml",
-          "label": "Ash/Ash",
-          "url": "https://loja.bufalogrowler.com.br/garrafa-buba-355ml-",
-          "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/312196614/buba-areia-qtwddtiyc9.png",
-          "imageSource": "store_variant",
-          "skus": [
-            "338968038"
-          ],
-          "variationIds": [
-            "858552"
-          ],
-          "sizes": [],
-          "prices": [
-            119.0
-          ],
-          "price": 119.0,
-          "priceFrom": false,
-          "illustrative": false,
-          "key": "garrafa-buba-355ml---858552",
-          "stock": "in_stock",
-          "oldPrice": 170
         },
         {
           "name": "Garrafa Buba 355ml",
