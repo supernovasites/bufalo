@@ -90,3 +90,5 @@ Em `/live/admin`, o card **Seção ManadaCash** permite ocultar ou exibir a seç
 Em `/live/admin`, carregue até cinco imagens individualmente, com prévia e progresso de envio. Marque **Exibir no Momento BG** na foto salva que deseja mostrar. A seleção é persistida no D1 e a live aberta a consulta a cada três segundos, mantendo uma única imagem visível. As proporções originais são preservadas. Enviar outra foto para um espaço não selecionado não altera a foto ao vivo; substituir o espaço selecionado atualiza a imagem exibida. A foto anterior permanece até a primeira seleção.
 
 A tabela de seleção é criada no primeiro salvamento autenticado; `migrations/0019_live_moment.sql` também pode ser aplicada repetidamente. Verificação: `node --test tests/live-moment.test.mjs`.
+
+A Mesa DJ inclui blink-182 · I Miss You e Game of Thrones · Main Theme (Extended) em Sons de fundo, com volume máximo de 3% e atalhos 5 e 6.
