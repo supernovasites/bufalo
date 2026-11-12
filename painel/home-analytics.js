@@ -6,7 +6,7 @@
   const $ = id => document.getElementById(id);
   const number = n => Number(n || 0).toLocaleString('pt-BR');
   const sectionNames = {
-    'homepage':'Homepage','cabecalho':'Cabeçalho','rodape':'Rodapé','navegacao':'Navegação',
+    'botoes-flutuantes':'Botões flutuantes','homepage':'Homepage','cabecalho':'Cabeçalho','rodape':'Rodapé','navegacao':'Navegação',
     'banner-principal':'Banner principal','aventura':'Vídeo aventura','lancamentos':'Lançamentos',
     'mais-vendidos':'Os mais pedidos','categorias':'Compre por categoria','acessorios':'Tampas e acessórios',
     'ofertas-do-mes':'Achados do mês','momentos-bufalo':'Bons encontros',

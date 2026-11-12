@@ -20,7 +20,14 @@
     if (['bufalogrowler.com.br','www.bufalogrowler.com.br','bufalo.pages.dev','loja.bufalogrowler.com.br'].includes(url.hostname)) return url.hostname + url.pathname.slice(0,130);
     return url.hostname.replace(/[^a-z0-9.-]/gi,'').slice(0,80);
   };
+  function floatingInfo(element) {
+    if (pagePath !== '/produtos/chopeira/') return null;
+    if (element.matches('.faq-shortcut')) return {key:'floating:tirar-duvida',label:'Tirar dúvida',target:pagePath + '#faq-title'};
+    if (element.matches('.negotiation-trigger')) return {key:'floating:frete-caro',label:'Frete caro / Prazo longo / Preço alto',target:''};
+    return null;
+  }
   function sectionFor(element) {
+    if (floatingInfo(element)) return 'botoes-flutuantes';
     const modal = element.closest('dialog,[role="dialog"]');
     if (modal) return 'popup-' + slug(modal.id || modal.getAttribute('aria-label') || 'oferta');
     const section = element.closest('section');
@@ -36,6 +43,8 @@
     return cls.find(name => element.classList.contains(name)) || (element.matches('a[href]') ? 'link' : element.getAttribute('role') === 'tab' ? 'aba' : 'botao');
   }
   function infoFor(element, section) {
+    const floating = floatingInfo(element);
+    if (floating) return floating;
     const target = targetFor(element);
     const type = typeFor(element);
     const isLink = element.matches('a[href]');
