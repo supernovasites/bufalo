@@ -22,7 +22,7 @@
       messageIndex=(messageIndex+1)%messages.length;
       trigger.textContent=messages[messageIndex];
     },4000);
-  },60000);
+  },120000);
   const form=dialog.querySelector('form'),status=dialog.querySelector('.negotiation-status');
   const other=form.elements.other;
   form.addEventListener('change',()=>{const enabled=form.querySelector('[value="outro"]').checked;other.parentElement.hidden=!enabled;other.required=enabled;});
