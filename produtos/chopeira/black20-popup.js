@@ -7,8 +7,6 @@
  popup.querySelector('.black20-popup-close').addEventListener('click',()=>popup.close());
  popup.querySelector('.black20-popup-shop').addEventListener('click',()=>{
    popup.close();
-   const target=document.getElementById('ontap-2l');
-   target?.scrollIntoView({behavior:'instant',block:'start'});
  });
  popup.addEventListener('click',event=>{
    if(event.target!==popup)return;
