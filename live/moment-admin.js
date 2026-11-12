@@ -10,7 +10,7 @@
     state = await response.json(); render();
   }
   function render() { slots.forEach(slot => slot.render()); }
-  for (let slot = 1; slot <= 5; slot++) {
+  for (let slot = 1; slot <= 3; slot++) {
     const form = document.createElement('form');
     form.className = 'gallery-slot';
     form.innerHTML = `<h3>Foto ${slot}</h3><img alt="Prévia da foto ${slot}" hidden><div class="gallery-empty">Sem foto</div><label for="gallery-file-${slot}">Carregar imagem ${slot}</label><input id="gallery-file-${slot}" type="file" accept="image/jpeg,image/png,image/webp"><button type="submit" class="btn" disabled>Enviar foto ${slot}</button><progress max="100" value="0" aria-label="Carregamento da foto ${slot}" hidden></progress><p class="slot-feedback" role="status" aria-live="polite"></p><label class="gallery-select"><input type="radio" name="moment-photo" value="${slot}" disabled> Exibir no Momento BG</label>`;

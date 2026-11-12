@@ -19,7 +19,8 @@ async function handle(context) {
     const db = env.LIVE_DB;
     if(path==='/live/api/raffle'||path.startsWith('/live/api/raffle/'))return handleRaffle(request,db,()=>authenticated(request,db));
     if(path==='/live/api/auction'||path.startsWith('/live/api/auction/'))return handleAuction(request,db,()=>authenticated(request,db));
-    const gallerySlot=path.match(/^\/live\/api\/gallery\/([1-5])$/)?.[1];
+    const gallerySlot=path.match(/^\/live\/api\/gallery\/([1-3])$/)?.[1];
+    if(/^\/live\/api\/gallery\/\d+$/.test(path)&&!gallerySlot)return json({error:'Escolha uma foto de 1 a 3.'},404);
     if(path==='/live/api/gallery' && request.method==='GET')return json({photos:await gallery(db),moment:await moment(db)});
     if(gallerySlot && ['GET','HEAD'].includes(request.method))return photoResponse(db,request,noCache,Number(gallerySlot));
     if(path==='/live/api/photo' && ['GET','HEAD'].includes(request.method)) return photoResponse(db,request,noCache);
@@ -42,7 +43,7 @@ async function handle(context) {
     }
     if(path==='/live/api/gallery/select' && request.method==='POST') {
       if(!await authenticated(request,db))return json({error:'Entre no painel para continuar.'},401);
-      if(!Number.isInteger(body.slot)||body.slot<1||body.slot>5)return json({error:'Escolha uma foto de 1 a 5.'},400);
+      if(!Number.isInteger(body.slot)||body.slot<1||body.slot>3)return json({error:'Escolha uma foto de 1 a 3.'},400);
       if(!await db.prepare('SELECT slot FROM live_gallery WHERE slot=?').bind(body.slot).first())return json({error:'Carregue a foto antes de exibi-la.'},400);
       await db.prepare(momentTable).run();
       await db.prepare('INSERT INTO live_moment (id,slot) VALUES (1,?) ON CONFLICT(id) DO UPDATE SET slot=excluded.slot').bind(body.slot).run();

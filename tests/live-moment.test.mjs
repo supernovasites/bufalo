@@ -41,7 +41,7 @@ test('selection and uploads reject unauthorized, cross-origin, empty slots and i
   const db=database(),cookie=await login(db);
   assert.equal((await call(db,'/live/api/gallery/select',{body:{slot:1}})).status,401);
   assert.equal((await call(db,'/live/api/gallery/select',{body:{slot:1},cookie,requestOrigin:'https://other.test'})).status,403);
-  for(const slot of [0,6,'1',null,1])assert.equal((await call(db,'/live/api/gallery/select',{body:{slot},cookie})).status,400);
+  for(const slot of [0,4,5,6,'1',null,1])assert.equal((await call(db,'/live/api/gallery/select',{body:{slot},cookie})).status,400);
   assert.equal((await call(db,'/live/api/gallery/1',{body:jpeg,type:'image/jpeg'})).status,401);
   assert.equal((await call(db,'/live/api/gallery/1',{body:new Uint8Array(20),type:'image/jpeg',cookie})).status,400);
   assert.equal((await (await call(db,'/live/api/gallery')).json()).photos.length,0);
@@ -51,5 +51,24 @@ test('legacy photo remains visible until an administrator selects a gallery phot
   const db=database();db.sql.prepare('UPDATE live_content SET photo_version=? WHERE id=1').run('legacy');
   const data=await (await call(db,'/live/api/gallery')).json();assert.equal(data.moment.url,'/live/api/photo?v=legacy');
   const html=await (await call(db,'/live/')).text();assert.match(html,/<img id="momento-image"[^>]*src="\/live\/api\/photo\?v=legacy/);
+  db.sql.close();
+});
+
+
+test('Momento BG accepts only three gallery slots and hides older extra slots',async()=>{
+  const db=database(),cookie=await login(db);
+  assert.equal((await call(db,'/live/api/gallery/3',{body:jpeg,type:'image/jpeg',cookie})).status,200);
+  assert.equal((await call(db,'/live/api/gallery/select',{body:{slot:3},cookie})).status,200);
+  for(const slot of [4,5]) {
+    assert.equal((await call(db,'/live/api/gallery/'+slot,{body:jpeg,type:'image/jpeg',cookie})).status,404);
+    assert.equal((await call(db,'/live/api/gallery/select',{body:{slot},cookie})).status,400);
+    db.sql.prepare('INSERT INTO live_gallery (slot,photo,photo_type,photo_version) VALUES (?,?,?,?)').run(slot,'','image/jpeg','old-'+slot);
+  }
+  let data=await (await call(db,'/live/api/gallery')).json();
+  assert.deepEqual(data.photos.map(photo=>photo.slot),[3]);
+  assert.equal(data.moment.slot,3);
+  db.sql.prepare('UPDATE live_moment SET slot=4 WHERE id=1').run();
+  data=await (await call(db,'/live/api/gallery')).json();
+  assert.equal(data.moment.slot,null);
   db.sql.close();
 });
