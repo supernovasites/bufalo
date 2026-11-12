@@ -3,7 +3,7 @@
   if (!container) return;
   const feedback = document.getElementById('gallery-feedback');
   const slots = [];
-  let state = {photos:[],moment:{}}, selecting = false;
+  let state = {photos:[]};
   async function refresh() {
     const response = await fetch('/live/api/gallery', {cache:'no-store'});
     if (!response.ok) throw new Error('Não foi possível carregar as fotos. Recarregue a página.');
@@ -13,8 +13,8 @@
   for (let slot = 1; slot <= 3; slot++) {
     const form = document.createElement('form');
     form.className = 'gallery-slot';
-    form.innerHTML = `<h3>Foto ${slot}</h3><img alt="Prévia da foto ${slot}" hidden><div class="gallery-empty">Sem foto</div><label for="gallery-file-${slot}">Carregar imagem ${slot}</label><input id="gallery-file-${slot}" type="file" accept="image/jpeg,image/png,image/webp"><button type="submit" class="btn" disabled>Enviar foto ${slot}</button><progress max="100" value="0" aria-label="Carregamento da foto ${slot}" hidden></progress><p class="slot-feedback" role="status" aria-live="polite"></p><label class="gallery-select"><input type="radio" name="moment-photo" value="${slot}" disabled> Exibir no Momento BG</label>`;
-    const fileInput = form.querySelector('input[type=file]'), radio = form.querySelector('input[type=radio]');
+    form.innerHTML = `<h3>Foto ${slot}</h3><img alt="Prévia da foto ${slot}" hidden><div class="gallery-empty">Sem foto</div><label for="gallery-file-${slot}">Carregar imagem ${slot}</label><input id="gallery-file-${slot}" type="file" accept="image/jpeg,image/png,image/webp"><button type="submit" class="btn" disabled>Enviar foto ${slot}</button><progress max="100" value="0" aria-label="Carregamento da foto ${slot}" hidden></progress><p class="slot-feedback" role="status" aria-live="polite"></p>`;
+    const fileInput = form.querySelector('input[type=file]');
     const img = form.querySelector('img'), empty = form.querySelector('.gallery-empty');
     const button = form.querySelector('button'), status = form.querySelector('.slot-feedback'), progress = form.querySelector('progress');
     let blob = null, objectUrl = null, busy = false, revision = 0;
@@ -27,13 +27,10 @@
       } else if (!saved && !blob && !busy) {
         img.hidden = true; empty.hidden = false;
       }
-      radio.checked = state.moment.slot === slot;
-      radio.disabled = !saved || selecting || busy || !!blob;
-      form.classList.toggle('is-selected', radio.checked);
     }});
     fileInput.addEventListener('change', async () => {
       const current = ++revision;
-      blob = null; busy = false; button.disabled = true; radio.disabled = true; progress.hidden = true;
+      blob = null; busy = false; button.disabled = true; progress.hidden = true;
       const file = fileInput.files[0];
       if (!file) { status.textContent = ''; render(); return; }
       if (!['image/jpeg','image/png','image/webp'].includes(file.type) || file.size > 10*1024*1024) {
@@ -90,20 +87,9 @@
         });
         blob = null; fileInput.value = ''; progress.value = 100; busy = false;
         await refresh();
-        status.textContent = state.moment.slot === slot ? 'Foto salva no slide do Momento BG.' : 'Foto salva e incluída automaticamente no slide da live.';
+        status.textContent = 'Foto salva e incluída automaticamente no slide da live.';
       } catch (error) { status.textContent = error.message; }
       finally { busy = false; fileInput.disabled = false; button.disabled = !blob; render(); }
-    });
-    radio.addEventListener('change', async () => {
-      if (selecting) return;
-      selecting = true; feedback.textContent = 'Atualizando foto da live…'; render();
-      try {
-        const response = await fetch('/live/api/gallery/select', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slot})});
-        const data = await response.json();
-        if (!response.ok) { if(response.status === 401)window.location.replace('/painel/'); throw new Error(data.error || 'Não foi possível selecionar a foto.'); }
-        state = data; feedback.textContent = 'Foto '+slot+' selecionada. Ela será exibida agora e o slide continuará alternando as três fotos.';
-      } catch(error) { feedback.textContent = error.message; }
-      finally { selecting = false; render(); }
     });
     container.append(form);
   }
