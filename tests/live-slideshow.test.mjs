@@ -1,0 +1,33 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import vm from 'node:vm';
+import {readFileSync} from 'node:fs';
+const read=p=>readFileSync(new URL('../'+p,import.meta.url));
+test('all three photos rotate; polling preserves position and selection jumps to a photo',async()=>{
+  let data={photos:[1,2,3,4,5].map(slot=>({slot,photo_version:'v'+slot})),moment:{slot:3,photo_version:'v3'}};
+  const image={src:'',getAttribute(){return this.src;}};
+  const intervals=new Map(),document={hidden:false,getElementById(){return image;},addEventListener(){}};
+  vm.runInNewContext(read('live/moment.js').toString(),{document,Image:class{set src(value){this.onload();}},fetch:async()=>({ok:true,json:async()=>data}),setInterval(fn,ms){intervals.set(ms,fn);}});
+  const settle=async()=>{await new Promise(setImmediate);};
+  await settle();assert.match(image.src,/gallery\/3\?v=v3$/);
+  intervals.get(5000)();assert.match(image.src,/gallery\/1\?v=v1$/);
+  await intervals.get(3000)();assert.match(image.src,/gallery\/1\?v=v1$/);
+  intervals.get(5000)();assert.match(image.src,/gallery\/2\?v=v2$/);
+  intervals.get(5000)();assert.match(image.src,/gallery\/3\?v=v3$/);
+  data={...data,moment:{slot:1,photo_version:'v1'}};await intervals.get(3000)();assert.match(image.src,/gallery\/1\?v=v1$/);
+  intervals.get(5000)();assert.match(image.src,/gallery\/2\?v=v2$/);
+  document.hidden=true;intervals.get(5000)();assert.match(image.src,/gallery\/2\?v=v2$/);
+});
+test('summer audio is bundled as background track five and distribution matches source',()=>{
+  const html=read('live/mesadj/index.html').toString();
+  const groups=[...html.matchAll(/<section class="sound-group" aria-labelledby="([^"]+)">([\s\S]*?)<\/section>/g)];
+  const background=groups.find(m=>m[1]==='background-title')[2];
+  assert.equal((background.match(/<audio /g)||[]).length,5);
+  assert.match(background,/data-track="verao-25-bufalo"/);
+  assert.match(background,/>Verão 25 da Búfalo<\/h2>/);
+  assert.match(background,/max="2" step="0.1" value="2"/);
+  for(const m of html.matchAll(/<audio[^>]+src="([^"]+)"/g))assert.deepEqual(read(m[1].slice(1)),read('dist'+m[1]));
+  const audio=read('live/mesadj/sons/verao-25-bufalo.mp3');
+  assert.ok(audio.length>1000);assert.ok(audio.subarray(0,3).toString()==='ID3'||audio.some((v,i)=>v===255&&(audio[i+1]&224)===224));
+  for(const p of ['live/index.html','live/admin.html','live/admin.css','live/moment.js','live/moment-admin.js','live/mesadj/index.html','live/mesadj/mesadj.js'])assert.deepEqual(read(p),read('dist/'+p));
+});

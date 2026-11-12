@@ -17,7 +17,7 @@
       <div class="master-volume"><label for="master-volume">Volume geral <output id="master-level" for="master-volume">80%</output></label><input id="master-volume" type="range" min="0" max="100" value="80"></div>
       <button id="stop-all" class="stop-all" type="button" aria-label="Parar todos os sons"><span aria-hidden="true">■</span> Parar tudo <kbd>Esc</kbd></button>
     </section>
-    <p class="hint">Combine os sons da live. <span class="keyboard-hint">Use <kbd>1</kbd> a <kbd>4</kbd> para os sons de fundo, <kbd>5</kbd> e <kbd>6</kbd> para as músicas de personalização e <kbd>Shift</kbd> + <kbd>1</kbd> a <kbd>8</kbd> para os efeitos sonoros. Cada atalho toca do início configurado. Use a barra de espaço para pausar todos os sons.</span> O áudio toca neste dispositivo.</p>
+    <p class="hint">Combine os sons da live. <span class="keyboard-hint">Use <kbd>1</kbd> a <kbd>5</kbd> para os sons de fundo, <kbd>6</kbd> e <kbd>7</kbd> para as músicas de personalização e <kbd>Shift</kbd> + <kbd>1</kbd> a <kbd>8</kbd> para os efeitos sonoros. Cada atalho toca do início configurado. Use a barra de espaço para pausar todos os sons.</span> O áudio toca neste dispositivo.</p>
     <section class="sound-group" aria-labelledby="background-title">
       <div class="group-heading"><h2 id="background-title">Sons de fundo</h2><p>Uma trilha por vez. Volume limitado a 2%, com ajuste para reduzir.</p></div>
       <div class="decks">
@@ -53,25 +53,33 @@
         <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>4</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Cris anuncia Pos Live do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Cris anuncia Pos Live" disabled>■</button></div>
         <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">2%</output><input class="volume" type="range" min="0" max="2" step="0.1" value="2" aria-label="Volume de Cris anuncia Pos Live"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
+      <article class="deck" data-track="verao-25-bufalo">
+        <div class="deck-top"><span class="track-number">05 / SOM DE FUNDO</span><span class="track-status">Carregando áudio…</span></div>
+        <h2>Verão 25 da Búfalo</h2>
+        <audio preload="metadata" src="/live/mesadj/sons/verao-25-bufalo.mp3"></audio>
+        <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Verão 25 da Búfalo" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>5</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Verão 25 da Búfalo do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Verão 25 da Búfalo" disabled>■</button></div>
+        <div class="mix-controls"><label class="volume-label">Volume <output class="track-level">2%</output><input class="volume" type="range" min="0" max="2" step="0.1" value="2" aria-label="Volume de Verão 25 da Búfalo"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
+      </article>
       </div>
     </section>
     <section class="sound-group" aria-labelledby="personalization-title">
       <div class="group-heading"><h2 id="personalization-title">Músicas de personalização</h2><p>Ao tocar, pausa os sons de fundo e as outras músicas. Volume limitado a 2%, com ajuste para reduzir.</p></div>
       <div class="decks">
       <article class="deck" data-track="blink-182-i-miss-you">
-        <div class="deck-top"><span class="track-number">05 / MÚSICA DE PERSONALIZAÇÃO</span><span class="track-status">Carregando áudio…</span></div>
+        <div class="deck-top"><span class="track-number">06 / MÚSICA DE PERSONALIZAÇÃO</span><span class="track-status">Carregando áudio…</span></div>
         <h2>blink-182 · I Miss You</h2>
         <audio preload="metadata" src="/live/mesadj/sons/blink-182-i-miss-you.mp3"></audio>
         <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio blink-182 · I Miss You" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
-        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>5</kbd></button><button class="restart secondary" type="button" aria-label="Tocar blink-182 · I Miss You do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar blink-182 · I Miss You" disabled>■</button></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>6</kbd></button><button class="restart secondary" type="button" aria-label="Tocar blink-182 · I Miss You do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar blink-182 · I Miss You" disabled>■</button></div>
         <div class="mix-controls"><label class="volume-label">Volume (máx. 2%) <output class="track-level">2%</output><input class="volume" type="range" min="0" max="2" step="0.1" value="2" aria-label="Volume de blink-182 · I Miss You"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
       <article class="deck" data-track="game-of-thrones-main-theme">
-        <div class="deck-top"><span class="track-number">06 / MÚSICA DE PERSONALIZAÇÃO</span><span class="track-status">Carregando áudio…</span></div>
+        <div class="deck-top"><span class="track-number">07 / MÚSICA DE PERSONALIZAÇÃO</span><span class="track-status">Carregando áudio…</span></div>
         <h2>Game of Thrones · Main Theme (Extended)</h2>
         <audio preload="metadata" src="/live/mesadj/sons/game-of-thrones-main-theme.mp3"></audio>
         <div class="timeline"><input class="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Posição do áudio Game of Thrones · Main Theme (Extended)" disabled><div><span class="elapsed">0:00</span><span class="duration">—:—</span></div></div>
-        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>6</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Game of Thrones · Main Theme (Extended) do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Game of Thrones · Main Theme (Extended)" disabled>■</button></div>
+        <div class="transport"><button class="play" type="button" disabled>Tocar <kbd>7</kbd></button><button class="restart secondary" type="button" aria-label="Tocar Game of Thrones · Main Theme (Extended) do início" disabled>Do início</button><button class="stop secondary" type="button" aria-label="Parar Game of Thrones · Main Theme (Extended)" disabled>■</button></div>
         <div class="mix-controls"><label class="volume-label">Volume (máx. 2%) <output class="track-level">2%</output><input class="volume" type="range" min="0" max="2" step="0.1" value="2" aria-label="Volume de Game of Thrones · Main Theme (Extended)"></label><label class="loop-label"><input class="loop" type="checkbox"> Repetir áudio</label></div>
       </article>
       </div>

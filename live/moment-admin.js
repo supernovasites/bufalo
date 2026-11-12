@@ -90,7 +90,7 @@
         });
         blob = null; fileInput.value = ''; progress.value = 100; busy = false;
         await refresh();
-        status.textContent = state.moment.slot === slot ? 'Foto salva e exibida no Momento BG.' : 'Foto salva. Marque abaixo para exibir na live.';
+        status.textContent = state.moment.slot === slot ? 'Foto salva no slide do Momento BG.' : 'Foto salva e incluída automaticamente no slide da live.';
       } catch (error) { status.textContent = error.message; }
       finally { busy = false; fileInput.disabled = false; button.disabled = !blob; render(); }
     });
@@ -101,7 +101,7 @@
         const response = await fetch('/live/api/gallery/select', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slot})});
         const data = await response.json();
         if (!response.ok) { if(response.status === 401)window.location.replace('/painel/'); throw new Error(data.error || 'Não foi possível selecionar a foto.'); }
-        state = data; feedback.textContent = 'Foto '+slot+' selecionada. Apenas ela será exibida no Momento BG.';
+        state = data; feedback.textContent = 'Foto '+slot+' selecionada. Ela será exibida agora e o slide continuará alternando as três fotos.';
       } catch(error) { feedback.textContent = error.message; }
       finally { selecting = false; render(); }
     });
