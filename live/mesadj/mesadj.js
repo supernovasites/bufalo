@@ -12,9 +12,9 @@
     const loopEnd=Number(card.dataset?.loopEnd)||0;
     const duration=()=>loop.checked&&loopEnd>0?Math.min(loopEnd,audio.duration):audio.duration;
     const background=card.closest('.sound-group').getAttribute('aria-labelledby')==='background-title';
-    const maxVolume=background?3:20;
+    const maxVolume=Number(card.dataset.maxVolume)||(background?2:20);
     volume.max=String(maxVolume);volume.step='0.1';volume.value=String(maxVolume);
-    const updateVolume=()=>{const level=Math.max(0,Math.min(maxVolume,Number(volume.value)));audio.volume=Math.max(0,Math.min(100,Number(master.value)))/100*level/100;card.querySelector('.track-level').textContent=level+'%';};
+    const updateVolume=()=>{const level=Math.max(0,Math.min(maxVolume,Number(volume.value)));audio.volume=Math.max(0,Math.min(100,Number(master.value)))/100*level/100;card.querySelector('.track-level').textContent=level.toLocaleString('pt-BR')+'%';};
     const updateTime=()=>{const end=duration();card.querySelector('.elapsed').textContent=time(audio.currentTime);card.querySelector('.duration').textContent=time(end);seek.value=Number.isFinite(end)&&end>0?audio.currentTime/end*100:0;};
     const render=()=>{
       const failed=Boolean(audio.error),ready=audio.readyState>=1&&!failed;
