@@ -1,0 +1,10 @@
+/* The existing FAQ colors, heading and question rows stay in place. */
+.kundi-faq-list .faq-answer{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,270px);align-items:start;gap:28px;padding:10px 0 8px}
+.kundi-faq-list .faq-answer p{margin:10px 0 0;color:#e0e9e5}
+.kundi-faq-list .faq-film{margin:10px 0 0;min-width:0}
+.kundi-faq-list .faq-video{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:contain;background:#0d2023;border-radius:10px}
+.kundi-faq-list .faq-film figcaption{margin-top:8px;color:#c4d4cf;font-size:12px;line-height:1.5}
+.kundi-faq-list summary{align-items:center;min-height:38px}
+.kundi-faq-list summary:after{flex:none;width:24px;text-align:center}
+.kundi-faq-list summary:focus-visible{outline:3px solid #eb6f32;outline-offset:5px}
+@media(max-width:600px){.kundi-faq-list .faq-answer{grid-template-columns:1fr;gap:16px;padding-bottom:12px}.kundi-faq-list .faq-film{width:100%;max-width:320px;justify-self:center;margin:0}.kundi-faq-list summary{line-height:1.5}}

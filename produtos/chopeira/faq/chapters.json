@@ -1,0 +1,79 @@
+[
+  {
+    "id": "apresentacao",
+    "question": "Conheça a linha de chopeiras Búfalo",
+    "start": 0,
+    "end": 28.8,
+    "answer": "Conheça a linha de chopeiras Búfalo e tire suas dúvidas sobre cápsulas, capacidades, uso dos growlers e atendimento. Nesta seção, cada pergunta tem uma resposta em texto e uma explicação em vídeo."
+  },
+  {
+    "id": "capsula-litros",
+    "question": "Quantos litros uma cápsula de CO₂ consegue servir?",
+    "start": 29.7,
+    "end": 68.3,
+    "answer": "Uma cápsula pode servir até 7 litros de cerveja. Em um growler de 3,5 L, você pode servir a primeira carga, fechar o regulador para preservar o gás e abastecer o growler novamente. O rendimento informado no vídeo é de até 7 litros por cápsula."
+  },
+  {
+    "id": "capsula-preco",
+    "question": "Quanto custa a cápsula? Ela é reutilizável?",
+    "start": 68.3,
+    "end": 99.1,
+    "answer": "A cápsula é descartável, de uso único, com rosca e 16 g de CO₂ próprio para cerveja. No vídeo, o valor informado é de aproximadamente R$ 9 por unidade; confirme o preço atual antes da compra. Você pode adquirir cápsulas compatíveis com a Búfalo ou com outros fornecedores."
+  },
+  {
+    "id": "growler-termico",
+    "question": "Posso usar o growler como garrafão térmico?",
+    "start": 99.6,
+    "end": 159.6,
+    "answer": "Sim. Você pode usar o growler com sua tampa para transportar e conservar a cerveja gelada, mesmo sem o sistema de extração. Quando quiser usar a chopeira, basta instalar o sistema de extração e a cápsula de gás."
+  },
+  {
+    "id": "tempo-termico",
+    "question": "Por quanto tempo a cerveja fica gelada?",
+    "start": 160.1,
+    "end": 194.3,
+    "answer": "A recomendação apresentada no vídeo é abastecer o growler com a cerveja bem gelada e consumi-la em até 6 horas. Preencher bem o recipiente reduz o espaço de ar interno e ajuda na conservação da temperatura."
+  },
+  {
+    "id": "mestre-7l",
+    "question": "Como funciona o kit Mestre Cervejeiro de 7 L?",
+    "start": 194.6,
+    "end": 246.3,
+    "answer": "O kit combina dois growlers de 3,5 L, totalizando 7 litros. Você pode deixar os dois abastecidos e transferir o conjunto de extração quando o primeiro acabar. Antes da troca, feche o regulador de CO₂ e libere a pressão do recipiente antes de abrir o sistema, conforme a demonstração."
+  },
+  {
+    "id": "mestre-55l",
+    "question": "Como funciona o kit Mestre de 5,5 L?",
+    "start": 246.6,
+    "end": 280.9,
+    "answer": "Essa versão combina um growler de 3,5 L e outro de 2 L, totalizando 5,5 litros. No vídeo, a sugestão é usar o maior para cerveja e o menor para drinks e outras bebidas gaseificadas, como gin-tônica e Aperol."
+  },
+  {
+    "id": "growler-avulso",
+    "question": "Posso comprar growlers separadamente?",
+    "start": 280.9,
+    "end": 326.9,
+    "answer": "Sim. Você pode comprar growlers avulsos para ampliar seu conjunto e usar o sistema de extração que já possui. O vídeo apresenta opções de 2 L em diferentes cores para complementar a coleção; confira as opções disponíveis antes da compra."
+  },
+  {
+    "id": "garantia",
+    "question": "A chopeira Búfalo tem garantia?",
+    "start": 326.9,
+    "end": 347.9,
+    "answer": "Sim. O vídeo informa 1 ano de garantia para o produto e todas as suas partes. Se surgir algum problema, entre em contato com a equipe Búfalo para receber orientação sobre o atendimento."
+  },
+  {
+    "id": "pos-venda",
+    "question": "Como funciona o suporte e o pós-venda?",
+    "start": 347.9,
+    "end": 381.9,
+    "answer": "Se precisar de ajuda após receber o produto, fale com a Búfalo por WhatsApp, Instagram, e-mail ou chamada. No vídeo, a equipe explica que também entra em contato por WhatsApp depois da compra para saber como foi o recebimento e se você está conseguindo usar o produto."
+  },
+  {
+    "id": "atendimento",
+    "question": "Ainda tenho dúvidas. Como falar com a equipe?",
+    "start": 381.9,
+    "end": 428.037,
+    "answer": "Você pode falar com a equipe pelo WhatsApp no botão abaixo, antes ou depois da compra. O atendimento também está disponível pelo Direct e por e-mail para ajudar você a escolher e usar sua chopeira."
+  }
+]
