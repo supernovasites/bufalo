@@ -7,11 +7,11 @@
 .kundi-faq-list summary{align-items:center;min-height:38px}
 .kundi-faq-list summary:after{flex:none;width:24px;text-align:center}
 .kundi-faq-list summary:focus-visible{outline:3px solid #eb6f32;outline-offset:5px}
-.faq-shortcut{position:fixed;left:18px;bottom:22px;z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-sizing:border-box;width:96px;min-height:88px;padding:10px 8px;border-radius:14px;background:var(--button-petrol,#142e32);color:#fff;box-shadow:0 4px 20px #0003;text-decoration:none}
+.faq-shortcut{position:fixed;left:18px;bottom:calc(46px + env(safe-area-inset-bottom,0px));z-index:90;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-sizing:border-box;width:96px;min-height:88px;padding:10px 8px;border-radius:14px;background:var(--button-petrol,#142e32);color:#fff;box-shadow:0 4px 20px #0003;text-decoration:none}
 .faq-shortcut[hidden]{display:none!important}
 .faq-shortcut .faq-shortcut-icon{display:grid;place-items:center;box-sizing:border-box;width:42px;height:42px;border:3px solid currentColor;border-radius:50%;font:700 30px/1 system-ui,sans-serif}
 .faq-shortcut .faq-shortcut-label{font:700 12px/1.2 Arial,Helvetica,sans-serif;white-space:nowrap}
 .faq-shortcut:hover{background:var(--button-petrol-hover,#284b50)}
 .faq-shortcut:focus-visible{outline:3px solid #142e32;outline-offset:4px}
-@media(max-width:600px){.faq-shortcut{left:12px;bottom:14px}}
+@media(max-width:600px){.faq-shortcut{left:12px;bottom:calc(38px + env(safe-area-inset-bottom,0px))}}
 @media(max-width:600px){.kundi-faq-list .faq-answer{grid-template-columns:1fr;gap:16px;padding-bottom:12px}.kundi-faq-list .faq-film{width:100%;max-width:320px;justify-self:center;margin:0}.kundi-faq-list summary{line-height:1.5}}
