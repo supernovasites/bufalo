@@ -7,4 +7,9 @@
 .kundi-faq-list summary{align-items:center;min-height:38px}
 .kundi-faq-list summary:after{flex:none;width:24px;text-align:center}
 .kundi-faq-list summary:focus-visible{outline:3px solid #eb6f32;outline-offset:5px}
+.faq-shortcut{position:fixed;right:18px;bottom:22px;z-index:90;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:12px 18px;border-radius:10px;background:#eb6f32;color:#142e32;font:700 15px system-ui,sans-serif;box-shadow:0 4px 20px #0003;text-decoration:none}
+.faq-shortcut span{display:grid;place-items:center;width:22px;height:22px;border:2px solid currentColor;border-radius:50%;font-size:14px}
+.faq-shortcut:hover{background:#f18753}
+.faq-shortcut:focus-visible{outline:3px solid #142e32;outline-offset:4px}
+@media(max-width:600px){.faq-shortcut{right:12px;bottom:calc(72px + env(safe-area-inset-bottom,0px));min-height:44px;padding:10px 14px;font-size:14px}}
 @media(max-width:600px){.kundi-faq-list .faq-answer{grid-template-columns:1fr;gap:16px;padding-bottom:12px}.kundi-faq-list .faq-film{width:100%;max-width:320px;justify-self:center;margin:0}.kundi-faq-list summary{line-height:1.5}}
