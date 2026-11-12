@@ -26,3 +26,8 @@
 /* Compact FAQ shortcut with a comfortable touch target. */
 .faq-shortcut{width:auto;min-width:0;height:44px;padding:0 12px;gap:6px;border-radius:8px;font-size:13px;line-height:18px}
 .faq-shortcut .faq-shortcut-symbol{flex-basis:18px;width:18px;height:18px}
+
+/* High contrast floating actions on video, light and petrol backgrounds. */
+.faq-shortcut,.negotiation-trigger{width:auto;min-width:0;height:44px;padding:0 12px;border:1px solid #142e32;border-radius:8px;background:#fff8ed;color:#142e32;font-size:13px;line-height:18px;box-shadow:0 3px 14px #0004}
+.faq-shortcut:hover,.negotiation-trigger:hover{background:#f5e6ce;color:#142e32}
+.faq-shortcut:focus-visible,.negotiation-trigger:focus-visible{outline:3px solid #eb6f32;outline-offset:3px}
