@@ -5,8 +5,10 @@ import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url));
 test('all three photos rotate; polling preserves position and selection jumps to a photo',async()=>{
   let data={photos:[1,2,3,4,5].map(slot=>({slot,photo_version:'v'+slot})),moment:{slot:3,photo_version:'v3'}};
-  const image={src:'',getAttribute(){return this.src;}};
-  const intervals=new Map(),document={hidden:false,getElementById(){return image;},addEventListener(){}};
+  const buttons=[{addEventListener(type,fn){this.click=fn;}},{addEventListener(type,fn){this.click=fn;}}];
+  const counter={textContent:''},controls={querySelector(){return counter;},querySelectorAll(){return buttons;}};
+  const image={src:'',parentElement:{append(){}},getAttribute(){return this.src;}};
+  const intervals=new Map(),document={hidden:false,createElement(){return controls;},getElementById(){return image;},addEventListener(){}};
   vm.runInNewContext(read('live/moment.js').toString(),{document,Image:class{set src(value){this.onload();}},fetch:async()=>({ok:true,json:async()=>data}),setInterval(fn,ms){intervals.set(ms,fn);}});
   const settle=async()=>{await new Promise(setImmediate);};
   await settle();assert.match(image.src,/gallery\/3\?v=v3$/);
@@ -16,6 +18,9 @@ test('all three photos rotate; polling preserves position and selection jumps to
   intervals.get(5000)();assert.match(image.src,/gallery\/3\?v=v3$/);
   data={...data,moment:{slot:1,photo_version:'v1'}};await intervals.get(3000)();assert.match(image.src,/gallery\/1\?v=v1$/);
   intervals.get(5000)();assert.match(image.src,/gallery\/2\?v=v2$/);
+  buttons[1].click();assert.match(image.src,/gallery\/3\?v=v3$/);
+  buttons[0].click();assert.match(image.src,/gallery\/2\?v=v2$/);
+  assert.equal(counter.textContent,'2 / 3');
   document.hidden=true;intervals.get(5000)();assert.match(image.src,/gallery\/2\?v=v2$/);
 });
 test('summer audio is bundled as background track five and distribution matches source',()=>{

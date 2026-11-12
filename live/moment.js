@@ -1,25 +1,24 @@
 (() => {
   const image = document.getElementById('momento-image');
   if (!image) return;
-  let busy = false, photos = [], index = -1, selection = null, pendingUrl = null, revision = 0;
+  let busy = false, photos = [], index = -1, selection = null;
   function show(nextIndex) {
     const photo = photos[nextIndex];
     if (!photo) return;
     index = nextIndex;
-    const current = ++revision;
-    pendingUrl = null;
-    if (image.getAttribute('src') === photo.url) return;
-    pendingUrl = photo.url;
-    const next = new Image();
-    next.onload = () => {
-      if (current !== revision) return;
-      image.src = photo.url;
-      image.alt = 'Foto '+photo.slot+' da manada no Momento BG';
-      pendingUrl = null;
-    };
-    next.onerror = () => { if (current === revision) pendingUrl = null; };
-    next.src = photo.url;
+    image.src = photo.url;
+    image.alt = 'Foto '+photo.slot+' da manada no Momento BG';
+    counter.textContent = (index+1)+' / '+photos.length;
   }
+  const controls = document.createElement('div');
+  controls.className = 'moment-slide-controls';
+  controls.innerHTML = '<button type="button" aria-label="Foto anterior">‹</button><span class="moment-slide-counter"></span><button type="button" aria-label="Próxima foto">›</button>';
+  image.parentElement.append(controls);
+  const counter = controls.querySelector('span');
+  const buttons = controls.querySelectorAll('button');
+  buttons[0].addEventListener('click',()=>show((index-1+photos.length)%photos.length));
+  buttons[1].addEventListener('click',()=>show((index+1)%photos.length));
+
   async function update() {
     if (busy || document.hidden) return;
     busy = true;
@@ -40,14 +39,14 @@
       } else {
         const currentIndex = photos.findIndex(photo => photo.slot === previousSlot);
         const target = currentIndex < 0 ? 0 : currentIndex;
-        if (!pendingUrl && image.getAttribute('src') !== photos[target]?.url) show(target);
-        else index = target;
+        if (image.getAttribute('src') !== photos[target]?.url) show(target);
+        else { index = target; counter.textContent = (index+1)+' / '+photos.length; }
       }
     } catch { /* Mantém a imagem atual enquanto a conexão se recupera. */ }
     finally { busy = false; }
   }
   update();
   setInterval(update,3000);
-  setInterval(() => { if (!document.hidden && !pendingUrl && photos.length > 1) show((index+1)%photos.length); },5000);
+  setInterval(() => { if (!document.hidden && photos.length > 1) show((index+1)%photos.length); },5000);
   document.addEventListener('visibilitychange',update);
 })();
