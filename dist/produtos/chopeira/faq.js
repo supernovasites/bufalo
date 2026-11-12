@@ -1,6 +1,9 @@
 /* No media requests while the FAQ is collapsed; playback is always user initiated. */
 (() => {
   'use strict';
+  const shortcut = document.querySelector('.faq-shortcut');
+  // Share the floating slot with the negotiation prompt after two minutes.
+  if (shortcut) setTimeout(() => { shortcut.hidden = true; }, 120000);
   const questions = [...document.querySelectorAll('.kundi-faq-list details[data-faq]')];
   questions.forEach(question => {
     const video = question.querySelector('.faq-video');
