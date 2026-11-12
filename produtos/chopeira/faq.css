@@ -22,3 +22,7 @@
 
 .faq-shortcut{gap:8px}
 .faq-shortcut .faq-shortcut-symbol{flex:0 0 22px;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+/* Compact FAQ shortcut with a comfortable touch target. */
+.faq-shortcut{width:auto;min-width:0;height:44px;padding:0 12px;gap:6px;border-radius:8px;font-size:13px;line-height:18px}
+.faq-shortcut .faq-shortcut-symbol{flex-basis:18px;width:18px;height:18px}
