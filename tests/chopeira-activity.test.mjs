@@ -11,21 +11,25 @@ const db={prepare(sql){return {bind(...args){writes.push({sql,args});return this
 const request=(body,origin='https://example.com')=>new Request('https://example.com/api/chopeira-activity',{method:'POST',headers:{Origin:origin},body:JSON.stringify(body)});
 const visitor='12345678-1234-1234-1234-123456789abc';
 let response=await onRequest({request:request({visitor}),env:{LIVE_DB:db}});
-assert.equal(response.status,200);assert.deepEqual(await response.json(),{available:true,viewers:4,visitorsToday:18,activeWindowSeconds:90});
+assert.equal(response.status,200);assert.deepEqual(await response.json(),{available:true,viewers:4,activeWindowSeconds:90});
 const write=writes.find(x=>x.sql.startsWith('INSERT'));assert.equal(write.args[0].length,64);assert.notEqual(write.args[0],visitor);
 assert.equal((await onRequest({request:request({visitor},'https://other.com'),env:{LIVE_DB:db}})).status,403);
 assert.equal((await onRequest({request:request({visitor:'invalid'}),env:{LIVE_DB:db}})).status,400);
 assert.equal((await onRequest({request:request({visitor}),env:{}})).status,503);
 const client=await readFile(new URL('produtos/chopeira/activity-popup.js',root),'utf8');
-async function render(data){
+async function render(data,random=.999){
  const elements=new Map();for(const key of ['.chopeira-activity-message','.chopeira-activity-detail','button','a'])elements.set(key,{});
- const toast={setAttribute(){},querySelector:s=>elements.get(s),classList:{add(){},remove(){}},contains:()=>false};
+ let visible=false;const toast={setAttribute(){},querySelector:s=>elements.get(s),classList:{add(){visible=true},remove(){visible=false}},contains:()=>false};
  const timers=[],storage={getItem:()=>null,setItem(){}};
- const context={crypto:webcrypto,localStorage:storage,sessionStorage:storage,AbortController,Date,Math:Object.assign(Object.create(Math),{random:()=>.999}),document:{hidden:false,createElement:()=>toast,body:{append(){}},querySelector:()=>null,addEventListener(){}},fetch:async()=>({ok:true,json:async()=>data}),setTimeout(fn,ms){timers.push({fn,ms});return timers.length},clearTimeout(){},setInterval(){},clearInterval(){},addEventListener(){}};
- vm.runInNewContext(client,context);await new Promise(resolve=>setImmediate(resolve));timers.find(x=>x.ms===12000).fn();return elements;
+ const context={crypto:webcrypto,localStorage:storage,sessionStorage:storage,AbortController,Date,Math:Object.assign(Object.create(Math),{random:()=>random}),document:{hidden:false,createElement:()=>toast,body:{append(){}},querySelector:()=>null,addEventListener(){}},fetch:async()=>({ok:true,json:async()=>data}),setTimeout(fn,ms){timers.push({fn,ms});return timers.length},clearTimeout(){},setInterval(){},clearInterval(){},addEventListener(){}};
+ vm.runInNewContext(client,context);await new Promise(resolve=>setImmediate(resolve));const delay=4000;const first=timers.find(x=>x.ms===delay);assert.ok(first,'initial delay uses an allowed interval');first.fn();return {elements,timers,visible};
 }
-let el=await render({available:true,viewers:4,visitorsToday:18});assert.equal(el.get('.chopeira-activity-message').textContent,'18 pessoas visitaram hoje');
-el=await render({available:true,viewers:4,visitorsToday:0});assert.equal(el.get('.chopeira-activity-message').textContent,'4 pessoas estão vendo agora');
-el=await render({available:false});assert.ok(!/pessoas|compraram/.test(el.get('.chopeira-activity-message').textContent));
-el=await render({available:true,viewers:1,visitorsToday:0});assert.ok(!/pessoas/.test(el.get('.chopeira-activity-message').textContent));
-console.log('PASS: API origin/validation/failure, hashed visitors, measured counts, no false purchase claims, safe fallback.');
+for(const random of [0,.25,.5,.999]){
+ const {elements,timers,visible}=await render({available:true,viewers:4,visitorsToday:18},random);
+ assert.equal(elements.get('.chopeira-activity-message').textContent,'4 usuários estão visualizando esta página');assert.equal(visible,true);
+ const hide=timers.find(x=>x.ms===2000);assert.ok(hide);hide.fn();assert.ok(timers.filter(x=>x.ms===4000).length>=2,'next delay uses the same allowed list');
+}
+let out=await render({available:true,viewers:1});assert.equal(out.elements.get('.chopeira-activity-message').textContent,'1 usuário está visualizando esta página');
+for(const data of [{available:false},{available:true,viewers:0},{available:true,viewers:-2},{available:true,viewers:1.5}]){out=await render(data);assert.equal(out.visible,false);}
+assert.ok(!client.includes('visitorsToday'));assert.ok(!client.includes('Escolher minha chopeira'));assert.ok(!client.includes('pessoas visitaram hoje'));
+console.log('PASS: real viewer counts only; singular/plural; invalid or unavailable counts stay hidden; visible for 2 seconds plus 4 hidden seconds, 10 displays per minute; dismiss and API validation preserved.');
