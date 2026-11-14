@@ -1,12 +1,5 @@
-.chopeira-activity{position:fixed;left:20px;bottom:calc(112px + env(safe-area-inset-bottom,0px));z-index:85;display:flex;align-items:center;gap:12px;box-sizing:border-box;width:min(360px,calc(100vw - 40px));padding:15px 42px 15px 15px;border:1px solid #d9d5c7;border-radius:14px;background:#fffdf7;color:#18383b;box-shadow:0 8px 32px #0c25232b;font:14px/1.4 system-ui,sans-serif;opacity:0;transform:translateY(14px);visibility:hidden;pointer-events:none;transition:opacity .55s ease,transform .55s ease,visibility .55s}
-.chopeira-activity.is-visible{opacity:1;transform:translateY(0);visibility:visible;pointer-events:auto}
-.chopeira-activity-mark{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:#e6eee9;color:#235947}
-.chopeira-activity-mark svg{width:20px;height:20px}
-.chopeira-activity-copy{min-width:0}
-.chopeira-activity-message{display:block;font-weight:700}
-.chopeira-activity-detail{display:block;margin-top:3px;color:#54635e;font-size:11px}
-.chopeira-activity a{display:inline-block;margin-top:5px;color:#18383b;font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
-.chopeira-activity-close{position:absolute;top:5px;right:5px;display:grid;place-items:center;width:34px;height:34px;padding:0;border:0;background:transparent;color:#54635e;font:24px/1 system-ui;cursor:pointer}
-.chopeira-activity :focus-visible{outline:2px solid #bc973a;outline-offset:3px}
-@media(max-width:600px){.chopeira-activity{left:12px;bottom:calc(108px + env(safe-area-inset-bottom,0px));width:min(340px,calc(100vw - 24px));padding:12px 40px 12px 12px;font-size:13px}}
+.chopeira-activity{position:fixed;left:0;bottom:0;z-index:89;display:flex;align-items:center;justify-content:center;gap:7px;box-sizing:border-box;width:max-content;min-width:62px;max-width:116px;height:44px;padding:0 11px;border:1px solid #142e32;border-radius:8px;background:#fff8ed;color:#142e32;box-shadow:0 3px 14px #0004;font:700 13px/18px system-ui,sans-serif;white-space:nowrap;opacity:0;transform:translateX(-5px);visibility:hidden;pointer-events:none;transition:opacity .35s ease,transform .35s ease,visibility .35s}
+.chopeira-activity.is-visible{opacity:1;transform:translateX(0);visibility:visible}
+.chopeira-activity-eye{flex:none;width:19px;height:19px}
+.chopeira-activity-message{display:block;font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){.chopeira-activity{transition:none;transform:none}}

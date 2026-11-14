@@ -5,38 +5,42 @@ import vm from 'node:vm';
 globalThis.crypto??=webcrypto;
 const root=new URL('../',import.meta.url);
 const source=await readFile(new URL('functions/api/chopeira-activity.js',root),'utf8');
-const {onRequest}=await import('data:text/javascript;base64,'+Buffer.from(source.replace(/^import .*;$/m,"const ensureHomepageStats=async()=>{};const belemDay=()=> '2026-11-14';")).toString('base64'));
+const {onRequest}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const writes=[];
-const db={prepare(sql){return {bind(...args){writes.push({sql,args});return this},async run(){},async all(){return {results:[{target:'loja.bufalogrowler.com.br/chopeira-preta',clicks:12}]}},async first(){return {total:sql.includes('active_visitors')?4:18}}}},async batch(queries){return queries}};
+const db={prepare(sql){return {bind(...args){writes.push({sql,args});return this},async run(){},async first(){return {total:4}}}},async batch(queries){return queries}};
 const request=(body,origin='https://example.com')=>new Request('https://example.com/api/chopeira-activity',{method:'POST',headers:{Origin:origin},body:JSON.stringify(body)});
 const visitor='12345678-1234-1234-1234-123456789abc';
 let response=await onRequest({request:request({visitor}),env:{LIVE_DB:db}});
-assert.equal(response.status,200);assert.deepEqual(await response.json(),{available:true,viewers:4,activeWindowSeconds:90,products:[{target:'loja.bufalogrowler.com.br/chopeira-preta',clicks:12}],productPeriod:'today'});
+assert.equal(response.status,200);assert.deepEqual(await response.json(),{available:true,viewers:4,activeWindowSeconds:90});
 const write=writes.find(x=>x.sql.startsWith('INSERT'));assert.equal(write.args[0].length,64);assert.notEqual(write.args[0],visitor);
 assert.equal((await onRequest({request:request({visitor},'https://other.com'),env:{LIVE_DB:db}})).status,403);
 assert.equal((await onRequest({request:request({visitor:'invalid'}),env:{LIVE_DB:db}})).status,400);
 assert.equal((await onRequest({request:request({visitor}),env:{}})).status,503);
 const client=await readFile(new URL('produtos/chopeira/activity-popup.js',root),'utf8');
-async function render(data,random=.999){
- const elements=new Map();for(const key of ['.chopeira-activity-message','.chopeira-activity-detail','button','a'])elements.set(key,{});
- let visible=false;const toast={setAttribute(){},querySelector:s=>elements.get(s),classList:{add(){visible=true},remove(){visible=false}},contains:()=>false};
- const timers=[],storage={getItem:()=>null,setItem(){}};
- const context={crypto:webcrypto,localStorage:storage,sessionStorage:storage,AbortController,Date,URL,Math:Object.assign(Object.create(Math),{random:()=>random}),document:{getElementById:()=>({textContent:JSON.stringify([{name:'On TAP 2 L · Preta',url:'https://loja.bufalogrowler.com.br/chopeira-preta'},{name:'On TAP 3,5 L · Creme',url:'https://loja.bufalogrowler.com.br/chopeira-creme'}])}),hidden:false,createElement:()=>toast,body:{append(){}},querySelector:()=>null,addEventListener(){}},fetch:async()=>({ok:true,json:async()=>data}),setTimeout(fn,ms){timers.push({fn,ms});return timers.length},clearTimeout(){},setInterval(){},clearInterval(){},addEventListener(){}};
- vm.runInNewContext(client,context);await new Promise(resolve=>setImmediate(resolve));const delay=4000;const first=timers.find(x=>x.ms===delay);assert.ok(first,'initial delay uses an allowed interval');first.fn();return {elements,timers,get visible(){return visible},next(){timers.findLast(x=>x.ms===2000).fn();timers.findLast(x=>x.ms===4000).fn();}};
+async function render(data,{viewport=390,faqHidden=false,negotiation=false,blocked=false}={}){
+ const message={},attributes={},style={},timers=[];let visible=false;
+ const rect={right:145,bottom:762,width:133,height:44};
+ const faq={hidden:faqHidden,getBoundingClientRect:()=>rect};
+ const nextButton={hidden:!negotiation,getBoundingClientRect:()=>({...rect,right:180})};
+ const toast={style,setAttribute(k,v){attributes[k]=v},querySelector:()=>message,getBoundingClientRect:()=>({width:72}),classList:{add(){visible=true},remove(){visible=false}}};
+ const storage={getItem:()=>null,setItem(){}};
+ const document={hidden:false,createElement:()=>toast,body:{append(){}},querySelector(selector){return selector==='.faq-shortcut'?faq:selector==='.negotiation-trigger'?nextButton:selector==='dialog[open]'&&blocked?{}:null},addEventListener(){}};
+ const context={crypto:webcrypto,localStorage:storage,AbortController,Date,document,innerWidth:viewport,innerHeight:844,queueMicrotask,fetch:async()=>({ok:true,json:async()=>data}),setTimeout(fn,ms){timers.push({fn,ms});return timers.length},clearTimeout(){},setInterval(){},clearInterval(){},addEventListener(){}};
+ vm.runInNewContext(client,context);await new Promise(resolve=>setImmediate(resolve));
+ const first=timers.find(x=>x.ms===15000);assert.ok(first);first.fn();
+ return {message,attributes,style,timers,toast,get visible(){return visible}};
 }
-for(const random of [0,.25,.5,.999]){
- const {elements,timers,visible}=await render({available:true,viewers:4,visitorsToday:18},random);
- assert.equal(elements.get('.chopeira-activity-message').textContent,'4 usuários estão visualizando esta página');assert.equal(visible,true);
- const hide=timers.find(x=>x.ms===2000);assert.ok(hide);hide.fn();assert.ok(timers.filter(x=>x.ms===4000).length>=2,'next delay uses the same allowed list');
-}
-let out=await render({available:true,viewers:1});assert.equal(out.elements.get('.chopeira-activity-message').textContent,'1 usuário está visualizando esta página');
-for(const data of [{available:false},{available:true,viewers:0},{available:true,viewers:-2},{available:true,viewers:1.5}]){out=await render(data);assert.equal(out.visible,false);}
-assert.ok(!client.includes('visitorsToday'));assert.ok(!client.includes('Escolher minha chopeira'));assert.ok(!client.includes('pessoas visitaram hoje'));
-const productData={available:true,viewers:4,products:[{target:'loja.bufalogrowler.com.br/chopeira-preta',clicks:12},{target:'loja.bufalogrowler.com.br/chopeira-creme',clicks:1}]};
-let alternating=await render(productData,0);const text=()=>alternating.elements.get('.chopeira-activity-message').textContent;
-assert.equal(text(),'4 usuários estão visualizando esta página');alternating.next();assert.equal(text(),'On TAP 2 L · Preta · 12 cliques hoje');alternating.next();assert.equal(text(),'4 usuários estão visualizando esta página');alternating.next();assert.equal(text(),'On TAP 3,5 L · Creme · 1 clique hoje');
-let productOnly=await render({...productData,viewers:0});assert.equal(productOnly.visible,true);assert.ok(/clique/.test(productOnly.elements.get('.chopeira-activity-message').textContent));
-let unknown=await render({available:true,viewers:0,products:[{target:'loja.bufalogrowler.com.br/unknown',clicks:10}]});assert.equal(unknown.visible,false);
-assert.ok(writes.some(row=>row.sql.includes('SUM(total)')&&row.args[0]==='2026-11-14'));
-console.log('PASS: visitors/products alternate one at a time, catalog whitelist, measured daily clicks, product rotation, single-data fallback; real viewer counts only; singular/plural; invalid or unavailable counts stay hidden; visible for 2 seconds plus 4 hidden seconds, 10 displays per minute; dismiss and API validation preserved.');
-
+let out=await render({available:true,viewers:42,products:[{name:'Ignore me',clicks:10}]});
+assert.equal(out.message.textContent,'42');assert.equal(out.visible,true);assert.equal(out.style.left,'153px');assert.equal(out.style.bottom,'82px');assert.equal(out.style.height,'44px');
+assert.equal(out.attributes['aria-label'],'42 usuários visualizando esta página');
+assert.equal(out.timers.filter(x=>x.ms===15000).length,2,'Next start is 15 seconds after current start');
+const hide=out.timers.find(x=>x.ms===3000);assert.ok(hide);hide.fn();assert.equal(out.visible,false);
+out=await render({available:true,viewers:1});assert.equal(out.message.textContent,'1');assert.equal(out.attributes['aria-label'],'1 usuário visualizando esta página');
+for(const data of [{available:false},{available:true,viewers:0},{available:true,viewers:-2},{available:true,viewers:1.5}])assert.equal((await render(data)).visible,false);
+assert.equal((await render({available:true,viewers:4},{viewport:210})).visible,false,'Never overlaps other controls or leaves viewport');
+assert.equal((await render({available:true,viewers:4},{faqHidden:true})).visible,false,'No badge when no floating action is visible');
+out=await render({available:true,viewers:4},{faqHidden:true,negotiation:true});assert.equal(out.style.left,'188px');assert.equal(out.visible,true);
+assert.equal((await render({available:true,viewers:4},{blocked:true})).visible,false);
+assert.ok(client.includes('chopeira-activity-eye'));assert.ok(!client.includes('stats.products'));assert.ok(!client.includes('Escolher minha chopeira'));
+for(const file of ['index.html','activity-popup.js','activity-popup.css'])assert.equal(await readFile(new URL('produtos/chopeira/'+file,root),'utf8'),await readFile(new URL('dist/produtos/chopeira/'+file,root),'utf8'));
+console.log('PASS: count and eye only; 3 seconds visible every 15 seconds; adjacent geometry; narrow viewport, modal and missing-data fallback; API validation; dist sync.');
