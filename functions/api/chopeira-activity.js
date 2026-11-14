@@ -1,3 +1,4 @@
+import {ensureHomepageStats,belemDay} from '../_lib/home-analytics.js';
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store','X-Content-Type-Options':'nosniff'}});
 const schema='CREATE TABLE IF NOT EXISTS chopeira_active_visitors (visitor TEXT PRIMARY KEY,last_seen INTEGER NOT NULL)';
 export async function onRequest({request,env}){
@@ -16,7 +17,14 @@ export async function onRequest({request,env}){
    db.prepare('INSERT INTO chopeira_active_visitors(visitor,last_seen) VALUES (?,?) ON CONFLICT(visitor) DO UPDATE SET last_seen=excluded.last_seen').bind(visitor,now)
   ]);
   const row=await db.prepare('SELECT COUNT(*) AS total FROM chopeira_active_visitors WHERE last_seen >= ?').bind(now-90000).first();
-  // Visits and product clicks are never reported as purchases.
-  return json({available:true,viewers:Number(row?.total||0),activeWindowSeconds:90});
+  let products=[];
+  try{
+   await ensureHomepageStats(db);
+   const result=await db.prepare("SELECT target,SUM(total) AS clicks FROM site_interactions WHERE page='/produtos/chopeira/' AND day=? AND kind='product' AND target LIKE 'loja.bufalogrowler.com.br/%' GROUP BY target HAVING SUM(total)>0 ORDER BY clicks DESC,target LIMIT 10").bind(belemDay()).all();
+   products=(result.results||[]).map(product=>({target:product.target,clicks:Number(product.clicks)})).filter(product=>Number.isSafeInteger(product.clicks)&&product.clicks>0);
+  }catch{/* Viewer counts remain available if product analytics is temporarily unavailable. */}
+  // Product clicks are never presented as people or purchases.
+  return json({available:true,viewers:Number(row?.total||0),activeWindowSeconds:90,products,productPeriod:'today'});
  }catch{return json({available:false},503);}
 }
+
