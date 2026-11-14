@@ -96,8 +96,8 @@ A Mesa DJ inclui blink-182 · I Miss You e Game of Thrones · Main Theme (Extend
 
 ## Popup de atividade da chopeira
 
-O popup mostra somente um ícone de olho e a quantidade real de usuários visualizando a página. Aparece a cada 15 segundos (entre inícios), por 3 segundos, ao lado direito do botão Tirar dúvidas, com 8px de distância e a mesma altura. Ao trocar o botão flutuante após dois minutos, acompanha o botão de negociação no mesmo local. Sem espaço na tela, sem botão visível ou sem contagem válida, permanece oculto. Não aparece sobre diálogos ou enquanto um formulário está em uso. Respeita movimento reduzido e pausa em abas ocultas. Mantenha as cópias de dist/produtos/chopeira sincronizadas.
+O popup mostra um ícone de olho, a quantidade real de usuários e o texto Vendo chopeiras. Aparece a cada 15 segundos (entre inícios), por 3 segundos, ao lado direito do botão Tirar dúvidas, com 8px de distância e a mesma altura. Ao trocar o botão flutuante após dois minutos, acompanha o botão de negociação no mesmo local. Sem espaço na tela, sem botão visível ou sem contagem válida, permanece oculto. Não aparece sobre diálogos ou enquanto um formulário está em uso. Respeita movimento reduzido e pausa em abas ocultas. Mantenha as cópias de dist/produtos/chopeira sincronizadas.
 
-POST /api/chopeira-activity registra somente hash de identificador aleatório e horário em LIVE_DB, com janela de 90 segundos e heartbeat de 30 segundos em abas visíveis. Não retorna produtos clicados nem compras. A descrição acessível e o título explicam a contagem; o conteúdo visual contém somente olho e número.
+POST /api/chopeira-activity registra somente hash de identificador aleatório e horário em LIVE_DB, com janela de 90 segundos e heartbeat de 30 segundos em abas visíveis. Não retorna produtos clicados nem compras. A descrição acessível e o título explicam a contagem; o conteúdo visual contém olho, número e Vendo chopeiras.
 
 Verificação: node --test tests/chopeira-activity.test.mjs tests/chopeira-floating-tracking.test.mjs.

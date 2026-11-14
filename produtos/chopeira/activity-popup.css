@@ -1,5 +1,7 @@
-.chopeira-activity{position:fixed;left:0;bottom:0;z-index:89;display:flex;align-items:center;justify-content:center;gap:7px;box-sizing:border-box;width:max-content;min-width:62px;max-width:116px;height:44px;padding:0 11px;border:1px solid #142e32;border-radius:8px;background:#fff8ed;color:#142e32;box-shadow:0 3px 14px #0004;font:700 13px/18px system-ui,sans-serif;white-space:nowrap;opacity:0;transform:translateX(-5px);visibility:hidden;pointer-events:none;transition:opacity .35s ease,transform .35s ease,visibility .35s}
+.chopeira-activity{position:fixed;left:0;bottom:0;z-index:89;display:flex;align-items:center;justify-content:center;gap:7px;box-sizing:border-box;width:max-content;min-width:62px;max-width:calc(100vw - 16px);height:44px;padding:0 11px;border:1px solid #142e32;border-radius:8px;background:#fff8ed;color:#142e32;box-shadow:0 3px 14px #0004;font:700 13px/18px system-ui,sans-serif;white-space:nowrap;opacity:0;transform:translateX(-5px);visibility:hidden;pointer-events:none;transition:opacity .35s ease,transform .35s ease,visibility .35s}
 .chopeira-activity.is-visible{opacity:1;transform:translateX(0);visibility:visible}
 .chopeira-activity-eye{flex:none;width:19px;height:19px}
 .chopeira-activity-message{display:block;font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){.chopeira-activity{transition:none;transform:none}}
+
+@media(max-width:480px){.chopeira-activity{gap:5px;padding:0 8px;font-size:11px}.chopeira-activity-eye{width:16px;height:16px}}

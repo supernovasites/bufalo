@@ -22,7 +22,7 @@ async function render(data,{viewport=390,faqHidden=false,negotiation=false,block
  const rect={right:145,bottom:762,width:133,height:44};
  const faq={hidden:faqHidden,getBoundingClientRect:()=>rect};
  const nextButton={hidden:!negotiation,getBoundingClientRect:()=>({...rect,right:180})};
- const toast={style,setAttribute(k,v){attributes[k]=v},querySelector:()=>message,getBoundingClientRect:()=>({width:72}),classList:{add(){visible=true},remove(){visible=false}}};
+ const toast={style,setAttribute(k,v){attributes[k]=v},querySelector:()=>message,getBoundingClientRect:()=>({width:160}),classList:{add(){visible=true},remove(){visible=false}}};
  const storage={getItem:()=>null,setItem(){}};
  const document={hidden:false,createElement:()=>toast,body:{append(){}},querySelector(selector){return selector==='.faq-shortcut'?faq:selector==='.negotiation-trigger'?nextButton:selector==='dialog[open]'&&blocked?{}:null},addEventListener(){}};
  const context={crypto:webcrypto,localStorage:storage,AbortController,Date,document,innerWidth:viewport,innerHeight:844,queueMicrotask,fetch:async()=>({ok:true,json:async()=>data}),setTimeout(fn,ms){timers.push({fn,ms});return timers.length},clearTimeout(){},setInterval(){},clearInterval(){},addEventListener(){}};
@@ -31,11 +31,11 @@ async function render(data,{viewport=390,faqHidden=false,negotiation=false,block
  return {message,attributes,style,timers,toast,get visible(){return visible}};
 }
 let out=await render({available:true,viewers:42,products:[{name:'Ignore me',clicks:10}]});
-assert.equal(out.message.textContent,'42');assert.equal(out.visible,true);assert.equal(out.style.left,'153px');assert.equal(out.style.bottom,'82px');assert.equal(out.style.height,'44px');
+assert.equal(out.message.textContent,'42 Vendo chopeiras');assert.equal(out.visible,true);assert.equal(out.style.left,'153px');assert.equal(out.style.bottom,'82px');assert.equal(out.style.height,'44px');
 assert.equal(out.attributes['aria-label'],'42 usuários visualizando esta página');
 assert.equal(out.timers.filter(x=>x.ms===15000).length,2,'Next start is 15 seconds after current start');
 const hide=out.timers.find(x=>x.ms===3000);assert.ok(hide);hide.fn();assert.equal(out.visible,false);
-out=await render({available:true,viewers:1});assert.equal(out.message.textContent,'1');assert.equal(out.attributes['aria-label'],'1 usuário visualizando esta página');
+out=await render({available:true,viewers:1});assert.equal(out.message.textContent,'1 Vendo chopeiras');assert.equal(out.attributes['aria-label'],'1 usuário visualizando esta página');
 for(const data of [{available:false},{available:true,viewers:0},{available:true,viewers:-2},{available:true,viewers:1.5}])assert.equal((await render(data)).visible,false);
 assert.equal((await render({available:true,viewers:4},{viewport:210})).visible,false,'Never overlaps other controls or leaves viewport');
 assert.equal((await render({available:true,viewers:4},{faqHidden:true})).visible,false,'No badge when no floating action is visible');
@@ -43,4 +43,4 @@ out=await render({available:true,viewers:4},{faqHidden:true,negotiation:true});a
 assert.equal((await render({available:true,viewers:4},{blocked:true})).visible,false);
 assert.ok(client.includes('chopeira-activity-eye'));assert.ok(!client.includes('stats.products'));assert.ok(!client.includes('Escolher minha chopeira'));
 for(const file of ['index.html','activity-popup.js','activity-popup.css'])assert.equal(await readFile(new URL('produtos/chopeira/'+file,root),'utf8'),await readFile(new URL('dist/produtos/chopeira/'+file,root),'utf8'));
-console.log('PASS: count and eye only; 3 seconds visible every 15 seconds; adjacent geometry; narrow viewport, modal and missing-data fallback; API validation; dist sync.');
+console.log('PASS: count, Vendo chopeiras and eye; 3 seconds visible every 15 seconds; adjacent geometry; narrow viewport, modal and missing-data fallback; API validation; dist sync.');

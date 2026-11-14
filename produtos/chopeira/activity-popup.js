@@ -27,7 +27,7 @@
  function show(){
   if(disposed)return;schedule();
   if(blocked()||!stats||Date.now()-updated>=90000||!Number.isSafeInteger(stats.viewers)||stats.viewers<1){hide();return;}
-  const count=stats.viewers;message.textContent=count.toLocaleString('pt-BR');toast.setAttribute('aria-label',count+(count===1?' usuário visualizando esta página':' usuários visualizando esta página'));
+  const count=stats.viewers;message.textContent=count.toLocaleString('pt-BR')+' Vendo chopeiras';toast.setAttribute('aria-label',count+(count===1?' usuário visualizando esta página':' usuários visualizando esta página'));
   if(!position()){hide();return;}
   toast.setAttribute('aria-hidden','false');toast.classList.add('is-visible');
   clearTimeout(hideTimer);hideTimer=setTimeout(hide,3000);
