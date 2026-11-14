@@ -92,3 +92,12 @@ Em `/live/admin`, carregue até cinco imagens individualmente, com prévia e pro
 A tabela de seleção é criada no primeiro salvamento autenticado; `migrations/0019_live_moment.sql` também pode ser aplicada repetidamente. Verificação: `node --test tests/live-moment.test.mjs`.
 
 A Mesa DJ inclui blink-182 · I Miss You e Game of Thrones · Main Theme (Extended) em Sons de fundo, com volume máximo de 3% e atalhos 5 e 6.
+
+
+## Popup de atividade da chopeira
+
+`produtos/chopeira/activity-popup.js` e `.css` exibem avisos discretos após 12 segundos, por 6,5 segundos, com intervalos aleatórios de 20–32 segundos. A animação respeita movimento reduzido; fechar encerra os avisos na sessão. Não abre sobre diálogos nem quando um formulário está em uso. As cópias de `dist/produtos/chopeira/` devem acompanhar os arquivos.
+
+`POST /api/chopeira-activity` usa LIVE_DB e uma tabela idempotente `chopeira_active_visitors`, criada automaticamente. O navegador envia um identificador aleatório a cada 30 segundos, somente com a aba visível. O servidor armazena apenas seu hash e o horário, elimina registros após 90 segundos e retorna o total de navegadores ativos. Visitas de hoje usam a contagem diária única existente, no fuso de Belém. Os avisos explicam a janela de atividade; nenhum IP ou dado de cliente é coletado por este recurso.
+
+Sem dados ou com apenas um visitante, aparecem chamadas para comparar os modelos e assistir aos vídeos. Não há números aleatórios de vendas: os cliques e as visitas não comprovam compras. Uma mensagem de compras dependerá de integração com pedidos confirmados da loja. Verificação: `node tests/chopeira-activity.test.mjs`.

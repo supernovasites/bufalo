@@ -1,0 +1,31 @@
+import {readFile} from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {webcrypto} from 'node:crypto';
+import vm from 'node:vm';
+globalThis.crypto??=webcrypto;
+const root=new URL('../',import.meta.url);
+const source=await readFile(new URL('functions/api/chopeira-activity.js',root),'utf8');
+const {onRequest}=await import('data:text/javascript;base64,'+Buffer.from(source.replace(/^import .*;$/m,"const ensureHomepageStats=async()=>{};const belemDay=()=> '2026-11-14';")).toString('base64'));
+const writes=[];
+const db={prepare(sql){return {bind(...args){writes.push({sql,args});return this},async run(){},async first(){return {total:sql.includes('active_visitors')?4:18}}}},async batch(queries){return queries}};
+const request=(body,origin='https://example.com')=>new Request('https://example.com/api/chopeira-activity',{method:'POST',headers:{Origin:origin},body:JSON.stringify(body)});
+const visitor='12345678-1234-1234-1234-123456789abc';
+let response=await onRequest({request:request({visitor}),env:{LIVE_DB:db}});
+assert.equal(response.status,200);assert.deepEqual(await response.json(),{available:true,viewers:4,visitorsToday:18,activeWindowSeconds:90});
+const write=writes.find(x=>x.sql.startsWith('INSERT'));assert.equal(write.args[0].length,64);assert.notEqual(write.args[0],visitor);
+assert.equal((await onRequest({request:request({visitor},'https://other.com'),env:{LIVE_DB:db}})).status,403);
+assert.equal((await onRequest({request:request({visitor:'invalid'}),env:{LIVE_DB:db}})).status,400);
+assert.equal((await onRequest({request:request({visitor}),env:{}})).status,503);
+const client=await readFile(new URL('produtos/chopeira/activity-popup.js',root),'utf8');
+async function render(data){
+ const elements=new Map();for(const key of ['.chopeira-activity-message','.chopeira-activity-detail','button','a'])elements.set(key,{});
+ const toast={setAttribute(){},querySelector:s=>elements.get(s),classList:{add(){},remove(){}},contains:()=>false};
+ const timers=[],storage={getItem:()=>null,setItem(){}};
+ const context={crypto:webcrypto,localStorage:storage,sessionStorage:storage,AbortController,Date,Math:Object.assign(Object.create(Math),{random:()=>.999}),document:{hidden:false,createElement:()=>toast,body:{append(){}},querySelector:()=>null,addEventListener(){}},fetch:async()=>({ok:true,json:async()=>data}),setTimeout(fn,ms){timers.push({fn,ms});return timers.length},clearTimeout(){},setInterval(){},clearInterval(){},addEventListener(){}};
+ vm.runInNewContext(client,context);await new Promise(resolve=>setImmediate(resolve));timers.find(x=>x.ms===12000).fn();return elements;
+}
+let el=await render({available:true,viewers:4,visitorsToday:18});assert.equal(el.get('.chopeira-activity-message').textContent,'18 pessoas visitaram hoje');
+el=await render({available:true,viewers:4,visitorsToday:0});assert.equal(el.get('.chopeira-activity-message').textContent,'4 pessoas estão vendo agora');
+el=await render({available:false});assert.ok(!/pessoas|compraram/.test(el.get('.chopeira-activity-message').textContent));
+el=await render({available:true,viewers:1,visitorsToday:0});assert.ok(!/pessoas/.test(el.get('.chopeira-activity-message').textContent));
+console.log('PASS: API origin/validation/failure, hashed visitors, measured counts, no false purchase claims, safe fallback.');
