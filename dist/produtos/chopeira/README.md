@@ -67,3 +67,10 @@ A seção fica imediatamente acima do banner Mestre Cervejeiro. Inclui os 11 ví
 `stories.js` mantém só um vídeo no DOM, no card central. Laterais e camadas da fila usam capas estáticas. O vídeo avança ao terminar; cada foto permanece por 3 segundos efetivamente visíveis. Arrastar para a esquerda avança; para a direita retorna. Também há navegação pelos cards laterais e pelas teclas direcionais. A sequência é circular. O player pausa fora da tela, com a aba oculta ou enquanto um modal estiver aberto. O banner inicial continua independente.
 
 Ao editar a seção, sincronizar HTML, `stories.js`, `stories.css` e `media/stories/` em `dist/produtos/chopeira/`. Validação: `node tests/chopeira-stories.cjs`, além dos testes existentes de chopeira, mídia e hero; inspeção em 390 px e 1440 px com arraste e reprodução reais.
+
+
+## Personalização em reprodução automática (15/11/2026)
+
+A seção `personalize-growler` usa o vídeo enviado em 15/11, com 31,4 s completos e 512 × 910 a 30 fps. `media/personalizacao-growler-soa-20261115.mp4` tem 2.041.116 bytes (original: 17.736.183 bytes), H.264 Main, sem faixa de áudio, `yuv420p` e faststart. A capa é um quadro do próprio vídeo.
+
+`personalize-video.js` prepara o arquivo a 600 px da tela e reproduz automaticamente, mudo, em loop e inline enquanto visível. Não há controles nativos nem pausa por toque; fora da tela ou em aba oculta, a reprodução é suspensa para poupar recursos e retomada ao voltar. Bloqueios de autoplay do navegador mantêm a capa, com nova tentativa na próxima interação. Manter HTML, CSS, script e mídia sincronizados em `dist/produtos/chopeira/`.

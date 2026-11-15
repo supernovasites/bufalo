@@ -71,3 +71,10 @@ Ao editar a seção, sincronizar HTML, `stories.js`, `stories.css` e `media/stor
 ## Cupom Black20 (05/11/2026)
 
 Os 12 cards com preço da página exibem o valor regular riscado, o valor com 20% de desconto e um botão para copiar `Black20`, com confirmação acessível e alternativa de cópia quando a Clipboard API não estiver disponível. Inclui kit 7L, modelos On TAP, Kundi, bag e peças de reposição. A página carrega `black20.js` e `black20.css` no lugar de `kit-price.js`: o desconto não acumula com os preços de fim de semana. O cupom deve ser aplicado no carrinho da loja; esta alteração não configura cupons no checkout. Manter `dist/produtos/chopeira/` sincronizado. Validação: `node --test tests/chopeira-black20.test.mjs`.
+
+
+## Personalização em reprodução automática (15/11/2026)
+
+A seção `personalize-growler` usa o vídeo enviado em 15/11, com 31,4 s completos e 512 × 910 a 30 fps. `media/personalizacao-growler-soa-20261115.mp4` tem 2.041.116 bytes (original: 17.736.183 bytes), H.264 Main, sem faixa de áudio, `yuv420p` e faststart. A capa é um quadro do próprio vídeo.
+
+`personalize-video.js` prepara o arquivo a 600 px da tela e reproduz automaticamente, mudo, em loop e inline enquanto visível. Não há controles nativos nem pausa por toque; fora da tela ou em aba oculta, a reprodução é suspensa para poupar recursos e retomada ao voltar. Bloqueios de autoplay do navegador mantêm a capa, com nova tentativa na próxima interação. Manter HTML, CSS, script e mídia sincronizados em `dist/produtos/chopeira/`.
