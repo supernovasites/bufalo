@@ -76,3 +76,10 @@ body{background:#fff;color:#142e32}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.catalog-card .photo img,.category-index-links a{transition:none}}
 
 .catalog-pricing .old-price{display:block;font-size:12px;font-weight:400;color:#617273;margin-bottom:4px}
+
+/* Variations without a store color use their actual image; sizes use text. */
+.catalog-card .color-swatch.variation-photo{width:40px;height:40px;padding:3px}
+.catalog-card .color-swatch.variation-photo span{width:30px;height:30px;background:#fff var(--variation-photo) center/contain no-repeat;border-radius:4px}
+.catalog-card .color-swatch.variation-size{width:auto;min-width:34px;padding:5px 8px}
+.catalog-card .color-swatch.variation-size span{display:none}
+.catalog-card .color-swatch.variation-size::after{content:attr(data-variation-size);font-size:12px;font-weight:600;color:#142e32}
