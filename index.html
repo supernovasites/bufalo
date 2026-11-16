@@ -514,9 +514,9 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)v.pause();}
 <script id="accessories-carousel-script">
 (()=>{
  const section=document.getElementById('acessorios'),viewport=section.querySelector('.accessories-viewport'),track=section.querySelector('.accessories-track'),group=section.querySelector('.accessories-group'),pause=section.querySelector('[data-accessory="pause"]');
- const motion=matchMedia('(prefers-reduced-motion: reduce)');
+
  for(const side of ['before','after']){const copy=group.cloneNode(true);copy.setAttribute('aria-hidden','true');copy.querySelectorAll('a').forEach(a=>a.tabIndex=-1);side==='before'?track.prepend(copy):track.append(copy);}
- let period=0,pos=0,lastWritten=0,lastTime=0,paused=motion.matches,hover=false,focused=false,visible=false,dragging=false,manualUntil=0;
+ let period=0,pos=0,lastWritten=0,lastTime=0,paused=false,hover=false,focused=false,visible=false,dragging=false,manualUntil=0;
  const normalize=x=>period?period+((x-period)%period+period)%period:x;
  function write(x){pos=normalize(x);viewport.scrollLeft=pos;lastWritten=viewport.scrollLeft;}
  function measure(){const offset=period?(viewport.scrollLeft-period)/period:0;period=group.getBoundingClientRect().width;write(period+offset*period);}
@@ -524,7 +524,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)v.pause();}
  pause.addEventListener('click',()=>{paused=!paused;sync();});
  section.querySelector('[data-accessory="prev"]').addEventListener('click',()=>step(-1));
  section.querySelector('[data-accessory="next"]').addEventListener('click',()=>step(1));
- function step(direction){paused=true;sync();const item=group.querySelector('a');write(viewport.scrollLeft+direction*(item.getBoundingClientRect().width+parseFloat(getComputedStyle(group).gap)));}
+ function step(direction){manualUntil=performance.now()+1500;const item=group.querySelector('a');write(viewport.scrollLeft+direction*(item.getBoundingClientRect().width+parseFloat(getComputedStyle(group).gap)));}
  viewport.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')hover=true;});
  viewport.addEventListener('pointerleave',()=>hover=false);
  viewport.addEventListener('pointerdown',()=>{dragging=true;});
@@ -534,7 +534,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)v.pause();}
  viewport.addEventListener('focusin',()=>focused=true);
  viewport.addEventListener('focusout',()=>{focused=false;});
  viewport.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();step(e.key==='ArrowLeft'?-1:1);}});
- motion.addEventListener('change',e=>{paused=e.matches;sync();});
+
  new ResizeObserver(measure).observe(viewport);
  new IntersectionObserver(entries=>visible=entries[0].isIntersecting).observe(section);
  function frame(now){
