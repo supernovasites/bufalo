@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-10-27",
+  "checkedAt": "2026-11-16",
   "categories": [
     {
       "id": "live-chopeiras",
       "title": "Chopeiras e Growlers",
       "url": "https://loja.bufalogrowler.com.br/chopeiras",
       "products": [
-        "https://loja.bufalogrowler.com.br/bufaloontap2l",
-        "https://loja.bufalogrowler.com.br/bufaloontap35l",
+        "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-2l-chopeira-termica-portatil-preta",
+        "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-35l-chopeira-termica-portatil-preta",
         "https://loja.bufalogrowler.com.br/mestrebufaloontap7l",
         "https://loja.bufalogrowler.com.br/growler-kundi-2l",
         "https://loja.bufalogrowler.com.br/mestre-bufalo-growler-spritz",
@@ -217,12 +217,12 @@
   "products": [
     {
       "name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portatil",
-      "url": "https://loja.bufalogrowler.com.br/bufaloontap2l",
+      "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-2l-chopeira-termica-portatil-preta",
       "cards": [
         {
           "name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portatil",
           "label": "Preto",
-          "url": "https://loja.bufalogrowler.com.br/bufaloontap2l",
+          "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-2l-chopeira-termica-portatil-preta",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404823404/keg-1-9l-preta-d7dc4742-r64gzwslop.png",
           "imageSource": "store_variant",
           "skus": [
@@ -233,18 +233,19 @@
           ],
           "sizes": [],
           "prices": [
-            1250.0
+            1245.0
           ],
-          "price": 1250.0,
+          "price": 1245.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bufaloontap2l--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Búfalo Growler On TAP 2L - Chopeira Térmica Portatil",
           "label": "Barley White",
-          "url": "https://loja.bufalogrowler.com.br/bufaloontap2l",
+          "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-2l-chopeira-termica-portatil-preta",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/266520163/cfaee69e9ac8411ca544e948e922009d-oqsqt59omg.png",
           "imageSource": "store_variant",
           "skus": [
@@ -255,24 +256,25 @@
           ],
           "sizes": [],
           "prices": [
-            1250.0
+            1245.0
           ],
-          "price": 1250.0,
+          "price": 1245.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bufaloontap2l--426782",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
     {
       "name": "Búfalo Growler On TAP 3,5L - Chopeira Térmica Portatil",
-      "url": "https://loja.bufalogrowler.com.br/bufaloontap35l",
+      "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-35l-chopeira-termica-portatil-preta",
       "cards": [
         {
           "name": "Búfalo Growler On TAP 3,5L - Chopeira Térmica Portatil",
           "label": "Coral",
-          "url": "https://loja.bufalogrowler.com.br/bufaloontap35l",
+          "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-35l-chopeira-termica-portatil-preta",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/389043645/07f8eeca760d4e23b591e9c58a467e3c-w7v0wuvfw5.png",
           "imageSource": "store_variant",
           "skus": [
@@ -289,12 +291,13 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bufaloontap35l--426709",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Búfalo Growler On TAP 3,5L - Chopeira Térmica Portatil",
           "label": "Preto",
-          "url": "https://loja.bufalogrowler.com.br/bufaloontap35l",
+          "url": "https://loja.bufalogrowler.com.br/bufalo-growler-on-tap-35l-chopeira-termica-portatil-preta",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/389043645/on-tap-3-5-l-preta-1-r2p8hctkyu.png",
           "imageSource": "store_variant",
           "skus": [
@@ -311,7 +314,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bufaloontap35l--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -340,7 +344,7 @@
           "illustrative": false,
           "key": "mestrebufaloontap7l--38301",
           "stock": "in_stock",
-          "oldPrice": 1930
+          "oldPrice": 1930.0
         }
       ]
     },
@@ -368,7 +372,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-kundi-2l--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Growler Kundi 2L",
@@ -390,7 +395,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-kundi-2l--426782",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -419,7 +425,7 @@
           "illustrative": false,
           "key": "mestre-bufalo-growler-spritz--38301",
           "stock": "in_stock",
-          "oldPrice": 1830
+          "oldPrice": 1830.0
         },
         {
           "name": "Mestre Búfalo Growler On TAP - Combo 5,5L Chopeira térmica portátil",
@@ -442,7 +448,7 @@
           "illustrative": false,
           "key": "mestre-bufalo-growler-spritz--481146",
           "stock": "in_stock",
-          "oldPrice": 1830
+          "oldPrice": 1830.0
         }
       ]
     },
@@ -470,7 +476,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-kundi-35l--426709",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Growler Kundi 3,5L",
@@ -492,7 +499,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-kundi-35l--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -520,7 +528,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro4--37096",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -548,7 +557,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro8--37096",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Super Nag PRO 8 Cooler 71,5L com Rodinhas",
@@ -570,7 +580,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro8--426034",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -598,7 +609,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro6--37096",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Nag PRO 6 Cooler 42L com Rodinhas",
@@ -620,7 +632,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagpro6--426034",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -648,7 +661,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-tote-termica-nagpuri-14l--341476470",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -676,7 +690,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-termica-nagpuri-20l-petroleo--341482470",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -704,7 +719,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "canivete-e-cimo-inox--217956208",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -732,7 +748,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "kit-garfo-faca-bufalo--388382926",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -760,7 +777,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "abridor-de-garrafa-de-madeira--58862378",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -788,7 +806,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "machado-ax-carbono-90mm-cb-madeira--265289143",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -816,7 +835,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "faca-cimo-ax-cb-madeira--217956350",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -872,7 +892,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "facao-cimo-ax-colosso-com-bainha-em-couro--398774433",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -900,7 +921,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "canivete-cimo-tomahawk--398773705",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -928,7 +950,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "faca-com-bainha-bm-bufalo--388418552",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -956,7 +979,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--2385723",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Bolsa Transversal Estanque Búfalo 2L",
@@ -978,7 +1002,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--2304388",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Bolsa Transversal Estanque Búfalo 2L",
@@ -1000,7 +1025,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--2792163",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Bolsa Transversal Estanque Búfalo 2L",
@@ -1022,7 +1048,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--1570426",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Bolsa Transversal Estanque Búfalo 2L",
@@ -1044,7 +1071,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-transversal-estanque-bufalo-2l--2973974",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1072,7 +1100,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Saco Estanque Búfalo 2L - Dry Bag",
@@ -1094,7 +1123,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--5502362",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Saco Estanque Búfalo 2L - Dry Bag",
@@ -1116,7 +1146,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--5502363",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Saco Estanque Búfalo 2L - Dry Bag",
@@ -1138,7 +1169,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--14282641",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Saco Estanque Búfalo 2L - Dry Bag",
@@ -1160,7 +1192,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--9703097",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Saco Estanque Búfalo 2L - Dry Bag",
@@ -1182,7 +1215,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-2litros--10057521",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1210,7 +1244,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "mochila-marajo-dry-verde--361534760",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1238,7 +1273,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "mochila-marajo-dry-azul--361534589",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1266,7 +1302,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "mochila-marajo-dry-rosa--361534028",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1288,13 +1325,14 @@
           ],
           "sizes": [],
           "prices": [
-            120
+            120.0
           ],
-          "price": 120,
+          "price": 120.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-20litros--5502363",
-          "stock": "out_of_stock"
+          "stock": "out_of_stock",
+          "oldPrice": null
         },
         {
           "name": "Saco Estanque Búfalo 20L - Dry Bag",
@@ -1316,7 +1354,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "dry-bag-20litros--5502366",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1344,7 +1383,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "xco61r2pc-cadeira-portatil-bufalo-pena-p-2025-06-27-12-50-37--426262",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Cadeira Portátil Búfalo Pena G",
@@ -1366,7 +1406,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "xco61r2pc-cadeira-portatil-bufalo-pena-p-2025-06-27-12-50-37--426251",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1394,7 +1435,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "cadeira-portatil-bufalo-pena-p--426251",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Cadeira Portátil Búfalo Pena P",
@@ -1416,7 +1458,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "cadeira-portatil-bufalo-pena-p--426262",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1452,7 +1495,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bermuda-pirarucu--38416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1491,7 +1535,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bermuda-selva--38419",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1530,7 +1575,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bermuda-listrada--38416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1569,7 +1615,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bermuda-aloha--38418",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1605,7 +1652,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "kjmrx5jia-camiseta-viva-a-natureza-cowboy--38418-5502362",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1635,7 +1683,8 @@
           "priceFrom": false,
           "illustrative": true,
           "key": "chinelo-estampa-marajo-art-feminina--5502361-6873289",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Chinelo Estampa Marajó Art Feminina",
@@ -1662,7 +1711,8 @@
           "priceFrom": false,
           "illustrative": true,
           "key": "chinelo-estampa-marajo-art-feminina--5502365-6873289",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1698,7 +1748,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "camiseta-viva-a-natureza-tucunare--38416-5502365",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1737,7 +1788,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "42rbc3uuh-camiseta-viva-a-natureza-tucunare-2023-06-21-16-01-17--38419-9437428",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1770,7 +1822,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bxxkrmea0-camiseta-marajo-art-2023-04-24-15-40-12--38419-9437427",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1806,7 +1859,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "camiseta-steak-e-beer--38418-5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1845,7 +1899,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "camiseta-selva--38416-5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1884,7 +1939,8 @@
           "priceFrom": false,
           "illustrative": true,
           "key": "camiseta-marajoart--38418-5502362",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Camiseta Marajo Art",
@@ -1917,7 +1973,8 @@
           "priceFrom": false,
           "illustrative": true,
           "key": "camiseta-marajoart--38416-5502363",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1947,7 +2004,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "chinelo-slid-unissex--6873289",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -1977,7 +2035,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "chinelo-estampa-listrada-feminina--6873289",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2007,7 +2066,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "chinelo-estampa-listrada-masculino--6873292",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2035,7 +2095,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-esportiva-bufalo--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Unibag - Bolsa universal Búfalo Growler",
@@ -2057,7 +2118,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-esportiva-bufalo--14150568",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2085,7 +2147,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-copo-niliravi---37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 50.0
         },
         {
           "name": "Alça Copo Niliravi",
@@ -2107,7 +2170,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-copo-niliravi---426721",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 40.0
         }
       ]
     },
@@ -2129,13 +2193,14 @@
           ],
           "sizes": [],
           "prices": [
-            35.0
+            50.0
           ],
-          "price": 35.0,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-neoprene-niliravi--150361965",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2163,7 +2228,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-silicone-garrafa-garca--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Alça Silicone Para Garrafa Garça",
@@ -2185,7 +2251,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-silicone-garrafa-garca--13587666",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Alça Silicone Para Garrafa Garça",
@@ -2207,7 +2274,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-silicone-garrafa-garca--5502365",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2229,13 +2297,14 @@
           ],
           "sizes": [],
           "prices": [
-            35.0
+            70.0
           ],
-          "price": 35.0,
+          "price": 70.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bolsa-neoprene-para-garrafa-jafarabadi--150361811",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2257,13 +2326,14 @@
           ],
           "sizes": [],
           "prices": [
-            35.0
+            60.0
           ],
-          "price": 35.0,
+          "price": 60.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bag-neoprene-harpuri--231803424",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2285,13 +2355,14 @@
           ],
           "sizes": [],
           "prices": [
-            35.0
+            50.0
           ],
-          "price": 35.0,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bag-neoprene-buba--231803300",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2313,13 +2384,14 @@
           ],
           "sizes": [],
           "prices": [
-            35.0
+            50.0
           ],
-          "price": 35.0,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bag-neoprene-para-surti-murrah--150362113",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2347,7 +2419,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-copo-surti--152069679",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 30.0
         }
       ]
     },
@@ -2375,7 +2448,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-para-garrafa-com-argola--569102",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Alça para garrafa com argola em Metal",
@@ -2397,7 +2471,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-para-garrafa-com-argola--38301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Alça para garrafa com argola em Metal",
@@ -2419,7 +2494,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-para-garrafa-com-argola--2484600",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2447,7 +2523,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "argola-mosquetao--336668451",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2475,7 +2552,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "alca-antiderrapante-de-silicone--277481791",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2497,13 +2575,14 @@
           ],
           "sizes": [],
           "prices": [
-            35.0
+            50.0
           ],
-          "price": 35.0,
+          "price": 50.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "bag-neoprene-copo-surti--232425553",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2531,7 +2610,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13498254",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2553,7 +2633,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2575,7 +2656,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587667",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2597,7 +2679,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587666",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2619,7 +2702,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587668",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2641,7 +2725,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587665",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2663,7 +2748,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--14167361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2685,7 +2771,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13750956",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2707,7 +2794,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--14167360",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2729,7 +2817,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--14167358",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -2751,7 +2840,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-esporte-com-bico--14167359",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -2779,7 +2869,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14167359",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2801,7 +2892,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331552",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2823,7 +2915,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331556",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2845,7 +2938,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--11841209",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2867,7 +2961,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--10057521",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2889,7 +2984,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331551",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2911,7 +3007,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14150568",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2933,7 +3030,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331554",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2955,7 +3053,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--9703097",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2977,7 +3076,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14282641",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -2999,7 +3099,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14331553",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Abridor - OpenNeck",
@@ -3021,7 +3122,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-openneck-com-abridor--14323979",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -3043,13 +3145,14 @@
           ],
           "sizes": [],
           "prices": [
-            80
+            80.0
           ],
-          "price": 80,
+          "price": 80.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-com-bocal-growler-palitano--402786665",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -3077,7 +3180,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---5502364",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Elástico",
@@ -3099,7 +3203,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---9703097",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Elástico",
@@ -3121,7 +3226,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---5502366",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Elástico",
@@ -3143,7 +3249,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---11841507",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tirante com Elástico",
@@ -3165,7 +3272,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tirante-com-elastico---11034358",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -3193,7 +3301,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--14167359",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Jafarabadi 1L",
@@ -3215,7 +3324,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--14167358",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Jafarabadi 1L",
@@ -3237,7 +3347,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13750956",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Jafarabadi 1L",
@@ -3259,7 +3370,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Jafarabadi 1L",
@@ -3281,7 +3393,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13587666",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Jafarabadi 1L",
@@ -3303,7 +3416,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13498263",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Jafarabadi 1L",
@@ -3325,7 +3439,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--14167361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Jafarabadi 1L",
@@ -3347,7 +3462,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13587665",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Jafarabadi 1L",
@@ -3369,7 +3485,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-jafarabadi-1l--13498254",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -3397,7 +3514,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426709",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3419,7 +3537,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3441,7 +3560,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426266",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3463,7 +3583,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--425313",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3479,14 +3600,15 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426774",
           "stock": "in_stock",
-          "imageAvailable": false
+          "imageAvailable": false,
+          "oldPrice": null
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3508,7 +3630,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--425684",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3530,7 +3653,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--425471",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3552,7 +3676,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426365",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3574,7 +3699,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--425732",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -3602,7 +3728,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426573",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3624,7 +3751,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--37076",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3646,7 +3774,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3668,7 +3797,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426185",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3690,7 +3820,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426236",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3712,7 +3843,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3734,7 +3866,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3756,7 +3889,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426124",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3772,13 +3906,14 @@
           ],
           "sizes": [],
           "prices": [
-            40
+            40.0
           ],
-          "price": 40,
+          "price": 40.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425418",
-          "stock": "out_of_stock"
+          "stock": "out_of_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3800,7 +3935,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--426782",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3822,7 +3958,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425612",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Original Garrafas",
@@ -3844,7 +3981,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-original-garrafas--425732",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -3872,7 +4010,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-easydrink--13498254",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa EasyDrink",
@@ -3894,7 +4033,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-easydrink--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa EasyDrink",
@@ -3916,7 +4056,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-easydrink--13587665",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -3944,7 +4085,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--14167359",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -3966,7 +4108,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--14167358",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -3988,7 +4131,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--14167361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -4010,7 +4154,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13498254",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -4032,7 +4177,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13587665",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -4054,7 +4200,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13750956",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -4076,7 +4223,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13587666",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -4098,7 +4246,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -4120,7 +4269,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--13498263",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Murrah 540ml e Buba 355ml",
@@ -4142,7 +4292,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-buba-e-murrah--5502362",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4170,7 +4321,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-p--13498263",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Base de Silicone P",
@@ -4192,7 +4344,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-p--13750956",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Base de Silicone P",
@@ -4214,7 +4367,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-p--13587666",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Base de Silicone P",
@@ -4236,7 +4390,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-p--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4264,7 +4419,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "canudos-de-plastico-para-tampa-esporte-com-bico--264632965",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4292,7 +4448,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copo-pand-750ml--159118610",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4320,7 +4477,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-hotdrink--76706483",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4348,7 +4506,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--14167358",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Harpuri 750ml",
@@ -4370,7 +4529,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13750956",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Harpuri 750ml",
@@ -4392,7 +4552,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Harpuri 750ml",
@@ -4414,7 +4575,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13587666",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Harpuri 750ml",
@@ -4436,7 +4598,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13498263",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Harpuri 750ml",
@@ -4458,7 +4621,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13498254",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Harpuri 750ml",
@@ -4480,7 +4644,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--13587665",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Harpuri 750ml",
@@ -4502,7 +4667,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--14167359",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Capa Harpuri 750ml",
@@ -4524,7 +4690,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "capa-harpuri-750ml--14167361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4552,7 +4719,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "abex7u6zd-kit-canudo-de-inox--227106923",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4580,7 +4748,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-carabinho--580457",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Garrafa Carabinho",
@@ -4602,7 +4771,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-carabinho--2615924",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Garrafa Carabinho",
@@ -4624,7 +4794,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-carabinho--1375097",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Garrafa Carabinho",
@@ -4646,7 +4817,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-carabinho--2596170",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4674,7 +4846,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Garrafa Garça",
@@ -4696,7 +4869,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--425301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Garrafa Garça",
@@ -4718,7 +4892,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--425612",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Garrafa Garça",
@@ -4740,7 +4915,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--426224",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Garrafa Garça",
@@ -4762,7 +4938,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-garrafa-garca--426405",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4790,7 +4967,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-surti-duo-flow--5502362",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Surti Duo Flow",
@@ -4812,7 +4990,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-surti-duo-flow--13587665",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Surti Duo Flow",
@@ -4834,7 +5013,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-surti-duo-flow--5502361",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4862,7 +5042,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-m--267475137",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4890,7 +5071,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "kit-canudo-de-inox--50565028",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4918,7 +5100,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-magnetica-copos-niliravi-e-pand--48081961",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4946,7 +5129,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-com-fecho-magnetico-copo-surti-banni-ravi--48081776",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -4974,7 +5158,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copo-niliravi-900ml--426266",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Copo Niliravi e Pand 760",
@@ -4996,7 +5181,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copo-niliravi-900ml--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Tampa Copo Niliravi e Pand 760",
@@ -5018,7 +5204,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copo-niliravi-900ml--426709",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5046,7 +5233,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "base-protetora-de-silicone-g--267475948",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5074,7 +5262,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "extrator-de-borracha-espatula-bg--229193497",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5102,7 +5291,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "canudo-interno-para-copo-carabinho--403781200",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5130,7 +5320,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-copo-guara-1l--400433202",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5158,7 +5349,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-copo-guara-850ml--400432174",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5186,7 +5378,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "borracha-argola-bubaneck-em-silicone--234163304",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5214,7 +5407,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "bomba-de-terere-inox--106246183",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5242,7 +5436,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "chaveiro-mosquetao--106244459",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5270,7 +5465,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500172",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Camping",
@@ -5292,7 +5488,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--11202366",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Camping",
@@ -5314,7 +5511,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500179",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Camping",
@@ -5336,7 +5534,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500168",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Camping",
@@ -5358,7 +5557,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500177",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Camping",
@@ -5380,7 +5580,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-camping--12500170",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5408,7 +5609,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503242",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Cringe-smile",
@@ -5430,7 +5632,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503193",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Cringe-smile",
@@ -5452,7 +5655,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503195",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Cringe-smile",
@@ -5474,7 +5678,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503517",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5502,7 +5707,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502454",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Caveira",
@@ -5524,7 +5730,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502474",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Caveira",
@@ -5546,7 +5753,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502444",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Caveira",
@@ -5568,7 +5776,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502446",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Caveira",
@@ -5590,7 +5799,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12502496",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Caveira",
@@ -5612,7 +5822,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12607053",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Caveira",
@@ -5634,7 +5845,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "pack-caveira--12607046",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5662,7 +5874,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501626",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Explorador",
@@ -5684,7 +5897,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501621",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Explorador",
@@ -5706,7 +5920,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501619",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Explorador",
@@ -5728,7 +5943,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501622",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Explorador",
@@ -5750,7 +5966,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-explorador--12501628",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5778,7 +5995,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12497098",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Girl Power",
@@ -5800,7 +6018,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12497101",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Girl Power",
@@ -5822,7 +6041,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--11202571",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Girl Power",
@@ -5844,7 +6064,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--11202577",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Girl Power",
@@ -5866,7 +6087,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12573646",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Girl Power",
@@ -5888,7 +6110,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12566934",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Girl Power",
@@ -5910,7 +6133,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12566911",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Girl Power",
@@ -5932,7 +6156,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-girl-power--12573688",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -5960,7 +6185,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155591",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Infantis",
@@ -5982,7 +6208,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155590",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Infantis",
@@ -6004,7 +6231,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155552",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Infantis",
@@ -6026,7 +6254,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155551",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Infantis",
@@ -6048,7 +6277,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155553",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Infantis",
@@ -6070,7 +6300,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-kids--14155550",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -6098,7 +6329,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-tattoo--12607176",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Tattoo",
@@ -6120,7 +6352,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-tattoo--11202578",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Tattoo",
@@ -6142,7 +6375,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-tattoo--12607169",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Tattoo",
@@ -6164,7 +6398,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-tattoo--12607170",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -6192,7 +6427,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566709",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Vibes",
@@ -6214,7 +6450,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566713",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Vibes",
@@ -6236,7 +6473,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566710",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Vibes",
@@ -6258,7 +6496,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566708",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Vibes",
@@ -6280,7 +6519,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566783",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Vibes",
@@ -6302,7 +6542,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566711",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Adesivos Vibes",
@@ -6324,7 +6565,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-vibes--12566771",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -6346,13 +6588,14 @@
           ],
           "sizes": [],
           "prices": [
-            270.0
+            280.0
           ],
-          "price": 270.0,
+          "price": 280.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1450222",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6368,13 +6611,14 @@
           ],
           "sizes": [],
           "prices": [
-            270.0
+            280.0
           ],
-          "price": 270.0,
+          "price": 280.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---38301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6390,13 +6634,14 @@
           ],
           "sizes": [],
           "prices": [
-            270.0
+            280.0
           ],
-          "price": 270.0,
+          "price": 280.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1824393",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6419,7 +6664,7 @@
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1069625",
           "stock": "in_stock",
-          "oldPrice": 270
+          "oldPrice": 280.0
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6442,7 +6687,7 @@
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---1070817",
           "stock": "in_stock",
-          "oldPrice": 270
+          "oldPrice": 280.0
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6458,13 +6703,14 @@
           ],
           "sizes": [],
           "prices": [
-            270.0
+            280.0
           ],
-          "price": 270.0,
+          "price": 280.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---2016280",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6487,7 +6733,7 @@
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---762609",
           "stock": "in_stock",
-          "oldPrice": 270
+          "oldPrice": 280.0
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6503,13 +6749,14 @@
           ],
           "sizes": [],
           "prices": [
-            270.0
+            280.0
           ],
-          "price": 270.0,
+          "price": 280.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---479585",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6525,13 +6772,14 @@
           ],
           "sizes": [],
           "prices": [
-            270.0
+            280.0
           ],
-          "price": 270.0,
+          "price": 280.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---2467221",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Jafarabadi 1L",
@@ -6547,13 +6795,14 @@
           ],
           "sizes": [],
           "prices": [
-            270.0
+            280.0
           ],
-          "price": 270.0,
+          "price": 280.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-jafarabadi-1l---884136",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -6575,14 +6824,14 @@
           ],
           "sizes": [],
           "prices": [
-            175.0
+            260.0
           ],
-          "price": 175.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1070817",
           "stock": "in_stock",
-          "oldPrice": 250
+          "oldPrice": null
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6598,13 +6847,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            260.0
           ],
-          "price": 250.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1824393",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6620,13 +6870,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            260.0
           ],
-          "price": 250.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1450222",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6642,13 +6893,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            260.0
           ],
-          "price": 250.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---38301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6664,13 +6916,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            260.0
           ],
-          "price": 250.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---2467221",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6686,13 +6939,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            260.0
           ],
-          "price": 250.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---884136",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6708,13 +6962,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            260.0
           ],
-          "price": 250.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---2016280",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6730,13 +6985,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            260.0
           ],
-          "price": 250.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---479585",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -6752,13 +7008,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            260.0
           ],
-          "price": 250.0,
+          "price": 260.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---2467539",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -6780,13 +7037,14 @@
           ],
           "sizes": [],
           "prices": [
-            170.0
+            190.0
           ],
-          "price": 170.0,
+          "price": 190.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1450222",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6809,7 +7067,7 @@
           "illustrative": false,
           "key": "garrafa-buba-355ml---1069625",
           "stock": "in_stock",
-          "oldPrice": 170
+          "oldPrice": 190.0
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6825,13 +7083,14 @@
           ],
           "sizes": [],
           "prices": [
-            170.0
+            190.0
           ],
-          "price": 170.0,
+          "price": 190.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---1824393",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6854,7 +7113,7 @@
           "illustrative": false,
           "key": "garrafa-buba-355ml---1672485",
           "stock": "in_stock",
-          "oldPrice": 170
+          "oldPrice": 190.0
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6877,7 +7136,7 @@
           "illustrative": false,
           "key": "garrafa-buba-355ml---545144",
           "stock": "in_stock",
-          "oldPrice": 170
+          "oldPrice": 190.0
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6900,7 +7159,7 @@
           "illustrative": false,
           "key": "garrafa-buba-355ml---546664",
           "stock": "in_stock",
-          "oldPrice": 170
+          "oldPrice": 190.0
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6923,7 +7182,7 @@
           "illustrative": false,
           "key": "garrafa-buba-355ml---1673300",
           "stock": "in_stock",
-          "oldPrice": 170
+          "oldPrice": 190.0
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6939,13 +7198,14 @@
           ],
           "sizes": [],
           "prices": [
-            170.0
+            190.0
           ],
-          "price": 170.0,
+          "price": 190.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---38301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6968,7 +7228,7 @@
           "illustrative": false,
           "key": "garrafa-buba-355ml---762609",
           "stock": "in_stock",
-          "oldPrice": 170
+          "oldPrice": 190.0
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -6984,13 +7244,14 @@
           ],
           "sizes": [],
           "prices": [
-            170.0
+            190.0
           ],
-          "price": 170.0,
+          "price": 190.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---479585",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -7006,13 +7267,14 @@
           ],
           "sizes": [],
           "prices": [
-            170.0
+            190.0
           ],
-          "price": 170.0,
+          "price": 190.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---2467221",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -7035,7 +7297,7 @@
           "illustrative": false,
           "key": "garrafa-buba-355ml---493930",
           "stock": "in_stock",
-          "oldPrice": 170
+          "oldPrice": 190.0
         },
         {
           "name": "Garrafa Buba 355ml",
@@ -7051,13 +7313,14 @@
           ],
           "sizes": [],
           "prices": [
-            170.0
+            190.0
           ],
-          "price": 170.0,
+          "price": 190.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-buba-355ml---884136",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -7085,7 +7348,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425418",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 360.0
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7108,7 +7372,7 @@
           "illustrative": false,
           "key": "growler-palitano-14l--426224",
           "stock": "in_stock",
-          "oldPrice": 330
+          "oldPrice": 360.0
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7124,13 +7388,14 @@
           ],
           "sizes": [],
           "prices": [
-            330.0
+            360.0
           ],
-          "price": 330.0,
+          "price": 360.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426405",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7153,7 +7418,7 @@
           "illustrative": false,
           "key": "growler-palitano-14l--426124",
           "stock": "in_stock",
-          "oldPrice": 330
+          "oldPrice": 360.0
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7169,13 +7434,14 @@
           ],
           "sizes": [],
           "prices": [
-            330.0
+            360.0
           ],
-          "price": 330.0,
+          "price": 360.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7191,13 +7457,14 @@
           ],
           "sizes": [],
           "prices": [
-            330.0
+            360.0
           ],
-          "price": 330.0,
+          "price": 360.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7220,7 +7487,7 @@
           "illustrative": false,
           "key": "growler-palitano-14l--425301",
           "stock": "in_stock",
-          "oldPrice": 330
+          "oldPrice": 360.0
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7243,7 +7510,7 @@
           "illustrative": false,
           "key": "growler-palitano-14l--426573",
           "stock": "in_stock",
-          "oldPrice": 330
+          "oldPrice": 360.0
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7266,7 +7533,7 @@
           "illustrative": false,
           "key": "growler-palitano-14l--425881",
           "stock": "in_stock",
-          "oldPrice": 330
+          "oldPrice": 360.0
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7282,13 +7549,14 @@
           ],
           "sizes": [],
           "prices": [
-            330.0
+            264.0
           ],
-          "price": 330.0,
+          "price": 264.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425732",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7304,13 +7572,14 @@
           ],
           "sizes": [],
           "prices": [
-            330.0
+            360.0
           ],
-          "price": 330.0,
+          "price": 360.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--425612",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7326,13 +7595,14 @@
           ],
           "sizes": [],
           "prices": [
-            330.0
+            360.0
           ],
-          "price": 330.0,
+          "price": 360.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426782",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Growler Palitano 1,350L",
@@ -7348,13 +7618,14 @@
           ],
           "sizes": [],
           "prices": [
-            330.0
+            360.0
           ],
-          "price": 330.0,
+          "price": 360.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-palitano-14l--426208",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -7383,7 +7654,7 @@
           "illustrative": false,
           "key": "growler-mediterraneo-2l--426266",
           "stock": "in_stock",
-          "oldPrice": 380
+          "oldPrice": 380.0
         },
         {
           "name": "Growler Mediterrâneo 1,9L",
@@ -7406,7 +7677,7 @@
           "illustrative": false,
           "key": "growler-mediterraneo-2l--426709",
           "stock": "in_stock",
-          "oldPrice": 380
+          "oldPrice": 380.0
         }
       ]
     },
@@ -7428,13 +7699,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            265.0
           ],
-          "price": 250.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--38301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Surti Duo Flow 900ml",
@@ -7450,13 +7722,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            265.0
           ],
-          "price": 250.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--2016880",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Surti Duo Flow 900ml",
@@ -7472,13 +7745,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            265.0
           ],
-          "price": 250.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--481146",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Surti Duo Flow 900ml",
@@ -7494,14 +7768,15 @@
           ],
           "sizes": [],
           "prices": [
-            250
+            265.0
           ],
-          "price": 250,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--1825113",
           "stock": "in_stock",
-          "imageAvailable": false
+          "imageAvailable": false,
+          "oldPrice": null
         },
         {
           "name": "Surti Duo Flow 900ml",
@@ -7517,13 +7792,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            265.0
           ],
-          "price": 250.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--885444",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Surti Duo Flow 900ml",
@@ -7539,13 +7815,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            265.0
           ],
-          "price": 250.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--1450222",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Surti Duo Flow 900ml",
@@ -7561,13 +7838,14 @@
           ],
           "sizes": [],
           "prices": [
-            250.0
+            265.0
           ],
-          "price": 250.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--800985",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -7589,13 +7867,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            195.0
           ],
-          "price": 149.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--426405",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Garça 500ml",
@@ -7611,13 +7890,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            195.0
           ],
-          "price": 149.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--426224",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Garça 500ml",
@@ -7633,13 +7913,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            195.0
           ],
-          "price": 149.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--426208",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Garça 500ml",
@@ -7655,13 +7936,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            195.0
           ],
-          "price": 149.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--425612",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Garça 500ml",
@@ -7677,13 +7959,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            195.0
           ],
-          "price": 149.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--426782",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Garça 500ml",
@@ -7699,13 +7982,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            195.0
           ],
-          "price": 149.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--425416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Garça 500ml",
@@ -7721,13 +8005,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            195.0
           ],
-          "price": 149.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-garca-500ml--425732",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -7749,13 +8034,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            265.0
           ],
-          "price": 230.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-guara-1l--426208",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Guará 1L",
@@ -7771,13 +8057,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            265.0
           ],
-          "price": 230.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-guara-1l--425732",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Guará 1L",
@@ -7793,13 +8080,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            265.0
           ],
-          "price": 230.0,
+          "price": 265.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-guara-1l--425416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -7828,7 +8116,7 @@
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1069625",
           "stock": "in_stock",
-          "oldPrice": 230
+          "oldPrice": 240.0
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7844,13 +8132,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            240.0
           ],
-          "price": 230.0,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--38301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7873,7 +8162,7 @@
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1070817",
           "stock": "in_stock",
-          "oldPrice": 230
+          "oldPrice": 240.0
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7889,13 +8178,14 @@
           ],
           "sizes": [],
           "prices": [
-            230
+            161.0
           ],
-          "price": 230,
+          "price": 161.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--762609",
-          "stock": "out_of_stock"
+          "stock": "out_of_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7911,13 +8201,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            240.0
           ],
-          "price": 230.0,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--2016280",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7933,13 +8224,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            240.0
           ],
-          "price": 230.0,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--479585",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7955,13 +8247,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            240.0
           ],
-          "price": 230.0,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1450222",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7977,13 +8270,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            240.0
           ],
-          "price": 230.0,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--884136",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -7999,13 +8293,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            240.0
           ],
-          "price": 230.0,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--2467221",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Garrafa Murrah 540ml",
@@ -8021,13 +8316,14 @@
           ],
           "sizes": [],
           "prices": [
-            230.0
+            240.0
           ],
-          "price": 230.0,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "garrafa-murrah-540ml--1824393",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -8055,7 +8351,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426405",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Nagneck 355ml",
@@ -8071,13 +8368,14 @@
           ],
           "sizes": [],
           "prices": [
-            185.0
+            134.0
           ],
-          "price": 185.0,
+          "price": 134.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426224",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Nagneck 355ml",
@@ -8093,13 +8391,14 @@
           ],
           "sizes": [],
           "prices": [
-            185.0
+            134.0
           ],
-          "price": 185.0,
+          "price": 134.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426774",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 185.0
         },
         {
           "name": "Nagneck 355ml",
@@ -8115,13 +8414,14 @@
           ],
           "sizes": [],
           "prices": [
-            185.0
+            134.0
           ],
-          "price": 185.0,
+          "price": 134.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--425301",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Nagneck 355ml",
@@ -8143,7 +8443,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Nagneck 355ml",
@@ -8159,13 +8460,14 @@
           ],
           "sizes": [],
           "prices": [
-            185.0
+            134.0
           ],
-          "price": 185.0,
+          "price": 134.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426266",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 185.0
         },
         {
           "name": "Nagneck 355ml",
@@ -8187,7 +8489,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426782",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Nagneck 355ml",
@@ -8209,7 +8512,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426124",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": 185.0
         },
         {
           "name": "Nagneck 355ml",
@@ -8231,7 +8535,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426573",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Nagneck 355ml",
@@ -8253,7 +8558,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "nagneck--426208",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -8281,7 +8587,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-silo128--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -8303,13 +8610,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426124",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8325,13 +8633,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426131",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8347,13 +8656,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426185",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8369,13 +8679,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426709",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8391,13 +8702,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426266",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8413,13 +8725,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426573",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8435,13 +8748,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--425416",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8457,13 +8771,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--425881",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8479,13 +8794,14 @@
           ],
           "sizes": [],
           "prices": [
-            149.0
+            175.0
           ],
-          "price": 149.0,
+          "price": 175.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-ravi-483ml--426782",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -8507,13 +8823,14 @@
           ],
           "sizes": [],
           "prices": [
-            169.0
+            195.0
           ],
-          "price": 169.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-torcida--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Pand Torcida 600ml",
@@ -8529,13 +8846,14 @@
           ],
           "sizes": [],
           "prices": [
-            169.0
+            195.0
           ],
-          "price": 169.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-torcida--425279",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Pand Torcida 600ml",
@@ -8551,13 +8869,14 @@
           ],
           "sizes": [],
           "prices": [
-            169.0
+            195.0
           ],
-          "price": 169.0,
+          "price": 195.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-pand-torcida--425314",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -8579,13 +8898,14 @@
           ],
           "sizes": [],
           "prices": [
-            210.0
+            250.0
           ],
-          "price": 210.0,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml-open--425313",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Caneca Bhadwari 710ml com Abridor na Base",
@@ -8601,13 +8921,14 @@
           ],
           "sizes": [],
           "prices": [
-            210.0
+            250.0
           ],
-          "price": 210.0,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml-open--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Caneca Bhadwari 710ml com Abridor na Base",
@@ -8623,13 +8944,14 @@
           ],
           "sizes": [],
           "prices": [
-            210.0
+            250.0
           ],
-          "price": 210.0,
+          "price": 250.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml-open--425314",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -8658,7 +8980,7 @@
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425416",
           "stock": "in_stock",
-          "oldPrice": 190
+          "oldPrice": 190.0
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8681,7 +9003,7 @@
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425881",
           "stock": "in_stock",
-          "oldPrice": 190
+          "oldPrice": 190.0
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8704,7 +9026,7 @@
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426236",
           "stock": "in_stock",
-          "oldPrice": 190
+          "oldPrice": 190.0
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8720,14 +9042,14 @@
           ],
           "sizes": [],
           "prices": [
-            152
+            152.0
           ],
-          "price": 152,
+          "price": 152.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--37096",
           "stock": "out_of_stock",
-          "oldPrice": 190
+          "oldPrice": 190.0
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8750,7 +9072,7 @@
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426185",
           "stock": "in_stock",
-          "oldPrice": 190
+          "oldPrice": 190.0
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8773,7 +9095,7 @@
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426266",
           "stock": "in_stock",
-          "oldPrice": 190
+          "oldPrice": 190.0
         },
         {
           "name": "Caneca Bhadawari 710ml",
@@ -8796,7 +9118,7 @@
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--426709",
           "stock": "in_stock",
-          "oldPrice": 190
+          "oldPrice": 190.0
         }
       ]
     },
@@ -8825,7 +9147,7 @@
           "illustrative": false,
           "key": "copo-pand-750ml--425416",
           "stock": "in_stock",
-          "oldPrice": 175
+          "oldPrice": 175.0
         },
         {
           "name": "Copo Pand 750ml",
@@ -8848,7 +9170,7 @@
           "illustrative": false,
           "key": "copo-pand-750ml--425881",
           "stock": "in_stock",
-          "oldPrice": 175
+          "oldPrice": 175.0
         },
         {
           "name": "Copo Pand 750ml",
@@ -8871,7 +9193,7 @@
           "illustrative": false,
           "key": "copo-pand-750ml--426573",
           "stock": "in_stock",
-          "oldPrice": 175
+          "oldPrice": 175.0
         }
       ]
     },
@@ -8899,7 +9221,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-banni-350ml--37093",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Caneca Banni 350ml",
@@ -8921,7 +9244,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-banni-350ml--426405",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Caneca Banni 350ml",
@@ -8943,7 +9267,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-banni-350ml--425667",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Caneca Banni 350ml",
@@ -8965,7 +9290,8 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-banni-350ml--426782",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -8987,13 +9313,14 @@
           ],
           "sizes": [],
           "prices": [
-            210.0
+            240.0
           ],
-          "price": 210.0,
+          "price": 240.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "niliravi_com_alca--346610020",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     },
@@ -9015,13 +9342,14 @@
           ],
           "sizes": [],
           "prices": [
-            139.0
+            169.0
           ],
-          "price": 139.0,
+          "price": 169.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-carabinho-350ml--2523857",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Carabinho 350ml",
@@ -9037,13 +9365,14 @@
           ],
           "sizes": [],
           "prices": [
-            139.0
+            169.0
           ],
-          "price": 139.0,
+          "price": 169.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-carabinho-350ml--867685",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Carabinho 350ml",
@@ -9059,13 +9388,14 @@
           ],
           "sizes": [],
           "prices": [
-            139.0
+            169.0
           ],
-          "price": 139.0,
+          "price": 169.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-carabinho-350ml--1717227",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         },
         {
           "name": "Copo Carabinho 350ml",
@@ -9081,13 +9411,14 @@
           ],
           "sizes": [],
           "prices": [
-            139.0
+            169.0
           ],
-          "price": 139.0,
+          "price": 169.0,
           "priceFrom": false,
           "illustrative": false,
           "key": "copo-carabinho-350ml--2890171",
-          "stock": "in_stock"
+          "stock": "in_stock",
+          "oldPrice": null
         }
       ]
     }

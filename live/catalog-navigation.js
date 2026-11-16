@@ -20,7 +20,7 @@
       if (!total) { total = document.createElement('span'); total.className = 'catalog-total-discount'; image.append(total); }
       const totalLabel = `−${percent.toLocaleString('pt-BR', {maximumFractionDigits:1})}%`;
       if (total.textContent !== totalLabel) total.textContent = totalLabel;
-      total.setAttribute('aria-label', `${percent.toLocaleString('pt-BR')}% de desconto total com o cupom`);
+      total.setAttribute('aria-label', `${percent.toLocaleString('pt-BR')}% de desconto na loja`);
     });
   };
   let queued = false;
@@ -30,28 +30,4 @@
     requestAnimationFrame(() => { queued = false; refreshSavings(); });
   }).observe(document.querySelector('main') || document.body, {subtree:true, childList:true, characterData:true});
   refreshSavings();
-  document.addEventListener('click', event => {
-    const link = event.target.closest('.product .product-cta');
-    if (!link || event.defaultPrevented || event.button !== 0) return;
-    const coupon = document.getElementById('code')?.textContent.trim();
-    if (!coupon || coupon.includes('__LIVE_')) return;
-    const report = copied => {
-      const feedback = document.getElementById('feedback');
-      if (feedback) feedback.textContent = copied ? 'Cupom '+coupon+' copiado. Use na finalização da compra.' : 'Use o cupom '+coupon+' na finalização da compra.';
-    };
-    const fallback = () => {
-      const field = document.createElement('textarea');
-      field.value = coupon;
-      field.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
-      document.body.append(field);
-      field.select();
-      let copied = false;
-      try { copied = document.execCommand('copy'); } catch {}
-      field.remove();
-      report(copied);
-    };
-    if (navigator.clipboard?.writeText) navigator.clipboard.writeText(coupon).then(() => report(true), fallback);
-    else fallback();
-    // Keep native anchor navigation: clipboard permission must never block buying.
-  });
 })();

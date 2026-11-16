@@ -149,7 +149,7 @@ test('unconfigured discounts default to 20 and coupon/discount writes roll back 
   assert.equal(db.sql.prepare('SELECT tote FROM live_challenge_discounts').get().tote,25);
   db.sql.close();
 });
-test('live rewards use each discount for prices and show only 3 coupons after solving',()=>{
+test('live games retain store prices and reveal no coupon after solving',()=>{
   function element(){return {children:[],style:{},attributes:{},classList:{add(){},remove(){}},setAttribute(name,value){this.attributes[name]=value;},addEventListener(name,handler){this[name]=handler;},append(child){this.children.push(child);},replaceChildren(){this.children=[];},after(){},focus(){},scrollIntoView(){},querySelector(selector){return this.nodes[selector];},nodes:{}};}
   const tabs=ids.map(()=>element()),tablist=element(),root=element(),hosts={};
   for(const id of ids){const host=element();for(const selector of ['.puzzle-board','.move-count','.challenge-status','.challenge-reward'])host.nodes[selector]=element();host.nodes['.challenge-reward'].nodes.button=element();hosts[id]=host;}
@@ -158,16 +158,17 @@ test('live rewards use each discount for prices and show only 3 coupons after so
   const discounts={tote:25,nag:30,outdoor:35,mestre:40};
   const document={querySelector:()=>root,getElementById:()=>({textContent:'LIVE20'}),createElement:element,documentElement:{getAttribute:name=>{const id=name.split('-')[2];return name.endsWith('discount')?String(discounts[id]):id.toUpperCase()+'25';}}};
   vm.runInNewContext(readFileSync(new URL('../live/carousel.js',import.meta.url),'utf8'),{document,Image:class {}});
-  const prices={tote:'825,00',nag:'2.065,00',outdoor:'448,50',mestre:'1.098,00'};
+  const prices={tote:'1.100,00',nag:'2.950,00',outdoor:'Consulte disponibilidade na loja',mestre:'1.830,00'};
   const savings={tote:275,nag:885,outdoor:241.5,mestre:732};
   for(const id of ids){
     const host=hosts[id];
     const saving=savings[id].toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
     assert.ok(!host.innerHTML.includes('reward-discount-value'));
-    assert.ok(host.innerHTML.includes('Você economiza '+saving));
-    assert.ok(host.innerHTML.includes(discounts[id]+'% OFF'));
+    assert.ok(!host.innerHTML.includes('Você economiza '));
+    assert.ok(!host.innerHTML.includes('% OFF'));
+    assert.ok(!host.innerHTML.includes('reward-coupon'));
     assert.ok(host.innerHTML.includes(prices[id]));
-    assert.ok(host.innerHTML.includes('3 cupons disponíveis!'));
+    assert.ok(!host.innerHTML.includes('3 cupons disponíveis!'));
     assert.ok(!host.innerHTML.includes('10 cupons disponíveis!'));
     const board=host.nodes['.puzzle-board'];
     assert.equal(host.nodes['.challenge-reward'].hidden,true);

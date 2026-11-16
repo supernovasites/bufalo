@@ -27,7 +27,7 @@
       if (!Number.isFinite(base) || base <= 0) return;
       const original = Math.max(base, Number(card.dataset.originalPrice) || base);
       regular.textContent = format(original);
-      const discount = Number(card.dataset.discount || 20);
+      const discount = Number(card.dataset.discount || 0);
       offer.textContent = format(Math.round(base * (100 - discount)) / 100);
     });
 

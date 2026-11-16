@@ -2,10 +2,10 @@
   const root = document.querySelector('.photo-gallery');
   if (!root) return;
   const challenges = [
-    {id:'tote',label:'Desafio 1',price:1100,name:'Pandhar 20L Soft Cooler Petróleo',photo:'desafio-pandhar-joanes-20261105.png',url:'https://loja.bufalogrowler.com.br/bolsa-termica-nagpuri-20l-petroleo',productImage:'pandhar-20l-petroleo-product.png'},
-    {id:'nag',label:'Desafio 2',price:2950,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-tucurui-20261105.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
-    {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-utinga-20261105.png',price:690,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/kit-cimo-trio-de-forca-ax',productImage:'trio-cimo-product.png'},
-    {id:'mestre',label:'Desafio 4',photo:'desafio-mestre-copacabana-20261105.png',price:1830,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/mestrebufaloontap7l',productImage:'mestre-product.png'}
+    {id:'tote',label:'Desafio 1',price:1100.0,name:'Pandhar 20L Soft Cooler Petróleo',photo:'desafio-pandhar-joanes-20261105.png',url:'https://loja.bufalogrowler.com.br/bolsa-termica-nagpuri-20l-petroleo',productImage:'pandhar-20l-petroleo-product.png'},
+    {id:'nag',label:'Desafio 2',price:2950.0,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-tucurui-20261105.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
+    {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-utinga-20261105.png',price:null,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/cutelaria',productImage:'trio-cimo-product.png'},
+    {id:'mestre',label:'Desafio 4',photo:'desafio-mestre-copacabana-20261105.png',price:1830.0,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/mestrebufaloontap7l',productImage:'mestre-product.png'}
   ];
   root.classList.add('manada-challenge');
   root.innerHTML = '<div class="challenge-tabs" role="tablist" aria-label="Escolha seu desafio">'+challenges.map((c,i)=>'<button type="button" role="tab" id="tab-'+c.id+'" aria-controls="puzzle-'+c.id+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'">'+c.label+'</button>').join('')+'</div>'+challenges.map((c,i)=>'<div role="tabpanel" id="puzzle-'+c.id+'" aria-labelledby="tab-'+c.id+'"'+(i?' hidden':'')+'></div>').join('');
@@ -29,7 +29,7 @@
     const configured = document.documentElement.getAttribute('data-challenge-'+config.id+'-coupon');
     const coupon = /^[A-Za-z0-9_-]{3,24}$/.test(configured || '') ? configured : liveCoupon;
     const configuredDiscount = Number(document.documentElement.getAttribute('data-challenge-'+config.id+'-discount'));
-    const discount = Number.isInteger(configuredDiscount) && configuredDiscount >= 1 && configuredDiscount <= 100 ? configuredDiscount : 20;
+    const discount = Number.isInteger(configuredDiscount) && configuredDiscount >= 1 && configuredDiscount <= 100 ? configuredDiscount : 0;
     mount(root.querySelector('#puzzle-'+config.id),{...config,coupon,discount});
   });
   select(0);
@@ -46,7 +46,7 @@
     <div class="challenge-heading">
       <span class="challenge-kicker">DESAFIO DA MANADA</span>
       <h2>Monte a aventura.<br>Desbloqueie sua recompensa.</h2>
-      <p>Toque em duas peças para trocar suas posições. Complete a imagem em até 13 movimentos e ${config.rewardPending ? 'complete o desafio.' : 'revele um cupom exclusivo de '+config.discount+'%.'}</p>
+      <p>Toque em duas peças para trocar suas posições. Complete a imagem em até 13 movimentos e conheça sua próxima companhia.</p>
     </div>
     <div class="puzzle-board" role="group" aria-label="Quebra-cabeça da Búfalo"></div>
     <div class="challenge-controls">
@@ -56,24 +56,18 @@
     <p class="challenge-status" role="status" aria-live="polite">Escolha a primeira peça.</p>
     <div class="challenge-reward reward-highlight" hidden>
       <span class="reward-label">DESAFIO CONCLUÍDO</span>
-      ${config.rewardPending ? '<strong class="reward-headline"><span class="reward-headline-copy">Você completou o Desafio 3!</span></strong>' : `<strong class="reward-headline"><span class="reward-discount">${config.discount}% OFF</span><span class="reward-headline-copy">Sua recompensa está liberada.</span></strong>
-      <article class="product growler-card reward-product" data-discount="${config.discount}" data-product-name="${config.name}">
+      ${config.rewardPending ? '<strong class="reward-headline"><span class="reward-headline-copy">Você completou o Desafio 3!</span></strong>' : `<strong class="reward-headline"><span class="reward-discount">Desafio concluído</span><span class="reward-headline-copy">Conheça o produto na loja.</span></strong>
+      <article class="product growler-card reward-product" data-discount="0" data-product-name="${config.name}">
         <a class="growler-photo-link" href="${config.url}" target="_blank" rel="noopener noreferrer">
           <div class="product-image"><img src="${config.productImage}" alt="${config.name}" width="400" height="400" loading="lazy"></div>
         </a>
         <div class="product-info">
           <h3>${config.name}</h3>
-          <p class="old"><span class="sr">Preço sem o cupom: </span><s>${money(config.price)}</s></p>
-          <p class="price">${money(config.price * (100 - config.discount) / 100)}</p>
-          <p class="reward-saving">Você economiza ${money(config.price * config.discount / 100)}</p>
-          <div class="reward-coupon">
-            <code>${coupon}</code>
-            <button type="button" aria-label="Copiar cupom ${coupon}">Copiar cupom</button>
-          </div>
+          <p class="price">${config.price == null ? "Consulte disponibilidade na loja" : money(config.price)}</p>
           <a class="product-cta growler-cta reward-buy" href="${config.url}" target="_blank" rel="noopener noreferrer">Comprar agora</a>
         </div>
       </article>
-      <small>Só durante a live · 3 cupons disponíveis!</small>`}
+      <small>Preços e disponibilidade da loja.</small>`}
     </div>
   `;
 

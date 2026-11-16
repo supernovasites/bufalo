@@ -101,3 +101,11 @@ O popup mostra um ícone de olho, a quantidade real de usuários e o texto Vendo
 POST /api/chopeira-activity registra somente hash de identificador aleatório e horário em LIVE_DB, com janela de 90 segundos e heartbeat de 30 segundos em abas visíveis. Não retorna produtos clicados nem compras. A descrição acessível e o título explicam a contagem; o conteúdo visual contém olho, número e Vendo chopeiras.
 
 Verificação: node --test tests/chopeira-activity.test.mjs tests/chopeira-floating-tracking.test.mjs.
+
+## Preços da homepage, catálogo e live
+
+Preços e variações conferidos nas páginas de destino da loja em 16/11/2026. A homepage e `/catalogo/` mantêm os preços de venda e os preços anteriores quando a própria loja informa uma promoção. A `/live/` usa os mesmos preços, sem aplicar desconto adicional de cupom, inclusive nas coleções em destaque e nos jogos. Os cupons administrativos existentes não alteram os preços dos cards públicos.
+
+As chopeiras da live agora usam os endereços atuais por cor. O Kit Cimo Trio de Força AX não possui página de produto disponível: o desafio oferece consulta de disponibilidade na categoria Cutelaria, sem preço estimado. Os preços são uma fotografia da consulta; novas alterações na loja exigem nova conferência. Os geradores em `scripts/` preservam a política de preços da loja sem cupom adicional.
+
+Validação de preços: `node --test tests/live-stacked-prices.test.mjs tests/live-featured-collections.test.mjs tests/live-challenge-coupons.test.mjs tests/catalog-search.test.mjs`.

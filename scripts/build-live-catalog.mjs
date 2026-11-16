@@ -10,13 +10,13 @@ const byUrl=new Map(data.products.map(p=>[p.url,{...p,cards:p.cards.filter(optio
 let rowCount=0,cardCount=0;
 function card(product,option){
   cardCount++;
-  const link=new URL(product.url);
+  const link=new URL(option.url || product.url);
   link.searchParams.set('utm_source','pagina_live');link.searchParams.set('utm_medium','referral');link.searchParams.set('utm_campaign','LiveshopBG');link.searchParams.set('utm_content',option.key);
   const href=escape(link.href);
   const label=option.label?`<p class="banni-color">${escape(option.label)}</p>`:'';
   const sizes=option.sizes.length?`<p class="live-card-sizes">Tamanhos: ${escape(option.sizes.join(' · '))}</p>`:'';
   const illustrative=option.illustrative?'<p class="card-image-note">Imagem ilustrativa do modelo</p>':'';
-  return `<article class="product banni-card" data-discount="20" data-base-price="${option.price}" data-original-price="${option.oldPrice || option.price}" data-product-name="${escape(product.name)}" data-variant-key="${escape(option.key)}" data-stock="in_stock"><a class="product-photo-link" href="${href}" target="_blank" rel="noopener noreferrer" draggable="false"><div class="product-image"><span class="badge">−20%</span><img src="${escape(option.image)}" alt="${escape(product.name+(option.label?' — '+option.label:'')+(option.illustrative?' (imagem ilustrativa)':''))}" width="400" height="400" loading="lazy" decoding="async" draggable="false"></div></a><div class="product-info"><h3>${escape(product.name)}</h3>${label}${sizes}${illustrative}<p class="old"><span class="sr">Preço original: </span>${option.priceFrom?'A partir de ':''}<s>${money(option.oldPrice || option.price)}</s></p><p class="price">${money(Math.round(option.price*80)/100)}</p><p class="with-coupon">com o cupom <strong>__LIVE_COUPON__</strong></p><a class="product-cta" href="${href}" target="_blank" rel="noopener noreferrer">Compre com desconto</a></div></article>`;
+  return `<article class="product banni-card" data-discount="0" data-base-price="${option.price}" data-original-price="${option.oldPrice || option.price}" data-product-name="${escape(product.name)}" data-variant-key="${escape(option.key)}" data-stock="in_stock"><a class="product-photo-link" href="${href}" target="_blank" rel="noopener noreferrer" draggable="false"><div class="product-image"><img src="${escape(option.image)}" alt="${escape(product.name+(option.label?' — '+option.label:'')+(option.illustrative?' (imagem ilustrativa)':''))}" width="400" height="400" loading="lazy" decoding="async" draggable="false"></div></a><div class="product-info"><h3>${escape(product.name)}</h3>${label}${sizes}${illustrative}${option.oldPrice > option.price ? `<p class="old"><span class="sr">Preço original: </span>${option.priceFrom?'A partir de ':''}<s>${money(option.oldPrice || option.price)}</s></p>` : ""}<p class="price">${money(option.price)}</p><a class="product-cta" href="${href}" target="_blank" rel="noopener noreferrer">Ver na loja</a></div></article>`;
 }
 function rowsFor(category){
   const products=category.products.map(url=>byUrl.get(url)).filter(p=>p?.cards.length);
@@ -39,7 +39,7 @@ const groups=data.categories.map(category=>{
  const nav=rows.length>1?`<nav class="live-subcategory-nav" aria-label="Modelos de ${escape(category.title)}">${rows.map(r=>`<a href="#${r.id}">${escape(r.name)}</a>`).join('')}</nav>`:'';
  return `<section class="live-category-group" id="${category.id}" data-category-source="${escape(category.url)}" aria-labelledby="${category.id}-title"><header class="live-category-header"><p class="eyebrow">${count} opções</p><h2 id="${category.id}-title">${escape(category.title)}</h2><p><a href="${escape(category.url)}" target="_blank" rel="noopener noreferrer" aria-label="Ver ${escape(category.title)} na loja">Ver na loja ↗</a></p></header>${nav}${rows.map(rowHtml).join('\n')}</section>`;
 }).join('\n');
-const catalog=`<section class="selection" aria-labelledby="products-title"><div class="selection-head"><div><p class="eyebrow">FAVORITOS DA MANADA</p><h2 id="products-title">Escolha sua próxima companhia.</h2></div><p class="selection-note">Seleção da live · 20% com o cupom</p></div>${navigation}\n${groups}</section>`;
+const catalog=`<section class="selection" aria-labelledby="products-title"><div class="selection-head"><div><p class="eyebrow">FAVORITOS DA MANADA</p><h2 id="products-title">Escolha sua próxima companhia.</h2></div><p class="selection-note">Seleção da live · preços da loja</p></div>${navigation}\n${groups}</section>`;
 const target=path.join(root,'live/index.html');
 let html=readFileSync(target,'utf8');
 const start=html.indexOf('<section class="selection"');

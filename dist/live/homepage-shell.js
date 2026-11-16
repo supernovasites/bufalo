@@ -8,11 +8,9 @@
     const title = heroCopy.querySelector('h1');
     const description = heroCopy.querySelector('.sub');
     if (eyebrow) eyebrow.textContent = 'LIVE BÚFALO · OFERTAS EXCLUSIVAS';
-    if (title) title.innerHTML = '10 cupons de <span class="offer-highlight">20% OFF</span> para celebrar com a Manada!';
+    if (title) title.innerHTML = 'Escolha sua Búfalo e celebre com a Manada!';
     if (description) {
-      const coupon = document.getElementById('code')?.textContent.trim();
-      description.innerHTML = 'Use o cupom <span class="live-coupon-code"></span> durante a live e escolha a Búfalo que vai acompanhar seus próximos momentos.';
-      description.querySelector('.live-coupon-code').textContent = coupon || '';
+      description.textContent = 'Escolha a sua companhia para a próxima aventura com os preços da loja.';
     }
   }
 

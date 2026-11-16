@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-04",
+  "checkedAt": "2026-11-16",
   "collections": [
     {
       "id": "live-acai-bowl",
@@ -16,24 +16,27 @@
           "label": "Magenta",
           "sku": "ACAIBW-MAG",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/400513057/gpt_acaimagenta-5a84a767-rrjjqg0agt.jpg",
-          "price": 220,
-          "oldPrice": 220
+          "price": 240.0,
+          "oldPrice": null,
+          "url": "https://loja.bufalogrowler.com.br/acai-bowl-500ml"
         },
         {
           "key": "acai-bowl-500ml--426425",
           "label": "Creme",
           "sku": "ACAIBW-CRE",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/400513057/gpt_acaicreme-e6e33e07-32ugjstvnw.jpg",
-          "price": 220,
-          "oldPrice": 220
+          "price": 240.0,
+          "oldPrice": null,
+          "url": "https://loja.bufalogrowler.com.br/acai-bowl-500ml"
         },
         {
           "key": "acai-bowl-500ml--37093",
           "label": "Preto",
           "sku": "ACAIBW-PTO",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/400513057/gpt_acaipreto-95cf5f55-qrn2yt833b.jpg",
-          "price": 220,
-          "oldPrice": 220
+          "price": 240.0,
+          "oldPrice": null,
+          "url": "https://loja.bufalogrowler.com.br/acai-bowl-500ml"
         }
       ]
     },
@@ -52,32 +55,36 @@
           "label": "Dourado",
           "sku": "TULI-gold",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404548346/2-3bf7631c-23102v6im1.png",
-          "price": 149,
-          "oldPrice": 190
+          "price": 149.0,
+          "oldPrice": 190.0,
+          "url": "https://loja.bufalogrowler.com.br/copo-tulipa-confraria-600ml"
         },
         {
           "key": "copo-tulipa-confraria-600ml--426121",
           "label": "Rosé",
           "sku": "TULI-roseglow",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404548346/3-65612e14-nwkrav5rtc.png",
-          "price": 149,
-          "oldPrice": 190
+          "price": 149.0,
+          "oldPrice": 190.0,
+          "url": "https://loja.bufalogrowler.com.br/copo-tulipa-confraria-600ml"
         },
         {
           "key": "copo-tulipa-confraria-600ml--37095",
           "label": "Cinza",
           "sku": "TULI-Grafit",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404548346/4-9f8ab0dd-vh93pttwkb.png",
-          "price": 149,
-          "oldPrice": 190
+          "price": 149.0,
+          "oldPrice": 190.0,
+          "url": "https://loja.bufalogrowler.com.br/copo-tulipa-confraria-600ml"
         },
         {
           "key": "copo-tulipa-confraria-600ml--426614",
           "label": "Branco",
           "sku": "TULI-branco",
           "image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/404548346/-editar-tulipa-6f78af0b-64io327t6y.png",
-          "price": 149,
-          "oldPrice": 190
+          "price": 149.0,
+          "oldPrice": 190.0,
+          "url": "https://loja.bufalogrowler.com.br/copo-tulipa-confraria-600ml"
         }
       ]
     }
