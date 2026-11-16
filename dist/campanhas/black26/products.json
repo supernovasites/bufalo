@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-20",
+  "checkedAt": "2026-11-16",
   "products": [
     {
       "name": "Copo Tulipa Confraria",
@@ -161,7 +161,7 @@
       "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/277432251/growlers--3--u1w2a45pw7.png",
       "url": "growler-palitano-14l",
       "badge": "Oferta do mês",
-      "oldPrice": 330,
+      "oldPrice": 360,
       "defaultColor": "426224",
       "category": "growlers",
       "colors": [
@@ -175,7 +175,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/medi-135-areia-qiqz1xotoa.png",
           "available": true,
           "price": 264,
-          "oldPrice": 330,
+          "oldPrice": 360,
           "pay": "44,00",
           "crop": {
             "viewBox": [
@@ -211,7 +211,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/growlers---chopeiras-mbdoku5x5n.png",
           "available": true,
           "price": 264,
-          "oldPrice": 330,
+          "oldPrice": 360,
           "pay": "44,00",
           "crop": {
             "viewBox": [
@@ -247,7 +247,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/medi13-alfazema-7902i67zg2.png",
           "available": true,
           "price": 264,
-          "oldPrice": 330,
+          "oldPrice": 360,
           "pay": "44,00",
           "crop": {
             "viewBox": [
@@ -283,7 +283,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/medi-135-pistache-bigtetffm8.png",
           "available": true,
           "price": 264,
-          "oldPrice": 330,
+          "oldPrice": 360,
           "pay": "44,00",
           "crop": {
             "viewBox": [
@@ -319,7 +319,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/277432251/growlers--6--s4zhsrtw13.png",
           "available": true,
           "price": 264,
-          "oldPrice": 330,
+          "oldPrice": 360,
           "pay": "44,00",
           "crop": {
             "viewBox": [
@@ -474,7 +474,7 @@
       "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/311751043/24166786bc9b4b49a5a1b2ecf37eaaab-j1kzlwcn6y.png",
       "url": "garrafa-jafarabadi-1l-",
       "badge": "Oferta do mês",
-      "oldPrice": 270,
+      "oldPrice": 280,
       "defaultColor": "1069625",
       "category": "garrafas",
       "colors": [
@@ -488,7 +488,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/311751043/jafa-pitaya-22ndkwldxo.png",
           "available": true,
           "price": 189,
-          "oldPrice": 270,
+          "oldPrice": 280,
           "pay": "31,50",
           "crop": {
             "viewBox": [
@@ -524,7 +524,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/311751043/jafa-pistache-0yi58uvr7t.png",
           "available": true,
           "price": 189,
-          "oldPrice": 270,
+          "oldPrice": 280,
           "pay": "31,50",
           "crop": {
             "viewBox": [
@@ -560,7 +560,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/311751043/jafa-pistachept-1lu37ifawt.png",
           "available": true,
           "price": 189,
-          "oldPrice": 270,
+          "oldPrice": 280,
           "pay": "31,50",
           "crop": {
             "viewBox": [
@@ -938,7 +938,7 @@
       "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/370867889/murrah--1--on6pjzst4o.png",
       "url": "garrafa-murrah-540ml",
       "badge": "Oferta do mês",
-      "oldPrice": 230,
+      "oldPrice": 240,
       "defaultColor": "1069625",
       "category": "garrafas",
       "colors": [
@@ -952,7 +952,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/370867889/murrah-pistache---3j6e2zek5n.png",
           "available": true,
           "price": 161,
-          "oldPrice": 230,
+          "oldPrice": 240,
           "pay": "26,83",
           "crop": {
             "viewBox": [
@@ -988,7 +988,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/370867889/murrah-pistachept---xs94ogpfs2.png",
           "available": true,
           "price": 161,
-          "oldPrice": 230,
+          "oldPrice": 240,
           "pay": "26,83",
           "crop": {
             "viewBox": [
@@ -1019,12 +1019,11 @@
     {
       "name": "Garrafa Harpuri",
       "size": "750 ml",
-      "price": 175,
-      "pay": "29,16",
+      "price": 260,
+      "pay": "43,33",
       "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/310401957/2-s5nxjkcv2k.png",
       "url": "garrafa-harpuri-750ml-",
       "badge": "Oferta do mês",
-      "oldPrice": 250,
       "defaultColor": "1069625",
       "category": "garrafas",
       "colors": [
@@ -1037,9 +1036,8 @@
           ],
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/310401957/harpuri-pistache--2--imwti2adqe.png",
           "available": true,
-          "price": 175,
-          "oldPrice": 250,
-          "pay": "29,16",
+          "price": 260,
+          "pay": "43,33",
           "crop": {
             "viewBox": [
               363,
@@ -1073,9 +1071,8 @@
           ],
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/310401957/harpuri-pistache-8ncmbtjbv0.png",
           "available": true,
-          "price": 175,
-          "oldPrice": 250,
-          "pay": "29,16",
+          "price": 260,
+          "pay": "43,33",
           "crop": {
             "viewBox": [
               363,
@@ -1100,7 +1097,8 @@
             }
           }
         }
-      ]
+      ],
+      "showRegularPrice": true
     },
     {
       "name": "Copo Pand",
@@ -1227,7 +1225,7 @@
       "img": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/312196614/3-a7ig3sbmvb.png",
       "url": "garrafa-buba-355ml-",
       "badge": "Oferta do mês",
-      "oldPrice": 170,
+      "oldPrice": 190,
       "defaultColor": "858552",
       "category": "garrafas",
       "colors": [
@@ -1241,7 +1239,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-areia-qtwddtiyc9.png",
           "available": true,
           "price": 119,
-          "oldPrice": 170,
+          "oldPrice": 190,
           "pay": "19,83",
           "crop": {
             "viewBox": [
@@ -1277,7 +1275,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-citrus-pc2sromwt6.png",
           "available": true,
           "price": 119,
-          "oldPrice": 170,
+          "oldPrice": 190,
           "pay": "19,83",
           "crop": {
             "viewBox": [
@@ -1313,7 +1311,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-citruspt-fbx2dlai7n.png",
           "available": true,
           "price": 119,
-          "oldPrice": 170,
+          "oldPrice": 190,
           "pay": "19,83",
           "crop": {
             "viewBox": [
@@ -1349,7 +1347,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-amarelapt-t1t501rb7i.png",
           "available": true,
           "price": 119,
-          "oldPrice": 170,
+          "oldPrice": 190,
           "pay": "19,83",
           "crop": {
             "viewBox": [
@@ -1385,7 +1383,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-pistache-cubm6gat29.png",
           "available": true,
           "price": 119,
-          "oldPrice": 170,
+          "oldPrice": 190,
           "pay": "19,83",
           "crop": {
             "viewBox": [
@@ -1421,7 +1419,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/buba-pitaya-ud66znhjkp.png",
           "available": true,
           "price": 119,
-          "oldPrice": 170,
+          "oldPrice": 190,
           "pay": "19,83",
           "crop": {
             "viewBox": [
@@ -1457,7 +1455,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/bc7c31f77acf47d1841df6eb07d037cf-n7l4gc23mf.png",
           "available": true,
           "price": 119,
-          "oldPrice": 170,
+          "oldPrice": 190,
           "pay": "19,83",
           "crop": {
             "viewBox": [
@@ -1493,7 +1491,7 @@
           "img": "https://cdn.awsli.com.br/600x600/1237/1237589/produto/312196614/435060452db248ac98cc3c5d69586a2f-nksqwzxmhj.png",
           "available": true,
           "price": 119,
-          "oldPrice": 170,
+          "oldPrice": 190,
           "pay": "19,83",
           "crop": {
             "viewBox": [
