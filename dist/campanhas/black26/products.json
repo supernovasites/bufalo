@@ -92,8 +92,8 @@
       "name": "Açaí Bowl",
       "size": "500 ml",
       "url": "acai-bowl-500ml",
-      "price": 220,
-      "pay": "36,66",
+      "price": 240,
+      "pay": "40,00",
       "category": "copos",
       "showRegularPrice": true,
       "colors": [
@@ -112,8 +112,9 @@
             "width": 800,
             "height": 800
           },
-          "price": 220,
-          "available": true
+          "price": 240,
+          "available": true,
+          "pay": "40,00"
         },
         {
           "id": "426425",
@@ -130,8 +131,9 @@
             "width": 800,
             "height": 800
           },
-          "price": 220,
-          "available": true
+          "price": 240,
+          "available": true,
+          "pay": "40,00"
         },
         {
           "id": "37093",
@@ -148,8 +150,9 @@
             "width": 800,
             "height": 800
           },
-          "price": 220,
-          "available": true
+          "price": 240,
+          "available": true,
+          "pay": "40,00"
         }
       ]
     },
