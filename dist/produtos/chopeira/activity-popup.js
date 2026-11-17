@@ -6,10 +6,17 @@
  if(!shortcut)return;
  const original=shortcut.innerHTML,originalLabel=shortcut.getAttribute('aria-label');
  const eye='<svg class="faq-shortcut-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>';
- let stats=null,updated=0,hideTimer,showTimer,heartbeatTimer,controller,disposed=false,showing=false;
- function hide(){
-  if(!showing)return;
-  showing=false;shortcut.innerHTML=original;
+ const surveyPrompts=[
+  {text:'O frete está caro?',reason:'frete-caro'},
+  {text:'O prazo está longo?',reason:'prazo-longo'},
+  {text:'O preço está alto?',reason:'produto-caro'}
+ ];
+ const surveyTrigger=document.querySelector('.negotiation-trigger');
+ const startedAt=Date.now();
+ let stats=null,updated=0,heartbeatTimer,paintTimer,controller,disposed=false,mode='faq';
+ function restore(){
+  if(mode==='faq')return;
+  mode='faq';shortcut.innerHTML=original;
   if(originalLabel===null)shortcut.removeAttribute('aria-label');else shortcut.setAttribute('aria-label',originalLabel);
  }
  function blocked(){return document.hidden||!!document.querySelector('dialog[open]')||document.activeElement?.matches('input,textarea,select');}
@@ -18,20 +25,43 @@
   controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),8000);
   try{const r=await fetch(ENDPOINT,{method:'POST',credentials:'same-origin',cache:'no-store',headers:{'Content-Type':'application/json'},body:JSON.stringify({visitor}),signal:controller.signal});const data=r.ok?await r.json():null;if(data?.available){stats=data;updated=Date.now();}else stats=null;}catch{stats=null;}finally{clearTimeout(timeout);}
  }
- function schedule(){clearTimeout(showTimer);if(!disposed)showTimer=setTimeout(show,15000);}
- function show(){
-  if(disposed)return;schedule();
-  if(blocked()||!stats||Date.now()-updated>=90000||!Number.isSafeInteger(stats.viewers)||stats.viewers<1){hide();return;}
-  if(shortcut.hidden||!shortcut.getBoundingClientRect().width){hide();return;}
-  const count=stats.viewers;
-  shortcut.innerHTML=eye+'<span>'+count.toLocaleString('pt-BR')+' Vendo chopeiras</span>';
-  shortcut.setAttribute('aria-label',count+(count===1?' pessoa visualizando chopeiras':' pessoas visualizando chopeiras'));
-  showing=true;
-  clearTimeout(hideTimer);hideTimer=setTimeout(hide,3000);
+ function render(nextMode,content,label){
+  if(mode!==nextMode||shortcut.innerHTML!==content){shortcut.innerHTML=content;mode=nextMode;}
+  if(label)shortcut.setAttribute('aria-label',label);
+  else if(originalLabel===null)shortcut.removeAttribute('aria-label');
+  else shortcut.setAttribute('aria-label',originalLabel);
  }
- document.addEventListener('visibilitychange',()=>{hide();clearTimeout(hideTimer);if(document.hidden)clearTimeout(showTimer);else{heartbeat();schedule();}});
- document.addEventListener('click',()=>{queueMicrotask(()=>{if(document.querySelector('dialog[open]')){hide();clearTimeout(hideTimer);}});},true);
- addEventListener('pagehide',event=>{hide();clearInterval(heartbeatTimer);clearTimeout(showTimer);clearTimeout(hideTimer);controller?.abort();disposed=!event.persisted;});
- addEventListener('pageshow',event=>{if(event.persisted){disposed=false;heartbeat();clearInterval(heartbeatTimer);heartbeatTimer=setInterval(heartbeat,30000);schedule();}});
- hide();heartbeat();heartbeatTimer=setInterval(heartbeat,30000);schedule();
+ function paint(){
+  if(disposed)return;
+  if(blocked()){restore();return;}
+  const elapsed=(Date.now()-startedAt)/1000;
+  const viewerSlot=elapsed>=15&&(elapsed-15)%15<3;
+  const surveySlot=elapsed>=63&&(elapsed-63)%10<3;
+  const hasCount=stats&&Date.now()-updated<90000&&Number.isSafeInteger(stats.viewers)&&stats.viewers>0;
+  if(surveySlot&&surveyTrigger){
+   const prompt=surveyPrompts[Math.floor((elapsed-63)/10)%surveyPrompts.length];
+   const count=hasCount?stats.viewers+35:0;
+   const countBadge=viewerSlot&&hasCount?'<span class="faq-view-count" aria-hidden="true">'+eye+'<span>'+count.toLocaleString('pt-BR')+'</span></span>':'';
+   render('survey',original.replace(/<span>[\s\S]*?<\/span>/,'<span>'+prompt.text+'</span>')+countBadge,prompt.text+' Responda à pesquisa sobre sua compra'+(countBadge?' · '+count+' pessoas visualizando chopeiras':''));
+   return;
+  }
+  if(viewerSlot&&hasCount){
+   const count=stats.viewers+35;
+   render('viewers',eye+'<span>'+count.toLocaleString('pt-BR')+' Vendo chopeiras</span>',count+(count===1?' pessoa visualizando chopeiras':' pessoas visualizando chopeiras'));
+   return;
+  }
+  restore();
+ }
+ shortcut.addEventListener('click',event=>{
+  if(!mode.startsWith('survey')||!surveyTrigger)return;
+  event.preventDefault();
+  const prompt=surveyPrompts[Math.floor(((Date.now()-startedAt)/1000-63)/10)%surveyPrompts.length];
+  surveyTrigger.dataset.reason=prompt.reason;
+  surveyTrigger.click();
+ });
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)restore();else heartbeat();paint();});
+ document.addEventListener('click',()=>{queueMicrotask(()=>{if(document.querySelector('dialog[open]'))restore();});},true);
+ addEventListener('pagehide',event=>{restore();clearInterval(heartbeatTimer);clearInterval(paintTimer);controller?.abort();disposed=!event.persisted;});
+ addEventListener('pageshow',event=>{if(event.persisted){disposed=false;heartbeat();clearInterval(heartbeatTimer);clearInterval(paintTimer);heartbeatTimer=setInterval(heartbeat,30000);paintTimer=setInterval(paint,250);paint();}});
+ heartbeat();heartbeatTimer=setInterval(heartbeat,30000);paint();paintTimer=setInterval(paint,250);
 })();
