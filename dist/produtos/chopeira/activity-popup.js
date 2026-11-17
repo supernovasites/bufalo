@@ -37,17 +37,17 @@
   const elapsed=(Date.now()-startedAt)/1000;
   const viewerSlot=elapsed>=15&&(elapsed-15)%15<3;
   const surveySlot=elapsed>=63&&(elapsed-63)%10<3;
-  const hasCount=stats&&Date.now()-updated<90000&&Number.isSafeInteger(stats.viewers)&&stats.viewers>0;
+  const hasCount=stats&&Date.now()-updated<90000&&Number.isSafeInteger(stats.todayVisitors)&&stats.todayVisitors>=0;
   if(surveySlot&&surveyTrigger){
    const prompt=surveyPrompts[Math.floor((elapsed-63)/10)%surveyPrompts.length];
-   const count=hasCount?stats.viewers+35:0;
-   const countBadge=viewerSlot&&hasCount?'<span class="faq-view-count" aria-hidden="true">'+eye+'<span>'+count.toLocaleString('pt-BR')+'</span></span>':'';
-   render('survey',original.replace(/<span>[\s\S]*?<\/span>/,'<span>'+prompt.text+'</span>')+countBadge,prompt.text+' Responda à pesquisa sobre sua compra'+(countBadge?' · '+count+' pessoas visualizando chopeiras':''));
+   const count=hasCount?stats.todayVisitors:0;
+   const countBadge=viewerSlot&&hasCount?'<span class="faq-view-count" aria-hidden="true">'+eye+'<span>'+count.toLocaleString('pt-BR')+' hoje</span></span>':'';
+   render('survey',original.replace(/<span>[\s\S]*?<\/span>/,'<span>'+prompt.text+'</span>')+countBadge,prompt.text+' Responda à pesquisa sobre sua compra'+(countBadge?' · '+count+' '+(count===1?'pessoa viu':'pessoas viram')+' a chopeira hoje':''));
    return;
   }
   if(viewerSlot&&hasCount){
-   const count=stats.viewers+35;
-   render('viewers',eye+'<span>'+count.toLocaleString('pt-BR')+' Vendo chopeiras</span>',count+(count===1?' pessoa visualizando chopeiras':' pessoas visualizando chopeiras'));
+   const count=stats.todayVisitors;
+   render('viewers',eye+'<span>'+count.toLocaleString('pt-BR')+' '+(count===1?'pessoa viu':'pessoas viram')+' a chopeira hoje</span>',count+' '+(count===1?'pessoa viu':'pessoas viram')+' a chopeira hoje');
    return;
   }
   restore();
