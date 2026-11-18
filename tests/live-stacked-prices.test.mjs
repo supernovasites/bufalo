@@ -6,7 +6,8 @@ const money=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 const html=readFileSync(new URL('../live/index.html',import.meta.url),'utf8');
 const cards=[...html.matchAll(/<article\b[^>]*data-base-price="([^"]+)"[^>]*data-original-price="([^"]+)"[\s\S]*?<\/article>/g)];
 test('all live cards retain store prices without an extra coupon discount',()=>{
- assert.ok(cards.length>350);
+ assert.ok(cards.length>0);
+ assert.equal(cards.length,[...html.matchAll(/data-variant-key=/g)].length);
  for(const [card,base,original] of cards){
   assert.ok(card.includes('data-discount="0"'));
   assert.ok(card.includes('class="price">'+money(Number(base))));

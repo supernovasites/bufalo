@@ -8,7 +8,9 @@ test('every catalog card has separate image and purchase links with coupons outs
  const cards=[...html.matchAll(/<article\b[^>]*class="[^"]*\bproduct\b[^"]*"[\s\S]*?<\/article>/g)].map(m=>m[0]);
  const catalog=JSON.parse(readFileSync(new URL('../live/catalog-data.json',import.meta.url),'utf8'));
  const byUrl=new Map(catalog.products.map(p=>[p.url,p]));
- assert.equal(cards.length,catalog.categories.reduce((n,c)=>n+c.products.reduce((sum,url)=>sum+(byUrl.get(url)?.cards.length||0),0),0));
+ const categoryMarkup=html.slice(html.indexOf('<section class="live-category-group"'),html.indexOf('<section class="ai-personalize"'));
+ const counted=[...categoryMarkup.matchAll(/data-variant-key=/g)].length;
+ assert.equal(counted,catalog.categories.reduce((n,c)=>n+c.products.reduce((sum,url)=>sum+(byUrl.get(url)?.cards.filter(o=>o.stock==='in_stock'&&o.imageAvailable!==false&&o.image).length||0),0),0));
  for(const card of cards){
    assert.match(card,/<a\b[^>]*class="[^"]*product-cta/);
    for(const link of card.matchAll(/<a\b[^>]*>([\s\S]*?)<\/a>/g))assert.ok(!link[1].includes('with-coupon'));

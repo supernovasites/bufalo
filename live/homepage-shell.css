@@ -43,9 +43,13 @@
 /* The live header stays at the start of the document. */
 body #bg-site-header{position:static;top:auto}
 
+.hero-copy { container-type: inline-size; }
 .hero-copy #live-title {
+  width: 100%;
+  max-width: none;
+  text-align: center;
   margin: 0 0 1rem;
-  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  font-size: clamp(1.5rem, 11cqi, 5rem);
   line-height: 1.06;
   letter-spacing: -.035em;
   text-wrap: nowrap;

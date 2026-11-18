@@ -291,7 +291,8 @@
           "illustrative": false,
           "key": "bufaloontap35l--426709",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Búfalo Growler On TAP 3,5L - Chopeira Térmica Portatil",
@@ -372,7 +373,8 @@
           "illustrative": false,
           "key": "growler-kundi-2l--37093",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Growler Kundi 2L",
@@ -446,7 +448,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "mestre-bufalo-growler-spritz--481146",
-          "stock": "in_stock",
+          "stock": "out_of_stock",
           "oldPrice": 1830.0
         }
       ]
@@ -476,7 +478,8 @@
           "illustrative": false,
           "key": "growler-kundi-35l--426709",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Growler Kundi 3,5L",
@@ -863,7 +866,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "kit-cimo-trio-de-forca-ax--404336196",
-          "stock": "in_stock"
+          "stock": "out_of_stock"
         }
       ]
     },
@@ -2679,7 +2682,8 @@
           "illustrative": false,
           "key": "tampa-esporte-com-bico--13587666",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Tampa Esporte com Bico",
@@ -3560,7 +3564,8 @@
           "illustrative": false,
           "key": "tampa-padrao-copos--426266",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3630,7 +3635,8 @@
           "illustrative": false,
           "key": "tampa-padrao-copos--425684",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3653,7 +3659,8 @@
           "illustrative": false,
           "key": "tampa-padrao-copos--425471",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Tampa Padrão Copos: Surtí, Tulipa, Banni, Ravi e Bhadawari",
@@ -3675,7 +3682,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "tampa-padrao-copos--426365",
-          "stock": "in_stock",
+          "stock": "out_of_stock",
           "oldPrice": null
         },
         {
@@ -3699,7 +3706,8 @@
           "illustrative": false,
           "key": "tampa-padrao-copos--425732",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         }
       ]
     },
@@ -4938,7 +4946,8 @@
           "illustrative": false,
           "key": "tampa-garrafa-garca--426405",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         }
       ]
     },
@@ -5602,7 +5611,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "adesivos-cringe--12503193",
-          "stock": "in_stock",
+          "stock": "out_of_stock",
           "oldPrice": null
         },
         {
@@ -6801,7 +6810,8 @@
           "illustrative": false,
           "key": "garrafa-harpuri-750ml---1070817",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Garrafa Harpuri 750ml",
@@ -7646,7 +7656,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "growler-mediterraneo-2l--426709",
-          "stock": "in_stock",
+          "stock": "out_of_stock",
           "oldPrice": 380.0
         }
       ]
@@ -7675,7 +7685,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "surti-duo-flow-900ml--38301",
-          "stock": "in_stock",
+          "stock": "out_of_stock",
           "oldPrice": null
         },
         {
@@ -7699,7 +7709,8 @@
           "illustrative": false,
           "key": "surti-duo-flow-900ml--2016880",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Surti Duo Flow 900ml",
@@ -8351,7 +8362,8 @@
           "illustrative": false,
           "key": "copo-ravi-483ml--426124",
           "stock": "in_stock",
-          "oldPrice": null
+          "oldPrice": null,
+          "imageAvailable": false
         },
         {
           "name": "Copo Ravi 483ml",
@@ -8713,7 +8725,7 @@
           "priceFrom": false,
           "illustrative": false,
           "key": "caneca-bhadawari-710ml--425416",
-          "stock": "in_stock",
+          "stock": "out_of_stock",
           "oldPrice": 190.0
         },
         {
@@ -8904,7 +8916,8 @@
           "illustrative": false,
           "key": "copo-pand-750ml--425881",
           "stock": "in_stock",
-          "oldPrice": 175.0
+          "oldPrice": 175.0,
+          "imageAvailable": false
         },
         {
           "name": "Copo Pand 750ml",
@@ -9197,13 +9210,20 @@
     ]
   },
   "stockVerification": {
-    "checkedAt": "2026-10-27",
+    "checkedAt": "2026-11-18",
     "source": "destination_product_sku_availability",
     "unavailableKeys": [
+      "adesivos-cringe--12503193",
+      "caneca-bhadawari-710ml--37096",
+      "caneca-bhadawari-710ml--425416",
       "dry-bag-20litros--5502363",
-      "tampa-original-garrafas--425418",
       "garrafa-murrah-540ml--762609",
-      "caneca-bhadawari-710ml--37096"
+      "growler-mediterraneo-2l--426709",
+      "kit-cimo-trio-de-forca-ax--404336196",
+      "mestre-bufalo-growler-spritz--481146",
+      "surti-duo-flow-900ml--38301",
+      "tampa-original-garrafas--425418",
+      "tampa-padrao-copos--426365"
     ],
     "unverifiedKeys": [
       "tampa-padrao-copos--426774",

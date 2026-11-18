@@ -34,7 +34,9 @@
   });
   select(0);
   function mount(host,config){
-  const coupon = config.coupon;
+  const coupon = /^[A-Z0-9_-]{3,24}$/.test(config.coupon || '') ? config.coupon : '';
+  const discount = coupon ? config.discount : 0;
+  const offerPrice = config.price == null ? null : Math.round(config.price * (100 - discount)) / 100;
   const money = value => value.toLocaleString('pt-BR', {style:'currency', currency:'BRL'});
   let order = Array.from({length: 9}, (_, index) => index);
   let selectedIndex = null;
@@ -56,18 +58,20 @@
     <p class="challenge-status" role="status" aria-live="polite">Escolha a primeira peça.</p>
     <div class="challenge-reward reward-highlight" hidden>
       <span class="reward-label">DESAFIO CONCLUÍDO</span>
-      ${config.rewardPending ? '<strong class="reward-headline"><span class="reward-headline-copy">Você completou o Desafio 3!</span></strong>' : `<strong class="reward-headline"><span class="reward-discount">Desafio concluído</span><span class="reward-headline-copy">Conheça o produto na loja.</span></strong>
-      <article class="product growler-card reward-product" data-discount="0" data-product-name="${config.name}">
+      <strong class="reward-headline"><span class="reward-discount">${discount ? discount + '% OFF' : 'Desafio concluído'}</span></strong>
+      <article class="product growler-card reward-product" data-discount="${discount}" data-base-price="${config.price ?? ''}" data-product-name="${config.name}">
         <a class="growler-photo-link" href="${config.url}" target="_blank" rel="noopener noreferrer">
           <div class="product-image"><img src="${config.productImage}" alt="${config.name}" width="400" height="400" loading="lazy"></div>
         </a>
         <div class="product-info">
           <h3>${config.name}</h3>
-          <p class="price">${config.price == null ? "Consulte disponibilidade na loja" : money(config.price)}</p>
+          ${discount && config.price != null ? `<p class="old"><s>${money(config.price)}</s></p>` : ''}
+          <p class="price">${offerPrice == null ? "Consulte disponibilidade na loja" : money(offerPrice)}</p>
+          ${coupon ? `<div class="reward-coupon"><code>${coupon}</code><button type="button">Copiar cupom</button></div>` : ''}
           <a class="product-cta growler-cta reward-buy" href="${config.url}" target="_blank" rel="noopener noreferrer">Comprar agora</a>
         </div>
       </article>
-      <small>Preços e disponibilidade da loja.</small>`}
+      <small>Preços e disponibilidade da loja.</small>
     </div>
   `;
 
