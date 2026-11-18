@@ -1,5 +1,5 @@
 (() => {
-  const ids = ['tote', 'nag', 'outdoor', 'mestre'];
+  const ids = ['tote', 'nag', 'outdoor', 'mestre', 'mochila'];
   const form = document.getElementById('puzzle-form');
   if (!form) return;
   const feedback = document.getElementById('puzzle-feedback');
@@ -42,7 +42,7 @@
     const coupons = Object.fromEntries(ids.map(id => [id, input(id).value.trim().toUpperCase()]));
     const discounts = Object.fromEntries(ids.map(id => [id, Number(discountInput(id).value)]));
     if (Object.values(coupons).some(coupon => !/^[A-Z0-9_-]{3,24}$/.test(coupon))) {
-      feedback.textContent = 'Informe os quatro cupons com 3 a 24 letras, números, hífen ou sublinhado.';
+      feedback.textContent = 'Informe os cupons com 3 a 24 letras, números, hífen ou sublinhado.';
       return;
     }
     if (Object.values(discounts).some(discount => !Number.isInteger(discount) || discount < 1 || discount > 100)) {

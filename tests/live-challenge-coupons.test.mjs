@@ -33,7 +33,7 @@ test('four coupons persist, normalize and render independently in the live',asyn
   const db=database(),cookie=await login(db);
   const response=await call(db,'/live/api/challenges',{tote:' tote13 ',nag:'nag13',outdoor:'CIMO_13',mestre:'MESTRE-13'},cookie);
   assert.equal(response.status,200);
-  const expected={tote:'TOTE13',nag:'NAG13',outdoor:'CIMO_13',mestre:'MESTRE-13'};
+  const expected={tote:'TOTE13',nag:'NAG13',outdoor:'CIMO_13',mestre:'MESTRE-13',mochila:'ESTANQUE20'};
   assert.deepEqual((await response.json()).challenge_coupons,expected);
   assert.deepEqual((await (await call(db,'/live/api/state',undefined,cookie)).json()).challenge_coupons,expected);
   const html=await (await call(db,'/live/')).text();
@@ -63,10 +63,11 @@ test('daily coupon changes preserve configured challenge coupons',async()=>{
   assert.equal((await response.json()).challenge_coupons.tote,'CUSTOM13');
   db.sql.close();
 });
-test('admin loads saved values and publishes all four through the server',async()=>{
+test('admin loads and publishes all five challenge settings',async()=>{
+  const ids=['tote','nag','outdoor','mestre','mochila'];
   const elements=new Map();
   for(const id of ['puzzle-form','puzzle-feedback','save-puzzle',...ids.flatMap(id=>['puzzle-coupon-'+id,'puzzle-coupon-preview-'+id,'puzzle-discount-'+id,'puzzle-discount-preview-'+id])])elements.set(id,{value:'',disabled:true,textContent:'',addEventListener(type,handler){this[type]=handler;}});
-  const saved={tote:'TOTE13',nag:'NAG13',outdoor:'CIMO13',mestre:'MESTRE13'};
+  const saved={tote:'TOTE13',nag:'NAG13',outdoor:'CIMO13',mestre:'MESTRE13',mochila:'ESTANQUE20'};
   const requests=[];
   const context={document:{getElementById:id=>elements.get(id)},window:{location:{replace(){}}},fetch:async(url,options)=>{
     requests.push({url,options});
@@ -82,11 +83,26 @@ test('admin loads saved values and publishes all four through the server',async(
   assert.equal(requests[1].url,'/live/api/challenges');
   assert.equal(JSON.parse(requests[1].options.body).nag,'NOVO13');
   assert.equal(JSON.parse(requests[1].options.body).discounts.nag,45);
+  assert.equal(JSON.parse(requests[1].options.body).mochila,'ESTANQUE20');
   assert.equal(elements.get('puzzle-discount-preview-nag').textContent,'45% OFF');
   assert.equal(elements.get('puzzle-coupon-preview-nag').textContent,'NOVO13');
   assert.equal(elements.get('save-puzzle').disabled,false);
 });
 
+test('backpack coupon starts at ESTANQUE20, is editable and survives legacy saves',async()=>{
+  const db=database(),cookie=await login(db);
+  const page=async()=> (await call(db,'/live/')).text();
+  const coupons=Object.fromEntries(ids.map(id=>[id,'TEST25']));
+  const discounts=Object.fromEntries(ids.map(id=>[id,25]));
+  assert.match(await page(),/data-challenge-mochila-coupon="ESTANQUE20"/);
+  const payload={...coupons,mochila:' neblina15 ',discounts:{...discounts,mochila:15}};
+  assert.equal((await call(db,'/live/api/challenges',payload)).status,401);
+  assert.equal((await call(db,'/live/api/challenges',payload,cookie)).status,200);
+  await call(db,'/live/api/challenges',{...coupons,discounts},cookie);
+  assert.equal((await call(db,'/live/api/challenges',{...payload,mochila:'?'},cookie)).status,400);
+  assert.match(await page(),/data-challenge-mochila-coupon="NEBLINA15" data-challenge-mochila-discount="15"/);
+  db.sql.close();
+});
 test('closed live returns the thank-you page without challenge coupons',async()=>{
   const db=database();
   db.sql.prepare('UPDATE live_settings SET enabled=0 WHERE id=1').run();
@@ -112,11 +128,11 @@ test('discounts persist with coupons, render separately and preserve legacy save
   const discounts={tote:25,nag:30,outdoor:35,mestre:40};
   const response=await call(db,'/live/api/challenges',{...coupons,discounts},cookie);
   assert.equal(response.status,200);
-  assert.deepEqual((await response.json()).challenge_discounts,discounts);
+  assert.deepEqual((await response.json()).challenge_discounts,{...discounts,mochila:20});
   const html=await (await call(db,'/live/')).text();
   for(const id of ids)assert.ok(html.includes(`data-challenge-${id}-discount="${discounts[id]}"`));
   await call(db,'/live/api/challenges',coupons,cookie);
-  assert.deepEqual((await (await call(db,'/live/api/state',undefined,cookie)).json()).challenge_discounts,discounts);
+  assert.deepEqual((await (await call(db,'/live/api/state',undefined,cookie)).json()).challenge_discounts,{...discounts,mochila:20});
   db.sql.exec(readFileSync(new URL('../migrations/0012_live_challenge_discounts.sql',import.meta.url),'utf8'));
   assert.equal(db.sql.prepare('SELECT tote FROM live_challenge_discounts').get().tote,25);
   db.sql.close();
@@ -150,15 +166,16 @@ test('unconfigured discounts default to 20 and coupon/discount writes roll back 
   db.sql.close();
 });
 test('solving each live puzzle reveals its configured coupon, discount and product',()=>{
+  const ids=['tote','nag','outdoor','mestre','mochila'];
   function element(){return {children:[],style:{},attributes:{},classList:{add(){},remove(){}},setAttribute(name,value){this.attributes[name]=value;},addEventListener(name,handler){this[name]=handler;},append(child){this.children.push(child);},replaceChildren(){this.children=[];},after(){},focus(){},scrollIntoView(){},querySelector(selector){return this.nodes[selector];},nodes:{}};}
   const tabs=ids.map(()=>element()),tablist=element(),root=element(),hosts={};
   for(const id of ids){const host=element();for(const selector of ['.puzzle-board','.move-count','.challenge-status','.challenge-reward'])host.nodes[selector]=element();host.nodes['.challenge-reward'].nodes.button=element();hosts[id]=host;}
   root.querySelectorAll=()=>tabs;
   root.querySelector=selector=>selector==='.challenge-tabs'?tablist:hosts[selector.match(/^#puzzle-(\w+)/)[1]]?.nodes[selector.split(' ')[1]] || hosts[selector.match(/^#puzzle-(\w+)/)[1]];
-  const discounts={tote:25,nag:30,outdoor:35,mestre:40};
+  const discounts={tote:25,nag:30,outdoor:35,mestre:40,mochila:20};
   const document={querySelector:()=>root,getElementById:()=>({textContent:'LIVE20'}),createElement:element,documentElement:{getAttribute:name=>{const id=name.split('-')[2];return name.endsWith('discount')?String(discounts[id]):id.toUpperCase()+'25';}}};
   vm.runInNewContext(readFileSync(new URL('../live/carousel.js',import.meta.url),'utf8'),{document,Image:class {}});
-  const prices={tote:'825,00',nag:'2.065,00',outdoor:'Consulte disponibilidade na loja',mestre:'1.098,00'};
+  const prices={tote:'825,00',nag:'2.065,00',outdoor:'Consulte disponibilidade na loja',mestre:'1.098,00',mochila:'272,80'};
   for(const id of ids){
     const host=hosts[id];
     assert.ok(host.innerHTML.includes(discounts[id]+'% OFF'));

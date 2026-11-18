@@ -7,7 +7,7 @@
   <title>Administração da Live · Búfalo Growler</title>
   <link rel="stylesheet" href="admin.css?v=20261112-slideshow">
   <script src="admin.js?v=20261118-edicao" defer></script>
-  <script src="puzzle-admin.js?v=20261013-challenge-discounts" defer></script>
+  <script src="puzzle-admin.js?v=20261118-mochila" defer></script>
 <link rel="stylesheet" href="auction-admin.css?v=20261013-manada-offer"><script defer src="auction-admin.js?v=20261013-manada-offer"></script><script defer src="moment-admin.js?v=20261112-auto-photos"></script></head>
 <body>
   <header class="top">
@@ -116,6 +116,16 @@
               <input id="puzzle-discount-mestre" name="discount_mestre" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
             </div>
           </div>
+          <div class="challenge-fields">
+            <div class="challenge-coupon-field">
+              <label for="puzzle-coupon-mochila">Desafio 5 · Mochila Marajó Dry 25L</label>
+              <input id="puzzle-coupon-mochila" name="mochila" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required disabled>
+            </div>
+            <div class="challenge-discount-field">
+              <label for="puzzle-discount-mochila">Desconto (%)<span class="sr-only"> do desafio 5</span></label>
+              <input id="puzzle-discount-mochila" name="discount_mochila" type="number" inputmode="numeric" min="1" max="100" step="1" value="20" required disabled>
+            </div>
+          </div>
           <p class="field-help">Use de 3 a 24 letras, números, hífen ou sublinhado. Informe o desconto em número inteiro, de 1 a 100. Exemplo: 25 para 25% OFF.</p>
           <button id="save-puzzle" class="btn orange" type="submit" disabled>Salvar cupons e descontos</button>
           <p id="puzzle-feedback" role="status" aria-live="polite"></p>
@@ -127,6 +137,7 @@
         <div class="puzzle-coupon-preview"><small>DESAFIO 2 · NAG PRO 6</small><strong id="puzzle-coupon-preview-nag">—</strong><span id="puzzle-discount-preview-nag">20% OFF</span></div>
         <div class="puzzle-coupon-preview"><small>DESAFIO 3 · KIT CIMO</small><strong id="puzzle-coupon-preview-outdoor">—</strong><span id="puzzle-discount-preview-outdoor">20% OFF</span></div>
         <div class="puzzle-coupon-preview"><small>DESAFIO 4 · KIT MESTRE BÚFALO</small><strong id="puzzle-coupon-preview-mestre">—</strong><span id="puzzle-discount-preview-mestre">20% OFF</span></div>
+        <div class="puzzle-coupon-preview"><small>DESAFIO 5 · MOCHILA MARAJÓ DRY</small><strong id="puzzle-coupon-preview-mochila">—</strong><span id="puzzle-discount-preview-mochila">20% OFF</span></div>
       </div>
     </section>
 

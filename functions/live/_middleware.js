@@ -1,5 +1,5 @@
 import {validCpf} from '../../lib/cpf.js';
-import {editionTable, moment, momentTable} from '../../lib/live-content.js';
+import {backpackOfferTable, editionTable, moment, momentTable} from '../../lib/live-content.js';
 import {manadacashEnabled, manadacashTable, content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable, challengeDiscountTable} from '../../lib/live-content.js';
 import {handleAuction} from '../../lib/live-auction.js';
 import {handleRaffle} from '../../lib/live-raffle.js';
@@ -82,15 +82,26 @@ async function handle(context) {
     if (!await authenticated(request,db)) return json({error:'Entre no painel para continuar.'},401);
     if(path==='/live/api/challenges' && request.method==='POST') {
       const coupons = challengeIds.map(id => typeof body[id] === 'string' ? body[id].trim().toUpperCase() : '');
-      if(coupons.some(coupon => !/^[A-Z0-9_-]{3,24}$/.test(coupon)))return json({error:'Informe os quatro cupons com 3 a 24 letras, números, hífen ou sublinhado.'},400);
+      if(coupons.some(coupon => !/^[A-Z0-9_-]{3,24}$/.test(coupon)))return json({error:'Informe os cupons com 3 a 24 letras, números, hífen ou sublinhado.'},400);
       const hasDiscounts = body.discounts !== undefined;
       if(hasDiscounts && (!body.discounts || typeof body.discounts !== 'object' || Array.isArray(body.discounts) || challengeIds.some(id => !Number.isInteger(body.discounts[id]) || body.discounts[id] < 1 || body.discounts[id] > 100)))return json({error:'Informe um desconto inteiro de 1% a 100% para cada desafio.'},400);
+      const withBackpack = body.mochila !== undefined || body.discounts?.mochila !== undefined;
+      const backpackCoupon = typeof body.mochila === 'string' ? body.mochila.trim().toUpperCase() : '';
+      const backpackDiscount = body.discounts?.mochila;
+      if (withBackpack && (!/^[A-Z0-9_-]{3,24}$/.test(backpackCoupon) || !Number.isInteger(backpackDiscount) || backpackDiscount < 1 || backpackDiscount > 100)) {
+        return json({error:'Informe o cupom da mochila e um desconto inteiro de 1% a 100%.'},400);
+      }
       await db.prepare(challengeTable).run();
       const couponStatement = db.prepare('INSERT INTO live_challenge_coupons (id,tote,nag,outdoor,mestre) VALUES (1,?,?,?,?) ON CONFLICT(id) DO UPDATE SET tote=excluded.tote,nag=excluded.nag,outdoor=excluded.outdoor,mestre=excluded.mestre').bind(...coupons);
       if(hasDiscounts) {
         await db.prepare(challengeDiscountTable).run();
         const discountStatement = db.prepare('INSERT INTO live_challenge_discounts (id,tote,nag,outdoor,mestre) VALUES (1,?,?,?,?) ON CONFLICT(id) DO UPDATE SET tote=excluded.tote,nag=excluded.nag,outdoor=excluded.outdoor,mestre=excluded.mestre').bind(...challengeIds.map(id => body.discounts[id]));
-        await db.batch([couponStatement, discountStatement]);
+        const writes = [couponStatement, discountStatement];
+        if (withBackpack) {
+          await db.prepare(backpackOfferTable).run();
+          writes.push(db.prepare('INSERT INTO live_backpack_offer (id,coupon,discount) VALUES (1,?,?) ON CONFLICT(id) DO UPDATE SET coupon=excluded.coupon,discount=excluded.discount').bind(backpackCoupon,backpackDiscount));
+        }
+        await db.batch(writes);
       } else await couponStatement.run();
       return json(await state(db));
     }
@@ -155,7 +166,7 @@ async function handle(context) {
     if(!await manadacashEnabled(env.LIVE_DB)) html=html.replace(/<section\b[^>]*\bid="cadastro-live"[^>]*>[\s\S]*?<\/section>/, '');
     html=html.replaceAll('__LIVE_EDITION__', String(config.edition));
     html=html.replaceAll('__LIVE_COUPON__',config.coupon).replaceAll('__LIVE_DATE__',config.live_date).replaceAll('__LIVE_DATE_DOTTED__',config.live_date.replace('/','.'));
-    for(const id of challengeIds) {
+    for(const id of [...challengeIds,'mochila']) {
       const coupon = config.challenge_coupons[id] || config.coupon;
       const escaped = coupon.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll("'",'&#39;');
       html=html.replaceAll('__LIVE_CHALLENGE_'+id.toUpperCase()+'_COUPON__',escaped);
