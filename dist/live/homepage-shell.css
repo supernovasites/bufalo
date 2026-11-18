@@ -48,5 +48,5 @@ body #bg-site-header{position:static;top:auto}
   font-size: clamp(1.75rem, 3.2vw, 2.75rem);
   line-height: 1.06;
   letter-spacing: -.035em;
-  text-wrap: wrap;
+  text-wrap: nowrap;
 }
