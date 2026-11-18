@@ -56,3 +56,17 @@ test('ManadaCash changes require authentication, same origin and boolean value',
   assert.equal((await (await call(db,'/live/api/state',undefined,cookie)).json()).manadacash_enabled,true);
   db.sql.close();
 });
+
+test('the hero shows the configured edition and registration follows the challenge', async () => {
+  const db = database(), cookie = await login(db);
+  const settings = {coupon:'LIVE30',live_date:'18/11'};
+  const page = async () => (await call(db,'/live/')).text();
+  assert.match(await page(), /<main id="conteudo">\s*<section class="live-hero"[\s\S]*?<span data-live-edition>30<\/span>[\s\S]*?class="hero-art photo-gallery"[\s\S]*?<\/div><\/section>\s*<section class="lead-capture"/);
+  assert.equal((await call(db,'/live/api/content',{...settings,edition:31})).status,401);
+  const saved = await call(db,'/live/api/content',{...settings,edition:31},cookie);
+  assert.equal((await saved.json()).edition,31);
+  assert.equal((await call(db,'/live/api/content',{...settings,edition:0},cookie)).status,400);
+  await call(db,'/live/api/content',settings,cookie);
+  assert.match(await page(), /<span data-live-edition>31<\/span>/);
+  db.sql.close();
+});

@@ -1,5 +1,5 @@
 import {validCpf} from '../../lib/cpf.js';
-import {moment, momentTable} from '../../lib/live-content.js';
+import {editionTable, moment, momentTable} from '../../lib/live-content.js';
 import {manadacashEnabled, manadacashTable, content, gallery, validDate, photoResponse, savePhoto, readLimited, challengeIds, challengeTable, challengeDiscountTable} from '../../lib/live-content.js';
 import {handleAuction} from '../../lib/live-auction.js';
 import {handleRaffle} from '../../lib/live-raffle.js';
@@ -113,7 +113,15 @@ async function handle(context) {
       const coupon=typeof body.coupon==='string'?body.coupon.trim().toUpperCase():'';
       if(!/^[A-Z0-9_-]{3,24}$/.test(coupon))return json({error:'Use de 3 a 24 letras, números, hífen ou sublinhado no cupom.'},400);
       if(!validDate(body.live_date))return json({error:'Informe uma data válida no formato DD/MM.'},400);
-      await db.prepare('INSERT INTO live_content (id,coupon,live_date) VALUES (1,?,?) ON CONFLICT(id) DO UPDATE SET coupon=excluded.coupon,live_date=excluded.live_date').bind(coupon,body.live_date).run();
+      const saveContent = db.prepare('INSERT INTO live_content (id,coupon,live_date) VALUES (1,?,?) ON CONFLICT(id) DO UPDATE SET coupon=excluded.coupon,live_date=excluded.live_date').bind(coupon,body.live_date);
+      if (body.edition === undefined) {
+        await saveContent.run();
+      } else {
+        if (!Number.isSafeInteger(body.edition) || body.edition < 1) return json({error:'Informe um número inteiro positivo para a LiveShow.'},400);
+        await db.prepare(editionTable).run();
+        const saveEdition = db.prepare('INSERT INTO live_edition (id,edition) VALUES (1,?) ON CONFLICT(id) DO UPDATE SET edition=excluded.edition').bind(body.edition);
+        await db.batch([saveContent, saveEdition]);
+      }
       return json(await state(db));
     }
     if (path === '/live/api/logout' && request.method === 'POST') return json({ok:true});
@@ -145,6 +153,7 @@ async function handle(context) {
     const config=await content(env.LIVE_DB);
     let html=await result.text();
     if(!await manadacashEnabled(env.LIVE_DB)) html=html.replace(/<section\b[^>]*\bid="cadastro-live"[^>]*>[\s\S]*?<\/section>/, '');
+    html=html.replace(/(<span data-live-edition>)\d+(<\/span>)/, (_,open,close)=>open+config.edition+close);
     html=html.replaceAll('__LIVE_COUPON__',config.coupon).replaceAll('__LIVE_DATE__',config.live_date).replaceAll('__LIVE_DATE_DOTTED__',config.live_date.replace('/','.'));
     for(const id of challengeIds) {
       const coupon = config.challenge_coupons[id] || config.coupon;

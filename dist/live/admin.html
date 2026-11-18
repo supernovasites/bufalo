@@ -6,7 +6,7 @@
   <meta name="robots" content="noindex,nofollow">
   <title>Administração da Live · Búfalo Growler</title>
   <link rel="stylesheet" href="admin.css?v=20261112-slideshow">
-  <script src="admin.js?v=20261110-manadacash" defer></script>
+  <script src="admin.js?v=20261118-edicao" defer></script>
   <script src="puzzle-admin.js?v=20261013-challenge-discounts" defer></script>
 <link rel="stylesheet" href="auction-admin.css?v=20261013-manada-offer"><script defer src="auction-admin.js?v=20261013-manada-offer"></script><script defer src="moment-admin.js?v=20261112-auto-photos"></script></head>
 <body>
@@ -23,14 +23,16 @@
     <section id="content-editor" class="dashboard">
       <article class="card">
         <div class="eyebrow">CONFIGURE O ENCONTRO</div>
-        <h2>Cupom e data da live</h2>
+        <h2>Edição, cupom e data da live</h2>
         <form id="content-form" class="content-form">
+          <label for="live-edition">Número da LiveShow</label>
+          <input id="live-edition" type="number" min="1" step="1" inputmode="numeric" required>
           <label for="daily-coupon">Cupom do dia</label>
           <input id="daily-coupon" autocomplete="off" maxlength="24" pattern="[A-Za-z0-9_-]{3,24}" required placeholder="Ex.: LIVEBG1609">
           <label for="live-date">Data da live · dia/mês</label>
           <input id="live-date" inputmode="numeric" maxlength="5" pattern="[0-9]{2}/[0-9]{2}" required placeholder="DD/MM">
           <p>O cupom aparece somente enquanto a live estiver ativa. A página de agradecimento não exibe cupom.</p>
-          <button class="btn orange" type="submit">Salvar cupom e data</button>
+          <button class="btn orange" type="submit">Salvar edição, cupom e data</button>
           <p id="content-feedback" role="status" aria-live="polite"></p>
         </form>
       </article>

@@ -52,6 +52,8 @@ function render(data) {
 
   const coupon = $('daily-coupon');
   const liveDate = $('live-date');
+  const edition = $('live-edition');
+  if (edition && document.activeElement !== edition) edition.value = data.edition;
   if (coupon && document.activeElement !== coupon) coupon.value = data.coupon || 'LIVEBG1609';
   if (liveDate && document.activeElement !== liveDate) liveDate.value = data.live_date || '16/09';
   for (const [id,key] of [['whatsapp-number','whatsapp_number'],['whatsapp-message','whatsapp_message']]) {
@@ -133,10 +135,11 @@ $('content-form')?.addEventListener('submit', async event => {
   try {
     const data = await api('content', {
       coupon: $('daily-coupon')?.value || '',
+      edition: $('live-edition').valueAsNumber,
       live_date: $('live-date')?.value || ''
     });
     render(data);
-    text('content-feedback', 'Cupom e data publicados na live.');
+    text('content-feedback', 'Edição, cupom e data publicados na live.');
   } catch (error) {
     text('content-feedback', error.message);
   } finally {
