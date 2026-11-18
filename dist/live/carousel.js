@@ -6,7 +6,7 @@
     {id:'nag',label:'Desafio 2',price:2950.0,name:'Nag PRO 6 Cooler 42L com Rodinhas',photo:'desafio-nagpro6-tucurui-20261105.png',url:'https://loja.bufalogrowler.com.br/nagpro6',productImage:'nagpro6-product.png'},
     {id:'outdoor',label:'Desafio 3',photo:'desafio-cimo-utinga-20261105.png',price:null,name:'Kit Cimo Trio de Força AX',url:'https://loja.bufalogrowler.com.br/cutelaria',productImage:'trio-cimo-product.png'},
     {id:'mestre',label:'Desafio 4',photo:'desafio-mestre-copacabana-20261105.png',price:1830.0,name:'Kit Mestre Búfalo Growler On TAP 7L',url:'https://loja.bufalogrowler.com.br/mestrebufaloontap7l',productImage:'mestre-product.png'},
-    {id:'mochila',label:'Desafio 5',price:341,name:'Mochila Marajó Dry 25L · Verde',photo:'desafio-mochila-neblina.webp',scene:'Mochila na trilha da Cachoeira da Neblina, em Presidente Figueiredo',url:'https://loja.bufalogrowler.com.br/mochilas',productImage:'mochila-marajo-verde.webp'}
+    {id:'mochila',label:'Desafio 5',price:341,name:'Mochila Marajó Dry 25L · Verde',photo:'desafio-mochila-neblina.webp?v=paisagem',scene:'Mochila na trilha da Cachoeira da Neblina, em Presidente Figueiredo',url:'https://loja.bufalogrowler.com.br/mochilas',productImage:'mochila-marajo-verde.webp'}
   ];
   root.classList.add('manada-challenge');
   root.innerHTML = '<div class="challenge-tabs" role="tablist" aria-label="Escolha seu desafio">'+challenges.map((c,i)=>'<button type="button" role="tab" id="tab-'+c.id+'" aria-controls="puzzle-'+c.id+'" aria-selected="'+(i===0)+'" tabindex="'+(i===0?0:-1)+'">'+c.label+'</button>').join('')+'</div>'+challenges.map((c,i)=>'<div role="tabpanel" id="puzzle-'+c.id+'" aria-labelledby="tab-'+c.id+'"'+(i?' hidden':'')+'></div>').join('');
