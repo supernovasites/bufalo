@@ -42,3 +42,11 @@
 
 /* The live header stays at the start of the document. */
 body #bg-site-header{position:static;top:auto}
+
+.hero-copy #live-title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  line-height: 1.06;
+  letter-spacing: -.035em;
+  text-wrap: wrap;
+}
