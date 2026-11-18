@@ -153,7 +153,7 @@ async function handle(context) {
     const config=await content(env.LIVE_DB);
     let html=await result.text();
     if(!await manadacashEnabled(env.LIVE_DB)) html=html.replace(/<section\b[^>]*\bid="cadastro-live"[^>]*>[\s\S]*?<\/section>/, '');
-    html=html.replace(/(<span data-live-edition>)\d+(<\/span>)/, (_,open,close)=>open+config.edition+close);
+    html=html.replaceAll('__LIVE_EDITION__', String(config.edition));
     html=html.replaceAll('__LIVE_COUPON__',config.coupon).replaceAll('__LIVE_DATE__',config.live_date).replaceAll('__LIVE_DATE_DOTTED__',config.live_date.replace('/','.'));
     for(const id of challengeIds) {
       const coupon = config.challenge_coupons[id] || config.coupon;
