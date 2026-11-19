@@ -12,6 +12,18 @@
   {text:'O preço está alto?',reason:'produto-caro'}
  ];
  const surveyTrigger=document.querySelector('.negotiation-trigger');
+ const offerButton=document.querySelector('.kundi-offer');
+ const offerQuestion=offerButton?.querySelector('.kundi-offer-question');
+ function openSurvey(reason){
+  surveyTrigger.dataset.reason=reason;
+  surveyTrigger.click();
+ }
+ if(offerButton && offerQuestion && surveyTrigger){
+  offerButton.addEventListener('click',()=>{
+   offerButton.focus({preventScroll:true});
+   openSurvey(offerButton.dataset.reason);
+  });
+ }
  const startedAt=Date.now();
  let stats=null,updated=0,heartbeatTimer,paintTimer,controller,disposed=false,mode='faq';
  function restore(){
@@ -35,11 +47,20 @@
   if(disposed)return;
   if(blocked()){restore();return;}
   const elapsed=(Date.now()-startedAt)/1000;
+  if(offerQuestion && surveyTrigger && document.activeElement!==offerButton){
+   const prompt=surveyPrompts[Math.floor(elapsed/6)%surveyPrompts.length];
+   if(offerButton.dataset.reason!==prompt.reason){
+    offerQuestion.textContent=prompt.text;
+    offerButton.dataset.reason=prompt.reason;
+    offerButton.hidden=false;
+   }
+  }
   const viewerSlot=elapsed>=15&&(elapsed-15)%15<3;
   const surveySlot=elapsed>=63&&(elapsed-63)%10<3;
   const hasCount=stats&&Date.now()-updated<90000&&Number.isSafeInteger(stats.todayVisitors)&&stats.todayVisitors>=0;
   if(surveySlot&&surveyTrigger){
    const prompt=surveyPrompts[Math.floor((elapsed-63)/10)%surveyPrompts.length];
+   shortcut.dataset.reason=prompt.reason;
    const count=hasCount?stats.todayVisitors:0;
    const countBadge=viewerSlot&&hasCount?'<span class="faq-view-count" aria-hidden="true">'+eye+'<span>'+count.toLocaleString('pt-BR')+' hoje</span></span>':'';
    render('survey',original.replace(/<span>[\s\S]*?<\/span>/,'<span>'+prompt.text+'</span>')+countBadge,prompt.text+' Responda à pesquisa sobre sua compra'+(countBadge?' · '+count+' '+(count===1?'pessoa viu':'pessoas viram')+' a chopeira hoje':''));
@@ -55,9 +76,7 @@
  shortcut.addEventListener('click',event=>{
   if(!mode.startsWith('survey')||!surveyTrigger)return;
   event.preventDefault();
-  const prompt=surveyPrompts[Math.floor(((Date.now()-startedAt)/1000-63)/10)%surveyPrompts.length];
-  surveyTrigger.dataset.reason=prompt.reason;
-  surveyTrigger.click();
+  openSurvey(shortcut.dataset.reason);
  });
  document.addEventListener('visibilitychange',()=>{if(document.hidden)restore();else heartbeat();paint();});
  document.addEventListener('click',()=>{queueMicrotask(()=>{if(document.querySelector('dialog[open]'))restore();});},true);

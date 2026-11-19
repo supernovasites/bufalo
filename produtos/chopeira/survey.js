@@ -8,7 +8,16 @@
   const trigger=document.createElement('button');trigger.type='button';trigger.className='negotiation-trigger';trigger.textContent='Abrir pesquisa';trigger.hidden=true;
   document.body.append(dialog,trigger);
   let previousFocus;
-  function open(){if(dialog.open)return;const reason=trigger.dataset.reason;delete trigger.dataset.reason;form.querySelectorAll('input[name="reason"]').forEach(input=>{input.checked=input.value===reason;});previousFocus=document.activeElement;dialog.showModal();}
+  function open(){
+    if(dialog.open)return;
+    const reason=trigger.dataset.reason;
+    delete trigger.dataset.reason;
+    form.querySelectorAll('input[name="reason"]').forEach(input=>{input.checked=input.value===reason;});
+    other.parentElement.hidden=reason!=='outro';
+    other.required=reason==='outro';
+    previousFocus=document.activeElement;
+    dialog.showModal();
+  }
   trigger.addEventListener('click',open);
   dialog.querySelector('.negotiation-close').addEventListener('click',()=>dialog.close());
   dialog.addEventListener('close',()=>previousFocus?.focus());

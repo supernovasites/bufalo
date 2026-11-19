@@ -20,3 +20,30 @@
 .negotiation-trigger{bottom:calc(38px + env(safe-area-inset-bottom,0px));left:12px;padding:11px 15px}
 }
 .negotiation-trigger{min-width:200px}
+.kundi-contact-actions {
+  display: grid;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  gap: 10px;
+}
+.kundi-offer {
+  display: grid;
+  gap: 3px;
+  padding: 12px 20px;
+  border: 1px solid #142e32;
+  border-radius: 14px;
+  background: #fff8ed;
+  color: #142e32;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+}
+.kundi-offer strong { font-size: 1.13rem; }
+.kundi-offer span { font-size: .88rem; }
+.kundi-offer:hover { background: #f5e6ce; }
+.kundi-offer:focus-visible { outline: 3px solid #eb6f32; outline-offset: 3px; }
+.kundi-offer[hidden] { display: none; }
+@media (max-width: 600px) {
+  .kundi-contact-actions { width: 100%; }
+}
