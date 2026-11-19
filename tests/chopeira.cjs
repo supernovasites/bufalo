@@ -72,7 +72,7 @@ assert.equal(crypto.createHash('sha256').update(Buffer.from(originalPhoto, 'base
 assert.match(hero, /id="original-logo-photo"/);
 assert.doesNotMatch(html, /class="model-nav"|class="care wrap"|class="faq wrap"/);
 assert.equal((html.match(/class="variant-rail"/g) || []).length, 3);
-assert.doesNotMatch(html, /id="combo-55"|id="kits-mestre-rail"/);
+assert.match(html, /class="mestre-kit-sale" id="combo-55" data-product-id="400891545"/);
 assert.match(html, /class="mestre-kit-sale" id="combo-7" data-product-id="397365368"/);
 assert.match(html, /Qualidade<br>\s*que se prova/);
 assert.doesNotMatch(html, /id="mestre-gift"|class="gift-reminder"/);
