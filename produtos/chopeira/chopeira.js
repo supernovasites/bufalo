@@ -152,3 +152,18 @@
     });
   }, 2000);
 })();
+
+
+(() => {
+  const rail = document.getElementById('kundi-parts-rail');
+  if (!rail) return;
+  setInterval(() => {
+    if (document.hidden || rail.contains(document.activeElement) || rail.matches(':hover')) return;
+    const rect = rail.getBoundingClientRect();
+    if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
+    const gap = parseFloat(getComputedStyle(rail).columnGap) || 0;
+    const distance = rail.firstElementChild.getBoundingClientRect().width + gap;
+    const atEnd = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
+    rail.scrollTo({left: atEnd ? 0 : rail.scrollLeft + distance, behavior: 'smooth'});
+  }, 1000);
+})();
