@@ -671,3 +671,23 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 }
 
 @media(max-width:760px){#growlers-kundi-rail .product-copy h2 span{display:block}#growlers-kundi-rail .color-swatch{width:44px;padding-inline:1px}#growlers-kundi-rail .color-swatch>span:last-child{white-space:nowrap}}
+
+
+/* Fade the whole artwork layer to avoid fractional-pixel seams at either edge. */
+.mestre-kits {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(to bottom, #fff 0%, #fff 50%, #000 50%, #000 100%);
+}
+.mestre-kits::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(to top, #000 0, #000c 20px, #0005 65px, #0000 140px),
+    linear-gradient(to bottom, #fff 0, #fffffff0 35px, #ffffffb3 130px, #ffffff66 300px, #ffffff55 100%),
+    #edac68 url('images/mestre-artesanal.webp') center / cover no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 12px, #000 80px, #000 calc(100% - 80px), transparent calc(100% - 12px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, transparent 12px, #000 80px, #000 calc(100% - 80px), transparent calc(100% - 12px), transparent 100%);
+}
