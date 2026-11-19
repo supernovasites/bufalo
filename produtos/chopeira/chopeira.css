@@ -659,3 +659,5 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 }
 
 .mestre-kits { padding-bottom: 150px; }
+
+.mestre-card-visual > .mestre-specs { font-size: 11px; line-height: 1.4; text-align: center; margin: 6px 0 10px; color: #52615c; }
