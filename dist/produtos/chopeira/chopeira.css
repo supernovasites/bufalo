@@ -296,72 +296,43 @@ body{background:#f2f5ef}
 @media(min-width:1600px){.editorial-hero .editorial-film video{object-fit:contain}.editorial-film{background:#233c32}}
 @media(max-width:760px){.ontap-hero.editorial-hero{display:block;min-height:0;height:auto;padding-top:0;background:#eeeae0}.editorial-film{position:relative;inset:auto;min-height:0;height:auto;max-height:none;aspect-ratio:9/16}.editorial-film video{object-position:center top;object-fit:cover}.editorial-film:after{background:linear-gradient(180deg,#0002 0%,transparent 18%,transparent 82%,#eeeae0 100%)}.editorial-hero .hero-inner{padding:0 24px 32px;max-width:none;position:relative;margin-top:-24px}.editorial-hero .hero-inner .eyebrow{font-size:8px;letter-spacing:1.3px;margin:0 0 18px}.editorial-hero .hero-inner .editorial-kicker{font-size:18px;margin-bottom:10px}.editorial-hero .hero-inner h1{font-size:clamp(43px,12vw,76px);line-height:1;letter-spacing:-2px;margin-bottom:18px}.editorial-hero .hero-inner h1 br:first-child{display:initial}.editorial-hero .hero-inner h1 span{letter-spacing:-2px}.editorial-hero .hero-inner .editorial-description{font-size:13px;max-width:350px;margin-bottom:21px}.editorial-hero .hero-inner .editorial-note{margin-top:26px;font-size:9px;padding-top:16px}.film-caption{top:20px;left:20px;font-size:8px}}
 
-/* Kit campaign: accessible copy above the existing product cards. */
-.mestre-kit-banner{max-width:1216px;margin:52px auto 0;display:grid;grid-template-columns:1fr 1.15fr;background:#a84729;color:#fff5e5;overflow:hidden;border-radius:6px}
-.mestre-kit-message{padding:48px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:20px}
-.mestre-kit-message .eyebrow{color:inherit;margin:0;letter-spacing:3px;font-size:12px}
-.mestre-kit-message h2{font-size:clamp(36px,4.5vw,64px);line-height:1.04;letter-spacing:-1.5px;margin:0;color:inherit}
-.mestre-kit-message>p:not(.eyebrow){font-size:18px;line-height:1.55;margin:0;max-width:390px}
-.mestre-kit-offer{font-size:12px;letter-spacing:1px;border:1px solid #fff5e580;padding:12px 15px}
-.mestre-kit-message .button{background:#fff5e5;border-color:#fff5e5;color:#77361f}
-.mestre-kit-message .button:hover{background:#f1dfc9;color:#77361f}
-.mestre-kit-banner>img{width:100%;height:100%;min-height:460px;object-fit:cover;object-position:60% center}
-.kit-colors{border-top:1px solid #dde4dc;padding-top:16px;margin:0 0 20px}
-.kit-colors p{font-size:12px;line-height:1.5;margin:0 0 8px}
-.kit-color-options{display:flex;gap:8px;flex-wrap:wrap}
-.kit-color{width:44px;height:44px;display:grid;place-items:center;border:2px solid transparent;border-radius:50%;background:transparent;padding:4px;cursor:pointer}
-.kit-color span{width:28px;height:28px;border:1px solid #142e3240;border-radius:50%;background:linear-gradient(135deg,var(--kit-color) 50%,#171c1c 50%)}
-.kit-color[aria-pressed="true"]{border-color:#142e32}
-.kit-color:focus-visible{outline:3px solid #a84729;outline-offset:3px}
-@media(max-width:1280px){.mestre-kit-banner{margin-left:32px;margin-right:32px}.mestre-kit-message{padding:36px}}
-@media(max-width:760px){.mestre-kit-banner{margin:38px 0 0;border-radius:0;grid-template-columns:1fr}.mestre-kit-message{padding:34px 24px;gap:18px}.mestre-kit-message h2{font-size:42px}.mestre-kit-message>p:not(.eyebrow){font-size:16px}.mestre-kit-banner>img{min-height:0;height:auto;aspect-ratio:3/2;object-fit:contain}.kit-colors p{font-size:10px}.kit-color-options{gap:2px}.kit-colors{padding-top:12px;margin-bottom:16px}}
-
-/* Original photography stays sharp; only the independent garden layer is blurred. */
-.mestre-kit-banner{grid-template-columns:minmax(300px,.85fr) minmax(0,1.3fr)}
-.mestre-kit-message{padding:40px 36px}
-.mestre-kit-scene{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;min-height:500px;background:#faf8f1}
-.mestre-kit-scene:before{content:"";position:absolute;inset:-30px;background:url('images/mestre-garden-background.png') center/cover;filter:blur(16px);opacity:.55;z-index:-2}
-.mestre-kit-scene:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#faf8f133 0%,#faf8f1e8 35%,#faf8f1 75%);z-index:-1}
-.mestre-kit-products{display:grid;grid-template-columns:1.1fr 1fr;align-items:end;width:100%;padding:100px 12px 34px;gap:0}
-.mestre-kit-products figure{margin:0;min-width:0;position:relative;text-align:center}
-.mestre-kit-products img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain;mix-blend-mode:multiply;border:0;border-radius:0;box-shadow:none;filter:none;transform:none}
-.mestre-kit-products figcaption{font-size:12px;line-height:1.5;font-weight:600;color:#142e32;margin:14px 0 0}
-.mestre-bag-label{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);padding:9px 12px;background:#142e32;color:#fff5e5;border-radius:3px;white-space:nowrap;font-size:10px;letter-spacing:.7px;font-weight:700}
-@media(max-width:1000px) and (min-width:761px){.mestre-kit-banner{grid-template-columns:1fr}.mestre-kit-message{padding:38px}.mestre-kit-scene{min-height:0}.mestre-kit-products{padding:70px 30px 30px;max-width:780px;margin:auto}}
-@media(max-width:760px){.mestre-kit-banner{grid-template-columns:1fr}.mestre-kit-message{padding:34px 24px}.mestre-kit-scene{min-height:0}.mestre-kit-products{padding:78px 8px 25px;grid-template-columns:1.05fr 1fr}.mestre-kit-products figcaption{font-size:10px;margin-top:10px}.mestre-bag-label{font-size:8px;padding:8px;bottom:calc(100% + 10px)}}
-
-/* Alternate the official 7L color photos every two seconds. */
-.mestre-kit-products{align-items:start}
-.mestre-kit-products .mestre-kit-slideshow{position:relative;display:block;width:100%;aspect-ratio:1;isolation:isolate;mix-blend-mode:multiply}
-.mestre-kit-products .mestre-kit-slideshow>img{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain;margin:0}
-.mestre-kit-slideshow img:nth-child(2){opacity:0}
-.mestre-kit-slideshow.is-rotating img{animation:mestre-kit-appear 4s infinite}
-.mestre-kit-slideshow.is-rotating img:nth-child(2){animation-delay:-2s}
-
-@keyframes mestre-kit-appear{0%,39%{opacity:1}50%,89%{opacity:0}100%{opacity:1}}
-
-
-
-@media(prefers-reduced-motion:reduce){.mestre-kit-slideshow.is-rotating img{animation:none}}
-
-/* One purchase offer replaces the two kit cards. */
-.mestre-kit-sale{max-width:1216px;margin:0 auto 48px;padding:36px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:36px;align-items:center;background:#edf3eb;color:#142e32;border-radius:0 0 6px 6px;scroll-margin-top:110px}
-.mestre-sale-copy .eyebrow{font-size:10px;letter-spacing:2px;color:#647466;margin:0 0 12px}
-.mestre-sale-copy h2{font-size:clamp(24px,3vw,36px);line-height:1.12;letter-spacing:-.8px;margin:0 0 14px}
-.mestre-sale-copy>p:not(.eyebrow){font-size:15px;line-height:1.6;margin:0 0 14px}
-.mestre-sale-copy .mestre-sale-gifts{padding:14px 16px;background:#dfe9d9;border-radius:5px}
-.mestre-kit-sale .mestre-sale-note{font-size:11px;line-height:1.5;color:#647466;margin:12px 0 0}
-.mestre-sale-buy{min-width:0}
-.mestre-sale-price-label{font-size:13px;margin:0 0 7px}
-.mestre-sale-price{font-size:clamp(30px,4vw,44px);font-weight:700;letter-spacing:-1px;margin:0 0 20px;line-height:1.15}
-.mestre-sale-buy .button{width:100%;text-align:center;justify-content:center;white-space:normal}
-@media(max-width:1280px){.mestre-kit-sale{margin-left:32px;margin-right:32px}}
-@media(max-width:760px){.mestre-kit-sale{grid-template-columns:1fr;margin:0 0 28px;padding:28px 24px;gap:22px;border-radius:0}.mestre-sale-copy>p:not(.eyebrow){font-size:14px}.mestre-sale-price{font-size:36px}.mestre-kit-products{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}}
-
-.mestre-sale-promotion{font-size:12px;line-height:1.5;color:#77361f;margin:0 0 9px}
-.mestre-sale-promotion[hidden]{display:none}
-
-.mestre-kit-sale{display:block;padding:28px 24px}.mestre-sale-buy{max-width:520px;margin:0 auto;text-align:center}.mestre-sale-price-label{font-weight:600;margin-bottom:14px}
+.mestre-kits {
+  width: min(1216px, calc(100% - 40px));
+  margin: clamp(28px, 5vw, 60px) auto;
+  color: var(--ink);
+  scroll-margin-top: 110px;
+}
+.mestre-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 20px; }
+.mestre-heading h2 { font-size: clamp(26px, 3.5vw, 42px); letter-spacing: -.04em; margin: 0 0 5px; }
+.mestre-heading p, .mestre-specs { margin: 0; color: #455a57; line-height: 1.5; }
+.mestre-coupon { border-left: 3px solid #b7582f; padding-left: 14px; }
+.mestre-coupon p { font-size: 14px; margin-bottom: 5px; }
+.mestre-offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.mestre-kit-sale { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: white; scroll-margin-top: 110px; }
+.mestre-photo { width: 100%; height: 100%; max-height: 290px; object-fit: contain; background: #faf9f5; mix-blend-mode: multiply; }
+.mestre-info { min-width: 0; padding: clamp(16px, 2vw, 26px); }
+.mestre-info h3 { font-size: clamp(23px, 2.6vw, 32px); letter-spacing: -.04em; margin: 0; }
+.mestre-specs { font-size: 14px; }
+.mestre-color { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 44px; margin: 8px 0; font-size: 14px; }
+.mestre-color select { font: inherit; color: inherit; max-width: 100%; min-height: 44px; background: white; border: 1px solid #9dada7; border-radius: 5px; padding: 4px 6px; }
+.mestre-color select:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.mestre-info .black20-offer { margin: 0 0 12px; }
+.mestre-info s { color: #596764; font-size: 13px; }
+.mestre-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: 5px; margin: 0; font-size: 13px; line-height: 1.3; }
+.mestre-price strong { font-size: clamp(22px, 2.5vw, 30px); letter-spacing: -.04em; }
+.mestre-info .button { min-height: 44px; padding: 10px 16px; }
+@media (max-width: 980px) {
+  .mestre-kit-sale { grid-template-columns: 1fr; }
+  .mestre-photo { height: 170px; }
+}
+@media (max-width: 640px) {
+  .mestre-kits { width: calc(100% - 28px); }
+  .mestre-heading { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .mestre-offers { grid-template-columns: 1fr; gap: 12px; }
+  .mestre-kit-sale { grid-template-columns: minmax(96px, .75fr) minmax(0, 1.25fr); }
+  .mestre-photo { height: 100%; }
+  .mestre-info { padding: 14px; }
+}
 
 /* Peças e reposição: mesma grade de dois cards das chopeiras, com rolagem lateral. */
 .kundi-parts .kundi-parts-products{
@@ -618,24 +589,3 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 .personalize-copy{max-width:560px}.personalize-copy .eyebrow{color:#e4b98c}.personalize-copy h2{margin:10px 0 14px;font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.02;letter-spacing:-.04em}.personalize-copy h2 span{color:#e4b98c}.personalize-copy>p:last-child{max-width:430px;font-size:clamp(.95rem,1.5vw,1.1rem);line-height:1.5;color:#e0e8e4}.personalize-film{width:100%;max-width:240px;align-self:center;margin-inline:auto;border:1px solid #ffffff26;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 18px 48px #0003}.personalize-film video{display:block;width:100%;height:auto;aspect-ratio:512/910;object-fit:contain;pointer-events:none}
 .personalize-film video::-webkit-media-controls,.personalize-film video::-webkit-media-controls-enclosure,.personalize-film video::-webkit-media-controls-start-playback-button{display:none!important}
 @media(max-width:760px){.personalize-growler{grid-template-columns:1fr;gap:16px;padding:24px}.personalize-copy h2{font-size:clamp(2rem,8vw,2.75rem)}.personalize-copy>p:last-child{margin-bottom:0}.personalize-film{max-width:200px}}
-
-.mestre-kit-banner { scroll-margin-top: 110px; }
-.mestre-kit-products { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.mestre-kit-products .mestre-bag-label { white-space: normal; width: max-content; max-width: 100%; }
-.mestre-offers {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2px;
-  max-width: 1216px;
-  margin: 0 auto 48px;
-}
-.mestre-offers .mestre-kit-sale { margin: 0; border-radius: 0; }
-.mestre-offers .mestre-sale-price-label { font-size: clamp(20px, 2vw, 27px); margin: 0 0 8px; }
-.mestre-sale-details { margin: 0; }
-.mestre-sale-gift { color: #274e3d; font-weight: 700; margin: 10px 0 20px; }
-@media (min-width: 761px) and (max-width: 1280px) {
-  .mestre-offers { margin-inline: 32px; }
-}
-@media (max-width: 760px) {
-  .mestre-offers { grid-template-columns: 1fr; margin-bottom: 28px; }
-}

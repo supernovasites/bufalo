@@ -12,18 +12,20 @@ test('chopeira offers show regular and Black20 prices without weekend overwrite'
   const currency=n=>new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'}).format(n);
   assert.ok(body.includes('<s>'+currency(Number(original))+'</s>'));
   assert.ok(body.includes(currency(Math.round(Number(original)*80)/100)));
-  assert.match(body,/type="button" aria-label="Copiar cupom Black20"/);
+  if (!body.includes('class="mestre-price"')) assert.match(body,/type="button" aria-label="Copiar cupom Black20"/);
  }
  assert.ok(!html.includes('src="kit-price.js'));
  for(const f of ['index.html','black20.js','black20.css'])assert.equal(read('produtos/chopeira/'+f),read('dist/produtos/chopeira/'+f));
 });
-test('Mestre 5.5 L links the correct kit and shows the gift and coupon price',()=>{
+test('Mestre kits share one coupon and show the price inside each product card',()=>{
  const html=read('produtos/chopeira/index.html');
+ const section=html.slice(html.indexOf('id="kits-mestre"'),html.indexOf('<section class="personalize-growler"'));
+ assert.equal((section.match(/class="black20-copy"/g)||[]).length,1);
+ assert.match(section,/bolsa de transporte de brinde/);
+ assert.doesNotMatch(section,/mestre-kit-slideshow/);
  const kit=html.match(/<section class="mestre-kit-sale" id="combo-55"[\s\S]*?<\/section>/)[0];
  assert.match(kit,/data-product-id="400891545"/);
- assert.match(kit,/Ganhe a bolsa de transporte/);
  assert.match(kit,/R\$\s*1\.384,00/);
- assert.match(kit,/Copiar cupom Black20/);
  assert.match(kit,/href="https:\/\/loja\.bufalogrowler\.com\.br\/mestre-bufalo-growler-spritz\?[^"]*" data-product-link="400891545"/);
 });
 test('copies exact coupon and announces success or a failed fallback',async()=>{
@@ -40,7 +42,7 @@ test('2L variants show 1245 regular and 996 with coupon; popup has functional co
  const html=read('produtos/chopeira/index.html');
  assert.equal((html.match(/data-black20-original="1245"/g)||[]).length,6);
  assert.equal((html.match(/R\$\s*996,00/g)||[]).length,6);
- assert.equal((html.match(/class="black20-condition"/g)||[]).length,14);
+ assert.equal((html.match(/class="black20-condition"/g)||[]).length,12);
  assert.match(html,/<dialog class="black20-popup"/);
  assert.match(html,/class="black20-popup-shop bw-cta"/);
  for(const f of ['black20-popup.js','images/black20-popup-weekend-original-20261105.png']){

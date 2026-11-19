@@ -83,36 +83,28 @@
   }, {passive: true});
 })();
 
-/* Keep both real color variations inside each kit card. */
 (() => {
-  document.querySelectorAll('[data-kit-color]').forEach(button => {
-    button.addEventListener('click', () => {
-      const card = button.closest('.ontap-product');
-      const image = card.querySelector('.product-visual img');
-      image.src = button.dataset.image;
-      image.alt = card.querySelector('h2').textContent + ' · ' + button.dataset.colorName;
-      card.querySelector('[data-kit-color-label]').textContent = button.dataset.colorName;
-      card.querySelectorAll('[data-kit-color]').forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+  const currency = new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'});
+  document.querySelectorAll('[data-kit-variant]').forEach(select => {
+    const card = select.closest('.mestre-kit-sale');
+    function showVariant() {
+      const option = select.selectedOptions[0];
+      const photo = card.querySelector('.mestre-photo');
+      photo.src = option.dataset.image;
+      photo.alt = card.querySelector('h3').textContent + ' · ' + option.textContent;
+      const price = Number(option.dataset.price);
+      const offer = card.querySelector('.black20-offer');
+      offer.dataset.black20Original = option.dataset.price;
+      offer.querySelector('s').textContent = currency.format(price);
+      offer.querySelector('.mestre-price strong').textContent = currency.format(price * 0.8);
       const link = card.querySelector('[data-product-link]');
       const url = new URL(link.href);
-      url.searchParams.set('variacao', button.dataset.variantId);
+      url.searchParams.set('sku', option.value);
       link.href = url.href;
-    });
+    }
+    select.addEventListener('change', showVariant);
+    window.addEventListener('pageshow', showVariant);
   });
-})();
-
-(() => {
-  const slideshow = document.querySelector('.mestre-kit-slideshow');
-  if (!slideshow) return;
-  const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let ready = false;
-  function update() {
-    slideshow.classList.toggle('is-rotating', ready && !motion.matches);
-  }
-  // Keep the first photo visible if either image fails to load.
-  Promise.all([...slideshow.querySelectorAll('img')].map(img => img.decode()))
-    .then(() => { ready = true; update(); }).catch(() => {});
-  motion.addEventListener('change', update);
 })();
 
 /* Prévia interativa das cores originais da Bag Tiracolo. A seleção comercial é confirmada na loja. */
