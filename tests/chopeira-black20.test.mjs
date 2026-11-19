@@ -17,10 +17,11 @@ test('chopeira offers show regular and Black20 prices without weekend overwrite'
  assert.ok(!html.includes('src="kit-price.js'));
  for(const f of ['index.html','black20.js','black20.css'])assert.equal(read('produtos/chopeira/'+f),read('dist/produtos/chopeira/'+f));
 });
-test('Mestre kits share one coupon and show the price inside each product card',()=>{
+test('Mestre kits show compact coupons beside each purchase and prices inside the cards',()=>{
  const html=read('produtos/chopeira/index.html');
  const section=html.slice(html.indexOf('id="kits-mestre"'),html.indexOf('<section class="personalize-growler"'));
- assert.equal((section.match(/class="black20-copy"/g)||[]).length,1);
+ assert.equal((section.match(/class="black20-copy"/g)||[]).length,2);
+ assert.doesNotMatch(section,/→/);
  assert.match(section,/bolsa de transporte de brinde/);
  assert.doesNotMatch(section,/mestre-kit-slideshow/);
  const kit=html.match(/<section class="mestre-kit-sale" id="combo-55"[\s\S]*?<\/section>/)[0];
