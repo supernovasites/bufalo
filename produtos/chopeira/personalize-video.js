@@ -21,7 +21,6 @@
   const play = () => {
     if (!visible || document.hidden || starting || !video.paused) return;
     load();
-    video.muted = true;
     starting = true;
     // iOS may defer autoplay until the next real touch or page visibility change.
     Promise.resolve(video.play()).catch(() => {}).finally(() => { starting = false; });
@@ -52,6 +51,18 @@
   } else {
     window.addEventListener('scroll', measure, { passive: true });
     window.addEventListener('resize', measure, { passive: true });
+  }
+
+  const sound = document.getElementById('personalize-sound');
+  if (sound) {
+    sound.hidden = false;
+    video.addEventListener('volumechange', () => {
+      sound.textContent = video.muted ? 'Ativar som' : 'Silenciar';
+    });
+    sound.addEventListener('click', () => {
+      video.muted = !video.muted;
+      if (!video.muted) play();
+    });
   }
 
   ['loadeddata', 'canplay'].forEach(event => video.addEventListener(event, play));

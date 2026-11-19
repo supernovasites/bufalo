@@ -85,25 +85,31 @@
 
 (() => {
   const currency = new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'});
-  document.querySelectorAll('[data-kit-variant]').forEach(select => {
-    const card = select.closest('.mestre-kit-sale');
-    function showVariant() {
-      const option = select.selectedOptions[0];
-      const photo = card.querySelector('.mestre-photo');
-      photo.src = option.dataset.image;
-      photo.alt = card.querySelector('h3').textContent + ' · ' + option.textContent;
-      const price = Number(option.dataset.price);
-      const offer = card.querySelector('.black20-offer');
-      offer.dataset.black20Original = option.dataset.price;
-      offer.querySelector('s').textContent = currency.format(price);
-      offer.querySelector('.mestre-price strong').textContent = currency.format(price * 0.8);
+  document.querySelectorAll('.mestre-colors').forEach(group => {
+    const card = group.closest('.mestre-kit-sale');
+    const photo = card ? card.querySelector('.mestre-photo') : group.parentElement.querySelector('img');
+    const title = card ? card.querySelector('h3').textContent : 'Bolsa de transporte';
+    const options = group.querySelectorAll('.mestre-swatch');
+    options.forEach(button => button.addEventListener('click', () => {
+      const {color, image, sku, price} = button.dataset;
+      photo.src = image;
+      photo.alt = title + ' · ' + color;
+      group.querySelector('[data-color-label]').textContent = color;
+      options.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
+      if (!card) return;
       const link = card.querySelector('[data-product-link]');
+      const offer = card.querySelector('.black20-offer');
+      const notice = card.querySelector('.mestre-unavailable');
+      if (notice) notice.hidden = Boolean(sku);
+      link.hidden = offer.hidden = !sku;
+      if (!sku) return;
+      offer.dataset.black20Original = price;
+      offer.querySelector('s').textContent = currency.format(Number(price));
+      offer.querySelector('.mestre-price strong').textContent = currency.format(Number(price) * 0.8);
       const url = new URL(link.href);
-      url.searchParams.set('sku', option.value);
+      url.searchParams.set('sku', sku);
       link.href = url.href;
-    }
-    select.addEventListener('change', showVariant);
-    window.addEventListener('pageshow', showVariant);
+    }));
   });
 })();
 
