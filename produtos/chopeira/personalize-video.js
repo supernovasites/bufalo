@@ -10,6 +10,7 @@
   video.playsInline = true;
   video.controls = false;
   video.autoplay = false;
+  video.loop = false;
 
   const load = () => {
     if (loaded) return;
@@ -69,6 +70,12 @@
   }
 
   ['loadeddata', 'canplay'].forEach(event => video.addEventListener(event, play));
+  video.addEventListener('ended', () => {
+    video.muted = true;
+    video.pause();
+    video.currentTime = 0;
+    play();
+  });
   video.addEventListener('play', () => { if (!visible || document.hidden) video.pause(); });
   document.addEventListener('visibilitychange', sync);
   window.addEventListener('pageshow', measure);

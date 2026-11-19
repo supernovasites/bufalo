@@ -641,12 +641,13 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
   margin: 0;
   padding: clamp(24px, 4vw, 52px) max(14px, calc((100% - 1216px) / 2));
   border-radius: 0;
+  background-image: linear-gradient(to top, #000 0, #000c 20px, #0005 65px, #0000 140px), linear-gradient(to bottom, #fff 0, #fffffff0 35px, #ffffffb3 130px, #ffffff66 300px, #ffffff55 100%), url('images/mestre-artesanal.webp');
   background-size: cover;
   background-position: center;
 }
 .mestre-heading {
   padding: clamp(18px, 3vw, 32px);
-  background: linear-gradient(90deg, #fff4dedb 0%, #fff4decc 65%, #fff4de44 100%);
+  background: transparent;
 }
 .mestre-heading h2 { color: #422810; text-shadow: none; }
 .mestre-heading p { color: #3d2918; }
@@ -656,3 +657,5 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 @media (max-width: 640px) {
   .mestre-kits { width: 100%; }
 }
+
+.mestre-kits { padding-bottom: 150px; }
