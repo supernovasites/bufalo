@@ -132,3 +132,23 @@
     options.forEach(option => option.setAttribute('aria-pressed', String(option === button)));
   }));
 })();
+
+
+/* Alternate both gift previews together, keeping the kit selection independent. */
+(() => {
+  const images = document.querySelectorAll('.mestre-gift-photo');
+  if (!images.length) return;
+  const colors = [
+    {src: 'images/404585328.webp', name: 'creme'},
+    {src: 'images/bag-gift-3.webp', name: 'preta'}
+  ];
+  let index = 0;
+  setInterval(() => {
+    if (document.hidden) return;
+    index = (index + 1) % colors.length;
+    images.forEach(image => {
+      image.src = colors[index].src;
+      image.alt = 'Bolsa de transporte de brinde · ' + colors[index].name;
+    });
+  }, 2000);
+})();
