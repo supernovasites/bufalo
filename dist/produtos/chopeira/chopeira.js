@@ -86,8 +86,9 @@
 (() => {
   const currency = new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'});
   document.querySelectorAll('.mestre-colors').forEach(group => {
-    const card = group.closest('.mestre-kit-sale');
-    const photo = card ? card.querySelector('.mestre-photo') : group.parentElement.querySelector('img');
+    const gift = group.closest('.mestre-gift-preview');
+    const card = gift ? null : group.closest('.mestre-kit-sale');
+    const photo = gift ? gift.querySelector('img') : card.querySelector('.mestre-photo');
     const title = card ? card.querySelector('h3').textContent : 'Bolsa de transporte';
     const options = group.querySelectorAll('.mestre-swatch');
     options.forEach(button => button.addEventListener('click', () => {

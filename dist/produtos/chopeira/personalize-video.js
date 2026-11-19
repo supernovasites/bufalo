@@ -57,7 +57,10 @@
   if (sound) {
     sound.hidden = false;
     video.addEventListener('volumechange', () => {
-      sound.textContent = video.muted ? 'Ativar som' : 'Silenciar';
+      const label = video.muted ? 'Ativar som' : 'Silenciar';
+      sound.setAttribute('aria-label', label);
+      sound.title = label;
+      sound.setAttribute('aria-pressed', String(!video.muted));
     });
     sound.addEventListener('click', () => {
       video.muted = !video.muted;

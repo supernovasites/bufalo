@@ -22,7 +22,8 @@ test('Mestre kits show compact coupons beside each purchase and prices inside th
  const section=html.slice(html.indexOf('id="kits-mestre"'),html.indexOf('<section class="personalize-growler"'));
  assert.equal((section.match(/class="black20-copy"/g)||[]).length,2);
  assert.doesNotMatch(section,/→/);
- assert.match(section,/bolsa de transporte de brinde/);
+ assert.match(section,/ganhe a bolsa de transporte/);
+ assert.equal((section.match(/class="mestre-gift-tag"/g)||[]).length,2);
  assert.doesNotMatch(section,/mestre-kit-slideshow/);
  const kit=html.match(/<section class="mestre-kit-sale" id="combo-55"[\s\S]*?<\/section>/)[0];
  assert.match(kit,/data-product-id="400891545"/);

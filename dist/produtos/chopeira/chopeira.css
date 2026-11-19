@@ -299,13 +299,13 @@ body{background:#f2f5ef}
 .mestre-kits {
   width: min(1216px, calc(100% - 40px));
   margin: clamp(28px, 5vw, 60px) auto;
-  background: #f49a57;
+  background: #edac68 url('images/mestre-artesanal.webp') center top / 100% 100% no-repeat;
   padding: clamp(14px, 2.5vw, 30px);
   border-radius: 12px;
   color: var(--ink);
   scroll-margin-top: 110px;
 }
-.mestre-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 24px; padding: clamp(20px, 3vw, 32px); margin-bottom: 18px; border-radius: 10px; background: white; }
+.mestre-heading { display: grid; grid-template-columns: 1fr; align-items: center; gap: 24px; padding: clamp(20px, 3vw, 32px); margin-bottom: 18px; border-radius: 10px; background: transparent; }
 .mestre-heading h2 { font-size: clamp(26px, 3.5vw, 42px); letter-spacing: -.04em; margin: 0 0 12px; }
 .mestre-heading p, .mestre-specs { margin: 0; color: #253c3a; line-height: 1.5; }
 .mestre-coupon { margin: 0 0 10px; }
@@ -315,7 +315,7 @@ body{background:#f2f5ef}
 .mestre-kits .black20-status { font-size: 11px; }
 .mestre-coupon p { font-size: 14px; margin-bottom: 5px; }
 .mestre-offers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.mestre-kit-sale { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; overflow: hidden; border: 1px solid #ffffff; border-radius: 10px; background: white; scroll-margin-top: 110px; }
+.mestre-kit-sale { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); align-items: center; overflow: hidden; border: 1px solid #fff8; border-radius: 10px; background: #fffffff5; scroll-margin-top: 110px; }
 .mestre-photo { width: 100%; height: 100%; max-height: 290px; object-fit: contain; background: white; mix-blend-mode: normal; }
 .mestre-info { min-width: 0; padding: clamp(16px, 2vw, 26px); }
 .mestre-info h3 { font-size: clamp(23px, 2.6vw, 32px); letter-spacing: -.04em; margin: 0; }
@@ -328,8 +328,13 @@ body{background:#f2f5ef}
 .mestre-swatch[aria-pressed="true"] span { outline: 2px solid var(--ink); outline-offset: 3px; }
 .mestre-swatch:focus-visible { outline: 2px solid var(--ink); outline-offset: -2px; border-radius: 6px; }
 .mestre-heading .mestre-gift-message { font-size: clamp(16px, 1.7vw, 19px); max-width: 38ch; margin-bottom: 8px; }
-.mestre-gift-preview { display: flex; align-items: center; gap: 12px; padding-left: 24px; border-left: 1px solid #e8e2db; }
-.mestre-gift-photo { width: 100px; height: 100px; object-fit: contain; mix-blend-mode: multiply; }
+.mestre-card-visual { padding: 12px; min-width: 0; }
+.mestre-gift-preview { display: grid; grid-template-columns: 62px 1fr; align-items: center; gap: 2px 8px; padding: 8px 0 0; border-top: 1px solid #eee2d5; margin-top: 6px; }
+.mestre-gift-tag { grid-column: 1 / -1; justify-self: start; font-size: 9px; font-weight: 700; letter-spacing: 1px; color: #87461f; padding: 3px 6px; border-radius: 3px; background: #fae6d0; }
+.mestre-gift-preview .mestre-colors { font-size: 11px; }
+.mestre-gift-preview .mestre-swatch { width: 36px; height: 36px; }
+.mestre-gift-preview .mestre-swatch span { width: 20px; height: 20px; }
+.mestre-gift-photo { width: 62px; height: 74px; object-fit: contain; mix-blend-mode: multiply; }
 .mestre-kit-sale [hidden] { display: none; }
 .mestre-unavailable { font-size: 14px; font-weight: 600; }
 .mestre-info .black20-offer { margin: 4px 0 8px; }
@@ -345,7 +350,7 @@ body{background:#f2f5ef}
   .mestre-kits { width: calc(100% - 28px); }
   .mestre-heading { grid-template-columns: 1fr; gap: 14px; }
   .mestre-gift-preview { padding: 12px 0 0; border-left: 0; border-top: 1px solid #e8e2db; }
-  .mestre-gift-photo { width: 82px; height: 82px; }
+
   .mestre-offers { grid-template-columns: 1fr; gap: 12px; }
   .mestre-kit-sale { grid-template-columns: minmax(96px, .75fr) minmax(0, 1.25fr); }
   .mestre-photo { height: 100%; }
@@ -609,5 +614,22 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 @media(max-width:760px){.personalize-growler{grid-template-columns:1fr;gap:16px;padding:24px}.personalize-copy h2{font-size:clamp(2rem,8vw,2.75rem)}.personalize-copy>p:last-child{margin-bottom:0}.personalize-film{max-width:200px}}
 
 .personalize-film { position: relative; }
-#personalize-sound { position: absolute; bottom: 10px; right: 10px; min-height: 44px; padding: 8px 14px; border: 1px solid #ffffff80; border-radius: 22px; background: #142e32eb; color: white; font: 600 13px/1.2 Arial,sans-serif; }
+#personalize-sound { position: absolute; top: 8px; right: 8px; width: 36px; height: 36px; padding: 8px; display: grid; place-items: center; border: 1px solid #ffffff80; border-radius: 22px; background: #142e32eb; color: white; font: 600 13px/1.2 Arial,sans-serif; }
 #personalize-sound:focus-visible { outline: 2px solid white; outline-offset: 2px; }
+
+#personalize-sound[hidden] { display: none; }
+#personalize-sound svg { width: 18px; height: 18px; }
+#personalize-sound .sound-active { display: none; }
+#personalize-sound[aria-pressed="true"] .sound-active { display: block; }
+#personalize-sound[aria-pressed="true"] .sound-muted { display: none; }
+.mestre-heading h2 { color: #293a2e; text-shadow: 0 1px 8px #fff8; }
+.mestre-heading p { max-width: 36ch; color: #343d2e; }
+.mestre-card-visual > .mestre-photo { height: 180px; }
+@media (max-width: 640px) {
+  .mestre-card-visual { padding: 8px; }
+  .mestre-card-visual > .mestre-photo { height: 150px; }
+  .mestre-gift-preview { grid-template-columns: 1fr; justify-items: center; }
+  .mestre-gift-tag { justify-self: center; }
+  .mestre-gift-preview .mestre-colors { text-align: center; }
+  .mestre-gift-preview .mestre-swatches { justify-content: center; }
+}
