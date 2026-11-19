@@ -165,5 +165,5 @@
     const distance = rail.firstElementChild.getBoundingClientRect().width + gap;
     const atEnd = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
     rail.scrollTo({left: atEnd ? 0 : rail.scrollLeft + distance, behavior: 'smooth'});
-  }, 1000);
+  }, 3000);
 })();
