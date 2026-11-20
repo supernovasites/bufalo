@@ -56,10 +56,10 @@
    }
   }
   const viewerSlot=elapsed>=15&&(elapsed-15)%15<3;
-  const surveySlot=elapsed>=63&&(elapsed-63)%10<3;
+  const surveySlot=elapsed>=120&&(elapsed-120)%10<3;
   const hasCount=stats&&Date.now()-updated<90000&&Number.isSafeInteger(stats.todayVisitors)&&stats.todayVisitors>=0;
   if(surveySlot&&surveyTrigger){
-   const prompt=surveyPrompts[Math.floor((elapsed-63)/10)%surveyPrompts.length];
+   const prompt=surveyPrompts[Math.floor((elapsed-120)/10)%surveyPrompts.length];
    shortcut.dataset.reason=prompt.reason;
    const count=hasCount?stats.todayVisitors:0;
    const countBadge=viewerSlot&&hasCount?'<span class="faq-view-count" aria-hidden="true">'+eye+'<span>'+count.toLocaleString('pt-BR')+' hoje</span></span>':'';
