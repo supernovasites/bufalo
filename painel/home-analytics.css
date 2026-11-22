@@ -52,3 +52,9 @@
 .home-metrics .survey-badge{display:inline-block;padding:4px 9px;border-radius:12px;background:#f7ecd1;color:#70551b;font-weight:700}
 .home-metrics .survey-badge.responded{background:#dcefe1;color:#245d35}
 .home-metrics .survey-feedback{max-width:320px;margin:8px 0;font-size:13px}
+
+.home-metrics .faq-clicks-panel{margin-top:24px;padding:20px;background:#f3f4f2;border:1px solid #e4e7e3;border-radius:5px}
+.home-metrics .faq-click-total{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0 18px;padding:12px 14px;background:#fff;border:1px solid #e4e7e3;border-radius:5px;color:#617273;font-size:13px;font-weight:700}
+.home-metrics .faq-click-total strong{color:#142e32;font-size:24px;font-variant-numeric:tabular-nums}
+.home-metrics #faq-click-topics .metric-bar-row{grid-template-columns:minmax(0,1fr) auto}
+@media(max-width:740px){.home-metrics .faq-clicks-panel{padding:14px}}
