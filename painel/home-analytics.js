@@ -65,6 +65,36 @@
       root.append(day);
     });
   }
+  function drawFaqTopics(data) {
+    const panel = $('faq-clicks-panel');
+    panel.hidden = data.page !== '/produtos/chopeira/';
+    if (panel.hidden) return;
+    const totals = new Map();
+    (data.elements || []).filter(item => item.section === 'tirar-duvidas').forEach(item => {
+      const key = item.element || item.label;
+      if (!key) return;
+      const row = totals.get(key) || {label:item.label || item.element, clicks:0};
+      row.clicks += Number(item.clicks || 0);
+      totals.set(key,row);
+    });
+    const topics = [...totals.values()].sort((a,b)=>b.clicks-a.clicks || a.label.localeCompare(b.label,'pt-BR'));
+    $('faq-click-total').textContent = number(topics.reduce((sum,item)=>sum+item.clicks,0));
+    const list = $('faq-click-topics');
+    list.replaceChildren();
+    if (!topics.length) {
+      list.append(make('p','','Nenhum tópico aberto neste período. A contagem começa nesta atualização.'));
+      return;
+    }
+    const max = Math.max(1,...topics.map(item=>item.clicks));
+    topics.forEach(item => {
+      const row = make('div','metric-bar-row');
+      row.append(make('span','',item.label),make('strong','',number(item.clicks)));
+      const track = make('div','metric-bar-track');
+      const fill = make('div','metric-bar-fill');
+      fill.style.width = (100 * item.clicks / max).toFixed(1) + '%';
+      track.append(fill); row.append(track); list.append(row);
+    });
+  }
   function updateElements() {
     const data = currentData;
     if (!data) return;
@@ -127,6 +157,7 @@
       product.append(list);
     } else product.append(make('p','','Nenhum clique em produto registrado nesta seleção.'));
     bars(data.sections,$('click-sections').id);
+    drawFaqTopics(data);
     drawDaily(data.daily);
     const control = $('click-section');
     const previous = control.value;
