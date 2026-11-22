@@ -2,6 +2,26 @@
 (() => {
   'use strict';
   const questions = [...document.querySelectorAll('.kundi-faq-list details[data-faq]')];
+  function trackFaqClick(question) {
+    const topic = question.dataset.faq;
+    const device = matchMedia('(max-width: 600px)').matches ? 'mobile' :
+      matchMedia('(max-width: 1024px)').matches ? 'tablet' : 'desktop';
+    const label = question.querySelector('summary')?.textContent.trim() || topic;
+    fetch('/api/home-analytics', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      keepalive: true,
+      body: JSON.stringify({
+        kind:'click',
+        page:'/produtos/chopeira/',
+        device,
+        section:'tirar-duvidas',
+        key:'faq-' + topic,
+        label,
+        target:''
+      })
+    }).catch(() => {});
+  }
   questions.forEach(question => {
     const video = question.querySelector('.faq-video');
     if (!video) return;
@@ -10,6 +30,7 @@
         video.pause();
         return;
       }
+      trackFaqClick(question);
       questions.forEach(other => {
         if (other !== question && other.open) {
           other.open = false;
