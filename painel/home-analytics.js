@@ -65,6 +65,20 @@
       root.append(day);
     });
   }
+  const faqTopicLabels = [
+    ['faq-personalizacao','Como personalizar?'],
+    ['faq-apresentacao','Conheça a linha de chopeiras Búfalo'],
+    ['faq-capsula-litros','Quantos litros uma cápsula de CO₂ consegue servir?'],
+    ['faq-capsula-preco','Quanto custa a cápsula? Ela é reutilizável?'],
+    ['faq-growler-termico','Posso usar o growler como garrafão térmico?'],
+    ['faq-tempo-termico','Por quanto tempo a cerveja fica gelada?'],
+    ['faq-mestre-7l','Como funciona o kit Mestre Cervejeiro de 7 L?'],
+    ['faq-mestre-55l','Como funciona o kit Mestre de 5,5 L?'],
+    ['faq-growler-avulso','Posso comprar growlers separadamente?'],
+    ['faq-garantia','A chopeira Búfalo tem garantia?'],
+    ['faq-pos-venda','Como funciona o suporte e o pós-venda?'],
+    ['faq-atendimento','Ainda tenho dúvidas. Como falar com a equipe?']
+  ];
   function drawFaqTopics(data) {
     const panel = $('faq-clicks-panel');
     panel.hidden = data.page !== '/produtos/chopeira/';
@@ -77,14 +91,20 @@
       row.clicks += Number(item.clicks || 0);
       totals.set(key,row);
     });
-    const topics = [...totals.values()].sort((a,b)=>b.clicks-a.clicks || a.label.localeCompare(b.label,'pt-BR'));
+    const knownKeys = new Set(faqTopicLabels.map(([key]) => key));
+    const topics = faqTopicLabels.map(([key,label]) => {
+      const tracked = totals.get(key);
+      return {label:tracked?.label || label,clicks:tracked?.clicks || 0};
+    });
+    const additional = [...totals.entries()]
+      .filter(([key]) => !knownKeys.has(key))
+      .map(([,item]) => item)
+      .sort((a,b)=>b.clicks-a.clicks || a.label.localeCompare(b.label,'pt-BR'));
+    topics.push(...additional);
+    topics.sort((a,b)=>b.clicks-a.clicks || faqTopicLabels.findIndex(([,label])=>label===a.label)-faqTopicLabels.findIndex(([,label])=>label===b.label) || a.label.localeCompare(b.label,'pt-BR'));
     $('faq-click-total').textContent = number(topics.reduce((sum,item)=>sum+item.clicks,0));
     const list = $('faq-click-topics');
     list.replaceChildren();
-    if (!topics.length) {
-      list.append(make('p','','Nenhum tópico aberto neste período. A contagem começa nesta atualização.'));
-      return;
-    }
     const max = Math.max(1,...topics.map(item=>item.clicks));
     topics.forEach(item => {
       const row = make('div','metric-bar-row');
