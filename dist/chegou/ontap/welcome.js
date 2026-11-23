@@ -53,4 +53,4 @@
   });
 })();
 
-document.getElementById('welcome-video').addEventListener('play',function(){document.querySelectorAll('video').forEach(video=>{if(video!==this)video.pause()})});document.addEventListener('visibilitychange',()=>{if(document.hidden)document.getElementById('welcome-video').pause()});
+const welcomeVideo=document.getElementById('welcome-video');if(welcomeVideo){welcomeVideo.muted=false;welcomeVideo.defaultMuted=false;welcomeVideo.volume=1;welcomeVideo.play().catch(()=>{});welcomeVideo.addEventListener('play',function(){document.querySelectorAll('video').forEach(video=>{if(video!==this)video.pause()})})}document.addEventListener('visibilitychange',()=>{if(document.hidden)welcomeVideo?.pause()});
