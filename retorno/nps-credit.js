@@ -14,7 +14,11 @@ async function load(){
  try{
   const data=await api('nps?'+params);if(current!==requestId)return;
   $('nps-counts').replaceChildren();
-  for(const [label,n] of [['Avaliações',data.summary.total],['Crédito pendente',data.summary.pending],['Creditadas',data.summary.credited]]){const p=make('p',label);p.append(make('strong',String(n)));$('nps-counts').append(p);}
+  for(const [label,n,value] of [['Avaliações',data.summary.total,'all'],['Crédito pendente',data.summary.pending,'pending'],['Creditadas',data.summary.credited,'credited']]){
+   const button=make('button',label);button.type='button';button.className='nps-count-filter';button.dataset.status=value;button.setAttribute('aria-pressed',String($('nps-status').value===value));button.setAttribute('aria-controls','nps-clients');button.append(make('strong',String(n)));
+   button.addEventListener('click',async()=>{$('nps-status').value=value;offset=0;await load();$('nps-counts').querySelector('[data-status="'+value+'"]')?.focus({preventScroll:true});});
+   $('nps-counts').append(button);
+  }
   for(const item of data.rows){
    const card=make('article');card.className='nps-client';
    const top=make('div');top.className='nps-client-top';const title=make('div');title.append(make('h2',item.name),make('span',date(item.created_at)+' · Chopeira · Nota '+item.score+'/10'));
