@@ -66,6 +66,9 @@ function playWelcomeWithAudio(){
 if(welcomeVideo){
   playWelcomeWithAudio();
   welcomeVideo.addEventListener('canplay',playWelcomeWithAudio,{once:true});
+  const activateWelcomeAudioOnScroll=()=>playWelcomeWithAudio();
+  window.addEventListener('scroll',activateWelcomeAudioOnScroll,{once:true,passive:true});
+  window.addEventListener('touchmove',activateWelcomeAudioOnScroll,{once:true,passive:true});
   welcomePlay?.addEventListener('click',playWelcomeWithAudio);
   welcomeVideo.addEventListener('play',function(){
     if(welcomePlay)welcomePlay.hidden=true;
