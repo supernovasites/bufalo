@@ -691,3 +691,29 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
   -webkit-mask-image: linear-gradient(to bottom, transparent 0, transparent 12px, #000 80px, #000 calc(100% - 80px), transparent calc(100% - 12px), transparent 100%);
   mask-image: linear-gradient(to bottom, transparent 0, transparent 12px, #000 80px, #000 calc(100% - 80px), transparent calc(100% - 12px), transparent 100%);
 }
+
+/* Customer reviews */
+.product-rating-link{display:flex;align-items:center;gap:12px;margin:0 0 12px}
+.product-rating-stars{color:#bd8741;font-size:19px;letter-spacing:2px;line-height:1}
+.product-rating-link a{font-size:13px;font-weight:700;color:#27534c;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.product-rating-link a:hover{color:#a86d2b}
+.customer-reviews{position:relative;isolation:isolate;overflow:hidden;padding:clamp(72px,9vw,120px) 24px;background:#0b1a17 url('images/chopeira-review-award.jpg') center/cover no-repeat;color:#fff}
+.customer-reviews:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,17,15,.92),rgba(6,22,18,.73) 52%,rgba(6,20,17,.88))}
+.reviews-inner{max-width:1320px;margin:auto}
+.reviews-heading{max-width:760px;margin:0 auto 38px;text-align:center}
+.reviews-heading .eyebrow{color:#e4bf7a}
+.reviews-heading h2{font-size:clamp(30px,4vw,52px);letter-spacing:-1.5px;line-height:1.08;margin:12px 0 16px}
+.reviews-heading>p:last-child{font-size:16px;line-height:1.6;color:#e2e9e4}
+.review-rail{display:flex;gap:18px;overflow-x:auto;padding:4px 2px 20px;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;scrollbar-color:#b38a4a rgba(255,255,255,.17);scrollbar-width:thin}
+.review-card{flex:0 0 min(340px,84vw);overflow:hidden;scroll-snap-align:start;border:1px solid rgba(255,255,255,.22);border-radius:12px;background:#f8f8f4;color:#142e32;box-shadow:0 14px 36px rgba(0,0,0,.23)}
+.review-card-photo{display:block;width:100%;height:210px;object-fit:cover;background:#e5e9e2}
+.review-card-copy{padding:20px 22px 24px}
+.review-card-stars{display:inline-block;position:relative;white-space:nowrap;color:#c7c9c3;font-size:21px;letter-spacing:2px;line-height:1}
+.review-card-stars:before{content:"★★★★★";position:absolute;inset:0 auto 0 0;width:var(--rating);overflow:hidden;color:#b27d31;white-space:nowrap}
+.review-card-name{font-size:17px;font-weight:700;margin:13px 0 9px}
+.review-card-text{font-size:15px;line-height:1.55;color:#415654;margin:0;overflow-wrap:anywhere}
+.reviews-loading,.reviews-empty,.reviews-error{flex:0 0 100%;margin:0;padding:24px;text-align:center;color:#f2f4ef}
+.reviews-cta{text-align:center;margin:22px 0 0}
+.reviews-cta a{display:inline-flex;padding:13px 18px;border:1px solid rgba(255,255,255,.65);border-radius:2px;color:#fff;font-size:14px;font-weight:700}
+.reviews-cta a:hover{background:#fff;color:#142e32}
+@media(max-width:760px){.customer-reviews{padding-inline:18px}.reviews-heading{margin-bottom:26px}.review-rail{gap:12px;margin-inline:-4px}.review-card{flex-basis:min(310px,86vw)}.review-card-photo{height:185px}.review-card-copy{padding:18px}.reviews-cta{margin-top:14px}}
