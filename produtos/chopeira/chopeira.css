@@ -747,3 +747,9 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 .review-card-copy{padding:0 14px 14px}
 .review-card-text{margin:0}
 @media(max-width:760px){.customer-reviews{padding-block:28px}.reviews-heading{margin-bottom:14px}.review-card-name{font-size:14px;padding:10px 10px 8px}.review-card-stars{margin:8px 10px 6px}.review-card-copy{padding:0 10px 10px}}
+
+
+/* Stronger section title and centered review ratings — 2026-11-24 */
+.reviews-heading .eyebrow{font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:.16em;margin:0}
+.review-card-stars{font-size:28px;letter-spacing:2px;margin:12px auto 10px}
+@media(max-width:760px){.reviews-heading .eyebrow{font-size:20px}.review-card-stars{font-size:22px;letter-spacing:1px;margin:10px auto 8px}}
