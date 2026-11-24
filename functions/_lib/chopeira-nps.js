@@ -3,7 +3,9 @@ import {analyticsRange,belemDay} from './home-analytics.js';
 import {identity,sha} from './team-auth.js';
 const headers={'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Robots-Tag':'noindex'};
 const json=(data,status=200)=>Response.json(data,{status,headers});
+export const PUBLICATION_CONSENT="Autorizo a Búfalo a utilizar e divulgar minha avaliação para que outros compradores possam conhecer minha experiência e considerá-la em suas decisões de compra. Autorizo também o registro dos meus dados e da foto enviada para análise da minha experiência e contato sobre esta resposta. Meu e-mail e telefone não serão divulgados.";
 export const schema=[
+"CREATE TABLE IF NOT EXISTS chopeira_nps_consents (id TEXT PRIMARY KEY,version TEXT NOT NULL,text TEXT NOT NULL,accepted_at TEXT NOT NULL)",
 "CREATE TABLE IF NOT EXISTS chopeira_nps (id TEXT PRIMARY KEY,name TEXT NOT NULL,email TEXT NOT NULL,phone TEXT NOT NULL,score INTEGER NOT NULL CHECK(score BETWEEN 0 AND 10),review TEXT NOT NULL,device TEXT NOT NULL,day TEXT NOT NULL,created_at TEXT NOT NULL,source_hash TEXT NOT NULL,has_photo INTEGER NOT NULL DEFAULT 0)",
 "CREATE INDEX IF NOT EXISTS chopeira_nps_day ON chopeira_nps(day,device)",
 "CREATE TABLE IF NOT EXISTS chopeira_nps_photos (id TEXT PRIMARY KEY,content_type TEXT NOT NULL,data BLOB NOT NULL)"
@@ -15,7 +17,7 @@ export function validateNps(data){
  const name=clean(data.name,100),email=clean(data.email,254),review=clean(data.review,3000);
  const phone=typeof data.phone==='string'?data.phone.replace(/[\s()+.-]/g,''):'';
  if(!name||name.length<2||!email||!/^\S+@[^\s@]+\.[^\s@]+$/.test(email)||!review||!/^(?:55)?[1-9]{2}[0-9]{8,9}$/.test(phone))return null;
- if(!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(data.id)||!Number.isInteger(data.score)||data.score<0||data.score>10||!['mobile','tablet','desktop'].includes(data.device)||data.consent!==true||data.website)return null;
+ if(!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(data.id)||!Number.isInteger(data.score)||data.score<0||data.score>10||!['mobile','tablet','desktop'].includes(data.device)||data.consent!==true||data.consentVersion!=='review-publication-20261124'||data.website)return null;
  return {id:data.id,name,email:email.toLowerCase(),phone:phone.length<=11?'55'+phone:phone,score:data.score,review,device:data.device};
 }
 export function photoType(b){
@@ -43,6 +45,7 @@ export async function submitNps({request,env}){
   const recent=await db.prepare('SELECT COUNT(*) AS total FROM chopeira_nps WHERE source_hash=? AND created_at>=?').bind(source,new Date(Date.now()-3600000).toISOString()).first();
   if(Number(recent.total)>=10)return json({error:'Muitos envios. Tente novamente mais tarde.'},429);
   const queries=[db.prepare('INSERT INTO chopeira_nps (id,name,email,phone,score,review,device,day,created_at,source_hash,has_photo) VALUES (?,?,?,?,?,?,?,?,?,?,?)').bind(data.id,data.name,data.email,data.phone,data.score,data.review,data.device,belemDay(),new Date().toISOString(),source,photo?1:0)];
+  queries.push(db.prepare('INSERT INTO chopeira_nps_consents (id,version,text,accepted_at) VALUES (?,?,?,?)').bind(data.id,'review-publication-20261124',PUBLICATION_CONSENT,new Date().toISOString()));
   if(photo)queries.push(db.prepare('INSERT INTO chopeira_nps_photos (id,content_type,data) VALUES (?,?,?)').bind(data.id,type,photo));
   await db.batch(queries);
   return json({ok:true},201);
@@ -66,6 +69,6 @@ export async function adminNps({request,env}){
  const total=distribution.reduce((n,r)=>n+Number(r.total),0);
  const count=(min,max)=>distribution.filter(r=>r.score>=min&&r.score<=max).reduce((n,r)=>n+Number(r.total),0);
  const promoters=count(9,10),passives=count(7,8),detractors=count(0,6);
- const rows=(await db.prepare('SELECT id,name,email,phone,score,review,device,created_at,has_photo FROM chopeira_nps WHERE '+where+' ORDER BY created_at DESC,id DESC LIMIT 50 OFFSET ?').bind(...args,offset).all()).results||[];
+ const rows=(await db.prepare('SELECT id,name,email,phone,score,review,device,created_at,has_photo,EXISTS(SELECT 1 FROM chopeira_nps_consents c WHERE c.id=chopeira_nps.id) AS publication_authorized FROM chopeira_nps WHERE '+where+' ORDER BY created_at DESC,id DESC LIMIT 50 OFFSET ?').bind(...args,offset).all()).results||[];
  return json({total,promoters,passives,detractors,nps:total?Math.round((promoters-detractors)*100/total):null,distribution,rows,offset,limit:50});
 }

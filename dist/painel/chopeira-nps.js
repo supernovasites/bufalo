@@ -25,6 +25,7 @@ async function load(){
    const tr=make('tr'),contact=make('td'),email=make('a',item.email),phone=make('a','+'+item.phone);
    email.href='mailto:'+item.email;phone.href='https://wa.me/'+item.phone;phone.target='_blank';phone.rel='noopener noreferrer';contact.append(email,make('br'),phone);
    const review=make('td',item.review);review.style.whiteSpace='pre-wrap';review.style.minWidth='220px';review.style.overflowWrap='anywhere';
+   review.append(make('br'),make('small',item.publication_authorized?'Divulgação da avaliação autorizada.':'Sem autorização de divulgação registrada.'));
    const photo=make('td');
    if(item.has_photo){const link=make('a'),img=make('img');link.href='/painel/api/chopeira-nps/photo?id='+encodeURIComponent(item.id);link.target='_blank';link.rel='noopener noreferrer';img.src=link.href;img.alt='Foto enviada por '+item.name;img.loading='lazy';img.width=110;img.style.height='90px';img.style.objectFit='cover';img.style.borderRadius='8px';link.append(img,make('span','Abrir foto'));photo.append(link);}else photo.textContent='Sem foto';
    tr.append(make('td',new Date(item.created_at).toLocaleString('pt-BR',{timeZone:'America/Belem'})),make('td',item.name),contact,make('td',String(item.score)),review,photo);$('nps-rows').append(tr);
