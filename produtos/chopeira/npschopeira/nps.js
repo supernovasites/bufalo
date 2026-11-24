@@ -50,26 +50,24 @@ photo.addEventListener('change',async()=>{
  finally{if(current===generation)processing=false;}
 });
 
+const contact=form.querySelector('section[aria-labelledby="contact-title"]');
 const items=[
+ [contact,'Seus dados'],
  [form.querySelector('fieldset'),'Indicação da chopeira'],
  [form.elements.namedItem('improvement').closest('.field'),'Sugestão de melhoria'],
  [form.elements.namedItem('review').closest('.field'),'Sua experiência'],
  [photo.closest('.field'),'Sua foto'],
- [form.elements.namedItem('name').closest('.field'),'Seu nome'],
- [form.elements.namedItem('email').closest('.field'),'Seu e-mail'],
- [phone.closest('.field'),'Seu telefone'],
  [form.querySelector('.consent'),'Autorização']
 ];
-const contact=form.querySelector('section[aria-labelledby="contact-title"]');
+const photoStep=items.findIndex(([content])=>content.contains(photo));
 const steps=items.map(([content,label],index)=>{
  const step=document.createElement('section');
  step.className='nps-step';step.tabIndex=-1;
  step.setAttribute('aria-label',label);step.dataset.step=String(index);
- const count=document.createElement('p');count.className='step-count';count.textContent='Pergunta '+(index+1)+' de '+items.length;
+ const count=document.createElement('p');count.className='step-count';count.textContent='Etapa '+(index+1)+' de '+items.length;
  step.append(count,content);form.insertBefore(step,submit);
  return step;
 });
-contact?.remove();
 form.noValidate=true;
 const nav=document.createElement('div');nav.className='step-navigation';
 const back=document.createElement('button');back.type='button';back.className='secondary';back.textContent='Voltar';
@@ -93,7 +91,7 @@ function validStep(index,report=false){
   }
   if(!input.checkValidity()){if(report)input.reportValidity();return false;}
  }
- if(index===3&&processing){if(report)status.textContent='Aguarde a preparação da foto.';return false;}
+ if(index===photoStep&&processing){if(report)status.textContent='Aguarde a preparação da foto.';return false;}
  return true;
 }
 function updateProgress(){
@@ -106,7 +104,7 @@ function updateProgress(){
 function showStep(index,focus=true){
  current=index;steps.forEach((step,i)=>{step.hidden=i!==index;});
  back.hidden=index===0;next.hidden=index===steps.length-1;submit.hidden=index!==steps.length-1;
- next.textContent=index===3&&!prepared?'Continuar sem foto':'Continuar';
+ next.textContent=index===photoStep&&!prepared?'Continuar sem foto':'Continuar';
  status.textContent='';status.className='';
  updateProgress();
  if(focus){steps[index].focus({preventScroll:true});steps[index].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}
@@ -123,7 +121,7 @@ form.addEventListener('input',()=>{
  updateProgress();
 });
 form.addEventListener('change',event=>{
- if(event.target.name==='score'&&current===0)advance();
+ if(event.target.name==='score'&&steps[current].contains(event.target))advance();
  if(event.target===photo)next.textContent='Continuar';
  updateProgress();
 });
