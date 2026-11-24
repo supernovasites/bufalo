@@ -55,9 +55,7 @@
 
 (() => {
   const video = document.getElementById('welcome-video');
-  const button = document.querySelector('.welcome-play');
   if (!video) return;
-  let blocked = false;
   let starting = false;
   let resume = true;
   let automaticPause = false;
@@ -71,12 +69,8 @@
     starting = true;
     try {
       await video.play();
-      blocked = false;
-      if (button) button.hidden = true;
     } catch {
-      // Audible autoplay may require a real click, tap, or key press.
-      blocked = true;
-      if (button) button.hidden = false;
+      // Native controls remain available if muted autoplay is blocked.
     } finally {
       starting = false;
     }
@@ -90,35 +84,43 @@
       video.pause();
     }
   };
-  video.muted = false;
-  video.defaultMuted = false;
+  video.muted = true;
+  video.defaultMuted = true;
   video.volume = 1;
   video.autoplay = true;
-  button?.addEventListener('click', () => {
+  let audioEnabled = false;
+  let audioStarting = false;
+  const enableAudio = async event => {
+    if (!event.isTrusted || audioEnabled || audioStarting || !visible() ||
+        !resume || video.ended) return;
+    if (event.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
+    audioStarting = true;
     video.muted = false;
     video.volume = 1;
-    resume = true;
-    start();
-  });
-  const retry = event => {
-    if (!event.isTrusted || !blocked || !visible() ||
-        event.target === video || button?.contains(event.target)) return;
-    if (event.type === 'keydown' && !['Enter', ' '].includes(event.key)) return;
-    start();
+    try {
+      await video.play();
+      audioEnabled = true;
+    } catch {
+      // Scroll may be rejected as an audio gesture. Retry on the next tap.
+      video.muted = true;
+      await start();
+    } finally { audioStarting = false; }
   };
-  document.addEventListener('click', retry);
-  document.addEventListener('keydown', retry);
+  ['touchstart', 'touchend', 'click', 'keydown'].forEach(name => {
+    document.addEventListener(name, enableAudio, {passive: true});
+  });
+  ['scroll', 'touchmove', 'wheel'].forEach(name => {
+    window.addEventListener(name, enableAudio, {passive: true});
+  });
   video.addEventListener('playing', () => {
-    blocked = false;
     resume = true;
-    if (button) button.hidden = true;
     document.querySelectorAll('video').forEach(other => {
       if (other !== video) other.pause();
     });
   });
   video.addEventListener('pause', () => {
     if (automaticPause) automaticPause = false;
-    else resume = false;
+    else if (!audioStarting) resume = false;
   });
   video.addEventListener('ended', () => { resume = false; });
   document.querySelectorAll('.faq-video').forEach(other => {
