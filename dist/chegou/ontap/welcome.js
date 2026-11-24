@@ -56,13 +56,18 @@
 const welcomeVideo=document.getElementById('welcome-video');
 const welcomePlay=document.querySelector('.welcome-play');
 let welcomeAudioRequested=false;
+function welcomeVideoIsVisible(){
+  if(!welcomeVideo)return false;
+  const rect=welcomeVideo.getBoundingClientRect();
+  return rect.bottom>0&&rect.top<window.innerHeight&&rect.right>0&&rect.left<window.innerWidth;
+}
 function startWelcomeMuted(){
   if(!welcomeVideo||welcomeAudioRequested)return;
   welcomeVideo.muted=true;
   welcomeVideo.defaultMuted=true;
   welcomeVideo.volume=0;
   const playback=welcomeVideo.play();
-  if(playback)playback.catch(()=>{if(welcomePlay)welcomePlay.hidden=false});
+  if(playback)playback.then(()=>{if(welcomePlay)welcomePlay.hidden=true}).catch(()=>{if(welcomePlay)welcomePlay.hidden=false});
 }
 function enableWelcomeAudio(){
   if(!welcomeVideo)return;
@@ -74,11 +79,23 @@ function enableWelcomeAudio(){
   if(playback)playback.then(()=>{if(welcomePlay)welcomePlay.hidden=true}).catch(()=>{if(welcomePlay)welcomePlay.hidden=false});
 }
 if(welcomeVideo){
-  startWelcomeMuted();
-  welcomeVideo.addEventListener('canplay',startWelcomeMuted,{once:true});
-  const activateWelcomeAudioOnScroll=()=>enableWelcomeAudio();
-  window.addEventListener('scroll',activateWelcomeAudioOnScroll,{once:true,passive:true});
-  window.addEventListener('touchmove',activateWelcomeAudioOnScroll,{once:true,passive:true});
+  const visibilityObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        if(welcomeAudioRequested)enableWelcomeAudio();
+        else startWelcomeMuted();
+      }else welcomeVideo.pause();
+    });
+  },{threshold:0.2,rootMargin:'0px 0px -10% 0px'});
+  visibilityObserver.observe(welcomeVideo);
+  const activateWelcomeAudioOnScroll=()=>{
+    if(welcomeAudioRequested||!welcomeVideoIsVisible())return;
+    enableWelcomeAudio();
+    window.removeEventListener('scroll',activateWelcomeAudioOnScroll);
+    window.removeEventListener('touchmove',activateWelcomeAudioOnScroll);
+  };
+  window.addEventListener('scroll',activateWelcomeAudioOnScroll,{passive:true});
+  window.addEventListener('touchmove',activateWelcomeAudioOnScroll,{passive:true});
   welcomePlay?.addEventListener('click',enableWelcomeAudio);
   welcomeVideo.addEventListener('play',function(){
     document.querySelectorAll('video').forEach(video=>{if(video!==this)video.pause()});
