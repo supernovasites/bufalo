@@ -53,4 +53,23 @@
   });
 })();
 
-const welcomeVideo=document.getElementById('welcome-video');if(welcomeVideo){welcomeVideo.muted=false;welcomeVideo.defaultMuted=false;welcomeVideo.volume=1;welcomeVideo.play().catch(()=>{});welcomeVideo.addEventListener('play',function(){document.querySelectorAll('video').forEach(video=>{if(video!==this)video.pause()})})}document.addEventListener('visibilitychange',()=>{if(document.hidden)welcomeVideo?.pause()});
+const welcomeVideo=document.getElementById('welcome-video');
+const welcomePlay=document.querySelector('.welcome-play');
+function playWelcomeWithAudio(){
+  if(!welcomeVideo)return;
+  welcomeVideo.muted=false;
+  welcomeVideo.defaultMuted=false;
+  welcomeVideo.volume=1;
+  const playback=welcomeVideo.play();
+  if(playback)playback.then(()=>{if(welcomePlay)welcomePlay.hidden=true}).catch(()=>{if(welcomePlay)welcomePlay.hidden=false});
+}
+if(welcomeVideo){
+  playWelcomeWithAudio();
+  welcomeVideo.addEventListener('canplay',playWelcomeWithAudio,{once:true});
+  welcomePlay?.addEventListener('click',playWelcomeWithAudio);
+  welcomeVideo.addEventListener('play',function(){
+    if(welcomePlay)welcomePlay.hidden=true;
+    document.querySelectorAll('video').forEach(video=>{if(video!==this)video.pause()});
+  });
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)welcomeVideo?.pause()});
