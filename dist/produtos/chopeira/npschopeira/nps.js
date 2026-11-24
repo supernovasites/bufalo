@@ -54,7 +54,7 @@ form.addEventListener('submit',async event=>{
  if(processing){status.textContent='Aguarde a preparação da foto.';return;}
  submit.disabled=true;status.className='';status.textContent='Enviando sua avaliação…';
  try{
-  const values=new FormData(form),data={id,name:values.get('name'),email:values.get('email'),phone:values.get('phone'),review:values.get('review'),score:Number(values.get('score')),consent:values.get('consent')==='on',consentVersion:'review-publication-20261124',website:values.get('website'),device:matchMedia('(max-width: 600px)').matches?'mobile':matchMedia('(max-width: 1024px)').matches?'tablet':'desktop'};
+  const values=new FormData(form),data={id,name:values.get('name'),email:values.get('email'),phone:values.get('phone'),review:values.get('review'),improvement:values.get('improvement'),final_review:values.get('final_review'),score:Number(values.get('score')),consent:values.get('consent')==='on',consentVersion:'review-publication-20261124',website:values.get('website'),device:matchMedia('(max-width: 600px)').matches?'mobile':matchMedia('(max-width: 1024px)').matches?'tablet':'desktop'};
   const body=new FormData();body.set('data',JSON.stringify(data));if(prepared)body.set('photo',prepared,'chopeira.jpg');
   const response=await fetch('/api/chopeira-nps',{method:'POST',body}),result=await response.json();
   if(!response.ok)throw Error(result.error||'Não foi possível enviar. Tente novamente.');
