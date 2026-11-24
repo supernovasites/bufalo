@@ -735,3 +735,7 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
  .review-card-name{font-size:14px;line-height:1.25}
  .review-card-text{font-size:13px;line-height:1.4}
 }
+/* Product rating: keep the five stars on one line and the link beneath. */
+.product-rating-link{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:max-content;max-width:100%;margin:0 0 12px}
+.product-rating-stars{display:block;white-space:nowrap;flex:0 0 auto;line-height:1}
+.product-rating-link a{display:block;white-space:nowrap}
