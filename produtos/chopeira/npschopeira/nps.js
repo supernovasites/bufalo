@@ -75,7 +75,7 @@ const next=document.createElement('button');next.type='button';next.className='s
 nav.append(back,next);form.insertBefore(nav,submit);
 const floating=document.createElement('aside');floating.className='nps-progress';floating.setAttribute('aria-label','Progresso do questionário');
 const progressLabel=document.createElement('span');progressLabel.className='progress-label';
-const progress=document.createElement('progress');progress.max=100;progress.value=0;progress.setAttribute('aria-label','Percentual concluído');
+const progress=document.createElement('progress');progress.max=100;progress.value=70;progress.setAttribute('aria-label','Percentual concluído');
 floating.append(progressLabel,progress);document.body.append(floating);
 document.body.classList.add('nps-wizard');
 let current=0,sending=false;
@@ -98,7 +98,7 @@ function updateProgress(){
  if(current===steps.length-1){
   if(validStep(current))completed.add(current);else completed.delete(current);
  }
- const percent=Math.round(completed.size/steps.length*100);
+ const percent=70+Math.round(completed.size/steps.length*30);
  progress.value=percent;progressLabel.textContent=percent+'% concluído';
 }
 function showStep(index,focus=true){
