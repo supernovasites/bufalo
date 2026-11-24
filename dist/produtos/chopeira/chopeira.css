@@ -735,7 +735,34 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
  .review-card-name{font-size:14px;line-height:1.25}
  .review-card-text{font-size:13px;line-height:1.4}
 }
+
+/* Review layout refinement — 2026-11-24 */
+.product-rating-link{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.product-rating-stars{white-space:nowrap}
+.customer-reviews{padding-block:clamp(30px,4vw,48px)}
+.reviews-heading{max-width:none;margin:0 auto 18px}
+.review-card-name{display:block;font-size:15px;font-weight:700;line-height:1.25;margin:0;padding:12px 14px 10px}
+.review-card-photo{margin:0}
+.review-card-stars{display:block;width:max-content;margin:10px 14px 8px}
+.review-card-copy{padding:0 14px 14px}
+.review-card-text{margin:0}
+@media(max-width:760px){.customer-reviews{padding-block:28px}.reviews-heading{margin-bottom:14px}.review-card-name{font-size:14px;padding:10px 10px 8px}.review-card-stars{margin:8px 10px 6px}.review-card-copy{padding:0 10px 10px}}
+
+
+/* Stronger section title and centered review ratings — 2026-11-24 */
+.reviews-heading .eyebrow{font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:.16em;margin:0}
+.review-card-stars{font-size:28px;letter-spacing:2px;margin:12px auto 10px}
+@media(max-width:760px){.reviews-heading .eyebrow{font-size:20px}.review-card-stars{font-size:22px;letter-spacing:1px;margin:10px auto 8px}}
+
 /* Product rating: keep the five stars on one line and the link beneath. */
 .product-rating-link{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:max-content;max-width:100%;margin:0 0 12px}
 .product-rating-stars{display:block;white-space:nowrap;flex:0 0 auto;line-height:1}
 .product-rating-link a{display:block;white-space:nowrap}
+
+/* Main reviews title and full review dialog. */
+.reviews-heading .reviews-title{font-size:clamp(30px,4.2vw,56px);font-weight:800;line-height:1.12;letter-spacing:.035em;text-wrap:balance;margin:0 auto;max-width:1050px;color:#fff}
+.review-card[role=button]{cursor:pointer}.review-card[role=button]:focus-visible{outline:3px solid #e4bf7a;outline-offset:3px}.review-card-open{display:block;margin-top:12px;color:#142e32;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.review-dialog{width:min(620px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding:0;border:0;border-radius:14px;background:#f8f8f4;color:#142e32;box-shadow:0 24px 80px #0006;overflow:auto;overscroll-behavior:contain}
+.review-dialog::backdrop{background:#061511b8}.review-dialog-close{position:sticky;top:12px;z-index:1;display:block;margin:12px 12px 0 auto;padding:10px 16px;border:1px solid #b9c8c1;border-radius:8px;background:#fff;color:#142e32;font:700 16px Arial,sans-serif;cursor:pointer}.review-dialog-close:focus-visible{outline:3px solid #b27d31;outline-offset:2px}
+.review-dialog-content{padding:8px 22px 24px}.review-dialog-content .review-card-name{font-size:22px;padding:4px 0 16px}.review-dialog-content .review-card-photo{height:auto;max-height:45dvh;object-fit:contain;border-radius:8px}.review-dialog-content .review-card-copy{padding:0}.review-dialog-content .review-card-text{font-size:16px;line-height:1.6;white-space:pre-wrap;display:block;overflow:visible;max-height:none;-webkit-line-clamp:unset}.review-dialog-content .review-card-open{display:none}
+@media(max-width:760px){.reviews-heading .reviews-title{font-size:clamp(28px,7.5vw,38px);letter-spacing:.02em}.review-card .review-card-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}.review-dialog-content{padding:8px 18px 22px}}

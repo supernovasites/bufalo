@@ -758,3 +758,11 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 .product-rating-link{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:max-content;max-width:100%;margin:0 0 12px}
 .product-rating-stars{display:block;white-space:nowrap;flex:0 0 auto;line-height:1}
 .product-rating-link a{display:block;white-space:nowrap}
+
+/* Main reviews title and full review dialog. */
+.reviews-heading .reviews-title{font-size:clamp(30px,4.2vw,56px);font-weight:800;line-height:1.12;letter-spacing:.035em;text-wrap:balance;margin:0 auto;max-width:1050px;color:#fff}
+.review-card[role=button]{cursor:pointer}.review-card[role=button]:focus-visible{outline:3px solid #e4bf7a;outline-offset:3px}.review-card-open{display:block;margin-top:12px;color:#142e32;font-size:14px;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.review-dialog{width:min(620px,calc(100% - 32px));max-height:calc(100dvh - 40px);padding:0;border:0;border-radius:14px;background:#f8f8f4;color:#142e32;box-shadow:0 24px 80px #0006;overflow:auto;overscroll-behavior:contain}
+.review-dialog::backdrop{background:#061511b8}.review-dialog-close{position:sticky;top:12px;z-index:1;display:block;margin:12px 12px 0 auto;padding:10px 16px;border:1px solid #b9c8c1;border-radius:8px;background:#fff;color:#142e32;font:700 16px Arial,sans-serif;cursor:pointer}.review-dialog-close:focus-visible{outline:3px solid #b27d31;outline-offset:2px}
+.review-dialog-content{padding:8px 22px 24px}.review-dialog-content .review-card-name{font-size:22px;padding:4px 0 16px}.review-dialog-content .review-card-photo{height:auto;max-height:45dvh;object-fit:contain;border-radius:8px}.review-dialog-content .review-card-copy{padding:0}.review-dialog-content .review-card-text{font-size:16px;line-height:1.6;white-space:pre-wrap;display:block;overflow:visible;max-height:none;-webkit-line-clamp:unset}.review-dialog-content .review-card-open{display:none}
+@media(max-width:760px){.reviews-heading .reviews-title{font-size:clamp(28px,7.5vw,38px);letter-spacing:.02em}.review-card .review-card-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}.review-dialog-content{padding:8px 18px 22px}}
