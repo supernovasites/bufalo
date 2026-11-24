@@ -55,8 +55,9 @@
 
 const welcomeVideo=document.getElementById('welcome-video');
 const welcomePlay=document.querySelector('.welcome-play');
+let welcomeAudioRequested=false;
 function startWelcomeMuted(){
-  if(!welcomeVideo)return;
+  if(!welcomeVideo||welcomeAudioRequested)return;
   welcomeVideo.muted=true;
   welcomeVideo.defaultMuted=true;
   welcomeVideo.volume=0;
@@ -65,6 +66,7 @@ function startWelcomeMuted(){
 }
 function enableWelcomeAudio(){
   if(!welcomeVideo)return;
+  welcomeAudioRequested=true;
   welcomeVideo.muted=false;
   welcomeVideo.defaultMuted=false;
   welcomeVideo.volume=1;
