@@ -717,3 +717,21 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 .reviews-cta a{display:inline-flex;padding:13px 18px;border:1px solid rgba(255,255,255,.65);border-radius:2px;color:#fff;font-size:14px;font-weight:700}
 .reviews-cta a:hover{background:#fff;color:#142e32}
 @media(max-width:760px){.customer-reviews{padding-inline:18px}.reviews-heading{margin-bottom:26px}.review-rail{gap:12px;margin-inline:-4px}.review-card{flex-basis:min(310px,86vw)}.review-card-photo{height:185px}.review-card-copy{padding:18px}.reviews-cta{margin-top:14px}}
+
+/* Compact two-review cards per viewport */
+.review-rail{gap:12px}
+.review-card{flex:0 0 calc((100% - 12px)/2);min-width:0;border-radius:8px}
+.review-card-stars{display:block;width:max-content;margin:12px 14px 8px;font-size:18px}
+.review-card-photo{height:clamp(100px,18vw,190px)}
+.review-card-copy{padding:12px 14px 16px}
+.review-card-name{font-size:15px;margin:3px 0 6px}
+.review-card-text{font-size:14px;line-height:1.45}
+@media(max-width:760px){
+ .review-rail{gap:8px;margin-inline:-4px}
+ .review-card{flex-basis:calc((100% - 8px)/2)}
+ .review-card-stars{margin:9px 10px 7px;font-size:16px;letter-spacing:1px}
+ .review-card-photo{height:clamp(94px,29vw,148px)}
+ .review-card-copy{padding:10px}
+ .review-card-name{font-size:14px;line-height:1.25}
+ .review-card-text{font-size:13px;line-height:1.4}
+}
