@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS chopeira_nps_credits (nps_id TEXT PRIMARY KEY,points INTEGER NOT NULL DEFAULT 500,staff_id TEXT NOT NULL,staff_name TEXT NOT NULL,credited_at TEXT NOT NULL);

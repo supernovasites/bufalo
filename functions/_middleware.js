@@ -6,6 +6,15 @@ const sha=value=>crypto.subtle.digest('SHA-256',encoder.encode(value)).then(hex)
 async function authenticated(request,db){const token=request.headers.get('Cookie')?.match(/(?:^|;\s*)admin_session=([a-f0-9]{64})(?:;|$)/)?.[1];if(!token)return false;return !!await db.prepare('SELECT token FROM live_sessions WHERE token=? AND expires>?').bind(await sha(token),Date.now()).first();}
 export async function onRequest(context){const {request,env}=context;const url=new URL(request.url);const path=url.pathname.replace(/\/$/,'');
 const routed=await teamRouter(context);if(routed)return routed;
+if(/^\/retorno(?:\/|$)/.test(path)){
+ const user=await identity(request,env);
+ const page=!/\.(?:css|js|png|jpg|jpeg|webp|svg|ico|woff2?)$/i.test(path);
+ if(page){
+  if(!user)return Response.redirect(new URL('/painel/?next='+encodeURIComponent(path==='\/retorno'?'\/retorno\/':path.replace(/\/index\.html$/,'')+'/'),url),302);
+  if(user.must_change_password&&path!=='/retorno'&&path!=='/retorno/index.html')return Response.redirect(new URL('/retorno/',url),302);
+ }
+ const result=await context.next(),headers=new Headers(result.headers);headers.set('Cache-Control','no-store');headers.set('X-Robots-Tag','noindex, nofollow');return new Response(result.body,{status:result.status,headers});
+}
 const privatePath=/^\/(painel|live\/(admin|sorteio|mesadj)|blog\/admin|manadaone\/admin|mkt|midia)(?:\/|\.html$|$)/.test(path);
 if(privatePath && request.headers.get('Cookie')?.includes('retorno_session=')){
   const user=await identity(request,env);

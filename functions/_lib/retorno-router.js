@@ -1,3 +1,4 @@
+import {creditNps,npsContacts,npsPhoto} from './retorno-nps.js';
 import {identity,ensureTeam,loginTeam,createSession,logoutTeam,sessionCookie,saveCollaborator,resetCollaboratorPassword,changeOwnPassword,removeCollaborator} from './team-auth.js';
 import {surveyResults,saveAttendance} from './chopeira-survey.js';
 const headers={'Cache-Control':'no-store','Content-Type':'application/json; charset=utf-8','X-Content-Type-Options':'nosniff'};
@@ -42,6 +43,16 @@ export async function teamRouter(context){
       if(user.role!=='A')return json({error:'Acesso exclusivo do administrador.'},403);
       if(request.method==='POST'){const result=await saveCollaborator(env.LIVE_DB,await payload(request),env);return json(result,result.status||200);}
       const users=await env.LIVE_DB.prepare('SELECT id,username,name,role,active,COALESCE((SELECT required FROM team_password_changes WHERE user_id=id),0) AS must_change_password FROM team_users ORDER BY name').all();return json({users:users.results||[]});
+    }
+    if(path==='/retorno/api/nps'&&request.method==='GET'){
+      const data=await npsContacts(env.LIVE_DB,url.searchParams);return json(data,data.status||200);
+    }
+    if(path==='/retorno/api/nps-credit'&&request.method==='POST'){
+      const data=await creditNps(env.LIVE_DB,await payload(request),user);return json(data,data.status||200);
+    }
+    if(path==='/retorno/api/nps-photo'&&request.method==='GET'){
+      const row=await npsPhoto(env.LIVE_DB,url.searchParams.get('id'));if(!row)return json({error:'Foto não encontrada.'},404);
+      return new Response(Uint8Array.from(row.data),{headers:{'Content-Type':row.content_type,'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','Content-Security-Policy':"default-src 'none'; sandbox"}});
     }
     if(path==='/retorno/api/contacts'&&request.method==='GET'){
       // Product sections use existing consented survey sources; currently Chopeira.
