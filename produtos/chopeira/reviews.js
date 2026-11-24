@@ -9,7 +9,7 @@ const makeCard=review=>{
  const rating=document.createElement('span');rating.className='review-card-stars';rating.setAttribute('role','img');rating.setAttribute('aria-label',score+' de 10, equivalente a '+(score/2).toLocaleString('pt-BR')+' de 5 estrelas');rating.style.setProperty('--rating',(score*10)+'%');rating.textContent='★★★★★';
  const name=document.createElement('h3');name.className='review-card-name';name.textContent=String(review.name??'');
  const text=document.createElement('p');text.className='review-card-text';text.textContent=String(review.review??'');
- copy.append(name,text);card.append(rating,photo,copy);return card;
+ copy.append(text);card.append(name,photo,rating,copy);return card;
 };
 fetch('/api/chopeira-reviews',{headers:{Accept:'application/json'}}).then(response=>{if(!response.ok)throw new Error('load');return response.json();}).then(data=>{
  const rows=Array.isArray(data.reviews)?data.reviews:[];rail.replaceChildren();
