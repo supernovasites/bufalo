@@ -1,3 +1,4 @@
+import {adminNps} from '../_lib/chopeira-nps.js';
 import { surveyResults, saveAttendance } from '../_lib/chopeira-survey.js';
 import { campaigns, campaignSchema, campaignEnabled } from '../_lib/campaigns.js';
 import { homepageStats, analyticsRange } from '../_lib/home-analytics.js';
@@ -16,6 +17,7 @@ async function handler(context) {
   if (path.startsWith('/painel/api/')) {
     if (!env.LIVE_DB) return json({error:'Painel temporariamente indisponível.'},503);
     const db = env.LIVE_DB;
+    if (path === '/painel/api/chopeira-nps' || path === '/painel/api/chopeira-nps/photo') return adminNps(context);
     if (path === '/painel/api/login' && request.method === 'POST') {
       const payload = await body(request);
       const expectedUser = env.PANEL_USERNAME || 'Alexsos';

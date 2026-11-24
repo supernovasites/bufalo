@@ -1,0 +1,3 @@
+CREATE TABLE IF NOT EXISTS chopeira_nps (id TEXT PRIMARY KEY,name TEXT NOT NULL,email TEXT NOT NULL,phone TEXT NOT NULL,score INTEGER NOT NULL CHECK(score BETWEEN 0 AND 10),review TEXT NOT NULL,device TEXT NOT NULL,day TEXT NOT NULL,created_at TEXT NOT NULL,source_hash TEXT NOT NULL,has_photo INTEGER NOT NULL DEFAULT 0);
+CREATE INDEX IF NOT EXISTS chopeira_nps_day ON chopeira_nps(day,device);
+CREATE TABLE IF NOT EXISTS chopeira_nps_photos (id TEXT PRIMARY KEY,content_type TEXT NOT NULL,data BLOB NOT NULL);
