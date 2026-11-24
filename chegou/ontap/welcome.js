@@ -70,7 +70,8 @@
     try {
       await video.play();
     } catch {
-      // Native controls remain available if muted autoplay is blocked.
+      // Expose native playback controls only when autoplay cannot start.
+      video.controls = true;
     } finally {
       starting = false;
     }
@@ -88,6 +89,7 @@
   video.defaultMuted = true;
   video.volume = 1;
   video.autoplay = true;
+  video.controls = false;
   let audioEnabled = false;
   let audioStarting = false;
   const enableAudio = async event => {
@@ -114,6 +116,7 @@
   });
   video.addEventListener('playing', () => {
     resume = true;
+    video.controls = false;
     document.querySelectorAll('video').forEach(other => {
       if (other !== video) other.pause();
     });
@@ -122,7 +125,7 @@
     if (automaticPause) automaticPause = false;
     else if (!audioStarting) resume = false;
   });
-  video.addEventListener('ended', () => { resume = false; });
+  video.addEventListener('ended', () => { resume = false; video.controls = true; });
   document.querySelectorAll('.faq-video').forEach(other => {
     other.addEventListener('play', () => { resume = false; });
   });
