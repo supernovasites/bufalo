@@ -76,8 +76,8 @@ nav.append(back,next);form.insertBefore(nav,submit);
 const floating=document.createElement('aside');floating.className='nps-progress';floating.setAttribute('aria-label','Progresso do questionário');
 const progressLabel=document.createElement('span');progressLabel.className='progress-label';
 const progress=document.createElement('progress');progress.max=100;progress.value=70;progress.setAttribute('aria-label','Percentual concluído');
-const reward=document.createElement('div');reward.className='progress-reward';
-reward.innerHTML='<span class="reward-coin" aria-hidden="true">★</span><span><strong>1.000 pontos</strong><small>ManadaCash · meta 100%</small></span>';
+const reward=document.createElement('div');reward.className='progress-reward';reward.setAttribute('aria-label','Meta de 100%: 1.000 pontos no ManadaCash');
+reward.innerHTML='<span class="reward-coin" aria-hidden="true">★</span><span><strong>1.000 pontos</strong><small>ManadaCash</small></span>';
 floating.append(progressLabel,progress,reward);document.body.append(floating);
 document.body.classList.add('nps-wizard');
 let current=0,sending=false;
@@ -102,7 +102,7 @@ function updateProgress(){
   if(validStep(current))completed.add(current);else completed.delete(current);
  }
  const percent=70+Math.round(completed.size/steps.length*30);
- progress.value=percent;progressLabel.textContent=percent+'% concluído';
+ progress.value=percent;progressLabel.textContent=percent+'%';
  reward.classList.toggle('is-complete',percent===100);
 }
 function showStep(index,focus=true){
