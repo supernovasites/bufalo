@@ -735,3 +735,15 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
  .review-card-name{font-size:14px;line-height:1.25}
  .review-card-text{font-size:13px;line-height:1.4}
 }
+
+/* Review layout refinement — 2026-11-24 */
+.product-rating-link{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.product-rating-stars{white-space:nowrap}
+.customer-reviews{padding-block:clamp(30px,4vw,48px)}
+.reviews-heading{max-width:none;margin:0 auto 18px}
+.review-card-name{display:block;font-size:15px;font-weight:700;line-height:1.25;margin:0;padding:12px 14px 10px}
+.review-card-photo{margin:0}
+.review-card-stars{display:block;width:max-content;margin:10px 14px 8px}
+.review-card-copy{padding:0 14px 14px}
+.review-card-text{margin:0}
+@media(max-width:760px){.customer-reviews{padding-block:28px}.reviews-heading{margin-bottom:14px}.review-card-name{font-size:14px;padding:10px 10px 8px}.review-card-stars{margin:8px 10px 6px}.review-card-copy{padding:0 10px 10px}}
