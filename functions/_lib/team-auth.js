@@ -2,10 +2,7 @@ const encoder=new TextEncoder();
 export const sha=async value=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',encoder.encode(value))),b=>b.toString(16).padStart(2,'0')).join('');
 const cookieToken=(request,name)=>request.headers.get('Cookie')?.match(new RegExp('(?:^|;\\s*)'+name+'=([a-f0-9]{64})(?:;|$)'))?.[1];
 export async function ensureTeam(db){
-  await db.prepare('CREATE TABLE IF NOT EXISTS live_sessions (token TEXT PRIMARY KEY, expires INTEGER NOT NULL)').run();
-  await db.prepare("CREATE TABLE IF NOT EXISTS team_users (id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE COLLATE NOCASE, name TEXT NOT NULL, role TEXT NOT NULL CHECK(role='C'), password_hash TEXT NOT NULL, salt TEXT NOT NULL, active INTEGER NOT NULL DEFAULT 1)").run();
-  await db.prepare('CREATE TABLE IF NOT EXISTS team_password_changes (user_id TEXT PRIMARY KEY, required INTEGER NOT NULL DEFAULT 1)').run();
-  await db.prepare('CREATE TABLE IF NOT EXISTS team_sessions (token TEXT PRIMARY KEY, user_id TEXT NOT NULL, expires INTEGER NOT NULL)').run();
+  await db.batch([db.prepare('CREATE TABLE IF NOT EXISTS live_sessions (token TEXT PRIMARY KEY, expires INTEGER NOT NULL)'),db.prepare("CREATE TABLE IF NOT EXISTS team_users (id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE COLLATE NOCASE, name TEXT NOT NULL, role TEXT NOT NULL CHECK(role='C'), password_hash TEXT NOT NULL, salt TEXT NOT NULL, active INTEGER NOT NULL DEFAULT 1)"),db.prepare('CREATE TABLE IF NOT EXISTS team_password_changes (user_id TEXT PRIMARY KEY, required INTEGER NOT NULL DEFAULT 1)'),db.prepare('CREATE TABLE IF NOT EXISTS team_sessions (token TEXT PRIMARY KEY, user_id TEXT NOT NULL, expires INTEGER NOT NULL)')]);
 }
 export async function passwordHash(password,salt){
   const key=await crypto.subtle.importKey('raw',encoder.encode(password),'PBKDF2',false,['deriveBits']);

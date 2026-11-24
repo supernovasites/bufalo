@@ -11,7 +11,7 @@ export const schema=[
 "CREATE INDEX IF NOT EXISTS chopeira_nps_day ON chopeira_nps(day,device)",
 "CREATE TABLE IF NOT EXISTS chopeira_nps_photos (id TEXT PRIMARY KEY,content_type TEXT NOT NULL,data BLOB NOT NULL)"
 ];
-export async function ensureNps(db){for(const sql of schema)await db.prepare(sql).run();}
+export async function ensureNps(db){await db.batch(schema.map(sql=>db.prepare(sql)));}
 export function validateNps(data){
  if(!data||typeof data!=='object')return null;
  const clean=(v,max)=>typeof v==='string'&&v.trim().length<=max&&!/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(v)?v.trim():null;

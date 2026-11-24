@@ -33,7 +33,9 @@ async function load(){
    const showCredit=credit=>{stamp.textContent=credit.credited_at?'Registrado por '+credit.staff_name+' em '+date(credit.credited_at):'Confirme somente depois de realizar o crédito dos pontos.';};
    showCredit(item);
    checkbox.addEventListener('change',async()=>{
-    if(!checkbox.checked)return;checkbox.disabled=true;feedback.textContent='Registrando confirmação…';
+    if(!checkbox.checked)return;
+    if(!confirm('Confirma que os 500 pontos já foram creditados no ManadaCash de '+item.name+'?\n\nAo confirmar, o crédito será registrado como concluído.')){checkbox.checked=false;return;}
+    checkbox.disabled=true;feedback.textContent='Registrando confirmação…';
     try{const saved=await api('nps-credit',{id:item.id,credited:true});showCredit(saved);badge.textContent='Pontos creditados';badge.className='badge responded';checkbox.checked=true;feedback.textContent='Crédito registrado.';await load();}
     catch(error){checkbox.checked=false;checkbox.disabled=false;feedback.textContent=error.message;}
    });
