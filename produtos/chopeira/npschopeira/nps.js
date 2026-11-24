@@ -56,8 +56,7 @@ const items=[
  [form.querySelector('fieldset'),'Indicação da chopeira'],
  [photo.closest('.field'),'Sua foto'],
  [form.elements.namedItem('improvement').closest('.field'),'Sugestão de melhoria'],
- [form.elements.namedItem('review').closest('.field'),'Sua experiência'],
- [form.querySelector('.consent'),'Autorização']
+ [form.elements.namedItem('review').closest('.field'),'Sua experiência']
 ];
 const photoStep=items.findIndex(([content])=>content.contains(photo));
 const steps=items.map(([content,label],index)=>{
@@ -68,6 +67,7 @@ const steps=items.map(([content,label],index)=>{
  step.append(count,content);form.insertBefore(step,submit);
  return step;
 });
+steps[steps.length-1].append(form.querySelector('.consent-final'));
 form.noValidate=true;
 const nav=document.createElement('div');nav.className='step-navigation';
 const back=document.createElement('button');back.type='button';back.className='secondary';back.textContent='Voltar';
