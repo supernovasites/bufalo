@@ -769,3 +769,6 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 
 /* Gold heading over the dark brewery barrel background. */
 .reviews-heading .reviews-title{color:#e4bf7a}
+
+/* Keep the Manada review heading on one proportional line on phones. */
+.reviews-heading .reviews-title{white-space:nowrap;text-wrap:nowrap;font-size:clamp(16px,4.5vw,56px);letter-spacing:0;max-width:100%}
