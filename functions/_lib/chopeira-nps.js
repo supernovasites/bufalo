@@ -17,7 +17,7 @@ export function validateNps(data){
  const clean=(v,max)=>typeof v==='string'&&v.trim().length<=max&&!/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/.test(v)?v.trim():null;
  const name=clean(data.name,100),email=clean(data.email,254),review=clean(data.review,3000);
  const improvement=clean(data.improvement??'',3000),final_review=clean(data.final_review??'',3000);
- if(improvement===null||final_review===null)return null;
+ if(!improvement||final_review===null)return null;
  const phone=typeof data.phone==='string'?data.phone.replace(/[\s()+.-]/g,''):'';
  if(!name||name.length<2||!email||!/^\S+@[^\s@]+\.[^\s@]+$/.test(email)||!review||!/^(?:55)?[1-9]{2}[0-9]{8,9}$/.test(phone))return null;
  if(!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(data.id)||!Number.isInteger(data.score)||data.score<0||data.score>10||!['mobile','tablet','desktop'].includes(data.device)||data.consent!==true||data.consentVersion!=='review-publication-20261124'||data.website)return null;
@@ -39,7 +39,7 @@ export async function submitNps({request,env}){
   let bytes;try{bytes=await readLimited(request,250000);}catch{return json({error:'Foto muito grande.'},413);}
   let form;try{form=await new Request(request.url,{method:'POST',headers:{'Content-Type':request.headers.get('Content-Type')||''},body:bytes}).formData();}catch{return json({error:'Envio inválido.'},400);}
   let raw;try{raw=JSON.parse(form.get('data'));}catch{return json({error:'Resposta inválida.'},400);}
-  const data=validateNps(raw);if(!data)return json({error:'Confira a nota, avaliação, nome, e-mail, telefone com DDD e autorização.'},400);
+  const data=validateNps(raw);if(!data)return json({error:'Confira a nota, sugestão de melhoria, avaliação, nome, e-mail, telefone com DDD e autorização.'},400);
   const file=form.get('photo');let photo=null,type=null;
   if(file&&file.size){if(file.size>220000)return json({error:'Foto muito grande. Selecione outra imagem.'},413);photo=new Uint8Array(await file.arrayBuffer());type=photoType(photo);if(!type||type!==file.type)return json({error:'Envie uma foto JPG, PNG ou WebP válida.'},415);}
   const db=env.LIVE_DB;await ensureNps(db);

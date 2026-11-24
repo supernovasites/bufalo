@@ -13,7 +13,7 @@ const submit=(db,data,photo=null,origin='https://bufalo.test')=>{const body=new 
 async function admin(db,query=''){const token='a'.repeat(64);await ensureTeam(db);await db.prepare('INSERT OR IGNORE INTO live_sessions VALUES (?,?)').bind(await sha(token),Date.now()+100000).run();return adminNps({env:{LIVE_DB:db},request:new Request('https://bufalo.test/painel/api/chopeira-nps'+query,{headers:{Cookie:'admin_session='+token}})});}
 test('validates required contact fields, score bounds and consent',()=>{
  assert.ok(validateNps(payload({score:0})));assert.ok(validateNps(payload({score:10})));
- for(const change of [{score:-1},{score:11},{score:7.5},{score:'9'},{email:'bad'},{phone:'123'},{name:''},{review:''},{consent:false},{consentVersion:'old'},{website:'spam'},{improvement:'x'.repeat(3001)},{final_review:123}])assert.equal(validateNps(payload(change)),null);
+ for(const change of [{score:-1},{score:11},{score:7.5},{score:'9'},{email:'bad'},{phone:'123'},{name:''},{review:''},{consent:false},{consentVersion:'old'},{website:'spam'},{improvement:''},{improvement:'   '},{improvement:undefined},{improvement:'x'.repeat(3001)},{final_review:123}])assert.equal(validateNps(payload(change)),null);
 });
 test('stores review and private photo atomically; duplicate retry is idempotent',async()=>{
  const db=new D1(),data=payload(),bytes=Uint8Array.from([255,216,255,224,0,1,2,3,4,5,6,7]);
