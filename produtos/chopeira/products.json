@@ -250,7 +250,7 @@
       "name": "Mestre Búfalo · Combo 5,5 L",
       "store_name": "Mestre Búfalo On TAP - Combo 5,5L",
       "url": "https://loja.bufalogrowler.com.br/mestre-bufalo-growler-spritz",
-      "source_image": "https://cdn.awsli.com.br/400x400/1237/1237589/produto/400891545/d556cd5c14234579b6461ac4a206a01f-ea6vropf7z.png",
+      "source_image": "https://cdn.awsli.com.br/600x1000/1237/1237589/produto/400891545/mini-mestre-preto_preto-dc75f691-1gntedz5o6.png",
       "title": "Do encontro pequeno ao plano maior.",
       "kicker": "COMBOS · 3,5 L + 2 L",
       "description": "Dois growlers. Mais possibilidades.",
@@ -264,7 +264,58 @@
       "note": "5,5 L é a soma das capacidades dos dois growlers. O combo inclui um único kit dispensador.",
       "price": 1730,
       "currency": "BRL",
-      "price_checked_at": "2026-10-29"
+      "price_checked_at": "2026-10-29",
+      "variants_checked_at": "2026-11-24",
+      "variants": [
+        {
+          "color": "Preto / Preto",
+          "variant_id": "38301",
+          "sku": "Kit-Spritz-preto",
+          "chip": "#000000",
+          "image": "https://cdn.awsli.com.br/600x1000/1237/1237589/produto/400891545/mini-mestre-preto_preto-dc75f691-1gntedz5o6.png",
+          "price": 1730
+        },
+        {
+          "color": "Preto / Mostarda",
+          "variant_id": "2973210",
+          "sku": "Kit-Spritz-ptoamostard",
+          "chip": "#F5C85C",
+          "image": "https://cdn.awsli.com.br/600x1000/1237/1237589/produto/400891545/mini-mestre-preto_mostarda-72cb984a-igd3imh6fn.png",
+          "price": 1730
+        },
+        {
+          "color": "Preto / Urucum",
+          "variant_id": "2973715",
+          "sku": "Kit-Spritz-ptourucum",
+          "chip": "#D54600",
+          "image": "https://cdn.awsli.com.br/600x1000/1237/1237589/produto/400891545/mini-mestre-preto_laranja-0e710a3b-oo3k76qn96.png",
+          "price": 1730
+        },
+        {
+          "color": "Preto / Rosa Chiclete",
+          "variant_id": "2974426",
+          "sku": "Kit-Spritz-ptochicle",
+          "chip": "#E79FC4",
+          "image": "https://cdn.awsli.com.br/600x1000/1237/1237589/produto/400891545/mini-mestre-preto_rosa-81997525-0dfe4mjlhk.png",
+          "price": 1730
+        },
+        {
+          "color": "Preto / Azul Royal",
+          "variant_id": "2974413",
+          "sku": "Kit-Spritz-ptoroayl",
+          "chip": "#002387",
+          "image": "https://cdn.awsli.com.br/600x1000/1237/1237589/produto/400891545/mini-mestre-preto_royal-8d3594ba-38yxrkm7jr.png",
+          "price": 1730
+        },
+        {
+          "color": "Preto / Verde",
+          "variant_id": "2974322",
+          "sku": "Kit-Spritz-ptoverde",
+          "chip": "#0B6207",
+          "image": "https://cdn.awsli.com.br/600x1000/1237/1237589/produto/400891545/mini-mestre-preto_verde-26233a47-x9zb5umgyw.png",
+          "price": 1730
+        }
+      ]
     },
     {
       "id": "397365368",
