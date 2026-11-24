@@ -55,7 +55,15 @@
 
 const welcomeVideo=document.getElementById('welcome-video');
 const welcomePlay=document.querySelector('.welcome-play');
-function playWelcomeWithAudio(){
+function startWelcomeMuted(){
+  if(!welcomeVideo)return;
+  welcomeVideo.muted=true;
+  welcomeVideo.defaultMuted=true;
+  welcomeVideo.volume=0;
+  const playback=welcomeVideo.play();
+  if(playback)playback.catch(()=>{if(welcomePlay)welcomePlay.hidden=false});
+}
+function enableWelcomeAudio(){
   if(!welcomeVideo)return;
   welcomeVideo.muted=false;
   welcomeVideo.defaultMuted=false;
@@ -64,14 +72,13 @@ function playWelcomeWithAudio(){
   if(playback)playback.then(()=>{if(welcomePlay)welcomePlay.hidden=true}).catch(()=>{if(welcomePlay)welcomePlay.hidden=false});
 }
 if(welcomeVideo){
-  playWelcomeWithAudio();
-  welcomeVideo.addEventListener('canplay',playWelcomeWithAudio,{once:true});
-  const activateWelcomeAudioOnScroll=()=>playWelcomeWithAudio();
+  startWelcomeMuted();
+  welcomeVideo.addEventListener('canplay',startWelcomeMuted,{once:true});
+  const activateWelcomeAudioOnScroll=()=>enableWelcomeAudio();
   window.addEventListener('scroll',activateWelcomeAudioOnScroll,{once:true,passive:true});
   window.addEventListener('touchmove',activateWelcomeAudioOnScroll,{once:true,passive:true});
-  welcomePlay?.addEventListener('click',playWelcomeWithAudio);
+  welcomePlay?.addEventListener('click',enableWelcomeAudio);
   welcomeVideo.addEventListener('play',function(){
-    if(welcomePlay)welcomePlay.hidden=true;
     document.querySelectorAll('video').forEach(video=>{if(video!==this)video.pause()});
   });
 }
