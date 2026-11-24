@@ -753,3 +753,8 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 .reviews-heading .eyebrow{font-size:clamp(20px,2.4vw,28px);line-height:1.2;letter-spacing:.16em;margin:0}
 .review-card-stars{font-size:28px;letter-spacing:2px;margin:12px auto 10px}
 @media(max-width:760px){.reviews-heading .eyebrow{font-size:20px}.review-card-stars{font-size:22px;letter-spacing:1px;margin:10px auto 8px}}
+
+/* Product rating: keep the five stars on one line and the link beneath. */
+.product-rating-link{display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:max-content;max-width:100%;margin:0 0 12px}
+.product-rating-stars{display:block;white-space:nowrap;flex:0 0 auto;line-height:1}
+.product-rating-link a{display:block;white-space:nowrap}
