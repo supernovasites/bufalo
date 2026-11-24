@@ -27,7 +27,7 @@ phone.addEventListener('input',()=>{
 phone.addEventListener('blur',()=>{phone.value=formatPhone(phone.value);});
 let prepared=null,processing=false,generation=0,previewUrl=null,id=crypto.randomUUID();
 function clearPhoto(){generation++;prepared=null;processing=false;photo.value='';preview.hidden=true;remove.hidden=true;photoStatus.textContent='';if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=null;}
-remove.addEventListener('click',clearPhoto);
+remove.addEventListener('click',()=>{clearPhoto();completed.delete(photoStep);updateProgress();});
 photo.addEventListener('change',async()=>{
  const current=++generation,file=photo.files[0];prepared=null;preview.hidden=true;remove.hidden=!file;
  if(previewUrl)URL.revokeObjectURL(previewUrl);
@@ -54,9 +54,9 @@ const contact=form.querySelector('section[aria-labelledby="contact-title"]');
 const items=[
  [contact,'Seus dados'],
  [form.querySelector('fieldset'),'Indicação da chopeira'],
+ [photo.closest('.field'),'Sua foto'],
  [form.elements.namedItem('improvement').closest('.field'),'Sugestão de melhoria'],
  [form.elements.namedItem('review').closest('.field'),'Sua experiência'],
- [photo.closest('.field'),'Sua foto'],
  [form.querySelector('.consent'),'Autorização']
 ];
 const photoStep=items.findIndex(([content])=>content.contains(photo));
@@ -76,12 +76,15 @@ nav.append(back,next);form.insertBefore(nav,submit);
 const floating=document.createElement('aside');floating.className='nps-progress';floating.setAttribute('aria-label','Progresso do questionário');
 const progressLabel=document.createElement('span');progressLabel.className='progress-label';
 const progress=document.createElement('progress');progress.max=100;progress.value=70;progress.setAttribute('aria-label','Percentual concluído');
-floating.append(progressLabel,progress);document.body.append(floating);
+const reward=document.createElement('div');reward.className='progress-reward';
+reward.innerHTML='<span class="reward-coin" aria-hidden="true">★</span><span><strong>1.000 pontos</strong><small>ManadaCash · meta 100%</small></span>';
+floating.append(progressLabel,progress,reward);document.body.append(floating);
 document.body.classList.add('nps-wizard');
 let current=0,sending=false;
 const completed=new Set();
 function validStep(index,report=false){
  const step=steps[index];
+ if(index===photoStep&&processing){if(report)status.textContent='Aguarde a preparação da foto.';return false;}
  for(const input of step.querySelectorAll('input,textarea')){
   input.setCustomValidity('');
   if(input.required&&input.type!=='radio'&&input.type!=='checkbox'&&!input.value.trim())input.setCustomValidity('Preencha este campo para continuar.');
@@ -91,7 +94,7 @@ function validStep(index,report=false){
   }
   if(!input.checkValidity()){if(report)input.reportValidity();return false;}
  }
- if(index===photoStep&&processing){if(report)status.textContent='Aguarde a preparação da foto.';return false;}
+ if(index===photoStep&&!prepared){if(report){photo.setCustomValidity('Compartilhe uma foto da sua chopeira para continuar.');photo.reportValidity();}return false;}
  return true;
 }
 function updateProgress(){
@@ -100,11 +103,12 @@ function updateProgress(){
  }
  const percent=70+Math.round(completed.size/steps.length*30);
  progress.value=percent;progressLabel.textContent=percent+'% concluído';
+ reward.classList.toggle('is-complete',percent===100);
 }
 function showStep(index,focus=true){
  current=index;steps.forEach((step,i)=>{step.hidden=i!==index;});
  back.hidden=index===0;next.hidden=index===steps.length-1;submit.hidden=index!==steps.length-1;
- next.textContent=index===photoStep&&!prepared?'Continuar sem foto':'Continuar';
+ next.textContent='Continuar';
  status.textContent='';status.className='';
  updateProgress();
  if(focus){steps[index].focus({preventScroll:true});steps[index].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});}

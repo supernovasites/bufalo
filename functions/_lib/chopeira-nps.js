@@ -41,6 +41,7 @@ export async function submitNps({request,env}){
   let raw;try{raw=JSON.parse(form.get('data'));}catch{return json({error:'Resposta inválida.'},400);}
   const data=validateNps(raw);if(!data)return json({error:'Confira a nota, sugestão de melhoria, avaliação, nome, e-mail, telefone com DDD e autorização.'},400);
   const file=form.get('photo');let photo=null,type=null;
+  if(!file||!file.size)return json({error:'Compartilhe uma foto da sua chopeira para enviar a avaliação.'},400);
   if(file&&file.size){if(file.size>220000)return json({error:'Foto muito grande. Selecione outra imagem.'},413);photo=new Uint8Array(await file.arrayBuffer());type=photoType(photo);if(!type||type!==file.type)return json({error:'Envie uma foto JPG, PNG ou WebP válida.'},415);}
   const db=env.LIVE_DB;await ensureNps(db);
   if(await db.prepare('SELECT id FROM chopeira_nps WHERE id=?').bind(data.id).first())return json({ok:true});

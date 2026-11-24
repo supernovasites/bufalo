@@ -9,7 +9,7 @@ class D1 {
  async batch(queries){this.raw.exec('BEGIN');try{const out=[];for(const q of queries)out.push(await q.run());this.raw.exec('COMMIT');return out;}catch(e){this.raw.exec('ROLLBACK');throw e;}}
 }
 const payload=(extra={})=>({id:crypto.randomUUID(),name:'Maria Silva',email:'maria@example.com',phone:'(91) 99999-1234',score:10,review:'Gostei muito da chopeira.',improvement:'Mais opções de cores.',final_review:'Recomendo!',device:'mobile',consent:true,consentVersion:'review-publication-20261124',...extra});
-const submit=(db,data,photo=null,origin='https://bufalo.test')=>{const body=new FormData();body.set('data',JSON.stringify(data));if(photo)body.set('photo',photo,'foto.jpg');return submitNps({env:{LIVE_DB:db},request:new Request('https://bufalo.test/api/chopeira-nps',{method:'POST',headers:{Origin:origin,'CF-Connecting-IP':'192.0.2.1'},body})});};
+const submit=(db,data,photo=new Blob([Uint8Array.from([255,216,255,224,0,1,2,3,4,5,6,7])],{type:'image/jpeg'}),origin='https://bufalo.test')=>{const body=new FormData();body.set('data',JSON.stringify(data));if(photo)body.set('photo',photo,'foto.jpg');return submitNps({env:{LIVE_DB:db},request:new Request('https://bufalo.test/api/chopeira-nps',{method:'POST',headers:{Origin:origin,'CF-Connecting-IP':'192.0.2.1'},body})});};
 async function admin(db,query=''){const token='a'.repeat(64);await ensureTeam(db);await db.prepare('INSERT OR IGNORE INTO live_sessions VALUES (?,?)').bind(await sha(token),Date.now()+100000).run();return adminNps({env:{LIVE_DB:db},request:new Request('https://bufalo.test/painel/api/chopeira-nps'+query,{headers:{Cookie:'admin_session='+token}})});}
 test('validates required contact fields, score bounds and consent',()=>{
  assert.ok(validateNps(payload({score:0})));assert.ok(validateNps(payload({score:10})));
@@ -43,3 +43,5 @@ test('limits excessive submissions and rejects oversized uploads',async()=>{
  assert.equal((await submit(db,payload())).status,429);
  assert.equal((await submit(new D1(),payload(),new Blob([new Uint8Array(260000)],{type:'image/jpeg'}))).status,413);
 });
+
+test('requires a photo for new submissions',async()=>{assert.equal((await submit(new D1(),payload(),null)).status,400);assert.equal((await submit(new D1(),payload(),new Blob([],{type:'image/jpeg'}))).status,400);});
