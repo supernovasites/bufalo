@@ -697,7 +697,7 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 .product-rating-stars{color:#bd8741;font-size:19px;letter-spacing:2px;line-height:1}
 .product-rating-link a{font-size:13px;font-weight:700;color:#27534c;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 .product-rating-link a:hover{color:#a86d2b}
-.customer-reviews{position:relative;isolation:isolate;overflow:hidden;padding:clamp(72px,9vw,120px) 24px;background:#0b1a17 url('images/chopeira-review-award.jpg') center/cover no-repeat;color:#fff}
+.customer-reviews{position:relative;isolation:isolate;overflow:hidden;padding:clamp(72px,9vw,120px) 24px;background:#0b1a17 url('images/chopeira-reviews-barrels-20261124.jpg') center/cover no-repeat;color:#fff}
 .customer-reviews:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(5,17,15,.92),rgba(6,22,18,.73) 52%,rgba(6,20,17,.88))}
 .reviews-inner{max-width:1320px;margin:auto}
 .reviews-heading{max-width:760px;margin:0 auto 38px;text-align:center}
@@ -766,3 +766,6 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 .review-dialog::backdrop{background:#061511b8}.review-dialog-close{position:sticky;top:12px;z-index:1;display:block;margin:12px 12px 0 auto;padding:10px 16px;border:1px solid #b9c8c1;border-radius:8px;background:#fff;color:#142e32;font:700 16px Arial,sans-serif;cursor:pointer}.review-dialog-close:focus-visible{outline:3px solid #b27d31;outline-offset:2px}
 .review-dialog-content{padding:8px 22px 24px}.review-dialog-content .review-card-name{font-size:22px;padding:4px 0 16px}.review-dialog-content .review-card-photo{height:auto;max-height:45dvh;object-fit:contain;border-radius:8px}.review-dialog-content .review-card-copy{padding:0}.review-dialog-content .review-card-text{font-size:16px;line-height:1.6;white-space:pre-wrap;display:block;overflow:visible;max-height:none;-webkit-line-clamp:unset}.review-dialog-content .review-card-open{display:none}
 @media(max-width:760px){.reviews-heading .reviews-title{font-size:clamp(28px,7.5vw,38px);letter-spacing:.02em}.review-card .review-card-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;line-clamp:6;overflow:hidden}.review-dialog-content{padding:8px 18px 22px}}
+
+/* Gold heading over the dark brewery barrel background. */
+.reviews-heading .reviews-title{color:#e4bf7a}
