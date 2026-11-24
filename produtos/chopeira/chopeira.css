@@ -772,3 +772,9 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 
 /* Keep the Manada review heading on one proportional line on phones. */
 .reviews-heading .reviews-title{white-space:nowrap;text-wrap:nowrap;font-size:clamp(16px,4.5vw,56px);letter-spacing:0;max-width:100%}
+
+
+/* Data da avaliação nos cards e na leitura ampliada. */
+.review-card-date{display:block;margin:0;padding:0 14px 9px;color:#65736f;font-size:12px;line-height:1.25}
+.review-dialog-content .review-card-date{margin:0 0 14px;padding:0;font-size:14px}
+@media(max-width:760px){.review-card-date{padding:0 10px 8px;font-size:11px}}

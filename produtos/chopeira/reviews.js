@@ -24,7 +24,18 @@ const makeCard=review=>{
  const name=document.createElement('h3');name.className='review-card-name';name.textContent=String(review.name??'');
  const text=document.createElement('p');text.className='review-card-text';text.textContent=String(review.review??'');
  const hint=document.createElement('span');hint.className='review-card-open';hint.textContent='Ler avaliação completa';
- copy.append(text,hint);card.append(name,photo,rating,copy);
+ copy.append(text,hint);
+ const rawDate=String(review.created_at??'').trim();
+ let dateNode=null;
+ if(rawDate){
+  const normalizedDate=/T/.test(rawDate)?rawDate:rawDate.replace(' ','T')+'Z';
+  const parsedDate=new Date(normalizedDate);
+  if(Number.isFinite(parsedDate.getTime())){
+   dateNode=document.createElement('time');dateNode.className='review-card-date';dateNode.dateTime=parsedDate.toISOString();
+   dateNode.textContent='Avaliação em '+new Intl.DateTimeFormat('pt-BR',{timeZone:'America/Belem',day:'2-digit',month:'2-digit',year:'numeric'}).format(parsedDate);
+  }
+ }
+ if(dateNode)card.append(name,dateNode,photo,rating,copy);else card.append(name,photo,rating,copy);
  card.tabIndex=0;card.setAttribute('role','button');card.setAttribute('aria-haspopup','dialog');card.setAttribute('aria-label','Ler avaliação completa de '+String(review.name??'cliente'));
  card.addEventListener('click',()=>openReview(card));
  card.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();openReview(card);}});
