@@ -28,9 +28,23 @@ async function load(){
    review.append(make('br'),make('small',item.publication_authorized?'Divulgação da avaliação autorizada.':'Sem autorização de divulgação registrada.'));
    const photo=make('td');
    if(item.has_photo){const link=make('a'),img=make('img');link.href='/painel/api/chopeira-nps/photo?id='+encodeURIComponent(item.id);link.target='_blank';link.rel='noopener noreferrer';img.src=link.href;img.alt='Foto enviada por '+item.name;img.loading='lazy';img.width=110;img.style.height='90px';img.style.objectFit='cover';img.style.borderRadius='8px';link.append(img,make('span','Abrir foto'));photo.append(link);}else photo.textContent='Sem foto';
-   tr.append(make('td',new Date(item.created_at).toLocaleString('pt-BR',{timeZone:'America/Belem'})),make('td',item.name),contact,make('td',String(item.score)),review,make('td',item.improvement||'—'),make('td',item.final_review||'—'),photo);$('nps-rows').append(tr);
+   const visibility=make('td'),label=make('label'),checkbox=make('input'),visibilityText=make('span',item.public_hidden?'Oculta':'Exibida');
+   checkbox.type='checkbox';checkbox.checked=!Boolean(item.public_hidden);checkbox.setAttribute('aria-label',(checkbox.checked?'Ocultar':'Exibir')+' avaliação de '+item.name+' na página de vendas');
+   label.style.display='inline-flex';label.style.alignItems='center';label.style.gap='8px';label.append(checkbox,visibilityText);visibility.append(label);
+   checkbox.addEventListener('change',async()=>{
+    const hidden=!checkbox.checked;checkbox.disabled=true;
+    try{
+     const response=await fetch('/painel/api/chopeira-nps',{method:'POST',credentials:'same-origin',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:item.id,hidden})}),result=await response.json();
+     if(response.status===401){location.href='/painel/';return;}
+     if(!response.ok)throw Error(result.error||'Não foi possível salvar a exibição.');
+     visibilityText.textContent=hidden?'Oculta':'Exibida';checkbox.setAttribute('aria-label',(hidden?'Exibir':'Ocultar')+' avaliação de '+item.name+' na página de vendas');
+     $('nps-status').textContent='Avaliação de '+item.name+' '+(hidden?'ocultada da':'exibida na')+' página de vendas.';
+    }catch(error){checkbox.checked=!hidden;$('nps-status').textContent=error.message;}
+    finally{checkbox.disabled=false;}
+   });
+   tr.append(make('td',new Date(item.created_at).toLocaleString('pt-BR',{timeZone:'America/Belem'})),make('td',item.name),contact,make('td',String(item.score)),review,make('td',item.improvement||'—'),make('td',item.final_review||'—'),photo,visibility);$('nps-rows').append(tr);
   }
-  if(!data.rows.length){const tr=make('tr'),td=make('td','Nenhuma avaliação neste período.');td.colSpan=8;tr.append(td);$('nps-rows').append(tr);}
+  if(!data.rows.length){const tr=make('tr'),td=make('td','Nenhuma avaliação neste período.');td.colSpan=9;tr.append(td);$('nps-rows').append(tr);}
   $('nps-status').textContent=data.total+' avaliações'+(data.total?' · Exibindo '+(offset+1)+' a '+(offset+data.rows.length):'')+'.';
   $('nps-prev').disabled=offset===0;$('nps-next').disabled=offset+data.limit>=data.total;
  }catch(error){if(current===requestId)$('nps-status').textContent=error.message;}

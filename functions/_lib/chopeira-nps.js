@@ -9,7 +9,8 @@ export const schema=[
 "CREATE TABLE IF NOT EXISTS chopeira_nps_consents (id TEXT PRIMARY KEY,version TEXT NOT NULL,text TEXT NOT NULL,accepted_at TEXT NOT NULL)",
 "CREATE TABLE IF NOT EXISTS chopeira_nps (id TEXT PRIMARY KEY,name TEXT NOT NULL,email TEXT NOT NULL,phone TEXT NOT NULL,score INTEGER NOT NULL CHECK(score BETWEEN 0 AND 10),review TEXT NOT NULL,device TEXT NOT NULL,day TEXT NOT NULL,created_at TEXT NOT NULL,source_hash TEXT NOT NULL,has_photo INTEGER NOT NULL DEFAULT 0)",
 "CREATE INDEX IF NOT EXISTS chopeira_nps_day ON chopeira_nps(day,device)",
-"CREATE TABLE IF NOT EXISTS chopeira_nps_photos (id TEXT PRIMARY KEY,content_type TEXT NOT NULL,data BLOB NOT NULL)"
+"CREATE TABLE IF NOT EXISTS chopeira_nps_photos (id TEXT PRIMARY KEY,content_type TEXT NOT NULL,data BLOB NOT NULL)",
+"CREATE TABLE IF NOT EXISTS chopeira_nps_publication (id TEXT PRIMARY KEY,hidden INTEGER NOT NULL DEFAULT 0,updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP)"
 ];
 export async function ensureNps(db){await db.batch(schema.map(sql=>db.prepare(sql)));}
 export function validateNps(data){
@@ -57,14 +58,22 @@ export async function submitNps({request,env}){
  }catch{return json({error:'Não foi possível salvar. Tente novamente.'},503);}
 }
 export async function adminNps({request,env}){
- if(request.method!=='GET')return json({error:'Método não permitido.'},405);
+ if(!['GET','POST'].includes(request.method))return json({error:'Método não permitido.'},405);
  if((await identity(request,env))?.role!=='A')return json({error:'Entre como administrador para consultar as avaliações.'},401);
  const url=new URL(request.url),db=env.LIVE_DB;await ensureNps(db);
  if(url.pathname.endsWith('/photo')){
+  if(request.method!=='GET')return json({error:'Método não permitido.'},405);
   const id=url.searchParams.get('id')||'';if(!/^[a-f0-9-]{36}$/i.test(id))return json({error:'Foto inválida.'},400);
   const row=await db.prepare('SELECT content_type,data FROM chopeira_nps_photos WHERE id=?').bind(id).first();
   if(!row)return json({error:'Foto não encontrada.'},404);
   return new Response(Uint8Array.from(row.data),{headers:{...headers,'Content-Type':row.content_type,'Content-Security-Policy':"default-src 'none'; sandbox"}});
+ }
+ if(request.method==='POST'){
+  if(request.headers.get('Origin')!==url.origin)return json({error:'Origem não permitida.'},403);
+  let payload;try{payload=await request.json();}catch{return json({error:'Dados inválidos.'},400);}
+  if(!payload||!/^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(payload.id)||typeof payload.hidden!=='boolean')return json({error:'Informe uma avaliação e uma opção de exibição válidas.'},400);
+  await db.prepare('INSERT INTO chopeira_nps_publication (id,hidden,updated_at) VALUES (?,?,?) ON CONFLICT(id) DO UPDATE SET hidden=excluded.hidden,updated_at=excluded.updated_at').bind(payload.id,payload.hidden?1:0,new Date().toISOString()).run();
+  return json({ok:true,hidden:payload.hidden});
  }
  let range;try{range=analyticsRange(url.searchParams.get('days')||'30',url.searchParams.get('start'),url.searchParams.get('end'));}catch(e){return json({error:e.message},400);}
  const device=url.searchParams.get('device')||'all',offset=Number(url.searchParams.get('offset')||0);
@@ -74,6 +83,6 @@ export async function adminNps({request,env}){
  const total=distribution.reduce((n,r)=>n+Number(r.total),0);
  const count=(min,max)=>distribution.filter(r=>r.score>=min&&r.score<=max).reduce((n,r)=>n+Number(r.total),0);
  const promoters=count(9,10),passives=count(7,8),detractors=count(0,6);
- const rows=(await db.prepare('SELECT id,name,email,phone,score,review,device,created_at,has_photo,COALESCE((SELECT improvement FROM chopeira_nps_details d WHERE d.id=chopeira_nps.id),\'\') AS improvement,COALESCE((SELECT final_review FROM chopeira_nps_details d WHERE d.id=chopeira_nps.id),\'\') AS final_review,EXISTS(SELECT 1 FROM chopeira_nps_consents c WHERE c.id=chopeira_nps.id) AS publication_authorized FROM chopeira_nps WHERE '+where+' ORDER BY created_at DESC,id DESC LIMIT 50 OFFSET ?').bind(...args,offset).all()).results||[];
+ const rows=(await db.prepare('SELECT id,name,email,phone,score,review,device,created_at,has_photo,COALESCE((SELECT improvement FROM chopeira_nps_details d WHERE d.id=chopeira_nps.id),\'\') AS improvement,COALESCE((SELECT final_review FROM chopeira_nps_details d WHERE d.id=chopeira_nps.id),\'\') AS final_review,EXISTS(SELECT 1 FROM chopeira_nps_consents c WHERE c.id=chopeira_nps.id) AS publication_authorized,COALESCE((SELECT hidden FROM chopeira_nps_publication p WHERE p.id=chopeira_nps.id),0) AS public_hidden FROM chopeira_nps WHERE '+where+' ORDER BY created_at DESC,id DESC LIMIT 50 OFFSET ?').bind(...args,offset).all()).results||[];
  return json({total,promoters,passives,detractors,nps:total?Math.round((promoters-detractors)*100/total):null,distribution,rows,offset,limit:50});
 }
