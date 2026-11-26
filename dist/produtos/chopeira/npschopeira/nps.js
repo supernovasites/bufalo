@@ -164,7 +164,7 @@ function paintShareImage(name,review,score){
  ctx.fillStyle='rgba(255,255,255,.96)';ctx.beginPath();ctx.roundRect(72,790,936,355,26);ctx.fill();
  const quote=String(review||'').replace(/\s+/g,' ').trim().slice(0,340);
  ctx.fillStyle='#183536';ctx.font='italic 38px Arial, sans-serif';
- wrapCanvasText(ctx,'“'+quote+'”',820,5).forEach((line,i)=>ctx.fillText(line,116,870+i*54));
+ wrapCanvasText(ctx,'“'+quote+'”',820,4).forEach((line,i)=>ctx.fillText(line,116,870+i*54));
  const firstName=String(name||'').trim().split(/\s+/)[0]||'Cliente';
  ctx.fillStyle='#647570';ctx.font='700 28px Arial, sans-serif';ctx.fillText('— '+firstName,116,1090);
  ctx.strokeStyle='rgba(231,196,119,.55)';ctx.beginPath();ctx.moveTo(86,1200);ctx.lineTo(994,1200);ctx.stroke();
