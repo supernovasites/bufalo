@@ -136,6 +136,56 @@ form.addEventListener('keydown',event=>{
 });
 showStep(0,false);
 
+const sharePanel=document.getElementById('share-panel'),shareCanvas=document.getElementById('share-image'),shareStatus=document.getElementById('share-status'),shareButton=document.getElementById('share-button'),downloadShareButton=document.getElementById('download-share-button');
+function wrapCanvasText(ctx,text,maxWidth,maxLines){
+ const words=text.split(/\s+/),lines=[];let line='';
+ for(const word of words){const candidate=line?line+' '+word:word;if(ctx.measureText(candidate).width>maxWidth&&line){lines.push(line);line=word;}else line=candidate;}
+ if(line)lines.push(line);
+ if(lines.length>maxLines){lines.length=maxLines;let last=lines[maxLines-1];while(last&&ctx.measureText(last+'…').width>maxWidth)last=last.slice(0,-1);lines[maxLines-1]=last.trimEnd()+'…';}
+ return lines;
+}
+function paintShareImage(name,review,score){
+ const ctx=shareCanvas.getContext('2d'),w=1080,h=1350;
+ ctx.clearRect(0,0,w,h);
+ const gradient=ctx.createLinearGradient(0,0,w,h);gradient.addColorStop(0,'#0d292b');gradient.addColorStop(.55,'#173b39');gradient.addColorStop(1,'#265147');ctx.fillStyle=gradient;ctx.fillRect(0,0,w,h);
+ const glow=ctx.createRadialGradient(940,100,20,940,100,540);glow.addColorStop(0,'rgba(211,167,79,.22)');glow.addColorStop(1,'rgba(211,167,79,0)');ctx.fillStyle=glow;ctx.fillRect(400,0,680,600);
+ ctx.strokeStyle='rgba(231,196,119,.75)';ctx.lineWidth=3;ctx.strokeRect(38,38,w-76,h-76);
+ ctx.fillStyle='#f0cd7c';ctx.font='700 30px Arial, sans-serif';ctx.textAlign='left';ctx.fillText('BÚFALO GROWLER',86,112);
+ ctx.fillStyle='#f7f4e8';ctx.font='700 68px Arial, sans-serif';ctx.fillText('Minha experiência',86,235);
+ ctx.font='400 38px Arial, sans-serif';ctx.fillStyle='#d5dfd6';ctx.fillText('com a chopeira Búfalo',86,296);
+ ctx.fillStyle='rgba(255,255,255,.08)';ctx.beginPath();ctx.roundRect(72,370,936,300,28);ctx.fill();
+ ctx.fillStyle='#f0cd7c';ctx.font='700 27px Arial, sans-serif';ctx.fillText('MINHA NOTA',116,430);
+ ctx.fillStyle='#fff9e8';ctx.font='700 178px Arial, sans-serif';ctx.fillText(String(score)+'/10',116,610);
+ ctx.fillStyle='#f0cd7c';ctx.font='700 32px Arial, sans-serif';ctx.fillText('RECOMENDAÇÃO',690,455);
+ ctx.fillStyle='#f7f4e8';ctx.font='600 28px Arial, sans-serif';
+ const verdict=score>=9?'Indicaria com certeza':score>=7?'Minha experiência foi boa':'Tenho pontos para sugerir';
+ wrapCanvasText(ctx,verdict,270,3).forEach((line,i)=>ctx.fillText(line,690,510+i*42));
+ ctx.fillStyle='#f7f4e8';ctx.font='700 30px Arial, sans-serif';ctx.fillText('O QUE EU ACHEI',86,755);
+ ctx.fillStyle='rgba(255,255,255,.96)';ctx.beginPath();ctx.roundRect(72,790,936,355,26);ctx.fill();
+ const quote=String(review||'').replace(/\s+/g,' ').trim().slice(0,340);
+ ctx.fillStyle='#183536';ctx.font='italic 38px Arial, sans-serif';
+ wrapCanvasText(ctx,'“'+quote+'”',820,5).forEach((line,i)=>ctx.fillText(line,116,870+i*54));
+ const firstName=String(name||'').trim().split(/\s+/)[0]||'Cliente';
+ ctx.fillStyle='#647570';ctx.font='700 28px Arial, sans-serif';ctx.fillText('— '+firstName,116,1090);
+ ctx.strokeStyle='rgba(231,196,119,.55)';ctx.beginPath();ctx.moveTo(86,1200);ctx.lineTo(994,1200);ctx.stroke();
+ ctx.fillStyle='#f0cd7c';ctx.font='700 31px Arial, sans-serif';ctx.fillText('Feito pra ser livre.',86,1260);
+ ctx.textAlign='right';ctx.fillStyle='#d5dfd6';ctx.font='400 24px Arial, sans-serif';ctx.fillText('Búfalo On TAP',994,1260);ctx.textAlign='left';
+}
+function showSharePanel(name,review,score){paintShareImage(name,review,score);sharePanel.hidden=false;}
+function shareImageBlob(){return new Promise((resolve,reject)=>shareCanvas.toBlob(blob=>blob?resolve(blob):reject(new Error('Não foi possível preparar a imagem.')),'image/png'));}
+downloadShareButton.addEventListener('click',async()=>{
+ try{const blob=await shareImageBlob(),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='minha-experiencia-chopeira-bufalo.png';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);shareStatus.textContent='Imagem baixada. Você já pode publicar nas suas redes.';}
+ catch(error){shareStatus.textContent=error.message;}
+});
+shareButton.addEventListener('click',async()=>{
+ try{
+  const blob=await shareImageBlob(),file=new File([blob],'minha-experiencia-chopeira-bufalo.png',{type:'image/png'});
+  if(navigator.canShare?.({files:[file]})&&navigator.share){await navigator.share({files:[file],title:'Minha experiência com a chopeira Búfalo',text:'Minha experiência com a chopeira Búfalo On TAP.'});shareStatus.textContent='Imagem compartilhada.';}
+  else{const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=file.name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);shareStatus.textContent='Seu aparelho não oferece compartilhamento de imagens por aqui. A imagem foi baixada para você publicar.';}
+ }catch(error){if(error.name!=='AbortError')shareStatus.textContent=error.message||'Não foi possível compartilhar a imagem.';}
+});
+
+
 form.addEventListener('submit',async event=>{
  event.preventDefault();if(sending)return;
  if(current<steps.length-1){advance();return;}
@@ -147,7 +197,7 @@ form.addEventListener('submit',async event=>{
   const body=new FormData();body.set('data',JSON.stringify(data));if(prepared)body.set('photo',prepared,'chopeira.jpg');
   const response=await fetch('/api/chopeira-nps',{method:'POST',body}),result=await response.json();
   if(!response.ok)throw Error(result.error||'Não foi possível enviar. Tente novamente.');
-  floating.hidden=true;document.body.classList.remove('nps-wizard');form.hidden=true;const success=document.getElementById('success');success.hidden=false;success.focus();clearPhoto();
+  floating.hidden=true;document.body.classList.remove('nps-wizard');form.hidden=true;const success=document.getElementById('success');success.hidden=false;showSharePanel(data.name,data.review,data.score);success.focus();clearPhoto();
  }catch(error){status.className='error';status.textContent=error.message||'Falha de conexão. Tente novamente.';}
  finally{sending=false;back.disabled=false;submit.disabled=false;}
 });
