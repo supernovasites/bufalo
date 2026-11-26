@@ -32,3 +32,15 @@ main{padding-top:24px;padding-bottom:30px}#nps-form{padding:22px 26px;border-rad
 
 /* Contact layout: full-width name, followed by email and phone. */
 .nps-step .contact-grid .field:first-child{grid-column:1 / -1}.nps-step .contact-grid .field:last-child{grid-column:auto}
+
+/* Shareable customer rating image, generated locally after successful submission. */
+.share-panel{margin-top:28px;padding:22px;background:#f5f7f3;border:1px solid #d9e3dd;border-radius:14px}
+.share-panel h3{margin:0 0 8px;font-size:1.25rem}
+.share-panel>p{margin:0 0 16px;color:#526760}
+#share-image{display:block;width:min(100%,480px);height:auto;margin:0 auto 18px;border-radius:12px;box-shadow:0 10px 28px #142e3222;background:#142e32}
+.share-actions{display:flex;flex-wrap:wrap;gap:12px}
+.share-actions .submit{width:auto;flex:1;min-width:190px}
+.share-actions .secondary{flex:1;min-width:150px}
+#share-status:empty{display:none}
+#share-status{margin:14px 0 0;font-weight:700}
+@media(max-width:600px){.share-panel{padding:16px}.share-actions{display:grid}.share-actions .submit,.share-actions .secondary{width:100%}}
