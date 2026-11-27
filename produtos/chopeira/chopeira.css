@@ -778,3 +778,19 @@ html[data-page-type="chopeira"]{max-width:100%;overflow-x:hidden}
 .review-card-date{display:block;margin:0;padding:0 14px 9px;color:#65736f;font-size:12px;line-height:1.25}
 .review-dialog-content .review-card-date{margin:0 0 14px;padding:0;font-size:14px}
 @media(max-width:760px){.review-card-date{padding:0 10px 8px;font-size:11px}}
+
+/* Fit more customer reviews across desktop screens. */
+@media(min-width:761px){
+ .review-rail{--review-columns:3;align-items:flex-start}
+ .review-rail>.review-card{flex-basis:calc((100% - (var(--review-columns) - 1)*12px)/var(--review-columns))}
+ .review-rail .review-card-photo{height:140px}
+ .review-rail .review-card-name{font-size:14px;padding:10px 12px 8px}
+ .review-rail .review-card-date{padding:0 12px 8px}
+ .review-rail .review-card-stars{font-size:22px;margin:10px auto 8px}
+ .review-rail .review-card-copy{padding:0 12px 12px}
+ .review-rail .review-card-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}
+ .review-rail .review-card-open{margin-top:8px}
+}
+@media(min-width:1024px){.review-rail{--review-columns:4}}
+@media(min-width:1200px){.review-rail{--review-columns:5}}
+@media(min-width:1440px){.review-rail{--review-columns:6}}
