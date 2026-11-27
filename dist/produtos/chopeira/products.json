@@ -245,6 +245,26 @@
       "weekend_price": 1195
     },
     {
+      "id": "405346725",
+      "slug": "ontap-4l-silver",
+      "name": "On TAP 4 L · Silver",
+      "store_name": "Búfalo Growler On TAP 4L - Chopeira Térmica Portatil",
+      "url": "https://loja.bufalogrowler.com.br/bufaloontap4l",
+      "source_image": "https://cdn.awsli.com.br/800x800/1237/1237589/produto/405346725/-editar-growlers-chopeiras-1-dd7p9v3h6o-abc1057b-ktjgo9vq1o.png",
+      "kicker": "CHOPEIRAS · 4 L",
+      "description": "Mais capacidade para compartilhar.",
+      "specs": [
+        "Sistema de 4 L com dispensador",
+        "Aço inox 18/8",
+        "5 cápsulas de CO₂ de 16 g"
+      ],
+      "note": "Barril de 3,8 L; sistema com dispensador de 4 L.",
+      "price": 1650,
+      "currency": "BRL",
+      "price_checked_at": "2026-11-27",
+      "sku": "OnTap4L-silver"
+    },
+    {
       "id": "400891545",
       "slug": "combo-55",
       "name": "Mestre Búfalo · Combo 5,5 L",
